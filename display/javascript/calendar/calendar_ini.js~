@@ -1,0 +1,3 @@
+function calendar-ini (iddate,bouton) {
+Calendar.setup({inputField : iddate,ifFormat : '%d-%m-%Y',button : bouton});
+}

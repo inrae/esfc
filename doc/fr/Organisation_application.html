@@ -1,0 +1,13 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="fr-fr"><head><meta content="text/html; charset=ISO-8859-1" http-equiv="content-type"><title>Organisation de l'application</title><meta content="Eric Quinton" name="author"><link rel="stylesheet" href="../../display/CSS/proto.css" type="text/css"></head><body><h1>Organisation de l'application</h1><h2>Dossiers utilisés par prototypePHP</h2><h3>CSS</h3>Contient les feuilles de style.<br><h3>doc</h3>Documentation de l'application, avec un sous-dossier par langue. La page index.php gère les accès à la documentation.<br><h3>Identification</h3>Modules et classes utilisées pour gérer les logins.<br><h3>install</h3>Documentation sur l'installation de l'application, scripts de génération de la base de données.<br><h3>javascript</h3>fonctions javascript intégrées aux pages html (vérification de mot de passe, calendrier...)<br><h3>ldap</h3>Contient une classe de gestion des accès aux annuaires ldap.<br><h3>locales</h3>dossier contenant les fichiers de langue. Un fichier par langue supportée.<br><h3>menu</h3>Contient le fichier qui génère le menu de l'application.<br><h3>navigation</h3>Contient
+d'une part le fichier actions.xml, qui décrit l'accès aux modules, et
+d'autre part, la classe qui permet de manipuler ce fichier.<br><h3>param</h3>Contient tous les fichiers de paramètres.<br><h3>plugins</h3>Contient tous les plugins "commerciaux" utilisés dans PrototypePHP : adodb, esup-phpcas, objetBDD, phpgacl, smarty.<br>A
+noter que phpcas-simple est un client CAS "léger", qui est conservé au
+cas où, mais qu'il est déconseillé d'utiliser aujourd'hui.<br><h3>display/templates</h3>C'est
+le dossier de stockage des pages HTML qui seront manipulées par SMARTY.
+Ce dossier contient autant de sous-dossiers que de sous-dossiers dans
+l'application, qui ont besoin de générer des pages html.<br><h3>display/templates_c</h3>Dossier
+utilisé par SMARTY quand on active la mise en cache. Dans ce cas, ce
+dossier doit être en écriture totale et être nettoyé régulièrement.<br><h2>Les autres dossiers</h2>Leur utilisation est facultative. Ils ne sont que des suggestions d'organisation de l'application...<br><h3>administration</h3>Tout
+ce qui touche à l'administration de l'application. En général, les
+modules déclarés ici ne doivent être accessibles qu'aux administrateurs.<br><h3>gestion</h3>C'est le dossier où l'on stockera les modules destinés à la gestion de l'application : modification des tables de paramètres...<br><h3>images</h3>Pour stocker les icones, images, fonds d'écrans...<br><h3>test</h3>Dossier destiné aux développeurs, quand il faut tester quelques aspects de l'application sans toucher aux modules initiaux...</body></html>
