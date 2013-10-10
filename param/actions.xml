@@ -16,6 +16,7 @@
 	<test action="test/test.php" retourko=""
 		retournull="">
 	</test>
+	<connexion loginrequis="1" menutitle="connexiontitle" menuvalue="connexionvalue" menulevel="0" menuorder="5" onlynoconnect="1" />
 	<identdisconnect action="framework/identification/disconnect.php" menutitle="7" menuvalue="6" menuorder="4" menulevel="0" menuloginrequis="1"></identdisconnect>
 	<apropos action="framework/apropos.php" menulevel="1" menuorder="99" menuvalue="8" menutitle="9" menuparent="99"></apropos>
 	<testcalendrier action="test/testcalendrier.php"></testcalendrier>

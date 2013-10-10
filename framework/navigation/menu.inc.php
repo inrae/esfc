@@ -15,6 +15,7 @@ foreach ($menuarray as $key => $value){
 	 */
 	if ($value["menuloginrequis"]==1 && !isset($_SESSION["login"])) $ok = false;
 	if (strlen($value["menudroits"])>1&& $gestionDroit->getgacl($value["menudroits"])<>1) $ok = false;
+	if ($value["onlynoconnect"] == 1 && strlen($_SESSION["login"])>0) $ok = false;
 	/* 
 	 * Preparation menu niveau 0
 	 */

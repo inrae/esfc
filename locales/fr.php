@@ -39,6 +39,8 @@ $LANG["menu"][40] = "Nouveautés";
 $LANG["menu"][41] = "Quoi de neuf dans l'application ?";
 $LANG["menu"]["example1"] = "Example";
 $LANG["menu"]["example2"] = "It's an example !";
+$LANG["menu"]["connexionvalue"] = "Connexion";
+$LANG["menu"]['connexiontitle'] = "S'identifier dans l'application";
 
 $LANG["message"][0] = "Bienvenue"; 
 $LANG["message"][1] = "prototypephp - titre de l'application";

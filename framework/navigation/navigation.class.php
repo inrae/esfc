@@ -121,6 +121,8 @@ class Navigation {
 				if (isset($value["menuloginrequis"]))
 				$menu["menuloginrequis"] = $value["menuloginrequis"];
 				$menu["menutitle"] = $value["menutitle"];
+				if (isset ($value["onlynoconnect"]))
+				$menu["onlynoconnect"] =$value["onlynoconnect"];
 				/* 
 				 * Recherche si on est en menu principal ou secondaire
 				 */
