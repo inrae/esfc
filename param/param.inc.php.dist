@@ -13,7 +13,7 @@ $APPLI_utf8 = true;
 
 $GACL_aco = $APPLI_code;
 $GACL_aro = "login";
-$GACL_aco = "proto";
+$GACL_aco = "appli";
 
 $ident_type = "BDD";
 
