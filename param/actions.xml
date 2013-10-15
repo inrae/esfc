@@ -1,6 +1,6 @@
 <navigation>
 	<model action="index.php" droits="gestion" retourko="model"
-		retourok="model" retournull="model" loginrequis="1" menulevel="0" menuorder="0" 
+		retourok="model" retournull="model" loginrequis="1" menulevel="0" menuorder="0" onlynoconnect="0"
 		menudroits="gestion" menuloginrequis="1" menuparent="0" menutitle="0" menuvalue="0" param="param1" ajax="0" droitko="droitko" modulebefore="module1,module2">
 	</model>
 	<default droits="gestion" droitko="droitko"></default>

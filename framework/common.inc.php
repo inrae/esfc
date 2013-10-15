@@ -100,7 +100,7 @@ if (isset ( $_SESSION ["LANG"] ) && $APPLI_modeDeveloppement == false) {
 	$LANG = $_SESSION ["LANG"];
 } else {
 	/*
-	 * Recuperation le cas echant du cookie
+	 * Recuperation le cas echeant du cookie
 	 */
 	if (isset ( $_COOKIE ["langue"] )) {
 		$langue = $_COOKIE ["langue"];

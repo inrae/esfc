@@ -18,16 +18,19 @@ function setAction(nomForm, nomChamp, typeAction) {
 	nomForm.submit();
 }
 
-function setDataTables(nomTable, bPaginate, bSort, bFilter) {
+function setDataTables(nomTable, bPaginate, bSort, bFilter, iDisplayLength, bLengthChange) {
 	if (bPaginate == null) bPaginate = true;
 	if (bSort == null) bSort = false;
 	if (bFilter == null) bFilter = false;
+	if (iDisplayLength == null) iDisplayLength = 25;
+	if (bLengthChange == null) bLengthChange = true;
 	$(document).ready( function () {
 		$('#'+nomTable).dataTable( {
 			 "bPaginate": bPaginate,
 			"bFilter": bFilter,
 	        "bSort": bSort,
-	        "iDisplayLength": 25,
+	        "iDisplayLength": iDisplayLength,
+	        "bLengthChange": bLengthChange,
 			 "oLanguage": {
 		            "sLengthMenu": "Afficher _MENU_ lignes par page",
 		            "sZeroRecords": "Pas de données",
@@ -89,7 +92,7 @@ function setValeur(nomForm, nomChamp, valeur) {
  */
 function confirmAction(nomForm, nomChamp, typeAction) {
 	nomChamp.value = typeAction;
-	if (confirm("Confirmez-vous l'op�ration ?") != 1) {
+	if (confirm("Confirmez-vous l'opération ?") != 1) {
 		nomChamp.value = "X";
 	}
 }
@@ -116,7 +119,7 @@ function verifieMdp(pass1, pass2) {
  * idChamp:libelle affiche,idChamp2:libelle affiche champ2,etc... La fonction
  * s'appelle dans le formulaire ainsi (exemple avec controle sur id departement
  * et nom) : <form action="index.php" method="post" onSubmit='return
- * validerForm("departement:D�partement;nom:Nom")'>
+ * validerForm("departement:Département;nom:Nom")'>
  * 
  * @returns boolean
  */
@@ -151,7 +154,7 @@ function validerForm(nomChampAction, listeId) {
  * @returns {Boolean}
  */
 function confirmEnvoi(message) {
-	if (message.length==0) message = "Confirmez-vous l'op�ration ?"; 
+	if (message.length==0) message = "Confirmez-vous l'opération ?"; 
 	if (confirm(message) == 1) {
 		return true;
 	} else {
@@ -162,8 +165,9 @@ function confirmEnvoi(message) {
  * Fonction verifiant la volonte de suppression
  * @returns {Boolean}
  */
-function confirmSuppression() {
-	return confirmEnvoi("Confirmez-vous la suppression ?");
+function confirmSuppression(texte) {
+	if (texte.length==0) texte = "Confirmez-vous la suppression ?";
+	return confirmEnvoi(texte);
 }
 /**
  * Gestion Ajax

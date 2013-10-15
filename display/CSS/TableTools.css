@@ -29,7 +29,7 @@
 div.DTTT_container {
 	position: relative;
 	/*float: center;*/
-	margin-bottom: 1em;
+	margin-bottom: 0em;
 }
 
 button.DTTT_button,
@@ -38,7 +38,7 @@ a.DTTT_button {
 	position: relative;
 	float: left;
 	margin-right: 3px;
-	padding: 5px 8px;
+	padding: 1px 8px;
 	border: 1px solid #999;
 	cursor: pointer;
 	*cursor: hand;

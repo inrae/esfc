@@ -10,6 +10,7 @@
  * @param int $id
  * @param string $smartyPage
  * @param int $idParent
+ * @return array
  */
 function dataRead($dataClass, $id, $smartyPage, $idParent=null) {
 	global $smarty;
@@ -26,6 +27,7 @@ function dataRead($dataClass, $id, $smartyPage, $idParent=null) {
 	*/
 	$smarty->assign("data",$data);
 	$smarty->assign("corps",$smartyPage);
+	return $data;
 }
 /**
  * Ecrit un enregistrement en base de donnees

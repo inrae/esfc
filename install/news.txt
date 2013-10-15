@@ -1,5 +1,19 @@
 Nouveautes
 ===========
+Version 1.8
+--------------
+- intégration de la nouvelle version d'ObjetBDD (2.2.5), qui comprend de nombreuses nouveautés pour gérer les bases postgresql (rajout de " si le nom des champs contient des majuscules, rajout du type 4 pour gérer les champs géographiques postgis, etc.)
+- modification de la gestion des langues
+	* par défaut, le programme permet de sélectionner le français ou l'anglais depuis la barre de titre. L'information est stockée dans un cookie ;
+	* la langue principale, définie dans l'application, est surchargée par les traductions dans la langue cible. Ainsi, si une traduction n'existe pas, c'est la valeur de la langue d'origine qui est affichée
+- correction du style utilisé pour l'affichage des boutons javascript de gestion des listes : les boutons sont moins hauts et ne gênent plus l'affichage
+- correction d'un bug de sécurité : l'identifiant de session n'était pas régénéré après identification
+- correction du contrôleur : quand une page est appelée en mode 'ajax', elle n'est plus stockée dans la variable module_before, ce qui pouvait poser quelques problèmes dans les fiches de saisie qui utilisaient des requêtes ajax et où se paramètre avait été positionné
+- rajout de la possibilité de n'afficher un item du menu que si on n'est pas identifié (par exemple, pour afficher le choix "connexion"). La valeur à utiliser dans actions.xml est onlynoconnect="1"
+- la fonction javascript setDataTables a été complétée pour gérer d'autres paramètres (cf. le descriptif de la fonction)
+- creation d'un script de generation des tables utilisées par PHPGACL pour postgresql dans install(deux scripts : un pour le schéma public, l'autre pour le schéma gacl). Correction des noms utilisés dans phpgacl (ACO notamment).
+	* il est également possible de télécharger phpgacl et d'exécuter le script install.php pour créer la base de données phpgacl
+
 Version 1.7
 --------------
 - renommage du dossier smarty en display
