@@ -1,0 +1,23 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="fr-fr"><head><meta content="text/html; charset=ISO-8859-1" http-equiv="content-type"><title>Créer une classe d'accès aux données</title><meta content="Eric Quinton" name="author"><link rel="stylesheet" href="../../display/CSS/proto.css" type="text/css"></head>
+<body><h1>Créer une classe d'accès aux données</h1>L'accès
+aux données stockées en base de données s'effectue au travers de deux
+classes : ADODB, qui va gérer la connexion à la base de données et
+l'exécution des requêtes, et OBJETBDD, qui va formater les données, et
+générer automatiquement le code SQL pour les opérations de lecture,
+d'écriture ou de suppression.<br>L'exemple proposé est issu de identification/identification.class.php, classe LoginGestion.<br><pre>/**<br> * Classe permettant de manipuler les logins stockés en base de données locale<br> *<br> */<br><br>class LoginGestion extends ObjetBDD<br>{<br>	//<br>	function __construct($link,$param=NULL)<br>	{<br>		if (is_array($param)==false) $param=array();<br>		$param["table"]="LoginGestion";<br>		$param["id_auto"]=1;<br>		$param["cle"]="id";<br>		$this-&gt;colonnes = array (<br>		"id"=&gt; array("type"=&gt;1),<br>		"datemodif"=&gt;array("type"=&gt;2),<br>		"mail"=&gt;array("pattern"=&gt;"#^.+@.+\.[a-zA-Z]{2,6}$#"),<br>		"login"=&gt;array('requis'=&gt;1)<br>		);<br>		parent::__construct($link,$param);<br>	}<br></pre><p>Cette
+première fonction est la fonction d'instanciation. La variable $link
+est l'objet ADODB contenant la connexion à la base de données. On
+définit ici le nom de la table ($this-&gt;table), qu'il s'agit d'un
+identifiant automatique ($this-&gt;id_auto).</p><p>Par défaut, les
+types de données sont considérés comme des types "texte". Si on veut
+indiquer d'autres types, il faut créer le tableau $this-&gt;types, en
+donnant, pour chaque colonne, une valeur correspondant au type :</p><ul><li>0 : varchar (par défaut)</li><li>1 : numérique</li><li>2 : date</li><li>3 : datetime<br></li></ul><pre>	function getListeTriee(){<br>		$sql = 'select id,login,nom,prenom,mail from LoginGestion order by nom,prenom';<br>		return ObjetBDD::getListeParam($sql);<br>	}<br></pre><p>Ici,
+une fonction permettant d'exécuter du SQL, et de récupérer un tableau
+dont les informations sont formatées (dates mises au bon format
+notamment). Une ligne par enregistrement, les clés correspondent au nom
+de la colonne, les valeurs à la valeur correspondante dans
+l'enregistrement.</p><pre>	function ecrire($liste){<br>		$list=array();<br>		$list["id"]=$liste["id"];<br>		$list["login"]=$liste["login"];<br></pre><p>La
+fonction va préparer le tableau contenant les champs à écrire (l$list),
+en récupérant les valeurs voulues dans le tableau fourni en paramètre
+($liste). C'est la classe héritée qui se chargera du formatage et de l'exécution de la requête SQL.</p><p>On formate le mot de passe et on l'encrype en sha256 :</p><pre>		if(isset($liste["pass1"])&amp;&amp;isset($liste["pass2"])&amp;&amp;$liste["pass1"]==$liste["pass2"]&amp;&amp;strlen($liste["pass1"])&gt;3) {<br>			$list["password"]=hash("sha256",($liste["pass1"]));<br></pre><pre>		}<br></pre><p>Enfin, on termine la préparation du tableau contenant les valeurs à insérer :</p><pre>		$list["nom"]=$liste["nom"];<br>		$list["prenom"]=$liste["prenom"];<br>		$list["mail"]=$liste["mail"];<br>		$list["datemodif"]=date('d-m-y');<br>		return ObjetBDD::ecrire($list);<br>	}<br></pre><p><span style="font-family: monospace;"></span></p><pre></pre></body></html>
