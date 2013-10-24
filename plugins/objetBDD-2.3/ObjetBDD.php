@@ -24,7 +24,7 @@
  *
  * @author Eric Quinton, Franck Huby
  * @copyright (C) Eric Quinton 2006-2013
- * @version 2.2.3 du 16/01/2013
+ * @version 2.3 du 24/10/2013 2013-10-24
  * @package ObjetBDD
  *
  * Utilisation :
@@ -254,7 +254,8 @@ class ObjetBDD {
 	 */
 	public $srid;
 	/**
-	 * Caractere utilise pour entourer les noms des colonnes
+	 * Caractere utilise pour entourer les noms des colonnes qui contiennent des majuscules
+	 * Par defaut : ` pour mysql, " pour postgresql
 	 * @var string
 	 */
 	public $quoteIdentifier;

@@ -1,8 +1,9 @@
 News
-Version 2.2.5 - 15/10/2013
-	* Some modifications to correct postgresql syntaxes
-	* New type for geographic field. You can describe a field with type = 4 : "liste" function return "asText(column)", and "ecrire" function run with geomFromText( '$data',$this->srid). The srid must be specified in the __construct function, like param["srid"] = 4326. Otherwise, the srid is set to -1. $data must be a geographic/geometric object, like LINESTRING( X Y, X' Y') or POINT(X,Y)
-	* If a field name contain a capital letter, the field is surrounded by a "quote identifier". This character is ` for mysql, and " for postgresql.
+Version 2.3 - 24/10/2013 2013-10-24
+	* Optimisations to postgresql/postgis :
+		* New type for geographic field. You can describe a field with type = 4 : "liste" function return "asText(column)", and "ecrire" function run with geomFromText( '$data',$this->srid). The srid must be specified in the __construct function, like param["srid"] = 4326. Otherwise, the srid is set to -1. $data must be a geographic/geometric object, like LINESTRING( X Y, X1 Y1) or POINT(X,Y)
+		* If a field name contain a capital letter, the field is surrounded by a "quote identifier" (only in select or where clause, when they are automatically generated). This character is ` for mysql, and " for postgresql.
+		* fixed a bug to UTF8
 
 Version 2.2.4 of 25/01/2013
 	* Improve a new function : getDefaultValue($parentId). This function return the defaults values 

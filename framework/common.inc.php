@@ -22,11 +22,8 @@ ini_set ( 'session.gc_maxlifetime', $APPLI_session_ttl );
 // $session_path = ini_get('session.save_path').'/'.$APPLI_path_stockage_session;
 // if (!is_dir($session_path)) mkdir($session_path);
 // ini_set('session.save_path',$session_path);
-<<<<<<< HEAD
-session_set_cookie_params ( $APPLI_cookie_ttl);
-=======
+
 session_set_cookie_params ( $APPLI_session_ttl );
->>>>>>> sourceforge/master
 /**
  * Integration de la bibliotheque ADODB
  */
@@ -42,8 +39,8 @@ include_once ('plugins/Smarty-3.1.13/libs/Smarty.class.php');
 /**
  * integration de la classe ObjetBDD et des scripts associes
  */
-include_once ('plugins/objetBDD-2.2.5/ObjetBDD.php');
-include_once ('plugins/objetBDD-2.2.5/ObjetBDD_functions.php');
+include_once ('plugins/objetBDD-2.3/ObjetBDD.php');
+include_once ('plugins/objetBDD-2.3/ObjetBDD_functions.php');
 if ($APPLI_utf8 == true)
 	$ObjetBDDParam ["UTF8"] = true;
 

@@ -18,10 +18,7 @@ $navigationxml = "param/actions.xml";
  * @var unknown_type
  */
 $APPLI_session_ttl = 1800;
-<<<<<<< HEAD
 $APPLI_cookie_ttl = 2592000;
-=======
->>>>>>> sourceforge/master
 /*
  * 
  * Nom du chemin de stockage des sessions
