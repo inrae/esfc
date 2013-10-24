@@ -7,7 +7,11 @@
 <table class="tablesaisie">
 	<tr>
 		<td>{$LANG.login.0} :</td>
+<<<<<<< HEAD
 		<td><input name="login" value="{$list.login}" autofocus></td>
+=======
+		<td><input name="login" value="{$list.login}"></td>
+>>>>>>> sourceforge/master
 	</tr>
 	<tr>
 		<td>{$LANG.login.9} :</td>

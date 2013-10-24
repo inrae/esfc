@@ -358,7 +358,10 @@ div.menu>ul>li {
 	margin-top: -2px;
 	float: left;
 	color: #000000;
+<<<<<<< HEAD
 	display: inline;
+=======
+>>>>>>> sourceforge/master
 }
 
 div.menu>ul span {
@@ -376,7 +379,11 @@ div.menu>ul li ul {
 	border-color: #666;
 	margin: -1px 0 0 2px;
 	padding: 1px;
+<<<<<<< HEAD
 	/*width: 15em;*/
+=======
+	width: 10em;
+>>>>>>> sourceforge/master
 	height: auto;
 	background: #FFFFFF;
 	color: #000000;
@@ -391,11 +398,19 @@ div.menu>ul li:hover ul {
 
 div.menu>ul li ul li {
 	margin: 0;
+<<<<<<< HEAD
 	display: block;
 	background: #ffffff;
 	border-left: solid 1em #98c1e9;
 	color: #a66d1a;
 	padding: 1px;
+=======
+	padding-left: 1px;
+	/*  background: #007241;*/
+	background: #ffffff;
+	border-left: solid 1em #98c1e9;
+	color: #a66d1a;
+>>>>>>> sourceforge/master
 }
 
 div.menu a:link,div.menu a:visited,div.menu a:active {

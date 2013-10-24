@@ -82,7 +82,11 @@ function dataDelete($dataClass, $id) {
  * @param string $langue
  */
 function setlanguage($langue) {
+<<<<<<< HEAD
 	global $language, $LANG, $APPLI_cookie_ttl ;
+=======
+	global $language, $LANG;
+>>>>>>> sourceforge/master
 	/*
 	 * Chargement de la langue par defaut
 	*/
@@ -112,6 +116,10 @@ function setlanguage($langue) {
 	/*
 	 * Ecriture du cookie
 	*/
+<<<<<<< HEAD
 	setcookie ( 'langue', $langue, time() +  $APPLI_cookie_ttl);
+=======
+	setcookie ( 'langue', $langue, time() + 2592000 );
+>>>>>>> sourceforge/master
 }
 ?>

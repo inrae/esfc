@@ -13,7 +13,10 @@ Version 1.8
 - la fonction javascript setDataTables a été complétée pour gérer d'autres paramètres (cf. le descriptif de la fonction)
 - creation d'un script de generation des tables utilisées par PHPGACL pour postgresql dans install(deux scripts : un pour le schéma public, l'autre pour le schéma gacl). Correction des noms utilisés dans phpgacl (ACO notamment).
 	* il est également possible de télécharger phpgacl et d'exécuter le script install.php pour créer la base de données phpgacl
+<<<<<<< HEAD
 - rajout de la variable $APPLI_cookie_ttl = 2592000; dans param.default.inc.php, pour indiquer une valeur de conservation des cookies différente de celle de la durée de la session
+=======
+>>>>>>> sourceforge/master
 
 Version 1.7
 --------------

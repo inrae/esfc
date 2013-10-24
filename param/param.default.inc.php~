@@ -5,8 +5,8 @@
 * 
 * Parametres par defaut de l'application
 */
-$APPLI_version = "0.8";
-$APPLI_versiondate = "24/09/2013";
+$APPLI_version = "0.7";
+$APPLI_versiondate = "31/01/2013";
 $language = "fr";
 $DEFAULT_formatdate = "fr";
 /*
@@ -18,10 +18,6 @@ $navigationxml = "param/actions.xml";
  * @var unknown_type
  */
 $APPLI_session_ttl = 1800;
-<<<<<<< HEAD
-$APPLI_cookie_ttl = 2592000;
-=======
->>>>>>> sourceforge/master
 /*
  * 
  * Nom du chemin de stockage des sessions
@@ -97,7 +93,7 @@ $GACL_dbpasswd = "proto";
 $GACL_database = "proto";
 $GACL_dbprefixe = "gacl";
 $GACL_aro = "login";
-$GACL_aco = "appli";
+$GACL_aco = "proto";
 $GACL_path = "param/gacl.ini.php";
 $GACL_listeDroitsGeres = "admin,gestion";
 /*
