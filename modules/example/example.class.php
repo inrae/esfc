@@ -1,5 +1,5 @@
 <?php
-class Kilometre extends ObjetBDD {
+class Example extends ObjetBDD {
 	/**
 	 * Constructeur de la classe
 	 * @param instance ADODB $bdd
