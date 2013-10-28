@@ -1,15 +1,131 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html lang="fr-fr"><head><meta content="text/html; charset=ISO-8859-1" http-equiv="content-type"><title>Installation de prototypePHP</title><meta content="Eric Quinton" name="author"><link rel="stylesheet" href="../../display/CSS/proto.css" type="text/css"></head>
-<body><h1>Installation de PrototypePHP</h1><h2>Installation de PrototypePHP</h2>Décompacter
-l'archive dans /var/www/html (ou /var/www/htdocs). Vérifiez que le
-serveur web a bien les droits pour exécuter les fichiers décompactés
-(pour un serveur Apache sous Linux, il faut en général que le groupe
-Apache ait les droits de lecture et d'exécution).<h2>Installation de la base de données</h2>Dans votre gestionnaire MySQL (p. e. phpmyadmin), créer la base de données, par exemple <span style="font-style: italic;">proto</span>, ainsi qu'un login et un mot de passe pour pouvoir la manipuler.<br><br>Exécuter le script de création des tables&nbsp;install/proto.sql.<br><h2>Modification des droits sur l'arborescence de l'application<br></h2><p>Modifier les droits sur template_c, qui doit être en écriture totale (pour le serveur web).<span style="font-weight: bold;"></span></p><h2>Vérification de la configuration du serveur web</h2>Vérifier
-que les fichiers .htaccess sont bien interprétés. En particulier, vous
-ne devez pas pouvoir accéder en mode web aux fichiers param/param.inc.php (par
-exemple).<br>Dans les dernières versions d'Apache, il faut notamment modifier la directive <span style="font-style: italic;">AllowOverride</span> pour le dossier considéré.<h2>Modification des fichiers de paramètres</h2>Renommer le fichier <span style="font-style: italic;">param/param.inc.php.dist</span> en <span style="font-style: italic;">param/param.inc.php</span>.<br>Editer le fichier param/param.inc.php, et modifier les données suivantes en fonction de votre configuration :<br><h3>Les paramètres généraux</h3>$APPLI_address : Adresse de l'application, par exemple : http://monserveur.com/proto<br>$APPLI_mail : mail d'assistance<br>$language
-: langue par défaut de l'application. Par défaut,&nbsp;fr. Voir à ce
-propos le document sur l'internationalisation du logiciel.<br>$DEFAULT_formatdate
-: le format d'affichage des dates par défaut. Selon le navigateur et
-les fichiers de traductions, cettes valeur peut être différente. Vaut
-"fr" par défaut.<br>$ADODB_debugmode : permet d'activer ou non le mode débogage d'ADODB. Par défaut,&nbsp;0 (inhibé).<br>$OBJETBDD_debugmode : permet d'activer ou non le mode débogage d'OBJETBDD. Par défaut, à 1 (seules les erreurs sont affichées).<h3>L'accès à la base de données</h3>$BDD_server : Serveur qui contient la base de données de l'application<br>$BDD_login : login utilisé<br>$BDD_passwd : mot de passe correspondant<br>$BDD_database : &nbsp;nom de la base de données<h3>L'accès à la base de données des droits</h3>$GACL_dbserver : Serveur qui héberge la base de données de gestion des droits - intégré par défaut<br>$GACL_dblogin : login correspondant<br>$GACL_dbpasswd : mot de passe correspondant<br>$GACL_database : nom de la base de données de gestion des droits (par défaut, la même que celle de l'application)<br>Il faut également éditer le fichier <span style="font-style: italic;">param/gacl.ini.php</span> pour configurer l'accès à la base de données pour phpgacl :<br>db_host : adresse du serveur mysql<br>db_user : login<br>db_password : mot de passe<br>db_name : nom de la base de données<h3>La gestion de la connexion des utilisateurs</h3>PrototypePHP est capable de gérer trois identifications distinctes :<br>- la première, la plus simple (et gérée par l'application), est une identification en base de données.<br>- la seconde s'appuie sur une identification via un annuaire LDAP<br>- la troisième s'appuie sur un SSO-CAS.<br>Le mode d'identification est définit par la variable suivante, dans le fichier <span style="font-style: italic;">param/param.inc.php</span> :<br>$ident_type : LDAP | CAS |BDD<br><br>Si on identifie les utilisateurs sur l'annuaire LDAP :<br>$LDAP_address : Adresse de l'annuaire<br>$LDAP_port :&nbsp; Port de l'annuaire (par défaut, 389)<br>$LDAP_basedn : Base de recherche des logins (exemple : ou=people,ou=service,o=organisation,c=fr)<br>D'autres paramètres sont configurés par défaut :<br>$LDAP_v3 = true;<br>$LDAP_tls = false; // Mettre à true si l'annuaire ldap fonctionne en mode crypté<br><br>Si on identifie les utilisateurs sur un CAS/SSO :<br>$CAS_address : adresse&nbsp;du CAS<br>$CAS_port : port du CAS (en principe, 443)<br><br></body></html>
+<html lang="fr-fr">
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type">
+    <title>Installer prototypePHP</title>
+    <meta content="Eric Quinton" name="author">
+    <link rel="stylesheet" href="../../display/CSS/blue.css" type="text/css">
+  </head>
+  <body>
+    <h1>Installer PrototypePHP</h1>
+    <h2>Installation de PrototypePHP</h2>
+    DÃ©compacter l'archive dans /var/www/html (ou /var/www/htdocs, ou
+    /var/www...). VÃ©rifiez que le serveur web dispose bien les droits pour
+    exÃ©cuter les fichiers dÃ©compactÃ©s (pour un serveur Apache sous Linux, il
+    faut en gÃ©nÃ©ral que le groupe Apache ait les droits de lecture et
+    d'exÃ©cution).
+    <h2>Installer la base de donnÃ©es et la gestion des droits</h2>
+    <p>PrototypePHP fonctionne avec MySQL et PostgreSQL. Il a Ã©tÃ© crÃ©Ã©
+      initialement pour travailler avec Sybase ASE, mais cela fait des annÃ©es
+      que je ne l'utilise plus...</p>
+    <p>Dans votre gestionnaire de bases de donnÃ©es, crÃ©ez une base de donnÃ©es,
+      associez-y un login et un mot de passe. </p>
+    <p>La gestion des droits peut Ãªtre dÃ©placÃ©e dans une autre base de donnÃ©es,
+      si vous souhaitez les centraliser, par exemple. Quoi qu'il en soit,
+      exÃ©cutez l'un de ces scripts :</p>
+    <ul>
+      <li>install/gacl_mysql.sql, pour une base Mysql ;</li>
+      <li>install/gacl_pgsql_schema_public.sql, si vous souhaitez stocker les
+        tables de gestion des droits dans le schÃ©ma public, avec postgresql (pas
+        forcÃ©ment pertinent) ;</li>
+      <li>install/gacl_pgsql_schema_gacl.sql, pour stocker les tables de gestion
+        des droits dans le schÃ©ma gacl. Le login d'accÃ¨s Ã  ces tables doit
+        avoir, par dÃ©faut, l'accÃ¨s natif au schÃ©ma (sans rajout de gacl. devant
+        le nom des tables - commande alter role <span style="font-style: italic;">gacl</span>
+        in database votre_base_de_donnees set search_path = 'gacl';).</li>
+    </ul>
+    <h2>Modifier les droits sur l'arborescence de l'application</h2>
+    <p>display/templates_c et plugins/phpgacl/admin/templates_c doivent Ãªtre
+      accessibles en Ã©criture au login utilisÃ© par le serveur web : les fichiers
+      sont crÃ©Ã©s Ã  la volÃ©e par Smarty pour prÃ©parer les affichages des pages.</p>
+    <h2>VÃ©rifiez la configuration du serveur web</h2>
+    VÃ©rifiez que les fichiers .htaccess soient bien interprÃ©tÃ©s. En particulier,
+    vous ne devez pas pouvoir accÃ©der en mode web aux fichiers
+    param/param.inc.php (par exemple).<br>
+    Dans certaines versions d'Apache, il faut notamment modifier la directive <span
+      style="font-style: italic;">AllowOverride</span> pour le dossier
+    considÃ©rÃ©.
+    <h2>Modifier les fichiers de paramÃ¨tres</h2>
+    Renommez le fichier <span style="font-style: italic;">param/param.inc.php.dist</span>
+    en <span style="font-style: italic;">param/param.inc.php</span>.<br>
+    Editez le fichier param/param.inc.php, et modifier les donnÃ©es suivantes en
+    fonction de votre configuration :<br>
+    <h3>Les paramÃ¨tres gÃ©nÃ©raux</h3>
+    $APPLI_address : Adresse de l'application, par exemple :
+    http://monserveur.com/proto<br>
+    $APPLI_mail : mail d'assistance<br>
+    $language : langue par dÃ©faut de l'application. Par dÃ©faut,&nbsp;fr. Voir Ã 
+    ce propos le document sur l'internationalisation du logiciel.<br>
+    $DEFAULT_formatdate : le format d'affichage des dates par dÃ©faut. Selon le
+    navigateur et les fichiers de traductions, cettes valeur peut Ãªtre
+    diffÃ©rente. Vaut "fr" par dÃ©faut.<br>
+    $ADODB_debugmode : permet d'activer ou non le mode dÃ©bogage d'ADODB. Par
+    dÃ©faut,&nbsp;0 (inhibÃ©).<br>
+    $OBJETBDD_debugmode : permet d'activer ou non le mode dÃ©bogage d'OBJETBDD.
+    Par dÃ©faut, Ã  1 (seules les erreurs sont affichÃ©es).
+    <h3>L'accÃ¨s Ã  la base de donnÃ©es</h3>
+    $BDD_server : Serveur qui contient la base de donnÃ©es de l'application<br>
+    $BDD_login : login utilisÃ©<br>
+    $BDD_passwd : mot de passe correspondant<br>
+    $BDD_database : &nbsp;nom de la base de donnÃ©es<br>
+    <h3>L'accÃ¨s Ã  la base de donnÃ©es de dÃ©veloppement</h3>
+    Le logiciel gÃ¨re la possibilitÃ© de vous connecter Ã  une base spÃ©cifique pour
+    le dÃ©veloppement. C'est la variable $APPLI_modeDeveloppement qui permet de
+    basculer entre les deux bases. Les variables Ã  renseigner pour l'accÃ¨s Ã  la
+    base de dÃ©veloppement sont :<br>
+    $BDDDEV_type <br>
+    $BDDDEV_server<br>
+    $BDDDEV_login<br>
+    $BDDDEV_passwd<br>
+    $BDDDEV_database<br>
+    <h3>L'accÃ¨s Ã  la base de donnÃ©es des droits</h3>
+    Cette base permet de gÃ©rer aussi bien les droits d'accÃ¨s que les logins,
+    pour une identification en base de donnÃ©es.<br>
+    $GACL_dbserver : Serveur qui hÃ©berge la base de donnÃ©es de gestion des
+    droits - intÃ©grÃ© par dÃ©faut<br>
+    $GACL_dblogin : login correspondant<br>
+    $GACL_dbpasswd : mot de passe correspondant<br>
+    $GACL_database : nom de la base de donnÃ©es de gestion des droits (par
+    dÃ©faut, la mÃªme que celle de l'application)<br>
+    Il faut Ã©galement Ã©diter le fichier <span style="font-style: italic;">param/gacl.ini.php</span>
+    pour configurer l'accÃ¨s Ã  la base de donnÃ©es pour phpgacl :<br>
+    db_host : adresse du serveur mysql<br>
+    db_user : login<br>
+    db_password : mot de passe<br>
+    db_name : nom de la base de donnÃ©es
+    <h3>La gestion de la connexion des utilisateurs</h3>
+    PrototypePHP est capable de gÃ©rer trois identifications distinctes :<br>
+    - la premiÃ¨re, la plus simple (et gÃ©rÃ©e par l'application), est une
+    identification en base de donnÃ©es.<br>
+    - la seconde s'appuie sur une identification via un annuaire LDAP<br>
+    - la troisiÃ¨me s'appuie sur un SSO-CAS.<br>
+    Le mode d'identification est dÃ©finit par la variable suivante, dans le
+    fichier <span style="font-style: italic;">param/param.inc.php</span> :<br>
+    $ident_type : LDAP | CAS |BDD<br>
+    <br>
+    Si on identifie les utilisateurs sur l'annuaire LDAP :<br>
+    $LDAP_address : Adresse de l'annuaire<br>
+    $LDAP_port :&nbsp; Port de l'annuaire (par dÃ©faut, 389)<br>
+    $LDAP_basedn : Base de recherche des logins (exemple :
+    ou=people,ou=service,o=organisation,c=fr)<br>
+    D'autres paramÃ¨tres sont configurÃ©s par dÃ©faut :<br>
+    $LDAP_v3 = true;<br>
+    $LDAP_tls = false; // Mettre Ã  true si l'annuaire ldap fonctionne en mode
+    cryptÃ©<br>
+    <br>
+    Si on identifie les utilisateurs sur un CAS/SSO :<br>
+    $CAS_address : adresse&nbsp;du CAS<br>
+    $CAS_port : port du CAS (en principe, 443)<br>
+    <h3>La gestion du mode de dÃ©veloppement</h3>
+    Pour des raisons d'optimisation, par dÃ©faut, les droits et le menu ne sont
+    calculÃ©s que lorsque l'utilisateur se connecte ou se dÃ©connecte. En mode
+    dÃ©veloppement, le calcul est effectuÃ© Ã  chaque fois.<br>
+    De mÃªme, la base de donnÃ©es peut Ãªtre diffÃ©rente en mode dÃ©veloppement et en
+    mode "production".<br>
+    Pour activer le mode dÃ©veloppement, positionnez la variable :<br>
+    $APPLI_modeDeveloppement = true;<br>
+    <h2>SchÃ©ma gÃ©nÃ©ral d'exÃ©cution d'un module</h2>
+    <p><br>
+    </p>
+  </body>
+</html>
