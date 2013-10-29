@@ -1,18 +1,66 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html lang="fr-fr"><head><meta content="text/html; charset=ISO-8859-1" http-equiv="content-type"><title>Internationalisation du logiciel</title><meta content="Eric Quinton" name="author"><link rel="stylesheet" href="../../display/CSS/proto.css" type="text/css"></head>
-<body><h1>Internationalisation du logiciel</h1>PrototypePHP a été conçu pour pouvoir gérer des langues différentes.<br><h2>Principe général</h2><p>Une
-variable globale de l'application, $language, contient le code de la
-langue. Cette variable est définie dans le fichier param/param.inc.php.
-Par défaut, $language vaut fr.</p><h2>La gestion des libellés</h2><p>Tous
-les libellés utilisés dans l'application sont déclarés dans un tableau
-PHP, décrit dans le fichier locales/$language.php, qui est chargé
-systématiquement. La première valeur correspond au format d'affichage de la date (utilisé par la classe OBJETBDD) :</p><pre>&lt;?php<br>define("FORMATDATE","fr");<br></pre><p>Le tableau contenant les libellés est organisé en deux niveaux :</p><pre>$LANG= array();<br>$LANG["menu"][0] = "Gestion";<br>$LANG["menu"][1] = "Opérations de gestion";<br>$LANG["menu"][2] = "Liste des comptes";<br>$LANG["menu"][3] = "Liste des logins - identification via la base de données";</pre><pre>...</pre><pre>$LANG["message"][0] = "Bienvenue"; <br>$LANG["message"][1] = "prototypephp - titre de l'application";<br>$LANG["message"][2] = "Module administration";</pre><pre>...</pre><p>Le premier niveau correspond au module concerné, le second au numéro du libellé.</p><h3>Les règles à respecter...</h3><p>Le
-premier niveau "menu" est à utiliser pour tous les libellés concernant
-le menu (codage en dur dans le logiciel). Les autres valeurs sont
-libres, mais il est conseillé de conserver "message" pour tous les
-messages affichés dans l'application...</p><p>De la même manière, il
-est fortement souhaitable de créer des entrées principales par module
-ou par groupe de modules, pour simplifier la gestion des libellés.</p><h3>L'utilisation dans les templates SMARTY</h3>Pour afficher un libellé dans les templates SMARTY, il suffit d'indiquer la valeur du tableau ainsi :<br>{$LANG.message.0} : affichera "Bienvenue".<br><h2>La personnalisation de la page A propos...</h2><p>C'est une page un peu particulière, qui doit afficher diverses variables (date et numéro de version) et du texte.</p><p>C'est un template SMARTY, stocké dans display/templates/, dont le nom est : apropos_$language.html.</p><p>si on rend le logiciel compatible avec une autre langue, il faut également créer un fichier adhoc dans le dossier templates/</p><h2>La documentation</h2><p>La
-documentation de l'application est gérée par un module particulier, qui
-va aller chercher la documentation dans le dossier
-documentation/$language.</p><p>Pour plus d'information sur la gestion de la documentation, consulter la page correspondante.</p></body></html>
+<html lang="fr-fr">
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type">
+    <title>Internationalisation du logiciel</title>
+    <meta content="Eric Quinton" name="author">
+    <link rel="stylesheet" href="../../display/CSS/blue.css" type="text/css">
+    <link rel="stylesheet" href="display/CSS/blue.css" type="text/css">
+  </head>
+  <body>
+    <h1>Internationalisation du logiciel</h1>
+    PrototypePHP a Ã©tÃ© conÃ§u pour pouvoir gÃ©rer des langues diffÃ©rentes.<br>
+    <h2>Principe gÃ©nÃ©ral</h2>
+    <p>Une variable globale de l'application, $language, contient le code de la
+      langue. Cette variable est dÃ©finie dans le fichier param/param.inc.php.
+      Par dÃ©faut, $language vaut fr.</p>
+    <h2>La gestion des libellÃ©s</h2>
+    <p>Tous les libellÃ©s utilisÃ©s dans l'application sont dÃ©clarÃ©s dans un
+      tableau PHP, dÃ©crit dans le fichier locales/$language.php, qui est chargÃ©
+      systÃ©matiquement. La premiÃ¨re valeur correspond au format d'affichage de
+      la date (utilisÃ© notamment par la classe OBJETBDD) :</p>
+    <pre>&lt;?php<br>define("FORMATDATE","fr");</pre>
+    <p>Le tableau contenant les libellÃ©s est organisÃ© en deux niveaux : </p>
+    <pre>$LANG= array();<br>$LANG["menu"][0] = "Gestion";<br>$LANG["menu"][1] = "OpÃ©rations de gestion";<br>$LANG["menu"][2] = "Liste des comptes";<br>$LANG["menu"][3] = "Liste des logins - identification via la base de donnÃ©es";</pre>
+    <pre>...</pre>
+    <pre>$LANG["message"][0] = "Bienvenue"; <br>$LANG["message"][1] = "prototypephp - titre de l'application";<br>$LANG["message"][2] = "Module administration";</pre>
+    <pre>...</pre>
+    <p>Le premier niveau correspond au module concernÃ©, le second au numÃ©ro du
+      libellÃ©.</p>
+    <h3>Les rÃ¨gles Ã  respecter...</h3>
+    <p>Le premier niveau "menu" est Ã  utiliser pour tous les libellÃ©s concernant
+      le menu (codage en dur dans le logiciel). Les autres valeurs sont libres,
+      mais il est conseillÃ© de conserver "message" pour tous les messages
+      affichÃ©s dans l'application...</p>
+    <p>De la mÃªme maniÃ¨re, il est fortement souhaitable de crÃ©er des entrÃ©es
+      principales par module ou par groupe de modules, pour simplifier la
+      gestion des libellÃ©s.</p>
+    <h3>L'utilisation dans les templates SMARTY</h3>
+    Pour afficher un libellÃ© dans les templates SMARTY, il suffit d'indiquer la
+    valeur du tableau ainsi :<br>
+    {$LANG.message.0} : affichera "Bienvenue".<br>
+    <h2>Gestion de nouvelles langues</h2>
+    <p>Par dÃ©faut, le programme gÃ¨re les langues en surcharge de la langue
+      principale : si un libellÃ© n'est pas traduit dans la langue cible, il est
+      alors affichÃ© dans la langue d'origine. </p>
+    <p>L'utilisateur peut choisir sa langue par dÃ©faut : elle sera rÃ©cupÃ©rÃ©e
+      aprÃ¨s connexion Ã  l'application (stockage en cookie). Pour rajouter de
+      nouvelles langues, il suffit de rajouter un "drapeau" dans le menu, et
+      d'indiquer, comme lien (ici, de l'italien) :</p>
+    <pre>index.php?module=setlanguage&amp;langue=it</pre>
+    <p>et, bien sÃ»r, crÃ©er le fichier locales/it.php.</p>
+    <h2>La personnalisation de la page A propos...</h2>
+    <p>C'est une page un peu particuliÃ¨re, qui doit afficher diverses variables
+      (date et numÃ©ro de version) et du texte.</p>
+    <p>C'est un template SMARTY, stockÃ© dans display/templates/, dont le nom est
+      : apropos_$language.html.</p>
+    <p>si on rend le logiciel compatible avec une autre langue, il faut
+      Ã©galement crÃ©er un fichier adhoc dans le dossier templates/</p>
+    <h2>La documentation</h2>
+    <p>La documentation de l'application est gÃ©rÃ©e par un module particulier,
+      qui va aller chercher la documentation dans le dossier
+      documentation/$language.</p>
+    <p>Pour plus d'information sur la gestion de la documentation, consulter la
+      page correspondante.</p>
+  </body>
+</html>

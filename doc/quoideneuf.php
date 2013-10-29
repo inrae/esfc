@@ -1,5 +1,5 @@
 <?php
-$fichier = file("install/news.txt");
+$fichier = file("install/readme.txt");
 $doc = "";
 foreach($fichier as $key=>$value) {
 	if (substr($value,1,1)=="*" or substr($value,0,1)=="*"){
@@ -10,5 +10,5 @@ foreach($fichier as $key=>$value) {
 }
 
 $smarty->assign("texte",$doc);
-$smarty->assign("corps","doc/quoideneuf.tpl");
+$smarty->assign("corps","documentation/quoideneuf.tpl");
 ?>

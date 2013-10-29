@@ -23,16 +23,17 @@
 	<gestiondroits action="framework/identification/gestiondroits.php" droits="admin" retourko=""
 		retourok="" retournull="" loginrequis="0" menulevel="1" menuorder="9" menudroits="admin" menuloginrequis="" menuparent="3" menutitle="13" menuvalue="12" droitko="droitko">
 	</gestiondroits>
-	<docindex menulevel="0" menuorder="99" menutitle="21" menuvalue="20" action="doc/index.php" param1="index.html"></docindex>
-	<docinstallation menulevel="1" menuorder="0" menutitle="23" menuvalue="22" action="doc/index.php" param1="Installation.html" menuparent="99"></docinstallation>
+	<docindex menulevel="0" menuorder="99" menutitle="21" menuvalue="20" action="doc/index.php" param1="index.html" ajax="1"></docindex>
+	<docinstallation menulevel="1" menuorder="0" menutitle="23" menuvalue="22" action="doc/index.php" param1="Installation.html" menuparent="99" ></docinstallation>
 	<docdroits menulevel="1" menuorder="1" menutitle="25" menuvalue="24" action="doc/index.php" param1="Gestion_droits.html" menuparent="99"></docdroits>
 	<docmodulelecture menulevel="1" menuorder="2" menutitle="27" menuvalue="26" action="doc/index.php" param1="module_lecture.html" menuparent="99"></docmodulelecture>
 	<docparammodule menulevel="1" menuorder="3" menutitle="29" menuvalue="28" action="doc/index.php" param1="Parametrage_module.html" menuparent="99"></docparammodule>
 	<docclasseaccess menulevel="1" menuorder="4" menutitle="31" menuvalue="30" action="doc/index.php" param1="classe_acces_donnees.html" menuparent="99"></docclasseaccess>
-	<docgestiondoc menulevel="1" menuorder="5" menutitle="33" menuvalue="32" action="doc/index.php" param1="Gestion_documentation.html" menuparent="99"></docgestiondoc>
+	<docgestiondoc menulevel="1" menuorder="5" menutitle="33" menuvalue="32" action="doc/index.php" param1="Gestion_documentation.html" menuparent="99" ></docgestiondoc>
 	<docinternationalisation menulevel="1" menuorder="6" menutitle="35" menuvalue="34" action="doc/index.php" param1="Internationalisation.html" menuparent="99"></docinternationalisation>
-	<docsmarty menulevel="1" menuorder="7" menutitle="37" menuvalue="36" action="doc/index.php" param1="Utiliser_SMARTY.html" menuparent="99"></docsmarty>
-	<docdescriptionorganisation menulevel="1" menuorder="7" menutitle="39" menuvalue="38" action="doc/index.php" param1="Organisation_application.html" menuparent="99"></docdescriptionorganisation>
+	<docsmarty menulevel="1" menuorder="7" menutitle="37" menuvalue="36" action="doc/index.php" param1="Utiliser_SMARTY.html" menuparent="99" ></docsmarty>
+	<docdescriptionorganisation menulevel="1" menuorder="8" menutitle="39" menuvalue="38" action="doc/index.php" param1="Organisation_application.html" menuparent="99" ></docdescriptionorganisation>
+	<docmodulerecherche menulevel="1" menuorder="9" menutitle="43" menuvalue="42" menuparent="99" action="doc/index.php" param1="module_recherche.html" />
 	<quoideneuf action="doc/quoideneuf.php" menulevel="1" menuparent="99" menutitle="41" menuvalue="40"></quoideneuf>
 	<setlanguage action='framework/setlanguage.php' />
 	

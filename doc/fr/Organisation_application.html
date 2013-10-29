@@ -1,72 +1,105 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html lang="fr-fr">
   <head>
-    <meta content="text/html; charset=ISO-8859-1" http-equiv="content-type">
+    <meta content="text/html; charset=utf-8" http-equiv="content-type">
     <title>Organisation de l'application</title>
     <meta content="Eric Quinton" name="author">
     <link rel="stylesheet" href="../../display/CSS/blue.css" type="text/css">
+    <link rel="stylesheet" href="display/CSS/blue.css" type="text/css">
   </head>
   <body>
     <h1>Organisation de l'application</h1>
-    <h2>Schéma général de fonctionnement</h2>
-    <p>L'application est bâtie selon un modèle MVC (model - vue - controler). Ce
-      schéma récapitule l'ensemble des opérations réalisées à chaque appel d'un
+    <h2>SchÃ©ma gÃ©nÃ©ral de fonctionnement</h2>
+    <p>L'application est bÃ¢tie selon un modÃ¨le MVC (model - vue - controler). Ce
+      schÃ©ma rÃ©capitule l'ensemble des opÃ©rations rÃ©alisÃ©es Ã  chaque appel d'un
       module :</p>
-    <img alt="Schéma général de traitement d'un module" src="schema_general.png">
-    <h2>Dossiers utilisés par prototypePHP</h2>
+    <img alt="SchÃ©ma gÃ©nÃ©ral de traitement d'un module" src="schema_general.png">
+    <img alt="SchÃ©ma gÃ©nÃ©ral de traitement d'un module" src="doc/fr/schema_general.png">
+    <h2>Dossiers utilisÃ©s par prototypePHP</h2>
     <h3>display</h3>
-    <p>Contient tous les dossiers utilisés pour l'affichage :</p>
+    <p>Contient tous les dossiers utilisÃ©s pour l'affichage :</p>
     <ul>
       <li>CSS : les feuilles de style</li>
       <li>images : les images</li>
       <li>javascript : tout le code javascript, et notamment :</li>
       <ul>
-        <li>fonctions.js : le code spécifique utilisé par prototypephp ;</li>
+        <li>fonctions.js : le code spÃ©cifique utilisÃ© par prototypephp ;</li>
         <li>calendar : un calendrier accessible via un bouton ;</li>
-        <li>datatables : un module jquery utilisé pour afficher les tableaux ;</li>
-        <li>jquery-validation : un module permettant de réaliser des contrôles
-          de saisie avant envoi du formulaire (non implémenté pour le moment)</li>
+        <li>datatables : un module jquery utilisÃ© pour afficher les tableaux ;</li>
+        <li>jquery-validation : un module permettant de rÃ©aliser des contrÃ´les
+          de saisie avant envoi du formulaire (non implÃ©mentÃ© pour le moment)</li>
       </ul>
-      <li>templates : les modèles de document Smarty ;</li>
+      <li>templates : les modÃ¨les de document Smarty ;</li>
       <li>templates_c : le dossier de travail de Smarty.<br>
       </li>
     </ul>
     <h3>doc</h3>
     Documentation de l'application, avec un sous-dossier par langue. La page
-    index.php gère les accès à la documentation.<br>
+    index.php gÃ¨re les accÃ¨s Ã  la documentation.<br>
     <h3>Framework</h3>
     'L'intelligence" de prototypePHP. Il contient, entre autres :<br>
     <ul>
-      <li>controller.php : le contrôleur de l'application, appelé
-        systématiquement, et qui gère les droits d'accès, l'appel aux modules,
-        la connexion aux bases de données, etc.</li>
-      <li>common.inc.php : toutes les inclusions de bibliothèques nécessaires ;</li>
-      <li>fonctions.php : les fonctions appelées notamment pour gérer les
-        lectures/écritures en bases de données ;</li>
-      <li>identification : les fichiers utilisés pour gérer l'identification et
+      <li>controller.php : le contrÃ´leur de l'application, appelÃ©
+        systÃ©matiquement, et qui gÃ¨re les droits d'accÃ¨s, l'appel aux modules,
+        la connexion aux bases de donnÃ©es, etc.</li>
+      <li>common.inc.php : toutes les inclusions de bibliothÃ¨ques nÃ©cessaires ;</li>
+      <li>fonctions.php : les fonctions appelÃ©es notamment pour gÃ©rer les
+        lectures/Ã©critures en bases de donnÃ©es ;</li>
+      <li>identification : les fichiers utilisÃ©s pour gÃ©rer l'identification et
         la gestion des droits ;</li>
-      <li>import : une classe permettant de réaliser des imports et des exports
+      <li>import : une classe permettant de rÃ©aliser des imports et des exports
         au format csv ;</li>
-      <li>ldap : accès aux annuaires ldap ;</li>
-      <li>navigation : génération du menu à partir de la description réalisée
+      <li>ldap : accÃ¨s aux annuaires ldap ;</li>
+      <li>navigation : gÃ©nÃ©ration du menu Ã  partir de la description rÃ©alisÃ©e
         dans le fichier param/actions.xml</li>
     </ul>
     <h3>install</h3>
-    Documentation sur l'installation de l'application, scripts de génération de
-    la base de données.<br>
+    Documentation sur l'installation de l'application, scripts de gÃ©nÃ©ration de
+    la base de donnÃ©es.<br>
     <h3>locales</h3>
-    dossier contenant les fichiers de langue. Un fichier par langue supportée.<br>
+    dossier contenant les fichiers de langue. Un fichier par langue supportÃ©e.<br>
     <h3>modules</h3>
-    C'est LE dossier privilégié pour mettre le code de votre application !<br>
+    C'est LE dossier privilÃ©giÃ© pour mettre le code de votre application ! Il
+    contient les fichiers et dossiers suivants :<br>
+    <ul>
+      <li>administration : dossier oÃ¹ mettre le code permettant de gÃ©rer les
+        tÃ¢ches d'administration (si nÃ©cessaire) ;</li>
+      <li>gestion : idem, mais pour les tÃ¢ches de gestion ;</li>
+      <li>classes : dossier pour stocker les fichiers de classe. Cela Ã©vite
+        d'avoir Ã  chercher les classes dans toute l'arborescence...</li>
+      <li>example : des exemples de code, pour crÃ©er des modules</li>
+      <li>beforesession.inc.php : fichier appelÃ© systÃ©matiquement <span style="text-decoration: underline;">avant</span>
+        l'ouverture de la session. Permet de charger Ã  chaque appel un fichier
+        de classe, par exemple pour gÃ©rer les instances stockÃ©es en variables de
+        session ;</li>
+      <li>common.inc.php : fichier appelÃ© systÃ©matiquement <span style="text-decoration: underline;">aprÃ¨s</span>
+        l'ouverture de la session. Il permet de rÃ©cupÃ©rer les instances de
+        classe qui auraient Ã©tÃ© stockÃ©es en variable de session, par exemple.</li>
+      <li>functions.inc.php : fichier appelÃ© systÃ©matiquement, pour stocker les
+        fonctions gÃ©nÃ©riques utiles dans l'application.</li>
+    </ul>
     <h3>param</h3>
-    Contient tous les fichiers de paramètres et le fichier permettant de décrire
-    les modules et leur enchaînement.<br>
+    Contient tous les fichiers de paramÃ¨tres et le fichier permettant de dÃ©crire
+    les modules et leur enchaÃ®nement. Les fichiers sont Ã  adapter au programme :<br>
+    <ul>
+      <li>param.default.inc.php : les paramÃ¨tres par dÃ©faut de l'application. Ce
+        fichier est fourni Ã  chaque nouvelle livraison du code ;</li>
+      <li>param.inc.php : les paramÃ¨tres spÃ©cifiques Ã  l'implÃ©mentation. les
+        paramÃ¨tres sont lus aprÃ¨s param.default.inc.php, et surchargent donc les
+        paramÃ¨tres par dÃ©faut. Ce fichier <span style="text-decoration: underline;">doit</span>
+        Ãªtre livrÃ© sous le nom param.inc.php.dist</li>
+      <li>gacl.ini.php : fichier contenant les paramÃ¨tres utilisÃ©s par le plugin
+        phpgacl pour se connecter Ã  la base de donnÃ©es des droits. Il <span style="text-decoration: underline;">doit</span>
+        Ãªtre livrÃ© sous le nom gacl.ini.php.dist</li>
+      <li>actions.xml : contient tout le paramÃ©trage d'accÃ¨s aux modules et du
+        menu gÃ©nÃ©ral (cf. document correspondant)</li>
+    </ul>
     <h3>plugins</h3>
-    Contient tous les plugins "externe" utilisés dans PrototypePHP : adodb,
+    Contient tous les plugins "externes" utilisÃ©s dans PrototypePHP : adodb,
     esup-phpcas, objetBDD, phpgacl, smarty...<br>
     <h3>test</h3>
-    Dossier destiné aux développeurs, quand il faut tester quelques aspects de
-    l'application sans toucher aux autres modules. Pensez à ne pas laisser
-    dedans du code qui pourrait présenter un danger en production !
+    Dossier destinÃ© aux dÃ©veloppeurs, quand il faut tester quelques aspects de
+    l'application sans toucher aux autres modules. Pensez Ã  ne pas laisser
+    dedans du code qui pourrait prÃ©senter un danger en production !
   </body>
 </html>

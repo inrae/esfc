@@ -1,4 +1,5 @@
 <h2>Détail EXEMPLE</h2>
+<a href="index.php?module=exampleList">Retour à la liste</a> 
 {if $droits.gestion == 1}
 <a href="index.php?module=exampleModif&idExample={$data.idExample}">
 Modifier...

@@ -1,26 +1,177 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html lang="fr-fr"><head><meta content="text/html; charset=ISO-8859-1" http-equiv="content-type"><title>Cr�er un module pour lire le contenu d'une fiche</title><meta content="Eric Quinton" name="author"><link rel="stylesheet" href="../../display/CSS/proto.css" type="text/css"></head>
-<body><h1>Cr�er un module pour manipuler le contenu d'une fiche</h1>L'exemple est issu de identification/loginmodif.php.<br>Ce
-module est unique pour g�rer aussi bien la lecture des informations,
-que la mise en fichier ou la suppression : c'est g�r� par la variable <span style="font-style: italic;">action</span>.<br><pre>$loginGestion = new LoginGestion($bdd,$ObjetBDDParam);<br>/**<br> * R�cup�ration du type d'action<br> */<br>if (isset($_REQUEST["action"])){<br>	if ($_REQUEST["action"]=="M") {<br>		//Modification<br>		if (isset($_REQUEST["id"])) {<br>			$list=array();<br>			$list=$_REQUEST;<br>			$ret=$loginGestion-&gt;ecrire($list);<br></pre><p>Dans
-cette partie modification, on charge le tableau $list avec les
-variables transmises par le navigateur ($_REQUEST). Cette liste va �tre
-transmise � l'objet LoginGestion, qui va s'occuper de pr�parer la
-requ�te SQL de mise en fichier.</p><p>S'il s'agit d'un nouvel
-enregistrement, la cl� est pass�e � 0. De toute fa�on, le syst�me
-v�rifie si l'enregistrement existe ou non avant de pr�parer la requ�te
-d'�criture (commande insert ou update).I</p><pre>			if ($ret&gt;0) {<br>				$message= $LANG["message"][5];<br>				$_REQUEST["id"]=$ret;<br>			}else{<br>				$message=formatErrorData($loginGestion-&gt;getErrorData());<br>				$message.=$LANG["message"][12];<br>			}<br>		}<br><br>	}elseif ($_REQUEST["action"]=="S"&amp;&amp;$_REQUEST["id"]&gt;0) {<br>		//Suppression<br>		if($loginGestion-&gt;supprimer($_REQUEST["id"])==1) {<br>			$message=$LANG["message"][4];<br>			unset($_REQUEST["id"]);<br>			$module_coderetour = 1;<br>		}else{<br>			$message=$LANG["message"][13];<br>		}<br><br>	}elseif ($_REQUEST["action"]=="X"){<br>		$module_coderetour = 0;<br>	}<br>}<br>if (isset($_REQUEST["id"])) {<br>	$id = $_REQUEST['id'];<br>}<br><br>if (isset($id)){<br>	$list=$loginGestion-&gt;lire($id);<br></pre><p>Ici, lecture de l'enregistrement. Le contenu du tableau r�cup�r� va �tre transmis � SMARTY, pour pouvoir �tre affich�.</p><pre>	$smarty-&gt;assign("list",$list);<br>	$smarty-&gt;assign("corps","ident/loginsaisie.tpl");<br>}else{<br>	$message=$LANG["message"][14];<br>}</pre><h3>La page display/templates/ident/loginsaisie.tpl</h3>C'est la page qui va �tre utilis�e pour afficher le formulaire de saisie.<br><pre>&lt;script language="javascript" SRC="display/javascript/fonctions.js"&gt;&lt;/script&gt;<br></pre><p>Le
-fichier fonctions.js contient les petites fonctions javascript
-utilis�es dans le formulaire, et notamment la v�rification du mot de
-passe ou la v�rification de la volont� de l'utilisateur lors de la
-suppression de l'enregistrement.</p><pre><br>&lt;form method="post" action="index.php"&gt;<br></pre><p>Le seul point d'entr�e de l'application est la page index.php, qui est appel�e syst�matiquement.</p><pre>&lt;input type="hidden" name="action" value="M"&gt; <br>&lt;input type="hidden" name="id" value="{$list.id}"&gt;<br>	&lt;input type="hidden" name="module" value="loginmodif"&gt;<br></pre><p>La variable <span style="font-style: italic;">module</span>
-est obligatoire : c'est elle qui va permettre de savoir quel module
-devra �tre appel� lorsque le formulaire sera valid�. Consulter le
-document d�crivant le param�trage d'un module.</p><pre>	&lt;input type="hidden" name="password" value="{$list.password}"&gt;<br></pre><p>Toutes
-les valeurs contenues dans le tableau $list peuvent �tre affich�es par
-$list.nomattribut. Il existe �galement des possibilit�s de parcourir un
-tableau quand il est multi-ligne : consulter � ce propos le fichier
-display/templates/ident/loginliste.tpl.</p><pre><br>&lt;table class="tablesaisie"&gt;<br>	&lt;tr&gt;<br>		&lt;td&gt;{$LANG.login.0} :&lt;/td&gt;<br></pre><p>Les
-libell�s sont g�r�s dans un fichier � part, permettant une
-internationalisation du logiciel : locales/fr.php. Consulter � cet
-effet le document parlant de l'internationalisation de l'application.</p><pre>		&lt;td&gt;&lt;input name="login" value="{$list.login}"&gt;&lt;/td&gt;<br>	&lt;/tr&gt;<br>	&lt;tr&gt;<br>		&lt;td&gt;{$LANG.login.9} :&lt;/td&gt;<br>		&lt;td&gt;&lt;input name="nom" value="{$list.nom}"&gt;&lt;/td&gt;<br>	&lt;/tr&gt;<br>	&lt;tr&gt;<br>		&lt;td&gt;{$LANG.login.10} :&lt;/td&gt;<br>		&lt;td&gt;&lt;input name="prenom" value="{$list.prenom}"&gt;&lt;/td&gt;<br>	&lt;/tr&gt;<br>	&lt;tr&gt;<br>		&lt;td&gt;{$LANG.login.8} :&lt;/td&gt;<br>		&lt;td&gt;&lt;input name="mail" value="{$list.mail}"&gt;&lt;/td&gt;<br>	&lt;/tr&gt;<br>		&lt;tr&gt;<br>		&lt;td&gt;{$LANG.login.11} :&lt;/td&gt;<br>		&lt;td&gt;&lt;input name="datemodif" value="{$list.datemodif}"&gt;&lt;/td&gt;<br>	&lt;/tr&gt;<br>	<br>	&lt;tr&gt;<br>		&lt;td&gt;{$LANG.login.1} :&lt;/td&gt;<br>		&lt;td&gt;&lt;input type="password" name="pass1" onchange="verifieMdp(this.form.pass1, this.form.pass2)"&gt;&lt;/td&gt;<br>	&lt;/tr&gt;<br>	&lt;tr&gt;<br>		&lt;td&gt;{$LANG.login.12} :&lt;/td&gt;<br>		&lt;td&gt;&lt;input type="password" name="pass2" onchange="verifieMdp(this.form.pass1, this.form.pass2)"&gt;&lt;/td&gt;<br>	&lt;/tr&gt;<br>&lt;/table&gt;<br>&lt;div align="center"&gt;<br>&lt;input type="submit" name="valid" value="{$LANG.message.19}"/&gt;<br> &lt;input type="submit" name="suppr" value="{$LANG.message.20}" onClick="javascript:setAction(this.form, this.form.action,'S')"/&gt;<br> &lt;/div&gt;<br>&lt;/form&gt;<br></pre></body></html>
+<html lang="fr-fr">
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type">
+    <title>Créer un module pour lire le contenu d'une fiche</title>
+    <meta content="Eric Quinton" name="author">
+    <link rel="stylesheet" href="../../display/CSS/blue.css" type="text/css">
+    <link rel="stylesheet" href="display/CSS/blue.css" type="text/css">
+  </head>
+  <body>
+    <h1>Créer un module pour manipuler le contenu d'une fiche</h1>
+    Depuis la version 0.7, de nouvelles fonctions sont disponibles, qui
+    permettent de simplifier l'affiichage, la modification des informations.
+    Tout le détail est dans les fichiers example. Les exemples présentés ici
+    sont issus de ces fameux fichiers.<br>
+    <h2>Créer une classe pour manipuler une table</h2>
+    <p>On s'appuie sur ObjetBDD, qui contient toutes les fonctions pour
+      manipuler une table. Les fonctions peuvent être surchargées ou réécrites ;
+      c'est le cas, souvent, de getListe(), qui retourne la liste de tous les
+      enregistrements. Elle est en général réécrite pour modifier l'ordre
+      d'affichage, voire rajouter des jointures, etc.</p>
+    <p>Pour plus d'informations, consultez la page traitant spécifiquement
+      d'ObjetBDD.</p>
+    <pre>class Example extends ObjetBDD {<br>&nbsp;&nbsp;&nbsp; /**<br>&nbsp;&nbsp;&nbsp; &nbsp;* Constructeur de la classe<br>&nbsp;&nbsp;&nbsp; &nbsp;* @param instance ADODB $bdd<br>&nbsp;&nbsp;&nbsp; &nbsp;* @param array $param<br>&nbsp;&nbsp;&nbsp; &nbsp;*/<br>&nbsp;&nbsp;&nbsp; function __construct($bdd,$param=null) {<br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; $this-&gt;param = $param;<br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; $this-&gt;table="Example";<br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; $this-&gt;id_auto="1";<br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; $this-&gt;colonnes=array(<br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; "idExample"=&gt;array("type"=&gt;1,"key"=&gt;1, "requis"=&gt;1, "defaultValue"=&gt;0),<br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; "idParent"=&gt;array("type"=&gt;1, "requis"=&gt;1, "parentAttrib"=&gt;1),<br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; "comment"=&gt;array("defaultValue"=&gt;"Comment",longueur=&gt;"255"),<br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; "dateExample"=&gt;array("type"=&gt;2,"requis"=&gt;1, "defaultValue"=&gt;"getDateJour"),<br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; );<br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; if(!is_array($param)) $param==array();<br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; $param["fullDescription"]=1;<br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; parent::__construct($bdd,$param);<br>&nbsp;&nbsp;&nbsp; }<br>}</pre>
+    <h2>Créer un fichier pour gérer l'ensemble des opérations sur la table</h2>
+    <p>L'objectif est, ici, de réunir dans un seul fichier toutes les opérations
+      susceptibles d'être réalisées dans une table. C'est un parti-pris, qui
+      peut bien sûr être perçu différemment selon le développeur. </p>
+    <pre>&lt;?php<br>/**<br>&nbsp;* Example of a gestion from a table :<br>&nbsp;* - display the list<br>&nbsp;* - show detail<br>&nbsp;* - modify record<br>&nbsp;* - write or delete data in database<br>&nbsp;* <br>&nbsp;* Smarty templates are in display/templates folder<br>&nbsp;* modules are described in param/actions.xml file :<br>&nbsp;* exampleListe, exampleDetail, exampleModif, exampleWrite exampleDelete<br>&nbsp;* <br>&nbsp;* menu items are declared in locales/fr.php<br>&nbsp;*/<br><br>include_once 'modules/example/example.class.php';<br>$dataClass = new Example($bdd,$ObjetBDDParam);<br>$id = $_REQUEST["idExample"];<br><br>switch ($t_module["param"]) {<br>&nbsp;&nbsp;&nbsp; case "list":<br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; /*<br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;* Display the list of all records of the table<br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;*/<br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; $smarty-&gt;assign("data", $dataClass-&gt;getListe());<br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; $smarty-&gt;assign("corps", "example/exampleList.tpl");<br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; break;<br>&nbsp;&nbsp;&nbsp; case "display":<br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; /*<br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;* Display the detail of the record<br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;*/<br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; $data = $dataClass-&gt;lire($id);<br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; $smarty-&gt;assign("data", $data);<br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; $smarty-&gt;assign("corps", "example/exampleDisplay.tpl");<br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; break;<br>&nbsp;&nbsp;&nbsp; case "change":<br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; /*<br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;* open the form to modify the record<br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;* If is a new record, generate a new record with default value :<br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;* $_REQUEST["idParent"] contains the identifiant of the parent record <br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;*/<br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; dataRead($dataClass, $id, "example/exampleChange.tpl", $_REQUEST["idParent"]);<br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; break;<br>&nbsp;&nbsp;&nbsp; case "write":<br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; /*<br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;* write record in database<br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;*/<br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; dataWrite($dataClass, $_REQUEST);<br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; break;<br>&nbsp;&nbsp;&nbsp; case "delete":<br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; /*<br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;* delete record<br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;*/<br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; dataDelete($dataClass, $id);<br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; break;<br>}<br>?&gt;</pre>
+    <p>Quelques explications :</p>
+    <ul>
+      <li>la classe est instanciée en $dataClass ;</li>
+      <li>l'identifiant courant manipulé est récupéré depuis $_REQUEST, et
+        stocké dans la variable $id ;</li>
+      <li>les données lues sont stockées dans $data ;</li>
+      <li>les différents modules sont les suivants :</li>
+      <ul>
+        <li>list : affiche la liste de tous les enregistrements. Ce module peut
+          être complété en rajoutant des fonctions de recherche (cf. ci-dessous)
+          ;</li>
+        <li>display : permet d'afficher le détail d'une fiche. Si des tables
+          sont liées à cette table, c'est dans cette page qu'on fera apparaître
+          l'ensemble des enregistrements "enfants" ;</li>
+        <li>change : affichage du formulaire de modification de la fiche ;</li>
+        <li>write : écriture des modifications en base de données ;</li>
+        <li>delete : suppression de l'enregistrement.</li>
+      </ul>
+    </ul>
+    <h3>Les fonctions génériques utilisées</h3>
+    <p>Elles sont stockées dans le fichier framework/functions.php. Elles gènèrent
+      les codes de retours supportés par le contrôleur, et récupèrent les
+      messages d'erreur le cas échéant.</p>
+    <ul>
+      <li>function dataRead($dataClass, $id, $smartyPage, $idParent=null) : lit
+        l'enregistrement $id, assigne la page Smarty. Si l'enregistrement
+        n'existe pas, les valeurs par défaut sont récupérées à partir de la
+        classe ObjetBDD. Si la table est une table "fille", et si $idParent est
+        renseigné, la valeur par défaut de la clé étrangère sera définie.</li>
+      <li>function dataWrite ($dataClass, $data) : écrit un enregistrement en
+        base de données.&nbsp;</li>
+      <li>function dataDelete($dataClass, $id) : supprime l'enregistrement </li>
+    </ul>
+    <h3>Définir les modules correspondants</h3>
+    <p>Chaque module (item case) doit être décrit indépendamment dans le fichier
+      actions.xml. Voici un exemple correspondant :</p>
+    <pre>&nbsp;&nbsp;&nbsp; &lt;exampleList action="modules/example/example.php" param="list" droits="consult" menulevel="1" menuparent="1" menudroits="" menuvalue="example1" menutitle="example2"&nbsp; /&gt;</pre>
+    <pre>&nbsp;&nbsp;&nbsp; &lt;exampleDisplay action="modules/example/example.php" param="display" droits="consult" /&gt;</pre>
+    <pre>&nbsp;&nbsp;&nbsp; &lt;exampleChange action="modules/example/example.php" param="change" droits="gestion" /&gt;</pre>
+    <pre>&nbsp;&nbsp;&nbsp; &lt;exampleWrite action="modules/example/example.php" param="write" droits="gestion" retourok="exampleList" retourko="exampleModif" modulebefore="exampleModif" /&gt;</pre>
+    <pre>&nbsp;&nbsp;&nbsp; &lt;exampleDelete action="modules/example/example.php" param="delete" droits="admin" retoursuppr="exampleList" retourko="exampleModif" /&gt;</pre>
+    <p>Ce mécanisme permet de gérer des droits différenciés selon les modules de
+      façon simple. Ainsi, si on veut n'autoriser la suppression que pour un
+      utilisateur disposant du droit "admin", il suffit de le spécifier dans
+      actions.xml.</p>
+    <h3>L'affichage SMARTY de la liste</h3>
+    <p>Il utilise l'objet Javascript Datatables, pour "améliorer" la
+      présentation :</p>
+    <pre>&lt;h2&gt;Liste EXEMPLE&lt;/h2&gt;<br>{if $droits["gestion"] == 1}<br>&lt;a href="index.php?module=exampleModif&amp;idExample=0"&gt;<br>Nouveau...<br>&lt;/a&gt;<br>{/if}<br>&lt;script&gt;<br>setDataTables("exampleListe");<br>&lt;/script&gt;<br>&lt;table id="exampleListe" class="tableaffichage"&gt;<br>&lt;thead&gt;<br>&lt;tr&gt;<br>&lt;th&gt;Date&lt;/th&gt;<br>&lt;th&gt;Commentaire&lt;/th&gt;<br>&lt;th&gt;Origine&lt;/th&gt;<br>&lt;/tr&gt;<br>&lt;/thead&gt;&lt;tdata&gt;<br>{section name=lst loop=$data}<br>&lt;tr&gt;<br>&lt;td&gt;<br>{if $droits["gestion"] == 1}<br>&lt;a href="index.php?module=exampleModif&amp;idExample={$data[lst].idExample}"&gt;<br>{$data[lst].dateExample}<br>&lt;/a&gt;<br>{else}<br>{$data[lst].dateExamplee}<br>{/if}<br>&lt;/td&gt;<br>&lt;td&gt;{$data[lst].comment}&lt;/td&gt;<br>&lt;/tr&gt;<br>{/section}<br>&lt;/tdata&gt;<br>&lt;/table&gt;</pre>
+    <p>La fonction setDataTables permet d'initialiser le comportement de
+      Datatables. Voici le détail de cette fonction (stockée dans
+      display/javascript/fonctions.js) :</p>
+    <ul>
+      <li>function setDataTables(nomTable, bPaginate, bSort, bFilter,
+        iDisplayLength, bLengthChange)</li>
+      <ul>
+        <li>nomTable : id du tableau (attention à ce que le nom du tableau soit
+          unique en html). C'est la seule donnée obligatoire</li>
+        <li>bPaginate : autorise ou non la pagination</li>
+        <li>bSort : affiche les icones permettant de trier les colonnes</li>
+        <li>bFilter : affiche une zone permettant de saisir un filtre, pour
+          retrouver rapidement un enregistrement</li>
+        <li>iDisplayLength : nombre de lignes affichées par défaut</li>
+        <li>bLengthChange : affiche la possibilité de modifier le nombre de
+          lignes affichées (nombre fixé dans le composant)</li>
+      </ul>
+    </ul>
+    <h3>L'affichage SMARTY du détail</h3>
+    <pre>&lt;h2&gt;Détail EXEMPLE&lt;/h2&gt;<br>&lt;a href="index.php?module=exampleList"&gt;Retour à la liste&lt;/a&gt;<br>{if $droits.gestion == 1}<br>&lt;a href="index.php?module=exampleModif&amp;idExample={$data.idExample}"&gt;<br>Modifier...<br>&lt;/a&gt;<br>{/if}<br>&lt;table class="tableaffichage"&gt;<br>&lt;tr&gt;<br>&lt;td class="libelleSaisie"&gt;Date :&lt;/td&gt;<br>&lt;td&gt;{$data.dateExample}&lt;/td&gt;<br>&lt;/tr&gt;<br>tr&gt;<br>&lt;td class="libelleSaisie"&gt;Commentaire :&lt;/td&gt;<br>&lt;td&gt;{$data.comment}&lt;/td&gt;<br>&lt;/tr&gt;<br>&lt;/table&gt;</pre>
+    <p>Le lien permettant de modifier la fiche n'est affiché que si les droits
+      sont suffisants.</p>
+    <h3>La fiche de modification SMARTY</h3>
+    <p>h2&gt;Modification EXEMPLE&lt;/h2&gt;<br>
+      <br>
+      &lt;a href="index.php?module=exampleList"&gt;Retour à la liste&lt;/a&gt; <br>
+      {if $data.idExample &gt; 0}<br>
+      &lt;a
+      href="index.php?module=exampleDisplay&amp;idExample={$data.idExample}"&gt;Retour
+      au détail&lt;/a&gt;<br>
+      {/if}<br>
+      &lt;table class="tablesaisie"&gt;<br>
+      &lt;script type="text/javascript"
+      src="display/javascript/calendar/calendar.js"&gt;&lt;/script&gt;<br>
+      &lt;script type="text/javascript"
+      src="display/javascript/calendar/lang/calendar-fr.js"&gt;&lt;/script&gt;<br>
+      &lt;script type="text/javascript"
+      src="display/javascript/calendar/calendar-setup.js"&gt;&lt;/script&gt;<br>
+      &lt;style type="text/css"&gt;@import
+      url(display/javascript/calendar/aqua/theme.css);&lt;/style&gt;<br>
+      &lt;form method="post" action="index.php?module=exampleWrite"
+      onSubmit='return validerForm("dateExample:la date est
+      obligatoire,comment:le commentaire est obligatoire")'&gt;<br>
+      &lt;input type="hidden" name="action" value="M"&gt;<br>
+      &lt;input type="hidden" name="idExample" value="{$data.idExample}"&gt;<br>
+      &lt;input type="hidden" name="idParent" value="{$data.idParent}"&gt;<br>
+      &lt;tr&gt;<br>
+      &lt;td class="libelleSaisie"&gt;Date &lt;span
+      class="red"&gt;*&lt;/span&gt; :&lt;/td&gt;<br>
+      &lt;td class="datamodif"&gt;<br>
+      &lt;input id="dateExample" name="dateExample" value="{$data.dateExample}"
+      maxlengh="10" size="10"&gt;<br>
+      &lt;img id='button1' src='display/javascript/calendar/images/calendar.png'
+      class='calendrier' alt='Calendrier' title='Calendrier'&gt;<br>
+      &lt;script
+      type='text/javascript'&gt;calendarini("dateExample","button1")&lt;/script&gt;<br>
+      &lt;/td&gt;<br>
+      &lt;/tr&gt;<br>
+      &lt;tr&gt;<br>
+      &lt;td class="libelleSaisie"&gt;Commentaire &lt;span
+      class="red"&gt;*&lt;/span&gt; :&lt;/td&gt;<br>
+      &lt;td class="datamodif"&gt;<br>
+      &lt;input id="comment" name="comment" value="{$data.comment}"
+      maxlengh="255" size="45"&gt;&lt;/td&gt;<br>
+      &lt;/tr&gt;<br>
+      &lt;tr&gt;<br>
+      &lt;td colspan="2"&gt;&lt;div align="center"&gt;<br>
+      &lt;input type="submit" value="Enregistrer"&gt;<br>
+      &lt;/form&gt;<br>
+      {if $data.idExample&gt;0&amp;&amp;$droits["admin"] == 1}<br>
+      &lt;form action="index.php" method="post" onSubmit='return
+      confirmSuppression("Confirmez la suppression de la fiche)'&gt;<br>
+      &lt;input type="hidden" name="idExample" value="{$data.idExample}"&gt;<br>
+      &lt;input type="hidden" name="idParent" value="{$data.idParent}"&gt;<br>
+      &lt;input type="hidden" name="module" value="exampleDelete"&gt;<br>
+      &lt;input type="submit" value="Supprimer"&gt;<br>
+      &lt;/form&gt;<br>
+      {/if}<br>
+      &lt;/div&gt;<br>
+      &lt;/td&gt;<br>
+      &lt;/tr&gt;<br>
+      &lt;/table&gt;<br>
+      &lt;span class="red"&gt;*&lt;/span&gt;&lt;span class="messagebas"&gt;Champ
+      obligatoire&lt;/span&gt;</p>
+    <p>Dans cet exemple :</p>
+    <ul>
+      <li>le formulaire est vérifié avant envoi, par la fonction validerForm.
+        Cette fonction prend, en paramètre, le nom de chaque champ et le libellé
+        qui est affiché en cas d'anomalie. La liste des champs obligatoires doit
+        etre construite ainsi :&nbsp; * idChamp:libellé affiché,idChamp2:libellé
+        affiché champ2,etc"... Si vous devez afficher des apostrophes, pensez à
+        les remplacer par les caractères html correspondants.</li>
+      <li>la suppression est gérée dans un formulaire à part, qui n'est affiché
+        que si les droits sont suffisants (ici, admin). Une confirmation est
+        demandée avant envoi.</li>
+    </ul>
+    <h2></h2>
+  </body>
+</html>

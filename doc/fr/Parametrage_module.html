@@ -1,34 +1,100 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html lang="fr-fr"><head><meta content="text/html; charset=ISO-8859-1" http-equiv="content-type"><title>Paramétrer un module</title><meta content="Eric Quinton" name="author"><link rel="stylesheet" href="../../display/CSS/proto.css" type="text/css"></head>
-<body><h1>Paramétrer un module</h1>Un
-module correspond à une page PHP qui va réaliser une action dans
-l'application. Pour être exécuté, le module peut nécessiter des droits
-particuliers, ou simplement se satisfaire d'une identification
-préalable. <br>Il peut également générer un code de retour, pour enchaîner sur un autre module selon le code qui sera fourni.<br>Le module peut également être accessible directement depuis le menu de l'application.<br><h2>Le fichier de paramètres des modules</h2>Le fichier est stocké dans param/actions.xml. Il a la forme suivante :<br><pre>&lt;navigation&gt;</pre><pre>&nbsp;&nbsp;&nbsp; &lt;model action="index.php" droits="gestion" retourko="model"</pre><pre>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; retourok="model" retournull="model" droitko="model" loginrequis="1"<br>&nbsp;menulevel="0" menuorder="0" menudroits="gestion" menuloginrequis="1" menuparent="0" menutitle="0" menuvalue="0"&gt;</pre><pre>&nbsp;&nbsp;&nbsp; &lt;/model&gt;</pre><pre>&nbsp;&nbsp;&nbsp; &lt;loginliste action="identification/loginliste.php" droits="admin"<br>&nbsp;menulevel="1" menuorder="1" menudroits="admin" menuparent="3" menutitle="3" menuvalue="2"&gt;&lt;/loginliste&gt;</pre><pre>&nbsp;&nbsp;&nbsp; &lt;loginmodif action="identification/loginmodif.php" droits="admin"<br>&nbsp;retourko="loginliste" retourok="loginliste" retournull="loginliste" param1="param"&gt;&lt;/loginmodif&gt;</pre><pre>&lt;/navigation&gt;<br></pre><p>L'élément <span style="font-style: italic;">model</span> est donné à titre d'exemple, il contient tous les attributs possibles pour un module.</p><h3>La définition du module</h3><ul><li><span style="font-weight: bold;">action</span> : nom de la page php à exécuter</li><li><span style="font-weight: bold;">droits</span> : nom du droit nécessaire pour exécuter le module (cf. gestion des droits)</li><li><span style="font-weight: bold;">loginrequis</span>
-: 0|1. Si aucun droit particulier n'est nécessaire, il peut être
-possible de demander simplement à ce que l'utilisateur soit identifié</li><li><span style="font-weight: bold;">droitko</span> : nom du module appelé si les droits sont insuffisants</li><li><span style="font-weight: bold;">retourok</span>,
-retourko,
-retournull : correspond aux valeurs attribuées à la variable
-$module_coderetour, qui peuvent prendre dans l'ordre : 1, -1 ou 0. On
-indique pour chacun (si nécessaire) le nom du module suivant à exécuter
-dans chaque cas.</li><li><span style="font-weight: bold;">param1</span>
-: on peut rajouter, si nécessaire, des paramètres complémentaires, qui
-pourront être récupérés dans le code du module par l'appel à la
-variable <span style="font-style: italic;">$t_module["param1"]</span>. Cette possibilité est utilisée pour consulter cette documentation...</li><li><span style="font-weight: bold;">ajax</span> : 0|1. Si le module est utilisé pour répondre à une requête AJAX, basculer ce paramètre à 1 : l'affichage par défaut (titre, menu...) sera inhibé.</li></ul><h3>La gestion du menu</h3>Le
-menu est généré automatiquement à partir du fichier actions.xml.
-Actuellement, le menu est généré sur deux niveaux, et vérifie que
-l'utilisateur ait les droits suffisants demandés. Pour chaque module,
-on peut définir les attributs suivants :<br><ul><li><span style="font-weight: bold;">menulevel</span> : 0 ou 1 : c'est le niveau du menu</li><li><span style="font-weight: bold;">menuorder</span>
-: 0 à n. Ce numéro doit être unique pour le menu considéré, il sert
-d'identifiant pour racrocher les sous-menus. Il définit également
-l'ordre d'affichage.</li><li><span style="font-weight: bold;">menudroits</span> : indique le droit nécessaire pour pouvoir visualiser l'item considéré dans le menu</li><li><span style="font-weight: bold;">menuloginrequis</span>
-: 0|1|2 : 0 : pas de login requis, 1, login requis, 2 : non affiché si
-le login a été saisi (par exemple, pour le module "connexion").</li><li><span style="font-weight: bold;">menuparent</span>
-: pour les menus de niveau 1 (sous-menu), indique à quel rubrique du
-niveau 0 il faut rattacher l'item. Ce numéro correspond à la valeur
-indiquée dans menuorder</li><li><span style="font-weight: bold;">menuvalue</span>
-: clé du tableau d'internationalisation (par défaut, locales/fr_FR.php)
-pour afficher le libellé du menu. Par exemple, voici la valeur pour
-l'item 0 : $LANG["menu"][0] = "Gestion";</li><li><span style="font-weight: bold;">menutitle</span>
-: clé du tableau d'internationalisation pour afficher le texte d'aide
-pour le menu. Exemple : $LANG["menu"][1] = "Opérations de gestion";</li></ul><pre></pre></body></html>
+<html lang="fr-fr">
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type">
+    <title>ParamÃ©trer un module</title>
+    <meta content="Eric Quinton" name="author">
+    <link rel="stylesheet" href="../../display/CSS/blue.css" type="text/css">
+    <link rel="stylesheet" href="display/CSS/blue.css" type="text/css">
+  </head>
+  <body>
+    <h1>ParamÃ©trer un module</h1>
+    Un module correspond Ã  une page PHP qui va rÃ©aliser une action dans
+    l'application. Pour Ãªtre exÃ©cutÃ©, le module peut nÃ©cessiter des droits
+    particuliers, ou simplement se satisfaire d'une identification prÃ©alable. <br>
+    Il peut Ã©galement gÃ©nÃ©rer un code de retour, pour enchaÃ®ner sur un autre
+    module selon le code qui sera fourni.<br>
+    Le module peut Ã©galement Ãªtre accessible directement depuis le menu de
+    l'application.<br>
+    <h2>Le fichier de paramÃ¨tres des modules</h2>
+    Le fichier est stockÃ© dans param/actions.xml. Il a la forme suivante :<br>
+    <pre>&lt;navigation&gt;<br>&lt;model action="index.php" droits="gestion" retourko="model"
+		retourok="model" retournull="model" loginrequis="1" menulevel="0" menuorder="0" onlynoconnect="0"
+		menudroits="gestion" menuloginrequis="1" menuparent="0" menutitle="0" menuvalue="0" param="param1" ajax="0" droitko="droitko" modulebefore="module1,module2"&gt;
+	&lt;/model<span style="font-family: Arial,Helvetica,sans-serif;"><span style="font-family: monospace;">&gt;</span></span><br>&nbsp;&nbsp;&nbsp; &lt;loginliste action="identification/loginliste.php" droits="admin" menulevel="1" menuorder="1" menudroits="admin" menuparent="3" menutitle="3" menuvalue="2"&gt;&lt;/loginliste&gt;<br>&nbsp;&nbsp;&nbsp; &lt;loginmodif action="identification/loginmodif.php" droits="admin" retourko="loginliste" retourok="loginliste" retournull="loginliste" param1="param" /&gt;<br>&lt;/navigation&gt;</pre>
+    <p>L'Ã©lÃ©ment <span style="font-style: italic;">model</span> est donnÃ© Ã 
+      titre d'exemple (il n'est pas traitÃ© par le programme), il contient tous
+      les attributs possibles pour un module.</p>
+    <p>Comme il s'agit d'un fichier xml, les deux notations possibles sont :<br>
+      &lt;module &gt;&lt;/module&gt;<br>
+      ou <br>
+      &lt;module&nbsp; /&gt;</p>
+    <h3>La dÃ©finition du module</h3>
+    <ul>
+      <li><span style="font-weight: bold;">action</span> : nom de la page php Ã 
+        exÃ©cuter</li>
+      <li><span style="font-weight: bold;">droits</span> : nom du droit
+        nÃ©cessaire pour exÃ©cuter le module (cf. gestion des droits)</li>
+      <li><span style="font-weight: bold;">loginrequis</span> : 0|1. Si aucun
+        droit particulier n'est nÃ©cessaire, il peut Ãªtre possible de demander
+        simplement Ã  ce que l'utilisateur soit identifiÃ©</li>
+      <li><span style="font-weight: bold;">droitko</span> : nom du module appelÃ©
+        si les droits sont insuffisants</li>
+      <li><span style="font-weight: bold;">retourok</span>, <span style="font-weight: bold;">retourko</span>,
+        <span style="font-weight: bold;">retournull</span>, <span style="font-weight: bold;">retoursuppr</span>
+        : correspond aux valeurs attribuÃ©es Ã  la variable <span style="font-weight: bold;">$module_coderetour</span>,
+        qui peuvent prendre dans l'ordre : 1, -1,&nbsp; 0 ou 2 (dans l'ordre).
+        On indique pour chacun (si nÃ©cessaire) le nom du module Ã  exÃ©cuter aprÃ¨s
+        le module courant suivant la valeur du code de retour.</li>
+      <li><span style="font-weight: bold;">param1</span> : on peut rajouter, si
+        nÃ©cessaire, des paramÃ¨tres complÃ©mentaires, qui pourront Ãªtre rÃ©cupÃ©rÃ©s
+        dans le code du module par l'appel Ã  la variable <span style="font-style: italic;">$t_module["param1"]</span>.
+      </li>
+      <li><span style="font-weight: bold;">ajax</span> : 0|1. Si le module est
+        utilisÃ© pour rÃ©pondre Ã  une requÃªte AJAX, basculer ce paramÃ¨tre Ã  1 :
+        l'affichage par dÃ©faut (titre, menu...) sera inhibÃ©.</li>
+      <li><span style="font-weight: bold;">modulebefore</span> :
+        module1,module2. Si renseignÃ©, le programme vÃ©rifie que le module appelÃ©
+        avant le module courant est bien celui prÃ©vu. Indispensable pour tout
+        module Ã©crivant dans la base de donnÃ©es, pour s'assurer que la
+        cinÃ©matique de l'application est correctement respectÃ©e. Plusieurs
+        modules peuvent Ãªtre indiquÃ©s, chacun sÃ©parÃ© par une virgule.</li>
+      <li><span style="font-weight: bold;">onlynoconnect</span> : 0|1. Permet de
+        n'afficher le menu que si l'utilisateur ne s'est pas connectÃ©. UtilisÃ©
+        notamment pour afficher le bouton : connexion.</li>
+    </ul>
+    <h3>La gestion du menu</h3>
+    Le menu est gÃ©nÃ©rÃ© automatiquement Ã  partir du fichier <span style="font-weight: bold;">actions.xml</span>.
+    Actuellement, le menu est gÃ©nÃ©rÃ© sur deux niveaux, et vÃ©rifie que
+    l'utilisateur ait les droits suffisants demandÃ©s. Pour chaque module, on
+    peut dÃ©finir les attributs suivants :<br>
+    <ul>
+      <li><span style="font-weight: bold;">menulevel</span> : 0 ou 1 : c'est le
+        niveau du menu</li>
+      <li><span style="font-weight: bold;">menuorder</span> : 0 Ã  n. Ce numÃ©ro
+        doit Ãªtre unique pour le menu considÃ©rÃ©, il sert d'identifiant pour
+        racrocher les sous-menus. Il dÃ©finit Ã©galement l'ordre d'affichage.</li>
+      <li><span style="font-weight: bold;">menudroits</span> : indique le droit
+        nÃ©cessaire pour pouvoir visualiser l'item considÃ©rÃ© dans le menu</li>
+      <li><span style="font-weight: bold;">menuloginrequis</span> : 0|1|2 : 0 :
+        pas de login requis, 1, login requis, 2 : non affichÃ© si le login a Ã©tÃ©
+        saisi (par exemple, pour le module "connexion").</li>
+      <li><span style="font-weight: bold;">menuparent</span> : pour les menus de
+        niveau 1 (sous-menu), indique Ã  quel rubrique du niveau 0 il faut
+        rattacher l'item. Ce numÃ©ro correspond Ã  la valeur indiquÃ©e dans
+        menuorder</li>
+      <li><span style="font-weight: bold;">menuvalue</span> : clÃ© du tableau
+        d'internationalisation (par dÃ©faut, locales/fr_FR.php) pour afficher le
+        libellÃ© du menu. Par exemple, voici la valeur pour l'item 0 :
+        $LANG["menu"][0] = "Gestion";</li>
+      <li><span style="font-weight: bold;">menutitle</span> : clÃ© du tableau
+        d'internationalisation pour afficher le texte d'aide pour le menu.
+        Exemple : $LANG["menu"][1] = "OpÃ©rations de gestion";</li>
+    </ul>
+    <h2>Module par dÃ©faut</h2>
+    <p>Si aucun module n'est indiquÃ©, c'est le module <span style="font-weight: bold;">default</span>
+      qui est exÃ©cutÃ©.</p>
+    <ul>
+    </ul>
+  </body>
+</html>
