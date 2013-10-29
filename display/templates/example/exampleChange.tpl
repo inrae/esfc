@@ -1,7 +1,9 @@
 <h2>Modification EXEMPLE</h2>
 
 <a href="index.php?module=exampleList">Retour à la liste</a>
-
+{if $data.idExample > 0}
+<a href="index.php?module=exampleDisplay&idExample={$data.idExample}">Retour au détail</a>
+{/if}
 <table class="tablesaisie">
 <script type="text/javascript" src="display/javascript/calendar/calendar.js"></script>
 <script type="text/javascript" src="display/javascript/calendar/lang/calendar-fr.js"></script>

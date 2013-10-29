@@ -1,23 +1,650 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html lang="fr-fr"><head><meta content="text/html; charset=ISO-8859-1" http-equiv="content-type"><title>Cr�er une classe d'acc�s aux donn�es</title><meta content="Eric Quinton" name="author"><link rel="stylesheet" href="../../display/CSS/proto.css" type="text/css"></head>
-<body><h1>Cr�er une classe d'acc�s aux donn�es</h1>L'acc�s
-aux donn�es stock�es en base de donn�es s'effectue au travers de deux
-classes : ADODB, qui va g�rer la connexion � la base de donn�es et
-l'ex�cution des requ�tes, et OBJETBDD, qui va formater les donn�es, et
-g�n�rer automatiquement le code SQL pour les op�rations de lecture,
-d'�criture ou de suppression.<br>L'exemple propos� est issu de identification/identification.class.php, classe LoginGestion.<br><pre>/**<br> * Classe permettant de manipuler les logins stock�s en base de donn�es locale<br> *<br> */<br><br>class LoginGestion extends ObjetBDD<br>{<br>	//<br>	function __construct($link,$param=NULL)<br>	{<br>		if (is_array($param)==false) $param=array();<br>		$param["table"]="LoginGestion";<br>		$param["id_auto"]=1;<br>		$param["cle"]="id";<br>		$this-&gt;colonnes = array (<br>		"id"=&gt; array("type"=&gt;1),<br>		"datemodif"=&gt;array("type"=&gt;2),<br>		"mail"=&gt;array("pattern"=&gt;"#^.+@.+\.[a-zA-Z]{2,6}$#"),<br>		"login"=&gt;array('requis'=&gt;1)<br>		);<br>		parent::__construct($link,$param);<br>	}<br></pre><p>Cette
-premi�re fonction est la fonction d'instanciation. La variable $link
-est l'objet ADODB contenant la connexion � la base de donn�es. On
-d�finit ici le nom de la table ($this-&gt;table), qu'il s'agit d'un
-identifiant automatique ($this-&gt;id_auto).</p><p>Par d�faut, les
-types de donn�es sont consid�r�s comme des types "texte". Si on veut
-indiquer d'autres types, il faut cr�er le tableau $this-&gt;types, en
-donnant, pour chaque colonne, une valeur correspondant au type :</p><ul><li>0 : varchar (par d�faut)</li><li>1 : num�rique</li><li>2 : date</li><li>3 : datetime<br></li></ul><pre>	function getListeTriee(){<br>		$sql = 'select id,login,nom,prenom,mail from LoginGestion order by nom,prenom';<br>		return ObjetBDD::getListeParam($sql);<br>	}<br></pre><p>Ici,
-une fonction permettant d'ex�cuter du SQL, et de r�cup�rer un tableau
-dont les informations sont format�es (dates mises au bon format
-notamment). Une ligne par enregistrement, les cl�s correspondent au nom
-de la colonne, les valeurs � la valeur correspondante dans
-l'enregistrement.</p><pre>	function ecrire($liste){<br>		$list=array();<br>		$list["id"]=$liste["id"];<br>		$list["login"]=$liste["login"];<br></pre><p>La
-fonction va pr�parer le tableau contenant les champs � �crire (l$list),
-en r�cup�rant les valeurs voulues dans le tableau fourni en param�tre
-($liste). C'est la classe h�rit�e qui se chargera du formatage et de l'ex�cution de la requ�te SQL.</p><p>On formate le mot de passe et on l'encrype en sha256 :</p><pre>		if(isset($liste["pass1"])&amp;&amp;isset($liste["pass2"])&amp;&amp;$liste["pass1"]==$liste["pass2"]&amp;&amp;strlen($liste["pass1"])&gt;3) {<br>			$list["password"]=hash("sha256",($liste["pass1"]));<br></pre><pre>		}<br></pre><p>Enfin, on termine la pr�paration du tableau contenant les valeurs � ins�rer :</p><pre>		$list["nom"]=$liste["nom"];<br>		$list["prenom"]=$liste["prenom"];<br>		$list["mail"]=$liste["mail"];<br>		$list["datemodif"]=date('d-m-y');<br>		return ObjetBDD::ecrire($list);<br>	}<br></pre><p><span style="font-family: monospace;"></span></p><pre></pre></body></html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type">
+    <title>Manuel d'utilisation OBJETBDD</title>
+    <meta name="GENERATOR" content="OpenOffice.org 3.1  (Linux)">
+    <meta name="AUTHOR" content="Eric Quinton">
+    <meta name="CREATED" content="0;0">
+    <meta name="CHANGEDBY" content="Eric Quinton">
+    <meta name="CHANGED" content="20090827;14515600">
+    <meta name="DESCRIPTION" content="Manuel d'utilisation de la classe PHP OBJETBDD">
+     <link rel="stylesheet" href="../../display/CSS/blue.css" type="text/css">
+     <link rel="stylesheet" href="display/CSS/blue.css" type="text/css">
+  </head>
+  <body dir="ltr" lang="fr-FR">
+    <h1>ObjetBDD - Bibliothèque d'interfaçage avec les tables des bases de
+      données pour PHP</h1>
+    <address style="margin-bottom: 0.5cm;"><i>V2.3 - 24 octobre 2013 (c)
+        2007-2013 Eric Quinton (<a href="mailto:quinton.eric@gmail.com">quinton.eric@gmail.com</a>)</i></address>
+    <p style="margin-bottom: 0cm;"><br>
+    </p>
+    <p style="margin-bottom: 0cm;"><font style="font-size: 8pt;" size="1">Ce
+        logiciel est sous licence LGPL.Vous pouvez l'utiliser dans tout projet,
+        mais reverser toute modification de la classe à la communauté.</font></p>
+    <h2>Introduction</h2>
+    <p>ObjetBDD est une classe non instanciable (qui doit donc être héritée) qui
+      permet d'encapsuler les accès aux bases de données, et notamment les
+      requêtes de lecture et de mise à jour.</p>
+    <p>Elle gère un mapping relationnel – objet, tout au moins la partie accès
+      aux données. Par contre, elle ne gère pas la structure de la base de
+      données (relations entre les tables).</p>
+    <p>Elle s'appuie sur AdoDB (<a href="http://adodb.sourceforge.net/">http://adodb.sourceforge.net</a>)
+      pour gérer la connexion et les échanges avec la base de données.</p>
+    <p>A partir de la version 2.0, ObjetBDD ne fonctionne qu'avec PHP 5.</p>
+    <p><a href="#Nouveaut%C3%A9s%7Coutline">Nouveautés</a><a href="#Installer%20ObjetBDD%7Coutline"><br>
+        Installer ObjetBDD<br>
+      </a><a href="#Caract%C3%A9ristiques+g%C3%A9n%C3%A9rales%7Coutline">Caractéristiques
+        générales<br>
+      </a><a href="#Limitations%7Coutline">Limitations<br>
+      </a><a href="#Exemple%20d%27utilisation%7Coutline">Exemple d'utilisation</a></p>
+    <p><a href="#R%C3%A9f%C3%A9rence%7Coutline">Référence</a></p>
+    <p style="margin-left: 0.95cm;"><a href="#Variables%7Coutline">Variables<br>
+      </a><a href="#Fonctions%7Coutline">Fonctions</a></p>
+    <h2><a name="Nouveautés|outline"></a>Nouveautés</h2>
+    <h3>Version 2.3 - 24/10/2013</h3>
+    <ul>
+      <li>&nbsp;&nbsp;&nbsp; Optimisations pour postgresql/postgis :</li>
+      <ul>
+        <li>Nouveau type pour gérer les champs géographiques postgis
+          (positionner "type"=&gt;4). La fonction liste() retourne la commande
+          "asText(the_geom)", et la fonction ecrire encapsule la valeur dans
+          geomFromText($valeur, $this-&gt;srid). Le SRID doit être spécifié dans
+          la fonction __construct de la classe, en indiquant le paramètre
+          $this-&gt;param["srid"] = 4326. Si le SRID n'est pas défini, il est
+          fixé à -1. $valeur doit être un objet géographique ou géométrique, par
+          exemple LINESTRING( X Y, X1 Y1) ou POINT(X,Y).</li>
+        <li>Si le nom d'un champ contient des majuscules, le nom est maintenant
+          encapsulé dans ` pour des bases Mysql et " dans postgresql. Cela
+          fonctionne pour les select, update, insert, delete...</li>
+        <li>Un bug lié à UTF8 a été corrigé.</li>
+      </ul>
+    </ul>
+    <h3>Version 2.2.4 du 25/01/2013</h3>
+    <ul>
+      <li>Une nouvelle fonction est disponible : getDefaultValue($parentId).
+        Cette fonction retourne les valeurs par défaut, et positionne la clé de
+        la table parente dans le champ qui contient, dans sa description,
+        "parentAttrib" =&gt; 1. Les valeurs par défaut doivent être définies en
+        utilisant, dans la description du champ, "defaultValue"=&gt; 0. La
+        fonction lire() peut maintenant être utilisée pour récupérer les valeurs
+        par défaut, si l'enregistrement n'existe pas en base de données :
+        lire($id, $getDefault = false, $parentValue = 0). defaultValue peut être
+        le nom d'une fonction de la classe, qui sera alors appelée - ObjetBDD
+        contient la fonction getDateJour qui permet de charger la date du jour
+        dans les valeurs par défaut, par exemple.</li>
+      <li>rajout de la fonction getDateJour() qui retourne la date du jour, pour
+        les valeurs par défaut</li>
+      <li>Diverses corrections de bogues qui se produisaient lors de la
+        vérification des données avant l'écriture en base</li>
+    </ul>
+    <h3>Version 2.2.2 du 06/09/2012</h3>
+    <ul>
+      <li>Correction d'un bug concernant l'écriture d'un enregistrement dans une
+        table postgresql, contenant une quote : l'écriture s'effectue en
+        utilisant, dans ce cas, la fonction pg_escape_string.</li>
+    </ul>
+    <h3>Version 2.2.1 du 24/08/2012</h3>
+    <ul>
+      <li>Modifications diverses pour rendre la classe compatible avec
+        PostgreSQL</li>
+      <li>Nettoyage de la classe, correction de divers problèmes.<br>
+      </li>
+    </ul>
+    <h3>Version 2.1.0 du 10/08/11</h3>
+    <ul>
+      <li>Mise en place de la gestion des clés multiples : il est possible
+        maintenant de déclarer des clés multiples, mais qui doivent toutes être
+        numériques (comme auparavant, d'ailleurs).</li>
+      <li>Si la table est entièrement décrite dans la classe héritée, la
+        fonction d'écriture construit la requête SQL à partir du tableau "brut"
+        fourni en paramètre (par exemple, $_REQUEST), en vérifiant les variables
+        transmises. Pour cela, dans le constructeur de la classe héritée,
+        positionner la variable $fullDescription à true.</li>
+      <li>Rajout, dans le tableau $colonnes, d'un champ permettant de spécifier
+        s'il s'agit d'une clé ou non ("key" = 1)</li>
+      <li>Rajout de la variable de classe $this-&gt;keys=array(), comprenant la
+        liste des clés de la table</li>
+      <li>Modification de l'année pivot pour la saisie de l'année sur deux
+        chiffres : elle passe de 29 à 49 (49 =&gt; 2049, 50 =&gt; 1950)</li>
+      <li>Si la date est saisie sans année (jj/mm), rajout de l'année courante
+        automatiquement.</li>
+      <li>Lors de la lecture d'un enregistrement (fonction lire($id), la classe
+        vérifie le type des données de $id, qui peut être un tableau. Si le type
+        n'est pas correct, la requête n'est pas exécutée. Idem pour la fonction
+        supprimer($id).</li>
+      <li>Dans la fonction supprimerChamp($id,$champ), le type numérique
+        (obligatoire) de $champ est vérifié avant l'exécution de la requête</li>
+      <li>Avant une mise en fichier (enregistrement ou suppression), la validité
+        des clés est vérifiée (type principalement)<br>
+      </li>
+    </ul>
+    <h3>Version 2.0.1 du 27/08/09</h3>
+    <p>Correction de bugs introduits dans la version 2.0 :</p>
+    <ul style="margin-left: 0.64cm;">
+      <li>
+        <p>appel à une mauvaise fonction pour l'exécution des requêtes SQL.</p>
+      </li>
+    </ul>
+    <p>Si INSERT n'aboutit pas, la classe ne cherche plus à récupérer la
+      dernière clé, quand la table est gérée par des champs automatiques.</p>
+    <p>Rajout des fonctions traduites en langue anglaise (read($id) pour
+      lire($id), p. e.).</p>
+    <h3>Version 2.0 du 15/08/09</h3>
+    <ul style="margin-left: 0.64cm;">
+      <li>
+        <p>Intégration d'un mode débogage ;</p>
+      </li>
+      <li>
+        <p>Rajout de fonctions permettant de vérifier la cohérence des données
+          (champs numériques, masque basé sur les expressions régulières,
+          longueur maxi des champs texte ;</p>
+      </li>
+      <li>
+        <p>rajout du codage et du décodage des caractères spéciaux html
+          (fonction htmlspecialchars et htmlspecialchars_decode) ;</p>
+      </li>
+      <li>
+        <p>modification de la déclaration des colonnes, qui peut être réalisée
+          maintenant dans un tableau ;</p>
+      </li>
+      <li>
+        <p>possibilité de passer les paramètres par l'intermédiaire d'un
+          tableau, dans la fonction constructeur (fortement conseillé) ;</p>
+      </li>
+      <li>
+        <p>rajout d'une fonction pour gérer les tables N-N ;</p>
+      </li>
+      <li>
+        <p>les requêtes SQL s'exécutent maintenant dans une fonction dédiée ;</p>
+      </li>
+      <li>
+        <p>suppression des assignations obsolètes (var) et remplacement par les
+          assignations PHP5 (public $var).</p>
+      </li>
+    </ul>
+    <h2><a name="Installer ObjetBDD|outline"></a>Installer ObjetBDD</h2>
+    <p>Télécharger ObjetBDD à partir de <a href="http://sourceforge.net/projects/objetbdd/files/">http://sourceforge.net/projects/objetbdd/files/</a>.</p>
+    <p>Pour tous commentaires sur le projet : <a href="http://sourceforge.net/projects/objetbdd/">http://sourceforge.net/projects/objetbdd/</a>
+    </p>
+    <p>Décompacter le fichier ObjetBDD.php, par exemple dans plugins/ObjetBDD,
+      puis l'inclure dans l'application :</p>
+    <pre style="margin-bottom: 0.5cm;">include_once('plugins/ObjetBDD/ObjetBDD.php');</pre>
+    <h2> <a name="Caractéristiques générales|outline"></a>Caractéristiques
+      générales</h2>
+    <p>ObjetBDD permet d'éviter de coder les requêtes SQL fastidieuses, celles
+      qui concernent les mises en fichier (INSERT, UPDATE). Elle gère les clés
+      automatiques, qu'elles soient de type auto-incrément ou qui utilisent la
+      fonction max(id).</p>
+    <p>Elle sait convertir les champs date et datetime en format lisible par
+      l'utilisateur, dans les deux sens (lecture et écriture en base de
+      données).</p>
+    <p>Elle intègre des fonctions de sécurisation : les caractères spéciaux
+      HTML, comme &lt; ou &gt;, sont transformés automatiquement, tant en
+      lecture qu'en écriture.</p>
+    <p>Les valeurs introduites dans la base de données peuvent être analysées,
+      en vérifiant leur type (numérique, texte), et au besoin leur longueur, si
+      elles sont requises ou non (champs obligatoires) ou le masque de saisie
+      (pattern basé sur les expressions régulières).</p>
+    <p>De même, elle dispose d'un mode <i>debug</i>, qui permet d'afficher les
+      messages d'erreur SQL, soit dans le cas d'erreurs, soit systématiquement
+      (affichage du contenu de toutes les requêtes).</p>
+    <p>Elle sait gérer l'enregistrement dans les tables de type N-N, qui
+      comprennent uniquement les clés de deux tables liées.</p>
+    <p>ObjetBDD s'appuyant sur AdoDB, cette classe peut potentiellement
+      travailler avec la plupart des SGBD. Elle a été utilisée dans un cadre
+      professionnel avec SYBASE ASE et MYSQL.</p>
+    <h2><a name="Limitations|outline"></a>Limitations</h2>
+    <p>ObjetBDD ne fonctionne qu'avec des tables dont la clé est numérique, et
+      supportée par une ou plusieurs colonnes (rajout de la version 2.1). </p>
+    <p>Les tables porteuses des relations N-N ne doivent contenir que deux
+      colonnes numériques (elles peuvent également disposer d'une clé numérique
+      indépendante, à condition que celle-ci soit de type auto-incrémentée).</p>
+    <h2><a name="Exemple d'utilisation|outline"></a>Exemple d'utilisation</h2>
+    <h3>Création d'une classe héritée</h3>
+    <pre>// Déclaration de la classe<br> class Test inherits ObjetBDD {<br><br>// constructeur<br>function __construct($link, $param=null) {<br>		if (is_array($param)==false) $param=array();<br>		$param["table"]="Test";<br>		$param["id_auto"]=1;<br>		$param["fullDescription"]=1;<br>// Définition des formats des colonnes, et des contrôles à leur appliquer<br>                $this-&gt;colonnes = array(<br>                "id"=&gt;array("type"=&gt;1,"requis"=&gt;1, "key"=&gt;1, "defaultValue"=&gt;0),<br>		"idParent"=&gt;array("type"=&gt;1, "requis"=&gt;1, "parentAttrib"=&gt;1),<br>                "datemodif"=&gt;array("types"=&gt;2, defaultValue=&gt;getDateJour),<br>                "field1"=&gt;array("longueur"=&gt;10,"pattern"=&gt;"#^[a-zA-Z]+$#","requis"=&gt;1),<br>                "field2"=&gt;array("longueur"=&gt;5),<br>                "mel"=&gt;array("pattern"=&gt;"#^.+@.+\.[a-zA-Z]{2,6}$#")<br>                );<br>// Appel du constructeur de la classe ObjetBDD<br>                parent::__construct($link,$param);<br>        }<br>}</pre>
+    <h3> Utilisation dans une page PHP</h3>
+    <pre>// intégration des bibliothèques <br> include_once('plugins/adodb5/adodb.inc.php');<br> include_once('plugins/ObjetBDD/ObjetBDD.php');<br><br>// Connexion à la base de données avec ADODB :<br> $bdd = ADONewConnection("mysql");<br> $bdd-&gt;PConnect("localhost", "login", "password", "database");<br><br>// Définition des paramètres spécifiques de fonctionnement de la classe<br> $param = array ("debug_mode"=&gt;2,"id_auto"=&gt;1);<br>// Lecture du fichier contenant la classe Test<br>include ("test/test.class.php");<br>$test = new Test($bdd,$param);<br><b>// Lecture d'un enregistrement</b>
+$id = 5;
+$tableau = $test-&gt;lire($id)
+print_r ($tableau) ;
+/* 
+* Affichage : 
+* Array ( [id] =&gt; 5 [datemodif] =&gt; 15/08/2009 [champtexte] =&gt; Dupont1 [champtexte2] =&gt; abcdef [mel] =&gt; essai@societe.com)
+*/
+<b>// Ecriture d'un enregistrement</b>
+$data = array(
+"id"=&gt;5,
+"datemodif"=&gt;"15/08/2009",
+"champtexte"=&gt;"Dupont1",
+"champtexte2"=&gt;"abcdef",
+"mel"=&gt;"essai@societe.com"
+);
+$res = $test-&gt;ecrire($data);
+echo $test-&gt;getErrorData(1);
+<b>// suppression d'un enregistrement</b>
+$id = 5;
+$res = $test-&gt;supprimer($id);</pre>
+    <h2> <a name="Référence|outline"></a>Référence</h2>
+    <h3><a name="Variables|outline"></a>Variables</h3>
+    <table style="page-break-inside: avoid;" border="1" cellpadding="4" cellspacing="3"
+      width="738">
+      <colgroup><col width="137"> <col width="574"> </colgroup>
+      <thead>
+        <tr valign="top">
+          <th width="137">
+            <p>Variable</p>
+          </th>
+          <th width="574">
+            <p>Description</p>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr valign="top">
+          <td width="137">
+            <p>$auto_date</p>
+          </td>
+          <td width="574">
+            <p>0 : les dates sont conservées en l'état<br>
+              1 : les dates sont transformées selon le codage désiré (par
+              défaut)</p>
+          </td>
+        </tr>
+        <tr valign="top">
+          <td width="137">
+            <p>$champs</p>
+          </td>
+          <td width="574">
+            <p>Obsolète<br>
+              Liste des champs de la table</p>
+          </td>
+        </tr>
+        <tr valign="top">
+          <td width="137">
+            <p>$champs_nonvides</p>
+          </td>
+          <td width="574">
+            <p>Tableau des colonnes dont on veut vérifier qu'elles ne sont pas
+              vides<br>
+              Alimenté par le tableau $colonnes</p>
+          </td>
+        </tr>
+        <tr valign="top">
+          <td width="137">
+            <p>$cle</p>
+          </td>
+          <td width="574">
+            <p>Nom du champ clé de la table. Alimenté à partir de la version 2.1
+              automatiquement à partir du tableau $colonnes, si un et un seul
+              champ contient la valeur "key"=&gt;1 <br>
+            </p>
+          </td>
+        </tr>
+        <tr valign="top">
+          <td width="137">
+            <p>$codageHtml</p>
+          </td>
+          <td width="574">
+            <p>False : pas de transformation des caractères spéciaux HTML, comme
+              &lt; ou &gt;...<br>
+              True : en lecture, les caractères spéciaux sont remplacés, et
+              inversement en écriture (par défaut)</p>
+          </td>
+        </tr>
+        <tr valign="top">
+          <td width="137">
+            <p>$colonnes</p>
+          </td>
+          <td width="574">
+            <p style="margin-bottom: 0cm;">Tableau comprenant la liste des
+              colonnes permettant de les décrire.<br>
+              Exemple : </p>
+            <pre>$this-&gt;colonnes = array(<br>"id"=&gt;array("type"=&gt;1,"requis"=&gt;1),<br>"datemodif"=&gt;array("types"=&gt;2),<br>"champtexte"=&gt;array("longueur"=&gt;10,"pattern"=&gt;"#^[a-zA-Z]+$#","requis"=&gt;1),<br>"champtexte2"=&gt;array("longueur"=&gt;5),<br>"mel"=&gt;array("pattern"=&gt;"#^.+@.+\.[a-zA-Z]{2,6}$#")<br>);</pre>
+            <p style="margin-bottom: 0cm;">Pour chaque colonne, les informations
+              que l'on peut préciser sont les suivantes :</p>
+            <p style="margin-bottom: 0cm;">type :<br>
+              0: texte (par défaut)<br>
+              1 : numérique<br>
+              2 : date<br>
+              3 : datetime<br>
+              4 : objet géographique postgis</p>
+            <p style="margin-bottom: 0cm;">longueur : longueur maximale
+              autorisée</p>
+            <p style="margin-bottom: 0cm;">pattern : expression régulière que
+              doit vérifier la donnée saisie</p>
+            <p style="margin-bottom: 0cm;">requis :<br>
+              0 : donnée non obligatoire (par défaut)<br>
+              1 : donnée obligatoire<br>
+            </p>
+            <p style="margin-bottom: 0cm;">key : indique si le champ est utilisé
+              comme clé ou non. Dans ce cas, le champ doit impérativement être
+              numérique. A noter qu'ObjetBDD gère maintenant les clés multiples<br>
+              0 : pas une clé (défaut)<br>
+              1 : utilisé comme clé<br>
+            </p>
+            <p>defaultValue : valeur par défaut lors de la création d'un nouvel
+              enregistrement (fonction lire ou fonction getDefaultValue). La
+              valeur peut être un littéral ou une fonction existant dans la
+              classe, par exemple getDateJour</p>
+            <p>parentAttrib : à positionner à 1 si cet attribut contient la clé
+              de la table parente.</p>
+            <p>S'il n'est pas obligatoire de déclarer toutes les colonnes de la
+              table, c'est fortement conseillé (en plaçant en même temps la
+              variable $fullDescription=1;) : la fonction ecrire() n'a alors
+              plus besoin d'être surchargée dans ce cas de figure.<br>
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top;">$fullDescription<br>
+          </td>
+          <td style="vertical-align: top;">Si toutes les colonnes de la table
+            sont décrites, la fonction ecrire() se débrouille toute seule pour
+            mettre en fichier les informations à partir du tableau fourni, par
+            exemple :<br>
+            $test-&gt;ecrire($_REQUEST);<br>
+          </td>
+        </tr>
+        <tr valign="top">
+          <td width="137">
+            <p>$connection</p>
+          </td>
+          <td width="574">
+            <p>Instance ADOConnection</p>
+          </td>
+        </tr>
+        <tr valign="top">
+          <td width="137">
+            <p>$dateMini</p>
+          </td>
+          <td width="574">
+            <p>Quand la date est saisie sur deux chiffres, c'est l'année pivot
+              qui permet de calculer quel est le siècle à appliquer. Par défaut
+              (à partir de la version 2.1, 49.<br>
+              Exemple : 50 =&gt; 1950, 49=&gt;2049</p>
+          </td>
+        </tr>
+        <tr valign="top">
+          <td width="137">
+            <p>$debug_mode</p>
+          </td>
+          <td width="574">
+            <p>0 : pas de mode débogage pour les requêtes SQL<br>
+              1 : affichage des messages d'erreur (par défaut)<br>
+              2 : affichage de toutes les requêtes</p>
+          </td>
+        </tr>
+        <tr valign="top">
+          <td width="137">
+            <p>$formatDate</p>
+          </td>
+          <td width="574">
+            <p>Format d'affichage de la date.<br>
+              0 : amj<br>
+              1 | fr : jma (par défaut)<br>
+              2 | en : mja</p>
+          </td>
+        </tr>
+        <tr valign="top">
+          <td width="137">
+            <p>$id_auto</p>
+          </td>
+          <td width="574">
+            <p>Mode de gestion de la clé.<br>
+              0 : gestion manuelle, gérée par l'application<br>
+              1 : clé automatique, sur champ auto-incrémenté (valeur par défaut)<br>
+              2 : clé automatique, gérée par la fonction max($id)<br>
+              Ne fonctionne que si la clé est unique<br>
+            </p>
+          </td>
+        </tr>
+        <tr valign="top">
+          <td width="137">
+            <p>$longueurs</p>
+          </td>
+          <td width="574">
+            <p>Tableau des colonnes pour lesquelles on souhaite vérifier la
+              longueur des données introduites<br>
+              Alimenté par le tableau $colonnes</p>
+          </td>
+        </tr>
+        <tr valign="top">
+          <td width="137">
+            <p>$patterns</p>
+          </td>
+          <td width="574">
+            <p>Tableau des colonnes dont on veut vérifier la forme via une
+              expression régulière. Le pattern doit être encadré par les signes
+              # : #^[a-zA-Z]+$#</p>
+            <p>Alimenté par le tableau $colonnes</p>
+          </td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top;">$keys<br>
+          </td>
+          <td style="vertical-align: top;">Tableau des clés multiples. Alimenté
+            par le tableau $colonnes<br>
+          </td>
+        </tr>
+        <tr valign="top">
+          <td width="137">
+            <p>$separateurDB</p>
+          </td>
+          <td width="574">
+            <p>Séparateur de zone utilisé par la base de données pour les dates.
+              Par défaut, -</p>
+          </td>
+        </tr>
+        <tr valign="top">
+          <td width="137">
+            <p>$separateurLocal</p>
+          </td>
+          <td width="574">
+            <p>Caractère utilisé pour séparer les zones des dates après
+              transformation, pour présentation à l'utilisateur. Par défaut, /</p>
+          </td>
+        </tr>
+        <tr valign="top">
+          <td width="137">
+            <p>$sepValide</p>
+          </td>
+          <td width="574">
+            <p>Tableau contenant la liste des séparateurs utilisables pour
+              séparer les différentes zones des dates (jour, mois, année). Par
+              défaut, / - . et espace.</p>
+          </td>
+        </tr>
+        <tr>
+          <td>$srid</td>
+          <td>SRID utilisé dans la table pour la création des objets
+            géographiques. Vaut -1 par défaut.</td>
+        </tr>
+        <tr valign="top">
+          <td width="137">
+            <p>$table</p>
+          </td>
+          <td width="574">
+            <p>Nom de la table</p>
+          </td>
+        </tr>
+        <tr valign="top">
+          <td width="137">
+            <p>$types</p>
+          </td>
+          <td width="574">
+            <p>Tableau des types de données.<br>
+              Alimenté par le tableau $colonnes</p>
+          </td>
+        </tr>
+        <tr valign="top">
+          <td width="137">
+            <p>$verifData</p>
+          </td>
+          <td width="574">
+            <p>0 : pas de vérification des données avant enregistrement<br>
+              1 : vérification des données selon les paramètres déclarés dans le
+              tableau $colonnes (par défaut)</p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <p><br>
+      <br>
+    </p>
+    <h3><a name="Fonctions|outline"></a>Fonctions</h3>
+    <h4>function __construct(&amp;$p_connection, $param=NULL)</h4>
+    <p>$p_connection : instance ADOConnection</p>
+    <p>$param : tableau contenant l'ensemble des paramètres de la classe à
+      modifier (exemple : $param = array ("debug_mode"=&gt;2);</p>
+    <p>Constructeur de la classe. Appelé systématiquement depuis la classe
+      héritée, dans le constructeur de la classe héritée.</p>
+    <h4>function ObjetBDD(&amp;$bdd, $param = NULL)</h4>
+    <p>Synonyme de __construct(&amp;$p_connection, $param=NULL)</p>
+    <h4>private function execute($sql)</h4>
+    <p>$sql : code SQL à exécuter</p>
+    <p>Fonction exécutant l'ensemble des requêtes SQL. Non utilisable
+      directement</p>
+    <h4>function lire($id, $getDefault = false, $parentValue = 0)<br>
+      function read($id, $getDefault = false, $parentValue = 0)</h4>
+    <p>$id : identifiant numérique de la ligne à lire en base de données<br>
+      $getDefault : si vaut true, lors de la recherche d'un enregistrement, si
+      celui-ci n'existe pas, retourne un tableau avec toutes les valeurs par
+      défaut.<br>
+      $parentValue : si la table est une table liée à une table parente, et si
+      $getDefault = true, $parentValue doit contenir la valeur de la clé de
+      l'enregistrement parent.</p>
+    <p>Retourne un tableau contenant la liste des colonnes de la table et leurs
+      valeurs associées</p>
+    <h4>function lireParam($sql)<br>
+      function readSQL($sql)</h4>
+    <p>$sql: code SQL de la requête à exécuter</p>
+    <p>Fonction équivalente à lire($id), mais qui prend en paramètre une requête
+      conçue spécifiquement à cet effet.</p>
+    <h4>function getDateJour()</h4>
+    <p>Retourne la date du jour. Utilisée pour générer la date du jour lors de
+      la lecture des valeurs par défaut.</p>
+    <h4>function getListe()<br>
+      function getList()</h4>
+    <p>Retourne un tableau comprenant la liste complète des enregistrements de
+      la table.</p>
+    <h4>function getListeParam($sql)<br>
+      function getListParam($sql)</h4>
+    <p>$sql : code SQL de la requête à exécuter</p>
+    <p>Retourne un tableau contenant la liste des lignes et des colonnes lues
+      dans la base de données, suite à l'exécution de la requête $sql. Les dates
+      sont transformées.</p>
+    <h4>function ecrire($data)<br>
+      function write($data)</h4>
+    <p>$data : tableau contenant la liste des colonnes et leurs valeurs
+      associées, qui doivent être écrites dans la base de données.</p>
+    <p>$data doit au minimum contenir la clé de l'enregistrement.</p>
+    <p>En fonction du paramétrage général de la classe, la fonction va :</p>
+    <ul>
+      <li>
+        <p>vérifier la cohérence des données saisies (on peut consulter les
+          erreurs découvertes par la fonction getErrorData($format))</p>
+      </li>
+      <li>
+        <p>transformer les dates en format «&nbsp;base de données&nbsp;»</p>
+      </li>
+      <li>
+        <p>déterminer s'il faut exécuter un INSERT ou un UPDATE</p>
+      </li>
+      <li>
+        <p>générer le code SQL adéquat</p>
+      </li>
+      <li>
+        <p>exécuter la requête</p>
+      </li>
+    </ul>
+    <p>La fonction retourne l'identifiant de la ligne insérée ou modifiée, -1 en
+      cas d'échec.</p>
+    <h4>function getErrorData($format)</h4>
+    <p>$format : 0|1</p>
+    <p>Retourne la liste des erreurs détectées par la fonction
+      verifDonnees($data).</p>
+    <p>Les erreurs sont retournées sous forme de tableau si $format = 0, ou
+      affichées directement à l'écran si $format = 1.</p>
+    <p>Le tableau a la structure suivante (exemple) :</p>
+    <p>Array ( [0] =&gt; Array ( [code] =&gt; 3 [colonne] =&gt; champtexte
+      [valeur] =&gt; Dupont1 [demande] =&gt; #^[a-zA-Z]+$# ) <br>
+      [1] =&gt; Array ( [code] =&gt; 2 [colonne] =&gt; champtexte2 [valeur]
+      =&gt; abcdef [demande] =&gt; 5 ) <br>
+      )</p>
+    <p>code : <br>
+      1 : champ non numérique<br>
+      2 : champ trop long<br>
+      3 : masque non conforme (test sur expression régulière)<br>
+      4 : champ obligatoire vide</p>
+    <p>colonne : nom de la colonne concernée</p>
+    <p>valeur : valeur saisie</p>
+    <p>demande : valeur souhaitée (longueur ou masque attendu)</p>
+    <h4>function ecrireTableNN($nomTable,$nomCle1,$nomCle2,$id,$lignes)<br>
+      function writeTableNN($nomTable,$nomCle1,$nomCle2,$id,$lignes)</h4>
+    <p>$nomTable : nom de la table qui porte la relation N-N</p>
+    <p>$nomCle1 : nom de la clé correspondant à la table 1</p>
+    <p>$nomCle2 : nom de la clé correspondant à la table secondaire</p>
+    <p>$id : numérique correspondant à la clé de la table 1</p>
+    <p>$lignes : tableau comprenant la liste des clés de la table liée.</p>
+    <p>Soit 2 tables liées par une relation N-N, Table1 et Table2. Cette
+      relation est portée par une table intermédiaire (Table1Table2), qui
+      dispose de 2 colonnes, chacune correspondant à la clé étrangère des tables
+      liées.</p>
+    <p>A partir de Table1 (déclarée dans la variable $table de la classe), on
+      souhaite mettre à jour Table1Table2 en insérant tous les tuples qui
+      contiennent l'identifiant de Table1. Les identifiants de Table2 sont
+      déclarés dans le tableau $lignes.</p>
+    <p>La fonction gère la mise à jour de la table Table1Table2, en supprimant
+      les enregistrements qui n'ont plus à y figurer et en y rajoutant les
+      nouveaux.</p>
+    <p>A noter que la table Table1Table2 peut avoir sa propre clé, à condition
+      que celle-ci soit numérique et auto-incrémentée.</p>
+    <h4>function supprimer($id)<br>
+      function delete($id)</h4>
+    <p>$id : clé numérique de l'enregistrement à supprimer</p>
+    <p>Supprime l'enregistrement identifié par $id</p>
+    <h4>function supprimerChamp($id,$champ)<br>
+      function deleteFromField($id,$champ)</h4>
+    <p>$id : clé numérique de l'enregistrement à supprimer</p>
+    <p>$champ : nom de la colonne qui sera utilisée dans la requête WHERE</p>
+    <h4>function executeSQL ($ls_sql)</h4>
+    <p>$ls_sql : code SQL à exécuter</p>
+    <p>Exécute le code SQL indiqué, sans transformation ou contrôles
+      particuliers</p>
+    <h4>private function utilDatesDBVersLocale($types, $dates)</h4>
+    <p>$types : Tableau contenant les types des données (cf. la liste des
+      variables)</p>
+    <p>$dates : un tableau contenant les données à transformer</p>
+    <p>Fonction qui permet de transformer les dates lues dans la base de données
+      dans le format défini pour l'affichage. Ne doit être pas être appelée
+      depuis la classe héritée.</p>
+    <h4>private function utilDatesLocaleVersDB($types, $dates)</h4>
+    <p>$types : Tableau contenant les types des données (cf. la liste des
+      variables)</p>
+    <p>$dates : un tableau contenant les données à transformer</p>
+    <p>Fonction inverse de la précédente. Ne doit pas être appelée depuis la
+      classe héritée.</p>
+    <h4>private function formatDateLocaleVersDB ($date, $type)</h4>
+    <p>$date : champ à transformer</p>
+    <p>$type : 2 : champ date, 3 : champ datetime</p>
+    <p>Fonction appelée par utilDatesLocaleVersDB, privée</p>
+    <h4>function vidageTable()<br>
+      function clearTable()</h4>
+    <p>Vide brutalement le contenu de la table</p>
+    <h4>private function verifDonnees($data)</h4>
+    <p>$data : tableau contenant la liste des variables et les valeurs associées
+      qui sont prêtes à être insérées en base de données</p>
+    <p>Fonction privée qui vérifie la cohérence des données avant l'écriture en
+      base de données</p>
+    <h4>private function htmlEncode ($data)</h4>
+    <p>$data : tableau des données à afficher</p>
+    <p>Transforme les caractères spéciaux HTML en leur équivalent ASCII</p>
+    <h4>private function htmlDecode ($data)</h4>
+    <p>$data : tableau des données à insérer en base de données</p>
+    <p>Opération inverse de la fonction htmlEncode ($data)</p>
+    <p><br>
+      <br>
+    </p>
+  </body>
+</html>

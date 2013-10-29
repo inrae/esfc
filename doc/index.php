@@ -15,13 +15,19 @@ if ($handle) {
         $doc .= $buffer;
     }
     fclose($handle);
-    header("content-type: text/csv");
-    header('Content-Disposition: attachment; filename="'.$t_module["param1"].'"');
+}
+/*
+    header("content-type: text/html");
+   header('Content-Disposition: inline; filename="'.$t_module["param1"].'"');
     header('Pragma: no-cache');
     header('Cache-Control:must-revalidate, post-check=0, pre-check=0');
     header('Expires: 0');
     echo $doc;
-//    $smarty->assign("doc",$doc);
- //   $smarty->assign("corps","documentation/index.html");
-}
+    */
+
+    $smarty->assign("doc",$doc);
+    $smarty->assign("corps","documentation/index.tpl");
+    
+
+
 ?>

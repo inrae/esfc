@@ -123,7 +123,7 @@ function verifieMdp(pass1, pass2) {
  * 
  * @returns boolean
  */
-function validerForm(nomChampAction, listeId) {
+function validerForm(listeId) {
 	/*
 	 * Verification des zones obligatoires
 	 */
@@ -154,7 +154,7 @@ function validerForm(nomChampAction, listeId) {
  * @returns {Boolean}
  */
 function confirmEnvoi(message) {
-	if (message.length==0) message = "Confirmez-vous l'opération ?"; 
+	if (message.length==0) message = "Confirmez-vous l&apos;opération ?"; 
 	if (confirm(message) == 1) {
 		return true;
 	} else {

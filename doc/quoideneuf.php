@@ -10,5 +10,5 @@ foreach($fichier as $key=>$value) {
 }
 
 $smarty->assign("texte",$doc);
-$smarty->assign("corps","doc/quoideneuf.tpl");
+$smarty->assign("corps","documentation/quoideneuf.tpl");
 ?>

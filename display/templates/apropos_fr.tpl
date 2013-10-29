@@ -1,14 +1,10 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html lang="fr-fr"><head></head>
-<body>
-<div class="bloc">
 <h2>A propos de PrototypePHP...
 </h2>
 <p>
 Version {$version} du {$versiondate}.
 </p>
 PrototypePHP est un canevas d'application basé sur le modéle MVC
-(modéle - vue - contréleur), qui s'appuie sur les classes suivantes :<br>
+(modéle - vue - contrôleur), qui s'appuie sur les classes suivantes :<br>
 - <a href="http://adodb.sourceforge.net/">ADODB</a>
 pour l'accés aux bases de données<br>
 - <a href="http://objetbdd.sourceforge.net/">OBJETBDD</a>
@@ -27,5 +23,3 @@ Réalisation : Eric Quinton - Copyright 2008-2013 - Tous droits réservés
 </p>
 <h3>Pour tout probléme, contactez <a href="mailto:{$melappli}">l'équipe d'assistance</a>
 </h3>
-</div>
-</body></html>

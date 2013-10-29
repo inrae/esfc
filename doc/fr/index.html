@@ -1,65 +1,39 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
-<html><head>
-<meta http-equiv="CONTENT-TYPE" content="text/html; charset=iso-8859-1"><title>Utilisation de PrototypePHP</title>
-
-<meta name="AUTHOR" content="Eric Quinton">
-<link rel="stylesheet" href="../../display/CSS/proto.css" type="text/css">
-<meta name="DESCRIPTION" content="Principe gÃ©nÃ©ral">
-<style type="text/css">
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type">
+    <title>Utilisation de PrototypePHP</title>
+    <meta name="AUTHOR" content="Eric Quinton">
+    <link rel="stylesheet" href="../../display/CSS/blue.css" type="text/css">
+    <link rel="stylesheet" href="display/CSS/blue.css" type="text/css">
+    <meta name="DESCRIPTION" content="Principe gÃƒÂ©nÃƒÂ©ral">
+    <style type="text/css">
 </style></head>
-<body>
-<h1>Principe général</h1>
-<p>PrototypePHP est un squelette d'application, qui s'appuie sur
-des
-classes éprouvées :<br>
-- <a href="http://adodb.sourceforge.net">ADODB</a> pour l'accès aux bases de données (adodb.sourceforge.net)<br>
--
-<a href="http://objetbdd.sourceforge.net">OBJETBDD</a> pour gérer la lecture et l'enregistrement des données dans
-les tables (mapping relationnel-objet)<br>
-- <a href="http://www.ja-sig.org/wiki/display/CASC/phpCAS">PHPCAS</a> (ou ESUP-PHPCAS) pour gérer l'identification
-via un SSO-CAS<br>
-- <a href="http://www.smarty.net">SMARTY</a> pour l'affichage des pages html<br>
--
-<a href="http://phpgacl.sourceforge.net/">PHPGACL</a> pour la gestion des droits.<br>
-<br>
-Il est basé sur un modèle
-MVC (Modèle - vue - contrôleur). Une page unique interroge un
-fichier xml, qui décrit chaque module (chaque page appelée), en
-indiquant les droits nécessaires. Ce contrôleur vérifie les
-droits, exécute le module, enchaîne le cas échéant sur un autre
-module en fonction du code de retour, puis affiche la page html. Il
-génère également le menu automatiquement en fonction des
-paramètres indiqués dans le fichier XML.<br>
-<br>
-PrototypePHP est
-distribué sous licence LGPL (hors modules externes, où les licences
-spécifiques s'appliquent) : les modifications doivent être reversées à
-la communauté.</p>
-<h2>Nouveautés</h2>
-<h3>Version 0.4 du 20/08/2009</h3>
-- intégration des dernières versions des classes ADODB (version 5.09.a),
-OBJETBDD (version 2.0), SMARTY (2.6.26).<br>
-- il est maintenant possible de déclarer&nbsp;l'attribut <span style="font-style: italic;">ajax</span>
-dans le fichier param/actions.xml, ce qui permet d'inhiber
-l'affichage par défaut dans la page (indispensable pour les modules
-fonctionnant en mode ajax)<br>
-- récupération automatique de la langue du navigateur, pour orienter
-vers le bon fichier de traduction<br>
-- rajout de paramètres permettant de déclencher différents mode
-"debug", soit sur ADODB, soit sur OBJETBDD<br>
--
-modification du cryptage des mots de passe (en cas d'identification via
-mot de passe) : le md5 est abandonné au profit du sha256. La structure
-de la base de données doit évoluer en conséquence (longueur de la zone
-passe de 32 Ã&nbsp; 64 caractères)<br>
-- ne fonctionne qu'avec la version 5 de PHP (intégration de la gestion
-des exceptions).<br>
-Modifications liées Ã&nbsp; OBJETBDD :<br>
--
-possibilité de vérifier les données saisies avant leur insertion dans
-la base de données (champ obligatoire, longueur des caractères, type
-des données, masque de saisie via une expression régulière)<br>
-- transcodage des caractères spéciaux html (&lt; &gt;
-&amp; ") dans les deux sens (affichage et insertion en base de
-données)
-</body></html>
+  <body>
+    <h1>Principe gÃ©nÃ©ral</h1>
+    <p>PrototypePHP est un squelette d'application, qui s'appuie sur des classes
+      Ã©prouvÃ©es :<br>
+      - <a href="http://adodb.sourceforge.net">ADODB</a> pour l'accÃ¨s aux bases
+      de donnÃ©es (adodb.sourceforge.net)<br>
+      - <a href="http://objetbdd.sourceforge.net">OBJETBDD</a> pour gÃ©rer la
+      lecture et l'enregistrement des donnÃ©es dans les tables (mapping
+      relationnel-objet)<br>
+      - <a href="http://www.ja-sig.org/wiki/display/CASC/phpCAS">PHPCAS</a> (ou
+      ESUP-PHPCAS) pour gÃ©rer l'identification via un SSO-CAS<br>
+      - <a href="http://www.smarty.net">SMARTY</a> pour l'affichage des pages
+      html<br>
+      - <a href="http://phpgacl.sourceforge.net/">PHPGACL</a> pour la gestion
+      des droits.<br>
+      <br>
+      Il est basÃ© sur un modÃ¨le MVC (ModÃ¨le - vue - contrÃ´leur). Une page unique
+      interroge un fichier xml, qui dÃ©crit chaque module (chaque page appelÃ©e),
+      en indiquant les droits nÃ©cessaires. Ce contrÃ´leur vÃ©rifie les droits,
+      exÃ©cute le module, enchaÃ®ne le cas Ã©chÃ©ant sur un autre module en fonction
+      du code de retour, puis affiche la page html. Il gÃ©nÃ¨re Ã©galement le menu
+      automatiquement en fonction des paramÃ¨tres indiquÃ©s dans le fichier XML.<br>
+      <br>
+      PrototypePHP est distribuÃ© sous licence LGPL (hors modules externes, oÃ¹
+      les licences spÃ©cifiques s'appliquent) : les modifications doivent Ãªtre
+      reversÃ©es Ã  la communautÃ©.</p>
+  </body>
+</html>
