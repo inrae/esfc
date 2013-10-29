@@ -32,8 +32,12 @@
 	<docgestiondoc menulevel="1" menuorder="5" menutitle="33" menuvalue="32" action="doc/index.php" param1="Gestion_documentation.html" menuparent="99" ></docgestiondoc>
 	<docinternationalisation menulevel="1" menuorder="6" menutitle="35" menuvalue="34" action="doc/index.php" param1="Internationalisation.html" menuparent="99"></docinternationalisation>
 	<docsmarty menulevel="1" menuorder="7" menutitle="37" menuvalue="36" action="doc/index.php" param1="Utiliser_SMARTY.html" menuparent="99" ></docsmarty>
+<<<<<<< HEAD
 	<docdescriptionorganisation menulevel="1" menuorder="8" menutitle="39" menuvalue="38" action="doc/index.php" param1="Organisation_application.html" menuparent="99" ></docdescriptionorganisation>
 	<docmodulerecherche menulevel="1" menuorder="9" menutitle="43" menuvalue="42" menuparent="99" action="doc/index.php" param1="module_recherche.html" />
+=======
+	<docdescriptionorganisation menulevel="1" menuorder="7" menutitle="39" menuvalue="38" action="doc/index.php" param1="Organisation_application.html" menuparent="99" ></docdescriptionorganisation>
+>>>>>>> 5c2d41eba7eb8346cc286dced6f86d3653642783
 	<quoideneuf action="doc/quoideneuf.php" menulevel="1" menuparent="99" menutitle="41" menuvalue="40"></quoideneuf>
 	<setlanguage action='framework/setlanguage.php' />
 	
