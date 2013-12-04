@@ -24,7 +24,7 @@
  *
  * @author Eric Quinton, Franck Huby
  * @copyright (C) Eric Quinton 2006-2013
- * @version 2.3 du 24/10/2013 2013-10-24
+ * @version 2.2.4 du 28/11/2013
  * @package ObjetBDD
  *
  * Utilisation :
@@ -254,8 +254,7 @@ class ObjetBDD {
 	 */
 	public $srid;
 	/**
-	 * Caractere utilise pour entourer les noms des colonnes qui contiennent des majuscules
-	 * Par defaut : ` pour mysql, " pour postgresql
+	 * Caractere utilise pour entourer les noms des colonnes
 	 * @var string
 	 */
 	public $quoteIdentifier;
@@ -476,7 +475,7 @@ class ObjetBDD {
 					/*
 					 * Traitement des champs geographiques
 					*/
-					$select .= "asText(" . $cle . ")";
+					$select .= "ST_AsText(" . $cle . ")";
 				else
 					$select .= $cle;
 			}
@@ -820,7 +819,7 @@ class ObjetBDD {
 							/*
 							 * Traitement de l'import d'un champ geographique
 							 */
-							$valeur .= "geomFromText('" . $value . "'," . $this->srid . ")";
+							$valeur .= "ST_GeomFromText('" . $value . "'," . $this->srid . ")";
 						} else {
 							// $valeur .= "'".addslashes($value)."'";
 							$valeur .= "'" . $value . "'";
@@ -857,7 +856,7 @@ class ObjetBDD {
 						/*
 						 * Traitement de l'import d'un champ geographique
 						 */
-						$sql .= $cle . " = geomFromText('" . $value . "'," . $this->srid . ")";
+						$sql .= $cle . " = ST_GeomFromText('" . $value . "'," . $this->srid . ")";
 					} else {
 						// $sql .= $key." = '".addslashes($value)."'";
 						$sql .= $cle . " = '" . $value . "'";
@@ -1148,7 +1147,7 @@ class ObjetBDD {
 				$date = $temp [1] . $this->separateurLocal . $temp [2] . $this->separateurLocal . $temp [0];
 				break;
 		}
-		if ($value == 3) {
+		if ($type == 3) {
 			/*
 			 * Reincorporation de l'heure
 			 */
@@ -1453,6 +1452,10 @@ class ObjetBDD {
 	function getDateJour() {
 		$data = date ( 'Y-m-d' );
 		return $this->formatDateDBversLocal ( $data );
+	}
+	function getDateHeure() {
+		$data = date ('Y-m-d H:i:s');
+		return $this->formatDateDBversLocal ($data, 3);
 	}
 	/**
 	 * Fonction permettant de recuperer les valeurs par defaut

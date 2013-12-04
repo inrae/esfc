@@ -18,6 +18,8 @@ include_once ("param/param.inc.php");
  * Gestion de la session
  */
 // ini_set('session.cookie_secure', 1);
+ini_set('session.gc_probability', 1);
+ini_set('session.cookie_lifetime', $APPLI_session_ttl);
 ini_set ( 'session.gc_maxlifetime', $APPLI_session_ttl );
 // $session_path = ini_get('session.save_path').'/'.$APPLI_path_stockage_session;
 // if (!is_dir($session_path)) mkdir($session_path);
@@ -39,8 +41,8 @@ include_once ('plugins/Smarty-3.1.13/libs/Smarty.class.php');
 /**
  * integration de la classe ObjetBDD et des scripts associes
  */
-include_once ('plugins/objetBDD-2.3/ObjetBDD.php');
-include_once ('plugins/objetBDD-2.3/ObjetBDD_functions.php');
+include_once ('plugins/objetBDD-2.4/ObjetBDD.php');
+include_once ('plugins/objetBDD-2.4/ObjetBDD_functions.php');
 if ($APPLI_utf8 == true)
 	$ObjetBDDParam ["UTF8"] = true;
 
@@ -68,6 +70,10 @@ include_once "modules/beforesession.inc.php";
  * Demarrage de la session
  */
 @session_start ();
+/*
+ * Regeneration du cookie de session
+ */
+setcookie(session_name(),session_id(),time()+$APPLI_session_ttl, '/');
 $identification = new Identification ();
 $identification->setidenttype ( $ident_type );
 if ($ident_type == "CAS") {
@@ -196,6 +202,10 @@ if (isset ( $_SESSION ["gestionDroit"] ) && $APPLI_modeDeveloppement == false) {
 		include "framework/identification/setDroits.php";
 	}
 }
+/*
+ * Chargement des fonctions de debogage a la volee
+ */
+include_once 'framework/functionsDebug.php';
 /*
  * Chargement des fonctions specifiques
  */
