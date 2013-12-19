@@ -1,5 +1,13 @@
 Nouveautes
 ===========
+Version 1.9
+--------------
+- intégration de la version 2.4 d'ObjetBDD, qui corrige un bogue concernant la gestion des champs géographiques Postgis
+- rajout, dans le menu "administration", d'un item affichant le phpinfo()
+- rajout d'une fonction facilitant le débogage "en ligne" : printr($variable, $mode_dump = 0) affiche la variable considérée, qu'il s'agisse d'une variable simple ou d'un tableau. Le mode dump peut être activé en passant le second paramètre à 1.
+- amélioration du script modules/example/example.php
+- le cookie de session est maintenant régénéré à chaque appel de page, pour éviter une déconnexion de la session intempestive en usage régulier de l'application 
+
 Version 1.8
 --------------
 - intégration de la nouvelle version d'ObjetBDD (2.2.5), qui comprend de nombreuses nouveautés pour gérer les bases postgresql (rajout de doubles-quotes si le nom des champs contient des majuscules, rajout du type 4 pour gérer les champs géographiques postgis, etc.)

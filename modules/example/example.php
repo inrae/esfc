@@ -15,7 +15,8 @@
 
 include_once 'modules/example/example.class.php';
 $dataClass = new Example($bdd,$ObjetBDDParam);
-$id = $_REQUEST["idExample"];
+$keyName = "idExample";
+$id = $_REQUEST[$keyName];
 
 switch ($t_module["param"]) {
 	case "list":
@@ -45,7 +46,10 @@ switch ($t_module["param"]) {
 		/*
 		 * write record in database
 		 */
-		dataWrite($dataClass, $_REQUEST);
+		$id = dataWrite($dataClass, $_REQUEST);
+		if ($id > 0) {
+			$_REQUEST[$keyName] = $id;
+		}
 		break;
 	case "delete":
 		/*
