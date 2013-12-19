@@ -41,8 +41,8 @@ include_once ('plugins/Smarty-3.1.13/libs/Smarty.class.php');
 /**
  * integration de la classe ObjetBDD et des scripts associes
  */
-include_once ('plugins/objetBDD-2.4/ObjetBDD.php');
-include_once ('plugins/objetBDD-2.4/ObjetBDD_functions.php');
+include_once ('plugins/objetBDD-2.4.1/ObjetBDD.php');
+include_once ('plugins/objetBDD-2.4.1/ObjetBDD_functions.php');
 if ($APPLI_utf8 == true)
 	$ObjetBDDParam ["UTF8"] = true;
 
