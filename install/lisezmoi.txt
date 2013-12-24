@@ -7,6 +7,7 @@ Version 1.9
 - rajout d'une fonction facilitant le débogage "en ligne" : printr($variable, $mode_dump = 0) affiche la variable considérée, qu'il s'agisse d'une variable simple ou d'un tableau. Le mode dump peut être activé en passant le second paramètre à 1.
 - amélioration du script modules/example/example.php
 - le cookie de session est maintenant régénéré à chaque appel de page, pour éviter une déconnexion de la session intempestive en usage régulier de l'application 
+- rajout de la classe modules/gestion/search.class.php, qui permet de gérer facilement les paramètres des fenêtres de recherche (voir les exemples dans les fichiers modules/example.php et consorts)
 
 Version 1.8
 --------------

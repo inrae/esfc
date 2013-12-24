@@ -3,7 +3,7 @@
 {if $isSearch == 1}
 {if $droits["gestion"] == 1}
 <a href="index.php?module=exampleModif&idExample=0">
-New...
+Nouveau...
 </a>
 {/if}
 <script>
@@ -13,7 +13,7 @@ setDataTables("exampleListe");
 <thead>
 <tr>
 <th>Date</th>
-<th>Comments</th>
+<th>Commentaire</th>
 <th>Origine</th>
 </tr>
 </thead><tdata>

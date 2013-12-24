@@ -7,6 +7,7 @@ Version 1.9
 - Added a function for debugging "online": printr ($variable, $mode_dump = 0) shows the variable, whether it be a simple variable or an array. Dump mode can be activated via the second parameter to 1.
 - Improved modules / example / script example.php
 - The session cookie is now regenerated at each page call to prevent accidental disconnection of the session in regular use of the application
+- Addition of the class modules/gestion/search.class.php, which allows you to easily manage settings search windows (see examples into the file modules/example/example.php and others)
 
 Version 1.8
 --------------

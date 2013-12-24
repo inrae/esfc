@@ -24,7 +24,7 @@ switch ($t_module["param"]) {
 		 * Display the list of all records of the table
 		 */
 		 /*
-		 * $searchExample must be defined into modules/beforesession.inc.php :
+		 * $searchExample is defined into modules/beforesession.inc.php :
 		 * include_once 'modules/classes/searchParam.class.php';
 		 * and into modules/common.inc.php :
 		 * if (!isset($_SESSION["searchExample"])) {
@@ -33,7 +33,6 @@ switch ($t_module["param"]) {
 		 *	} else {
 		 *	$searchExample = $_SESSION["searchExample"];
 		 *	}
-		 * and, also, into modules/classes/searchParam.class.php...
 		 */
 		 $searchExample->setParam ( $_REQUEST );
 		 $dataSearch = $searchExample->getParam ();
