@@ -42,7 +42,7 @@ while ( isset ( $module ) ) {
 		 */
 		if (! isset ( $_SESSION ["login"] )) {
 			/*
-			 * Traitement suivant le type d'identification
+			 * Verification du login aupres du serveur CAS
 			 */
 			if ($ident_type == "CAS") {
 				$identification->getLogin ();
@@ -51,16 +51,34 @@ while ( isset ( $module ) ) {
 				 * On verifie si on est en retour de validation du login
 				 */
 				if (isset ( $_REQUEST ["login"] )) {
-					if ($ident_type == "BDD") {
-						$loginGestion = new LoginGestion ( $bdd_gacl );
-						$res = $loginGestion->VerifLogin ( $_REQUEST ['login'], $_REQUEST ['password'] );
-						if ($res == TRUE) {
-							$_SESSION ["login"] = $_REQUEST ["login"];
-							unset ( $_SESSION ["menu"] );
+					$loginGestion = new LoginGestion ( $bdd_gacl );
+					/*
+					 * Verification de l'identification aupres du serveur LDAP, ou LDAP puis BDD
+					 */
+					if ($ident_type == "LDAP" || $ident_type == "LDAP-BDD") {
+						$res = $identification->testLoginLdap ( $_REQUEST ["login"], $_REQUEST ["password"] );
+						if ($res == - 1 && $ident_type == "LDAP-BDD") {
+							/*
+							 * L'identification en annuaire LDAP a echoue : verification en base de donnees
+							 */
+							$res = $loginGestion->VerifLogin ( $_REQUEST ['login'], $_REQUEST ['password'] );
+							if ($res == TRUE) {
+								$_SESSION ["login"] = $_REQUEST ["login"];
+							}
+							/*
+							 * Verification de l'identification uniquement en base de donnees
+							*/
+						} elseif ($ident_type == "BDD") {
+							$res = $loginGestion->VerifLogin ( $_REQUEST ['login'], $_REQUEST ['password'] );
+							if ($res == TRUE) {
+								$_SESSION ["login"] = $_REQUEST ["login"];
+							}
 						}
-					} else {
-						$identification->testLoginLdap ( $_REQUEST ["login"], $_REQUEST ['password'] );
 					}
+					/*
+					 * Reinitialisation du menu
+					 */
+					if (isset ($_SESSION["login"])) unset ($_SESSION["menu"]);
 				} else {
 					/*
 					 * Gestion de la saisie du login
@@ -124,7 +142,8 @@ while ( isset ( $module ) ) {
 	/*
 	 * fin d'analyse du module
 	 */
-	if ($t_module ["ajax"] != 1) $_SESSION ["moduleBefore"] = $module;
+	if ($t_module ["ajax"] != 1)
+		$_SESSION ["moduleBefore"] = $module;
 	unset ( $module );
 	unset ( $module_coderetour );
 	/*
@@ -202,6 +221,7 @@ if ($t_module ["ajax"] != 1) {
 		$texteDeveloppement = $LANG ["message"] [32] . " : " . $BDDDEV_server . '/' . $BDDDEV_database;
 		$smarty->assign ( "developpementMode", $texteDeveloppement );
 	}
+	$smarty->assign ( "moduleListe", $_SESSION ["moduleListe"] );
 	$smarty->display ( $SMARTY_principal );
 }
 ?>

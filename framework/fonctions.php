@@ -36,12 +36,13 @@ function dataRead($dataClass, $id, $smartyPage, $idParent=null) {
  * @return int
  */
 function dataWrite ($dataClass, $data) {
-	global $message, $LANG, $module_coderetour;
+	global $message, $LANG, $module_coderetour, $log;
 	$id = $dataClass->write($data) ;
 	if (strlen($message)>0) $message.='<br>';
 	if ($id > 0) {
 		$message .= $LANG["message"][5];
 		$module_coderetour = 1;
+		$log -> setLog($_SESSION["login"], get_class($dataClass)."-write",$id);
 	} else {
 		/*
 		 * Mise en forme du message d'erreur
@@ -59,13 +60,14 @@ function dataWrite ($dataClass, $data) {
  * @return int
  */
 function dataDelete($dataClass, $id) {
-	global $message, $LANG, $module_coderetour;
+	global $message, $LANG, $module_coderetour, $log;
 	if (is_numeric($id) && $id > 0) {
 		if (strlen($message)>0) $message.='<br>';
 		$ret=$dataClass->supprimer($id);
 		if ($ret>0) {
 			$message= $LANG["message"][4];
 			$module_coderetour=2;
+			$log -> setLog($_SESSION["login"], get_class($dataClass)."-delete",$id);
 		}else{
 			/*
 			 * Mise en forme du message d'erreur

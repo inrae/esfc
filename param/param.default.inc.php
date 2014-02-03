@@ -17,8 +17,10 @@ $navigationxml = "param/actions.xml";
  * Duree de la session par defaut
  * @var unknown_type
  */
-$APPLI_session_ttl = 1800;
-$APPLI_cookie_ttl = 2592000;
+// 4 heures
+$APPLI_session_ttl = 14400;
+// 3 mois
+$APPLI_cookie_ttl = 7776000; 
 /*
  * 
  * Nom du chemin de stockage des sessions
@@ -26,11 +28,16 @@ $APPLI_cookie_ttl = 2592000;
  */
 $APPLI_path_stockage_session = "prototypephp";
 /*
+ * Duree de conservation des traces (en jours) dans la table log
+ */
+$LOG_duree = 365;
+/*
  * Type d'identification
  * 
  * BDD : mot de passe en base de donnees
  * CAS : utilisation d'un serveur CAS
  * LDAP : utilisation d'un serveur LDAP
+ * LDAP-BDD : test d'abord aupres du serveur LDAP, puis du serveur BDD
  */
 $ident_type = "BDD";
 //$CAS_plugin="plugins/phpcas-simple/phpcas.php";

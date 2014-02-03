@@ -5,7 +5,13 @@
 	</model>
 	<default droits="gestion" droitko="droitko"></default>
 	<droitko action="framework/droitko.php"></droitko><loginliste action="framework/identification/loginliste.php" droits="admin" menulevel="1" menuorder="1" menudroits="admin" menuparent="3" menutitle="3" menuvalue="2" droitko="droitko"></loginliste>
-	<loginmodif action="framework/identification/loginmodif.php" droits="admin" retourko="loginliste" retourok="loginliste" retournull="loginliste"><droitko action="framework/droitko.php"></droitko></loginmodif>
+	<loginliste action="framework/identification/login.php" param="list" droits="admin" menulevel="1" menuorder="1" menudroits="admin" menuparent="3" menutitle="3" menuvalue="2"></loginliste>
+	<loginmodif action="framework/identification/login.php" param="change" droits="admin" />
+	<loginwrite action="framework/identification/login.php" param="write" droits="admin" retourko="loginmodif" retourok="loginliste" />
+	<logindelete action="framework/identification/login.php" param="delete" droits="admin" retourko="loginmodif" retoursuppr="loginliste" />
+	<loginChangePassword action="framework/identification/login.php" param="changePassword" loginrequis="1" />
+	<loginChangePasswordExec action="framework/identification/login.php" param="changePasswordExec" loginrequis="1" retourko="loginChangePassword" modulebefore="loginChangePassword" />
+
 	<administration action="modules/administration/index.php" droits="admin"
 		retourko="" retourok="" retournull="" menuvalue="4" menutitle="5" menuorder="3" menulevel="0" droitko="droitko"></administration>
 	<gestion action="modules/gestion/index.php" droits="gestion" retourko=""

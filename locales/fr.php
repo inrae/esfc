@@ -39,6 +39,7 @@ $LANG["menu"][40] = "Nouveautés";
 $LANG["menu"][41] = "Quoi de neuf dans l'application ?";
 $LANG["menu"][42] = "Module de recherche";
 $LANG["menu"][43] = "Intégrer un module de recherche";
+$LANG["menu"][44] = "PHP info";
 
 $LANG["menu"]["example1"] = "Example";
 $LANG["menu"]["example2"] = "It's an example !";
@@ -79,6 +80,8 @@ $LANG["message"][29] = "Echec de connexion à la base de données de gestion des
 $LANG["message"][30] = "Champ obligatoire";
 $LANG["message"][31] = "Confirmez-vous la suppression ?";
 $LANG["message"][32] = "Mode développement - base de données";
+$LANG["message"]["yes"] = "oui";
+$LANG["message"]["no"] = "non";
 
 $LANG["login"][0] = "Login";
 $LANG["login"][1] = "Mot de passe";
@@ -91,6 +94,18 @@ $LANG["login"][9] = "Nom";
 $LANG["login"][10] = "Prénom";
 $LANG["login"][11] = "Date";
 $LANG["login"][12] = "Répétez le mot de passe";
+$LANG["login"][13] = "actif";
+$LANG["login"][14] = "Le mot de passe a déjà été utilisé";
+$LANG["login"][15] = "Le mot de passe n'est pas assez complexe";
+$LANG["login"][16] = "Le mot de passe est trop court";
+$LANG["login"][17] = "Le mot de passe n'est pas identique dans les deux zones";
+$LANG["login"][18] = "Le mode d'identification utilisé pour votre compte n'autorise pas la modification du mot de passe depuis cette application";
+$LANG["login"][19] = "L'ancien mot de passe est incorrect";
+$LANG["login"][20] = "Le mot de passe a été modifié";
+$LANG["login"][21] = "Générez un mot de passe aléatoire";
+$LANG["login"][22] = "Générez";
+$LANG["login"][23] = "Ancien mot de passe";
+$LANG["login"][24] = "Nouveau mot de passe";
 
 $LANG["ObjetBDDError"][0] = "Le champ ";
 $LANG["ObjetBDDError"][1] = " n'est pas numerique.";

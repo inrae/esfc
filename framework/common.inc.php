@@ -78,7 +78,7 @@ $identification = new Identification ();
 $identification->setidenttype ( $ident_type );
 if ($ident_type == "CAS") {
 	$identification->init_CAS ( $CAS_address, $CAS_port, $CAS_uri );
-} elseif ($ident_type == "LDAP") {
+} elseif ($ident_type == "LDAP"||$ident_type == "LDAP-BDD") {
 	$identification->init_LDAP ( $LDAP_address, $LDAP_port, $LDAP_basedn, $LDAP_user_attrib, $LDAP_v3, $LDAP_tls );
 }
 /**
@@ -170,6 +170,7 @@ $smarty->assign ( "entete", $SMARTY_entete );
 $smarty->assign ( "enpied", $SMARTY_enpied );
 $smarty->assign ( "corps", $SMARTY_corps );
 $smarty->assign ( "LANG", $LANG );
+$smarty->assign ("ident_type", $ident_type);
 
 /*
  * Prepositionnement de idFocus, qui permet de positionner le focus automatiquement a l'ouverture d'une page web
@@ -185,6 +186,10 @@ if (isset ( $_SESSION ["navigation"] ) && $APPLI_modeDeveloppement == false) {
 	unset ( $_SESSION ["menu"] );
 	$_SESSION ['navigation'] = $navigation;
 }
+/*
+ * Activation de la classe d'enregistrement des traces
+ */
+$log = new Log($bdd_gacl,$ObjetBDDParam);
 /*
  * Preparation de la gestion des droits
  */
@@ -203,13 +208,12 @@ if (isset ( $_SESSION ["gestionDroit"] ) && $APPLI_modeDeveloppement == false) {
 	}
 }
 /*
- * Chargement des fonctions de debogage a la volee
- */
-include_once 'framework/functionsDebug.php';
-/*
  * Chargement des fonctions specifiques
  */
 include_once 'modules/fonctions.php';
+if ($APPLI_modeDeveloppement == true) {
+	include_once 'framework/functionsDebug.php';
+}
 /*
  * Chargement des traitements communs specifiques a l'application
  */
