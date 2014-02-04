@@ -81,6 +81,33 @@ if ($ident_type == "CAS") {
 } elseif ($ident_type == "LDAP"||$ident_type == "LDAP-BDD") {
 	$identification->init_LDAP ( $LDAP_address, $LDAP_port, $LDAP_basedn, $LDAP_user_attrib, $LDAP_v3, $LDAP_tls );
 }
+/*
+ * Chargement des fonction generiques
+*/
+include_once 'framework/fonctions.php';
+/*
+ * Gestion de la langue a afficher
+*/
+if (isset ( $_SESSION ["LANG"] ) && $APPLI_modeDeveloppement == false) {
+	$LANG = $_SESSION ["LANG"];
+} else {
+	/*
+	 * Recuperation le cas echeant du cookie
+	*/
+	if (isset ( $_COOKIE ["langue"] )) {
+		$langue = $_COOKIE ["langue"];
+	} else {
+		/*
+		 * Recuperation de la langue du navigateur
+		*/
+		$langue = explode ( ';', $_SERVER ['HTTP_ACCEPT_LANGUAGE'] );
+		$langue = substr ( $langue [0], 0, 2 );
+	}
+	/*
+	 * Mise a niveau du langage
+	*/
+	setlanguage($langue);
+}
 /**
  * Verification du couple session/adresse IP
  */
@@ -95,33 +122,6 @@ if (isset ( $_SESSION ["remoteIP"] )) {
 	}
 } else {
 	$_SESSION ["remoteIP"] = $_SERVER ['REMOTE_ADDR'];
-}
-/*
- * Chargement des fonction generiques
-*/
-include_once 'framework/fonctions.php';
-/*
- * Gestion de la langue a afficher
- */
-if (isset ( $_SESSION ["LANG"] ) && $APPLI_modeDeveloppement == false) {
-	$LANG = $_SESSION ["LANG"];
-} else {
-	/*
-	 * Recuperation le cas echeant du cookie
-	 */
-	if (isset ( $_COOKIE ["langue"] )) {
-		$langue = $_COOKIE ["langue"];
-	} else {
-		/*
-		 * Recuperation de la langue du navigateur
-		 */
-		$langue = explode ( ';', $_SERVER ['HTTP_ACCEPT_LANGUAGE'] );
-		$langue = substr ( $langue [0], 0, 2 );
-	}
-	/*
-	 * Mise a niveau du langage
-	 */
-	setlanguage($langue);
 }
 /*
  * Connexion a la base de donnees
