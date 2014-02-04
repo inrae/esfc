@@ -3,7 +3,7 @@
 		retourok="model" retournull="model" loginrequis="1" menulevel="0" menuorder="0" onlynoconnect="0"
 		menudroits="gestion" menuloginrequis="1" menuparent="0" menutitle="0" menuvalue="0" param="param1" ajax="0" droitko="droitko" modulebefore="module1,module2">
 	</model>
-	<default droits="gestion" droitko="droitko"></default>
+	<default action="framework/default.php"></default>
 	<droitko action="framework/droitko.php"></droitko><loginliste action="framework/identification/loginliste.php" droits="admin" menulevel="1" menuorder="1" menudroits="admin" menuparent="3" menutitle="3" menuvalue="2" droitko="droitko"></loginliste>
 	<loginliste action="framework/identification/login.php" param="list" droits="admin" menulevel="1" menuorder="1" menudroits="admin" menuparent="3" menutitle="3" menuvalue="2"></loginliste>
 	<loginmodif action="framework/identification/login.php" param="change" droits="admin" />
