@@ -5,15 +5,15 @@
 	</model>
 	<default action="framework/default.php"></default>
 	<droitko action="framework/droitko.php"></droitko><loginliste action="framework/identification/loginliste.php" droits="admin" menulevel="1" menuorder="1" menudroits="admin" menuparent="3" menutitle="3" menuvalue="2" droitko="droitko"></loginliste>
-	<loginliste action="framework/identification/login.php" param="list" droits="admin" menulevel="1" menuorder="1" menudroits="admin" menuparent="3" menutitle="3" menuvalue="2"></loginliste>
+	<loginliste action="framework/identification/login.php" param="list" droits="admin" menulevel="1" menuorder="9" menudroits="admin" menuparent="3" menutitle="3" menuvalue="2"></loginliste>
 	<loginmodif action="framework/identification/login.php" param="change" droits="admin" />
 	<loginwrite action="framework/identification/login.php" param="write" droits="admin" retourko="loginmodif" retourok="loginliste" />
 	<logindelete action="framework/identification/login.php" param="delete" droits="admin" retourko="loginmodif" retoursuppr="loginliste" />
 	<loginChangePassword action="framework/identification/login.php" param="changePassword" loginrequis="1" />
 	<loginChangePasswordExec action="framework/identification/login.php" param="changePasswordExec" loginrequis="1" retourko="loginChangePassword" modulebefore="loginChangePassword" />
 
-	<administration action="modules/administration/index.php" droits="admin"
-		retourko="" retourok="" retournull="" menuvalue="4" menutitle="5" menuorder="3" menulevel="0" droitko="droitko"></administration>
+	<parametre action="modules/administration/index.php" droits="admin"
+		retourko="" retourok="" retournull="" menuvalue="4" menutitle="5" menuorder="3" menulevel="0" droitko="droitko"/>
 	<gestion action="modules/gestion/index.php" droits="gestion" retourko=""
 		retournull="" retourok="" menuorder="1" menulevel="0" menuvalue="0" menutitle="1" droitko="droitko">
 	</gestion>
@@ -27,9 +27,9 @@
 	<apropos action="framework/apropos.php" menulevel="1" menuorder="99" menuvalue="8" menutitle="9" menuparent="99"></apropos>
 	<testcalendrier action="test/testcalendrier.php"></testcalendrier>
 	<gestiondroits action="framework/identification/gestiondroits.php" droits="admin" retourko=""
-		retourok="" retournull="" loginrequis="0" menulevel="1" menuorder="9" menudroits="admin" menuloginrequis="" menuparent="3" menutitle="13" menuvalue="12" droitko="droitko">
+		retourok="" retournull="" loginrequis="0" menulevel="1" menuorder="99" menudroits="admin" menuloginrequis="" menuparent="3" menutitle="13" menuvalue="12" droitko="droitko">
 	</gestiondroits>
-	<phpinfo action="framework/phpinfo.php" droits="admin" menudroits="admin" menulevel="1" menuorder="8" menuparent="3" menuvalue="44" menutitle="45" />
+	<phpinfo action="framework/phpinfo.php" droits="admin" menudroits="admin" menulevel="1" menuorder="8" menuparent="3" menuvalue="phpinfo" menutitle="phpinfotitle" />
 	
 	<docindex menulevel="0" menuorder="99" menutitle="21" menuvalue="20" action="doc/index.php" param1="index.html" ajax="1"></docindex>
 	<docinstallation menulevel="1" menuorder="0" menutitle="23" menuvalue="22" action="doc/index.php" param1="Installation.html" menuparent="99" ></docinstallation>
@@ -50,6 +50,16 @@
 	<exampleChange action="modules/example/example.php" param="change" droits="gestion" />
 	<exampleWrite action="modules/example/example.php" param="write" droits="gestion" retourok="exampleList" retourko="exampleModif" modulebefore="exampleModif" />
 	<exampleDelete action="modules/example/example.php" param="delete" droits="admin" retoursuppr="exampleList" retourko="exampleModif" />
+
+	<pittagTypeList action="modules/parametre/pittagType.php" param="list" droits="" menulevel="1" menuparent="3" menuorder="0" menudroits="" menuvalue="45" menutitle="46"  />
+	<pittagTypeChange action="modules/parametre/pittagType.php" param="change" droits="admin" />
+	<pittagTypeWrite action="modules/parametre/pittagType.php" param="write" droits="admin" retourok="pittagTypeList" retourko="pittagTypeChange" modulebefore="pittagTypeChange" />
+	<pittagTypeDelete action="modules/parametre/pittagType.php" param="delete" droits="admin" retoursuppr="pittagTypeList" retourko="pittagTypeChange" modulebefore="pittagTypeChange" />
+
+	<poissonStatutList action="modules/parametre/poissonStatut.php" param="list" droits="" menulevel="1" menuparent="3" menuorder="1" menudroits="" menuvalue="47" menutitle="48"  />
+	<poissonStatutChange action="modules/parametre/poissonStatut.php" param="change" droits="admin" />
+	<poissonStatutWrite action="modules/parametre/poissonStatut.php" param="write" droits="admin" retourok="poissonStatutList" retourko="poissonStatutChange" modulebefore="poissonStatutChange" />
+	<poissonStatutDelete action="modules/parametre/poissonStatut.php" param="delete" droits="admin" retoursuppr="poissonStatutList" retourko="poissonStatutChange"  modulebefore="poissonStatutChange"/>
 
 </navigation>
 	

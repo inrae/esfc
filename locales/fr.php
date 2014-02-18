@@ -5,8 +5,8 @@ $LANG["menu"][0] = "Gestion";
 $LANG["menu"][1] = "Opérations de gestion";
 $LANG["menu"][2] = "Liste des comptes";
 $LANG["menu"][3] = "Liste des logins - identification via la base de données";
-$LANG["menu"][4] = "Administration";
-$LANG["menu"][5] = "Administration de l'application";
+$LANG["menu"][4] = "Paramètres";
+$LANG["menu"][5] = "Paramètres généraux, tables de références, gestion des utilisateurs";
 $LANG["menu"][6] = "Déconnexion";
 $LANG["menu"][7] = "Déconnexion de l'application";
 $LANG["menu"][8] = "A propos";
@@ -39,7 +39,14 @@ $LANG["menu"][40] = "Nouveautés";
 $LANG["menu"][41] = "Quoi de neuf dans l'application ?";
 $LANG["menu"][42] = "Module de recherche";
 $LANG["menu"][43] = "Intégrer un module de recherche";
-$LANG["menu"][44] = "PHP info";
+$LANG["menu"]["phpinfo"] = "PHP info";
+$LANG["menu"]["phpinfotitle"] = "Informations concernant l'implémentation de PHP";
+$LANG["menu"][45] = "Types de pittag";
+$LANG["menu"][46] = "Table des types de pittag";
+$LANG["menu"][47] = "Statuts des poissons";
+$LANG["menu"][48] = "Table des statuts des poissons";
+
+
 
 $LANG["menu"]["example1"] = "Example";
 $LANG["menu"]["example2"] = "It's an example !";
@@ -47,8 +54,8 @@ $LANG["menu"]["connexionvalue"] = "Connexion";
 $LANG["menu"]['connexiontitle'] = "S'identifier dans l'application";
 
 $LANG["message"][0] = "Bienvenue"; 
-$LANG["message"][1] = "prototypephp - titre de l'application";
-$LANG["message"][2] = "Module administration";
+$LANG["message"][1] = "Suivi de l'élevage des esturgeons";
+$LANG["message"][2] = "Module de gestion des paramètres";
 $LANG["message"][3] = "Module gestion";
 $LANG["message"][4] = "Suppression effectuée";
 $LANG["message"][5] = "Enregistrement effectué";
