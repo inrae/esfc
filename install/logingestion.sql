@@ -5,7 +5,8 @@ password varchar(255),
 nom varchar(32),
 prenom varchar(32),
 mail varchar(255),
-datemodif date
+datemodif date,
+actif smallint default 1
 ) ;
 
 
