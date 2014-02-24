@@ -45,6 +45,13 @@ $LANG["menu"][45] = "Types de pittag";
 $LANG["menu"][46] = "Table des types de pittag";
 $LANG["menu"][47] = "Statuts des poissons";
 $LANG["menu"][48] = "Table des statuts des poissons";
+$LANG["menu"][49] = "Méthode de sexage";
+$LANG["menu"][50] = "Table des méthodes de détermination du sexe";
+$LANG["menu"][51] = "Types d'événements";
+$LANG["menu"][52] = "Table des types d'événement";
+$LANG["menu"][53] = "Types de pathologies";
+$LANG["menu"][54] = "Table des types de pathologies";
+
 
 
 

@@ -51,15 +51,30 @@
 	<exampleWrite action="modules/example/example.php" param="write" droits="gestion" retourok="exampleList" retourko="exampleModif" modulebefore="exampleModif" />
 	<exampleDelete action="modules/example/example.php" param="delete" droits="admin" retoursuppr="exampleList" retourko="exampleModif" />
 
-	<pittagTypeList action="modules/parametre/pittagType.php" param="list" droits="" menulevel="1" menuparent="3" menuorder="0" menudroits="" menuvalue="45" menutitle="46"  />
+	<pittagTypeList action="modules/parametre/pittagType.php" param="list" droits="consult" menulevel="1" menuparent="3" menuorder="0" menudroits="" menuvalue="45" menutitle="46"  />
 	<pittagTypeChange action="modules/parametre/pittagType.php" param="change" droits="admin" />
 	<pittagTypeWrite action="modules/parametre/pittagType.php" param="write" droits="admin" retourok="pittagTypeList" retourko="pittagTypeChange" modulebefore="pittagTypeChange" />
 	<pittagTypeDelete action="modules/parametre/pittagType.php" param="delete" droits="admin" retoursuppr="pittagTypeList" retourko="pittagTypeChange" modulebefore="pittagTypeChange" />
 
-	<poissonStatutList action="modules/parametre/poissonStatut.php" param="list" droits="" menulevel="1" menuparent="3" menuorder="1" menudroits="" menuvalue="47" menutitle="48"  />
+	<poissonStatutList action="modules/parametre/poissonStatut.php" param="list" droits="consult" menulevel="1" menuparent="3" menuorder="1" menudroits="" menuvalue="47" menutitle="48"  />
 	<poissonStatutChange action="modules/parametre/poissonStatut.php" param="change" droits="admin" />
 	<poissonStatutWrite action="modules/parametre/poissonStatut.php" param="write" droits="admin" retourok="poissonStatutList" retourko="poissonStatutChange" modulebefore="poissonStatutChange" />
 	<poissonStatutDelete action="modules/parametre/poissonStatut.php" param="delete" droits="admin" retoursuppr="poissonStatutList" retourko="poissonStatutChange"  modulebefore="poissonStatutChange"/>
+
+	<genderMethodeList action="modules/parametre/genderMethode.php" param="list" droits="consult" menulevel="1" menuparent="3" menuorder="2" menudroits="" menuvalue="49" menutitle="50"  />
+	<genderMethodeChange action="modules/parametre/genderMethode.php" param="change" droits="admin" />
+	<genderMethodeWrite action="modules/parametre/genderMethode.php" param="write" droits="admin" retourok="genderMethodeList" retourko="genderMethodeChange" modulebefore="genderMethodeChange" />
+	<genderMethodeDelete action="modules/parametre/genderMethode.php" param="delete" droits="admin" retoursuppr="genderMethodeList" retourko="genderMethodeChange"  modulebefore="genderMethodeChange"/>
+
+	<evenementTypeList action="modules/parametre/evenementType.php" param="list" droits="consult" menulevel="1" menuparent="3" menuorder="3" menudroits="" menuvalue="51" menutitle="52"  />
+	<evenementTypeChange action="modules/parametre/evenementType.php" param="change" droits="admin" />
+	<evenementTypeWrite action="modules/parametre/evenementType.php" param="write" droits="admin" retourok="evenementTypeList" retourko="evenementTypeChange" modulebefore="evenementTypeChange" />
+	<evenementTypeDelete action="modules/parametre/evenementType.php" param="delete" droits="admin" retoursuppr="evenementTypeList" retourko="evenementTypeChange"  modulebefore="evenementTypeChange"/>
+
+	<pathologieTypeList action="modules/parametre/pathologieType.php" param="list" droits="consult" menulevel="1" menuparent="3" menuorder="4" menudroits="" menuvalue="53" menutitle="54"  />
+	<pathologieTypeChange action="modules/parametre/pathologieType.php" param="change" droits="admin" />
+	<pathologieTypeWrite action="modules/parametre/pathologieType.php" param="write" droits="admin" retourok="pathologieTypeList" retourko="pathologieTypeChange" modulebefore="pathologieTypeChange" />
+	<pathologieTypeDelete action="modules/parametre/pathologieType.php" param="delete" droits="admin" retoursuppr="pathologieTypeList" retourko="pathologieTypeChange"  modulebefore="pathologieTypeChange"/>
 
 </navigation>
 	

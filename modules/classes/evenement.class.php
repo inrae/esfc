@@ -50,6 +50,19 @@
  				"evenement_type_libelle"=>array("type"=>0, "requis"=>1),
  				"evenement_type_actif"=>array("type"=>1, "requis"=>1, "defaultValue"=>1)
  		);
+ 		if(!is_array($param)) $param==array();
+ 		$param["fullDescription"]=1;
+ 		parent::__construct($bdd,$param);
+ 	}
+ 	
+ 	/**
+ 	 * Reecriture de la fonction pour trier la liste
+ 	 * (non-PHPdoc)
+ 	 * @see ObjetBDD::getListe()
+ 	 */
+ 	function getListe() {
+ 		$sql = 'select * from '.$this->table.' order by evenement_type_libelle';
+ 		return $this->getListeParam($sql);
  	}
  }
 ?>

@@ -314,6 +314,15 @@ class Pathologie_type extends ObjetBDD {
 		$param ["fullDescription"] = 1;
 		parent::__construct ( $bdd, $param );
 	}
+	/**
+	 * Reecriture de la fonction pour trier la liste
+	 * (non-PHPdoc)
+	 * @see ObjetBDD::getListe()
+	 */
+	function getListe() {
+		$sql = 'select * from '.$this->table.' order by pathologie_type_libelle';
+		return $this->getListeParam($sql);
+	}
 }
 /**
  * ORM de la table sexe
@@ -371,7 +380,7 @@ class Gender_methode extends ObjetBDD {
 	function __construct($bdd, $param = null) {
 		$this->param = $param;
 		$this->table = "gender_methode";
-		$this->id_auto = "1";
+		$this->id_auto = 1;
 		$this->colonnes = array (
 				"gender_methode_id" => array (
 						"type" => 1,
