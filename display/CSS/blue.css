@@ -283,6 +283,7 @@ div.row span.affichage {
 	color: #000000;
 	text-align: left;
 	border: 1px solid #999999;
+	z-index: 0;
 }
 .tableaffichage tr:hover {
 	background:	 #ffffff;
@@ -408,6 +409,7 @@ div.menu>ul li ul li {
 	background: #ffffff;
 	border-left: solid 1em #98c1e9;
 	color: #a66d1a;
+	z-index:99;
 
 }
 

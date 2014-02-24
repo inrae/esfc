@@ -3,9 +3,6 @@
 /*
  * DataTables-1.9.4 framework
  */
-div.DataTables-1.9.4_length {
-
-}
 
 div.DataTables-1.9.4_filter {
 	float: right;
@@ -14,6 +11,8 @@ div.DataTables-1.9.4_filter {
 div.DataTables-1.9.4_info {
 	padding: 9px 6px 6px 6px;
 	float: left;
+	z-index: -1;
+	
 }
 
 div.DataTables-1.9.4_paginate {
@@ -24,6 +23,7 @@ div.DataTables-1.9.4_length,
 div.DataTables-1.9.4_filter,
 div.DataTables-1.9.4_paginate {
 	padding: 6px;
+	z-index: -1;
 }
 
 
