@@ -17,6 +17,7 @@
  	 */
  	function __construct($bdd,$param=null) {
  		$this->param = $param;
+ 		$this->paramori = $param;
  		$this->table="evenement";
  		$this->id_auto="1";
  		$this->colonnes=array(
@@ -28,6 +29,49 @@
  		if(!is_array($param)) $param==array();
  		$param["fullDescription"]=1;
  		parent::__construct($bdd,$param);
+ 	}
+ 	/**
+ 	 * Retourne les événements associés à un poisson
+ 	 * @param int $poisson_id
+ 	 * @return array
+ 	 */
+ 	function getEvenementByPoisson ($poisson_id) {
+ 		if ($poisson_id > 0) {
+ 			$sql = "select evenement_id, poisson_id, evenement_date, evenement_type_libelle 
+ 					from evenement
+ 					left outer join evenement_type using (evenement_type_id)
+ 					where poisson_id = ".$poisson_id.
+ 					"order by evenement_date desc";
+ 			return $this->getListeParam($sql);
+ 		}
+ 	}
+ 	/**
+ 	 * Surcharge de la fonction supprimer, pour effacer les enregistrements dans les tables filles
+ 	 * (non-PHPdoc)
+ 	 * @see ObjetBDD::supprimer()
+ 	 */
+ 	function supprimer($id) {
+ 		if ($id > 0) {
+ 			/*
+ 			 * Traitement des suppressions en cascade
+ 			 */
+ 			/*
+ 			 * pathologie
+ 			 */
+ 			$pathologie = new Pathologie($bdd, $this->paramori);
+ 			$pathologie->supprimerChamp($id, "evenement_id");
+ 			/*
+ 			 * Morphologie
+ 			 */
+ 			$morphologie = new Morphologie($bdd, $this->paramori);
+ 			$morphologie->supprimerChamp($id, "evenement_id");
+ 			/*
+ 			 * Gender_selection
+ 			 */
+ 			$genderSelection = new Gender_selection($bdd, $ObjetBDDParam);
+ 			$genderSelection->supprimerChamp($id, "evenement_id");
+ 			return parent::supprimer($id);
+ 		}
  	}
  }
 /**

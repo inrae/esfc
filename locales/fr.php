@@ -51,6 +51,8 @@ $LANG["menu"][51] = "Types d'événements";
 $LANG["menu"][52] = "Table des types d'événement";
 $LANG["menu"][53] = "Types de pathologies";
 $LANG["menu"][54] = "Table des types de pathologies";
+$LANG["menu"][55] = "Poissons";
+$LANG["menu"][56] = "Visualiser les poissons";
 
 
 

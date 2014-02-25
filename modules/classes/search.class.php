@@ -67,9 +67,9 @@ class SearchParam {
  * @author Eric Quinton
  *
  */
-class SearchExample extends SearchParam {
+class SearchPoisson extends SearchParam {
 	function __construct() {
-		$this->param = array ("comment" => "", "dateExample"=> date('d/m/Y'));
+		$this->param = array ("statut" => "", "sexe"=> "", "texte" => "");
 		parent::__construct();
 	}
 }

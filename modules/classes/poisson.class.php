@@ -55,6 +55,69 @@ class Poisson extends ObjetBDD {
 		$param ["fullDescription"] = 1;
 		parent::__construct ( $bdd, $param );
 	}
+	/**
+	 * Fonction permettant de retourner une liste de poissons selon les criteres specifies
+	 * @param array $dataSearch
+	 * @return array
+	 */
+	function getListeSearch($dataSearch) {
+		if (is_array($dataSearch)) {
+			$sql = "select poisson_id, sexe_id, matricule, prenom, cohorte, capture_date, sexe_libelle, sexe_libelle_court, poisson_statut_libelle,
+					array_to_string(array_agg(pittag_valeur),' ') as pittag_valeur
+					from ".$this->table.
+					" natural join sexe
+					  natural join poisson_statut
+					  left outer join pittag using (poisson_id)";
+			/*
+			 * Preparation de la clause group by
+			 */
+			$group = " group by poisson_id, sexe_id, matricule, prenom, cohorte, capture_date, sexe_libelle, sexe_libelle_court, poisson_statut_libelle ";
+			/*
+			 * Preparation de la clause order
+			 */
+			$order = " order by prenom, cohorte ";
+			/*
+			 * Preparation de la clause where
+			 */
+			$where = " where ";
+			$and = "";
+			if ($dataSearch["statut"] > 0 ) {
+				$where .= $and." poisson_statut_id = ".$dataSearch["statut"];
+				$and = " and ";
+			}
+			if ($dataSearch["sexe"] > 0 ) {
+				$where .= $and." sexe_id = ".$dataSearch["sexe"];
+				$and = " and ";
+			}
+			if (strlen($dataSearch["texte"])>0) {
+				$texte = "%".mb_strtoupper($dataSearch["texte"], 'UTF-8')."%";
+				$where .= $and . " (upper(matricule) like '".$texte."' 
+						or upper(prenom) like '".$texte."' 
+						or cohorte like '".$texte."' 
+						or upper(pittag_valeur) like '".$texte."')";
+			}
+			if (strlen($where) == 7) $where = "";
+			return $this->getListeParam($sql.$where.$group.$order);
+		}
+	}
+	/**
+	 * Retourne le detail d'un poisson
+	 * @param int $poisson_id
+	 * @return array
+	 */
+	function getDetail($poisson_id) {
+		if ($poisson_id > 0) {
+			$sql = "select poisson_id, sexe_id, matricule, prenom, cohorte, capture_date, sexe_libelle, sexe_libelle_court, poisson_statut_libelle,
+					array_to_string(array_agg(pittag_valeur),' ') as pittag_valeur
+					from ".$this->table.
+					" natural join sexe
+					  natural join poisson_statut
+					  left outer join pittag using (poisson_id)";
+			$where = " where poisson_id = ".$poisson_id;
+			$groupby = " group by poisson_id, sexe_id, matricule, prenom, cohorte, capture_date, sexe_libelle, sexe_libelle_court, poisson_statut_libelle ";
+			return $this->lireParam($sql.$where.$groupby);
+		}
+	}
 }
 /**
  * ORM de la table poisson_statut
@@ -90,6 +153,15 @@ class Poisson_statut extends ObjetBDD {
 			$param == array ();
 		$param ["fullDescription"] = 1;
 		parent::__construct ( $bdd, $param );
+	}
+	/**
+	 * Reecriture de la fonction d'affichage de la liste
+	 * (non-PHPdoc)
+	 * @see ObjetBDD::getListe()
+	 */
+	function getListe() {
+		$sql = "select * from ".$this->table." order by poisson_statut_id";
+		return $this->getListeParam($sql);
 	}
 }
 /**
@@ -173,6 +245,21 @@ class Pittag extends ObjetBDD {
 		$param ["fullDescription"] = 1;
 		parent::__construct ( $bdd, $param );
 	}
+	/**
+	 * Retourne la liste des pittag attribués à un poisson
+	 * @param int $poisson_id
+	 * @return array
+	 */
+	function getListByPoisson($poisson_id) {
+		if ($poisson_id > 0) {
+			$sql = "select pittag_id, poisson_id, pittag_date_pose, pittag_valeur
+					from pittag
+					left outer join pittag_type using (pittag_type_id)
+					where poisson_id = ".$poisson_id.
+					" order by pittag_date_pose desc";
+			return $this->getListeParam($sql);
+		}
+	}
 }
 /**
  * ORM de gestion de la table morphologie
@@ -228,6 +315,34 @@ class Morphologie extends ObjetBDD {
 		$param ["fullDescription"] = 1;
 		parent::__construct ( $bdd, $param );
 	}
+	/**
+	 * Fonction retournant la liste des donnees morphologiques pour un poisson
+	 * @param int $poisson_id
+	 * @return array
+	 */
+	function getListeByPoisson($poisson_id) {
+		if ($poisson_id > 0) {
+			$sql = "select morphologie_id, m.poisson_id, longueur_fourche, longueur_totale, masse, morphologie_date, morphologie_commentaire, 
+					m.evenement_id, evenement_type_libelle
+					from morphologie m
+					left outer join evenement using (evenement_id)
+					left outer join evenement_type using (evenement_type_id)
+					where m.poisson_id = ".$poisson_id.
+					" order by morphologie_date desc";
+			return $this->getListeParam($sql);
+		}
+	}
+	/**
+	 * Lit un enregistrement à partir de l'événement
+	 * @param int $evenement_id
+	 * @return array
+	 */
+	function getDataByEvenement($evenement_id) {
+		if ($evenement_id > 0) {
+			$sql = "select * from morphologie where evenement_id = ".$evenement_id;
+			return $this->lireParam($sql);
+		}
+	}
 }
 /**
  * ORM de gestion de la table pathologie
@@ -263,17 +378,49 @@ class Pathologie extends ObjetBDD {
 						"type" => 1,
 						"requis" => 1 
 				),
-				"pathlogie_date" => array (
+				"pathologie_date" => array (
 						"type" => 2 
 				),
 				"pathologie_commentaire" => array (
 						"type" => 0 
+				),
+				"evenement_id" => array (
+						"type" => 1
 				) 
 		);
 		if (! is_array ( $param ))
 			$param == array ();
 		$param ["fullDescription"] = 1;
 		parent::__construct ( $bdd, $param );
+	}
+	/**
+	 * Retourne la liste des pathologies pour un poisson
+	 * @param unknown $poisson_id
+	 * @return Ambigous <tableau, boolean, $data, string>
+	 */
+	function getListByPoisson($poisson_id) {
+		if ($poisson_id > 0) {
+			$sql = "select pathologie_id, patho.poisson_id, pathologie_date, pathologie_commentaire,
+					pathologie_type_libelle, evenement_type_libelle
+					from pathologie patho
+					left outer join pathologie_type using (pathologie_type_id)
+					left outer join evenement using (evenement_id)
+					left outer join evenement_type using (evenement_type_id)
+					where patho.poisson_id = ".$poisson_id.
+					" order by pathologie_date desc";
+			return $this->getListeParam($sql);
+		}
+	}
+	/**
+	 * Lit un enregistrement à partir de l'événement
+	 * @param unknown $evenement_id
+	 * @return Ambigous <multitype:, boolean, $data, string>
+	 */
+	function getDataByEvenement($evenement_id) {
+		if ($evenement_id > 0) {
+			$sql = "select * from pathologie where evenement_id = ".$evenement_id;
+			return $this->lireParam($sql);
+		}
 	}
 }
 /**
@@ -449,6 +596,37 @@ class Gender_selection extends ObjetBDD {
 			$param == array ();
 		$param ["fullDescription"] = 1;
 		parent::__construct ( $bdd, $param );
+	}
+	/**
+	 * Recupère la liste des déterminations sexuelles pour un poisson
+	 * @param int $poisson_id
+	 * @return array
+	 */
+	function getListByPoisson($poisson_id) {
+		if ($poisson_id > 0) {
+			$sql = "select gender_selection_id, g.poisson_id, gender_selection_date, gender_selection_commentaire,
+					gender_methode_libelle, sexe_libelle_court, sexe_libelle,
+					evenement_type_libelle
+					from gender_selection g
+					left outer join gender_methode using (gender_methode_id)
+					left outer join sexe using (sexe_id)
+					left outer join evenement using (evenement_id)
+					left outer join evenement_type using (evenement_type_id)
+					where g.poisson_id = ".$poisson_id.
+					" order by gender_selection_date desc";
+			return $this->getListeParam($sql);
+		}
+	}
+	/**
+	 * Lit un enregistrement à partir de l'événement
+	 * @param int $evenement_id
+	 * @return array
+	 */
+	function getDataByEvenement($evenement_id) {
+		if ($evenement_id > 0) {
+			$sql = "select * from gender_selection where evenement_id = ".$evenement_id;
+			return $this->lireParam($sql);
+		}
 	}
 }
 ?>
