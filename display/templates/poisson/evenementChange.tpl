@@ -11,6 +11,11 @@ Retour à la liste des poissons
 <form class="cmxform" id="evenementForm" method="post" action="index.php?module=evenementWrite">
 <input type="hidden" name="evenement_id" value="{$data.evenement_id}">
 <input type="hidden" name="poisson_id" value="{$data.poisson_id}">
+<input type="hidden" name="morphologie_id" value="{$dataMorpho.morphologie_id}">
+<input type="hidden" name="pathologie_id" value="{$dataPatho.pathologie_id}">
+<input type="hidden" name="gender_selection_id" value="{$dataGender.gender_selection_id}">
+
+
 <tr>
 <td colspan="2" class="datamodif">
 <h3>Données liées à l'événement lui-même</h3>
@@ -31,7 +36,7 @@ Type d'événement <span class="red">*</span> :</td>
 </td>
 </tr>
 <tr>
-<td class="libelleSaisie">Date :</td>
+<td class="libelleSaisie">Date <span class="red">*</span> :</td>
 <td class="datamodif">
  <script>
  
@@ -126,7 +131,7 @@ Sélectionnez la méthode...
 Sélectionnez le sexe...
 </option>
 {section name=lst loop=$sexe}
-<option value="{$sexe[lst].sexe_id}" {if $sexe[lst].gender_methode_id == $dataGender.sexe_id}selected{/if}>
+<option value="{$sexe[lst].sexe_id}" {if $sexe[lst].sexe_id == $dataGender.sexe_id}selected{/if}>
 {$sexe[lst].sexe_libelle}
 </option>
 {/section}
@@ -136,7 +141,7 @@ Sélectionnez le sexe...
 <tr>
 <td class="libelleSaisie">Commentaire :</td>
 <td class="datamodif">
-<input name="gender_selection_commentaire" id="cgender_selection_commentaire" value="{$dataGender.gender_selection.commentaire}" size="40">
+<input name="gender_selection_commentaire" id="cgender_selection_commentaire" value="{$dataGender.gender_selection_commentaire}" size="40">
 </td>
 </tr>
 

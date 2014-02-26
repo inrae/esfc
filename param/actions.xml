@@ -79,13 +79,16 @@
 	<poissonList action="modules/poisson/poisson.php" param="list" droits="consult" menulevel="0" menuparent="" menuorder="0" menudroits="" menuvalue="55" menutitle="56"  />
 	<poissonDisplay action="modules/poisson/poisson.php" param="display" droits="consult" />
 	<poissonChange action="modules/poisson/poisson.php" param="change" droits="poissonGestion" />
-	<poissonWrite action="modules/poisson/poisson.php" param="write" droits="poissonGestion" retourok="poissonList" retourko="poissonChange" modulebefore="poissonChange" />
+	<poissonWrite action="modules/poisson/poisson.php" param="write" droits="poissonGestion" retourok="poissonDisplay" retourko="poissonChange" modulebefore="poissonChange" />
 	<poissonDelete action="modules/poisson/poisson.php" param="delete" droits="poissonGestion" retoursuppr="poissonList" retourko="poissonChange"  modulebefore="poissonChange"/>
 	
 	<evenementChange action="modules/poisson/evenement.php" param="change" droits="poissonGestion" />
-	<evenementWrite action="modules/poisson/evenement.php" param="write" droits="poissonGestion" retourok="evenementList" retourko="evenementChange" modulebefore="evenementChange" />
-	<evenementDelete action="modules/poisson/evenement.php" param="delete" droits="poissonGestion" retoursuppr="evenementList" retourko="evenementChange"  modulebefore="evenementChange"/>
+	<evenementWrite action="modules/poisson/evenement.php" param="write" droits="poissonGestion" retourok="poissonDisplay" retourko="evenementChange" modulebefore="evenementChange" />
+	<evenementDelete action="modules/poisson/evenement.php" param="delete" droits="poissonGestion" retoursuppr="poissonDisplay" retourko="evenementChange"  modulebefore="evenementChange"/>
 	
+	<pittagChange action="modules/poisson/pittag.php" param="change" droits="poissonGestion" />
+	<pittagWrite action="modules/poisson/pittag.php" param="write" droits="poissonGestion" retourok="poissonDisplay" retourko="pittagChange" modulebefore="pittagChange" />
+	<pittagDelete action="modules/poisson/pittag.php" param="delete" droits="poissonGestion" retoursuppr="poissonDisplay" retourko="pittagChange"  modulebefore="pittagChange"/>
 
 </navigation>
 	

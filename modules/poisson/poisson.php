@@ -77,7 +77,11 @@ switch ($t_module["param"]) {
 		 * If is a new record, generate a new record with default value :
 		 * $_REQUEST["idParent"] contains the identifiant of the parent record
 		 */
-		dataRead($dataClass, $id, "example/exampleChange.tpl", $_REQUEST["idParent"]);
+		dataRead($dataClass, $id, "poisson/poissonChange.tpl");
+		$sexe = new Sexe($bdd, $ObjetBDDParam);
+		$smarty->assign("sexe", $sexe->getListe());
+		$poissonStatut = new Poisson_statut($bdd, $ObjetBDDParam);
+		$smarty->assign("poissonStatut", $poissonStatut->getListe());
 		break;
 	case "write":
 		/*

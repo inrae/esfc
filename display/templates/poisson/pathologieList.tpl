@@ -4,10 +4,12 @@ setDataTables("cpathologieList");
 <table id="cpathologieList" class="tableaffichage">
 <thead>
 <tr>
+<th>Événement associé</th>
 <th>Date</th>
 <th>Type de pathologie</th>
 <th>Commentaire</th>
-<th>Événement associé</th>
+
+
 </tr>
 </thead>
 <tdata>
@@ -15,16 +17,18 @@ setDataTables("cpathologieList");
 <tr>
 <td>
 {if $droits["poissonGestion"]==1}
-<a href="index.php?module=pathologieChange&poisson_id={$dataPatho[lst].poisson_id}&pathologie_id={$dataPatho[lst].pathologie_id}">
-{$dataPatho[lst].pathologie_date}
+<a href="index.php?module=evenementChange&poisson_id={$dataPatho[lst].poisson_id}&evenement_id={$dataPatho[lst].evenement_id}">
+{$dataPatho[lst].evenement_type_libelle}
 </a>
 {else}
-{$dataPatho[lst].pathologie_date}
+{$dataPatho[lst].evenement_type_libelle}
 {/if}
+</td>
+<td>
+{$dataPatho[lst].pathologie_date}
 </td>
 <td>{$dataPatho[lst].pathologie_type_libelle}</td>
 <td>{$dataPatho[lst].pathologie_commentaire}</td>
-<td>{$dataPatho[lst].evenement_type_libelle}</td>
 </tr>
 {/section}
 </tdata>

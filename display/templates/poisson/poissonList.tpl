@@ -1,5 +1,8 @@
 {include file="poisson/poissonSearch.tpl"}
 {if $isSearch == 1}
+{if $droits.poissonGestion == 1}
+<a href="index.php?module=poissonChange&poisson_id=0">Nouveau poisson...</a>
+{/if}
 <script>
 setDataTables("cpoissonList",true, true, true, 50);
 </script>
@@ -33,4 +36,5 @@ setDataTables("cpoissonList",true, true, true, 50);
 {/section}
 </tdata>
 </table>
+<br>
 {/if}

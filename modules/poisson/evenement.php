@@ -45,7 +45,7 @@ switch ($t_module["param"]) {
 		 * Lecture du poisson
 		 */
 		$poisson = new Poisson($bdd, $ObjetBDDParam);
-		$smarty->assign("dataPoisson", $poisson->lire($_REQUEST["poisson_id"]));
+		$smarty->assign("dataPoisson", $poisson->getDetail($_REQUEST["poisson_id"]));
 		/*
 		 * Lecture des tables associees
 		 */

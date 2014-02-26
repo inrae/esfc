@@ -58,17 +58,17 @@
  			/*
  			 * pathologie
  			 */
- 			$pathologie = new Pathologie($bdd, $this->paramori);
+ 			$pathologie = new Pathologie($this->connection, $this->paramori);
  			$pathologie->supprimerChamp($id, "evenement_id");
  			/*
  			 * Morphologie
  			 */
- 			$morphologie = new Morphologie($bdd, $this->paramori);
+ 			$morphologie = new Morphologie($this->connection, $this->paramori);
  			$morphologie->supprimerChamp($id, "evenement_id");
  			/*
  			 * Gender_selection
  			 */
- 			$genderSelection = new Gender_selection($bdd, $ObjetBDDParam);
+ 			$genderSelection = new Gender_selection($this->connection, $ObjetBDDParam);
  			$genderSelection->supprimerChamp($id, "evenement_id");
  			return parent::supprimer($id);
  		}

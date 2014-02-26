@@ -34,31 +34,16 @@ Nouvel événement...
 </td>
 <td>
 <h3>Données morphologiques</h3>
-{if $droits["poissonGestion"]==1}
-<a href="index.php?module=morphologieChange&poisson_id={$dataPoisson.poisson_id}&morphologie_id=0">
-Nouvelles données...
-</a>
-{/if}
 {include file="poisson/morphologieList.tpl"}
 </td>
 </tr>
 <tr>
 <td>
 <h3>Pathologies</h3>
-{if $droits["poissonGestion"]==1}
-<a href="index.php?module=pathologieChange&poisson_id={$dataPoisson.poisson_id}&pathologie_id=0">
-Nouvelle pathologie...
-</a>
-{/if}
 {include file="poisson/pathologieList.tpl"}
 </td>
 <td>
 <h3>Détermination du sexe</h3>
-{if $droits["poissonGestion"]==1}
-<a href="index.php?module=genderSelectionChange&poisson_id={$dataPoisson.poisson_id}&gender_selection_id=0">
-Nouvelle détermination...
-</a>
-{/if}
 {include file="poisson/genderSelectionList.tpl"}
 </td>
 
