@@ -13,4 +13,13 @@ if (! isset ( $_SESSION ["searchPoisson"] )) {
 } else {
 	$searchPoisson = $_SESSION ["searchPoisson"];
 }
+/*
+ * Declaration de la classe de recherche des bassins
+*/
+if (! isset ( $_SESSION ["searchBassin"] )) {
+	$searchBassin = new SearchBassin();
+	$_SESSION ["searchBassin"] = $searchBassin;
+} else {
+	$searchBassin = $_SESSION ["searchBassin"];
+}
 ?>

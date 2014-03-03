@@ -73,5 +73,15 @@ class SearchPoisson extends SearchParam {
 		parent::__construct();
 	}
 }
-
+/**
+ * Classe de recherche des bassins
+ * @author quinton
+ *
+ */
+class SearchBassin extends SearchParam {
+	function __construct() {
+		$this->param = array ("bassin_type" => "", "bassin_usage" => "", "bassin_zone" => "", "circuit_eau" => "", "bassin_actif" => "");
+		parent::__construct();
+	}
+}
 ?>
