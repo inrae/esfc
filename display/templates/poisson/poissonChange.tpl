@@ -78,10 +78,6 @@ $( "#ccapture_date" ).datepicker( { dateFormat: "dd/mm/yy" } );
 <input class="submit" type="submit" value="Enregistrer">
 </form>
 
-<script>
-$("#poissonForm").validate();
-$("#poissonForm").removeAttr("novalidate");
-</script>
 
 {if $data.poisson_id > 0 &&$droits["admin"] == 1}
 <form action="index.php" method="post" onSubmit='return confirmSuppression("Confirmez-vous la suppression ?")'>

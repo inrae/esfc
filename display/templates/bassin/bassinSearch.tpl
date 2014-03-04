@@ -23,7 +23,7 @@ Usage :
 </option>
 {/section}
 </select>
-
+<br>
 Zone d'implantation : 
 <select name="bassin_zone">
 <option value="" {if $bassinSearch.bassin_zone==""}selected{/if}>Sélectionnez la zone d'implantation...</option>

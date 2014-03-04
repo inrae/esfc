@@ -57,7 +57,7 @@ class Poisson extends ObjetBDD {
 	}
 	/**
 	 * Fonction permettant de retourner une liste de poissons selon les criteres specifies
-	 * 
+	 *
 	 * @param array $dataSearch        	
 	 * @return array
 	 */
@@ -103,7 +103,7 @@ class Poisson extends ObjetBDD {
 	}
 	/**
 	 * Retourne le detail d'un poisson
-	 * 
+	 *
 	 * @param int $poisson_id        	
 	 * @return array
 	 */
@@ -158,7 +158,7 @@ class Poisson_statut extends ObjetBDD {
 	/**
 	 * Reecriture de la fonction d'affichage de la liste
 	 * (non-PHPdoc)
-	 * 
+	 *
 	 * @see ObjetBDD::getListe()
 	 */
 	function getListe() {
@@ -249,7 +249,7 @@ class Pittag extends ObjetBDD {
 	}
 	/**
 	 * Retourne la liste des pittag attribués à un poisson
-	 * 
+	 *
 	 * @param int $poisson_id        	
 	 * @return array
 	 */
@@ -319,7 +319,7 @@ class Morphologie extends ObjetBDD {
 	}
 	/**
 	 * Fonction retournant la liste des donnees morphologiques pour un poisson
-	 * 
+	 *
 	 * @param int $poisson_id        	
 	 * @return array
 	 */
@@ -336,7 +336,7 @@ class Morphologie extends ObjetBDD {
 	}
 	/**
 	 * Lit un enregistrement à partir de l'événement
-	 * 
+	 *
 	 * @param int $evenement_id        	
 	 * @return array
 	 */
@@ -398,7 +398,7 @@ class Pathologie extends ObjetBDD {
 	}
 	/**
 	 * Retourne la liste des pathologies pour un poisson
-	 * 
+	 *
 	 * @param unknown $poisson_id        	
 	 * @return Ambigous <tableau, boolean, $data, string>
 	 */
@@ -416,7 +416,7 @@ class Pathologie extends ObjetBDD {
 	}
 	/**
 	 * Lit un enregistrement à partir de l'événement
-	 * 
+	 *
 	 * @param unknown $evenement_id        	
 	 * @return Ambigous <multitype:, boolean, $data, string>
 	 */
@@ -468,7 +468,7 @@ class Pathologie_type extends ObjetBDD {
 	/**
 	 * Reecriture de la fonction pour trier la liste
 	 * (non-PHPdoc)
-	 * 
+	 *
 	 * @see ObjetBDD::getListe()
 	 */
 	function getListe() {
@@ -606,6 +606,7 @@ class Gender_selection extends ObjetBDD {
 	/**
 	 * Surcharge de la fonction ecrire, pour mettre a jour le sexe dans l'enregistrement poisson, le cas echeant
 	 * (non-PHPdoc)
+	 * 
 	 * @see ObjetBDD::ecrire()
 	 */
 	function ecrire($data) {
@@ -641,8 +642,8 @@ class Gender_selection extends ObjetBDD {
 				 * Mise a jour le cas echeant de l'enregistrement du poisson
 				 */
 				if ($maj == 1) {
-					$dataPoisson["sexe_id"] = $data["sexe_id"];
-					$poisson->ecrire($dataPoisson);
+					$dataPoisson ["sexe_id"] = $data ["sexe_id"];
+					$poisson->ecrire ( $dataPoisson );
 				}
 			}
 		}
@@ -650,7 +651,7 @@ class Gender_selection extends ObjetBDD {
 	}
 	/**
 	 * Recupère la liste des déterminations sexuelles pour un poisson
-	 * 
+	 *
 	 * @param int $poisson_id        	
 	 * @return array
 	 */
@@ -670,7 +671,7 @@ class Gender_selection extends ObjetBDD {
 	}
 	/**
 	 * Lit un enregistrement à partir de l'événement
-	 * 
+	 *
 	 * @param int $evenement_id        	
 	 * @return array
 	 */
@@ -678,6 +679,78 @@ class Gender_selection extends ObjetBDD {
 		if ($evenement_id > 0) {
 			$sql = "select * from gender_selection where evenement_id = " . $evenement_id;
 			return $this->lireParam ( $sql );
+		}
+	}
+}
+/**
+ * ORM de gestion de la table Transfert
+ * 
+ * @author quinton
+ *        
+ */
+class Transfert extends ObjetBDD {
+	/**
+	 * Constructeur de la classe
+	 *
+	 * @param
+	 *        	instance ADODB $bdd
+	 * @param array $param        	
+	 */
+	function __construct($bdd, $param = null) {
+		$this->param = $param;
+		$this->paramori = $param;
+		$this->table = "transfert";
+		$this->id_auto = "1";
+		$this->colonnes = array (
+				"transfert_id" => array (
+						"type" => 1,
+						"key" => 1,
+						"requis" => 1,
+						"defaultValue" => 0 
+				),
+				"poisson_id" => array (
+						"type" => 1,
+						"requis" => 1,
+						"parentAttrib" => 1 
+				),
+				"bassin_origine" => array (
+						"type" => 1 
+				),
+				"bassin_destination" => array (
+						"type" => 1 
+				),
+				"transfert_date" => array (
+						"type" => 2,
+						"requis" => 1 
+				),
+				"evenement_id" => array (
+						"type" => 1 
+				) 
+		);
+		if (! is_array ( $param ))
+			$param == array ();
+		$param ["fullDescription"] = 1;
+		parent::__construct ( $bdd, $param );
+	}
+	/**
+	 * Retourne la liste des transferts pour un poisson
+	 * 
+	 * @param int $poisson_id        	
+	 * @return array
+	 */
+	function getListByPoisson($poisson_id) {
+		if ($poisson_id > 0) {
+			$sql = 'select transfert_id, transfert.poisson_id, bassin_origine, bassin_destination, transfert_date, evenement_id,
+					ori.bassin_nom as "bassin_origine_nom", dest.bassin_nom as "bassin_destination_nom",
+					evenement_id, evenement_type_libelle
+					from transfert
+					join poisson using (poisson_id)
+					left outer join bassin ori on (bassin_origine = ori.bassin_id)
+					left outer join bassin dest on (bassin_destination = dest.bassin_id)
+					left outer join evenement using (evenement_id)
+					left outer join evenement_type using (evenement_type_id)
+					where transfert.poisson_id = ' . $poisson_id . " order by transfert_date desc";
+			return $this->getListeParam ( $sql );
 		}
 	}
 }

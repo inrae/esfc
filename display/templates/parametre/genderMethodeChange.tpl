@@ -15,10 +15,6 @@ Nom de la méthode de détermination du sexe <span class="red">*</span> :</td>
 <td colspan="2"><div align="center">
 <input class="submit" type="submit" value="Enregistrer">
 </form>
-<script>
-$('#genderMethodeForm').validate();
-$("#genderMethodeForm").removeAttr("novalidate");
-</script>
 
 {if $data.gender_methode_id > 0 &&$droits["admin"] == 1}
 <form action="index.php" method="post" onSubmit='return confirmSuppression("Confirmez-vous la suppression ?")'>

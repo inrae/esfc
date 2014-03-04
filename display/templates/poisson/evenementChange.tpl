@@ -126,7 +126,7 @@ Sélectionnez la méthode...
 <tr>
 <td class="libelleSaisie">Sexe déterminé <span class="red">*</span> :</td>
 <td class="datamodif">
-<select name="sexe_id">
+<select name="sexe_id" required>
 <option value="" {if $dataGender.sexe_id == ""}selected{/if}>
 Sélectionnez le sexe...
 </option>
@@ -149,10 +149,7 @@ Sélectionnez le sexe...
 <td colspan="2"><div align="center">
 <input class="submit" type="submit" value="Enregistrer">
 </form>
-<script>
-$("#evenementForm").validate();
-$("#evenementForm").removeAttr("novalidate");
-</script>
+
 {if $data.evenement_id > 0 &&$droits["admin"] == 1}
 <form action="index.php" method="post" onSubmit='return confirmSuppression("Confirmez-vous la suppression ?")'>
 <input type="hidden" name="evenement_id" value="{$data.evenement_id}">

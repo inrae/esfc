@@ -265,6 +265,10 @@ div.row span.affichage {
 .libelleSaisie {
 	text-align: right;
 }
+label {
+	font-style: italic;
+	text-align: right;
+}
 .dataDisplay {
 	text-align: left;
 	color: grey;

@@ -1,14 +1,14 @@
 <table class="tableaffichage">
 <tr>
 <td>
-Matricule : {$dataPoisson.matricule} {$dataPoisson.prenom}
+<label>Matricule : </label>{$dataPoisson.matricule} {$dataPoisson.prenom}
 <br>
-Sexe : {$dataPoisson.sexe_libelle} - {$dataPoisson.poisson_statut_libelle}
+<label>Sexe : </label>{$dataPoisson.sexe_libelle} - {$dataPoisson.poisson_statut_libelle}
 <br>
-(Pit)tag : {$dataPoisson.pittag_valeur}
+<label>(Pit)tag : </label>{$dataPoisson.pittag_valeur}
 <br>
-Cohorte : {$dataPoisson.cohorte}
-{if strlen($dataPoisson.capture_date) > 0} - capturé le {$dataPoisson.capture_date}{/if}
+<label>Cohorte : </label>{$dataPoisson.cohorte}
+{if strlen($dataPoisson.capture_date) > 0} - <label>capturé le </label>{$dataPoisson.capture_date}{/if}
 </td>
 </tr>
 </table>

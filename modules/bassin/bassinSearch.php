@@ -19,13 +19,5 @@ $smarty->assign ("bassinSearch", $dataSearch);
 /*
  * Integration des tables necessaires pour la  recherche
 */
-include_once 'modules/classes/bassin.class.php';
-$bassin_type = new Bassin_type($bdd, $ObjetBDDParam);
-$smarty->assign("bassin_type", $bassin_type->getListe());
-$bassin_usage = new Bassin_usage($bdd, $ObjetBDDParam);
-$smarty->assign("bassin_usage", $bassin_usage->getListe());
-$bassin_zone = new Bassin_zone($bdd, $ObjetBDDParam);
-$smarty->assign("bassin_zone", $bassin_zone->getListe());
-$circuit_eau = new Circuit_eau($bdd, $ObjetBDDParam);
-$smarty->assign("circuit_eau", $circuit_eau->getListe());
+include 'modules/bassin/bassinParamAssocie.php';
 ?>

@@ -67,6 +67,11 @@ switch ($t_module["param"]) {
 		$pittag = new Pittag($bdd, $ObjetBDDParam);
 		$smarty->assign("dataPittag", $pittag->getListByPoisson($id));
 		/*
+		 * Recuperation des transferts
+		 */
+		$transfert = new Transfert($bdd, $ObjetBDDParam);
+		$smarty->assign("dataTransfert", $transfert->getListByPoisson($id));
+		/*
 		 * Affichage
 		 */
 		$smarty->assign("corps", "poisson/poissonDisplay.tpl");

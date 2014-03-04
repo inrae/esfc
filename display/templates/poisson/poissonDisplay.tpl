@@ -48,4 +48,13 @@ Nouvel événement...
 </td>
 
 </tr>
+<tr>
+<td>
+<h3>Liste des bassins fréquentés</h3>
+</td>
+<td>
+<h3>Transferts effectués</h3>
+{include file="poisson/transfertList.tpl"}
+</td>
+</tr>
 </table>

@@ -15,10 +15,6 @@ Nom du statut <span class="red">*</span> :</td>
 <td colspan="2"><div align="center">
 <input class="submit" type="submit" value="Enregistrer">
 </form>
-<script>
-$('#poissonStatutForm').validate();
-$("#poissonStatutForm").removeAttr("novalidate");
-</script>
 
 {if $data.poisson_statut_id > 0 &&$droits["admin"] == 1}
 <form action="index.php" method="post" onSubmit='return confirmSuppression("Confirmez-vous la suppression ?")'>

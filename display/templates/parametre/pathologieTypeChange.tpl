@@ -15,10 +15,6 @@ Nom du type de pathologie <span class="red">*</span> :</td>
 <td colspan="2"><div align="center">
 <input class="submit" type="submit" value="Enregistrer">
 </form>
-<script>
-$('#pathologieTypeForm').validate();
-$("#pathologieTypeForm").removeAttr("novalidate");
-</script>
 
 {if $data.pathologie_type_id > 0 &&$droits["admin"] == 1}
 <form action="index.php" method="post" onSubmit='return confirmSuppression("Confirmez-vous la suppression ?")'>

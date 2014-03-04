@@ -53,6 +53,16 @@ $LANG["menu"][53] = "Types de pathologies";
 $LANG["menu"][54] = "Table des types de pathologies";
 $LANG["menu"][55] = "Poissons";
 $LANG["menu"][56] = "Visualiser les poissons";
+$LANG["menu"][57] = "Types de bassins";
+$LANG["menu"][58] = "Table des types de bassins";
+$LANG["menu"][59] = "Usages des bassins";
+$LANG["menu"][60] = "Table des utilisations des bassins";
+$LANG["menu"][61] = "Zones d'implantation";
+$LANG["menu"][62] = "Zones d'implantation des bassins";
+$LANG["menu"][63] = "Bassins";
+$LANG["menu"][64] = "Liste des bassins";
+$LANG["menu"][65] = "Circuits d'eau";
+$LANG["menu"][66] = "Liste des circuits d'eau";
 
 
 

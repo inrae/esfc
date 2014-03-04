@@ -51,10 +51,6 @@ $( "#cpittag_date_pose" ).datepicker( { dateFormat: "dd/mm/yy" } );
 <td colspan="2"><div align="center">
 <input class="submit" type="submit" value="Enregistrer">
 </form>
-<script>
-$("#pittagForm").validate();
-$("#pittagForm").removeAttr("novalidate");
-</script>
 {if $data.pittag_id > 0 &&$droits["poissonGestion"] == 1}
 <form action="index.php" method="post" onSubmit='return confirmSuppression("Confirmez-vous la suppression ?")'>
 <input type="hidden" name="pittag_id" value="{$data.pittag_id}">

@@ -15,10 +15,7 @@ Nom du type de pittag <span class="red">*</span> :</td>
 <td colspan="2"><div align="center">
 <input class="submit" type="submit" value="Enregistrer">
 </form>
-<script>
-$("#pittagTypeForm").validate();
-$("#pittagTypeForm").removeAttr("novalidate");
-</script>
+
 {if $data.pittag_type_id > 0 &&$droits["admin"] == 1}
 <form action="index.php" method="post" onSubmit='return confirmSuppression("Confirmez-vous la suppression ?")'>
 <input type="hidden" name="pittag_type_id" value="{$data.pittag_type_id}">
