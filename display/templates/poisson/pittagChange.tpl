@@ -14,7 +14,7 @@ Retour à la liste des poissons
 <tr>
 <td class="libelleSaisie">Valeur de la marque <span class="red">*</span> :</td>
 <td class="datamodif">
-<input name="pittag_valeur" id="cpittag_valeur" required size="20" value="{$data.pittag_valeur}" >
+<input name="pittag_valeur" id="cpittag_valeur" required size="20" value="{$data.pittag_valeur}" autofocus>
 </td>
 </tr>
 

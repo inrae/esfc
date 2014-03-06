@@ -3,7 +3,7 @@ Retour à la liste des poissons
 </a>
 {if $data.poisson_id > 0}
  > 
- <a href="index.php?module=poissonDisplay&poisson_id={$dataPoisson.poisson_id}">
+ <a href="index.php?module=poissonDisplay&poisson_id={$data.poisson_id}">
  Retour au poisson
  </a>
  {/if}

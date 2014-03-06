@@ -70,6 +70,11 @@
  			 */
  			$genderSelection = new Gender_selection($this->connection, $ObjetBDDParam);
  			$genderSelection->supprimerChamp($id, "evenement_id");
+ 			/*
+ 			 * Transfert
+ 			 */
+ 			$transfert = new Transfert($this->connection, $ObjetBDDParam);
+ 			$transfert->supprimerChamp($id, "evenement_id");
  			return parent::supprimer($id);
  		}
  	}

@@ -109,14 +109,18 @@ class Poisson extends ObjetBDD {
 	 */
 	function getDetail($poisson_id) {
 		if ($poisson_id > 0) {
-			$sql = "select poisson_id, sexe_id, matricule, prenom, cohorte, capture_date, sexe_libelle, sexe_libelle_court, poisson_statut_libelle,
-					array_to_string(array_agg(pittag_valeur),' ') as pittag_valeur
-					from " . $this->table . " natural join sexe
+			$sql = "select p.poisson_id, sexe_id, matricule, prenom, cohorte, capture_date, sexe_libelle, sexe_libelle_court, poisson_statut_libelle,
+					pittag_valeur, p.poisson_statut_id,
+					bassin_nom, b.bassin_id
+					from " . $this->table . " p natural join sexe
 					  natural join poisson_statut
-					  left outer join pittag using (poisson_id)";
-			$where = " where poisson_id = " . $poisson_id;
-			$groupby = " group by poisson_id, sexe_id, matricule, prenom, cohorte, capture_date, sexe_libelle, sexe_libelle_court, poisson_statut_libelle ";
-			return $this->lireParam ( $sql . $where . $groupby );
+					  left outer join v_pittag_by_poisson using (poisson_id)
+					  left outer join v_transfert_last_bassin_for_poisson vlast on (vlast.poisson_id = p.poisson_id)
+					  left outer join transfert t on (vlast.poisson_id = t.poisson_id and transfert_date_last = transfert_date)
+					  left outer join bassin b on (b.bassin_id = (case when t.bassin_destination is not null then t.bassin_destination else t.bassin_origine end))
+							";
+			$where = " where p.poisson_id = " . $poisson_id;
+			return $this->lireParam ( $sql . $where );
 		}
 	}
 }
@@ -362,6 +366,7 @@ class Pathologie extends ObjetBDD {
 	 * @param array $param        	
 	 */
 	function __construct($bdd, $param = null) {
+		$this->paramori = $param;
 		$this->param = $param;
 		$this->table = "pathologie";
 		$this->id_auto = "1";
@@ -425,6 +430,25 @@ class Pathologie extends ObjetBDD {
 			$sql = "select * from pathologie where evenement_id = " . $evenement_id;
 			return $this->lireParam ( $sql );
 		}
+	}
+	/**
+	 * Complement de la fonction ecrire, pour forcer le statut a mort 
+	 * pour le poisson en cas de type de pathologie : mortalite
+	 * (non-PHPdoc)
+	 * @see ObjetBDD::ecrire()
+	 */
+	function ecrire($data) {
+		$pathologie_id = parent::ecrire($data);
+		/*
+		 * Traitement de la mortalite - ecriture du statut mort dans le poisson
+		 */
+		if ($pathologie_id > 0 && $data["pathologie_type_id"] == 5) {
+			$poisson = new Poisson($this->connection, $this->paramori);
+			$dataPoisson = $poisson->lire($data["poisson_id"]);
+			$dataPoisson["poisson_statut_id"] = 3;
+			$poisson->ecrire($dataPoisson);
+		}  
+		return ($pathologie_id);
 	}
 }
 /**
@@ -606,7 +630,7 @@ class Gender_selection extends ObjetBDD {
 	/**
 	 * Surcharge de la fonction ecrire, pour mettre a jour le sexe dans l'enregistrement poisson, le cas echeant
 	 * (non-PHPdoc)
-	 * 
+	 *
 	 * @see ObjetBDD::ecrire()
 	 */
 	function ecrire($data) {
@@ -684,7 +708,7 @@ class Gender_selection extends ObjetBDD {
 }
 /**
  * ORM de gestion de la table Transfert
- * 
+ *
  * @author quinton
  *        
  */
@@ -734,7 +758,7 @@ class Transfert extends ObjetBDD {
 	}
 	/**
 	 * Retourne la liste des transferts pour un poisson
-	 * 
+	 *
 	 * @param int $poisson_id        	
 	 * @return array
 	 */
@@ -752,6 +776,66 @@ class Transfert extends ObjetBDD {
 					where transfert.poisson_id = ' . $poisson_id . " order by transfert_date desc";
 			return $this->getListeParam ( $sql );
 		}
+	}
+	/**
+	 * Calcule la liste des poissons presents dans un bassin
+	 * @param int $bassin_id
+	 * @return array
+	 */
+	function getListPoissonPresentByBassin($bassin_id) {
+		if ($bassin_id > 0) {
+			$sql = 'select distinct t.poisson_id,matricule, prenom, t.transfert_date,  
+					(case when t.bassin_destination is not null then t.bassin_destination else t.bassin_origine end) as "bassin_id",
+					bassin_nom, sexe_libelle_court
+ 					from transfert t
+ 					join v_transfert_last_bassin_for_poisson v on (v.poisson_id = t.poisson_id and transfert_date_last = transfert_date)
+					join bassin on (bassin.bassin_id = (case when t.bassin_destination is not null then t.bassin_destination else t.bassin_origine end))
+					join poisson on (t.poisson_id = poisson.poisson_id)
+					left outer join sexe using (sexe_id)
+					where  poisson_statut_id not in (3, 4) and bassin.bassin_id = '.$bassin_id."
+ 					order by matricule";
+		}
+		return ($this->getListeParam($sql));
+	}
+	/**
+	 * Lit un enregistrement à partir de l'événement
+	 *
+	 * @param int $evenement_id
+	 * @return array
+	 */
+	function getDataByEvenement($evenement_id) {
+		if ($evenement_id > 0) {
+			$sql = "select * from transfert where evenement_id = " . $evenement_id;
+			return $this->lireParam ( $sql );
+		}
+	}
+	/**
+	 * Complement de la fonction ecrire pour mettre a jour le statut de l'animal, 
+	 * en cas de transfert dans un bassin adulte
+	 * (non-PHPdoc)
+	 * @see ObjetBDD::ecrire()
+	 */
+	function ecrire($data) {
+		$transfert_id = parent::ecrire($data);
+		if ($transfert_id > 0 && $data["bassin_destination"] > 0 && $data["poisson_id"] > 0) {
+			/*
+			 * Recuperation de l'usage du bassin
+			 */
+			$bassin = new Bassin($this->connection, $this->paramori);
+			$dataBassin = $bassin->lire($data["bassin_destination"]);
+			if ($dataBassin["bassin_usage_id"] == 1) {
+				/*
+				 * Recuperation du poisson
+				 */
+				$poisson = new Poisson($this->connection, $this->paramori);
+				$dataPoisson = $poisson->lire($data["poisson_id"]);
+				if ($dataPoisson["poisson_statut_id"] == 2) {
+					$dataPoisson["poisson_statut_id"] = 1;
+					$poisson->ecrire($dataPoisson);
+				}
+			}
+		}
+		return $transfert_id;
 	}
 }
 ?>

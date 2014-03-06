@@ -14,6 +14,7 @@ Retour à la liste des poissons
 <input type="hidden" name="morphologie_id" value="{$dataMorpho.morphologie_id}">
 <input type="hidden" name="pathologie_id" value="{$dataPatho.pathologie_id}">
 <input type="hidden" name="gender_selection_id" value="{$dataGender.gender_selection_id}">
+<input type="hidden" name="transfert_id" value="{$dataTransfert.transfert_id}">
 
 
 <tr>
@@ -126,7 +127,7 @@ Sélectionnez la méthode...
 <tr>
 <td class="libelleSaisie">Sexe déterminé <span class="red">*</span> :</td>
 <td class="datamodif">
-<select name="sexe_id" required>
+<select name="sexe_id" >
 <option value="" {if $dataGender.sexe_id == ""}selected{/if}>
 Sélectionnez le sexe...
 </option>
@@ -142,6 +143,42 @@ Sélectionnez le sexe...
 <td class="libelleSaisie">Commentaire :</td>
 <td class="datamodif">
 <input name="gender_selection_commentaire" id="cgender_selection_commentaire" value="{$dataGender.gender_selection_commentaire}" size="40">
+</td>
+</tr>
+
+<tr>
+<td colspan="2" class="datamodif">
+<h3>Changement de bassin</h3>
+</td>
+</tr>
+<tr>
+<td class="libelleSaisie">Bassin d'origine <span class="red">*</span> : </td>
+<td>
+<select name="bassin_origine">
+<option value="" {if $dataTransfert.bassin_origine == ""} selected {/if}>
+Sélectionnez le bassin d'origine...
+</option>
+{section name=lst loop=$bassinList}
+<option value="{$bassinList[lst].bassin_id}" {if $bassinList[lst].bassin_id == $dataTransfert.bassin_origine} selected {/if}>
+{$bassinList[lst].bassin_nom}
+</option>
+{/section}
+</select>
+</td>
+</tr>
+<tr>
+<td class="libelleSaisie">Bassin de destination <span class="red">*</span> : </td>
+<td>
+<select name="bassin_destination">
+<option value="" {if $dataTransfert.bassin_destination == ""} selected {/if}>
+Sélectionnez le bassin d'origine...
+</option>
+{section name=lst loop=$bassinListActif}
+<option value="{$bassinListActif[lst].bassin_id}" {if $bassinListActif[lst].bassin_id == $dataTransfert.bassin_destination} selected {/if}>
+{$bassinListActif[lst].bassin_nom}
+</option>
+{/section}
+</select>
 </td>
 </tr>
 

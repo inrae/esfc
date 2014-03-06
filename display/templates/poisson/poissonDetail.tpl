@@ -9,6 +9,13 @@
 <br>
 <label>Cohorte : </label>{$dataPoisson.cohorte}
 {if strlen($dataPoisson.capture_date) > 0} - <label>capturé le </label>{$dataPoisson.capture_date}{/if}
+{if $dataPoisson.poisson_statut_id != 3 and $dataPoisson.poisson_statut_id != 4}
+<br>
+<label>Bassin : </label>
+<a href="index.php?module=bassinDisplay&bassin_id={$dataPoisson.bassin_id}" style="display:inline;">
+{$dataPoisson.bassin_nom}
+</a>
+{/if}
 </td>
 </tr>
 </table>

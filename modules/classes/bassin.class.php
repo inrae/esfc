@@ -142,6 +142,20 @@ class Bassin extends ObjetBDD {
 			return $this->lireParam ( $sql );
 		}
 	}
+	/**
+	 * Retourne la liste des bassins, actifs ou non, ou tous
+	 * @param int actif
+	 * @return array
+	 * (non-PHPdoc)
+	 * @see ObjetBDD::getListe()
+	 */
+	function getListe($actif = -1) {
+		$sql = "select * from bassin ";
+		if ($actif > -1) 
+			$sql .= " where actif = ".$actif;
+		$sql .= " order by bassin_nom";
+		return ($this->getListeParam($sql));
+	} 
 }
 /**
  * ORM de gestion de la table bassin_type
@@ -325,65 +339,6 @@ class Circuit_eau extends ObjetBDD {
 	function getListe() {
 		$sql = "select * from " . $this->table . " order by circuit_eau_libelle";
 		return $this->getListeParam ( $sql );
-	}
-}
-class Bassin_poisson extends ObjetBDD {
-	/**
-	 * Constructeur de la classe
-	 *
-	 * @param
-	 *        	instance ADODB $bdd
-	 * @param array $param        	
-	 */
-	function __construct($bdd, $param = null) {
-		$this->param = $param;
-		$this->table = "bassin_poisson";
-		$this->id_auto = "1";
-		$this->colonnes = array (
-				"bassin_poisson_id" => array (
-						"type" => 1,
-						"key" => 1,
-						"requis" => 1,
-						"defaultValue" => 0 
-				),
-				"bassin_id" => array (
-						"type" => 1,
-						"requis" => 1 
-				),
-				"poisson_id" => array (
-						"type" => 1,
-						"requis" => 1 
-				),
-				"bassin_date_arrivee" => array (
-						"type" => 2 
-				),
-				"bassin_date_depart" => array (
-						"type" => 2 
-				) 
-		);
-		if (! is_array ( $param ))
-			$param == array ();
-		$param ["fullDescription"] = 1;
-		parent::__construct ( $bdd, $param );
-	}
-	/**
-	 * Retourne la liste des poissons presents dans le bassin
-	 * @param int $bassin_id
-	 * @return array
-	 */
-	function getListPoissonPresent($bassin_id) {
-		if ($bassin_id > 0) {
-			$sql = "select bassin_poisson_id, b.bassin_id, b.poisson_id, bassin_date_arrivee, bassin_date_depart, 
-				matricule, prenom, sexe_libelle_court
-				from bassin_poisson b
-				join v_bassin_poisson_last v on (b.poisson_id = v.poisson_id and b.bassin_date_arrivee = v.last_date_arrivee)
-				join poisson p on (b.poisson_id = p. poisson_id)
-				left outer join sexe using (sexe_id)
-				where b.bassin_id = " . $bassin_id . " 				
-				order by matricule				
-				";
-			return $this->getListeParam ( $sql );
-		}
 	}
 }
 ?>

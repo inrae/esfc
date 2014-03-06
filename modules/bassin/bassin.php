@@ -31,8 +31,9 @@ switch ($t_module["param"]) {
 		/*
 		 * Recuperation de la liste des poissons presents
 		 */
-		$bassin_poisson = new Bassin_poisson($bdd, $ObjetBDDParam);
-		$smarty->assign("dataPoisson", $bassin_poisson->getListPoissonPresent($id));
+		include_once 'modules/classes/poisson.class.php';
+		$transfert = new Transfert($bdd, $ObjetBDDParam);
+		$smarty->assign("dataPoisson", $transfert->getListPoissonPresentByBassin($id));
 		/*
 		 * Affichage
 		*/
