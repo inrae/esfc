@@ -22,4 +22,13 @@ if (! isset ( $_SESSION ["searchBassin"] )) {
 } else {
 	$searchBassin = $_SESSION ["searchBassin"];
 }
+/*
+ * Declaration de la classe de recherche des circuits d'eau
+ */
+if (! isset ( $_SESSION ["searchCircuitEau"] )) {
+	$searchCircuitEau = new SearchCircuitEau();
+	$_SESSION ["searchCircuitEau"] = $searchCircuitEau;
+} else {
+	$searchCircuitEau = $_SESSION ["searchCircuitEau"];
+}
 ?>

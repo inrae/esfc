@@ -21,10 +21,12 @@
 	</test>
 	<connexion loginrequis="1" menutitle="connexiontitle" menuvalue="connexionvalue" menulevel="0" menuorder="5" onlynoconnect="1" />
 	<identdisconnect action="framework/identification/disconnect.php" menutitle="7" menuvalue="6" menuorder="4" menulevel="0" menuloginrequis="1"></identdisconnect>
-	<apropos action="framework/apropos.php" menulevel="1" menuorder="99" menuvalue="8" menutitle="9" menuparent="99"></apropos>
 	<gestiondroits action="framework/identification/gestiondroits.php" droits="admin" retourko=""
 		retourok="" retournull="" loginrequis="0" menulevel="1" menuorder="99" menudroits="admin" menuloginrequis="" menuparent="3" menutitle="13" menuvalue="12" droitko="droitko">
 	</gestiondroits>
+
+	<docindex menulevel="0" menuorder="99" menutitle="11" menuvalue="10" action="framework/apropos.php" param1="index.html"></docindex>
+	<apropos action="framework/apropos.php" menulevel="1" menuorder="99" menuvalue="8" menutitle="9" menuparent="99"></apropos>
 
 	<phpinfo action="framework/phpinfo.php" droits="admin" menudroits="admin" menulevel="1" menuorder="8" menuparent="3" menuvalue="phpinfo" menutitle="phpinfotitle" />
 	<quoideneuf action="doc/quoideneuf.php" menulevel="1" menuparent="99" menutitle="41" menuvalue="40"></quoideneuf>
@@ -96,6 +98,12 @@
 	<circuitEauChange action="modules/bassin/circuitEau.php" param="change" droits="bassinGestion" />
 	<circuitEauWrite action="modules/bassin/circuitEau.php" param="write" droits="bassinGestion" retourok="circuitEauDisplay" retourko="circuitEauChange" modulebefore="circuitEauChange" />
 	<circuitEauDelete action="modules/bassin/circuitEau.php" param="delete" droits="bassinGestion" retoursuppr="circuitEauList" retourko="circuitEauChange"  modulebefore="circuitEauChange"/>
+
+	<analyseEauList action="modules/bassin/analyseEau.php" param="list" droits="consult" menulevel="1" menuparent="1" menuorder="1" menudroits="" menuvalue="65" menutitle="66"  />
+	<analyseEauDisplay action="modules/bassin/analyseEau.php" param="display" droits="consult" />
+	<analyseEauChange action="modules/bassin/analyseEau.php" param="change" droits="bassinGestion" />
+	<analyseEauWrite action="modules/bassin/analyseEau.php" param="write" droits="bassinGestion" retourok="circuitEauList" retourko="analyseEauChange" modulebefore="analyseEauChange" />
+	<analyseEauDelete action="modules/bassin/analyseEau.php" param="delete" droits="bassinGestion" retoursuppr="circuitEauList" retourko="analyseEauChange"  modulebefore="analyseEauChange"/>
 	
 </navigation>
 	

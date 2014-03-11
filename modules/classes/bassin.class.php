@@ -75,13 +75,14 @@ class Bassin extends ObjetBDD {
 	}
 	/**
 	 * Fonction de recherche des bassins selon les criteres definis
-	 * 
+	 *
 	 * @param unknown $dataSearch        	
 	 */
 	function getListeSearch($dataSearch) {
 		if (is_array ( $dataSearch )) {
 			$sql = "select bassin_id, bassin_nom, bassin_description, actif,
-					bassin_type_libelle, bassin_usage_libelle, bassin_zone_libelle, circuit_eau_libelle,
+					bassin_type_libelle, bassin_usage_libelle, bassin_zone_libelle, 
+					bassin.circuit_eau_id, circuit_eau_libelle,
 					longueur, largeur_diametre, surface, hauteur_eau, volume
 					from bassin
 					left outer join bassin_type using (bassin_type_id)
@@ -125,14 +126,15 @@ class Bassin extends ObjetBDD {
 	}
 	/**
 	 * Retourne les informations generales d'un bassin (cartouche)
-	 * 
+	 *
 	 * @param int $bassinId        	
 	 * @return array
 	 */
 	function getDetail($bassinId) {
 		if ($bassinId > 0) {
 			$sql = "select bassin_id, bassin_nom, bassin_description, actif,
-					bassin_type_libelle, bassin_usage_libelle, bassin_zone_libelle, circuit_eau_libelle
+					bassin_type_libelle, bassin_usage_libelle, bassin_zone_libelle, 
+					bassin.circuit_eau_id, circuit_eau_libelle
 					from bassin
 					left outer join bassin_type using (bassin_type_id)
 					left outer join bassin_usage using (bassin_usage_id)
@@ -144,22 +146,35 @@ class Bassin extends ObjetBDD {
 	}
 	/**
 	 * Retourne la liste des bassins, actifs ou non, ou tous
-	 * @param int actif
-	 * @return array
-	 * (non-PHPdoc)
+	 *
+	 * @param
+	 *        	int actif
+	 * @return array (non-PHPdoc)
 	 * @see ObjetBDD::getListe()
 	 */
 	function getListe($actif = -1) {
 		$sql = "select * from bassin ";
-		if ($actif > -1) 
-			$sql .= " where actif = ".$actif;
+		if ($actif > - 1)
+			$sql .= " where actif = " . $actif;
 		$sql .= " order by bassin_nom";
-		return ($this->getListeParam($sql));
-	} 
+		return ($this->getListeParam ( $sql ));
+	}
+	/**
+	 * Retourne la liste des bassins associes a un circuit d'eau
+	 * @param int $circuitId
+	 * @return array
+	 */
+	function getListeByCircuitEau($circuitId) {
+		if ($circuitId > 0) {
+			$sql = "select bassin_id, bassin_nom from bassin where circuit_eau_id = " . $circuitId . "
+				order by bassin_nom";
+			return $this->getListeParam ( $sql );
+		}
+	}
 }
 /**
  * ORM de gestion de la table bassin_type
- * 
+ *
  * @author quinton
  *        
  */
@@ -205,7 +220,7 @@ class Bassin_type extends ObjetBDD {
 }
 /**
  * ORM de gestion de la table bassin_usage
- * 
+ *
  * @author quinton
  *        
  */
@@ -251,7 +266,7 @@ class Bassin_usage extends ObjetBDD {
 }
 /**
  * ORM de gestion de la table bassin_zone
- * 
+ *
  * @author quinton
  *        
  */
@@ -297,7 +312,7 @@ class Bassin_zone extends ObjetBDD {
 }
 /**
  * ORM de gestion de la table circuit_eau
- * 
+ *
  * @author quinton
  *        
  */
@@ -323,6 +338,10 @@ class Circuit_eau extends ObjetBDD {
 				"circuit_eau_libelle" => array (
 						"type" => 0,
 						"requis" => 1 
+				),
+				"circuit_eau_actif" => array (
+						"type" => 1,
+						"defaultValue" => 1 
 				) 
 		);
 		if (! is_array ( $param ))
@@ -339,6 +358,148 @@ class Circuit_eau extends ObjetBDD {
 	function getListe() {
 		$sql = "select * from " . $this->table . " order by circuit_eau_libelle";
 		return $this->getListeParam ( $sql );
+	}
+	/**
+	 * Retourne la liste des circuits d'eau en fonction des parametres de recherche
+	 *
+	 * @param array $data        	
+	 * @return array
+	 */
+	function getListeSearch($data) {
+		$sql = 'select * from ' . $this->table;
+		$order = ' order by circuit_eau_libelle';
+		$where = '';
+		$and = '';
+		if (strlen ( $data ["circuit_eau_libelle"] ) > 0) {
+			$where .= $and . " upper(circuit_eau_libelle) like upper('%" . $data ["circuit_eau_libelle"] . "%') ";
+			$and = " and ";
+		}
+		if ($data ["circuit_eau_actif"] > - 1) {
+			$where .= $and . " circuit_eau_actif = " . $data ["circuit_eau_actif"];
+			$and = " and ";
+		}
+		if ($and == " and ")
+			$where = " where " . $where;
+		return $this->getListeParam ( $sql . $where . $order );
+	}
+}
+/**
+ * ORM de gestion de la table analyse_eau
+ *
+ * @author quinton
+ *        
+ */
+class AnalyseEau extends ObjetBDD {
+	/**
+	 * Constructeur de la classe
+	 *
+	 * @param
+	 *        	instance ADODB $bdd
+	 * @param array $param        	
+	 */
+	function __construct($bdd, $param = null) {
+		$this->param = $param;
+		$this->table = "analyse_eau";
+		$this->id_auto = "1";
+		$this->colonnes = array (
+				"analyse_eau_id" => array (
+						"type" => 1,
+						"key" => 1,
+						"requis" => 1,
+						"defaultValue" => 0 
+				),
+				"circuit_eau_id" => array (
+						"type" => 0,
+						"requis" => 1,
+						"parentAttrib" => 1 
+				),
+				"analyse_eau_date" => array (
+						"type" => 2 
+				),
+				"temperature" => array (
+						"type" => 1 
+				),
+				"oxygene" => array (
+						"type" => 1 
+				),
+				"salinite" => array (
+						"type" => 1 
+				),
+				"ph" => array (
+						"type" => 1 
+				),
+				"nh4" => array (
+						"type" => 1 
+				),
+				"nh4_seuil" => array (
+						"type" => 0 
+				),
+				"n_nh4" => array (
+						"type" => 1 
+				),
+				"no2" => array (
+						"type" => 1 
+				),
+				"no2_seuil" => array (
+						"type" => 0 
+				),
+				"n_no2" => array (
+						"type" => 1 
+				),
+				"no3" => array (
+						"type" => 1 
+				),
+				"no3_seuil" => array (
+						"type" => 0 
+				),
+				"n_no3" => array (
+						"type" => 1 
+				),
+				"backwash_mecanique" => array (
+						"type" => 1,
+						"defaultValue" => 0
+				),
+				"backwash_biologique" => array (
+						"type" => 0 
+				),
+				"debit_eau_riviere" => array (
+						"type" => 1 
+				),
+				"debit_eau_forage" => array (
+						"type" => 1 
+				),
+				"observations" => array (
+						"type" => 0 
+				) 
+		);
+		if (! is_array ( $param ))
+			$param == array ();
+		$param ["fullDescription"] = 1;
+		parent::__construct ( $bdd, $param );
+	}
+	/**
+	 * Retourne les analyses d'eau pour un circuit d'eau, avec les criteres limitatifs fournis
+	 *
+	 * @param ind $id        	
+	 * @param string $dateRef        	
+	 * @param number $limit        	
+	 * @param number $offset        	
+	 * @return array
+	 */
+	function getDetailByCircuitEau($id, $dateRef = NULL, $limit = 1, $offset = 0) {
+		if ($id > 0) {
+			$sql = "select * from " . $this->table . " natural join circuit_eau";
+			if (is_null ( $dateRef ))
+				$dateRef = date ( "d/m/Y" );
+			$dateRef = $this->formatDateLocaleVersDB ( $dateRef, 2 );
+			$where = " where analyse_eau_date <= '" . $dateRef . "' and circuit_eau.circuit_eau_id = " . $id;
+			$order = " order by analyse_eau_date desc LIMIT " . $limit . " OFFSET " . $offset;
+			if ($limit == 1) {
+				return ($this->lireParam ( $sql . $where . $order ));
+			} else {
+				return ($this->getListeParam ( $sql . $where . $order ));
+			}
+		}
 	}
 }
 ?>

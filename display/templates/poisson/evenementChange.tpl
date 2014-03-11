@@ -1,3 +1,24 @@
+ <script>
+ 
+$(document).ready(function() { 
+$( "#cevenement_date" ).datepicker( { dateFormat: "dd/mm/yy" } );
+$( "#evenementForm" ).submit(function() {
+	valid=true;
+	var bd = $("#bassin_destination").val();
+	var bo = $("#bassin_origine").val();
+	if (bd > 0 && bd == bo) {
+		valid = false;
+		$("#bassin_destination").css("border_color", "red");
+		 $("#bassin_destination").next(".erreur").show().text("Le bassin de destination ne peut être égal au bassin d'origine");
+	} else {
+		$("#bassin_destination").css("border_color", "initial");
+		$("#bassin_destination").next(".erreur").hide();
+	};
+	return valid;
+}
+		);
+ } );
+</script>
 <a href="index.php?module=poissonList">
 Retour à la liste des poissons
 </a>
@@ -23,7 +44,6 @@ Retour à la liste des poissons
 </td>
 </tr>
 <tr>
-
 <td class="libelleSaisie">
 Type d'événement <span class="red">*</span> :</td>
 <td class="datamodif">
@@ -39,12 +59,7 @@ Type d'événement <span class="red">*</span> :</td>
 <tr>
 <td class="libelleSaisie">Date <span class="red">*</span> :</td>
 <td class="datamodif">
- <script>
- 
-$(function() { 
-$( "#cevenement_date" ).datepicker( { dateFormat: "dd/mm/yy" } );
- } );
-</script>
+
 <input name="evenement_date" id="cevenement_date" required size="10" maxlength="10" value="{$data.evenement_date}">
 </td>
 </tr>
@@ -154,7 +169,7 @@ Sélectionnez le sexe...
 <tr>
 <td class="libelleSaisie">Bassin d'origine <span class="red">*</span> : </td>
 <td>
-<select name="bassin_origine">
+<select name="bassin_origine" id="bassin_origine">
 <option value="" {if $dataTransfert.bassin_origine == ""} selected {/if}>
 Sélectionnez le bassin d'origine...
 </option>
@@ -169,9 +184,9 @@ Sélectionnez le bassin d'origine...
 <tr>
 <td class="libelleSaisie">Bassin de destination <span class="red">*</span> : </td>
 <td>
-<select name="bassin_destination">
+<select name="bassin_destination" id="bassin_destination">
 <option value="" {if $dataTransfert.bassin_destination == ""} selected {/if}>
-Sélectionnez le bassin d'origine...
+Sélectionnez le bassin de destination...
 </option>
 {section name=lst loop=$bassinListActif}
 <option value="{$bassinListActif[lst].bassin_id}" {if $bassinListActif[lst].bassin_id == $dataTransfert.bassin_destination} selected {/if}>
@@ -179,6 +194,7 @@ Sélectionnez le bassin d'origine...
 </option>
 {/section}
 </select>
+<span class="erreur"style="display:none; color:red;"></span>
 </td>
 </tr>
 

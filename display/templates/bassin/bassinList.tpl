@@ -32,11 +32,17 @@ setDataTables("cbassinList",true, true, true, 50);
 <td>{$data[lst].bassin_zone_libelle}</td>
 <td>{$data[lst].bassin_type_libelle}</td>
 <td>{$data[lst].bassin_usage_libelle}</td>
-<td>{$data[lst].circuit_eau_libelle}</td>
+<td>
+<a href="index.php?module=circuitEauDisplay&circuit_eau_id={$data[lst].circuit_eau_id}">
+{$data[lst].circuit_eau_libelle}
+</a>
+</td>
 <td>{$data[lst].longueur}x{$data[lst].largeur_diametre}x{$data[lst].hauteur_eau}</td>
 <td>{$data[lst].surface} - {$data[lst].volume}</td>
 <td>
+<div class="center">
 {if $data[lst].actif == 1}oui{elseif $data[lst].actif == 0}non{/if}
+</div>
 </td>
 </tr>
 {/section}

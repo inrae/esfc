@@ -15,14 +15,58 @@ switch ($t_module["param"]) {
 		/*
 		 * Display the list of all records of the table
 		 */
-		$smarty->assign ( "data", $dataClass->getListe());
+		$searchCircuitEau->setParam ( $_REQUEST );
+		$dataSearch = $searchCircuitEau->getParam ();
+		if ($searchCircuitEau->isSearch () == 1) {
+			$smarty->assign ("isSearch", 1);
+		}
+		$smarty->assign ("circuitEauSearch", $dataSearch);
+		if ($searchCircuitEau->isSearch () == 1) {
+			$data = $dataClass->getListeSearch ( $dataSearch );
+			$smarty->assign ( "data", $data );
+			/*
+			 * Recuperation des donnees d'analyse
+			 */
+			if ($_REQUEST["circuit_eau_id"] > 0) {
+				$analyseEau = new AnalyseEau($bdd, $ObjetBDDParam);
+				$dataAnalyse = $analyseEau->getDetailByCircuitEau($_REQUEST["circuit_eau_id"], $dataSearch["analyse_eau_date"]);
+				$smarty->assign("dataAnalyse", $dataAnalyse );
+			}
+		}
 		$smarty->assign("corps", "bassin/circuitEauList.tpl");
 		break;
 	case "display":
 		/*
 		 * Display the detail of the record
 		 */
-		$smarty->assign("data", $dataClass->lire($id));
+		$data= $dataClass->lire($id);
+		$smarty->assign("data", $data);
+		/*
+		 * Recuperation des dernieres analyses d'eau
+		 */
+		/*
+		 * Traitement des valeurs next et previous, si fournies
+		 */
+		$searchCircuitEau->setParam($_REQUEST);
+		$dataSearch = $searchCircuitEau->getParam ();
+		if ($_REQUEST["next"] > 0 ) {
+			$dataSearch["offset"] = $dataSearch["offset"] + $dataSearch["limit"];
+			$searchCircuitEau->setParam("offset",$dataSearch["offset"]);
+		}
+		if ($_REQUEST["previous"] > 0) {
+			$dataSearch["offset"] = $dataSearch["offset"] - $dataSearch["limit"];
+			if ($dataSearch["offset"] < 0) $dataSearch["offset"] = 0;
+			$searchCircuitEau->setParam("offset",$dataSearch["offset"]);
+		}
+		$smarty->assign("dataSearch",$dataSearch);
+		$analyseEau = new AnalyseEau($bdd, $ObjetBDDParam);
+		$dataAnalyse = $analyseEau->getDetailByCircuitEau($id, $dataSearch["analyse_date"], $dataSearch["limit"], $dataSearch["offset"]);
+		$smarty->assign("dataAnalyse", $dataAnalyse);
+		/*
+		 * Recuperation des bassins associes
+		 */
+		$bassin = new Bassin($bdd, $ObjetBDDParam);
+		$smarty->assign("dataBassin", $bassin->getListeByCircuitEau($id));
 		/*
 		 * Affichage
 		*/

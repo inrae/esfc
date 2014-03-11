@@ -60,8 +60,8 @@ switch ($t_module ["param"]) {
 				$genderSelection = new Gender_selection ( $bdd, $ObjetBDDParam );
 				$smarty->assign ( "dataGender", $genderSelection->getDataByEvenement ( $id ) );
 				$transfert = new Transfert ( $bdd, $ObjetBDDParam );
-				$smarty->assign ( "dataTransfert", $transfert->getDataByEvenement ( $id ) );
-			} else {
+				$dataTransfert = $transfert->getDataByEvenement ( $id );
+				} else {
 				/*
 				 * Initialisation des donnees en cas de nouvel evenement
 				 */
@@ -70,6 +70,7 @@ switch ($t_module ["param"]) {
 							"bassin_origine" => $dataPoisson ["bassin_id"] 
 					);
 			}
+			$smarty->assign ( "dataTransfert", $dataTransfert );
 		}
 		break;
 	case "write":
