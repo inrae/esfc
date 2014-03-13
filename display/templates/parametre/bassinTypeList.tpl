@@ -25,7 +25,6 @@ setDataTables("cbassinTypeList");
 {$data[lst].bassin_type_libelle}
 {/if}
 </td>
-<td>
 </tr>
 {/section}
 </tdata>

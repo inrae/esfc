@@ -82,11 +82,21 @@ switch ($t_module["param"]) {
 		 * If is a new record, generate a new record with default value :
 		 * $_REQUEST["idParent"] contains the identifiant of the parent record
 		 */
-		dataRead($dataClass, $id, "poisson/poissonChange.tpl");
+		$data=dataRead($dataClass, $id, "poisson/poissonChange.tpl");
 		$sexe = new Sexe($bdd, $ObjetBDDParam);
 		$smarty->assign("sexe", $sexe->getListe());
 		$poissonStatut = new Poisson_statut($bdd, $ObjetBDDParam);
 		$smarty->assign("poissonStatut", $poissonStatut->getListe());
+		/*
+		 * Recuperation de la liste des types de pittag
+		*/
+		$pittagType = new Pittag_type($bdd, $ObjetBDDParam);
+		$smarty->assign("pittagType", $pittagType->getListe());
+		/*
+		 * Recuperation du dernier pittag connu
+		 */
+		$pittag = new Pittag($bdd,$ObjetBDDParam);
+		$smarty->assign("dataPittag", $pittag->getListByPoisson($id,1));
 		break;
 	case "write":
 		/*
@@ -95,6 +105,18 @@ switch ($t_module["param"]) {
 		$id = dataWrite($dataClass, $_REQUEST);
 		if ($id > 0) {
 			$_REQUEST[$keyName] = $id;
+			/*
+			 * Ecriture du pittag
+			 */
+			if (strlen($_REQUEST["pittag_valeur"]) > 0) {
+				$pittag = new Pittag($bdd,$ObjetBDDParam);
+				$idPittag = $pittag->ecrire($_REQUEST);
+				if (! $idPittag > 0) {
+					$module_coderetour = -1;
+					$message.=formatErrorData($pittag->getErrorData());
+					$message.=$LANG["message"][12];
+				}
+			}
 		}
 		break;
 	case "delete":

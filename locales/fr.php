@@ -63,6 +63,12 @@ $LANG["menu"][63] = "Bassins";
 $LANG["menu"][64] = "Liste des bassins";
 $LANG["menu"][65] = "Circuits d'eau";
 $LANG["menu"][66] = "Liste des circuits d'eau";
+$LANG["menu"][67] = "Types de fichiers";
+$LANG["menu"][68] = "Types de fichiers importables dans la base";
+$LANG["menu"][69] = "Types de mortalité";
+$LANG["menu"][70] = "Table des types de mortalité des poissons";
+$LANG["menu"][71] = "Détermination des cohortes";
+$LANG["menu"][72] = "Table des méthodes de détermination des cohortes";
 
 
 

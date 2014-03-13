@@ -104,6 +104,21 @@
 	<analyseEauChange action="modules/bassin/analyseEau.php" param="change" droits="bassinGestion" />
 	<analyseEauWrite action="modules/bassin/analyseEau.php" param="write" droits="bassinGestion" retourok="circuitEauList" retourko="analyseEauChange" modulebefore="analyseEauChange" />
 	<analyseEauDelete action="modules/bassin/analyseEau.php" param="delete" droits="bassinGestion" retoursuppr="circuitEauList" retourko="analyseEauChange"  modulebefore="analyseEauChange"/>
+
+	<mimeTypeList action="modules/parametre/mimeType.php" param="list" droits="consult" menulevel="1" menuparent="3" menuorder="8" menudroits="" menuvalue="67" menutitle="68"  />
+	<mimeTypeChange action="modules/parametre/mimeType.php" param="change" droits="admin" />
+	<mimeTypeWrite action="modules/parametre/mimeType.php" param="write" droits="admin" retourok="mimeTypeList" retourko="mimeTypeChange" modulebefore="mimeTypeChange" />
+	<mimeTypeDelete action="modules/parametre/mimeType.php" param="delete" droits="admin" retoursuppr="mimeTypeList" retourko="mimeTypeChange"  modulebefore="mimeTypeChange"/>
+
+	<mortaliteTypeList action="modules/parametre/mortaliteType.php" param="list" droits="consult" menulevel="1" menuparent="3" menuorder="9" menudroits="" menuvalue="69" menutitle="70"  />
+	<mortaliteTypeChange action="modules/parametre/mortaliteType.php" param="change" droits="admin" />
+	<mortaliteTypeWrite action="modules/parametre/mortaliteType.php" param="write" droits="admin" retourok="mortaliteTypeList" retourko="mortaliteTypeChange" modulebefore="mortaliteTypeChange" />
+	<mortaliteTypeDelete action="modules/parametre/mortaliteType.php" param="delete" droits="admin" retoursuppr="mortaliteTypeList" retourko="mortaliteTypeChange"  modulebefore="mortaliteTypeChange"/>
+
+	<cohorteTypeList action="modules/parametre/cohorteType.php" param="list" droits="consult" menulevel="1" menuparent="3" menuorder="10" menudroits="" menuvalue="71" menutitle="72"  />
+	<cohorteTypeChange action="modules/parametre/cohorteType.php" param="change" droits="admin" />
+	<cohorteTypeWrite action="modules/parametre/cohorteType.php" param="write" droits="admin" retourok="cohorteTypeList" retourko="cohorteTypeChange" modulebefore="cohorteTypeChange" />
+	<cohorteTypeDelete action="modules/parametre/cohorteType.php" param="delete" droits="admin" retoursuppr="cohorteTypeList" retourko="cohorteTypeChange"  modulebefore="cohorteTypeChange"/>
 	
 </navigation>
 	

@@ -5,11 +5,11 @@ setDataTables("cbassinPoissonList");
 <thead>
 <tr>
 <th>matricule</th>
+<th>tag(s)</th>
 <th>prénom</th>
 <th>Sexe</th>
+<th>Cohorte</th>
 <th>Date d'arrivée</th>
-
-
 </tr>
 </thead>
 <tdata>
@@ -20,11 +20,13 @@ setDataTables("cbassinPoissonList");
 {$dataPoisson[lst].matricule}
 </a>
 </td>
+<td>{$dataPoisson[lst].pittag_valeur}</td>
 <td>
 {$dataPoisson[lst].prenom}
 </td>
 <td>{$dataPoisson[lst].sexe_libelle_court}</td>
-<td>{$dataPoisson[lst].bassin_date_arrivee}</td>
+<td>{$dataPoisson[lst].cohorte}</td>
+<td>{$dataPoisson[lst].transfert_date}</td>
 </tr>
 {/section}
 </tdata>

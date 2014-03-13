@@ -51,28 +51,28 @@ Retour au circuit d'eau {$dataCircuitEau.circuit_eau_libelle}
 </tr>
 <tr>
 <td class="libelleSaisie">Température : </td>
-<td><input name="temperature" value="{$data.temperature}" pattern="[0-9]+(\.[0-9]+)?" size="5"></td>
+<td><input name="temperature" value="{$data.temperature}" pattern="[0-9]+(\.[0-9]+)?" title="valeur numérique" size="5"></td>
 </tr>
 <tr>
 <td class="libelleSaisie">Oxygène : </td>
-<td><input name="oxygene" value="{$data.oxygene}" pattern="[0-9]+(\.[0-9]+)?" size="5"></td>
+<td><input name="oxygene" value="{$data.oxygene}" pattern="[0-9]+(\.[0-9]+)?" title="valeur numérique" size="5"></td>
 </tr>
 <tr>
 <td class="libelleSaisie">salinité : </td>
-<td><input name="salinite" value="{$data.salinite}" pattern="[0-9]+(\.[0-9]+)?" size="5"></td>
+<td><input name="salinite" value="{$data.salinite}" pattern="[0-9]+(\.[0-9]+)?" title="valeur numérique" size="5"></td>
 </tr>
 <tr>
 <td class="libelleSaisie">pH : </td>
-<td><input name="ph" value="{$data.ph}" pattern="[0-9]+(\.[0-9]+)?" size="5"></td>
+<td><input name="ph" value="{$data.ph}" pattern="[0-9]+(\.[0-9]+)?" title="valeur numérique" size="5"></td>
 </tr>
 
 <tr>
 <td class="libelleSaisie">NH4 : </td>
-<td><input type='text' id="nh4" name="nh4" value="{$data.nh4}" pattern="[0-9]+(\.[0-9]+)?" size="5"></td>
+<td><input type='text' id="nh4" name="nh4" value="{$data.nh4}" pattern="[0-9]+(\.[0-9]+)?" title="valeur numérique" size="5"></td>
 </tr>
 <tr>
 <td class="libelleSaisie">N-NH4 : </td>
-<td><input type='text' id="n_nh4" name="n_nh4" value="{$data.n_nh4}" pattern="[0-9]+(\.[0-9]+)?" size="5"></td>
+<td><input type='text' id="n_nh4" name="n_nh4" value="{$data.n_nh4}" pattern="[0-9]+(\.[0-9]+)?" title="valeur numérique" size="5"></td>
 </tr>
 <tr>
 <td class="libelleSaisie">NH4 - valeur seuil : </td>
@@ -80,11 +80,11 @@ Retour au circuit d'eau {$dataCircuitEau.circuit_eau_libelle}
 </tr>
 <tr>
 <td class="libelleSaisie">NO2 : </td>
-<td><input type='text' id="no2" name="no2" value="{$data.no2}" pattern="[0-9]+(\.[0-9]+)?" size="5"></td>
+<td><input type='text' id="no2" name="no2" value="{$data.no2}" pattern="[0-9]+(\.[0-9]+)?" title="valeur numérique" size="5"></td>
 </tr>
 <tr>
 <td class="libelleSaisie">N-NO2 : </td>
-<td><input type='text' id="n_no2" name="n_no2" value="{$data.n_no2}" pattern="[0-9]+(\.[0-9]+)?" size="5"></td>
+<td><input type='text' id="n_no2" name="n_no2" value="{$data.n_no2}" pattern="[0-9]+(\.[0-9]+)?" title="valeur numérique" size="5"></td>
 </tr>
 <tr>
 <td class="libelleSaisie">NO2 - valeur seuil : </td>
@@ -92,11 +92,11 @@ Retour au circuit d'eau {$dataCircuitEau.circuit_eau_libelle}
 </tr>
 <tr>
 <td class="libelleSaisie">NO3 : </td>
-<td><input type='text' id="no3" name="no3" value="{$data.no3}" pattern="[0-9]+(\.[0-9]+)?" size="5"></td>
+<td><input type='text' id="no3" name="no3" value="{$data.no3}" pattern="[0-9]+(\.[0-9]+)?" title="valeur numérique" size="5"></td>
 </tr>
 <tr>
 <td class="libelleSaisie">N-NO3: </td>
-<td><input type='text' id="n_no3" name="n_no3" value="{$data.n_no3}" pattern="[0-9]+(\.[0-9]+)?" size="5"></td>
+<td><input type='text' id="n_no3" name="n_no3" value="{$data.n_no3}" pattern="[0-9]+(\.[0-9]+)?" title="valeur numérique" size="5"></td>
 </tr>
 <tr>
 <td class="libelleSaisie">NO3 - valeur seuil : </td>
@@ -115,11 +115,11 @@ Retour au circuit d'eau {$dataCircuitEau.circuit_eau_libelle}
 </tr>
 <tr>
 <td class="libelleSaisie">Débit d'eau de rivière (l/mn) : </td>
-<td><input id="debit_eau_riviere" name="debit_eau_riviere" value="{$data.debit_eau_riviere}" pattern="[0-9]+(\.[0-9]+)?" size="5"></td>
+<td><input id="debit_eau_riviere" name="debit_eau_riviere" value="{$data.debit_eau_riviere}" pattern="[0-9]+(\.[0-9]+)?" title="valeur numérique" size="5"></td>
 </tr>
 <tr>
 <td class="libelleSaisie">Débit d'eau de forage (l/mn) : </td>
-<td><input id="debit_eau_forage" name="debit_eau_forage" value="{$data.debit_eau_forage}" pattern="[0-9]+(\.[0-9]+)?" size="5"></td>
+<td><input id="debit_eau_forage" name="debit_eau_forage" value="{$data.debit_eau_forage}" pattern="[0-9]+(\.[0-9]+)?" title="valeur numérique" size="5"></td>
 </tr>
 <tr>
 <td class="libelleSaisie">Observations : </td>

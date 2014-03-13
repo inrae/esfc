@@ -2,21 +2,34 @@
  
 $(document).ready(function() { 
 $( "#cevenement_date" ).datepicker( { dateFormat: "dd/mm/yy" } );
+$( "#bassin_origine").change( function() {
+	/*
+	* On verifie si le dernier bassin connu correspond à celui indiqué
+	* l'anomalie est positionnée à 1 (valeur de la table anomalie_db_type) en cas d'erreur
+	*/
+	var db = $("#dernier_bassin_connu").val();
+	var bo = $("#bassin_origine").val();
+	if (db > 0 && bo != db && bo > 0 ) {
+		$( this ).next(".erreur").show().text( "Le bassin d'origine indiqué ne correspond pas au dernier bassin connu dans la base (" + 
+				$( "#dernier_bassin_connu_libelle").val() + ")");
+		$( "#anomalie_flag" ).val("1");
+	} else {
+		$( this ).next(".erreur").hide();
+	}
+} ) ;
 $( "#evenementForm" ).submit(function() {
 	valid=true;
 	var bd = $("#bassin_destination").val();
 	var bo = $("#bassin_origine").val();
 	if (bd > 0 && bd == bo) {
 		valid = false;
-		$("#bassin_destination").css("border_color", "red");
-		 $("#bassin_destination").next(".erreur").show().text("Le bassin de destination ne peut être égal au bassin d'origine");
+		$("#bassin_destination").next(".erreur").show().text("Le bassin de destination ne peut être égal au bassin d'origine");
 	} else {
 		$("#bassin_destination").css("border_color", "initial");
 		$("#bassin_destination").next(".erreur").hide();
 	};
 	return valid;
-}
-		);
+	} );
  } );
 </script>
 <a href="index.php?module=poissonList">
@@ -29,14 +42,16 @@ Retour à la liste des poissons
  {include file="poisson/poissonDetail.tpl"}
 <h2>Modification d'un événément</h2>
 <table class="tablesaisie">
-<form class="cmxform" id="evenementForm" method="post" action="index.php?module=evenementWrite">
+<form id="evenementForm" method="post" action="index.php?module=evenementWrite">
 <input type="hidden" name="evenement_id" value="{$data.evenement_id}">
 <input type="hidden" name="poisson_id" value="{$data.poisson_id}">
 <input type="hidden" name="morphologie_id" value="{$dataMorpho.morphologie_id}">
 <input type="hidden" name="pathologie_id" value="{$dataPatho.pathologie_id}">
 <input type="hidden" name="gender_selection_id" value="{$dataGender.gender_selection_id}">
 <input type="hidden" name="transfert_id" value="{$dataTransfert.transfert_id}">
-
+<input type="hidden" name="dernier_bassin_connu" id="dernier_bassin_connu" value="{$dataTransfert.dernier_bassin_connu}">
+<input type="hidden" name="dernier_bassin_connu_libelle" id="dernier_bassin_connu_libelle" value="{$dataTransfert.dernier_bassin_connu_libelle}">
+<input type="hidden" name="anomalie_flag" id="anomalie_flag" value="0">
 
 <tr>
 <td colspan="2" class="datamodif">
@@ -71,19 +86,19 @@ Type d'événement <span class="red">*</span> :</td>
 <tr>
 <td class="libelleSaisie">Longueur à la fourche :</td>
 <td class="datamodif">
-<input name="longueur_fourche" id="clongueur_fourche" value="{$dataMorpho.longueur_fourche}" size="10" maxlength="10">
+<input name="longueur_fourche" id="clongueur_fourche" value="{$dataMorpho.longueur_fourche}" size="10" maxlength="10" title="Valeur numérique" pattern="[0-9]+(\.[0-9]+)?">
 </td>
 </tr>
 <tr>
 <td class="libelleSaisie">Longueur totale :</td>
 <td class="datamodif">
-<input name="longueur_totale" id="clongueur_totale" value="{$dataMorpho.longueur_totale}" size="10" maxlength="10">
+<input name="longueur_totale" id="clongueur_totale" value="{$dataMorpho.longueur_totale}" size="10" maxlength="10" title="Valeur numérique" pattern="[0-9]+(\.[0-9]+)?">
 </td>
 </tr>
 <tr>
 <td class="libelleSaisie">Masse :</td>
 <td class="datamodif">
-<input name="masse" id="cmasse" value="{$dataMorpho.masse}" size="10" maxlength="10">
+<input name="masse" id="cmasse" value="{$dataMorpho.masse}" size="10" maxlength="10" title="Valeur numérique" pattern="[0-9]+(\.[0-9]+)?">
 </td>
 </tr>
 <tr>
@@ -110,6 +125,12 @@ Sélectionnez la pathologie...
 </option>
 {/section}
 </select>
+</td>
+</tr>
+<tr>
+<td class="libelleSaisie">Valeur numérique associée :</td>
+<td class="datamodif">
+<input name="pathologie_valeur" id="cpathologie_valeur" value="{$dataPatho.pathologie_valeur}" title="Valeur numérique" size="10" pattern="[0-9]+(\.[0-9]+)?">
 </td>
 </tr>
 <tr>
@@ -179,6 +200,7 @@ Sélectionnez le bassin d'origine...
 </option>
 {/section}
 </select>
+<span class="erreur"></span>
 </td>
 </tr>
 <tr>

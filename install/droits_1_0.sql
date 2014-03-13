@@ -11,6 +11,7 @@ grant all on all sequences in schema public to group sturio_appli_g;
 grant execute on all functions in schema public to group sturio_appli_g;
 grant usage on schema public to group sturio_appli_g;
 alter default privileges in schema public grant select, insert, update, delete on tables to group sturio_appli_g;
+alter default privileges in schema public grant all on sequences to group sturio_appli_g;
 
 alter role sturio_gacl in database sturio set search_path = gacl;
 grant all on all tables in schema gacl to group sturio_gacl_g;

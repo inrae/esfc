@@ -1,6 +1,7 @@
 <table class="tableaffichage">
 <tr>
 <td>
+(<span style="font-size:small;font-style:italic;">{$dataPoisson.poisson_id}</span>)
 <label>Matricule : </label>{$dataPoisson.matricule} {$dataPoisson.prenom}
 <br>
 <label>Sexe : </label>{$dataPoisson.sexe_libelle} - {$dataPoisson.poisson_statut_libelle}

@@ -1,3 +1,22 @@
+<script>
+$(document).ready(function() {
+$( "#ccapture_date" ).datepicker( { dateFormat: "dd/mm/yy" } );
+$("#cpittag_date_pose").datepicker( { dateFormat: "dd/mm/yy" } );
+$( "#poissonForm" ).submit(function() {
+	var valid = true;
+	var prenom_l = $("#cprenom").val().length;
+	var matricule_l = $("#cmatricule").val().length;
+	var pittag_l = $("#cpittag_valeur").val().length;
+	if ( prenom_l == 0 && matricule_l == 0 && pittag_l == 0) {
+	$("#cpittag_valeur").next(".erreur").show().text("Le pittag doit être renseigné, à défaut le matricule ou le prénom pour les anciens poissons");
+	valid = false;
+	} else {
+		$("#cpittag_valeur").next(".erreur").hide();
+	} ;
+	return valid;
+	} ) ;
+ } );
+</script>
 <a href="index.php?module=poissonList">
 Retour à la liste des poissons
 </a>
@@ -9,7 +28,7 @@ Retour à la liste des poissons
  {/if}
  <h2>Modification d'un poisson</h2>
 <table class="tablesaisie">
-<form class="cmxform" id="poissonForm" method="post" action="index.php?module=poissonWrite">
+<form id="poissonForm" method="post" action="index.php?module=poissonWrite">
 <input type="hidden" name="poisson_id" value="{$data.poisson_id}">
 <tr>
 <td class="libelleSaisie">
@@ -26,23 +45,46 @@ Statut <span class="red">*</span> :</td>
 </tr>
 <tr>
 <td class="libelleSaisie">
-Sexe <span class="red">*</span> :</td>
+Sexe :</td>
 <td class="datamodif">
-<select id="csexe_id" name="sexe_id" required>
+<select id="csexe_id" name="sexe_id" disabled>
 {section name=lst loop=$sexe}
 <option value="{$sexe[lst].sexe_id}" {if $sexe[lst].sexe_id == $data.sexe_id}selected{/if}>
 {$sexe[lst].sexe_libelle}
 </option>
 {/section}
 </select>
+<input type="hidden" name=sexe_id" value="{$data.sexe_id}">
 </td>
 </tr>
 <tr>
 <td class="libelleSaisie">
-Matricule <span class="red">*</span> :
+Pittag <span class="red">*</span> : 
 </td>
 <td class="datamodif">
-<input name="matricule" id="cmatricule" value="{$data.matricule}" required size="30">
+<input name="pittag_id" type="hidden" value="{$dataPittag.pittag_id}">
+<input type="text" name="pittag_valeur" id="cpittag_valeur" size="20" value="{$dataPittag.pittag_valeur}" pattern="(([A-F0-9][A-F0-9])*|[0-9]*)" placeholder="01AB2C ou 12345" title="Nombre hexadécimal ou numérique" autofocus>
+<span class="erreur" ></span>
+<select name="pittag_type_id">
+<option value="" {if $pittagType.pittag_type_id == ""}selected{/if}>
+Sélectionnez le type de marque...
+</option>
+{section name=lst loop=$pittagType}
+<option value="{$pittagType[lst].pittag_type_id}" {if $pittagType[lst].pittag_type_id == $dataPittag.pittag_type_id}selected{/if}>
+{$pittagType[lst].pittag_type_libelle}
+</option>
+{/section}
+</select>
+<input name="pittag_date_pose" id="cpittag_date_pose" size="10" maxlength="10" value="{$dataPittag.pittag_date_pose}" title="Date de pose de la marque" placeholder="jj/mm/aaaa">
+</td>
+</tr>
+
+<tr>
+<td class="libelleSaisie">
+Matricule :
+</td>
+<td class="datamodif">
+<input name="matricule" id="cmatricule" value="{$data.matricule}" size="30">
 </td>
 </tr>
 <tr>
@@ -65,11 +107,8 @@ Cohorte :
 <td class="datamodif">
  <script>
  
-$(function() { 
-$( "#ccapture_date" ).datepicker( { dateFormat: "dd/mm/yy" } );
- } );
 </script>
-<input name="capture_date" id="ccapture_date" size="10" maxlength="10" value="{$data.capture_date}">
+<input name="capture_date" id="ccapture_date" size="10" maxlength="10" value="{$data.capture_date}" placeholder="jj/mm/aaaa">
 </td>
 </tr>
 
