@@ -29,6 +29,11 @@ p {
 	background-position: center center;
 }
 
+.erreur {
+	display:none; 
+	color:red;
+}
+
 a {
 /*	text-decoration: none;*/
     font-family: Arial, Helvetica, sans-serif;
