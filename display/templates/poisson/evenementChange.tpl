@@ -1,6 +1,40 @@
  <script>
  
 $(document).ready(function() { 
+	/*
+	* Affichage ou masquage des différentes zones
+	*/
+	var afficher = 1;
+	//$ ("fieldset > .masquage").hide();
+	var afficher = 1;
+	$("#afficher").text("Masquer tous les éléments");
+	var styles = {
+		      "cursor": "pointer",
+		      "fontStyle": "italic",
+		      "text-decoration": "underline"
+		    } ;
+	$ ("#afficher").css( styles );
+	$ ("fieldset").css(styles);
+	$ ("fieldset").click(function() {
+		//$( this ).next( ".masquage" ).toggle("slow") ;
+		if ($( ".masquage", this ).is(":visible") == true ) {
+			$( ".masquage", this ).hide("10");
+		} else {
+			$( ".masquage", this ).show("10");
+		}
+	} );
+	$("#afficher").click(function() {
+		/*$ ("h3").next(".masquage").toggle();*/
+		if (afficher == 0) {
+			$( this ).text("Masquer tous les éléments") ;
+			afficher = 1 ;
+			$ ("fieldset > .masquage").show("");
+		} else {
+			$ (this ).text ("Afficher tous les éléments") ;
+			afficher = 0;
+			$ ("fieldset > .masquage").hide("");
+		}
+	} );
 $( "#cevenement_date" ).datepicker( { dateFormat: "dd/mm/yy" } );
 $( "#bassin_origine").change( function() {
 	/*
@@ -15,6 +49,7 @@ $( "#bassin_origine").change( function() {
 		$( "#anomalie_flag" ).val("1");
 	} else {
 		$( this ).next(".erreur").hide();
+		$( "#anomalie_flag" ).val("0");
 	}
 } ) ;
 $( "#evenementForm" ).submit(function() {
@@ -41,7 +76,8 @@ Retour à la liste des poissons
  </a>
  {include file="poisson/poissonDetail.tpl"}
 <h2>Modification d'un événément</h2>
-<table class="tablesaisie">
+<div class="formSaisie">
+<div>
 <form id="evenementForm" method="post" action="index.php?module=evenementWrite">
 <input type="hidden" name="evenement_id" value="{$data.evenement_id}">
 <input type="hidden" name="poisson_id" value="{$data.poisson_id}">
@@ -52,16 +88,14 @@ Retour à la liste des poissons
 <input type="hidden" name="dernier_bassin_connu" id="dernier_bassin_connu" value="{$dataTransfert.dernier_bassin_connu}">
 <input type="hidden" name="dernier_bassin_connu_libelle" id="dernier_bassin_connu_libelle" value="{$dataTransfert.dernier_bassin_connu_libelle}">
 <input type="hidden" name="anomalie_flag" id="anomalie_flag" value="0">
+<input type="hidden" name="mortalite_id" id="mortalite_id" value="{$dataMortalite.mortalite_id}" >
 
-<tr>
-<td colspan="2" class="datamodif">
-<h3>Données liées à l'événement lui-même</h3>
-</td>
-</tr>
-<tr>
-<td class="libelleSaisie">
-Type d'événement <span class="red">*</span> :</td>
-<td class="datamodif">
+<fieldset>
+<legend>Données liées à l'événement lui-même</legend>
+<dl>
+<dt>
+Type d'événement <span class="red">*</span> :</dt>
+<dd>
 <select name="evenement_type_id">
 {section name=lst loop=$evntType}
 <option value="{$evntType[lst].evenement_type_id}" {if $evntType[lst].evenement_type_id == $data.evenement_type_id}selected{/if}>
@@ -69,52 +103,54 @@ Type d'événement <span class="red">*</span> :</td>
 </option>
 {/section}
 </select>
-</td>
-</tr>
-<tr>
-<td class="libelleSaisie">Date <span class="red">*</span> :</td>
-<td class="datamodif">
-
+</dd>
+</dl>
+<dl>
+<dt>Date <span class="red">*</span> :</dt>
+<dd>
 <input name="evenement_date" id="cevenement_date" required size="10" maxlength="10" value="{$data.evenement_date}">
-</td>
-</tr>
-<tr>
-<td colspan="2" class="datamodif">
-<h3>Données morphologiques</h3>
-</td>
-</tr>
-<tr>
-<td class="libelleSaisie">Longueur à la fourche :</td>
-<td class="datamodif">
+</dd>
+</dl>
+</fieldset>
+
+<div id="afficher"><i>Afficher tous les éléments</i></div>
+
+<fieldset>
+<legend>Données morphologiques</legend>
+<div class="masquage">
+<dl>
+<dt>Longueur à la fourche :</dt>
+<dd>
 <input name="longueur_fourche" id="clongueur_fourche" value="{$dataMorpho.longueur_fourche}" size="10" maxlength="10" title="Valeur numérique" pattern="[0-9]+(\.[0-9]+)?">
-</td>
-</tr>
-<tr>
-<td class="libelleSaisie">Longueur totale :</td>
-<td class="datamodif">
+</dd>
+</dl>
+<dl>
+<dt>Longueur totale :</dt>
+<dd>
 <input name="longueur_totale" id="clongueur_totale" value="{$dataMorpho.longueur_totale}" size="10" maxlength="10" title="Valeur numérique" pattern="[0-9]+(\.[0-9]+)?">
-</td>
-</tr>
-<tr>
-<td class="libelleSaisie">Masse :</td>
-<td class="datamodif">
+</dd>
+</dl>
+<dl>
+<dt>Masse :</dt>
+<dd>
 <input name="masse" id="cmasse" value="{$dataMorpho.masse}" size="10" maxlength="10" title="Valeur numérique" pattern="[0-9]+(\.[0-9]+)?">
-</td>
-</tr>
-<tr>
-<td class="libelleSaisie">Commentaire :</td>
-<td class="datamodif">
+</dd>
+</dl>
+<dl>
+<dt>Commentaire :</dt>
+<dd>
 <input name="morphologie_commentaire" id="cmorphologie_commentaire" value="{$dataMorpho.morphologie_commentaire}" size="40">
-</td>
-</tr>
-<tr>
-<td colspan="2" class="datamodif">
-<h3>Pathologie</h3>
-</td>
-</tr>
-<tr>
-<td class="libelleSaisie">Type de pathologie <span class="red">*</span> :</td>
-<td class="datamodif">
+</dd>
+</dl>
+</div>
+</fieldset>
+
+<fieldset>
+<legend>Pathologie</legend>
+<div class="masquage">
+<dl>
+<dt>Type de pathologie <span class="red">*</span> :</dt>
+<dd>
 <select name="pathologie_type_id">
 <option value="" {if $dataPatho.pathologie_type_id == ""}selected{/if}>
 Sélectionnez la pathologie...
@@ -125,29 +161,29 @@ Sélectionnez la pathologie...
 </option>
 {/section}
 </select>
-</td>
-</tr>
-<tr>
-<td class="libelleSaisie">Valeur numérique associée :</td>
-<td class="datamodif">
+</dd>
+</dl>
+<dl>
+<dt>Valeur numérique associée :</dt>
+<dd>
 <input name="pathologie_valeur" id="cpathologie_valeur" value="{$dataPatho.pathologie_valeur}" title="Valeur numérique" size="10" pattern="[0-9]+(\.[0-9]+)?">
-</td>
-</tr>
-<tr>
-<td class="libelleSaisie">Commentaire :</td>
-<td class="datamodif">
+</dd>
+</dl>
+<dl>
+<dt>Commentaire :</dt>
+<dd>
 <input name="pathologie_commentaire" id="cpathologie_commentaire" value="{$dataPatho.pathologie_commentaire}" size="40">
-</td>
-</tr>
+</dd>
+</dl>
+</div>
+</fieldset>
+<fieldset>
+<legend>Détermination du sexe</legend>
+<div class="masquage">
+<dl>
 
-<tr>
-<td colspan="2" class="datamodif">
-<h3>Détermination du sexe</h3>
-</td>
-</tr>
-<tr>
-<td class="libelleSaisie">Méthode utilisée :</td>
-<td class="datamodif">
+<dt>Méthode utilisée :</dt>
+<dd>
 <select name="gender_methode_id">
 <option value="" {if $dataGender.gender_methode_id == ""}selected{/if}>
 Sélectionnez la méthode...
@@ -158,11 +194,11 @@ Sélectionnez la méthode...
 </option>
 {/section}
 </select>
-</td>
-</tr>
-<tr>
-<td class="libelleSaisie">Sexe déterminé <span class="red">*</span> :</td>
-<td class="datamodif">
+</dd>
+</dl>
+<dl>
+<dt>Sexe déterminé <span class="red">*</span> :</dt>
+<dd>
 <select name="sexe_id" >
 <option value="" {if $dataGender.sexe_id == ""}selected{/if}>
 Sélectionnez le sexe...
@@ -173,23 +209,22 @@ Sélectionnez le sexe...
 </option>
 {/section}
 </select>
-</td>
-</tr>
-<tr>
-<td class="libelleSaisie">Commentaire :</td>
-<td class="datamodif">
+</dd>
+</dl>
+<dl>
+<dt>Commentaire :</dt>
+<dd>
 <input name="gender_selection_commentaire" id="cgender_selection_commentaire" value="{$dataGender.gender_selection_commentaire}" size="40">
-</td>
-</tr>
-
-<tr>
-<td colspan="2" class="datamodif">
-<h3>Changement de bassin</h3>
-</td>
-</tr>
-<tr>
-<td class="libelleSaisie">Bassin d'origine <span class="red">*</span> : </td>
-<td>
+</dd>
+</dl>
+</div>
+</fieldset>
+<fieldset>
+<legend>Changement de bassin</legend>
+<div class="masquage">
+<dl>
+<dt>Bassin d'origine <span class="red">*</span> : </dt>
+<dd>
 <select name="bassin_origine" id="bassin_origine">
 <option value="" {if $dataTransfert.bassin_origine == ""} selected {/if}>
 Sélectionnez le bassin d'origine...
@@ -201,11 +236,11 @@ Sélectionnez le bassin d'origine...
 {/section}
 </select>
 <span class="erreur"></span>
-</td>
-</tr>
-<tr>
-<td class="libelleSaisie">Bassin de destination <span class="red">*</span> : </td>
-<td>
+</dd>
+</dl>
+<dl>
+<dt>Bassin de destination <span class="red">*</span> : </dt>
+<dd>
 <select name="bassin_destination" id="bassin_destination">
 <option value="" {if $dataTransfert.bassin_destination == ""} selected {/if}>
 Sélectionnez le bassin de destination...
@@ -217,24 +252,52 @@ Sélectionnez le bassin de destination...
 {/section}
 </select>
 <span class="erreur"style="display:none; color:red;"></span>
-</td>
-</tr>
-
-<tr>
-<td colspan="2"><div align="center">
+</dd>
+</dl>
+</div>
+</fieldset>
+<fieldset>
+<legend>Mortalité</legend>
+<div class="masquage">
+<dl>
+<dt>Type de mortalité <span class="red">*</span> : </dt>
+<dd>
+<select name="mortalite_type_id" id="mortalite_type_id">
+<option value="" {if $dataMortalite.mortalite_type_id == ""} selected {/if}>
+Sélectionnez le type de mortalité...
+</option>
+{section name=lst loop=$mortaliteType}
+<option value="{$mortaliteType[lst].mortalite_type_id}" {if $mortaliteType[lst].mortalite_type_id == $dataMortalite.mortalite_type_id} selected {/if}>
+{$mortaliteType[lst].mortalite_type_libelle}
+</option>
+{/section}
+</select>
+</dd>
+</dl>
+<dl>
+<dt>Commentaire : </dt>
+<dd>
+<input name="mortalite_commentaire" value="{$dataMortalite.mortalite_commentaire}" size="40">
+</dd>
+</dl>
+</div>
+</fieldset>
+<div class="formBouton">
 <input class="submit" type="submit" value="Enregistrer">
+</div>
 </form>
 
+
 {if $data.evenement_id > 0 &&$droits["admin"] == 1}
+<div class="formBouton">
 <form action="index.php" method="post" onSubmit='return confirmSuppression("Confirmez-vous la suppression ?")'>
 <input type="hidden" name="evenement_id" value="{$data.evenement_id}">
 <input type="hidden" name="poisson_id" value="{$data.poisson_id}">
 <input type="hidden" name="module" value="evenementDelete">
 <input class="submit" type="submit" value="Supprimer">
 </form>
+</div>
 {/if}
 </div>
-</td>
-</tr>
-</table>
+</div>
 <span class="red">*</span><span class="messagebas">Champ obligatoire</span>

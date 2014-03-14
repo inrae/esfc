@@ -33,6 +33,40 @@ p {
 	display:none; 
 	color:red;
 }
+/*
+ * Masque de saisie par liste
+ */
+.formSaisie {
+	border-style: solid;
+	border-width: 1px;
+	background:  #98c1e9;
+	width: 800px;
+}
+.formBouton {
+	text-align: center;
+	width: 750px;
+}
+dl {
+	clear: both;
+}
+
+dt {
+	float: left;
+	text-align: right;
+	width: 250px;
+	margin: 0 10px 10px 0;
+}
+
+dd {
+	float: left;
+	text_align: left;
+	width: 500px;
+	margin: 0 0 10px 0;
+	/*background: #ffffff;*/
+}
+/*
+* Fin de la saisie par liste
+*/
 
 a {
 /*	text-decoration: none;*/
