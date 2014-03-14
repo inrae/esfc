@@ -72,6 +72,17 @@ switch ($t_module["param"]) {
 		$transfert = new Transfert($bdd, $ObjetBDDParam);
 		$smarty->assign("dataTransfert", $transfert->getListByPoisson($id));
 		/*
+		 * Recuperation des mortalites
+		 */
+		$mortalite = new Mortalite($bdd, $ObjetBDDParam);
+		$smarty->assign("dataMortalite", $mortalite->getListByPoisson($id));
+		/*
+		 * Recuperation des anomalies
+		 */
+		include_once ("modules/classes/anomalie.class.php");
+		$anomalie = new Anomalie_db($bdd, $ObjetBDDParam);
+		$smarty->assign("dataAnomalie", $anomalie->getListByPoisson($id));
+		/*
 		 * Affichage
 		 */
 		$smarty->assign("corps", "poisson/poissonDisplay.tpl");

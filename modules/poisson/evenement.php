@@ -42,6 +42,8 @@ switch ($t_module ["param"]) {
 			$bassin = new Bassin ( $bdd, $ObjetBDDParam );
 			$smarty->assign ( "bassinList", $bassin->getListe () );
 			$smarty->assign ( "bassinListActif", $bassin->getListe ( 1 ) );
+			$mortalite_type = new Mortalite_type($bdd, $ObjetBDDParam);
+			$smarty->assign("mortaliteType", $mortalite_type->getListe());
 			dataRead ( $dataClass, $id, "poisson/evenementChange.tpl", $_REQUEST ["poisson_id"] );
 			/*
 			 * Lecture du poisson
@@ -59,6 +61,11 @@ switch ($t_module ["param"]) {
 				$smarty->assign ( "dataPatho", $pathologie->getDataByEvenement ( $id ) );
 				$genderSelection = new Gender_selection ( $bdd, $ObjetBDDParam );
 				$smarty->assign ( "dataGender", $genderSelection->getDataByEvenement ( $id ) );
+				$mortalite = new Mortalite($bdd, $ObjetBDDParam);
+				$smarty->assign("dataMortalite", $mortalite->getDataByEvenement($id));
+				/*
+				 * Traitement particulier du transfert
+				 */				
 				$transfert = new Transfert ( $bdd, $ObjetBDDParam );
 				$dataTransfert = $transfert->getDataByEvenement ( $id );
 				} else {
@@ -133,6 +140,36 @@ switch ($t_module ["param"]) {
 				$transfert_id = $transfert->ecrire($_REQUEST);
 				if (! $transfert_id > 0) {
 					$message .= formatErrorData ( $transfert->getErrorData () );
+					$message .= $LANG ["message"] [12];
+					$module_coderetour = - 1;
+				}
+			}
+			/*
+			 * Mortalite
+			 */
+			if ($_REQUEST["mortalite_type_id"] > 0 ) {
+				$mortalite = new Mortalite($bdd, $ObjetBDDParam);
+				$_REQUEST["mortalite_date"] = $_REQUEST["evenement_date"];
+				$mortalite_id = $mortalite->ecrire($_REQUEST);
+				if (! $mortalite_id > 0) {
+					$message .= formatErrorData ( $mortalite->getErrorData () );
+					$message .= $LANG ["message"] [12];
+					$module_coderetour = - 1;
+				}
+			}
+			/*
+			 * Creation d'une nouvelle anomalie a traiter en cas de souci
+			 */
+			if ($_REQUEST["anomalie_flag"] > 0 ) {
+				include_once "modules/classes/anomalie.class.php";
+				$anomalie = new Anomalie_db($bdd, $ObjetBDDParam);
+				$_REQUEST["anomalie_id"] = 0;
+				$_REQUEST["anomalie_db_date"] = $_REQUEST["evenement_date"];
+				$_REQUEST["anomalie_db_statut"] = 0;
+				$_REQUEST["anomalie_db_type_id"] = $_REQUEST["anomalie_flag"];
+				$anomalie_id = $anomalie->ecrire($_REQUEST);
+				if (! $anomalie_id > 0 ) {
+					$message .= formatErrorData ( $anomalie->getErrorData () );
 					$message .= $LANG ["message"] [12];
 					$module_coderetour = - 1;
 				}
