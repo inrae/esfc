@@ -74,7 +74,8 @@ switch ($t_module ["param"]) {
 				 */
 				if ($dataPoisson ["bassin_id"] > 0)
 					$dataTransfert = array (
-							"bassin_origine" => $dataPoisson ["bassin_id"] 
+							"dernier_bassin_connu" => $dataPoisson ["bassin_id"],
+							"dernier_bassin_connu_libelle" =>$dataPoisson["bassin_nom"]
 					);
 			}
 			$smarty->assign ( "dataTransfert", $dataTransfert );
@@ -181,6 +182,7 @@ switch ($t_module ["param"]) {
 		 * delete record
 		 */
 		include_once "modules/classes/poisson.class.php";
+		include_once 'modules/classes/anomalie.class.php';
 		dataDelete ( $dataClass, $id );
 		break;
 }

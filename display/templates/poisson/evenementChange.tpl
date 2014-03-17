@@ -5,9 +5,9 @@ $(document).ready(function() {
 	* Affichage ou masquage des différentes zones
 	*/
 	var afficher = 1;
-	//$ ("fieldset > .masquage").hide();
-	var afficher = 1;
 	$("#afficher").text("Masquer tous les éléments");
+	$(".icone").attr("src","display/images/arrow_up.png");
+	$(".icone").attr("height","15");
 	var styles = {
 		      "cursor": "pointer",
 		      "fontStyle": "italic",
@@ -15,13 +15,21 @@ $(document).ready(function() {
 		    } ;
 	$ ("#afficher").css( styles );
 	$ ("fieldset").css(styles);
-	$ ("fieldset").click(function() {
+	$ ("fieldset legend").click(function() {
 		//$( this ).next( ".masquage" ).toggle("slow") ;
-		if ($( ".masquage", this ).is(":visible") == true ) {
-			$( ".masquage", this ).hide("10");
+		if ($(this).nextAll(".masquage") .is (":visible") == true ) {
+			$(this).nextAll(".masquage").hide("10");
+			$(this).next( ".icone").attr("src", "display/images/arrow_down.png");
 		} else {
-			$( ".masquage", this ).show("10");
+			$(this).nextAll(".masquage").show ("10");
 		}
+		/*
+		if ($( ".masquage", this.parent()) ).is(":visible") == true ) {
+			$( ".masquage", this.parent() ).hide("10");
+		} else {
+			$( ".masquage", this.parent() ).show("10");
+		}
+		*/
 	} );
 	$("#afficher").click(function() {
 		/*$ ("h3").next(".masquage").toggle();*/
@@ -47,6 +55,7 @@ $( "#bassin_origine").change( function() {
 		$( this ).next(".erreur").show().text( "Le bassin d'origine indiqué ne correspond pas au dernier bassin connu dans la base (" + 
 				$( "#dernier_bassin_connu_libelle").val() + ")");
 		$( "#anomalie_flag" ).val("1");
+		$( "#anomalie_db_commentaire").val("Dernier bassin connu : " + $( "#dernier_bassin_connu_libelle").val());
 	} else {
 		$( this ).next(".erreur").hide();
 		$( "#anomalie_flag" ).val("0");
@@ -88,6 +97,7 @@ Retour à la liste des poissons
 <input type="hidden" name="dernier_bassin_connu" id="dernier_bassin_connu" value="{$dataTransfert.dernier_bassin_connu}">
 <input type="hidden" name="dernier_bassin_connu_libelle" id="dernier_bassin_connu_libelle" value="{$dataTransfert.dernier_bassin_connu_libelle}">
 <input type="hidden" name="anomalie_flag" id="anomalie_flag" value="0">
+<input type="hidden" name="anomalie_db_commentaire" id="anomalie_db_commentaire" value="">
 <input type="hidden" name="mortalite_id" id="mortalite_id" value="{$dataMortalite.mortalite_id}" >
 
 <fieldset>
@@ -108,7 +118,7 @@ Type d'événement <span class="red">*</span> :</dt>
 <dl>
 <dt>Date <span class="red">*</span> :</dt>
 <dd>
-<input name="evenement_date" id="cevenement_date" required size="10" maxlength="10" value="{$data.evenement_date}">
+<input class="date" name="evenement_date" id="cevenement_date" required size="10" maxlength="10" value="{$data.evenement_date}">
 </dd>
 </dl>
 </fieldset>

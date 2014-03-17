@@ -46,6 +46,13 @@ p {
 	text-align: center;
 	width: 750px;
 }
+input {
+	/*border-radius: 1em;*/
+}
+ dl input:hover, input:focus {
+	border-color: #a66d1a;
+	
+}
 dl {
 	clear: both;
 }
@@ -63,6 +70,15 @@ dd {
 	width: 500px;
 	margin: 0 0 10px 0;
 	/*background: #ffffff;*/
+}
+dl input.date {
+	background-image: url("../images/calendar-small.gif");
+	background-repeat: no-repeat;
+	background-position: 100% 50%;
+	width: 10em;
+}
+dl select {
+	max-width: 480px;
 }
 /*
 * Fin de la saisie par liste

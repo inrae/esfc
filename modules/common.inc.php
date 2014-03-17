@@ -31,4 +31,13 @@ if (! isset ( $_SESSION ["searchCircuitEau"] )) {
 } else {
 	$searchCircuitEau = $_SESSION ["searchCircuitEau"];
 }
+/*
+ * Déclaration de la classe de recherche des anomalies
+ */
+if (!isset($_SESSION["searchAnomalie"])) {
+	$searchAnomalie = new SearchAnomalie();
+	$_SESSION["searchAnomalie"] = $searchAnomalie;
+} else {
+	$searchAnomalie = $_SESSION["searchAnomalie"];
+}
 ?>

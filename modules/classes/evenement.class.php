@@ -68,13 +68,21 @@
  			/*
  			 * Gender_selection
  			 */
- 			$genderSelection = new Gender_selection($this->connection, $ObjetBDDParam);
+ 			$genderSelection = new Gender_selection($this->connection, $this->paramori);
  			$genderSelection->supprimerChamp($id, "evenement_id");
  			/*
  			 * Transfert
  			 */
- 			$transfert = new Transfert($this->connection, $ObjetBDDParam);
+ 			$transfert = new Transfert($this->connection, $this->paramori);
  			$transfert->supprimerChamp($id, "evenement_id");
+ 			/*
+ 			 * Anomalie
+ 			 */
+ 			$anomalie = new Anomalie_db($this->connection, $this->paramori);
+ 			$anomalie->supprimerChamp($id, "evenement_id");
+ 			/*
+ 			 * Suppression finale de l'evenement
+ 			 */
  			return parent::supprimer($id);
  		}
  	}

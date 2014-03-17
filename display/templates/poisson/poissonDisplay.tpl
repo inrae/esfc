@@ -99,6 +99,11 @@ Nouveau pittag ou étiquette...
 </div>
 <h3>Anomalies relevées dans les données</h3>
 <div class="masquage">
+{if $droits["poissonGestion"] == 1}
+<a href="index.php?module=anomalieChange&poisson_id={$dataPoisson.poisson_id}&anomalie_db_id=0&module_origine=poissonDisplay">
+Créer une anomalie manuellement
+</a>
+{/if}
 {include file="poisson/anomalieDbList.tpl"}
 <br>
 </div>

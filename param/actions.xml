@@ -4,7 +4,7 @@
 		menudroits="gestion" menuloginrequis="1" menuparent="0" menutitle="0" menuvalue="0" param="param1" ajax="0" droitko="droitko" modulebefore="module1,module2">
 	</model>
 	<default action="framework/default.php"></default>
-	<droitko action="framework/droitko.php"></droitko><loginliste action="framework/identification/loginliste.php" droits="admin" menulevel="1" menuorder="1" menudroits="admin" menuparent="3" menutitle="3" menuvalue="2" droitko="droitko"></loginliste>
+	<droitko action="framework/droitko.php"></droitko>
 	<loginliste action="framework/identification/login.php" param="list" droits="admin" menulevel="1" menuorder="9" menudroits="admin" menuparent="3" menutitle="3" menuvalue="2"></loginliste>
 	<loginmodif action="framework/identification/login.php" param="change" droits="admin" />
 	<loginwrite action="framework/identification/login.php" param="write" droits="admin" retourko="loginmodif" retourok="loginliste" />
@@ -12,7 +12,7 @@
 	<loginChangePassword action="framework/identification/login.php" param="changePassword" loginrequis="1" />
 	<loginChangePasswordExec action="framework/identification/login.php" param="changePasswordExec" loginrequis="1" retourko="loginChangePassword" modulebefore="loginChangePassword" />
 
-	<parametre action="modules/administration/index.php" droits="admin"
+	<parametre action="modules/paramAdministration/index.php" droits="paramAdmin"
 		retourko="" retourok="" retournull="" menuvalue="4" menutitle="5" menuorder="3" menulevel="0" droitko="droitko"/>
 	<errorbefore action="framework/errorbefore.php"></errorbefore>
 	<errorlogin action="framework/errorlogin.php"></errorlogin>
@@ -33,29 +33,29 @@
 	<setlanguage action='framework/setlanguage.php' />
 	
 	<pittagTypeList action="modules/parametre/pittagType.php" param="list" droits="consult" menulevel="1" menuparent="3" menuorder="0" menudroits="" menuvalue="45" menutitle="46"  />
-	<pittagTypeChange action="modules/parametre/pittagType.php" param="change" droits="admin" />
-	<pittagTypeWrite action="modules/parametre/pittagType.php" param="write" droits="admin" retourok="pittagTypeList" retourko="pittagTypeChange" modulebefore="pittagTypeChange" />
-	<pittagTypeDelete action="modules/parametre/pittagType.php" param="delete" droits="admin" retoursuppr="pittagTypeList" retourko="pittagTypeChange" modulebefore="pittagTypeChange" />
+	<pittagTypeChange action="modules/parametre/pittagType.php" param="change" droits="paramAdmin" />
+	<pittagTypeWrite action="modules/parametre/pittagType.php" param="write" droits="paramAdmin" retourok="pittagTypeList" retourko="pittagTypeChange" modulebefore="pittagTypeChange" />
+	<pittagTypeDelete action="modules/parametre/pittagType.php" param="delete" droits="paramAdmin" retoursuppr="pittagTypeList" retourko="pittagTypeChange" modulebefore="pittagTypeChange" />
 
 	<poissonStatutList action="modules/parametre/poissonStatut.php" param="list" droits="consult" menulevel="1" menuparent="3" menuorder="1" menudroits="" menuvalue="47" menutitle="48"  />
-	<poissonStatutChange action="modules/parametre/poissonStatut.php" param="change" droits="admin" />
-	<poissonStatutWrite action="modules/parametre/poissonStatut.php" param="write" droits="admin" retourok="poissonStatutList" retourko="poissonStatutChange" modulebefore="poissonStatutChange" />
-	<poissonStatutDelete action="modules/parametre/poissonStatut.php" param="delete" droits="admin" retoursuppr="poissonStatutList" retourko="poissonStatutChange"  modulebefore="poissonStatutChange"/>
+	<poissonStatutChange action="modules/parametre/poissonStatut.php" param="change" droits="paramAdmin" />
+	<poissonStatutWrite action="modules/parametre/poissonStatut.php" param="write" droits="paramAdmin" retourok="poissonStatutList" retourko="poissonStatutChange" modulebefore="poissonStatutChange" />
+	<poissonStatutDelete action="modules/parametre/poissonStatut.php" param="delete" droits="paramAdmin" retoursuppr="poissonStatutList" retourko="poissonStatutChange"  modulebefore="poissonStatutChange"/>
 
 	<genderMethodeList action="modules/parametre/genderMethode.php" param="list" droits="consult" menulevel="1" menuparent="3" menuorder="2" menudroits="" menuvalue="49" menutitle="50"  />
-	<genderMethodeChange action="modules/parametre/genderMethode.php" param="change" droits="admin" />
-	<genderMethodeWrite action="modules/parametre/genderMethode.php" param="write" droits="admin" retourok="genderMethodeList" retourko="genderMethodeChange" modulebefore="genderMethodeChange" />
-	<genderMethodeDelete action="modules/parametre/genderMethode.php" param="delete" droits="admin" retoursuppr="genderMethodeList" retourko="genderMethodeChange"  modulebefore="genderMethodeChange"/>
+	<genderMethodeChange action="modules/parametre/genderMethode.php" param="change" droits="paramAdmin" />
+	<genderMethodeWrite action="modules/parametre/genderMethode.php" param="write" droits="paramAdmin" retourok="genderMethodeList" retourko="genderMethodeChange" modulebefore="genderMethodeChange" />
+	<genderMethodeDelete action="modules/parametre/genderMethode.php" param="delete" droits="paramAdmin" retoursuppr="genderMethodeList" retourko="genderMethodeChange"  modulebefore="genderMethodeChange"/>
 
 	<evenementTypeList action="modules/parametre/evenementType.php" param="list" droits="consult" menulevel="1" menuparent="3" menuorder="3" menudroits="" menuvalue="51" menutitle="52"  />
-	<evenementTypeChange action="modules/parametre/evenementType.php" param="change" droits="admin" />
-	<evenementTypeWrite action="modules/parametre/evenementType.php" param="write" droits="admin" retourok="evenementTypeList" retourko="evenementTypeChange" modulebefore="evenementTypeChange" />
-	<evenementTypeDelete action="modules/parametre/evenementType.php" param="delete" droits="admin" retoursuppr="evenementTypeList" retourko="evenementTypeChange"  modulebefore="evenementTypeChange"/>
+	<evenementTypeChange action="modules/parametre/evenementType.php" param="change" droits="paramAdmin" />
+	<evenementTypeWrite action="modules/parametre/evenementType.php" param="write" droits="paramAdmin" retourok="evenementTypeList" retourko="evenementTypeChange" modulebefore="evenementTypeChange" />
+	<evenementTypeDelete action="modules/parametre/evenementType.php" param="delete" droits="paramAdmin" retoursuppr="evenementTypeList" retourko="evenementTypeChange"  modulebefore="evenementTypeChange"/>
 
 	<pathologieTypeList action="modules/parametre/pathologieType.php" param="list" droits="consult" menulevel="1" menuparent="3" menuorder="4" menudroits="" menuvalue="53" menutitle="54"  />
-	<pathologieTypeChange action="modules/parametre/pathologieType.php" param="change" droits="admin" />
-	<pathologieTypeWrite action="modules/parametre/pathologieType.php" param="write" droits="admin" retourok="pathologieTypeList" retourko="pathologieTypeChange" modulebefore="pathologieTypeChange" />
-	<pathologieTypeDelete action="modules/parametre/pathologieType.php" param="delete" droits="admin" retoursuppr="pathologieTypeList" retourko="pathologieTypeChange"  modulebefore="pathologieTypeChange"/>
+	<pathologieTypeChange action="modules/parametre/pathologieType.php" param="change" droits="paramAdmin" />
+	<pathologieTypeWrite action="modules/parametre/pathologieType.php" param="write" droits="paramAdmin" retourok="pathologieTypeList" retourko="pathologieTypeChange" modulebefore="pathologieTypeChange" />
+	<pathologieTypeDelete action="modules/parametre/pathologieType.php" param="delete" droits="paramAdmin" retoursuppr="pathologieTypeList" retourko="pathologieTypeChange"  modulebefore="pathologieTypeChange"/>
 
 	<poissonList action="modules/poisson/poisson.php" param="list" droits="consult" menulevel="0" menuparent="" menuorder="0" menudroits="" menuvalue="55" menutitle="56"  />
 	<poissonDisplay action="modules/poisson/poisson.php" param="display" droits="consult" />
@@ -72,19 +72,19 @@
 	<pittagDelete action="modules/poisson/pittag.php" param="delete" droits="poissonGestion" retoursuppr="poissonDisplay" retourko="pittagChange"  modulebefore="pittagChange"/>
 
 	<bassinTypeList action="modules/parametre/bassinType.php" param="list" droits="consult" menulevel="1" menuparent="3" menuorder="5" menudroits="" menuvalue="57" menutitle="58"  />
-	<bassinTypeChange action="modules/parametre/bassinType.php" param="change" droits="admin" />
-	<bassinTypeWrite action="modules/parametre/bassinType.php" param="write" droits="admin" retourok="bassinTypeList" retourko="bassinTypeChange" modulebefore="bassinTypeChange" />
-	<bassinTypeDelete action="modules/parametre/bassinType.php" param="delete" droits="admin" retoursuppr="bassinTypeList" retourko="bassinTypeChange"  modulebefore="bassinTypeChange"/>
+	<bassinTypeChange action="modules/parametre/bassinType.php" param="change" droits="paramAdmin" />
+	<bassinTypeWrite action="modules/parametre/bassinType.php" param="write" droits="paramAdmin" retourok="bassinTypeList" retourko="bassinTypeChange" modulebefore="bassinTypeChange" />
+	<bassinTypeDelete action="modules/parametre/bassinType.php" param="delete" droits="paramAdmin" retoursuppr="bassinTypeList" retourko="bassinTypeChange"  modulebefore="bassinTypeChange"/>
 
 	<bassinUsageList action="modules/parametre/bassinUsage.php" param="list" droits="consult" menulevel="1" menuparent="3" menuorder="6" menudroits="" menuvalue="59" menutitle="60"  />
-	<bassinUsageChange action="modules/parametre/bassinUsage.php" param="change" droits="admin" />
-	<bassinUsageWrite action="modules/parametre/bassinUsage.php" param="write" droits="admin" retourok="bassinUsageList" retourko="bassinUsageChange" modulebefore="bassinUsageChange" />
-	<bassinUsageDelete action="modules/parametre/bassinUsage.php" param="delete" droits="admin" retoursuppr="bassinUsageList" retourko="bassinUsageChange"  modulebefore="bassinUsageChange"/>
+	<bassinUsageChange action="modules/parametre/bassinUsage.php" param="change" droits="paramAdmin" />
+	<bassinUsageWrite action="modules/parametre/bassinUsage.php" param="write" droits="paramAdmin" retourok="bassinUsageList" retourko="bassinUsageChange" modulebefore="bassinUsageChange" />
+	<bassinUsageDelete action="modules/parametre/bassinUsage.php" param="delete" droits="paramAdmin" retoursuppr="bassinUsageList" retourko="bassinUsageChange"  modulebefore="bassinUsageChange"/>
 
 	<bassinZoneList action="modules/parametre/bassinZone.php" param="list" droits="consult" menulevel="1" menuparent="3" menuorder="7" menudroits="" menuvalue="61" menutitle="62"  />
-	<bassinZoneChange action="modules/parametre/bassinZone.php" param="change" droits="admin" />
-	<bassinZoneWrite action="modules/parametre/bassinZone.php" param="write" droits="admin" retourok="bassinZoneList" retourko="bassinZoneChange" modulebefore="bassinZoneChange" />
-	<bassinZoneDelete action="modules/parametre/bassinZone.php" param="delete" droits="admin" retoursuppr="bassinZoneList" retourko="bassinZoneChange"  modulebefore="bassinZoneChange"/>
+	<bassinZoneChange action="modules/parametre/bassinZone.php" param="change" droits="paramAdmin" />
+	<bassinZoneWrite action="modules/parametre/bassinZone.php" param="write" droits="paramAdmin" retourok="bassinZoneList" retourko="bassinZoneChange" modulebefore="bassinZoneChange" />
+	<bassinZoneDelete action="modules/parametre/bassinZone.php" param="delete" droits="paramAdmin" retoursuppr="bassinZoneList" retourko="bassinZoneChange"  modulebefore="bassinZoneChange"/>
 
 	<bassinList action="modules/bassin/bassin.php" param="list" droits="consult" menulevel="0" menuparent="" menuorder="1" menudroits="" menuvalue="63" menutitle="64"  />
 	<bassinListniv2 action="modules/bassin/bassin.php" param="list" droits="consult" menulevel="1" menuparent="1" menuorder="0" menudroits="" menuvalue="63" menutitle="64"  />
@@ -106,19 +106,25 @@
 	<analyseEauDelete action="modules/bassin/analyseEau.php" param="delete" droits="bassinGestion" retoursuppr="circuitEauList" retourko="analyseEauChange"  modulebefore="analyseEauChange"/>
 
 	<mimeTypeList action="modules/parametre/mimeType.php" param="list" droits="consult" menulevel="1" menuparent="3" menuorder="8" menudroits="" menuvalue="67" menutitle="68"  />
-	<mimeTypeChange action="modules/parametre/mimeType.php" param="change" droits="admin" />
-	<mimeTypeWrite action="modules/parametre/mimeType.php" param="write" droits="admin" retourok="mimeTypeList" retourko="mimeTypeChange" modulebefore="mimeTypeChange" />
-	<mimeTypeDelete action="modules/parametre/mimeType.php" param="delete" droits="admin" retoursuppr="mimeTypeList" retourko="mimeTypeChange"  modulebefore="mimeTypeChange"/>
+	<mimeTypeChange action="modules/parametre/mimeType.php" param="change" droits="paramAdmin" />
+	<mimeTypeWrite action="modules/parametre/mimeType.php" param="write" droits="paramAdmin" retourok="mimeTypeList" retourko="mimeTypeChange" modulebefore="mimeTypeChange" />
+	<mimeTypeDelete action="modules/parametre/mimeType.php" param="delete" droits="paramAdmin" retoursuppr="mimeTypeList" retourko="mimeTypeChange"  modulebefore="mimeTypeChange"/>
 
 	<mortaliteTypeList action="modules/parametre/mortaliteType.php" param="list" droits="consult" menulevel="1" menuparent="3" menuorder="9" menudroits="" menuvalue="69" menutitle="70"  />
-	<mortaliteTypeChange action="modules/parametre/mortaliteType.php" param="change" droits="admin" />
-	<mortaliteTypeWrite action="modules/parametre/mortaliteType.php" param="write" droits="admin" retourok="mortaliteTypeList" retourko="mortaliteTypeChange" modulebefore="mortaliteTypeChange" />
-	<mortaliteTypeDelete action="modules/parametre/mortaliteType.php" param="delete" droits="admin" retoursuppr="mortaliteTypeList" retourko="mortaliteTypeChange"  modulebefore="mortaliteTypeChange"/>
+	<mortaliteTypeChange action="modules/parametre/mortaliteType.php" param="change" droits="paramAdmin" />
+	<mortaliteTypeWrite action="modules/parametre/mortaliteType.php" param="write" droits="paramAdmin" retourok="mortaliteTypeList" retourko="mortaliteTypeChange" modulebefore="mortaliteTypeChange" />
+	<mortaliteTypeDelete action="modules/parametre/mortaliteType.php" param="delete" droits="paramAdmin" retoursuppr="mortaliteTypeList" retourko="mortaliteTypeChange"  modulebefore="mortaliteTypeChange"/>
 
 	<cohorteTypeList action="modules/parametre/cohorteType.php" param="list" droits="consult" menulevel="1" menuparent="3" menuorder="10" menudroits="" menuvalue="71" menutitle="72"  />
-	<cohorteTypeChange action="modules/parametre/cohorteType.php" param="change" droits="admin" />
-	<cohorteTypeWrite action="modules/parametre/cohorteType.php" param="write" droits="admin" retourok="cohorteTypeList" retourko="cohorteTypeChange" modulebefore="cohorteTypeChange" />
-	<cohorteTypeDelete action="modules/parametre/cohorteType.php" param="delete" droits="admin" retoursuppr="cohorteTypeList" retourko="cohorteTypeChange"  modulebefore="cohorteTypeChange"/>
+	<cohorteTypeChange action="modules/parametre/cohorteType.php" param="change" droits="paramAdmin" />
+	<cohorteTypeWrite action="modules/parametre/cohorteType.php" param="write" droits="paramAdmin" retourok="cohorteTypeList" retourko="cohorteTypeChange" modulebefore="cohorteTypeChange" />
+	<cohorteTypeDelete action="modules/parametre/cohorteType.php" param="delete" droits="paramAdmin" retoursuppr="cohorteTypeList" retourko="cohorteTypeChange"  modulebefore="cohorteTypeChange"/>
+
+	<anomalieList action="modules/anomalie/anomalie.php" param="list" droits="consult" menulevel="1" menuparent="0" menuorder="1" menudroits="" menuvalue="73" menutitle="74"  />
+	<anomalieChange action="modules/anomalie/anomalie.php" param="change" droits="poissonGestion" />
+	<anomalieWrite action="modules/anomalie/anomalie.php" param="write" droits="poissonAdmin" retourok="anomalieList" retourko="anomalieChange" modulebefore="anomalieChange" />
+	<anomalieDelete action="modules/anomalie/anomalie.php" param="delete" droits="poissonAdmin" retoursuppr="anomalieList" retourko="anomalieChange"  modulebefore="anomalieChange"/>
+	<poissonAnomalieWrite action="modules/anomalie/anomalie.php" param="write" droits="poissonGestion" retourok="poissonDisplay" retourko="anomalieChange" modulebefore="anomalieChange" />
 	
 </navigation>
 	

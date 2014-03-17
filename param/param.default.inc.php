@@ -103,7 +103,7 @@ $GACL_dbprefixe = "gacl";
 $GACL_aro = "login";
 $GACL_aco = "appli";
 $GACL_path = "param/gacl.ini.php";
-$GACL_listeDroitsGeres = "admin,consult,poissonGestion,bassinGestion";
+$GACL_listeDroitsGeres = "admin,consult,poissonGestion,bassinGestion,poissonAdmin,bassinAdmin,paramAdmin";
 /*
  * Gestion des erreurs
  */

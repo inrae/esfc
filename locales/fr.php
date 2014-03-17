@@ -69,6 +69,8 @@ $LANG["menu"][69] = "Types de mortalité";
 $LANG["menu"][70] = "Table des types de mortalité des poissons";
 $LANG["menu"][71] = "Détermination des cohortes";
 $LANG["menu"][72] = "Table des méthodes de détermination des cohortes";
+$LANG["menu"][73] = "Anomalies";
+$LANG["menu"][74] = "Liste des anomalies détectées dans la base de données";
 
 
 

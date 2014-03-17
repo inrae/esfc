@@ -65,14 +65,17 @@ class Poisson extends ObjetBDD {
 	function getListeSearch($dataSearch) {
 		if (is_array ( $dataSearch )) {
 			$sql = "select poisson_id, sexe_id, matricule, prenom, cohorte, capture_date, sexe_libelle, sexe_libelle_court, poisson_statut_libelle,
-					array_to_string(array_agg(pittag_valeur),' ') as pittag_valeur
+					array_to_string(array_agg(pittag_valeur),' ') as pittag_valeur,
+					mortalite_date
 					from " . $this->table . " natural join sexe
 					  natural join poisson_statut
-					  left outer join pittag using (poisson_id)";
+					  left outer join pittag using (poisson_id)
+						left outer join mortalite using (poisson_id)";
 			/*
 			 * Preparation de la clause group by
 			 */
-			$group = " group by poisson_id, sexe_id, matricule, prenom, cohorte, capture_date, sexe_libelle, sexe_libelle_court, poisson_statut_libelle ";
+			$group = " group by poisson_id, sexe_id, matricule, prenom, 
+					cohorte, capture_date, sexe_libelle, sexe_libelle_court, poisson_statut_libelle, mortalite_date ";
 			/*
 			 * Preparation de la clause order
 			 */
@@ -99,7 +102,14 @@ class Poisson extends ObjetBDD {
 			}
 			if (strlen ( $where ) == 7)
 				$where = "";
-			return $this->getListeParam ( $sql . $where . $group . $order );
+			$data = $this->getListeParam ( $sql . $where . $group . $order );
+			/*
+			 * Mise en forme des dates
+			 */
+			foreach($data as $key => $value) {
+				$data[$key]["mortalite_date"] = $this->formatDateDBversLocal($value["mortalite_date"]);
+			}
+			return ($data);
 		}
 	}
 	/**

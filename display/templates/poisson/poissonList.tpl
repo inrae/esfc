@@ -16,6 +16,7 @@ setDataTables("cpoissonList",true, true, true, 50);
 <th>Statut</th>
 <th>Cohorte</th>
 <th>Date de capture</th>
+<th>Date de<br>mortalité</th>
 </tr>
 </thead>
 <tdata>
@@ -40,6 +41,7 @@ setDataTables("cpoissonList",true, true, true, 50);
 <td>{$data[lst].poisson_statut_libelle}</td>
 <td>{$data[lst].cohorte}</td>
 <td>{$data[lst].capture_date}</td>
+<td>{$data[lst].mortalite_date}</td>
 </tr>
 {/section}
 </tdata>

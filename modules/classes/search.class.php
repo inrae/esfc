@@ -130,4 +130,17 @@ class SearchCircuitEau extends SearchParam {
 		);
 	}
 }
+/**
+ * Classe de recherche des anomalies détectées dans la base de données
+ * @author quinton
+ *
+ */
+class SearchAnomalie extends SearchParam {
+	function __construct() {
+		$this->param = array(
+			"statut" => 0,
+			"type" => 0
+		);
+	}
+}
 ?>
