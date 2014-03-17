@@ -16,7 +16,7 @@ Type de mortalite <span class="red">*</span> :</td>
 <input class="submit" type="submit" value="Enregistrer">
 </form>
 
-{if $data.mortalite_type_id > 0 &&$droits["admin"] == 1}
+{if $data.mortalite_type_id > 0 &&$droits["paramAdmin"] == 1}
 <form action="index.php" method="post" onSubmit='return confirmSuppression("Confirmez-vous la suppression ?")'>
 <input type="hidden" name="mortalite_type_id" value="{$data.mortalite_type_id}">
 <input type="hidden" name="module" value="mortaliteTypeDelete">

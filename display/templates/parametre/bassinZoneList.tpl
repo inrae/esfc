@@ -1,5 +1,5 @@
 <h2>Zones d'implantation des bassins</h2>
-{if $droits["admin"] == 1}
+{if $droits["paramAdmin"] == 1}
 <a href="index.php?module=bassinZoneChange&bassin_zone_id=0">
 Nouveau...
 </a>
@@ -17,7 +17,7 @@ setDataTables("cbassinZoneList");
 {section name=lst loop=$data}
 <tr>
 <td>
-{if $droits["admin"] == 1}
+{if $droits["paramAdmin"] == 1}
 <a href="index.php?module=bassinZoneChange&bassin_zone_id={$data[lst].bassin_zone_id}">
 {$data[lst].bassin_zone_libelle}
 </a>

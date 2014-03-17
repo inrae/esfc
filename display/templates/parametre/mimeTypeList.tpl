@@ -1,5 +1,5 @@
 <h2>Types de fichiers importables</h2>
-{if $droits["admin"] == 1}
+{if $droits["paramAdmin"] == 1}
 <a href="index.php?module=mimeTypeChange&mime_type_id=0">
 Nouveau...
 </a>
@@ -18,7 +18,7 @@ setDataTables("cmimeTypeList");
 {section name=lst loop=$data}
 <tr>
 <td>
-{if $droits["admin"] == 1}
+{if $droits["paramAdmin"] == 1}
 <a href="index.php?module=mimeTypeChange&mime_type_id={$data[lst].mime_type_id}">
 {$data[lst].extension}
 </a>

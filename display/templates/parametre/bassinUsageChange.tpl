@@ -16,7 +16,7 @@ Utilisation <span class="red">*</span> :</td>
 <input class="submit" type="submit" value="Enregistrer">
 </form>
 
-{if $data.bassin_usage_id > 0 &&$droits["admin"] == 1}
+{if $data.bassin_usage_id > 0 &&$droits["paramAdmin"] == 1}
 <form action="index.php" method="post" onSubmit='return confirmSuppression("Confirmez-vous la suppression ?")'>
 <input type="hidden" name="bassin_usage_id" value="{$data.bassin_usage_id}">
 <input type="hidden" name="module" value="bassinUsageDelete">

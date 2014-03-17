@@ -23,7 +23,7 @@ Type de contenu (mime-Type) <span class="red">*</span> :</td>
 <input class="submit" type="submit" value="Enregistrer">
 </form>
 
-{if $data.mime_type_id > 0 &&$droits["admin"] == 1}
+{if $data.mime_type_id > 0 &&$droits["paramAdmin"] == 1}
 <form action="index.php" method="post" onSubmit='return confirmSuppression("Confirmez-vous la suppression ?")'>
 <input type="hidden" name="mime_type_id" value="{$data.mime_type_id}">
 <input type="hidden" name="module" value="mimeTypeDelete">

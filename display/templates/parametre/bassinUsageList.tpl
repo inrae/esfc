@@ -1,5 +1,5 @@
 <h2>Utilisations des bassins</h2>
-{if $droits["admin"] == 1}
+{if $droits["paramAdmin"] == 1}
 <a href="index.php?module=bassinUsageChange&bassin_usage_id=0">
 Nouveau...
 </a>
@@ -17,7 +17,7 @@ setDataTables("cbassinUsageList");
 {section name=lst loop=$data}
 <tr>
 <td>
-{if $droits["admin"] == 1}
+{if $droits["paramAdmin"] == 1}
 <a href="index.php?module=bassinUsageChange&bassin_usage_id={$data[lst].bassin_usage_id}">
 {$data[lst].bassin_usage_libelle}
 </a>

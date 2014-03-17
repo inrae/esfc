@@ -1,5 +1,5 @@
 <h2>Statuts des poissons</h2>
-{if $droits["admin"] == 1}
+{if $droits["paramAdmin"] == 1}
 <a href="index.php?module=poissonStatutChange&poisson_statut_id=0">
 Nouveau...
 </a>
@@ -17,7 +17,7 @@ setDataTables("cpoissonStatutList");
 {section name=lst loop=$data}
 <tr>
 <td>
-{if $droits["admin"] == 1}
+{if $droits["paramAdmin"] == 1}
 <a href="index.php?module=poissonStatutChange&poisson_statut_id={$data[lst].poisson_statut_id}">
 {$data[lst].poisson_statut_libelle}
 </a>

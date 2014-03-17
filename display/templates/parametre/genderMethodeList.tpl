@@ -1,5 +1,5 @@
 <h2>Méthodes de détermination du sexe</h2>
-{if $droits["admin"] == 1}
+{if $droits["paramAdmin"] == 1}
 <a href="index.php?module=genderMethodeChange&gender_methode_id=0">
 Nouveau...
 </a>
@@ -17,7 +17,7 @@ setDataTables("cgenderMethodeList");
 {section name=lst loop=$data}
 <tr>
 <td>
-{if $droits["admin"] == 1}
+{if $droits["paramAdmin"] == 1}
 <a href="index.php?module=genderMethodeChange&gender_methode_id={$data[lst].gender_methode_id}">
 {$data[lst].gender_methode_libelle}
 </a>

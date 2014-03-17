@@ -1,5 +1,5 @@
 <h2>Types d'événements</h2>
-{if $droits["admin"] == 1}
+{if $droits["paramAdmin"] == 1}
 <a href="index.php?module=evenementTypeChange&evenement_type_id=0">
 Nouveau...
 </a>
@@ -18,7 +18,7 @@ setDataTables("cevenementTypeList");
 {section name=lst loop=$data}
 <tr>
 <td>
-{if $droits["admin"] == 1}
+{if $droits["paramAdmin"] == 1}
 <a href="index.php?module=evenementTypeChange&evenement_type_id={$data[lst].evenement_type_id}">
 {$data[lst].evenement_type_libelle}
 </a>

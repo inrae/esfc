@@ -16,7 +16,7 @@ Type de cohorte <span class="red">*</span> :</td>
 <input class="submit" type="submit" value="Enregistrer">
 </form>
 
-{if $data.cohorte_type_id > 0 &&$droits["admin"] == 1}
+{if $data.cohorte_type_id > 0 &&$droits["paramAdmin"] == 1}
 <form action="index.php" method="post" onSubmit='return confirmSuppression("Confirmez-vous la suppression ?")'>
 <input type="hidden" name="cohorte_type_id" value="{$data.cohorte_type_id}">
 <input type="hidden" name="module" value="cohorteTypeDelete">

@@ -1,5 +1,5 @@
 <h2>Types de pittag</h2>
-{if $droits["admin"] == 1}
+{if $droits["paramAdmin"] == 1}
 <a href="index.php?module=pittagTypeChange&pittag_type_id=0">
 Nouveau...
 </a>
@@ -17,7 +17,7 @@ setDataTables("pittagList");
 {section name=lst loop=$data}
 <tr>
 <td>
-{if $droits["admin"] == 1}
+{if $droits["paramAdmin"] == 1}
 <a href="index.php?module=pittagTypeChange&pittag_type_id={$data[lst].pittag_type_id}">
 {$data[lst].pittag_type_libelle}
 </a>
