@@ -44,6 +44,8 @@ switch ($t_module ["param"]) {
 			$smarty->assign ( "bassinListActif", $bassin->getListe ( 1 ) );
 			$mortalite_type = new Mortalite_type($bdd, $ObjetBDDParam);
 			$smarty->assign("mortaliteType", $mortalite_type->getListe());
+			$cohorte_type = new Cohorte_type($bdd, $ObjetBDDParam);
+			$smarty->assign("cohorteType", $cohorte_type->getListe());
 			dataRead ( $dataClass, $id, "poisson/evenementChange.tpl", $_REQUEST ["poisson_id"] );
 			/*
 			 * Lecture du poisson
@@ -63,6 +65,8 @@ switch ($t_module ["param"]) {
 				$smarty->assign ( "dataGender", $genderSelection->getDataByEvenement ( $id ) );
 				$mortalite = new Mortalite($bdd, $ObjetBDDParam);
 				$smarty->assign("dataMortalite", $mortalite->getDataByEvenement($id));
+				$cohorte = new Cohorte($bdd, $ObjetBDDParam);
+				$smarty->assign("dataCohorte", $cohorte->getDataByEvenement($id));
 				/*
 				 * Traitement particulier du transfert
 				 */				
@@ -154,6 +158,19 @@ switch ($t_module ["param"]) {
 				$mortalite_id = $mortalite->ecrire($_REQUEST);
 				if (! $mortalite_id > 0) {
 					$message .= formatErrorData ( $mortalite->getErrorData () );
+					$message .= $LANG ["message"] [12];
+					$module_coderetour = - 1;
+				}
+			}
+			/*
+			 * Cohorte
+			 */
+			if ($_REQUEST["cohorte_type_id"] > 0) {
+				$cohorte = new Cohorte($bdd, $ObjetBDDParam);
+				$_REQUEST["cohorte_date"] = $_REQUEST["evenement_date"];
+				$cohorte_id = $cohorte->ecrire($_REQUEST);
+				if (! $cohorte_id > 0) {
+					$message .= formatErrorData ( $cohorte->getErrorData () );
 					$message .= $LANG ["message"] [12];
 					$module_coderetour = - 1;
 				}

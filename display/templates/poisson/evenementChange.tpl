@@ -99,6 +99,7 @@ Retour à la liste des poissons
 <input type="hidden" name="anomalie_flag" id="anomalie_flag" value="0">
 <input type="hidden" name="anomalie_db_commentaire" id="anomalie_db_commentaire" value="">
 <input type="hidden" name="mortalite_id" id="mortalite_id" value="{$dataMortalite.mortalite_id}" >
+<input type="hidden" name="cohorte_id" id="cohorte_id" value="{$dataCohorte.cohorte_id}" >
 
 <fieldset>
 <legend>Données liées à l'événement lui-même</legend>
@@ -188,6 +189,43 @@ Sélectionnez la pathologie...
 </div>
 </fieldset>
 <fieldset>
+<legend>Changement de bassin</legend>
+<div class="masquage">
+<dl>
+<dt>Bassin d'origine <span class="red">*</span> : </dt>
+<dd>
+<select name="bassin_origine" id="bassin_origine">
+<option value="" {if $dataTransfert.bassin_origine == ""} selected {/if}>
+Sélectionnez le bassin d'origine...
+</option>
+{section name=lst loop=$bassinList}
+<option value="{$bassinList[lst].bassin_id}" {if $bassinList[lst].bassin_id == $dataTransfert.bassin_origine} selected {/if}>
+{$bassinList[lst].bassin_nom}
+</option>
+{/section}
+</select>
+<span class="erreur"></span>
+</dd>
+</dl>
+<dl>
+<dt>Bassin de destination <span class="red">*</span> : </dt>
+<dd>
+<select name="bassin_destination" id="bassin_destination">
+<option value="" {if $dataTransfert.bassin_destination == ""} selected {/if}>
+Sélectionnez le bassin de destination...
+</option>
+{section name=lst loop=$bassinListActif}
+<option value="{$bassinListActif[lst].bassin_id}" {if $bassinListActif[lst].bassin_id == $dataTransfert.bassin_destination} selected {/if}>
+{$bassinListActif[lst].bassin_nom}
+</option>
+{/section}
+</select>
+<span class="erreur"style="display:none; color:red;"></span>
+</dd>
+</dl>
+</div>
+</fieldset>
+<fieldset>
 <legend>Détermination du sexe</legend>
 <div class="masquage">
 <dl>
@@ -229,43 +267,38 @@ Sélectionnez le sexe...
 </dl>
 </div>
 </fieldset>
+
 <fieldset>
-<legend>Changement de bassin</legend>
+<legend>Détermination de la cohorte</legend>
 <div class="masquage">
 <dl>
-<dt>Bassin d'origine <span class="red">*</span> : </dt>
+<dt>Type de détermination <span class="red">*</span> : </dt>
 <dd>
-<select name="bassin_origine" id="bassin_origine">
-<option value="" {if $dataTransfert.bassin_origine == ""} selected {/if}>
-Sélectionnez le bassin d'origine...
+<select name="cohorte_type_id" id="cohorte_type_id">
+<option value="" {if $dataCohorte.cohorte_type_id == ""} selected {/if}>
+Sélectionnez le type de détermination...
 </option>
-{section name=lst loop=$bassinList}
-<option value="{$bassinList[lst].bassin_id}" {if $bassinList[lst].bassin_id == $dataTransfert.bassin_origine} selected {/if}>
-{$bassinList[lst].bassin_nom}
+{section name=lst loop=$cohorteType}
+<option value="{$cohorteType[lst].cohorte_type_id}" {if $cohorteType[lst].cohorte_type_id == $dataCohorte.cohorte_type_id} selected {/if}>
+{$cohorteType[lst].cohorte_type_libelle}
 </option>
 {/section}
 </select>
-<span class="erreur"></span>
 </dd>
 </dl>
 <dl>
-<dt>Bassin de destination <span class="red">*</span> : </dt>
+<dt>Détermination effectuée :</dt>
+<dd><input name="cohorte_determination" value="{$dataCohorte.cohorte_determination}"></dd>
+</dl>
+<dl>
+<dt>Commentaire : </dt>
 <dd>
-<select name="bassin_destination" id="bassin_destination">
-<option value="" {if $dataTransfert.bassin_destination == ""} selected {/if}>
-Sélectionnez le bassin de destination...
-</option>
-{section name=lst loop=$bassinListActif}
-<option value="{$bassinListActif[lst].bassin_id}" {if $bassinListActif[lst].bassin_id == $dataTransfert.bassin_destination} selected {/if}>
-{$bassinListActif[lst].bassin_nom}
-</option>
-{/section}
-</select>
-<span class="erreur"style="display:none; color:red;"></span>
+<input name="cohorte_commentaire" value="{$dataCohorte.cohorte_commentaire}" size="40">
 </dd>
 </dl>
 </div>
 </fieldset>
+
 <fieldset>
 <legend>Mortalité</legend>
 <div class="masquage">

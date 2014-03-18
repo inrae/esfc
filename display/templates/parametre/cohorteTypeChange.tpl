@@ -6,7 +6,7 @@
 <input type="hidden" name="cohorte_type_id" value="{$data.cohorte_type_id}">
 <tr>
 <td class="libelleSaisie">
-Type de cohorte <span class="red">*</span> :</td>
+Méthode de détermination de la cohorte <span class="red">*</span> :</td>
 <td class="datamodif">
 <input id="ccohorte_type_libelle" name="cohorte_type_libelle" type="text" value="{$data.cohorte_type_libelle}" required autofocus/>
 </td>

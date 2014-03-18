@@ -36,7 +36,7 @@ class Poisson extends ObjetBDD {
 				"sexe_id" => array (
 						"type" => 1,
 						"requis" => 1,
-						"defaultValue" => 3
+						"defaultValue" => 3 
 				),
 				"matricule" => array (
 						"type" => 0 
@@ -106,8 +106,8 @@ class Poisson extends ObjetBDD {
 			/*
 			 * Mise en forme des dates
 			 */
-			foreach($data as $key => $value) {
-				$data[$key]["mortalite_date"] = $this->formatDateDBversLocal($value["mortalite_date"]);
+			foreach ( $data as $key => $value ) {
+				$data [$key] ["mortalite_date"] = $this->formatDateDBversLocal ( $value ["mortalite_date"] );
 			}
 			return ($data);
 		}
@@ -132,6 +132,23 @@ class Poisson extends ObjetBDD {
 							";
 			$where = " where p.poisson_id = " . $poisson_id;
 			return $this->lireParam ( $sql . $where );
+		}
+	}
+	/**
+	 * Fonction retournant la liste des poissons correspondant au libellé fourni
+	 * @param string $libelle
+	 * @return array
+	 */
+	function getListPoissonFromName($libelle) {
+		if (strlen($libelle)>0) {
+			$sql = "select p.poisson_id, matricule, prenom, pittag_valeur 
+					from ". $this->table."
+					left outer join v_pittag_by_poisson using (poisson_id)
+					where upper(matricule) like upper('%".$libelle."%') 
+					or upper(prenom) like upper('%".$libelle."%')
+					or upper(pittag_valeur) like upper('%".$libelle."%')
+					order by matricule, pittag_valeur, prenom";
+			return $this->getListeParam($sql);				
 		}
 	}
 }
@@ -265,21 +282,21 @@ class Pittag extends ObjetBDD {
 	/**
 	 * Retourne la liste des pittag attribués à un poisson
 	 *
-	 * @param int $poisson_id  
-	 * @param int $limit      	
+	 * @param int $poisson_id        	
+	 * @param int $limit        	
 	 * @return array
 	 */
-	function getListByPoisson($poisson_id, $limit=0) {
+	function getListByPoisson($poisson_id, $limit = 0) {
 		if ($poisson_id > 0) {
 			$sql = "select pittag_id, poisson_id, pittag_date_pose, pittag_valeur, pittag_type_libelle
 					from pittag
 					left outer join pittag_type using (pittag_type_id)
 					where poisson_id = " . $poisson_id . " order by pittag_date_pose desc, pittag_id desc";
 			if ($limit > 0) {
-				$sql .= " limit ".$limit;
+				$sql .= " limit " . $limit;
 			}
 			if ($limit == 1) {
-				return $this->lireParam($sql) ;
+				return $this->lireParam ( $sql );
 			} else {
 				return $this->getListeParam ( $sql );
 			}
@@ -414,9 +431,9 @@ class Pathologie extends ObjetBDD {
 				"evenement_id" => array (
 						"type" => 1 
 				),
-				"pathologie_valeur" => array(
-						"type" => 1
-				)
+				"pathologie_valeur" => array (
+						"type" => 1 
+				) 
 		);
 		if (! is_array ( $param ))
 			$param == array ();
@@ -454,22 +471,23 @@ class Pathologie extends ObjetBDD {
 		}
 	}
 	/**
-	 * Complement de la fonction ecrire, pour forcer le statut a mort 
+	 * Complement de la fonction ecrire, pour forcer le statut a mort
 	 * pour le poisson en cas de type de pathologie : mortalite
 	 * (non-PHPdoc)
+	 * 
 	 * @see ObjetBDD::ecrire()
 	 */
 	function ecrire($data) {
-		$pathologie_id = parent::ecrire($data);
+		$pathologie_id = parent::ecrire ( $data );
 		/*
 		 * Traitement de la mortalite - ecriture du statut mort dans le poisson
 		 */
-		if ($pathologie_id > 0 && $data["pathologie_type_id"] == 5) {
-			$poisson = new Poisson($this->connection, $this->paramori);
-			$dataPoisson = $poisson->lire($data["poisson_id"]);
-			$dataPoisson["poisson_statut_id"] = 3;
-			$poisson->ecrire($dataPoisson);
-		}  
+		if ($pathologie_id > 0 && $data ["pathologie_type_id"] == 5) {
+			$poisson = new Poisson ( $this->connection, $this->paramori );
+			$dataPoisson = $poisson->lire ( $data ["poisson_id"] );
+			$dataPoisson ["poisson_statut_id"] = 3;
+			$poisson->ecrire ( $dataPoisson );
+		}
 		return ($pathologie_id);
 	}
 }
@@ -632,7 +650,7 @@ class Gender_selection extends ObjetBDD {
 						"type" => 1 
 				),
 				"sexe_id" => array (
-						"type" => 1
+						"type" => 1 
 				),
 				"gender_selection_date" => array (
 						"type" => 2 
@@ -776,7 +794,8 @@ class Transfert extends ObjetBDD {
 	}
 	/**
 	 * Calcule la liste des poissons presents dans un bassin
-	 * @param int $bassin_id
+	 * 
+	 * @param int $bassin_id        	
 	 * @return array
 	 */
 	function getListPoissonPresentByBassin($bassin_id) {
@@ -791,15 +810,15 @@ class Transfert extends ObjetBDD {
 					join poisson on (t.poisson_id = poisson.poisson_id)
 					left outer join v_pittag_by_poisson pittag on (pittag.poisson_id = poisson.poisson_id)
 					left outer join sexe using (sexe_id)
-					where  poisson_statut_id not in (3, 4) and bassin.bassin_id = '.$bassin_id."
+					where  poisson_statut_id not in (3, 4) and bassin.bassin_id = ' . $bassin_id . "
  					order by matricule";
 		}
-		return ($this->getListeParam($sql));
+		return ($this->getListeParam ( $sql ));
 	}
 	/**
 	 * Lit un enregistrement à partir de l'événement
 	 *
-	 * @param int $evenement_id
+	 * @param int $evenement_id        	
 	 * @return array
 	 */
 	function getDataByEvenement($evenement_id) {
@@ -809,28 +828,29 @@ class Transfert extends ObjetBDD {
 		}
 	}
 	/**
-	 * Complement de la fonction ecrire pour mettre a jour le statut de l'animal, 
+	 * Complement de la fonction ecrire pour mettre a jour le statut de l'animal,
 	 * en cas de transfert dans un bassin adulte
 	 * (non-PHPdoc)
+	 * 
 	 * @see ObjetBDD::ecrire()
 	 */
 	function ecrire($data) {
-		$transfert_id = parent::ecrire($data);
-		if ($transfert_id > 0 && $data["bassin_destination"] > 0 && $data["poisson_id"] > 0) {
+		$transfert_id = parent::ecrire ( $data );
+		if ($transfert_id > 0 && $data ["bassin_destination"] > 0 && $data ["poisson_id"] > 0) {
 			/*
 			 * Recuperation de l'usage du bassin
 			 */
-			$bassin = new Bassin($this->connection, $this->paramori);
-			$dataBassin = $bassin->lire($data["bassin_destination"]);
-			if ($dataBassin["bassin_usage_id"] == 1) {
+			$bassin = new Bassin ( $this->connection, $this->paramori );
+			$dataBassin = $bassin->lire ( $data ["bassin_destination"] );
+			if ($dataBassin ["bassin_usage_id"] == 1) {
 				/*
 				 * Recuperation du poisson
 				 */
-				$poisson = new Poisson($this->connection, $this->paramori);
-				$dataPoisson = $poisson->lire($data["poisson_id"]);
-				if ($dataPoisson["poisson_statut_id"] == 2) {
-					$dataPoisson["poisson_statut_id"] = 1;
-					$poisson->ecrire($dataPoisson);
+				$poisson = new Poisson ( $this->connection, $this->paramori );
+				$dataPoisson = $poisson->lire ( $data ["poisson_id"] );
+				if ($dataPoisson ["poisson_statut_id"] == 2) {
+					$dataPoisson ["poisson_statut_id"] = 1;
+					$poisson->ecrire ( $dataPoisson );
 				}
 			}
 		}
@@ -839,8 +859,9 @@ class Transfert extends ObjetBDD {
 }
 /**
  * ORM de gestion de la table mime_type
+ * 
  * @author quinton
- *
+ *        
  */
 class Mime_type extends ObjetBDD {
 	/**
@@ -848,7 +869,7 @@ class Mime_type extends ObjetBDD {
 	 *
 	 * @param
 	 *        	instance ADODB $bdd
-	 * @param array $param
+	 * @param array $param        	
 	 */
 	function __construct($bdd, $param = null) {
 		$this->param = $param;
@@ -859,16 +880,16 @@ class Mime_type extends ObjetBDD {
 						"type" => 1,
 						"key" => 1,
 						"requis" => 1,
-						"defaultValue" => 0
+						"defaultValue" => 0 
 				),
 				"content_type" => array (
 						"type" => 0,
-						"requis" => 1
+						"requis" => 1 
 				),
 				"extension" => array (
 						"type" => 0,
-						"requis" => 1
-				)
+						"requis" => 1 
+				) 
 		);
 		if (! is_array ( $param ))
 			$param == array ();
@@ -878,19 +899,21 @@ class Mime_type extends ObjetBDD {
 	/**
 	 * retourne la liste des types mimes triés par extension
 	 * (non-PHPdoc)
+	 * 
 	 * @see ObjetBDD::getListe()
 	 */
 	function getListe() {
 		$sql = "select * from mime_type order by extension";
-		return ($this->getListeParam($sql));
+		return ($this->getListeParam ( $sql ));
 	}
 }
 class Document extends ObjetBDD {
 	/**
 	 * Constructeur de la classe
 	 *
-	 * @param instance ADODB $bdd
-	 * @param array $param
+	 * @param
+	 *        	instance ADODB $bdd
+	 * @param array $param        	
 	 */
 	function __construct($bdd, $param = null) {
 		$this->param = $param;
@@ -901,28 +924,29 @@ class Document extends ObjetBDD {
 						"type" => 1,
 						"key" => 1,
 						"requis" => 1,
-						"defaultValue" => 0
+						"defaultValue" => 0 
 				),
 				"mime_type_id" => array (
 						"type" => 1,
-						"requis" => 1
+						"requis" => 1 
 				),
 				"poisson_id" => array (
-						"type" => 1
+						"type" => 1 
 				),
 				"evenement_id" => array (
-						"type" => 1
+						"type" => 1 
 				),
-				"document_date_import" => array(
-					"type" => 2,
-					"requis" => 1,
-						"defaultValue" => "dateJour"),
-				"document_nom" => array(
-						"requis" => 1
+				"document_date_import" => array (
+						"type" => 2,
+						"requis" => 1,
+						"defaultValue" => "dateJour" 
 				),
-				"document_description" => array(
-						"type"=>0
-				)				
+				"document_nom" => array (
+						"requis" => 1 
+				),
+				"document_description" => array (
+						"type" => 0 
+				) 
 		);
 		if (! is_array ( $param ))
 			$param == array ();
@@ -930,14 +954,13 @@ class Document extends ObjetBDD {
 		parent::__construct ( $bdd, $param );
 	}
 }
-
 class Cohorte extends ObjetBDD {
 	/**
 	 * Constructeur de la classe
 	 *
 	 * @param
 	 *        	instance ADODB $bdd
-	 * @param array $param
+	 * @param array $param        	
 	 */
 	function __construct($bdd, $param = null) {
 		$this->paramori = $param;
@@ -949,28 +972,28 @@ class Cohorte extends ObjetBDD {
 						"type" => 1,
 						"key" => 1,
 						"requis" => 1,
-						"defaultValue" => 0
+						"defaultValue" => 0 
 				),
 				"poisson_id" => array (
 						"type" => 1,
 						"requis" => 1,
-						"parentAttrib" => 1
+						"parentAttrib" => 1 
 				),
 				"cohorte_date" => array (
-						"type" => 2
+						"type" => 2 
 				),
 				"cohorte_commentaire" => array (
-						"type" => 0
+						"type" => 0 
 				),
 				"evenement_id" => array (
-						"type" => 1
+						"type" => 1 
 				),
-				"cohorte_determination" => array(
-						"type" => 0
+				"cohorte_determination" => array (
+						"type" => 0 
 				),
-				"cohorte_type_id" => array(
-					"type" => 1
-				)
+				"cohorte_type_id" => array (
+						"type" => 1 
+				) 
 		);
 		if (! is_array ( $param ))
 			$param == array ();
@@ -980,7 +1003,7 @@ class Cohorte extends ObjetBDD {
 	/**
 	 * Retourne la liste des déterminations de cohortes pour un poisson
 	 *
-	 * @param int $poisson_id
+	 * @param int $poisson_id        	
 	 * @return array <tableau, boolean, $data, string>
 	 */
 	function getListByPoisson($poisson_id) {
@@ -999,21 +1022,40 @@ class Cohorte extends ObjetBDD {
 	/**
 	 * Lit un enregistrement à partir de l'événement
 	 *
-	 * @param unknown $evenement_id
+	 * @param unknown $evenement_id        	
 	 * @return Ambigous <multitype:, boolean, $data, string>
 	 */
 	function getDataByEvenement($evenement_id) {
 		if ($evenement_id > 0) {
-			$sql = "select * from ".$this->table." where evenement_id = " . $evenement_id;
+			$sql = "select * from " . $this->table . " where evenement_id = " . $evenement_id;
 			return $this->lireParam ( $sql );
 		}
+	}
+	/**
+	 * rajout de l'ecriture de la cohorte
+	 * (non-PHPdoc)
+	 * 
+	 * @see ObjetBDD::ecrire()
+	 */
+	function ecrire($data) {
+		$ret = parent::ecrire ( $data );
+		if ($ret > 0 && $data ["poisson_id"] > 0 && strlen ( $data ["cohorte_determination"] ) > 0) {
+			/*
+			 * S'il s'agit d'une determination expert, on force le sexe
+			 */
+			$poisson = new Poisson ( $this->connection, $this->paramori );
+			$dataPoisson = $poisson->lire ( $data ["poisson_id"] );
+			$dataPoisson ["cohorte"] = $data ["cohorte_determination"];
+			$poisson->ecrire ( $dataPoisson );
+		}
+		return $ret;
 	}
 }
 /**
  * ORM de la table cohorte_type
  *
  * @author quinton
- *
+ *        
  */
 class Cohorte_type extends ObjetBDD {
 	/**
@@ -1021,7 +1063,7 @@ class Cohorte_type extends ObjetBDD {
 	 *
 	 * @param
 	 *        	instance ADODB $bdd
-	 * @param array $param
+	 * @param array $param        	
 	 */
 	function __construct($bdd, $param = null) {
 		$this->param = $param;
@@ -1032,12 +1074,12 @@ class Cohorte_type extends ObjetBDD {
 						"type" => 1,
 						"key" => 1,
 						"requis" => 1,
-						"defaultValue" => 0
+						"defaultValue" => 0 
 				),
 				"cohorte_type_libelle" => array (
 						"type" => 0,
-						"requis" => 1
-				)
+						"requis" => 1 
+				) 
 		);
 		if (! is_array ( $param ))
 			$param == array ();
@@ -1049,7 +1091,7 @@ class Cohorte_type extends ObjetBDD {
  * ORM de la table mortalite_type
  *
  * @author quinton
- *
+ *        
  */
 class Mortalite_type extends ObjetBDD {
 	/**
@@ -1057,7 +1099,7 @@ class Mortalite_type extends ObjetBDD {
 	 *
 	 * @param
 	 *        	instance ADODB $bdd
-	 * @param array $param
+	 * @param array $param        	
 	 */
 	function __construct($bdd, $param = null) {
 		$this->param = $param;
@@ -1068,12 +1110,12 @@ class Mortalite_type extends ObjetBDD {
 						"type" => 1,
 						"key" => 1,
 						"requis" => 1,
-						"defaultValue" => 0
+						"defaultValue" => 0 
 				),
 				"mortalite_type_libelle" => array (
 						"type" => 0,
-						"requis" => 1
-				)
+						"requis" => 1 
+				) 
 		);
 		if (! is_array ( $param ))
 			$param == array ();
@@ -1081,14 +1123,13 @@ class Mortalite_type extends ObjetBDD {
 		parent::__construct ( $bdd, $param );
 	}
 }
-
 class Mortalite extends ObjetBDD {
 	/**
 	 * Constructeur de la classe
 	 *
 	 * @param
 	 *        	instance ADODB $bdd
-	 * @param array $param
+	 * @param array $param        	
 	 */
 	function __construct($bdd, $param = null) {
 		$this->paramori = $param;
@@ -1100,26 +1141,26 @@ class Mortalite extends ObjetBDD {
 						"type" => 1,
 						"key" => 1,
 						"requis" => 1,
-						"defaultValue" => 0
+						"defaultValue" => 0 
 				),
 				"poisson_id" => array (
 						"type" => 1,
 						"requis" => 1,
-						"parentAttrib" => 1
+						"parentAttrib" => 1 
 				),
 				"mortalite_type_id" => array (
 						"type" => 1,
-						"requis" => 1
+						"requis" => 1 
 				),
 				"mortalite_date" => array (
-						"type" => 2
+						"type" => 2 
 				),
 				"mortalite_commentaire" => array (
-						"type" => 0
+						"type" => 0 
 				),
 				"evenement_id" => array (
-						"type" => 1
-				)
+						"type" => 1 
+				) 
 		);
 		if (! is_array ( $param ))
 			$param == array ();
@@ -1129,7 +1170,7 @@ class Mortalite extends ObjetBDD {
 	/**
 	 * Retourne la liste des mortalites pour un poisson
 	 *
-	 * @param unknown $poisson_id
+	 * @param unknown $poisson_id        	
 	 * @return Ambigous <tableau, boolean, $data, string>
 	 */
 	function getListByPoisson($poisson_id) {
@@ -1147,7 +1188,7 @@ class Mortalite extends ObjetBDD {
 	/**
 	 * Lit un enregistrement à partir de l'événement
 	 *
-	 * @param int $evenement_id
+	 * @param int $evenement_id        	
 	 * @return array
 	 */
 	function getDataByEvenement($evenement_id) {
@@ -1159,15 +1200,17 @@ class Mortalite extends ObjetBDD {
 }
 /**
  * ORM de gestion de la table parent_poisson
+ * 
  * @author quinton
- *
+ *        
  */
 class Parent_poisson extends ObjetBDD {
 	/**
 	 * Constructeur de la classe
 	 *
-	 * @param instance ADODB $bdd
-	 * @param array $param
+	 * @param
+	 *        	instance ADODB $bdd
+	 * @param array $param        	
 	 */
 	function __construct($bdd, $param = null) {
 		$this->param = $param;
@@ -1178,22 +1221,39 @@ class Parent_poisson extends ObjetBDD {
 						"type" => 1,
 						"key" => 1,
 						"requis" => 1,
-						"defaultValue" => 0
+						"defaultValue" => 0 
 				),
 				"poisson_id" => array (
 						"type" => 1,
 						"requis" => 1,
-						"parentAttrib" => 1
+						"parentAttrib" => 1 
 				),
-				"parent_id" => array(
+				"parent_id" => array (
 						"type" => 1,
-						"requis" => 1
-				)
+						"requis" => 1 
+				) 
 		);
 		if (! is_array ( $param ))
 			$param == array ();
 		$param ["fullDescription"] = 1;
 		parent::__construct ( $bdd, $param );
+	}
+	/**
+	 * Retourne la liste des poissons parents
+	 * 
+	 * @param int $poisson_id        	
+	 * @return array
+	 */
+	function getListParent($poisson_id) {
+		if ($poisson_id > 0) {
+			$sql = "select par.poisson_id, parent_id, matricule, pittag_valeur, prenom, sexe_libelle, cohorte
+					from " . $this->table . " par
+					join poisson pois on (par.parent_id = pois.poisson_id)
+					left outer join sexe using (sexe_id)
+					left outer join v_pittag_by_poisson pit on (pois.poisson_id = pit.poisson_id)
+					where par.poisson_id = " . $poisson_id . " order by matricule, pittag_valeur, prenom ";
+			return $this->getListeParam ( $sql );
+		}
 	}
 }
 ?>

@@ -81,6 +81,11 @@
  			$anomalie = new Anomalie_db($this->connection, $this->paramori);
  			$anomalie->supprimerChamp($id, "evenement_id");
  			/*
+ 			 * Cohorte
+ 			 */
+ 			$cohorte = new Cohorte($this->connection, $this->paramori);
+ 			$cohorte->supprimerChamp($id, "evenement_id");
+ 			/*
  			 * Suppression finale de l'evenement
  			 */
  			return parent::supprimer($id);

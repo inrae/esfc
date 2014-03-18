@@ -87,6 +87,18 @@ Nouveau pittag ou étiquette...
 {include file="poisson/pittagList.tpl"}
 <br>
 </div>
+
+<h3>Liste des parents</h3>
+<div class="masquage">
+{if $droits["poissonGestion"]==1}
+<a href="index.php?module=parentChange&poisson_id={$dataPoisson.poisson_id}&parent_poisson_id=0">
+Nouveau parent...
+</a>
+{/if}
+{include file="poisson/poissonParentList.tpl"}
+<br>
+</div>
+
 <h3>Données morphologiques</h3>
 <div class="masquage">
 {include file="poisson/morphologieList.tpl"}
@@ -95,6 +107,11 @@ Nouveau pittag ou étiquette...
 <h3>Détermination du sexe</h3>
 <div class="masquage">
 {include file="poisson/genderSelectionList.tpl"}
+<br>
+</div>
+<h3>Détermination de la cohorte</h3>
+<div class="masquage">
+{include file="poisson/cohorteList.tpl"}
 <br>
 </div>
 <h3>Anomalies relevées dans les données</h3>

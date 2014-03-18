@@ -77,6 +77,16 @@ switch ($t_module["param"]) {
 		$mortalite = new Mortalite($bdd, $ObjetBDDParam);
 		$smarty->assign("dataMortalite", $mortalite->getListByPoisson($id));
 		/*
+		 * Recuperation des cohortes
+		*/
+		$cohorte = new Cohorte($bdd, $ObjetBDDParam);
+		$smarty->assign("dataCohorte", $cohorte->getListByPoisson($id));
+		/*
+		 * Recuperation des parents
+		 */
+		$parent = new Parent_poisson($bdd, $ObjetBDDParam);
+		$smarty->assign("dataParent", $parent->getListParent($id));
+		/*
 		 * Recuperation des anomalies
 		 */
 		include_once ("modules/classes/anomalie.class.php");
@@ -135,6 +145,15 @@ switch ($t_module["param"]) {
 		 * delete record
 		 */
 		dataDelete($dataClass, $id);
+		break;
+	case "getListeAjaxJson":
+		/*
+		 * retourne la liste des poissons a partir du libelle fourni
+		 * au format JSON, en mode Ajax
+		 */
+		if (strlen($_REQUEST["libelle"]) > 0) {
+			echo json_encode($dataClass->getListPoissonFromName($_REQUEST["libelle"]));
+		}
 		break;
 }
 
