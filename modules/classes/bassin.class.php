@@ -207,16 +207,6 @@ class Bassin_type extends ObjetBDD {
 		$param ["fullDescription"] = 1;
 		parent::__construct ( $bdd, $param );
 	}
-	/**
-	 * Reecriture de la fonction d'affichage de la liste
-	 * (non-PHPdoc)
-	 *
-	 * @see ObjetBDD::getListe()
-	 */
-	function getListe() {
-		$sql = "select * from " . $this->table . " order by bassin_type_libelle";
-		return $this->getListeParam ( $sql );
-	}
 }
 /**
  * ORM de gestion de la table bassin_usage
@@ -253,16 +243,6 @@ class Bassin_usage extends ObjetBDD {
 		$param ["fullDescription"] = 1;
 		parent::__construct ( $bdd, $param );
 	}
-	/**
-	 * Reecriture de la fonction d'affichage de la liste
-	 * (non-PHPdoc)
-	 *
-	 * @see ObjetBDD::getListe()
-	 */
-	function getListe() {
-		$sql = "select * from " . $this->table . " order by bassin_usage_libelle";
-		return $this->getListeParam ( $sql );
-	}
 }
 /**
  * ORM de gestion de la table bassin_zone
@@ -298,16 +278,6 @@ class Bassin_zone extends ObjetBDD {
 			$param == array ();
 		$param ["fullDescription"] = 1;
 		parent::__construct ( $bdd, $param );
-	}
-	/**
-	 * Reecriture de la fonction d'affichage de la liste
-	 * (non-PHPdoc)
-	 *
-	 * @see ObjetBDD::getListe()
-	 */
-	function getListe() {
-		$sql = "select * from " . $this->table . " order by bassin_zone_libelle";
-		return $this->getListeParam ( $sql );
 	}
 }
 /**
@@ -348,16 +318,6 @@ class Circuit_eau extends ObjetBDD {
 			$param == array ();
 		$param ["fullDescription"] = 1;
 		parent::__construct ( $bdd, $param );
-	}
-	/**
-	 * Reecriture de la fonction d'affichage de la liste
-	 * (non-PHPdoc)
-	 *
-	 * @see ObjetBDD::getListe()
-	 */
-	function getListe() {
-		$sql = "select * from " . $this->table . " order by circuit_eau_libelle";
-		return $this->getListeParam ( $sql );
 	}
 	/**
 	 * Retourne la liste des circuits d'eau en fonction des parametres de recherche

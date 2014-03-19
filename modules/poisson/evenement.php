@@ -32,20 +32,20 @@ switch ($t_module ["param"]) {
 		include_once 'modules/classes/poisson.class.php';
 			include_once 'modules/classes/bassin.class.php';
 			$evenement_type = new Evenement_type ( $bdd, $ObjetBDDParam );
-			$smarty->assign ( "evntType", $evenement_type->getListe () );
+			$smarty->assign ( "evntType", $evenement_type->getListe (2) );
 			$pathologie_type = new Pathologie_type ( $bdd, $ObjetBDDParam );
-			$smarty->assign ( "pathoType", $pathologie_type->getListe () );
+			$smarty->assign ( "pathoType", $pathologie_type->getListe (2) );
 			$gender_methode = new Gender_methode ( $bdd, $ObjetBDDParam );
-			$smarty->assign ( "genderMethode", $gender_methode->getListe () );
+			$smarty->assign ( "genderMethode", $gender_methode->getListe (1) );
 			$sexe = new Sexe ( $bdd, $ObjetBDDParam );
-			$smarty->assign ( "sexe", $sexe->getListe () );
+			$smarty->assign ( "sexe", $sexe->getListe (1) );
 			$bassin = new Bassin ( $bdd, $ObjetBDDParam );
-			$smarty->assign ( "bassinList", $bassin->getListe () );
+			$smarty->assign ( "bassinList", $bassin->getListe (2) );
 			$smarty->assign ( "bassinListActif", $bassin->getListe ( 1 ) );
 			$mortalite_type = new Mortalite_type($bdd, $ObjetBDDParam);
-			$smarty->assign("mortaliteType", $mortalite_type->getListe());
+			$smarty->assign("mortaliteType", $mortalite_type->getListe(2));
 			$cohorte_type = new Cohorte_type($bdd, $ObjetBDDParam);
-			$smarty->assign("cohorteType", $cohorte_type->getListe());
+			$smarty->assign("cohorteType", $cohorte_type->getListe(2));
 			dataRead ( $dataClass, $id, "poisson/evenementChange.tpl", $_REQUEST ["poisson_id"] );
 			/*
 			 * Lecture du poisson

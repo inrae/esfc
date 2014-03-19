@@ -3,11 +3,11 @@
  * @author Eric Quinton
  * @copyright Copyright (c) 2014, IRSTEA / Eric Quinton
  * @license http://www.cecill.info/licences/Licence_CeCILL-C_V1-fr.html LICENCE DE LOGICIEL LIBRE CeCILL-C
- *  Creation 11 mars 2014
+ *  Creation 19 mars 2014
  */
-include_once 'modules/classes/bassin.class.php';
-$dataClass = new AnalyseEau($bdd,$ObjetBDDParam);
-$keyName = "analyse_eau_id";
+include_once 'modules/classes/poisson.class.php';
+$dataClass = new Parent_poisson($bdd,$ObjetBDDParam);
+$keyName = "parent_poisson_id";
 $id = $_REQUEST[$keyName];
 
 switch ($t_module["param"]) {
@@ -27,7 +27,6 @@ switch ($t_module["param"]) {
 		 *	}
 		 * and, also, into modules/classes/searchParam.class.php...
 		 */
-		/*
 		$searchExample->setParam ( $_REQUEST );
 		$dataSearch = $searchExample->getParam ();
 		if ($searchExample->isSearch () == 1) {
@@ -38,17 +37,14 @@ switch ($t_module["param"]) {
 		$smarty->assign ("exampleSearch", $dataSearch);
 		$smarty->assign("data", $dataClass->getListe());
 		$smarty->assign("corps", "example/exampleList.tpl");
-		*/
 		break;
 	case "display":
 		/*
 		 * Display the detail of the record
 		 */
-		/*
 		$data = $dataClass->lire($id);
 		$smarty->assign("data", $data);
 		$smarty->assign("corps", "example/exampleDisplay.tpl");
-		*/
 		break;
 	case "change":
 		/*
@@ -56,21 +52,18 @@ switch ($t_module["param"]) {
 		 * If is a new record, generate a new record with default value :
 		 * $_REQUEST["idParent"] contains the identifiant of the parent record
 		 */
-		$data=dataRead($dataClass, $id, "bassin/analyseEauChange.tpl", $_REQUEST["circuit_eau_id"]);
-		/*
-		 * Lecture des donnees concernant le circuit d'eau
-		 */
-		$circuitEau = new Circuit_eau($bdd, $ObjetBDDParam);
-		$smarty->assign("dataCircuitEau", $circuitEau->lire($_REQUEST["circuit_eau_id"]));
-		/*
-		 * Forcage de la date de reference (date de recherche) si creation d'un nouvel enregistrement
-		 */
-		if ($id == 0) {
-			$dataSearch = $searchCircuitEau->getParam ();
-			$data["analyse_eau_date"] = $dataSearch["analyse_date"];
-			$smarty->assign("data", $data);
+		dataRead($dataClass, $id, "poisson/parentPoissonChange.tpl", $_REQUEST["poisson_id"]);
+		if ($id > 0) {
+			/*
+			 * Recuperation des donnees avec le poisson parent
+			 */
+			$smarty->assign("data", $dataClass->lireAvecParent($id));
 		}
-		$smarty->assign("origine", $_REQUEST["origine"]);
+		/*
+		 * Lecture du poisson
+		*/
+		$poisson = new Poisson($bdd, $ObjetBDDParam);
+		$smarty->assign("dataPoisson", $poisson->getDetail($_REQUEST["poisson_id"]));
 		break;
 	case "write":
 		/*

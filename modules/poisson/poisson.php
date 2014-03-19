@@ -105,14 +105,14 @@ switch ($t_module["param"]) {
 		 */
 		$data=dataRead($dataClass, $id, "poisson/poissonChange.tpl");
 		$sexe = new Sexe($bdd, $ObjetBDDParam);
-		$smarty->assign("sexe", $sexe->getListe());
+		$smarty->assign("sexe", $sexe->getListe(1));
 		$poissonStatut = new Poisson_statut($bdd, $ObjetBDDParam);
-		$smarty->assign("poissonStatut", $poissonStatut->getListe());
+		$smarty->assign("poissonStatut", $poissonStatut->getListe(1));
 		/*
 		 * Recuperation de la liste des types de pittag
 		*/
 		$pittagType = new Pittag_type($bdd, $ObjetBDDParam);
-		$smarty->assign("pittagType", $pittagType->getListe());
+		$smarty->assign("pittagType", $pittagType->getListe(2));
 		/*
 		 * Recuperation du dernier pittag connu
 		 */
@@ -152,7 +152,32 @@ switch ($t_module["param"]) {
 		 * au format JSON, en mode Ajax
 		 */
 		if (strlen($_REQUEST["libelle"]) > 0) {
-			echo json_encode($dataClass->getListPoissonFromName($_REQUEST["libelle"]));
+			$data = $dataClass->getListPoissonFromName($_REQUEST["libelle"]);
+			$dataJson = array();
+			$i = 0;
+			/*
+			 * Mise en forme du tableau pour etre facile a manipuler cote client
+			 */
+			foreach ($data as $key => $value) {
+				$dataJson[$i]["id"] = $value["poisson_id"];
+				$valeur = "";
+				$flag = 0;
+				if (strlen($value["matricule"]) > 0 ) {
+					$valeur = $value["matricule"];
+					$flag = 1;
+				}
+				if (strlen($value["pittag_valeur"]) > 0 ) {
+					if ($flag == 1) $valeur .= " - "; else $flag = 1;
+					$valeur .= $value["pittag_valeur"];
+				} 
+				if (strlen($value["prenom"]) > 0 ) {
+					if ($flag == 1) $valeur .= " - ";
+					$valeur .= $value["prenom"];
+				}
+				$dataJson[$i]["val"] = $valeur;
+				$i ++;
+			}
+			echo json_encode ($dataJson) ;
 		}
 		break;
 }

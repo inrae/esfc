@@ -71,6 +71,12 @@ $LANG["menu"][71] = "Détermination des cohortes";
 $LANG["menu"][72] = "Table des méthodes de détermination des cohortes";
 $LANG["menu"][73] = "Anomalies";
 $LANG["menu"][74] = "Liste des anomalies détectées dans la base de données";
+$LANG["menu"][75] = "Types d'aliments";
+$LANG["menu"][76] = "Liste des types d'aliments";
+$LANG["menu"][77] = "Alimentation";
+$LANG["menu"][78] = "Gestion de l'alimentation";
+$LANG["menu"][79] = "Catégories d'aliment";
+$LANG["menu"][80] = "Catégories ou types de poissons nourris";
 
 
 

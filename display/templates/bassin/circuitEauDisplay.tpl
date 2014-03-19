@@ -38,7 +38,11 @@ Modifier le nom ou l'activité du circuit d'eau...
 </table>
 </form>
 
-
+{if $droits.bassinGestion == 1}
+<a href="index.php?module=analyseEauChange&analyse_eau_id=0&circuit_eau_id={$data.circuit_eau_id}">
+Nouvelle analyse...
+</a>
+{/if}
 <script>
 setDataTables("canalyseEauList", 0 , 0, 0, {$dataSearch.limit});
 </script>
@@ -88,7 +92,15 @@ Données suivantes
 <tbody>
 {section name=lst loop=$dataAnalyse}
 <tr>
-<td>{$dataAnalyse[lst].analyse_eau_date}</td>
+<td>
+{if $droits.bassinGestion == 1}
+<a href="index.php?module=analyseEauChange&analyse_eau_id={$dataAnalyse[lst].analyse_eau_id}&circuit_eau_id={$data.circuit_eau_id}">
+{$dataAnalyse[lst].analyse_eau_date}
+</a>
+{else}
+{$dataAnalyse[lst].analyse_eau_date}
+{/if}
+</td>
 <td>{$dataAnalyse[lst].temperature}</td>
 <td>{$dataAnalyse[lst].oxygene}</td>
 <td>{$dataAnalyse[lst].salinite}</td>

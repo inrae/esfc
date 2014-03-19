@@ -141,7 +141,7 @@ class Poisson extends ObjetBDD {
 	 */
 	function getListPoissonFromName($libelle) {
 		if (strlen($libelle)>0) {
-			$sql = "select p.poisson_id, matricule, prenom, pittag_valeur 
+			$sql = "select poisson.poisson_id, matricule, prenom, pittag_valeur 
 					from ". $this->table."
 					left outer join v_pittag_by_poisson using (poisson_id)
 					where upper(matricule) like upper('%".$libelle."%') 
@@ -186,16 +186,6 @@ class Poisson_statut extends ObjetBDD {
 			$param == array ();
 		$param ["fullDescription"] = 1;
 		parent::__construct ( $bdd, $param );
-	}
-	/**
-	 * Reecriture de la fonction d'affichage de la liste
-	 * (non-PHPdoc)
-	 *
-	 * @see ObjetBDD::getListe()
-	 */
-	function getListe() {
-		$sql = "select * from " . $this->table . " order by poisson_statut_id";
-		return $this->getListeParam ( $sql );
 	}
 }
 /**
@@ -528,16 +518,6 @@ class Pathologie_type extends ObjetBDD {
 			$param == array ();
 		$param ["fullDescription"] = 1;
 		parent::__construct ( $bdd, $param );
-	}
-	/**
-	 * Reecriture de la fonction pour trier la liste
-	 * (non-PHPdoc)
-	 *
-	 * @see ObjetBDD::getListe()
-	 */
-	function getListe() {
-		$sql = 'select * from ' . $this->table . ' order by pathologie_type_libelle';
-		return $this->getListeParam ( $sql );
 	}
 }
 /**
@@ -1246,7 +1226,7 @@ class Parent_poisson extends ObjetBDD {
 	 */
 	function getListParent($poisson_id) {
 		if ($poisson_id > 0) {
-			$sql = "select par.poisson_id, parent_id, matricule, pittag_valeur, prenom, sexe_libelle, cohorte
+			$sql = "select parent_poisson_id, par.poisson_id, parent_id, matricule, pittag_valeur, prenom, sexe_libelle, cohorte
 					from " . $this->table . " par
 					join poisson pois on (par.parent_id = pois.poisson_id)
 					left outer join sexe using (sexe_id)
@@ -1254,6 +1234,16 @@ class Parent_poisson extends ObjetBDD {
 					where par.poisson_id = " . $poisson_id . " order by matricule, pittag_valeur, prenom ";
 			return $this->getListeParam ( $sql );
 		}
+	}
+	
+	function lireAvecParent($id) {
+		$sql = "select parent_poisson_id, parent_poisson.poisson_id, parent_id,
+				matricule, prenom, pittag_valeur
+				from ".$this->table."
+				join poisson on (parent_poisson.parent_id = poisson.poisson_id)
+				left outer join v_pittag_by_poisson pit on (poisson.poisson_id = pit.poisson_id)
+				where parent_poisson_id = ".$id;
+		return $this->lireParam($sql);
 	}
 }
 ?>

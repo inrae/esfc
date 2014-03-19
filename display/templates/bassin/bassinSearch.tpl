@@ -1,4 +1,11 @@
-<form method="get" action="index.php">
+<script>
+$(document).ready(function() { 
+	$("select").change(function () {
+		$("#search").submit();
+	} );
+} ) ;
+</script>
+<form method="get" action="index.php" id="search">
 <input type="hidden" name="isSearch" value="1">
 <input type="hidden" name="module" value="bassinList">
 <table class="tableaffichage">
@@ -16,7 +23,7 @@ Type de bassin :
 
 Usage : 
 <select name="bassin_usage">
-<option value="" {if $bassinSearch.bassin_usage==""}selected{/if}>Sélectionnez le type de bassin...</option>
+<option value="" {if $bassinSearch.bassin_usage==""}selected{/if}>Sélectionnez l'usage du bassin...</option>
 {section name=lst loop=$bassin_usage}
 <option value="{$bassin_usage[lst].bassin_usage_id}" {if $bassinSearch.bassin_usage == $bassin_usage[lst].bassin_usage_id}selected{/if}>
 {$bassin_usage[lst].bassin_usage_libelle}

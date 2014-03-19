@@ -91,11 +91,11 @@ Nouveau pittag ou étiquette...
 <h3>Liste des parents</h3>
 <div class="masquage">
 {if $droits["poissonGestion"]==1}
-<a href="index.php?module=parentChange&poisson_id={$dataPoisson.poisson_id}&parent_poisson_id=0">
+<a href="index.php?module=parentPoissonChange&poisson_id={$dataPoisson.poisson_id}&parent_poisson_id=0">
 Nouveau parent...
 </a>
 {/if}
-{include file="poisson/poissonParentList.tpl"}
+{include file="poisson/parentPoissonList.tpl"}
 <br>
 </div>
 

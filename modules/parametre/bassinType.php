@@ -14,7 +14,7 @@ switch ($t_module["param"]) {
 		/*
 		 * Display the list of all records of the table
 		 */
-		$smarty->assign("data", $dataClass->getListe());
+		$smarty->assign("data", $dataClass->getListe(1));
 		$smarty->assign("corps", "parametre/bassinTypeList.tpl");
 		break;
 	case "display":

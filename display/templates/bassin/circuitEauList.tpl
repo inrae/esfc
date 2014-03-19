@@ -1,7 +1,7 @@
 <h2>Circuits d'alimentation en eau</h2>
 {include file="bassin/circuitEauSearch.tpl"}
 {if $isSearch == 1}
-{if $droits["admin"] == 1}
+{if $droits["bassinAdmin"] == 1}
 <a href="index.php?module=circuitEauChange&circuit_eau_id=0">
 Nouveau...
 </a>
@@ -26,7 +26,7 @@ setDataTables("ccircuitEauList");
 {section name=lst loop=$data}
 <tr>
 <td>
-{if $droits["admin"] == 1}
+{if $droits["bassinAdmin"] == 1}
 <a href="index.php?module=circuitEauDisplay&circuit_eau_id={$data[lst].circuit_eau_id}">
 {$data[lst].circuit_eau_libelle}
 </a>
@@ -37,7 +37,7 @@ setDataTables("ccircuitEauList");
 {if $droits["bassinGestion"] == 1}
 <td>
 <div class="center">
-<a href="index.php?module=analyseEauChange&analyse_eau_id=0&circuit_eau_id={$data[lst].circuit_eau_id}">
+<a href="index.php?module=analyseEauChange&analyse_eau_id=0&circuit_eau_id={$data[lst].circuit_eau_id}&origine=List">
 <img src="display/images/sonde.png" height="20" border="0">
 </a>
 </div>

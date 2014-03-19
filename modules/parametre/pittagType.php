@@ -16,7 +16,7 @@ switch ($t_module["param"]) {
 		/*
 		 * Display the list of all records of the table
 		 */
-		$smarty->assign("data", $dataClass->getListe());
+		$smarty->assign("data", $dataClass->getListe(2));
 		$smarty->assign("corps", "parametre/pittagTypeList.tpl");
 		break;
 	case "display":

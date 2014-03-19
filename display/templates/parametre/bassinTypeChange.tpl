@@ -2,7 +2,7 @@
 
 <a href="index.php?module=bassinTypeList">Retour à la liste</a>
 <table class="tablesaisie">
-<form class="cmxform" id="bassinTypeForm" method="post" action="index.php?module=bassinTypeWrite">
+<form id="bassinTypeForm" method="post" action="index.php?module=bassinTypeWrite">
 <input type="hidden" name="bassin_type_id" value="{$data.bassin_type_id}">
 <tr>
 <td class="libelleSaisie">

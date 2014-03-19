@@ -42,7 +42,7 @@ Retour à la liste des circuits d'eau
 Retour au circuit d'eau {$dataCircuitEau.circuit_eau_libelle}
 </a>
 <table class="tablesaisie">
-<form id="analyseEauForm" method="post" action="index.php?module=analyseEauWrite">
+<form id="analyseEauForm" method="post" action="index.php?module=analyseEauWrite{$origine}">
 <input type="hidden" name="analyse_eau_id" value="{$data.analyse_eau_id}">
 <input type="hidden" name="circuit_eau_id" value="{$data.circuit_eau_id}">
 <tr>
@@ -135,7 +135,7 @@ Retour au circuit d'eau {$dataCircuitEau.circuit_eau_libelle}
 <form action="index.php" method="post" onSubmit='return confirmSuppression("Confirmez-vous la suppression ?")'>
 <input type="hidden" name="analyse_eau_id" value="{$data.analyse_eau_id}">
 <input type="hidden" name="circuit_eau_id" value="{$data.circuit_eau_id}">
-<input type="hidden" name="module" value="analyseEauDelete">
+<input type="hidden" name="module" value="analyseEauDelete{$origine}">
 <input class="submit" type="submit" value="Supprimer">
 </form>
 {/if}

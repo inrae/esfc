@@ -3,11 +3,11 @@
  * @author Eric Quinton
  * @copyright Copyright (c) 2014, IRSTEA / Eric Quinton
  * @license http://www.cecill.info/licences/Licence_CeCILL-C_V1-fr.html LICENCE DE LOGICIEL LIBRE CeCILL-C
- *  Creation 13 mars 2014
+ *  Creation 19 mars 2014
  */
-include_once 'modules/classes/poisson.class.php';
-$dataClass = new Cohorte_type($bdd,$ObjetBDDParam);
-$keyName = "cohorte_type_id";
+include_once 'modules/classes/aliment.class.php';
+$dataClass = new Categorie($bdd,$ObjetBDDParam);
+$keyName = "categorie_id";
 $id = $_REQUEST[$keyName];
 switch ($t_module["param"]) {
 	case "list":
@@ -15,7 +15,7 @@ switch ($t_module["param"]) {
 		 * Display the list of all records of the table
 		 */
 		$smarty->assign("data", $dataClass->getListe(2));
-		$smarty->assign("corps", "parametre/cohorteTypeList.tpl");
+		$smarty->assign("corps", "aliment/categorieList.tpl");
 		break;
 	case "display":
 		/*
@@ -31,7 +31,7 @@ switch ($t_module["param"]) {
 		 * If is a new record, generate a new record with default value :
 		 * $_REQUEST["idParent"] contains the identifiant of the parent record
 		 */
-		dataRead($dataClass, $id, "parametre/cohorteTypeChange.tpl");
+		dataRead($dataClass, $id, "aliment/categorieChange.tpl");
 		break;
 	case "write":
 		/*

@@ -1,4 +1,11 @@
-<form method="get" action="index.php">
+<script>
+$(document).ready(function() { 
+	$("select").change(function () {
+		$("#search").submit();
+	} );
+} ) ;
+</script>
+<form method="get" action="index.php" id="search">
 <input type="hidden" name="isSearch" value="1">
 <input type="hidden" name="module" value="poissonList">
 <table class="tableaffichage">
@@ -8,7 +15,7 @@ Libellé à rechercher (tag, prenom, matricule, cohorte) :
 <input name="texte" value="{$poissonSearch.texte}" size="40" maxlength="40">
 <br>
 Statut de l'animal : 
-<select name="statut">
+<select name="statut" id="statut">
 <option value="" {if $poissonSearch.statut==""}selected{/if}>Sélectionnez le statut...</option>
 {section name=lst loop=$statut}
 <option value="{$statut[lst].poisson_statut_id}" {if $poissonSearch.statut == $statut[lst].poisson_statut_id}selected{/if}>
