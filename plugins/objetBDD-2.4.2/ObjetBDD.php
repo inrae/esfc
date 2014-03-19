@@ -24,7 +24,7 @@
  *
  * @author Eric Quinton, Franck Huby
  * @copyright (C) Eric Quinton 2006-2013
- * @version 2.2.4 du 28/11/2013
+ * @version 2.4.2 du 19/03/2014
  * @package ObjetBDD
  *
  * Utilisation :
@@ -334,12 +334,15 @@ class ObjetBDD {
 						case "parentAttrib" :
 							$this->parentAttrib = $key;
 							break;
-						case "key" or "cle" :
+						case "key" or "cle" : {
 							if ($value1 == 1) {
 								$this->keys [] = $key;
 								$nbcle ++;
 								$this->cle = $key;
 							}
+							break;
+						}
+						default:
 							break;
 					}
 				}
@@ -934,8 +937,9 @@ class ObjetBDD {
 	 * 
 	 * @return le contenu de la table
 	 */
-	function getListe() {
+	function getListe($order = 0) {
 		$sql = "select * from " . $this->table;
+		if ($order > 0) $sql .= " order by ".$order;
 		$rs = $this->execute ( $sql );
 		if (! $rs) {
 			$collection = false;
