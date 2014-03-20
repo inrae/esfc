@@ -32,6 +32,12 @@ switch ($t_module["param"]) {
 		 * $_REQUEST["idParent"] contains the identifiant of the parent record
 		 */
 		dataRead($dataClass, $id, "parametre/bassinUsageChange.tpl");
+		/*
+		 * Lecture de la categorie d'alimentation
+		 */
+		include_once 'modules/classes/aliment.class.php';
+		$categorie = new Categorie($bdd, $ObjetBDDParam);
+		$smarty->assign("categorie", $categorie->getListe(1));
 		break;
 	case "write":
 		/*

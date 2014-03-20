@@ -32,6 +32,18 @@
 </dd>
 </dl>
 
+<fieldset>
+<legend>Catégories de poissons nourris</legend>
+
+<!-- gestion de la saisie des categories -->
+{section name=lst loop=$categorie}
+<dl>
+<dt>{$categorie[lst].categorie_libelle}</dt>
+<dd><input type="checkbox" name="categorie[]" value="{$categorie[lst].categorie_id}" {if $categorie[lst].checked == 1}checked{/if}>
+</dd>
+</dl>
+{/section}
+</fieldset>
 <div class="formBouton">
 <input class="submit" type="submit" value="Enregistrer">
 </div>

@@ -1413,7 +1413,6 @@ class ObjetBDD {
 		// Calcul des tableaux de suppression ou de creation
 		$suppr = array_diff ( $orig1, $intersect );
 		$creation = array_diff ( $lignes, $intersect );
-		
 		// Lancement des mises en fichier
 		// Gestion des suppressions
 		foreach ( $suppr as $key => $value ) {

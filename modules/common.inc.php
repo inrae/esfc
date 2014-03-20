@@ -15,9 +15,9 @@ if (! isset ( $_SESSION ["searchPoisson"] )) {
 }
 /*
  * Declaration de la classe de recherche des bassins
-*/
+ */
 if (! isset ( $_SESSION ["searchBassin"] )) {
-	$searchBassin = new SearchBassin();
+	$searchBassin = new SearchBassin ();
 	$_SESSION ["searchBassin"] = $searchBassin;
 } else {
 	$searchBassin = $_SESSION ["searchBassin"];
@@ -26,7 +26,7 @@ if (! isset ( $_SESSION ["searchBassin"] )) {
  * Declaration de la classe de recherche des circuits d'eau
  */
 if (! isset ( $_SESSION ["searchCircuitEau"] )) {
-	$searchCircuitEau = new SearchCircuitEau();
+	$searchCircuitEau = new SearchCircuitEau ();
 	$_SESSION ["searchCircuitEau"] = $searchCircuitEau;
 } else {
 	$searchCircuitEau = $_SESSION ["searchCircuitEau"];
@@ -34,10 +34,28 @@ if (! isset ( $_SESSION ["searchCircuitEau"] )) {
 /*
  * Déclaration de la classe de recherche des anomalies
  */
-if (!isset($_SESSION["searchAnomalie"])) {
-	$searchAnomalie = new SearchAnomalie();
-	$_SESSION["searchAnomalie"] = $searchAnomalie;
+if (! isset ( $_SESSION ["searchAnomalie"] )) {
+	$searchAnomalie = new SearchAnomalie ();
+	$_SESSION ["searchAnomalie"] = $searchAnomalie;
 } else {
-	$searchAnomalie = $_SESSION["searchAnomalie"];
+	$searchAnomalie = $_SESSION ["searchAnomalie"];
+}
+/*
+ * Déclaration de la classe de recherche des modèles d'alimentation
+ */
+if (! isset ( $_SESSION ["searchRepartTemplate"] )) {
+	$searchRepartTemplate = new SearchRepartTemplate ();
+	$_SESSION ["searchRepartTemplate"] = $searchRepartTemplate;
+} else {
+	$searchRepartTemplate = $_SESSION ["searchRepartTemplate"];
+}
+/*
+ * Déclaration de la classe de recherche des répartitions d'aliments
+*/
+if (! isset ( $_SESSION ["searchRepartition"] )) {
+	$searchRepartition = new SearchRepartition ();
+	$_SESSION ["searchRepartition"] = $searchRepartition;
+} else {
+	$searchRepartition = $_SESSION ["searchRepartition"];
 }
 ?>

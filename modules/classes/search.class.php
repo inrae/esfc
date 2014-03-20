@@ -10,14 +10,14 @@ class SearchParam {
 	/**
 	 * Tableau des parametres geres par la classe
 	 * La liste des parametres doit etre declaree dans la fonction construct
-	 * 
+	 *
 	 * @var array
 	 */
 	public $param;
 	/**
 	 * Indique si la lecture des parametres a ete realisee au moins une fois
 	 * Permet ainsi de declencher ou non la recherche
-	 * 
+	 *
 	 * @var int
 	 */
 	public $isSearch;
@@ -32,27 +32,30 @@ class SearchParam {
 	}
 	/**
 	 * Stocke les parametres fournis
-	 * 
-	 * @param array $data : tableau des valeurs, ou non de la variable
-	 * @param string $valeur : valeur a renseigner, dans le cas ou la donnee est unique       	
+	 *
+	 * @param array $data
+	 *        	: tableau des valeurs, ou non de la variable
+	 * @param string $valeur
+	 *        	: valeur a renseigner, dans le cas ou la donnee est unique
 	 */
-	function setParam($data, $valeur=NULL) {
-		if (is_array($data)) {
+	function setParam($data, $valeur = NULL) {
+		if (is_array ( $data )) {
 			/*
 			 * Les donnees sont fournies sous forme de tableau
 			 */
-		foreach ( $this->param as $key => $value ) {
-			/*
-			 * Recherche si une valeur de $data correspond a un parametre
-			 */
-			if (isset ( $data [$key] ))
-				$this->param [$key] = $data [$key];
-		}
+			foreach ( $this->param as $key => $value ) {
+				/*
+				 * Recherche si une valeur de $data correspond a un parametre
+				 */
+				if (isset ( $data [$key] ))
+					$this->param [$key] = $data [$key];
+			}
 		} else {
 			/*
 			 * Une donnee unique est fournie
 			 */
-			if (isset($this->param[$data]) && !is_null($valeur)) $this->param[$data] = $valeur;
+			if (isset ( $this->param [$data] ) && ! is_null ( $valeur ))
+				$this->param [$data] = $valeur;
 		}
 		/*
 		 * Gestion de l'indicateur de recherche
@@ -68,7 +71,7 @@ class SearchParam {
 	}
 	/**
 	 * Indique si la recherche a ete deja lancee
-	 * 
+	 *
 	 * @return int
 	 */
 	function isSearch() {
@@ -81,7 +84,7 @@ class SearchParam {
 }
 /**
  * Exemple d'instanciation
- * 
+ *
  * @author Eric Quinton
  *        
  */
@@ -97,7 +100,7 @@ class SearchPoisson extends SearchParam {
 }
 /**
  * Classe de recherche des bassins
- * 
+ *
  * @author quinton
  *        
  */
@@ -115,7 +118,7 @@ class SearchBassin extends SearchParam {
 }
 /**
  * Classe de recherche des circuits d'eau
- * 
+ *
  * @author quinton
  *        
  */
@@ -126,20 +129,51 @@ class SearchCircuitEau extends SearchParam {
 				"circuit_eau_actif" => 1,
 				"analyse_date" => date ( 'd/m/Y' ),
 				"offset" => 0,
-				"limit" => 100
+				"limit" => 100 
 		);
 	}
 }
 /**
  * Classe de recherche des anomalies détectées dans la base de données
+ * 
  * @author quinton
- *
+ *        
  */
 class SearchAnomalie extends SearchParam {
 	function __construct() {
-		$this->param = array(
-			"statut" => 0,
-			"type" => 0
+		$this->param = array (
+				"statut" => 0,
+				"type" => 0 
+		);
+	}
+}
+/**
+ * Classe de recherche des modèles de répartition des aliments
+ * 
+ * @author quinton
+ *        
+ */
+class SearchRepartTemplate extends SearchParam {
+	function __construct() {
+		$this->param = array (
+				"categorie_id" => 0,
+				"actif" => - 1 
+		);
+	}
+}
+/**
+ * Classe de recherche des répartions d'aliments dans les bassins
+ * @author quinton
+ *
+ */
+class SearchRepartition extends SearchParam {
+	function __construct() {
+		$annee_prec = date ('Y') -1;
+		$this->param = array (
+				"categorie_id" => 0,
+				"date_reference" => date ( 'd/m/' ).$annee_prec,
+				"offset" => 0,
+				"limit" => 10 
 		);
 	}
 }

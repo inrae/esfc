@@ -11,6 +11,7 @@ setDataTables("cbassinUsageList");
 <thead>
 <tr>
 <th>libellé</th>
+<th>Catégorie<br>d'alimentation</th>
 </tr>
 </thead>
 <tdata>
@@ -26,6 +27,8 @@ setDataTables("cbassinUsageList");
 {/if}
 </td>
 <td>
+{$data[lst].categorie_libelle}
+</td>
 </tr>
 {/section}
 </tdata>
