@@ -67,7 +67,7 @@ while ( isset ( $module ) ) {
 							}
 							/*
 							 * Verification de l'identification uniquement en base de donnees
-							*/
+							 */
 						} elseif ($ident_type == "BDD") {
 							$res = $loginGestion->VerifLogin ( $_REQUEST ['login'], $_REQUEST ['password'] );
 							if ($res == TRUE) {
@@ -78,13 +78,15 @@ while ( isset ( $module ) ) {
 					/*
 					 * Reinitialisation du menu
 					 */
-					if (isset ($_SESSION["login"])) unset ($_SESSION["menu"]);
+					if (isset ( $_SESSION ["login"] ))
+						unset ( $_SESSION ["menu"] );
 				} else {
 					/*
 					 * Gestion de la saisie du login
 					 */
 					$smarty->assign ( "corps", "ident/login.tpl" );
-					$smarty->assign ( "module", $_REQUEST ["module"] );
+					if ($t_module ["retourlogin"] == 1)
+						$smarty->assign ( "module", $_REQUEST ["module"] );
 					$message = $LANG ["login"] [2];
 				}
 			}
