@@ -267,7 +267,7 @@ class RepartTemplate extends ObjetBDD {
 	/**
 	 * Surcharge de la fonction supprimer pour effacer les répartitions d'aliment
 	 * (non-PHPdoc)
-	 * 
+	 *
 	 * @see ObjetBDD::supprimer()
 	 */
 	function supprimer($id) {
@@ -288,6 +288,20 @@ class RepartTemplate extends ObjetBDD {
 				return - 1;
 		} else
 			return - 1;
+	}
+	/**
+	 * Retourne les modèles actifs pour la catégorie considérée
+	 * @param int $categorie_id
+	 * @return array
+	 */
+	function getListActifFromCategorie ($categorie_id) {
+		if ($categorie_id > 0) {
+			$sql = "select * from ".$this->table."
+					where actif = 1 
+					and categorie_id = ".$categorie_id."
+					order by repart_template_date desc";
+			return $this->getListeParam($sql);
+		}
 	}
 }
 /**
@@ -351,7 +365,7 @@ class RepartAliment extends ObjetBDD {
 	}
 	/**
 	 * Retourne les aliments associes a un template
-	 * 
+	 *
 	 * @param int $templateId        	
 	 * @return array
 	 */
@@ -368,7 +382,7 @@ class RepartAliment extends ObjetBDD {
 	/**
 	 * Retourne les aliments associes a un template,
 	 * ainsi que les aliments non associes mais du meme type
-	 * 
+	 *
 	 * @param int $templateId        	
 	 * @param int $categorieId        	
 	 * @return array
@@ -431,6 +445,27 @@ class Repartition extends ObjetBDD {
 				"date_fin_periode" => array (
 						"type" => 2,
 						"requis" => 1 
+				),
+				"lundi" => array (
+						"type" => 1 
+				),
+				"mardi" => array (
+						"type" => 1 
+				),
+				"mercredi" => array (
+						"type" => 1 
+				),
+				"jeudi" => array (
+						"type" => 1 
+				),
+				"vendredi" => array (
+						"type" => 1 
+				),
+				"samedi" => array (
+						"type" => 1 
+				),
+				"dimanche" => array (
+						"type" => 1 
 				) 
 		);
 		if (! is_array ( $param ))
@@ -440,26 +475,168 @@ class Repartition extends ObjetBDD {
 	}
 	/**
 	 * Recherche des repartions d'aliments à partir des paramètres fournis
-	 * @param array $param
+	 *
+	 * @param array $param        	
 	 * @return array
 	 */
-	function getSearchParam($param) {
-		$sql = "select * from ".$this->table."
+	function getListSearch($param) {
+		$sql = "select * from " . $this->table . "
 				join categorie using (categorie_id)";
 		$where = "";
 		$and = "";
-		if ($param["categorie_id"] > 0) {
-			$where .= $and."categorie_id = ".$param["categorie_id"];
+		if ($param ["categorie_id"] > 0) {
+			$where .= $and . "categorie_id = " . $param ["categorie_id"];
 			$and = " and ";
 		}
-		if (strlen($param["date_reference"])>0) {
-			$date_reference = $this->formatDateLocaleVersDB ( $param["date_reference"], 2 );
-			$where .=$and."date_fin_periode >= '".$date_reference."'";
+		if (strlen ( $param ["date_reference"] ) > 0) {
+			$date_reference = $this->formatDateLocaleVersDB ( $param ["date_reference"], 2 );
+			$where .= $and . "date_fin_periode >= '" . $date_reference . "'";
 			$and = " and ";
 		}
-		if ($and = " and ") $where = "where ".$where;
-		$order = " order by date_debut_periode desc LIMIT ".$param["limit"]." OFFSET ".$param["offset"];
-		return $this->getListeParam($sql.$where.$order);
+		if ($and = " and ")
+			$where = "where " . $where;
+		$order = " order by date_debut_periode desc LIMIT " . $param ["limit"] . " OFFSET " . $param ["offset"];
+		return $this->getListeParam ( $sql . $where . $order );
+	}
+	/**
+	 * Surcharge de la fonction ecrire
+	 * (non-PHPdoc)
+	 * 
+	 * @see ObjetBDD::ecrire()
+	 */
+	function ecrire($data) {
+		/*
+		 * Verification de l'existence des donnees "jour" - saisie checkbox
+		 */
+		if (! isset ( $data ["lundi"] ))
+			$data ["lundi"] = 0;
+		if (! isset ( $data ["mardi"] ))
+			$data ["mardi"] = 0;
+		if (! isset ( $data ["mercredi"] ))
+			$data ["mercredi"] = 0;
+		if (! isset ( $data ["jeudi"] ))
+			$data ["jeudi"] = 0;
+		if (! isset ( $data ["vendredi"] ))
+			$data ["vendredi"] = 0;
+		if (! isset ( $data ["samedi"] ))
+			$data ["samedi"] = 0;
+		if (! isset ( $data ["dimanche"] ))
+			$data ["dimanche"] = 0;
+		$id = parent::ecrire ( $data );
+		if ($id > 0) {
+			/*
+			 * Traitement de la table liee
+			 */
+		}
+		return $id;
+	}
+}
+class Distribution extends ObjetBDD {
+	/**
+	 * Constructeur de la classe
+	 *
+	 * @param adobb $bdd        	
+	 * @param array $param        	
+	 */
+	function __construct($bdd, $param = null) {
+		$this->param = $param;
+		$this->paramori = $param;
+		$this->table = "distribution";
+		$this->id_auto = 1;
+		$this->colonnes = array (
+				"distribution_id" => array (
+						"type" => 1,
+						"key" => 1,
+						"requis" => 1,
+						"defaultValue" => 0 
+				),
+				"repartition_id" => array (
+						"type" => 1,
+						"requis" => 1,
+						"parentAttrib" => 1 
+				),
+				"bassin_id" => array (
+						"type" => 1,
+						"requis" => 1 
+				),
+				"repart_template_id" => array (
+						"type" => 2,
+						"requis" => 1 
+				),
+				"taux_nourrissage_precedent" => array (
+						"type" => 1 
+				),
+				"reste_precedent" => array (
+						"type" => 1 
+				),
+				"evol_taux_nourrissage" => array (
+						"type" => 1 
+				),
+				"taux_nourrissage" => array (
+						"type" => 1 
+				),
+				"total_distribue" => array (
+						"type" => 1 
+				),
+				"distribution_masse" => array (
+						"type" => 1 
+				),
+				"distribution_consigne" => array (
+						"type" => 0 
+				),
+				"ration_commentaire" => array (
+						"type" => 0 
+				) 
+		);
+		if (! is_array ( $param ))
+			$param == array ();
+		$param ["fullDescription"] = 1;
+		parent::__construct ( $bdd, $param );
+	}
+	/**
+	 * 
+	 * @param unknown $repartition_id
+	 */
+	function getFromRepartition ($repartition_id) {
+		$sql = "select * from ".$this->table."
+				join bassin using (bassin_id)
+				where repartition_id = ".$repartition_id."
+				order by bassin_nom";
+		return $this->getListeParam($sql);
+	}
+	/**
+	 * Retourne la liste des bassins associés à une répartition,
+	 * avec les bassins qui peuvent en faire également partie
+	 * @param int $repartition_id
+	 * @param int $categorie_id
+	 * @return array
+	 */
+	function getFromRepartitionWithBassin($repartition_id, $categorie_id) {
+		if ($repartition_id > 0) {
+			$data = $this->getFromRepartition ( $repartition_id );
+			/*
+			 * Recuperation des bassins du même type
+			*/
+			if ($categorie_id > 0) {
+				$sql = "select distinct bassin_id, bassin_nom
+						from bassin
+						join bassin_usage using (bassin_usage_id)
+						where actif = 1
+						and categorie_id = " . $categorie_id . "
+						and bassin_id not in
+						(select bassin_id from ".$this->table." where repartition_id = " . $repartition_id . ")
+						order by bassin_nom";
+				$dataBassin = $this->getListeParam ( $sql );
+				/*
+				 * Rajout des bassins à la liste
+				*/
+				foreach ( $dataBassin as $key => $value ) {
+					$value ["distribution_id"] = 0;
+					$data [] = $value;
+				}
+				return $data;
+			}
+		}
 	}
 }
 ?>

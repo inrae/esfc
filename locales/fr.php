@@ -79,6 +79,8 @@ $LANG["menu"][79] = "Catégories d'aliment";
 $LANG["menu"][80] = "Catégories ou types de poissons nourris";
 $LANG["menu"][81] = "Modèles de répartition";
 $LANG["menu"][82] = "Modèles de répartition des aliments";
+$LANG["menu"][83] = "Répartitions";
+$LANG["menu"][84] = "Répartitions des aliments dans les bassins";
 
 
 

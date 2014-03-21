@@ -21,6 +21,7 @@ class Bassin extends ObjetBDD {
 	 */
 	function __construct($bdd, $param = null) {
 		$this->param = $param;
+		$this->paramori = $param;
 		$this->table = "bassin";
 		$this->id_auto = "1";
 		$this->colonnes = array (
@@ -169,6 +170,27 @@ class Bassin extends ObjetBDD {
 			$sql = "select bassin_id, bassin_nom from bassin where circuit_eau_id = " . $circuitId . "
 				order by bassin_nom";
 			return $this->getListeParam ( $sql );
+		}
+	}
+	/**
+	 * Calcule la masse des poissons présents dans un bassin
+	 * @param unknown $bassinId
+	 * @return unknown
+	 */
+	function calculMasse($bassinId) {
+		if ($bassinId > 0){
+			/*
+			 * Recuperation de la liste des poissons
+			 */
+			$transfert = new Transfert($this->connection, $this->paramori);
+			$morphologie = new Morphologie($this->connection, $this->paramori);
+			$listePoisson = $transfert->getListPoissonPresentByBassin($bassinId);
+			$masse = 0;
+			foreach ($listePoisson as $key=>$value) {
+				$data = $morphologie->getMasseLast($value["poisson_id"]);
+				$masse += $data["masse"];
+			}
+			return ($masse);
 		}
 	}
 }

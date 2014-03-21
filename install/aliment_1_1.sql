@@ -20,3 +20,21 @@ REFERENCES sturio.public.repart_template (repart_template_id)
 ON DELETE NO ACTION
 ON UPDATE NO ACTION
 NOT DEFERRABLE;
+
+ALTER TABLE sturio.public.repartition ADD COLUMN dimanche SMALLINT;
+
+ALTER TABLE sturio.public.repartition ADD COLUMN jeudi SMALLINT;
+
+ALTER TABLE sturio.public.repartition ADD COLUMN lundi SMALLINT;
+
+ALTER TABLE sturio.public.repartition ADD COLUMN mardi SMALLINT;
+
+ALTER TABLE sturio.public.repartition ADD COLUMN mercredi SMALLINT;
+
+ALTER TABLE sturio.public.repartition ADD COLUMN samedi SMALLINT;
+
+ALTER TABLE sturio.public.repartition ADD COLUMN vendredi SMALLINT;
+
+alter table distribution add column distribution_masse real;
+
+comment on column distribution.distribution_masse is 'Masse (poids) des poissons dans le bassin';

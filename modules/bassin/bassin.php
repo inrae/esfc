@@ -66,5 +66,12 @@ switch ($t_module["param"]) {
 		 */
 		dataDelete($dataClass, $id);
 		break;
+	case "calculMasseAjax":
+		include_once 'modules/classes/poisson.class.php';
+		if ($_REQUEST["bassin_id"] > 0 ){
+			$masse = $dataClass->calculMasse($_REQUEST["bassin_id"]);
+			$masseJson = '{"0": {"val": "'.$masse.'" } }';
+			echo $masseJson;
+		}
 }
 ?>

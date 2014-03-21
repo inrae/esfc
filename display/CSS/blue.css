@@ -43,14 +43,14 @@ p {
 	background-color: rgba(152, 193, 233, 0.5);
 	width: 800px;
 }
-.formBouton {
+.formSaisie .formBouton {
 	text-align: center;
 	width: 750px;
 }
 input {
 	/*border-radius: 1em;*/
 }
- dl input:hover, input:focus {
+dl input:hover, input:focus {
 	border-color: #a66d1a;
 	
 }
@@ -58,24 +58,56 @@ dl {
 	clear: both;
 }
 
-dt {
+.formSaisie dt {
 	float: left;
 	text-align: right;
 	width: 250px;
 	margin: 0 10px 10px 0;
 }
 
-dd {
+.formSaisie dd {
 	float: left;
 	text_align: left;
-	width: 500px;
+	width: 450px;
 	margin: 0 0 10px 0;
 	/*background: #ffffff;*/
 }
-dl input.date {
+.formSaisie400 {
+	border-style: solid;
+	border-width: 1px;
+	/*background:  #98c1e9;*/
+	background-color: rgba(152, 193, 233, 0.5);
+	width: 400px;
+}
+.formSaisie400 dt {
+	float: left;
+	text-align: right;
+	width: 140px;
+	margin: 0 10px 10px 0;
+}
+
+.formSaisie400 dd {
+	float: left;
+	text_align: left;
+	width: 250px;
+	margin: 0 0 10px 0;
+	/*background: #ffffff;*/
+}
+.formSaisie400 .formBouton {
+	text-align: center;
+	width: 400px;
+}
+
+input.date {
 	background-image: url("images/calendar-small.gif");
 	background-repeat: no-repeat;
 	background-position: 100% 50%;
+	width: 10em;
+}
+input.num5 {
+	width: 5em;
+}
+input.num10 {
 	width: 10em;
 }
 dl select {

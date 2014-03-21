@@ -93,6 +93,7 @@
 	<bassinChange action="modules/bassin/bassin.php" param="change" droits="bassinGestion" />
 	<bassinWrite action="modules/bassin/bassin.php" param="write" droits="bassinGestion" retourok="bassinDisplay" retourko="bassinChange" modulebefore="bassinChange" />
 	<bassinDelete action="modules/bassin/bassin.php" param="delete" droits="bassinGestion" retoursuppr="bassinList" retourko="bassinChange"  modulebefore="bassinChange"/>
+	<bassinCalculMasseAjax action="modules/bassin/bassin.php" param="calculMasseAjax" ajax="1" droits="consult" />
 
 	<circuitEauList action="modules/bassin/circuitEau.php" param="list" droits="consult" retourlogin="1" menulevel="1" menuparent="1" menuorder="1" menudroits="" menuvalue="65" menutitle="66"  />
 	<circuitEauDisplay action="modules/bassin/circuitEau.php" param="display" droits="consult" />
@@ -100,7 +101,6 @@
 	<circuitEauWrite action="modules/bassin/circuitEau.php" param="write" droits="bassinGestion" retourok="circuitEauDisplay" retourko="circuitEauChange" modulebefore="circuitEauChange" />
 	<circuitEauDelete action="modules/bassin/circuitEau.php" param="delete" droits="bassinGestion" retoursuppr="circuitEauList" retourko="circuitEauChange"  modulebefore="circuitEauChange"/>
 
-	<analyseEauList action="modules/bassin/analyseEau.php" param="list" droits="consult" retourlogin="1"  menulevel="1" menuparent="1" menuorder="1" menudroits="" menuvalue="65" menutitle="66"  />
 	<analyseEauDisplay action="modules/bassin/analyseEau.php" param="display" droits="consult" />
 	<analyseEauChange action="modules/bassin/analyseEau.php" param="change" droits="bassinGestion" />
 	<analyseEauWriteList action="modules/bassin/analyseEau.php" param="write" droits="bassinGestion" retourok="circuitEauList" retourko="analyseEauChange" modulebefore="analyseEauChange" />
@@ -154,6 +154,13 @@
 	<repartTemplateChange action="modules/aliment/repartTemplate.php" param="change" droits="bassinAdmin" />
 	<repartTemplateWrite action="modules/aliment/repartTemplate.php" param="write" droits="bassinAdmin" retourok="repartTemplateChange" retourko="repartTemplateChange" modulebefore="repartTemplateChange" />
 	<repartTemplateDelete action="modules/aliment/repartTemplate.php" param="delete" droits="bassinAdmin" retoursuppr="repartTemplateList" retourko="repartTemplateChange"  modulebefore="repartTemplateChange"/>
+
+	<repartitionList action="modules/aliment/repartition.php" param="list" droits="consult" retourlogin="1" menulevel="1" menuparent="2" menuorder="1" menudroits="" menuvalue="83" menutitle="84"  />
+	<repartitionChange action="modules/aliment/repartition.php" param="change" droits="bassinGestion" />
+	<repartitionCreate action="modules/aliment/repartition.php" param="create" droits="bassinGestion" retourok="repartitionChange" retourko="repartitionList" modulebefore="repartitionList" />
+	<repartitionDuplicate action="modules/aliment/repartition.php" param="duplicate" droits="bassinGestion" retourok="repartitionChange" retourko="repartitionList" modulebefore="repartitionList" />
+	<repartitionWrite action="modules/aliment/repartition.php" param="write" droits="bassinGestion" retourok="repartitionList" retourko="repartitionChange" modulebefore="repartitionChange" />
+	<repartitionDelete action="modules/aliment/repartition.php" param="delete" droits="bassinAdmin" retoursuppr="repartitionList" retourko="repartitionChange"  modulebefore="repartitionChange"/>
 	
 </navigation>
 	

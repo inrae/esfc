@@ -365,6 +365,21 @@ class Morphologie extends ObjetBDD {
 		}
 	}
 	/**
+	 * Retourne la dernière masse connue pour un poisson
+	 * @param int $poisson_id
+	 * @return array
+	 */
+	function getMasseLast ($poisson_id) {
+		if ($poisson_id > 0) {
+			$sql = "select masse from ".$this->table."
+					where morphologie_date is not null 
+					and poisson_id = ".$poisson_id."
+					order by morphologie_date desc
+					limit 1";
+			return $this->lireParam($sql);
+		}
+	}
+	/**
 	 * Lit un enregistrement à partir de l'événement
 	 *
 	 * @param int $evenement_id        	
