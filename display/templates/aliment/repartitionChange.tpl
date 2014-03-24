@@ -11,37 +11,42 @@ $(document).ready(function() {
 		* Recuperation de la cle
 		*/
 		var cle = $(this).data("cle");
-		var valeur = $(this).val();
+		var valeur = parseFloat($(this).val());
 		var origine_id = "#taux_nourrissage_precedent_" + cle;
-		var origine_value = $(origine_id).val();
+		var origine_value = parseFloat($(origine_id).val());
+		if (isNaN(origine_value)) { origine_value = 0 } ;
 		var taux_id = "#taux_nourrissage_" + cle;
-		var taux_value = $(taux_id).val();
+		//var taux_value = parseFloat($(taux_id).val());
 		/*
 		* Ecriture de la nouvelle valeur
 		*/
-		$(taux_id).val(taux_value + valeur );
+		$(taux_id).val(origine_value + valeur );
+		$(taux_id).trigger ("change");
 	} );
 	$(".taux").change ( function () {
 		/*
 		* Recalcul de la quantite 
 		*/
 		var cle = $(this).data("cle");
-		var valeur = $(this).val();
+		var valeur = parseFloat($(this).val());
 		var masse_id = "#distribution_masse_" + cle;
-		var masse = $(masse_id).val();
+		var masse = parseFloat($(masse_id).val());
+		if (isNaN(masse)) masse = 0 ;
 		var ration_id = "#total_distribue_" + cle ;
-		$(ration_id).val ( masse * valeur / 100);
+		$(ration_id).val ( parseInt(masse * valeur / 100));
 	} );
 	$(".masse").change( function () {
 		/*
 		* Recalcul de la quantite
 		*/
 		var cle = $(this).data("cle");
-		var masse = $(this).val();
+		var masse = parseFloat($(this).val());
+		if (isNaN(masse)) masse = 0;
 		var taux_id = "#taux_nourrissage_" + cle ;
-		var valeur = $(taux_id).val () ;
+		var valeur = parseFloat($(taux_id).val ()) ;
+		if (isNaN(valeur)) valeur = 0 ;
 		var ration_id = "#total_distribue_" + cle ;
-		$(ration_id).val ( masse * valeur / 100);
+		$(ration_id).val ( parseInt(masse * valeur / 100));
 	} );
 	$(".calcul").on("click keyup", function () {
 		/*
@@ -52,6 +57,58 @@ $(document).ready(function() {
 		var url = "index.php?module=bassinCalculMasseAjax";
 		$.getJSON ( url, { "bassin_id": cle } , function( data ) {
 			$(masse_id).val(data[0].val);
+			$(masse_id).trigger("change");
+		} );
+	} );
+	$( "#repartitionForm" ).submit(function() {
+		/*
+		* Verification que le modele de distribution est renseigne si ration > 0
+		*/
+		var valid=true;
+		$(".ration").each(function () { 
+			var ration = $(this).val() ;
+			if (isNaN(ration)) ration = 0 ;
+			if (ration > 0 ) {
+				/*
+				* On teste que le modele de repartition a bien ete renseigne
+				*/
+				var cle = $(this).data("cle");
+				var modele_id = "#repart_template_id_" + cle;
+				var modele_val = $(modele_id).val() ;
+				if (isNaN(modele_val)) modele_val = 0;
+				if (modele_val == 0 ) {
+					valid = false ;
+					$(modele_id).next(".erreur").show().text("Le modèle de répartition doit être renseigné");
+				} else {
+					$(modele_id).next(".erreur").hide();
+				}
+			} 
+		} );
+		if (valid == false) alert ("Une ou plusieurs anomalies ont été détectées : vérifiez votre saisie (anomalies marquées en rouge)");
+	return valid;
+	} );
+	/*
+	* Gestion de l'affichage
+	*/
+	var afficher = 1;
+	$("#afficher").text("Masquer tous les éléments");
+	$ (".fsMasquable legend").click(function() {
+		if ($(this).nextAll(".masquage") .is (":visible") == true ) {
+			$(this).nextAll(".masquage").hide("10");
+		} else {
+			$(this).nextAll(".masquage").show ("10");
+		}
+	} );
+	$("#afficher").click(function() {
+		if (afficher == 0) {
+			$( this ).text("Masquer tous les éléments") ;
+			afficher = 1 ;
+			$ ("fieldset > .masquage").show("");
+		} else {
+			$ (this ).text ("Afficher tous les éléments") ;
+			afficher = 0;
+			$ ("fieldset > .masquage").hide("");
+		}
 	} );
 } ) ;
 </script>
@@ -59,8 +116,8 @@ $(document).ready(function() {
 <a href="index.php?module=repartitionList">Retour à la liste</a>
 <div class="formSaisie">
 <div>
-<form id="repartitionForm" method="post" action="index.php?module=repartitionCreate">
-<input type="hidden" name="repartition_id" value="0">
+<form id="repartitionForm" method="post" action="index.php?module=repartitionWrite">
+<input type="hidden" name="repartition_id" value="{$data.repartition_id}">
 <dl>
 <dt>Catégorie d'alimentation <span class="red">*</span> :</dt> 
 <dd>
@@ -93,71 +150,63 @@ dim : <input type="checkbox" name="dimanche" value="1" {if $data.dimanche == 1}c
  </fieldset>
 <fieldset>
 <legend>Répartition des aliments par bassin</legend>
+<div id="afficher" class="masquageText"><i>Afficher tous les éléments</i></div>
 {section name=lst loop=$dataBassin}
 <input type="hidden" name="distribution_id_{$dataBassin[lst].bassin_id}" value="{$dataBassin[lst].distribution_id}">
-<fieldset>
+<input type="hidden" name="bassin_id_{$dataBassin[lst].bassin_id}" value="{$dataBassin[lst].bassin_id}">
+<fieldset class="fsMasquable">
 <legend>{$dataBassin[lst].bassin_nom}</legend>
+<div class="masquage">
 <dl>
-<dt>Modèle de distribution utilisé</dt>
+<dt>Modèle de distribution utilisé <span class="red">*</span> :</dt>
 <dd>
-<select name="repart_template_id_{$dataBassin[lst].bassin_id}">
+<select name="repart_template_id_{$dataBassin[lst].bassin_id}" id="repart_template_id_{$dataBassin[lst].bassin_id}">
 <option value="0" {if $dataBassin[lst].repart_template_id == 0}selected{/if}>Sélectionnez le modèle...</option>
 {section name=lst1 loop=$dataTemplate}
-<option value="$dataTemplate[lst1].repart_template_id}" {if $dataTemplate[lst1].repart_template_id == $dataBassin[lst].repart_template_id}selected{/if}>
+<option value="{$dataTemplate[lst1].repart_template_id}" {if $dataTemplate[lst1].repart_template_id == $dataBassin[lst].repart_template_id}selected{/if}>
 {$dataTemplate[lst1].repart_template_libelle}
 </option>
 {/section}
 </select>
+<div class="erreur"></div>
 </dd>
 </dl>
 <dl>
-<dt>Masse (poids) des poissons dans le bassin :</dt>
+<dt>Masse (poids) des poissons dans le bassin (en grammes) :</dt>
 <dd>
 <input class="num10 masse" name="distribution_masse_{$dataBassin[lst].bassin_id}" id="distribution_masse_{$dataBassin[lst].bassin_id}" value="{$dataBassin[lst].distribution_masse}" data-cle="{$dataBassin[lst].bassin_id}">
 <input type="button" class="calcul" data-cle="{$dataBassin[lst].bassin_id}" value="Recalcul...">
 </dd>
 </dl>
 <dl>
-<dt>Taux de nourrissage précédent :</dt>
+<dt>Nourrissage précédent :</dt>
 <dd>
-<input name="taux_nourrissage_precedent_{$dataBassin[lst].bassin_id}" id="taux_nourrissage_precedent_{$dataBassin[lst].bassin_id}" data-cle="{$dataBassin[lst].bassin_id}" value="{$dataBassin[lst].taux_nourrisage_precedent}" class="num5" readonly>
-</dd>
-</dl>
-<dl>
-<dt>Reste :</dt>
-<dd>
+Taux :
+<input name="taux_nourrissage_precedent_{$dataBassin[lst].bassin_id}" id="taux_nourrissage_precedent_{$dataBassin[lst].bassin_id}" data-cle="{$dataBassin[lst].bassin_id}" value="{$dataBassin[lst].taux_nourrissage_precedent}" class="num5" readonly>
+Reste :
 <input class="num5" name="reste_precedent_{$dataBassin[lst].bassin_id}" id="reste_precedent_{$dataBassin[lst].bassin_id}" data-cle="{$dataBassin[lst].bassin_id}" value="{$dataBassin[lst].reste_precedent}">
+<br>
+<input name="ration_commentaire_{$dataBassin[lst].bassin_id}" id="ration_commentaire_{$dataBassin[lst].bassin_id}" data-cle="{$dataBassin[lst].bassin_id}" value="{$dataBassin[lst].ration_commentaire}" size="30" placeholder="Commentaires..." title="Commentaires concernant le reste">
 </dd>
 </dl>
 <dl>
-<dt>Commentaire sur le reste :</dt>
+<dt>Taux de nourrissage :</dt>
 <dd>
-<input name="ration_commentaire_{$dataBassin[lst].bassin_id}" id="ration_commentaire_{$dataBassin[lst].bassin_id}" data-cle="{$dataBassin[lst].bassin_id}" value="{$dataBassin[lst].ration_commentaire}" size="30">
-</dl>
-<dl>
-<dt>Évolution du taux :</dt>
-<dd>
+Évolution :
 <input class="num5 evol" name="evol_taux_nourrissage_{$dataBassin[lst].bassin_id}" id="evol_taux_nourrissage_{$dataBassin[lst].bassin_id}"  data-cle="{$dataBassin[lst].bassin_id}" value="{$dataBassin[lst].evol_taux_nourrissage}">
-</dd>
-</dl>
-<dl>
-<dt>Nouveau taux de nourrissage :</dt>
-<dd>
+Nouveau taux :
 <input class="num5 taux" name="taux_nourrissage_{$dataBassin[lst].bassin_id}" id="taux_nourrissage_{$dataBassin[lst].bassin_id}"  data-cle="{$dataBassin[lst].bassin_id}" value="{$dataBassin[lst].taux_nourrissage}">
 </dd>
+</dl>
 <dl>
 <dt>Ration distribuée :</dt>
 <dd>
-<input class="num10" name="total_distribue_{$dataBassin[lst].bassin_id}" id="total_distribue_{$dataBassin[lst].bassin_id}" data-cle="{$dataBassin[lst].bassin_id}" value="{$dataBassin[lst].total_distribue}">
+<input class="num10 ration" name="total_distribue_{$dataBassin[lst].bassin_id}" id="total_distribue_{$dataBassin[lst].bassin_id}" data-cle="{$dataBassin[lst].bassin_id}" value="{$dataBassin[lst].total_distribue}">
+<br>
+<input name="distribution_consigne_{$dataBassin[lst].bassin_id}" id="distribution_consigne_{$dataBassin[lst].bassin_id}"  data-cle="{$dataBassin[lst].bassin_id}" value="{$dataPoisson[lst].distribution_consigne}" placeholder="Consignes..." Title="Consignes de distribution" size="30">
 </dd>
 </dl>
-</dl>
-<dl>
-<dt>Consignes :</dt>
-<dd>
-<input name="distribution_consigne_{$dataBassin[lst].bassin_id}" id="distribution_consigne_{$dataBassin[lst].bassin_id}"  data-cle="{$dataBassin[lst].bassin_id}" value="{$dataPoisson[lst].distribution_consigne}" size="30">
-</dd>
-</dl>
+</div>
 </fieldset>
 {/section}
 

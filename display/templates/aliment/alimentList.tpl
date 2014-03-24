@@ -11,6 +11,7 @@ setDataTables("calimentList");
 <thead>
 <tr>
 <th>libellé</th>
+<th>Nom court<br>pour éditions</th>
 <th>Type d'aliment</th>
 <th>Actuellement<br>utilisé ?</th>
 </tr>
@@ -27,6 +28,7 @@ setDataTables("calimentList");
 {$data[lst].aliment_libelle}
 {/if}
 </td>
+<td>{$data[lst].aliment_libelle_court}</td>
 <td>
 {$data[lst].aliment_type_libelle}
 </td>

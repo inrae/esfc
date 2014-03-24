@@ -65,7 +65,7 @@ switch ($t_module ["param"]) {
 		$id = dataWrite ( $dataClass, $_REQUEST );
 		if ($id > 0) {
 			$_REQUEST [$keyName] = $id;
-		}
+		}	
 		break;
 	case "delete":
 		/*

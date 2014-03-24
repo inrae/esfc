@@ -113,6 +113,26 @@ input.num10 {
 dl select {
 	max-width: 480px;
 }
+.fsMasquable legend {
+	background-image: url("images/up_down.png");
+	background-repeat: no-repeat;
+	background-position: left;
+	padding-left: 25px;
+	height: 20px;
+	cursor: pointer;
+	fontStyle: italic;
+	text-decoration: underline;
+}
+.masquageText {
+	background-image: url("images/up_down.png");
+	background-repeat: no-repeat;
+	background-position: left;
+	padding-left: 25px;
+	height: 20px;
+	cursor: pointer;
+	fontStyle: italic;
+	text-decoration: underline;
+}
 /*
 * Fin de la saisie par liste
 */

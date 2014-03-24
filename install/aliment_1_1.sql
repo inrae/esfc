@@ -38,3 +38,6 @@ ALTER TABLE sturio.public.repartition ADD COLUMN vendredi SMALLINT;
 alter table distribution add column distribution_masse real;
 
 comment on column distribution.distribution_masse is 'Masse (poids) des poissons dans le bassin';
+
+alter table aliment add column aliment_libelle_court varchar(8);
+comment on column aliment.aliment_libelle_court is 'Nom de l''aliment - 8 caractères';

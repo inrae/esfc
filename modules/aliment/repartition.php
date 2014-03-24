@@ -92,7 +92,8 @@ switch ($t_module["param"]) {
 			 * Recuperation des modèles de distribution actifs
 			 */
 			$template = new RepartTemplate($bdd, $ObjetBDDParam);
-			$smarty->assign("dataTemplate", $template->getListActifFromCategorie($data["categorie_id"]));
+			$dataTemplate = $template->getListActifFromCategorie($data["categorie_id"]);
+			$smarty->assign("dataTemplate", $dataTemplate);
 		}
 		break;
 	case "create":
@@ -108,6 +109,13 @@ switch ($t_module["param"]) {
 		/*
 		 * Creation d'une nouvelle repartition a partir d'une existante
 		 */
+		if ($id > 0 ) {
+			$ret = $dataClass->duplicate($id);
+			if ($ret > 0 ) $module_coderetour = 1 ; else {
+				$message = "Erreur lors de la création d'une nouvelle distribution<br>".$dataClass->getErrorData(1);
+				$module_coderetour = -1;
+			}
+		}
 		break;
 	case "write":
 		/*
@@ -116,6 +124,36 @@ switch ($t_module["param"]) {
 		$id = dataWrite($dataClass, $_REQUEST);
 		if ($id > 0) {
 			$_REQUEST[$keyName] = $id;
+			/*
+			 * Preparation des informations concernant les bassins
+			*/
+			$data = array ();
+			foreach ( $_REQUEST as $key => $value ) {
+				if (preg_match ( '/[0-9]+$/', $key, $val )) {
+					$pos = strrpos ( $key, "_" );
+					$nom = substr ( $key, 0, $pos );
+					$data [$val [0]] [$nom] = $value;
+				}
+			}
+			/*
+			 * Mise en table des données de bassins
+			*/
+			$distribution = new Distribution ( $bdd, $ObjetBDDParam );
+			$error = 0;
+			foreach ( $data as $key => $value ) {
+				if ($value ["distribution_id"] > 0 || $value ["total_distribue"] > 0) {
+					$value ["repartition_id"] = $id;
+					$idDistrib = $distribution->ecrire ( $value );
+					if (! $idDistrib > 0) {
+						$error = 1;
+						$message .= formatErrorData ( $distribution->getErrorData (1) );
+					}
+				}
+			}
+			if ($error == 1) {
+				$message .="<br>". $LANG ["message"] [12];
+				$module_coderetour = - 1;
+			}
 		}
 		break;
 	case "delete":
@@ -123,6 +161,25 @@ switch ($t_module["param"]) {
 		 * delete record
 		 */
 		dataDelete($dataClass, $id);
+		break;
+	case "print":
+		/*
+		 * Imprime le tableau de répartition
+		 */
+		if ($id > 0) {
+			$data = $dataClass->lire($id);
+			$distribution = new Distribution($bdd, $ObjetBDDParam);
+			/*
+			 * Recuperation de la liste des aliments utilises
+			 */
+			$dataAliment = $distribution->getListeAlimentFromRepartition($id);
+			/*
+			 * Recuperation des distributions prevues
+			 */
+			$dataDistrib = $distribution->calculDistribution($id);
+			
+			
+		}
 		break;
 }
 

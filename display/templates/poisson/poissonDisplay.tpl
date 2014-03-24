@@ -1,33 +1,26 @@
 <script>
 $(document).ready(function() { 
+	/*
+	* Gestion de l'affichage
+	*/
 	var afficher = 1;
 	$("#afficher").text("Masquer tous les éléments");
-	//$ ("h3").next(".masquage").hide();
-	var styles = {
-		      "cursor": "pointer",
-		      "fontStyle": "italic",
-		      "text-decoration": "underline"
-		    } ;
-	$ ("#afficher").css( styles );
-	$ ("h3").css(styles);
-	$( "h3" ).click(function() {
-		//$( this ).next( ".masquage" ).toggle("slow") ;
-		if ($( this ).next( ".masquage" ).is(":visible") == true ) {
-			$( this ).next( ".masquage" ).hide("slow");
+	$ (".fsMasquable legend").click(function() {
+		if ($(this).nextAll(".masquage") .is (":visible") == true ) {
+			$(this).nextAll(".masquage").hide("10");
 		} else {
-			$( this ).next( ".masquage" ).show("slow")
+			$(this).nextAll(".masquage").show ("10");
 		}
 	} );
 	$("#afficher").click(function() {
-		/*$ ("h3").next(".masquage").toggle();*/
 		if (afficher == 0) {
 			$( this ).text("Masquer tous les éléments") ;
 			afficher = 1 ;
-			$ ("h3").next(".masquage").show("slow");
+			$ ("fieldset > .masquage").show("");
 		} else {
 			$ (this ).text ("Afficher tous les éléments") ;
 			afficher = 0;
-			$ ("h3").next(".masquage").hide("slow");
+			$ ("fieldset > .masquage").hide("");
 		}
 	} );
 } );
@@ -38,19 +31,16 @@ $(document).ready(function() {
 <a href="index.php?module=poissonList">Retour à la liste des poissons</a>
 <table class="tablemulticolonne">
 <tr>
-<td colspan="2">
+<td>
 {if $droits["poissonGestion"]==1}
 <a href="index.php?module=poissonChange&poisson_id={$dataPoisson.poisson_id}">
 Modifier les informations...
 </a>
 {/if}
 {include file="poisson/poissonDetail.tpl"}
-</td>
-</tr>
-<tr>
-<td>
-<div id="afficher"><i>Afficher tous les éléments</i></div>
-<h3>Événements associés</h3>
+<div id="afficher" class="masquageText">Afficher tous les éléments</div>
+<fieldset class="fsMasquable">
+<legend>Événements associés</legend>
 <div class="masquage">
 {if $droits["poissonGestion"]==1}
 <a href="index.php?module=evenementChange&poisson_id={$dataPoisson.poisson_id}&evenement_id=0">
@@ -60,24 +50,32 @@ Nouvel événement...
 {include file="poisson/evenementList.tpl"}
 <br>
 </div>
-<h3>Pathologies</h3>
+</fieldset>
+<fieldset class="fsMasquable">
+<legend>Pathologies</legend>
 <div class="masquage">
 {include file="poisson/pathologieList.tpl"}
 <br>
 </div>
-<h3>Mortalité</h3>
+</fieldset>
+<fieldset class="fsMasquable">
+<legend>Mortalité</legend>
 <div class="masquage">
 {include file="poisson/mortaliteList.tpl"}
 <br>
 </div>
-<h3>Transferts effectués</h3>
+</fieldset>
+<fieldset class="fsMasquable">
+<legend>Transferts effectués</legend>
 <div class="masquage">
 {include file="poisson/transfertList.tpl"}
 <br>
 </div>
+</fieldset>
 </td>
 <td>
-<h3>Liste des (pit)tags attribués</h3>
+<fieldset class="fsMasquable">
+<legend>Liste des (pit)tags attribués</legend>
 <div class="masquage">
 {if $droits["poissonGestion"]==1}
 <a href="index.php?module=pittagChange&poisson_id={$dataPoisson.poisson_id}&pittag_id=0">
@@ -87,8 +85,9 @@ Nouveau pittag ou étiquette...
 {include file="poisson/pittagList.tpl"}
 <br>
 </div>
-
-<h3>Liste des parents</h3>
+</fieldset>
+<fieldset class="fsMasquable">
+<legend>Liste des parents</legend>
 <div class="masquage">
 {if $droits["poissonGestion"]==1}
 <a href="index.php?module=parentPoissonChange&poisson_id={$dataPoisson.poisson_id}&parent_poisson_id=0">
@@ -98,23 +97,30 @@ Nouveau parent...
 {include file="poisson/parentPoissonList.tpl"}
 <br>
 </div>
-
-<h3>Données morphologiques</h3>
+</fieldset>
+<fieldset class="fsMasquable">
+<legend>Données morphologiques</legend>
 <div class="masquage">
 {include file="poisson/morphologieList.tpl"}
 <br>
 </div>
-<h3>Détermination du sexe</h3>
+</fieldset>
+<fieldset class="fsMasquable">
+<legend>Détermination du sexe</legend>
 <div class="masquage">
 {include file="poisson/genderSelectionList.tpl"}
 <br>
 </div>
-<h3>Détermination de la cohorte</h3>
+</fieldset>
+<fieldset class="fsMasquable">
+<legend>Détermination de la cohorte</legend>
 <div class="masquage">
 {include file="poisson/cohorteList.tpl"}
 <br>
 </div>
-<h3>Anomalies relevées dans les données</h3>
+</fieldset>
+<fieldset class="fsMasquable">
+<legend>Anomalies relevées dans les données</legend>
 <div class="masquage">
 {if $droits["poissonGestion"] == 1}
 <a href="index.php?module=anomalieChange&poisson_id={$dataPoisson.poisson_id}&anomalie_db_id=0&module_origine=poissonDisplay">
@@ -124,6 +130,12 @@ Créer une anomalie manuellement
 {include file="poisson/anomalieDbList.tpl"}
 <br>
 </div>
+</fieldset>
 </td>
+
+<td>
+
+</td>
+
 </tr>
 </table>

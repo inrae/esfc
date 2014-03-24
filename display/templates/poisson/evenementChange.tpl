@@ -6,33 +6,15 @@ $(document).ready(function() {
 	*/
 	var afficher = 1;
 	$("#afficher").text("Masquer tous les éléments");
-	$(".icone").attr("src","display/images/arrow_up.png");
-	$(".icone").attr("height","15");
-	var styles = {
-		      "cursor": "pointer",
-		      "fontStyle": "italic",
-		      "text-decoration": "underline"
-		    } ;
-	$ ("#afficher").css( styles );
-	$ ("fieldset").css(styles);
 	$ ("fieldset legend").click(function() {
-		//$( this ).next( ".masquage" ).toggle("slow") ;
 		if ($(this).nextAll(".masquage") .is (":visible") == true ) {
 			$(this).nextAll(".masquage").hide("10");
 			$(this).next( ".icone").attr("src", "display/images/arrow_down.png");
 		} else {
 			$(this).nextAll(".masquage").show ("10");
 		}
-		/*
-		if ($( ".masquage", this.parent()) ).is(":visible") == true ) {
-			$( ".masquage", this.parent() ).hide("10");
-		} else {
-			$( ".masquage", this.parent() ).show("10");
-		}
-		*/
 	} );
 	$("#afficher").click(function() {
-		/*$ ("h3").next(".masquage").toggle();*/
 		if (afficher == 0) {
 			$( this ).text("Masquer tous les éléments") ;
 			afficher = 1 ;
@@ -124,9 +106,9 @@ Type d'événement <span class="red">*</span> :</dt>
 </dl>
 </fieldset>
 
-<div id="afficher"><i>Afficher tous les éléments</i></div>
+<div id="afficher" class="masquageText">Afficher tous les éléments</div>
 
-<fieldset>
+<fieldset class="fsMasquable">
 <legend>Données morphologiques</legend>
 <div class="masquage">
 <dl>
@@ -156,7 +138,7 @@ Type d'événement <span class="red">*</span> :</dt>
 </div>
 </fieldset>
 
-<fieldset>
+<fieldset class="fsMasquable">
 <legend>Pathologie</legend>
 <div class="masquage">
 <dl>
@@ -188,7 +170,7 @@ Sélectionnez la pathologie...
 </dl>
 </div>
 </fieldset>
-<fieldset>
+<fieldset class="fsMasquable">
 <legend>Changement de bassin</legend>
 <div class="masquage">
 <dl>
@@ -225,7 +207,7 @@ Sélectionnez le bassin de destination...
 </dl>
 </div>
 </fieldset>
-<fieldset>
+<fieldset class="fsMasquable">
 <legend>Détermination du sexe</legend>
 <div class="masquage">
 <dl>
@@ -268,7 +250,7 @@ Sélectionnez le sexe...
 </div>
 </fieldset>
 
-<fieldset>
+<fieldset class="fsMasquable">
 <legend>Détermination de la cohorte</legend>
 <div class="masquage">
 <dl>
@@ -299,7 +281,7 @@ Sélectionnez le type de détermination...
 </div>
 </fieldset>
 
-<fieldset>
+<fieldset class="fsMasquable">
 <legend>Mortalité</legend>
 <div class="masquage">
 <dl>

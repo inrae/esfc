@@ -45,7 +45,7 @@ suiv&gt;
 <td>{$dataList[lst].date_fin_periode}</td>
 {if $droits.bassinGestion == 1}
 <td>
-<a href="index.php?module=repartitionDuplicate&repartition_id={$dataList[lst].repartition_id}">
+<a href="index.php?module=repartitionDuplicate&repartition_id={$dataList[lst].repartition_id}" title="Créer une nouvelle répartition à partir de celle-ci">
 <div class="center"><img src="display/images/copy.png" height="20"></div>
 </a>
 </td>

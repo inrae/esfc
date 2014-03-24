@@ -8,7 +8,11 @@
 <input type="hidden" name="aliment_id" value="{$data.aliment_id}">
 <dl>
 <dt>Nom de l'aliment <span class="red">*</span> :</dt>
-<dd><input name="aliment_libelle" value="{$data.aliment_libelle}" size="40" autofocus></dd>
+<dd><input name="aliment_libelle" value="{$data.aliment_libelle}" size="40" autofocus required></dd>
+</dl>
+<dl>
+<dt>Nom court (pour éditions) <span class="red">*</span> :</dt>
+<dd><input name="aliment_libelle_court" value="{$data.aliment_libelle_court}" size="8" maxlength="8" required></dd>
 </dl>
 
 <dl>

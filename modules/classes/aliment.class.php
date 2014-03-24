@@ -70,6 +70,10 @@ class Aliment extends ObjetBDD {
 						"type" => 0,
 						"requis" => 1 
 				),
+				"aliment_libelle_court" => array (
+						"type" => 0,
+						"requis" => 1 
+				),
 				"aliment_type_id" => array (
 						"type" => 1,
 						"requis" => 1 
@@ -291,16 +295,17 @@ class RepartTemplate extends ObjetBDD {
 	}
 	/**
 	 * Retourne les modèles actifs pour la catégorie considérée
-	 * @param int $categorie_id
+	 *
+	 * @param int $categorie_id        	
 	 * @return array
 	 */
-	function getListActifFromCategorie ($categorie_id) {
+	function getListActifFromCategorie($categorie_id) {
 		if ($categorie_id > 0) {
-			$sql = "select * from ".$this->table."
+			$sql = "select * from " . $this->table . "
 					where actif = 1 
-					and categorie_id = ".$categorie_id."
+					and categorie_id = " . $categorie_id . "
 					order by repart_template_date desc";
-			return $this->getListeParam($sql);
+			return $this->getListeParam ( $sql );
 		}
 	}
 }
@@ -501,7 +506,7 @@ class Repartition extends ObjetBDD {
 	/**
 	 * Surcharge de la fonction ecrire
 	 * (non-PHPdoc)
-	 * 
+	 *
 	 * @see ObjetBDD::ecrire()
 	 */
 	function ecrire($data) {
@@ -530,7 +535,91 @@ class Repartition extends ObjetBDD {
 		}
 		return $id;
 	}
+	function duplicate($id) {
+		if ($id > 0) {
+			/*
+			 * Lecture des infos précédentes
+			 */
+			$dataPrec = $this->lire ( $id );
+			if ($dataPrec ["repartition_id"] > 0) {
+				$err = 0;
+				$data = $dataPrec;
+				$data ["repartition_id"] = 0;
+				/*
+				 * Calcul des dates
+				 */
+				$datePrec = DateTime::createFromFormat ( "d/m/Y", $data ["date_fin_periode"] );
+				$datePrec->add ( new DateInterval ( "P1D" ) );
+				$data ["date_debut_periode"] = $datePrec->format ( "d/m/Y" );
+				$datePrec->add ( new DateInterval ( "P6D" ) );
+				$data ["date_fin_periode"] = $datePrec->format ( "d/m/Y" );
+				/*
+				 * Ecriture de la nouvelle repartition
+				 */
+				$newId = parent::ecrire ( $data );
+				if ($newId > 0) {
+					/*
+					 * Gestion des bassins rattaches
+					 */
+					$distribution = new Distribution ( $this->connection, $this->paramori );
+					/*
+					 * Recuperation de la liste des bassins rattaches a l'ancienne répartition
+					 */
+					$dataDist = $distribution->getFromRepartition ( $id );
+					foreach ( $dataDist as $key => $value ) {
+						$data = $value;
+						$data ["distribution_id"] = 0;
+						$data ["repartition_id"] = $newId;
+						$data ["taux_nourrissage_precedent"] = $value ["taux_nourrissage"];
+						$data ["reste_precedent"] = null;
+						$data ["evol_taux_nourrissage"] = null;
+						$data ["ration_commentaire"] = null;
+						/*
+						 * printr($value); printr($data);
+						 */
+						$idDistribution = $distribution->ecrire ( $data );
+						if (! $idDistribution > 0) {
+							$this->errorData [] = array (
+									"code" => 0,
+									"valeur" => $distribution->getErrorData ( 0 ) 
+							);
+							$err = - 1;
+						}
+					}
+				} else {
+					$err = - 1;
+				}
+				if ($err == - 1)
+					return - 1;
+				else
+					return $newId;
+			}
+		}
+	}
+	
+	/**
+	 * Surcharge de supprimer() pour supprimer les enregistrements fils dans distribution
+	 * (non-PHPdoc)
+	 *
+	 * @see ObjetBDD::supprimer()
+	 */
+	function supprimer($id) {
+		if ($id > 0) {
+			/*
+			 * Suppression des enregistrements lies dans distribution
+			 */
+			$distribution = new Distribution ( $this->connection, $this->paramori );
+			$distribution->supprimerChamp ( $id, "repartition_id" );
+			return (parent::supprimer ( $id ));
+		}
+	}
 }
+/**
+ * ORM de gestion de la table distribution
+ *
+ * @author quinton
+ *        
+ */
 class Distribution extends ObjetBDD {
 	/**
 	 * Constructeur de la classe
@@ -560,7 +649,7 @@ class Distribution extends ObjetBDD {
 						"requis" => 1 
 				),
 				"repart_template_id" => array (
-						"type" => 2,
+						"type" => 1,
 						"requis" => 1 
 				),
 				"taux_nourrissage_precedent" => array (
@@ -594,21 +683,23 @@ class Distribution extends ObjetBDD {
 		parent::__construct ( $bdd, $param );
 	}
 	/**
-	 * 
-	 * @param unknown $repartition_id
+	 *
+	 * @param int $repartition_id        	
+	 * @return array
 	 */
-	function getFromRepartition ($repartition_id) {
-		$sql = "select * from ".$this->table."
+	function getFromRepartition($repartition_id) {
+		$sql = "select * from " . $this->table . "
 				join bassin using (bassin_id)
-				where repartition_id = ".$repartition_id."
+				where repartition_id = " . $repartition_id . "
 				order by bassin_nom";
-		return $this->getListeParam($sql);
+		return $this->getListeParam ( $sql );
 	}
 	/**
 	 * Retourne la liste des bassins associés à une répartition,
 	 * avec les bassins qui peuvent en faire également partie
-	 * @param int $repartition_id
-	 * @param int $categorie_id
+	 *
+	 * @param int $repartition_id        	
+	 * @param int $categorie_id        	
 	 * @return array
 	 */
 	function getFromRepartitionWithBassin($repartition_id, $categorie_id) {
@@ -616,7 +707,7 @@ class Distribution extends ObjetBDD {
 			$data = $this->getFromRepartition ( $repartition_id );
 			/*
 			 * Recuperation des bassins du même type
-			*/
+			 */
 			if ($categorie_id > 0) {
 				$sql = "select distinct bassin_id, bassin_nom
 						from bassin
@@ -624,18 +715,55 @@ class Distribution extends ObjetBDD {
 						where actif = 1
 						and categorie_id = " . $categorie_id . "
 						and bassin_id not in
-						(select bassin_id from ".$this->table." where repartition_id = " . $repartition_id . ")
+						(select bassin_id from " . $this->table . " where repartition_id = " . $repartition_id . ")
 						order by bassin_nom";
 				$dataBassin = $this->getListeParam ( $sql );
 				/*
 				 * Rajout des bassins à la liste
-				*/
+				 */
 				foreach ( $dataBassin as $key => $value ) {
 					$value ["distribution_id"] = 0;
 					$data [] = $value;
 				}
 				return $data;
 			}
+		}
+	}
+	/**
+	 * Calcule la quantite de nourriture a distribuer globalement
+	 * 
+	 * @param int $repartition_id        	
+	 * @return array
+	 */
+	function calculDistribution($repartition_id) {
+		if ($repartition_id > 0) {
+			$sql = 'select bassin_nom, aliment_id, taux_nourrissage, evol_taux_nourrissage, total_distribue, repart_alim_taux, 
+					round (total_distribue * repart_alim_taux / 100) as "quantite"
+					from distribution
+					join repart_template using (repart_template_id)
+					join repart_aliment using (repart_template_id)
+					join aliment using (aliment_id)
+					join bassin using (bassin_id)
+					where repartition_id = ' . $repartition_id . "
+					order by bassin_nom";
+			return ($this->getListeParam ( $sql ));
+		}
+	}
+	/**
+	 * Retourne la liste des aliments utilisés dans une distribution
+	 * @param int $repartition_id
+	 * @return array
+	 */
+	function getListeAlimentFromRepartition ($repartition_id) {
+		if ($repartition_id > 0) {
+			$sql = "select distinct aliment_id, aliment_libelle_court
+					from distribution
+					join repart_template using (repart_template_id)
+					join repart_aliment using (repart_template_id)
+					join aliment using (aliment_id)
+					where repartition_id = ".$repartition_id."
+					order by aliment_libelle_court";
+			return ($this->getListeParam($sql));
 		}
 	}
 }
