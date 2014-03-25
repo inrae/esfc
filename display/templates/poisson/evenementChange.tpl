@@ -4,8 +4,14 @@ $(document).ready(function() {
 	/*
 	* Affichage ou masquage des différentes zones
 	*/
-	var afficher = 1;
-	$("#afficher").text("Masquer tous les éléments");
+	var afficher = $.cookie("evenementChangeAfficher");
+	if (isNaN(afficher)) afficher = 1;
+	if (afficher == 1) {
+		$("#afficher").text("Masquer tous les éléments");
+	} else {
+		$("#afficher").text("Afficher tous les éléments");
+		$ ("fieldset > .masquage").hide("");
+	}
 	$ ("fieldset legend").click(function() {
 		if ($(this).nextAll(".masquage") .is (":visible") == true ) {
 			$(this).nextAll(".masquage").hide("10");
@@ -24,6 +30,7 @@ $(document).ready(function() {
 			afficher = 0;
 			$ ("fieldset > .masquage").hide("");
 		}
+		$.cookie("evenementChangeAfficher", afficher);
 	} );
 $( "#cevenement_date" ).datepicker( { dateFormat: "dd/mm/yy" } );
 $( "#bassin_origine").change( function() {
