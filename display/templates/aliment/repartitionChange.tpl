@@ -1,5 +1,15 @@
 <script>
-$(document).ready(function() { 
+$(document).ready(function() {
+	var modif = 0;
+	$("input").change( function() {
+		modif = 1;
+	} ) ;
+	$("#repartitionPrint").click( function () {
+		if (modif == 1 ) {
+			alert ("L'impression ne peut pas être déclenchée : des modifications ont été apportées dans le formulaire");
+			return false;
+		}
+	} ) ;
 	$(".date").datepicker( { dateFormat: "dd/mm/yy" } );
 	$(".num5, .num10").attr( {
 		pattern: "\-?[0-9]*(\.[0-9]+)?",
@@ -122,6 +132,7 @@ $(document).ready(function() {
 </script>
 <h2>Modification d'une répartion</h2>
 <a href="index.php?module=repartitionList">Retour à la liste</a>
+<a href="index.php?module=repartitionPrint&repartition_id={$data.repartition_id}" id="repartitionPrint">Imprimer la répartition</a>
 <div class="formSaisie">
 <div>
 <form id="repartitionForm" method="post" action="index.php?module=repartitionWrite">

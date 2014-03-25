@@ -167,6 +167,7 @@ switch ($t_module["param"]) {
 		 * Imprime le tableau de répartition
 		 */
 		if ($id > 0) {
+			include_once 'modules/classes/tableauRepartition.class.php';
 			$data = $dataClass->lire($id);
 			$distribution = new Distribution($bdd, $ObjetBDDParam);
 			/*
@@ -177,7 +178,11 @@ switch ($t_module["param"]) {
 			 * Recuperation des distributions prevues
 			 */
 			$dataDistrib = $distribution->calculDistribution($id);
-			
+			if ($data["categorie_id"] == 1) {
+				$tableau = new RepartitionAdulte();
+				$tableau->setData($data, $dataDistrib, $dataAliment);
+				$tableau->exec();
+			}
 			
 		}
 		break;
