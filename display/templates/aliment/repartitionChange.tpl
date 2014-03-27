@@ -70,6 +70,23 @@ $(document).ready(function() {
 			$(masse_id).trigger("change");
 		} );
 	} );
+	$(".reste_zone_calcul").change(function () {
+		/*
+		* Calcul du reste à partir des données saisies dans la zone de calcul
+		*/
+		var zone = $(this).val();
+		var valeur_table = zone.split("+");
+		var reste = 0;
+		for(var i= 0; i < valeur_table.length; i++)
+		{
+		    var reste_val = parseInt(valeur_table[i]);
+		    if (isNaN(reste_val)) reste_val = 0;
+			reste = reste + reste_val;
+		}
+		var cle = $(this).data("cle");
+		var reste_id = "#reste_precedent_" + cle;
+		$(reste_id).val(reste);
+	} );
 	$( "#repartitionForm" ).submit(function() {
 		/*
 		* Verification que le modele de distribution est renseigne si ration > 0
@@ -204,6 +221,8 @@ Taux :
 <input name="taux_nourrissage_precedent_{$dataBassin[lst].bassin_id}" id="taux_nourrissage_precedent_{$dataBassin[lst].bassin_id}" data-cle="{$dataBassin[lst].bassin_id}" value="{$dataBassin[lst].taux_nourrissage_precedent}" class="num5" readonly>
 Reste :
 <input class="num5" name="reste_precedent_{$dataBassin[lst].bassin_id}" id="reste_precedent_{$dataBassin[lst].bassin_id}" data-cle="{$dataBassin[lst].bassin_id}" value="{$dataBassin[lst].reste_precedent}">
+<br>Reste (zone de calcul) : 
+<input class="reste_zone_calcul" name="reste_precedent_zone_calcul_{$dataBassin[lst].bassin_id}" id="reste_precedent_zone_calcul_{$dataBassin[lst].bassin_id}" data-cle="{$dataBassin[lst].bassin_id}" value="{$dataBassin[lst].reste_precedent_zone_calcul}" style="width:20em;" placeholder="10+20+0+10..." title="nombres séparés par le signe +" pattern="[0-9\+]*">
 <br>
 <input name="ration_commentaire_{$dataBassin[lst].bassin_id}" id="ration_commentaire_{$dataBassin[lst].bassin_id}" data-cle="{$dataBassin[lst].bassin_id}" value="{$dataBassin[lst].ration_commentaire}" size="30" placeholder="Commentaires..." title="Commentaires concernant le reste">
 </dd>

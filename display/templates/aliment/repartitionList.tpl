@@ -7,16 +7,24 @@
 <script>
 setDataTables("crepartitionList", 0 , 0, 0, {$repartitionSearch.limit});
 </script>
+<table class="tablemulticolonne">
+<tr>
+<td style="width:25%;">
 {if $repartitionSearch.offset > 0}
 <a href="index.php?module=repartitionList&previous=1" class="lienNormal" title="Données précédentes" >
 &lt;préc
 </a>
-{else}
-<span style="color:grey;">&lt;préc</span>
 {/if}
+</td>
+<td style="width:50%;"></td>
+<td style="width:25%;text-align:right;">
 <a href="index.php?module=repartitionList&next=1" class="lienNormal" title="Données suivantes">
 suiv&gt;
 </a>
+</td>
+</tr>
+<tr>
+<td colspan="3">
 <table id="repartitionList">
 <thead>
 <tr>
@@ -53,6 +61,9 @@ suiv&gt;
 </tr>
 {/section}
 </tbody>
+</table>
+</td>
+</tr>
 </table>
 {/if}
 </td>

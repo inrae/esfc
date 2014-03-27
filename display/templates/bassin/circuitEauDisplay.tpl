@@ -44,27 +44,26 @@ Nouvelle analyse...
 </a>
 {/if}
 <script>
-setDataTables("canalyseEauList", 0 , 0, 0, {$dataSearch.limit});
+setDataTables("canalyseEauList", 1 , 0, 0, {$dataSearch.limit}, true);
 </script>
 <table class="tablemulticolonne">
 <tr>
-<td>
+<td style="width:25%;">
 {if $dataSearch.offset > 0}
 <a href="index.php?module=circuitEauDisplay&circuit_eau_id={$data.circuit_eau_id}&previous=1" title="Données précédentes">
-Données précédentes
+&lt;préc
 </a>
 {/if}
 </td>
-<td>
-<div style="text-align:right;">
+<td style="width:50%;"></td>
+<td style="width:25%;text-align:right;">
 <a href="index.php?module=circuitEauDisplay&circuit_eau_id={$data.circuit_eau_id}&next=1" title="Données suivantes">
-Données suivantes
+suiv&gt;
 </a>
-</div>
 </td>
 </tr>
 <tr>
-<td colspan="2">
+<td colspan="3">
 <table id="canalyseEauList">
 <thead>
 <tr>
@@ -125,20 +124,5 @@ Données suivantes
 </table>
 </td>
 </tr>
-<tr>
-<td>
-{if $dataSearch.offset > 0}
-<a href="index.php?module=circuitEauDisplay&circuit_eau_id={$data.circuit_eau_id}&previous=1" title="Données précédentes">
-Données précédentes
-</a>
-{/if}
-</td>
-<td>
-<div style="text-align:right;">
-<a href="index.php?module=circuitEauDisplay&circuit_eau_id={$data.circuit_eau_id}&next=1" title="Données suivantes">
-Données suivantes
-</a>
-</div>
-</td>
-</tr>
+
 </table>

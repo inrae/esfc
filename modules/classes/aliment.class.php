@@ -57,6 +57,7 @@ class Aliment extends ObjetBDD {
 	 */
 	function __construct($bdd, $param = null) {
 		$this->param = $param;
+		$this->paramori = $param;
 		$this->table = "aliment";
 		$this->id_auto = 1;
 		$this->colonnes = array (
@@ -99,7 +100,22 @@ class Aliment extends ObjetBDD {
 		}
 		return $id;
 	}
-	
+	/**
+	 * Surcharge de la fonction supprimer() pour effacer les enregistrements dans aliment_categorie
+	 * (non-PHPdoc)
+	 * 
+	 * @see ObjetBDD::supprimer()
+	 */
+	function supprimer($id) {
+		if ($id > 0) {
+			/*
+			 * Suppression des rattachements aux catégories
+			 */
+			$alimentCategorie = new AlimentCategorie ( $this->connection, $this->paramori );
+			$alimentCategorie->supprimerChamp ( $id, "aliment_id" );
+			return parent::supprimer ( $id );
+		}
+	}
 	/**
 	 * Retourne la liste des aliments actuellement utilisés
 	 *
@@ -655,6 +671,9 @@ class Distribution extends ObjetBDD {
 				"taux_nourrissage_precedent" => array (
 						"type" => 1 
 				),
+				"reste_precedent_zone_calcul" => array(
+						"type"=> 0
+				),
 				"reste_precedent" => array (
 						"type" => 1 
 				),
@@ -681,6 +700,85 @@ class Distribution extends ObjetBDD {
 			$param == array ();
 		$param ["fullDescription"] = 1;
 		parent::__construct ( $bdd, $param );
+	}
+	/**
+	 * Surcharge de l'écriture, pour renseigner les 
+	 * donnees quotidiennes d'alimentation
+	 * (non-PHPdoc)
+	 * @see ObjetBDD::ecrire()
+	 */
+	function ecrire ( $data ) {
+		$id = parent::ecrire($data);
+		if ($id > 0 ) {
+			/*
+			 * Ecriture de la repartition quotidienne des aliments
+			 */
+			$repartition = new Repartition($this->connection, $this->paramori);
+			$dataRepartition = $repartition->lire($data["repartition_id"]);
+			$dateDebut = DateTime::createFromFormat('d/m/Y', $dataRepartition['date_debut_periode']);
+			$dateFin = DateTime::createFromFormat('d/m/Y', $dataRepartition["date_fin_periode"]);
+			/*
+			 * Lecture des donnees de la repartition
+			 */
+			$repartAliment = new RepartAliment($this->connection, $this->paramori);
+			$dataRepartAliment = $repartAliment->getFromTemplate($data["repart_template_id"]);
+			/*
+			 * Instanciation des tables a mettre a jour
+			 */
+			$distribQuotidien = new DistribQuotidien($this->connection, $this->paramori);
+			$alimentQuotidien = new AlimentQuotidien($this->connection, $this->paramori);
+			/*
+			 * Mise en forme facile a utiliser
+			 */
+			foreach ($dataRepartAliment as $key=>$value) {
+				$aliment[$value["aliment_id"]] = $value["repart_alim_taux"];
+			}
+			/*
+			 * Preparation des jours de la semaine
+			 */
+			$jourSemaine = array("dimanche", "lundi", "mardi", "mercredi", "jeudi", "vendredi", "samedi");
+			while ($dateDebut <= $dateFin) {
+				/*
+				 * Suppression des enregistrements precedents
+				 */
+				$alimentQuotidien->deleteFromDateBassin(date_format($dateDebut,"d/m/Y"), $data["bassin_id"]);
+				$distribQuotidien->deleteFromDateBassin(date_format($dateDebut,"d/m/Y"), $data["bassin_id"]);
+				/*
+				 * Calcul du jour
+				 */
+				$jour = date_format($dateDebut,"w");
+				if ($dataRepartition[$jourSemaine[$jour]] == 1) {
+					/*
+					 * Ecriture de l'enregistrement distrib_quotidien
+					 */
+					$dataDistrib = array("distrib_quotidien_id"=>0, 
+							"bassin_id"=>$data["bassin_id"],
+							"distrib_quotidien_date"=>date_format($dateDebut,"d/m/Y"),
+							"total_distribue" =>$data["total_distribue"],
+							"reste"=>$data["reste_precedent"]
+					);
+					$idDataDistrib = $distribQuotidien->ecrire($dataDistrib);
+					if ($idDataDistrib > 0 ) {
+						/*
+						 * Ecriture des donnees quotidiennes des aliments
+						 */
+						foreach ($aliment as $cle => $taux) {
+							$dataAlimQuot = array ("aliment_quotidien_id"=>0,
+							"aliment_id"=>$cle,
+							"distrib_quotidien_id"=>$idDataDistrib,
+							"quantite" => $data["total_distribue"] * $taux / 100
+							);
+							$alimentQuotidien->ecrire($dataAlimQuot);
+						}
+					}
+				}
+				/*
+				 * Incrementation de la date
+				 */
+				$dateDebut->add ( new DateInterval ( "P1D" ) );
+			}
+		}
+		return ($id);
 	}
 	/**
 	 *
@@ -731,7 +829,7 @@ class Distribution extends ObjetBDD {
 	}
 	/**
 	 * Calcule la quantite de nourriture a distribuer globalement
-	 * 
+	 *
 	 * @param int $repartition_id        	
 	 * @return array
 	 */
@@ -752,19 +850,139 @@ class Distribution extends ObjetBDD {
 	}
 	/**
 	 * Retourne la liste des aliments utilisés dans une distribution
-	 * @param int $repartition_id
+	 * 
+	 * @param int $repartition_id        	
 	 * @return array
 	 */
-	function getListeAlimentFromRepartition ($repartition_id) {
+	function getListeAlimentFromRepartition($repartition_id) {
 		if ($repartition_id > 0) {
 			$sql = "select distinct aliment_id, aliment_libelle_court
 					from distribution
 					join repart_template using (repart_template_id)
 					join repart_aliment using (repart_template_id)
 					join aliment using (aliment_id)
-					where repartition_id = ".$repartition_id."
+					where repartition_id = " . $repartition_id . "
 					order by aliment_libelle_court";
-			return ($this->getListeParam($sql));
+			return ($this->getListeParam ( $sql ));
+		}
+	}
+}
+/**
+ * ORM de gestion de la table distrib_quotidien
+ * 
+ * @author quinton
+ *        
+ */
+class DistribQuotidien extends ObjetBDD {
+	/**
+	 * Constructeur de la classe
+	 * 
+	 * @param connexion $bdd        	
+	 * @param array $param        	
+	 */
+	function __construct($bdd, $param = null) {
+		$this->param = $param;
+		$this->table = "distrib_quotidien";
+		$this->id_auto = 1;
+		$this->colonnes = array (
+				"distrib_quotidien_id" => array (
+						"type" => 1,
+						"key" => 1,
+						"requis" => 1,
+						"defaultValue" => 0 
+				),
+				"bassin_id" => array (
+						"type" => 1,
+						"requis" => 1,
+						"parentAttrib" => 1 
+				),
+				"distrib_quotidien_date" => array (
+						"type" => 2,
+						"requis" => 1 
+				),
+				"total_distribue" => array (
+						"type" => 1 
+				),
+				"reste" => array (
+						"type" => 1 
+				) 
+		);
+		if (! is_array ( $param ))
+			$param == array ();
+		$param ["fullDescription"] = 1;
+		parent::__construct ( $bdd, $param );
+	}
+	/**
+	 * Supprime un enregistrement attache a un bassin et a une date
+	 * @param string $date
+	 * @param int $bassin_id
+	 * @return code
+	 */
+	function deleteFromDateBassin($date, $bassin_id) {
+		if (strlen($date) > 0 && $bassin_id > 0 ) {
+			$sql = "delete from ".$this->table. "
+					where distrib_quotidien_date = '".$date."'
+					and bassin_id = ".$bassin_id;
+			return $this->executeSQL($sql);
+		}
+	}
+}
+/**
+ * ORM de gestion de la table aliment_quotidien
+ * 
+ * @author quinton
+ *        
+ */
+class AlimentQuotidien extends ObjetBDD {
+	/**
+	 * Constructeur de la classe
+	 * 
+	 * @param connexion $bdd        	
+	 * @param array $param        	
+	 */
+	function __construct($bdd, $param = null) {
+		$this->param = $param;
+		$this->table = "aliment_quotidien";
+		$this->id_auto = 1;
+		$this->colonnes = array (
+				"aliment_quotidien_id" => array (
+						"type" => 1,
+						"key" => 1,
+						"requis" => 1,
+						"defaultValue" => 0 
+				),
+				"distrib_quotidien_id" => array (
+						"type" => 1,
+						"requis" => 1,
+						"parentAttrib" => 1 
+				),
+				"aliment_id" => array (
+						"type" => 1,
+						"requis" => 1 
+				),
+				"quantite" => array (
+						"type" => 1 
+				) 
+		);
+		if (! is_array ( $param ))
+			$param == array ();
+		$param ["fullDescription"] = 1;
+		parent::__construct ( $bdd, $param );
+	}
+	/**
+	 * Supprime les enregistrements liés à un bassin, à une date donnée
+	 * @param string $date
+	 * @param int $bassin
+	 * @return code
+	 */
+	function deleteFromDateBassin ($date, $bassin) {
+		if (strlen($date) > 0 && $bassin_id > 0 ) {
+			$sql = "delete from ".$this->table. "
+					using distrib_quotidien
+					where distrib_quotidien.distrib_quotidien_id = aliment_quotidien.distrib_quotidien_id
+					and distrib_quotidien_date = '".$date."'
+					and bassin_id = ".$bassin_id;
+			return $this->executeSQL($sql);
 		}
 	}
 }
