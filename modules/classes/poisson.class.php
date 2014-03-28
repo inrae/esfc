@@ -49,7 +49,10 @@ class Poisson extends ObjetBDD {
 				),
 				"capture_date" => array (
 						"type" => 2 
-				) 
+				),
+				"date_naissance" => array(
+						"type" => 2
+				)
 		);
 		if (! is_array ( $param ))
 			$param == array ();
@@ -121,7 +124,7 @@ class Poisson extends ObjetBDD {
 	function getDetail($poisson_id) {
 		if ($poisson_id > 0) {
 			$sql = "select p.poisson_id, sexe_id, matricule, prenom, cohorte, capture_date, sexe_libelle, sexe_libelle_court, poisson_statut_libelle,
-					pittag_valeur, p.poisson_statut_id,
+					pittag_valeur, p.poisson_statut_id, date_naissance,
 					bassin_nom, b.bassin_id
 					from " . $this->table . " p natural join sexe
 					  natural join poisson_statut
@@ -262,7 +265,10 @@ class Pittag extends ObjetBDD {
 				),
 				"pittag_valeur" => array (
 						"type" => 0 
-				) 
+				),
+				"pittag_commentaire" => array (
+						"type" => 0
+				)
 		);
 		if (! is_array ( $param ))
 			$param == array ();
@@ -278,7 +284,8 @@ class Pittag extends ObjetBDD {
 	 */
 	function getListByPoisson($poisson_id, $limit = 0) {
 		if ($poisson_id > 0) {
-			$sql = "select pittag_id, poisson_id, pittag_date_pose, pittag_valeur, pittag_type_libelle
+			$sql = "select pittag_id, poisson_id, pittag_date_pose, pittag_valeur, pittag_type_libelle,
+					pittag_commentaire
 					from pittag
 					left outer join pittag_type using (pittag_type_id)
 					where poisson_id = " . $poisson_id . " order by pittag_date_pose desc, pittag_id desc";

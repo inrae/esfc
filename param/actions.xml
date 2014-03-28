@@ -5,12 +5,14 @@
 	</model>
 	<default action="framework/default.php"></default>
 	<droitko action="framework/droitko.php"></droitko>
-	<loginliste action="framework/identification/login.php" param="list" droits="admin" menulevel="1" retourlogin="1" menuorder="9" menudroits="admin" menuparent="3" menutitle="3" menuvalue="2"></loginliste>
+	<droits menudroits="admin" droits="admin" menulevel="0" menuorder="7" menuvalue="14" menutitle="15" />
+	<loginliste action="framework/identification/login.php" param="list" droits="admin" menulevel="1" retourlogin="1" menuorder="9" menudroits="admin" menuparent="7" menutitle="3" menuvalue="2"></loginliste>
 	<loginmodif action="framework/identification/login.php" param="change" droits="admin" />
 	<loginwrite action="framework/identification/login.php" param="write" droits="admin" retourko="loginmodif" retourok="loginliste" modulebefore="loginmodif" />
 	<logindelete action="framework/identification/login.php" param="delete" droits="admin" retourko="loginmodif" retoursuppr="loginliste" modulebefore="loginmodif"/>
 	<loginChangePassword action="framework/identification/login.php" param="changePassword" loginrequis="1" />
 	<loginChangePasswordExec action="framework/identification/login.php" param="changePasswordExec" loginrequis="1" retourko="loginChangePassword" modulebefore="loginChangePassword" />
+	<gestiondroits action="framework/identification/gestiondroits.php" droits="admin" loginrequis="0" menulevel="1" retourlogin="1" menuorder="99" menudroits="admin" menuloginrequis="" menuparent="7" menutitle="13" menuvalue="12" droitko="droitko"/>
 
 	<parametre action="modules/paramAdministration/index.php" droits="paramAdmin"
 		retourko="" retourok="" retournull="" menuvalue="4" menutitle="5" menuorder="3" menulevel="0"  retourlogin="1" droitko="droitko"/>
@@ -20,11 +22,7 @@
 		retournull="">
 	</test>
 	<connexion loginrequis="1" menutitle="connexiontitle" menuvalue="connexionvalue" menulevel="0" menuorder="5" onlynoconnect="1" />
-	<identdisconnect action="framework/identification/disconnect.php" menutitle="7" menuvalue="6" menuorder="4" menulevel="0" menuloginrequis="1"></identdisconnect>
-	<gestiondroits action="framework/identification/gestiondroits.php" droits="admin" retourko=""
-		retourok="" retournull="" loginrequis="0" menulevel="1"  retourlogin="1" menuorder="99" menudroits="admin" menuloginrequis="" menuparent="3" menutitle="13" menuvalue="12" droitko="droitko">
-	</gestiondroits>
-
+	<identdisconnect action="framework/identification/disconnect.php" menutitle="7" menuvalue="6" menuorder="8" menulevel="0" menuloginrequis="1"></identdisconnect>
 	<docindex menulevel="0" menuorder="99" menutitle="11" menuvalue="10"  retourlogin="1" action="framework/apropos.php" param1="index.html"></docindex>
 	<apropos action="framework/apropos.php" menulevel="1" menuorder="99"  retourlogin="1" menuvalue="8" menutitle="9" menuparent="99"></apropos>
 

@@ -48,6 +48,13 @@ $( "#cpittag_date_pose" ).datepicker( { dateFormat: "dd/mm/yy" } );
 </tr>
 
 <tr>
+<td class="libelleSaisie">Commentaire :</td>
+<td class="datamodif">
+<input name="pittag_commentaire" value="{$data.pittag_commentaire}" size="40">
+</td>
+</tr>
+
+<tr>
 <td colspan="2"><div align="center">
 <input class="submit" type="submit" value="Enregistrer">
 </form>

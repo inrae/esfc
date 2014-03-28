@@ -15,6 +15,9 @@ $LANG["menu"][10] = "Aide";
 $LANG["menu"][11] = "Quelques conseils...";
 $LANG["menu"][12] = "Gestion des droits";
 $LANG["menu"][13] = "Gestion des droits d'accès aux modules de l'application";
+$LANG["menu"][14] = "Droits";
+$LANG["menu"][15] = "Gestion des logins et des droits d'accès";
+
 $LANG["menu"][20] = "Aide";
 $LANG["menu"][21] = "Utiliser PrototypePHP";
 $LANG["menu"][22] = "Installation";

@@ -10,6 +10,7 @@
 <br>
 <label>Cohorte : </label>{$dataPoisson.cohorte}
 {if strlen($dataPoisson.capture_date) > 0} - <label>capturé le </label>{$dataPoisson.capture_date}{/if}
+{if strlen($dataPoisson.date_naissance) > 0} - <label>né le </label>{$dataPoisson.date_naissance}{/if}
 {if $dataPoisson.poisson_statut_id != 3 and $dataPoisson.poisson_statut_id != 4}
 <br>
 <label>Bassin : </label>

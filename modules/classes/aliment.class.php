@@ -717,6 +717,8 @@ class Distribution extends ObjetBDD {
 			$dataRepartition = $repartition->lire($data["repartition_id"]);
 			$dateDebut = DateTime::createFromFormat('d/m/Y', $dataRepartition['date_debut_periode']);
 			$dateFin = DateTime::createFromFormat('d/m/Y', $dataRepartition["date_fin_periode"]);
+			$dateDiff = date_diff($dateDebut, $dateFin, true);
+			$nbJour =  $dateDiff->format("%a");
 			/*
 			 * Lecture des donnees de la repartition
 			 */
@@ -734,15 +736,27 @@ class Distribution extends ObjetBDD {
 				$aliment[$value["aliment_id"]] = $value["repart_alim_taux"];
 			}
 			/*
+			 * Preparation du reste
+			 */
+			if (strlen($data["reste_precedent_zone_calcul"]) > 0) {
+				$reste = explode("+", $data["reste_precedent_zone_calcul"]);
+			} else {
+				$resteJour = intval($reste / $nbJour);
+				for($i=0;$i<$nbJour;$i++) {
+					$reste[$i] = $resteJour;
+				}
+			}
+			/*
 			 * Preparation des jours de la semaine
 			 */
 			$jourSemaine = array("dimanche", "lundi", "mardi", "mercredi", "jeudi", "vendredi", "samedi");
+			$i = 0;
 			while ($dateDebut <= $dateFin) {
 				/*
 				 * Suppression des enregistrements precedents
 				 */
-				$alimentQuotidien->deleteFromDateBassin(date_format($dateDebut,"d/m/Y"), $data["bassin_id"]);
-				$distribQuotidien->deleteFromDateBassin(date_format($dateDebut,"d/m/Y"), $data["bassin_id"]);
+				$alimentQuotidien->deleteFromDateBassin(date_format($dateDebut,"Y-m-d"), $data["bassin_id"]);
+				$distribQuotidien->deleteFromDateBassin(date_format($dateDebut,"Y-m-d"), $data["bassin_id"]);
 				/*
 				 * Calcul du jour
 				 */
@@ -755,7 +769,7 @@ class Distribution extends ObjetBDD {
 							"bassin_id"=>$data["bassin_id"],
 							"distrib_quotidien_date"=>date_format($dateDebut,"d/m/Y"),
 							"total_distribue" =>$data["total_distribue"],
-							"reste"=>$data["reste_precedent"]
+							"reste"=>$reste[$i]
 					);
 					$idDataDistrib = $distribQuotidien->ecrire($dataDistrib);
 					if ($idDataDistrib > 0 ) {
@@ -766,12 +780,13 @@ class Distribution extends ObjetBDD {
 							$dataAlimQuot = array ("aliment_quotidien_id"=>0,
 							"aliment_id"=>$cle,
 							"distrib_quotidien_id"=>$idDataDistrib,
-							"quantite" => $data["total_distribue"] * $taux / 100
+							"quantite" => intval($data["total_distribue"] * $taux / 100)
 							);
 							$alimentQuotidien->ecrire($dataAlimQuot);
 						}
 					}
 				}
+				$i ++;
 				/*
 				 * Incrementation de la date
 				 */
@@ -975,7 +990,7 @@ class AlimentQuotidien extends ObjetBDD {
 	 * @param int $bassin
 	 * @return code
 	 */
-	function deleteFromDateBassin ($date, $bassin) {
+	function deleteFromDateBassin ($date, $bassin_id) {
 		if (strlen($date) > 0 && $bassin_id > 0 ) {
 			$sql = "delete from ".$this->table. "
 					using distrib_quotidien

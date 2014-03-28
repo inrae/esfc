@@ -2,6 +2,8 @@
 $(document).ready(function() {
 $( "#ccapture_date" ).datepicker( { dateFormat: "dd/mm/yy" } );
 $("#cpittag_date_pose").datepicker( { dateFormat: "dd/mm/yy" } );
+$("#cdate_naissance").datepicker( { dateFormat: "dd/mm/yy" } );
+
 $( "#poissonForm" ).submit(function() {
 	var valid = true;
 	var prenom_l = $("#cprenom").val().length;
@@ -105,13 +107,15 @@ Cohorte :
 <tr>
 <td class="libelleSaisie">Date de capture :</td>
 <td class="datamodif">
- <script>
- 
-</script>
 <input name="capture_date" id="ccapture_date" size="10" maxlength="10" value="{$data.capture_date}" placeholder="jj/mm/aaaa">
 </td>
 </tr>
-
+<tr>
+<td class="libelleSaisie">Date de naissance :</td>
+<td class="datamodif">
+<input name="date_naissance" id="cdate_naissance" size="10" maxlength="10" value="{$data.date_naissance}" placeholder="jj/mm/aaaa">
+</td>
+</tr>
 <tr>
 <td colspan="2"><div align="center">
 <input class="submit" type="submit" value="Enregistrer">

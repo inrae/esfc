@@ -7,6 +7,7 @@ setDataTables("cpittagList");
 <th>Valeur</th>
 <th>Type de pittag</th>
 <th>Date de pose</th>
+<th>Commentaire</th>
 </tr>
 </thead>
 <tdata>
@@ -23,6 +24,7 @@ setDataTables("cpittagList");
 </td>
 <td>{$dataPittag[lst].pittag_type_libelle}</td>
 <td>{$dataPittag[lst].pittag_date_pose}</td>
+<td>{$dataPittag[lst].pittag_commentaire}</td>
 </tr>
 {/section}
 </tdata>

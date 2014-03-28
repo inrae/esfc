@@ -270,7 +270,8 @@ class RepartitionAdulte extends TableauRepartition {
 		/*
 		 * envoi au navigateur
 		 */
-		$this->Output("repartitionAdulte.pdf", "I");
+		$nomFichier = "repartitionAdulte_".$dateDebut->format("d-m-Y").".pdf";
+		$this->Output($nomFichier, "I");
 	}
 	/**
 	 * Imprime l'entete du tableau 
