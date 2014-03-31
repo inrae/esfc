@@ -12,7 +12,7 @@ include_once ("framework/common.inc.php");
  * Recuperation du module
  */
 unset ( $module );
-if (isset ( $_REQUEST ["module"] )) {
+if (isset ( $_REQUEST ["module"] )&& strlen($_REQUEST["module"]) > 0 ) {
 	$module = $_REQUEST ["module"];
 } else {
 	/*
@@ -30,13 +30,9 @@ while ( isset ( $module ) ) {
 	$t_module = array ();
 	$t_module = $navigation->getModule ( $module );
 	/*
-	 * Verification si le module est bien appele apres son parent
-	 */
-
-	/*
 	 * Verification si le login est requis
 	*/
-	if (strlen ( $t_module ["droits"] ) > 1 || $t_module ["loginrequis"] == 1) {
+	if (strlen ( $t_module ["droits"] ) > 1 || $t_module ["loginrequis"] == 1 || isset($_REQUEST["login"])) {
 		/*
 		 * Verification du login
 		 */
