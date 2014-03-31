@@ -123,6 +123,9 @@ class RepartitionAdulte extends TableauRepartition {
 		 */
 		$nbAlim = count ($this->dataAliment);
 		$alimColumnSize = intval(130 / $nbAlim);
+		$alimColumnSizeMatin = intval($alimColumnSize / 2);
+		$alimColumnSizeSoir = $alimColumnSize - $alimColumnSizeMatin;
+		$largeurTotaleAlim = $nbAlim * $alimColumnSize;
 		$this->enteteTableau($nbAlim, $alimColumnSize);
 		/*
 		 * Impression des données
@@ -167,8 +170,8 @@ class RepartitionAdulte extends TableauRepartition {
 			 * Integration des donnees d'aliment
 			 */
 			$distrib[$i][$aliment[$value["aliment_id"]]]["repart_alim_taux"] = $value["repart_alim_taux"];
-			$distrib[$i][$aliment[$value["aliment_id"]]]["quantite"] = $value["quantite"];
-			$alimentTotal[$value["aliment_id"]] =  $alimentTotal[$value["aliment_id"]] + $value["quantite"];
+			$distrib[$i][$aliment[$value["aliment_id"]]]["quantiteMatin"] = $value["quantiteMatin"];
+			$distrib[$i][$aliment[$value["aliment_id"]]]["quantiteSoir"] = $value["quantiteSoir"];			
 		}
 		/*
 		 * Impression du tableau
@@ -217,10 +220,13 @@ class RepartitionAdulte extends TableauRepartition {
 			/*
 			 * Traitement des aliments
 			 */
-			$this->SetFontSize(18);
+			$this->SetFontSize(16);
 			for ($i = 0; $i < $nbAlim; $i ++) {
 				$this->SetFillColor($this->color[$i]["R"], $this->color[$i]["G"], $this->color[$i]["B"]);
-				$this->Cell($alimColumnSize, 10, $value[$i]["quantite"], 1, 0, 'C', true);
+				$this->Cell($alimColumnSizeMatin, 10, $value[$i]["quantiteMatin"], 1, 0, 'C', true);
+				$this->Cell($alimColumnSizeSoir, 10, $value[$i]["quantiteSoir"], 1, 0, 'C', true);	
+				$alimentTotal[$i]["matin"] +=  $value[$i]["quantiteMatin"];
+				$alimentTotal[$i]["soir"] +=  $value[$i]["quantiteSoir"];
 			}
 			/*
 			 * Fin de ligne
@@ -234,7 +240,7 @@ class RepartitionAdulte extends TableauRepartition {
 			/*
 			 * Troisième ligne
 			 */
-			$this->Cell(165,8,$value["distribution_consigne"],1, 0, 'L', true);
+			$this->Cell(20+$largeurTotaleAlim+15,8,$value["distribution_consigne"],1, 0, 'L', true);
 			$this->Cell(10, 8,$value["evol_taux_nourrissage"], 1, 0, 'C', true);
 			$this->Cell(15,8,"", 1, 0, 'C', true);
 			$this->Ln();
@@ -249,8 +255,9 @@ class RepartitionAdulte extends TableauRepartition {
 		/*
 		 * Recuperation des totaux pour chaque aliment
 		*/
-		foreach ($alimentTotal as $key=>$value) {
-			$this->Cell($alimColumnSize, 6, $value, 1, 0, 'C', true);
+		for ($i = 0; $i < $nbAlim; $i ++) {
+			$this->Cell($alimColumnSizeMatin, 6, $alimentTotal[$i]["matin"], 1, 0, 'C', true);
+			$this->Cell($alimColumnSizeSoir, 6, $alimentTotal[$i]["soir"], 1, 0, 'C', true);			
 		}
 		$this->Cell(40,6,"", 1, 0, 'C', true);
 		$this->Ln();
@@ -263,8 +270,8 @@ class RepartitionAdulte extends TableauRepartition {
 		/*
 		 * Recuperation des totaux pour chaque aliment
 		*/
-		foreach ($alimentTotal as $key=>$value) {
-			$this->Cell($alimColumnSize, 6, $value * $nbJour, 1, 0, 'C', true);
+		for ($i = 0; $i < $nbAlim; $i ++) {
+			$this->Cell($alimColumnSize, 6, ($alimentTotal[$i]["matin"] + $alimentTotal[$i]["soir"] ) * $nbJour, 1, 0, 'C', true);
 		}
 		$this->Cell(40,6,"", 1, 0, 'C', true);
 		/*

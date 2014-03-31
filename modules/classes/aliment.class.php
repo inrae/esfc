@@ -671,7 +671,7 @@ class Distribution extends ObjetBDD {
 				"taux_nourrissage_precedent" => array (
 						"type" => 1 
 				),
-				"reste_precedent_zone_calcul" => array(
+				"reste_zone_calcul" => array(
 						"type"=> 0
 				),
 				"reste_precedent" => array (
@@ -852,6 +852,10 @@ class Distribution extends ObjetBDD {
 		if ($repartition_id > 0) {
 			$sql = 'select bassin_nom, aliment_id, taux_nourrissage, evol_taux_nourrissage, total_distribue, repart_alim_taux, 
 					round (total_distribue * repart_alim_taux / 100) as "quantite",
+					round (total_distribue * repart_alim_taux  * matin / 10000) as "quantiteMatin",
+					round (total_distribue * repart_alim_taux * midi / 10000) as "quantiteMidi",
+					round (total_distribue * repart_alim_taux * soir / 10000) as "quantiteSoir",
+					round (total_distribue * repart_alim_taux * nuit / 10000) as "quantiteNuit",
 					distribution_consigne, distribution_masse
 					from distribution
 					join repart_template using (repart_template_id)
