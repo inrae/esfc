@@ -166,6 +166,9 @@
 	<repartitionWrite action="modules/aliment/repartition.php" param="write" droits="bassinGestion" retourok="repartitionChange" retourko="repartitionChange" modulebefore="repartitionChange,repartitionPrint" />
 	<repartitionDelete action="modules/aliment/repartition.php" param="delete" droits="bassinAdmin" retoursuppr="repartitionList" retourko="repartitionChange"  modulebefore="repartitionChange"/>
 	<repartitionPrint action="modules/aliment/repartition.php" param="print" droits="bassinGestion" modulebefore=""/>
+	<repartitionResteChange action="modules/aliment/repartition.php" param="resteChange" droits="bassinGestion" />
+	<repartitionResteWrite action="modules/aliment/repartition.php" param="resteWrite" droits="bassinGestion" modulebefore="repartitionResteChange" retourok="repartitionList" retourko="repartitionResteChange"/>
+	
 	
 </navigation>
 	

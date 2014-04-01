@@ -120,9 +120,10 @@ switch ($t_module ["param"]) {
 		 */
 		if ($id > 0) {
 			$ret = $dataClass->duplicate ( $id );
-			if ($ret > 0)
+			if ($ret > 0) {
 				$module_coderetour = 1;
-			else {
+				$_REQUEST [$keyName] = $ret;
+			} else {
 				$message = "Erreur lors de la création d'une nouvelle distribution<br>" . $dataClass->getErrorData ( 1 );
 				$module_coderetour = - 1;
 			}
@@ -196,42 +197,51 @@ switch ($t_module ["param"]) {
 			}
 		}
 		break;
-	case "resteChange":
-		$data = dataRead ( $dataClass, $id, "aliment/repartitionResteChange.tpl" );
+	case "resteChange" :
+		$data = $dataClass->lireWithCategorie ( $id );
+		$smarty->assign ( "data", $data );
+		$smarty->assign ( "corps", "aliment/repartitionResteChange.tpl" );
 		/*
 		 * preparation de la saisie des restes
 		 */
 		$distribution = new Distribution ( $bdd, $ObjetBDDParam );
 		$dataBassin = $distribution->getFromRepartition ( $id );
-		/*
-		 * Mise en forme des donnees
-		 */
-		foreach ($dataBassin as $key => $value) {
-			if (strlen("reste_zone_calcul") > 0) {
-				$dataReste = explode("+", $value["reste_zone_calcul"]);
-				$i = 0;
-				foreach ($dataReste as $key1 => $value1) {
-					$dataBassin[$key]["reste"][$i] = $value1;
-					$i ++ ;
-				}
-			}
-		}
 		
-		$smarty->assign ( "dataBassin", $dataBassin );
 		/*
 		 * Preparation du tableau de dates
 		 */
-		$dateDebut = DateTime::createFromFormat('d/m/Y', $data['date_debut_periode']);
-		$dateFin = DateTime::createFromFormat('d/m/Y', $data["date_fin_periode"]);
-		$dateDiff = date_diff($dateDebut, $dateFin, true);
-		$nbJour =  $dateDiff->format("%a");
-		$jour = array (0=>"dim", 1=>"lun", 2=>"mar", 3=>"mer", 4=>"jeu", 5=>"ven", 6=>"sam");
-		for($i = 0 ; $i < $nbJour; $i ++ ) {
-			$dateArray["numJour"] = $i;
-			$dateArray["libelle"] = $jour[$dateDebut->format("w")];
-			$dateDebut -> add ( new DateInterval ( 'P1D' ) );
+		$dateDebut = DateTime::createFromFormat ( 'd/m/Y', $data ['date_debut_periode'] );
+		$dateFin = DateTime::createFromFormat ( 'd/m/Y', $data ["date_fin_periode"] );
+		$dateDiff = date_diff ( $dateDebut, $dateFin, true );
+		$nbJour = $dateDiff->format ( "%a" );
+		$jour = array (
+				0 => "dim",
+				1 => "lun",
+				2 => "mar",
+				3 => "mer",
+				4 => "jeu",
+				5 => "ven",
+				6 => "sam" 
+		);
+		for($i = 0; $i <= $nbJour; $i ++) {
+			$dateArray [$i] ["libelle"] = $jour [$dateDebut->format ( "w" )];
+			$dateArray [$i] ["numJour"] = $i;
+			$dateDebut->add ( new DateInterval ( 'P1D' ) );
 		}
-		$smarty->assign("dateArray", $dateArray);
+		$smarty->assign ( "dateArray", $dateArray );
+		$smarty->assign("nbJour", $nbJour + 1);
+		/*
+		 * Mise en forme des donnees
+		 */
+		foreach ( $dataBassin as $key => $value ) {
+			$dataReste = explode ( "+", $value ["reste_zone_calcul"] );
+			$i = 0;
+			for($i = 0; $i <= $nbJour; $i ++) {
+				// foreach ($dataReste as $key1 => $value1) {
+				$dataBassin [$key] ["reste"] [$i] = $dataReste [$i];
+			}
+		}
+		$smarty->assign ( "dataBassin", $dataBassin );
 		break;
 	case "resteWrite":
 		/*
@@ -252,10 +262,20 @@ switch ($t_module ["param"]) {
 					$data [$val [0]] [$nom] = $value;
 				}
 			}
+			$distribution = new Distribution ( $bdd, $ObjetBDDParam );
 			/*
 			 * Traitement de chaque bassin
 			 */
 			foreach ( $data as $key => $value ) {
+				$value ["date_debut_periode"] = $_REQUEST ["date_debut_periode"];
+				$value ["date_fin_periode"] = $_REQUEST ["date_fin_periode"];
+				$value ["repartition_id"] = $_REQUEST ["repartition_id"];
+				/*
+				 * On divise le total_distribue par le nombre de jours
+				 */
+				if ($_REQUEST["nbJour"] > 0) {
+					$value["total_distribue"] = $value["total_distribue"] / $_REQUEST["nbJour"];
+				}
 				$idDistrib = $distribution->ecrireReste ( $value );
 				if (! $idDistrib > 0) {
 					$error = 1;
@@ -268,6 +288,11 @@ switch ($t_module ["param"]) {
 			if ($error == 1) {
 				$message .= "<br>" . $LANG ["message"] [12];
 				$module_coderetour = - 1;
+			} else {
+				
+					$message .= $LANG["message"][5];
+					$module_coderetour = 1;
+					$log -> setLog($_SESSION["login"], get_class($dataClass)."-write",$id);
 			}
 		}
 		

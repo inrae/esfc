@@ -73,3 +73,22 @@ NOT DEFERRABLE;
 ALTER TABLE sturio.public.distribution ADD COLUMN reste_precedent_zone_calcul VARCHAR;
 comment on column distribution.reste_precedent_zone_calcul is 'Zone permettant de saisir les différents restes quotidiens, pour totalisation.
 Accepte uniquement des chiffres et le signe +';
+
+alter table distribution rename column reste_precedent_zone_calcul to reste_zone_calcul;
+
+alter table distribution add column reste_total float;
+
+alter table distribution add column taux_reste float;
+alter table distribution add column taux_reste_precedent float;
+comment on column distribution.taux_reste is 'Taux de reste : reste / quantité distribuée * 100';
+comment on column distribution.taux_reste_precedent is 'Taux de reste de la période précédente';
+comment on column distribution.reste_total is 'Quantité de nourriture restante totale pour la période';
+alter table distribution add column total_distrib_precedent float;
+comment on column distribution.total_distrib_precedent is 'Quantité d''aliment distribuée précédemment';
+
+alter table distribution drop column taux_reste_precedent;
+alter table distribution drop column reste_precedent;
+alter table distribution drop column total_distrib_precedent;
+alter table distribution drop column taux_nourrissage_precedent ;
+alter table distribution add column distribution_id_prec int;
+comment on column distribution.distribution_id_prec is 'Identifiant de la distribution precedente';

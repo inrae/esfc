@@ -103,7 +103,7 @@ class Aliment extends ObjetBDD {
 	/**
 	 * Surcharge de la fonction supprimer() pour effacer les enregistrements dans aliment_categorie
 	 * (non-PHPdoc)
-	 * 
+	 *
 	 * @see ObjetBDD::supprimer()
 	 */
 	function supprimer($id) {
@@ -495,6 +495,19 @@ class Repartition extends ObjetBDD {
 		parent::__construct ( $bdd, $param );
 	}
 	/**
+	 * Lit un enregistrement avec les tables de parametres liees
+	 * @param int $id
+	 * @return array
+	 */
+	function lireWithCategorie($id) {
+		if ($id > 0)
+			$sql = "select * from ".$this->table.
+					" left outer join categorie using (categorie_id)
+					 where repartition_id = ". $id;
+		return $this->lireParam($sql);
+	}
+	
+	/**
 	 * Recherche des repartions d'aliments à partir des paramètres fournis
 	 *
 	 * @param array $param        	
@@ -586,12 +599,14 @@ class Repartition extends ObjetBDD {
 						$data = $value;
 						$data ["distribution_id"] = 0;
 						$data ["repartition_id"] = $newId;
-						$data ["taux_nourrissage_precedent"] = $value ["taux_nourrissage"];
-						$data ["reste_precedent"] = null;
 						$data ["evol_taux_nourrissage"] = null;
 						$data ["ration_commentaire"] = null;
+						$data ["reste_zone_calcul"] = null;
+						$data ["distribution_id_prec"] = $value["distribution_id"];
+						$data ["reste_total"] = 0;
+						$data ["taux_reste"] = 0 ;
 						/*
-						 * printr($value); printr($data);
+						 * Ecriture des nouvelles distributions
 						 */
 						$idDistribution = $distribution->ecrire ( $data );
 						if (! $idDistribution > 0) {
@@ -668,14 +683,11 @@ class Distribution extends ObjetBDD {
 						"type" => 1,
 						"requis" => 1 
 				),
-				"taux_nourrissage_precedent" => array (
-						"type" => 1 
+				"reste_zone_calcul" => array (
+						"type" => 0 
 				),
-				"reste_zone_calcul" => array(
-						"type"=> 0
-				),
-				"reste_precedent" => array (
-						"type" => 1 
+				"reste_total" => array(
+						"type" => 0
 				),
 				"evol_taux_nourrissage" => array (
 						"type" => 1 
@@ -694,7 +706,13 @@ class Distribution extends ObjetBDD {
 				),
 				"ration_commentaire" => array (
 						"type" => 0 
-				) 
+				),
+				"taux_reste" => array (
+						"type" => 0
+				),
+				"distribution_id_prec" => array (
+						"type" => 0
+				)
 		);
 		if (! is_array ( $param ))
 			$param == array ();
@@ -702,90 +720,96 @@ class Distribution extends ObjetBDD {
 		parent::__construct ( $bdd, $param );
 	}
 	/**
-	 * Surcharge de l'écriture, pour renseigner les 
+	 * Surcharge de l'écriture, pour renseigner les
 	 * donnees quotidiennes d'alimentation
 	 * (non-PHPdoc)
+	 * 
 	 * @see ObjetBDD::ecrire()
 	 */
-	function ecrire ( $data ) {
-		$id = parent::ecrire($data);
-		if ($id > 0 ) {
+	function ecrire($data) {
+		$id = parent::ecrire ( $data );
+		if ($id > 0) {
 			/*
 			 * Ecriture de la repartition quotidienne des aliments
 			 */
-			$repartition = new Repartition($this->connection, $this->paramori);
-			$dataRepartition = $repartition->lire($data["repartition_id"]);
-			$dateDebut = DateTime::createFromFormat('d/m/Y', $dataRepartition['date_debut_periode']);
-			$dateFin = DateTime::createFromFormat('d/m/Y', $dataRepartition["date_fin_periode"]);
-			$dateDiff = date_diff($dateDebut, $dateFin, true);
-			$nbJour =  $dateDiff->format("%a");
+			$repartition = new Repartition ( $this->connection, $this->paramori );
+			$dataRepartition = $repartition->lire ( $data ["repartition_id"] );
+			$dateDebut = DateTime::createFromFormat ( 'd/m/Y', $dataRepartition ['date_debut_periode'] );
+			$dateFin = DateTime::createFromFormat ( 'd/m/Y', $dataRepartition ["date_fin_periode"] );
+			$dateDiff = date_diff ( $dateDebut, $dateFin, true );
+			$nbJour = $dateDiff->format ( "%a" );
 			/*
 			 * Lecture des donnees de la repartition
 			 */
-			$repartAliment = new RepartAliment($this->connection, $this->paramori);
-			$dataRepartAliment = $repartAliment->getFromTemplate($data["repart_template_id"]);
+			$repartAliment = new RepartAliment ( $this->connection, $this->paramori );
+			$dataRepartAliment = $repartAliment->getFromTemplate ( $data ["repart_template_id"] );
 			/*
 			 * Instanciation des tables a mettre a jour
 			 */
-			$distribQuotidien = new DistribQuotidien($this->connection, $this->paramori);
-			$alimentQuotidien = new AlimentQuotidien($this->connection, $this->paramori);
+			$distribQuotidien = new DistribQuotidien ( $this->connection, $this->paramori );
+			$alimentQuotidien = new AlimentQuotidien ( $this->connection, $this->paramori );
 			/*
 			 * Mise en forme facile a utiliser
 			 */
-			foreach ($dataRepartAliment as $key=>$value) {
-				$aliment[$value["aliment_id"]] = $value["repart_alim_taux"];
+			foreach ( $dataRepartAliment as $key => $value ) {
+				$aliment [$value ["aliment_id"]] = $value ["repart_alim_taux"];
 			}
 			/*
 			 * Preparation du reste
 			 */
-			if (strlen($data["reste_precedent_zone_calcul"]) > 0) {
-				$reste = explode("+", $data["reste_precedent_zone_calcul"]);
-			} else {
-				$resteJour = intval($reste / $nbJour);
-				for($i=0;$i<$nbJour;$i++) {
-					$reste[$i] = $resteJour;
-				}
-			}
+			if (strlen ( $data ["reste_zone_calcul"] ) > 0) {
+				$reste = explode ( "+", $data ["reste_zone_calcul"] );
+			} 
 			/*
 			 * Preparation des jours de la semaine
 			 */
-			$jourSemaine = array("dimanche", "lundi", "mardi", "mercredi", "jeudi", "vendredi", "samedi");
+			/*$jourSemaine = array (
+					"dimanche",
+					"lundi",
+					"mardi",
+					"mercredi",
+					"jeudi",
+					"vendredi",
+					"samedi" 
+			);*/
 			$i = 0;
-			while ($dateDebut <= $dateFin) {
+			while ( $dateDebut <= $dateFin ) {
 				/*
 				 * Suppression des enregistrements precedents
 				 */
-				$alimentQuotidien->deleteFromDateBassin(date_format($dateDebut,"Y-m-d"), $data["bassin_id"]);
-				$distribQuotidien->deleteFromDateBassin(date_format($dateDebut,"Y-m-d"), $data["bassin_id"]);
+				$alimentQuotidien->deleteFromDateBassin ( date_format ( $dateDebut, "Y-m-d" ), $data ["bassin_id"] );
+				$distribQuotidien->deleteFromDateBassin ( date_format ( $dateDebut, "Y-m-d" ), $data ["bassin_id"] );
 				/*
 				 * Calcul du jour
 				 */
-				$jour = date_format($dateDebut,"w");
-				if ($dataRepartition[$jourSemaine[$jour]] == 1) {
+				//$jour = date_format ( $dateDebut, "w" );
+				//if ($dataRepartition [$jourSemaine [$jour]] == 1) {
 					/*
 					 * Ecriture de l'enregistrement distrib_quotidien
 					 */
-					$dataDistrib = array("distrib_quotidien_id"=>0, 
-							"bassin_id"=>$data["bassin_id"],
-							"distrib_quotidien_date"=>date_format($dateDebut,"d/m/Y"),
-							"total_distribue" =>$data["total_distribue"],
-							"reste"=>$reste[$i]
+					$dataDistrib = array (
+							"distrib_quotidien_id" => 0,
+							"bassin_id" => $data ["bassin_id"],
+							"distrib_quotidien_date" => date_format ( $dateDebut, "d/m/Y" ),
+							"total_distribue" => $data ["total_distribue"],
+							"reste" => $reste [$i] 
 					);
-					$idDataDistrib = $distribQuotidien->ecrire($dataDistrib);
-					if ($idDataDistrib > 0 ) {
+					$idDataDistrib = $distribQuotidien->ecrire ( $dataDistrib );
+					if ($idDataDistrib > 0) {
 						/*
 						 * Ecriture des donnees quotidiennes des aliments
 						 */
-						foreach ($aliment as $cle => $taux) {
-							$dataAlimQuot = array ("aliment_quotidien_id"=>0,
-							"aliment_id"=>$cle,
-							"distrib_quotidien_id"=>$idDataDistrib,
-							"quantite" => intval($data["total_distribue"] * $taux / 100)
+						foreach ( $aliment as $cle => $taux ) {
+							$dataAlimQuot = array (
+									"aliment_quotidien_id" => 0,
+									"aliment_id" => $cle,
+									"distrib_quotidien_id" => $idDataDistrib,
+									"quantite" => intval ( $data ["total_distribue"] * $taux / 100 ) 
 							);
-							$alimentQuotidien->ecrire($dataAlimQuot);
+							$alimentQuotidien->ecrire ( $dataAlimQuot );
 						}
 					}
-				}
+				//}
 				$i ++;
 				/*
 				 * Incrementation de la date
@@ -795,15 +819,45 @@ class Distribution extends ObjetBDD {
 		}
 		return ($id);
 	}
+	function ecrireReste($data) {
+		if (strlen ( $data ["date_debut_periode"] ) > 0 && strlen ( $data ["date_fin_periode"] ) > 0 && $data ["distribution_id"] > 0) {
+			/*
+			 * Ecriture de la zone contenant l'ensemble des restes quotidiens
+			 */
+			$dateDebut = DateTime::createFromFormat ( 'd/m/Y', $data ['date_debut_periode'] );
+			$dateFin = DateTime::createFromFormat ( 'd/m/Y', $data ["date_fin_periode"] );
+			$dateDiff = date_diff ( $dateDebut, $dateFin, true );
+			$nbJour = $dateDiff->format ( "%a" );
+			$data["reste_zone_calcul"] = "";
+			for ($i = 0 ; $i <= $nbJour ; $i ++) {
+				if ($i > 0) $data["reste_zone_calcul"] .= "+";
+				$data["reste_zone_calcul"] .= $data["reste_".$i];
+			}
+			return ($this->ecrire($data));
+		}
+	}
+	
 	/**
 	 *
 	 * @param int $repartition_id        	
 	 * @return array
 	 */
 	function getFromRepartition($repartition_id) {
-		$sql = "select * from " . $this->table . "
+		$sql = "select t1.distribution_id, t1.repartition_id, t1.bassin_id,
+				t1.repart_template_id, t1.reste_zone_calcul, t1.evol_taux_nourrissage,
+				t1.taux_nourrissage, t1.total_distribue, t1.distribution_consigne,
+				t1.ration_commentaire, t1.distribution_masse, 
+				t1.reste_total, t1.taux_reste, t1.distribution_id_prec,
+				bassin_nom,
+				t2.reste_total as reste_precedent,
+				t2.taux_reste as taux_reste_precedent,
+				t2.total_distribue as total_distrib_precedent,
+				t2.ration_commentaire as ration_commentaire_precedent,
+				t2.taux_nourrissage as taux_nourrissage_precedent
+				from distribution t1 
 				join bassin using (bassin_id)
-				where repartition_id = " . $repartition_id . "
+				left outer join distribution t2 on (t2.distribution_id = t1.distribution_id_prec)
+				where t1.repartition_id = " . $repartition_id . "
 				order by bassin_nom";
 		return $this->getListeParam ( $sql );
 	}
@@ -869,7 +923,7 @@ class Distribution extends ObjetBDD {
 	}
 	/**
 	 * Retourne la liste des aliments utilisés dans une distribution
-	 * 
+	 *
 	 * @param int $repartition_id        	
 	 * @return array
 	 */
@@ -888,14 +942,14 @@ class Distribution extends ObjetBDD {
 }
 /**
  * ORM de gestion de la table distrib_quotidien
- * 
+ *
  * @author quinton
  *        
  */
 class DistribQuotidien extends ObjetBDD {
 	/**
 	 * Constructeur de la classe
-	 * 
+	 *
 	 * @param connexion $bdd        	
 	 * @param array $param        	
 	 */
@@ -933,29 +987,30 @@ class DistribQuotidien extends ObjetBDD {
 	}
 	/**
 	 * Supprime un enregistrement attache a un bassin et a une date
-	 * @param string $date
-	 * @param int $bassin_id
+	 * 
+	 * @param string $date        	
+	 * @param int $bassin_id        	
 	 * @return code
 	 */
 	function deleteFromDateBassin($date, $bassin_id) {
-		if (strlen($date) > 0 && $bassin_id > 0 ) {
-			$sql = "delete from ".$this->table. "
-					where distrib_quotidien_date = '".$date."'
-					and bassin_id = ".$bassin_id;
-			return $this->executeSQL($sql);
+		if (strlen ( $date ) > 0 && $bassin_id > 0) {
+			$sql = "delete from " . $this->table . "
+					where distrib_quotidien_date = '" . $date . "'
+					and bassin_id = " . $bassin_id;
+			return $this->executeSQL ( $sql );
 		}
 	}
 }
 /**
  * ORM de gestion de la table aliment_quotidien
- * 
+ *
  * @author quinton
  *        
  */
 class AlimentQuotidien extends ObjetBDD {
 	/**
 	 * Constructeur de la classe
-	 * 
+	 *
 	 * @param connexion $bdd        	
 	 * @param array $param        	
 	 */
@@ -990,18 +1045,19 @@ class AlimentQuotidien extends ObjetBDD {
 	}
 	/**
 	 * Supprime les enregistrements liés à un bassin, à une date donnée
-	 * @param string $date
-	 * @param int $bassin
+	 * 
+	 * @param string $date        	
+	 * @param int $bassin        	
 	 * @return code
 	 */
-	function deleteFromDateBassin ($date, $bassin_id) {
-		if (strlen($date) > 0 && $bassin_id > 0 ) {
-			$sql = "delete from ".$this->table. "
+	function deleteFromDateBassin($date, $bassin_id) {
+		if (strlen ( $date ) > 0 && $bassin_id > 0) {
+			$sql = "delete from " . $this->table . "
 					using distrib_quotidien
 					where distrib_quotidien.distrib_quotidien_id = aliment_quotidien.distrib_quotidien_id
-					and distrib_quotidien_date = '".$date."'
-					and bassin_id = ".$bassin_id;
-			return $this->executeSQL($sql);
+					and distrib_quotidien_date = '" . $date . "'
+					and bassin_id = " . $bassin_id;
+			return $this->executeSQL ( $sql );
 		}
 	}
 }

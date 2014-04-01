@@ -219,12 +219,14 @@ dim : <input type="checkbox" name="dimanche" value="1" {if $data.dimanche == 1}c
 <dd>
 Taux :
 <input name="taux_nourrissage_precedent_{$dataBassin[lst].bassin_id}" id="taux_nourrissage_precedent_{$dataBassin[lst].bassin_id}" data-cle="{$dataBassin[lst].bassin_id}" value="{$dataBassin[lst].taux_nourrissage_precedent}" class="num5" readonly>
-Reste :
+Qté : 
+<input class="num5" name="total_distrib_precedent_{$dataBassin[lst].bassin_id}" value="{$dataBassin[lst].total_distrib_precedent}" readonly>
+<br>Reste :
 <input class="num5" name="reste_precedent_{$dataBassin[lst].bassin_id}" id="reste_precedent_{$dataBassin[lst].bassin_id}" data-cle="{$dataBassin[lst].bassin_id}" value="{$dataBassin[lst].reste_precedent}" readonly>
-<br>Reste (zone de calcul) : 
-<input class="reste_zone_calcul" name="reste_zone_calcul_{$dataBassin[lst].bassin_id}" id="reste__zone_calcul_{$dataBassin[lst].bassin_id}" data-cle="{$dataBassin[lst].bassin_id}" value="{$dataBassin[lst].reste_zone_calcul}" readonly style="width:20em;" placeholder="10+20+0+10..." title="nombres séparés par le signe +" pattern="[0-9\+]*">
+% reste : 
+<input class="num5" name="taux_reste_precedent_{$dataBassin[lst].bassin_id}" value="{$dataBassin[lst].taux_reste_precedent}" readonly>
 <br>
-<input name="ration_commentaire_{$dataBassin[lst].bassin_id}" id="ration_commentaire_{$dataBassin[lst].bassin_id}" data-cle="{$dataBassin[lst].bassin_id}" value="{$dataBassin[lst].ration_commentaire}" size="30" placeholder="Commentaires..." title="Commentaires concernant le reste">
+<input name="ration_commentaire_precedent_{$dataBassin[lst].bassin_id}" id="ration_commentaire_precedent_{$dataBassin[lst].bassin_id}" data-cle="{$dataBassin[lst].bassin_id}" value="{$dataBassin[lst].ration_commentaire_precedent}" size="30" readonly>
 </dd>
 </dl>
 <dl>

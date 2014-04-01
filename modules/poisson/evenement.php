@@ -40,7 +40,7 @@ switch ($t_module ["param"]) {
 			$sexe = new Sexe ( $bdd, $ObjetBDDParam );
 			$smarty->assign ( "sexe", $sexe->getListe (1) );
 			$bassin = new Bassin ( $bdd, $ObjetBDDParam );
-			$smarty->assign ( "bassinList", $bassin->getListe (2) );
+			$smarty->assign ( "bassinList", $bassin->getListe () );
 			$smarty->assign ( "bassinListActif", $bassin->getListe ( 1 ) );
 			$mortalite_type = new Mortalite_type($bdd, $ObjetBDDParam);
 			$smarty->assign("mortaliteType", $mortalite_type->getListe(2));
