@@ -10,12 +10,12 @@ Modifier les informations...
 </a>
 {/if}
 {include file="bassin/bassinDetail.tpl"}
-</td>
-</tr>
-<tr>
-<td>
 <h3>Liste des poissons présents</h3>
 {include file="bassin/bassinPoissonPresent.tpl"}
+</td>
+<td>
+<h3>Évenements survenus</h3>
+{include file="bassin/bassinEvenementList.tpl"}
 </td>
 </tr>
 </table>

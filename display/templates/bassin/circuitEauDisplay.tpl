@@ -72,6 +72,7 @@ suiv&gt;
 <th>O2</th>
 <th>Salinité</th>
 <th>pH</th>
+<th>Laboratoire</th>
 <th>NH4</th>
 <th>N-NH4</th>
 <th>NH4<br>seuil</th>
@@ -83,6 +84,7 @@ suiv&gt;
 <th>NO3<br>seuil</th>
 <th>Backwash<br>mécanique</th>
 <th>Backwash<br>biologique</th>
+<th>Commentaire<br>backwash bio</th>
 <th>Débit<br>rivière</th>
 <th>Débit<br>forage</th>
 <th>Observations</th>
@@ -104,6 +106,7 @@ suiv&gt;
 <td>{$dataAnalyse[lst].oxygene}</td>
 <td>{$dataAnalyse[lst].salinite}</td>
 <td>{$dataAnalyse[lst].ph}</td>
+<td>{$dataAnalyse[lst].laboratoire_analyse_libelle}
 <td>{$dataAnalyse[lst].nh4}</td>
 <td>{$dataAnalyse[lst].n_nh4}</td>
 <td>{$dataAnalyse[lst].nh4_seuil}</td>
@@ -114,7 +117,8 @@ suiv&gt;
 <td>{$dataAnalyse[lst].n_no3}</td>
 <td>{$dataAnalyse[lst].no3_seuil}</td>
 <td>{if $dataAnalyse[lst].backwash_mecanique == 1}oui{/if}</td>
-<td>{$dataAnalyse[lst].backwash_biologique}</td>
+<td>{if $dataAnalyse[lst].backwash_biologique == 1}oui{/if}</td>
+<td>{$dataAnalyse[lst].backwash_biologique_commentaire}</td>
 <td>{$dataAnalyse[lst].debit_eau_riviere}</td>
 <td>{$dataAnalyse[lst].debit_eau_forage}</td>
 <td>{$dataAnalyse[lst].observations}</td>

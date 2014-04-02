@@ -86,7 +86,10 @@ $LANG["menu"][83] = "Répartitions";
 $LANG["menu"][84] = "Répartitions des aliments dans les bassins";
 $LANG["menu"][85] = "types d'anomalies";
 $LANG["menu"][86] = "Types d'anomalies dans la base de données";
-
+$LANG["menu"][87] = "Laboratoires";
+$LANG["menu"][88] = "Laboratoires sollicités pour les analyses d'eau";
+$LANG["menu"][89] = "Événements dans bassins";
+$LANG["menu"][90] = "Types d'événements survenant dans les bassins";
 
 
 

@@ -92,6 +92,11 @@
 	<bassinWrite action="modules/bassin/bassin.php" param="write" droits="bassinGestion" retourok="bassinDisplay" retourko="bassinChange" modulebefore="bassinChange" />
 	<bassinDelete action="modules/bassin/bassin.php" param="delete" droits="bassinGestion" retoursuppr="bassinList" retourko="bassinChange"  modulebefore="bassinChange"/>
 	<bassinCalculMasseAjax action="modules/bassin/bassin.php" param="calculMasseAjax" ajax="1" droits="consult" />
+	
+	<bassinEvenementChange action="modules/bassin/bassinEvenement.php" param="change" droits="bassinGestion" />
+	<bassinEvenementWrite action="modules/bassin/bassinEvenement.php" param="write" droits="bassinGestion" retourok="bassinDisplay" retourko="bassinEvenementChange" modulebefore="bassinEvenementChange" />
+	<bassinEvenementDelete action="modules/bassin/bassinEvenement.php" param="delete" droits="bassinGestion" retoursuppr="bassinDisplay" retourko="bassinEvenementChange"  modulebefore="bassinEvenementChange"/>
+	
 
 	<circuitEauList action="modules/bassin/circuitEau.php" param="list" droits="consult" retourlogin="1" menulevel="1" menuparent="1" menuorder="1" menudroits="" menuvalue="65" menutitle="66"  />
 	<circuitEauDisplay action="modules/bassin/circuitEau.php" param="display" droits="consult" />
@@ -140,6 +145,16 @@
 	<anomalieDbTypeChange action="modules/parametre/anomalieDbType.php" param="change" droits="paramAdmin" />
 	<anomalieDbTypeWrite action="modules/parametre/anomalieDbType.php" param="write" droits="paramAdmin" retourok="anomalieDbTypeList" retourko="anomalieDbTypeChange" modulebefore="anomalieDbTypeChange" />
 	<anomalieDbTypeDelete action="modules/parametre/anomalieDbType.php" param="delete" droits="paramAdmin" retoursuppr="anomalieDbTypeList" retourko="anomalieDbTypeChange"  modulebefore="anomalieDbTypeChange"/>
+
+	<laboratoireAnalyseList action="modules/parametre/laboratoireAnalyse.php" param="list" droits="consult" retourlogin="1" menulevel="1" menuparent="3" menuorder="13" menudroits="" menuvalue="87" menutitle="88"  />
+	<laboratoireAnalyseChange action="modules/parametre/laboratoireAnalyse.php" param="change" droits="paramAdmin" />
+	<laboratoireAnalyseWrite action="modules/parametre/laboratoireAnalyse.php" param="write" droits="paramAdmin" retourok="laboratoireAnalyseList" retourko="laboratoireAnalyseChange" modulebefore="laboratoireAnalyseChange" />
+	<laboratoireAnalyseDelete action="modules/parametre/laboratoireAnalyse.php" param="delete" droits="paramAdmin" retoursuppr="laboratoireAnalyseList" retourko="laboratoireAnalyseChange"  modulebefore="laboratoireAnalyseChange"/>
+
+	<bassinEvenementTypeList action="modules/parametre/bassinEvenementType.php" param="list" droits="consult"  retourlogin="1" menulevel="1" menuparent="3" menuorder="14" menudroits="" menuvalue="89" menutitle="90"  />
+	<bassinEvenementTypeChange action="modules/parametre/bassinEvenementType.php" param="change" droits="paramAdmin" />
+	<bassinEvenementTypeWrite action="modules/parametre/bassinEvenementType.php" param="write" droits="paramAdmin" retourok="bassinEvenementTypeList" retourko="bassinEvenementTypeChange" modulebefore="bassinEvenementTypeChange" />
+	<bassinEvenementTypeDelete action="modules/parametre/bassinEvenementType.php" param="delete" droits="paramAdmin" retoursuppr="bassinEvenementTypeList" retourko="bassinEvenementTypeChange"  modulebefore="bassinEvenementTypeChange"/>
 
 
 	<alimentation menulevel="0" menuorder="2" menuvalue="77" menutitle="78" retourlogin="1" />

@@ -67,6 +67,18 @@ Retour au circuit d'eau {$dataCircuitEau.circuit_eau_libelle}
 </tr>
 
 <tr>
+<td class="libelleSaisie">Laboratoire : </td>
+<td>
+<select name="laboratoire_analyse_id">
+<option value="">Sélectionnez le laboratoire...</option>
+{section name=lst loop=$laboratoire}
+<option value="{$laboratoire[lst].laboratoire_analyse_id}" {if $data.laboratoire_analyse_id == $laboratoire[lst].laboratoire_analyse_id}selected{/if}>
+{$laboratoire[lst].laboratoire_analyse_libelle}
+</option>
+{/section}
+</select>
+
+<tr>
 <td class="libelleSaisie">NH4 : </td>
 <td><input type='text' id="nh4" name="nh4" value="{$data.nh4}" pattern="[0-9]+(\.[0-9]+)?" title="valeur numérique" size="5"></td>
 </tr>
@@ -109,9 +121,15 @@ Retour au circuit d'eau {$dataCircuitEau.circuit_eau_libelle}
 <input type="radio" name="backwash_mecanique" value="0" {if $data.backwash_mecanique == 0}checked{/if}>Non
 </td>
 </tr>
+<td class="libelleSaisie">Backwash biologique : </td>
+<td>
+<input type="radio" name="backwash_biologique" value="1" {if $data.backwash_biologique == 1}checked{/if}>Oui
+<input type="radio" name="backwash_biologique" value="0" {if $data.backwash_biologique == 0}checked{/if}>Non
+</td>
+</tr>
 <tr>
-<td class="libelleSaisie">Baskwash biologique : </td>
-<td><input name="backwash_biologique" value="{$data.backwash_biologique}" size="40"></td>
+<td class="libelleSaisie">Commentaire backwash bio : </td>
+<td><input name="backwash_biologique_commentaire" value="{$data.backwash_biologique_commentaire}" size="40"></td>
 </tr>
 <tr>
 <td class="libelleSaisie">Débit d'eau de rivière (l/mn) : </td>

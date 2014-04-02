@@ -58,4 +58,13 @@ if (! isset ( $_SESSION ["searchRepartition"] )) {
 } else {
 	$searchRepartition = $_SESSION ["searchRepartition"];
 }
+/*
+ * Déclaration de la classe de recherche des consommations d'aliments
+ */
+if (! isset ( $_SESSION ["searchAlimentation"] )) {
+	$searchAlimentation = new SearchAlimentation();
+	$_SESSION ["searchAlimentation"] = $searchAlimentation;
+} else {
+	$searchAlimentation = $_SESSION ["searchAlimentation"];
+}
 ?>

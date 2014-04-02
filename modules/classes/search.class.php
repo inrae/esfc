@@ -177,4 +177,20 @@ class SearchRepartition extends SearchParam {
 		);
 	}
 }
+/**
+ * Classe de recherche des aliments
+ * @author quinton
+ *
+ */
+class SearchAlimentation extends SearchParam {
+	function __construct() {
+		$date_debut = new DateTime();
+		date_sub($date_debut, new Interval("P30D"));
+		$this->param = array (
+			"date_debut" => date_format($date_debut, "d/m/Y"),
+			"date_fin" => date("d/m/Y")
+		);
+		
+	}
+}
 ?>

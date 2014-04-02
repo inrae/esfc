@@ -27,6 +27,12 @@ Modifier les résultats de l'analyse...
 <td>pH : </td>
 <td>{$dataAnalyse.ph}</td>
 </tr>
+{if $dataAnalyse.laboratoire_analyse_id > 0}
+<tr>
+<td>Laboratoire :</td>
+<td>{$dataAnalyse.laboratoire_analyse_libelle}</td>
+</tr>
+{/if}
 <tr>
 <td colspan="2">
 <table>
@@ -62,8 +68,13 @@ Modifier les résultats de l'analyse...
 <td>{if $dataAnalyse.backwash_mecanique == 1}Oui{else}Non{/if}</td>
 </tr>
 <tr>
-<td>Baskwash biologique : </td>
-<td>{$dataAnalyse.backwash_biologique}</td>
+<td>Backwash biologique : </td>
+<td>{if $dataAnalyse.backwash_biologique == 1}Oui{else}Non{/if}</td>
+</tr>
+
+<tr>
+<td>Commentaire backwash bio : </td>
+<td>{$dataAnalyse.backwash_biologique_commentaire}</td>
 </tr>
 <tr>
 <td>Débit d'eau de rivière : </td>

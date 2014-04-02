@@ -409,6 +409,9 @@ class AnalyseEau extends ObjetBDD {
 						"requis" => 1,
 						"parentAttrib" => 1 
 				),
+				"laboratoire_analyse_id" => array(
+						"type" => 1
+				),
 				"analyse_eau_date" => array (
 						"type" => 2 
 				),
@@ -456,7 +459,11 @@ class AnalyseEau extends ObjetBDD {
 						"defaultValue" => 0
 				),
 				"backwash_biologique" => array (
-						"type" => 0 
+						"type" => 1,
+						"defaultValue" => 0 
+				),
+				"backwash_biologique_commentaire" => array(
+						"type" => 0
 				),
 				"debit_eau_riviere" => array (
 						"type" => 1 
@@ -484,7 +491,9 @@ class AnalyseEau extends ObjetBDD {
 	 */
 	function getDetailByCircuitEau($id, $dateRef = NULL, $limit = 1, $offset = 0) {
 		if ($id > 0) {
-			$sql = "select * from " . $this->table . " natural join circuit_eau";
+			$sql = "select * from " . $this->table . " 
+					natural join circuit_eau
+					left outer join laboratoire_analyse using (laboratoire_analyse_id)";
 			if (is_null ( $dateRef ))
 				$dateRef = date ( "d/m/Y" );
 			$dateRef = $this->formatDateLocaleVersDB ( $dateRef, 2 );
@@ -495,6 +504,144 @@ class AnalyseEau extends ObjetBDD {
 			} else {
 				return ($this->getListeParam ( $sql . $where . $order ));
 			}
+		}
+	}
+}
+/**
+ * ORM de gestion de la table laboratoire_analyse
+ * @author quinton
+ *
+ */
+class LaboratoireAnalyse extends ObjetBDD {
+	/**
+	 * Constructeur de la classe 
+	 * @param AdoDB $bdd
+	 * @param array $param
+	 */
+	function __construct($bdd, $param = null) {
+		$this->param = $param;
+		$this->table = "laboratoire_analyse";
+		$this->id_auto = "1";
+		$this->colonnes = array (
+				"laboratoire_analyse_id" => array (
+						"type" => 1,
+						"key" => 1,
+						"requis" => 1,
+						"defaultValue" => 0
+				),
+				"laboratoire_analyse_libelle" => array (
+						"type" => 0,
+						"requis" => 1
+				),
+				"laboratoire_analyse_actif" => array (
+						"type" => 1,
+						"defaultValue" => 1
+				)
+		);
+		if (! is_array ( $param ))
+			$param == array ();
+		$param ["fullDescription"] = 1;
+		parent::__construct ( $bdd, $param );
+	}
+	/**
+	 * Retourne la liste des laboratoires produisant des analyses
+	 */
+	function getListeActif() {
+		$sql = "select * from ".$this->table."
+				where laboratoire_analyse_actif = 1
+				order by laboratoire_analyse_libelle";
+		return $this->getListeParam($sql);
+	}
+}
+/**
+ * ORM de gestion de la table bassin_evenement_type
+ * @author quinton
+ *
+ */
+class BassinEvenementType extends ObjetBDD {
+	/**
+	 * Constructeur de la classe
+	 * @param AdoDB $bdd
+	 * @param array $param
+	 */
+	function __construct($bdd, $param = null) {
+		$this->param = $param;
+		$this->table = "bassin_evenement_type";
+		$this->id_auto = "1";
+		$this->colonnes = array (
+				"bassin_evenement_type_id" => array (
+						"type" => 1,
+						"key" => 1,
+						"requis" => 1,
+						"defaultValue" => 0
+				),
+				"bassin_evenement_type_libelle" => array (
+						"type" => 0,
+						"requis" => 1
+				)
+		);
+		if (! is_array ( $param ))
+			$param == array ();
+		$param ["fullDescription"] = 1;
+		parent::__construct ( $bdd, $param );
+	}
+}
+/**
+ * ORM de gestion de la table bassin_evenement
+ * @author quinton
+ *
+ */
+class BassinEvenement extends ObjetBDD {
+	/**
+	 * Constructeur de la classe
+	 * @param AdoDB $bdd
+	 * @param array $param
+	 */
+	function __construct($bdd, $param = null) {
+		$this->param = $param;
+		$this->table = "bassin_evenement";
+		$this->id_auto = "1";
+		$this->colonnes = array (
+				"bassin_evenement_id" => array (
+						"type" => 1,
+						"key" => 1,
+						"requis" => 1,
+						"defaultValue" => 0
+				),
+				"bassin_id" => array(
+						"type"=>1,
+						"requis" =>1,
+						"parentAttrib" => 1
+				),
+				"bassin_evenement_type_id" => array (
+						"type" => 1,
+						"requis" => 1
+				),
+				"bassin_evenement_date" => array(
+						"type" => 2,
+						"defaultValue" => "getDateJour"
+				),
+				"bassin_evenement_commentaire" => array (
+						"type" => 0
+				)
+		);
+		if (! is_array ( $param ))
+			$param == array ();
+		$param ["fullDescription"] = 1;
+		parent::__construct ( $bdd, $param );
+	}
+	/**
+	 * Retourne la liste des événements pour un bassin
+	 * @param int $bassin_id
+	 * @return array
+	 */
+	function getListeByBassin($bassin_id) {
+		if ($bassin_id > 0) {
+			$sql = "select * from bassin_evenement
+					natural join bassin_evenement_type
+					where bassin_id = ".$bassin_id."
+					order by bassin_evenement_date desc";
+			return $this->getListeParam($sql);
 		}
 	}
 }

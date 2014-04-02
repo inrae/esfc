@@ -35,6 +35,11 @@ switch ($t_module["param"]) {
 		$transfert = new Transfert($bdd, $ObjetBDDParam);
 		$smarty->assign("dataPoisson", $transfert->getListPoissonPresentByBassin($id));
 		/*
+		 * Recuperation des evenements
+		 */
+		$bassinEvenement = new BassinEvenement($bdd, $ObjetBDDParam);
+		$smarty->assign("dataBassinEvnt", $bassinEvenement->getListeByBassin($id));
+		/*
 		 * Affichage
 		*/
 		$smarty->assign("corps", "bassin/bassinDisplay.tpl");

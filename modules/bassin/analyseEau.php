@@ -63,6 +63,11 @@ switch ($t_module["param"]) {
 		$circuitEau = new Circuit_eau($bdd, $ObjetBDDParam);
 		$smarty->assign("dataCircuitEau", $circuitEau->lire($_REQUEST["circuit_eau_id"]));
 		/*
+		 * Lecture des laboratoires
+		 */
+		$laboratoireAnalyse = new LaboratoireAnalyse($bdd, $ObjetBDDParam);
+		$smarty->assign("laboratoire", $laboratoireAnalyse->getListeActif());
+		/*
 		 * Forcage de la date de reference (date de recherche) si creation d'un nouvel enregistrement
 		 */
 		if ($id == 0) {

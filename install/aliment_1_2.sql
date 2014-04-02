@@ -92,3 +92,5 @@ alter table distribution drop column total_distrib_precedent;
 alter table distribution drop column taux_nourrissage_precedent ;
 alter table distribution add column distribution_id_prec int;
 comment on column distribution.distribution_id_prec is 'Identifiant de la distribution precedente';
+
+alter table analyse_eau rename column backwash_biologique to backwash_biologique_commentaire ;
