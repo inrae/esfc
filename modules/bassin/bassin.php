@@ -40,6 +40,19 @@ switch ($t_module["param"]) {
 		$bassinEvenement = new BassinEvenement($bdd, $ObjetBDDParam);
 		$smarty->assign("dataBassinEvnt", $bassinEvenement->getListeByBassin($id));
 		/*
+		 * Recuperation des aliments consommés sur la période déterminée
+		 */
+		include_once 'modules/classes/aliment.class.php';
+		$distribQuotidien = new DistribQuotidien($bdd, $ObjetBDDParam);
+		/*
+		 * Dates de recherche
+		 */
+		$searchAlimentation->setParam($_REQUEST);
+		$param = $searchAlimentation->getParam();
+		$smarty->assign("searchAlim", $param);
+		$smarty->assign("dataAlim", $distribQuotidien->getListeConsommation($id, $param["date_debut"], $param["date_fin"]));
+		$smarty->assign("alimentListe", $distribQuotidien->alimentListe);
+		/*
 		 * Affichage
 		*/
 		$smarty->assign("corps", "bassin/bassinDisplay.tpl");

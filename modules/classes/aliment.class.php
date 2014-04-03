@@ -760,18 +760,6 @@ class Distribution extends ObjetBDD {
 			if (strlen ( $data ["reste_zone_calcul"] ) > 0) {
 				$reste = explode ( "+", $data ["reste_zone_calcul"] );
 			}
-			/*
-			 * Preparation des jours de la semaine
-			 */
-			/*$jourSemaine = array (
-					"dimanche",
-					"lundi",
-					"mardi",
-					"mercredi",
-					"jeudi",
-					"vendredi",
-					"samedi" 
-			);*/
 			$i = 0;
 			while ( $dateDebut <= $dateFin ) {
 				/*
@@ -779,11 +767,6 @@ class Distribution extends ObjetBDD {
 				 */
 				$alimentQuotidien->deleteFromDateBassin ( date_format ( $dateDebut, "Y-m-d" ), $data ["bassin_id"] );
 				$distribQuotidien->deleteFromDateBassin ( date_format ( $dateDebut, "Y-m-d" ), $data ["bassin_id"] );
-				/*
-				 * Calcul du jour
-				 */
-				// $jour = date_format ( $dateDebut, "w" );
-				// if ($dataRepartition [$jourSemaine [$jour]] == 1) {
 				/*
 				 * Ecriture de l'enregistrement distrib_quotidien
 				 */
@@ -819,7 +802,13 @@ class Distribution extends ObjetBDD {
 		}
 		return ($id);
 	}
+	/**
+	 * Ecrit les restes dans la table 
+	 * @param array $data
+	 * @return integer
+	 */
 	function ecrireReste($data) {
+		$erreur = 0;
 		if (strlen ( $data ["date_debut_periode"] ) > 0 && strlen ( $data ["date_fin_periode"] ) > 0 && $data ["distribution_id"] > 0) {
 			/*
 			 * Ecriture de la zone contenant l'ensemble des restes quotidiens
@@ -834,10 +823,32 @@ class Distribution extends ObjetBDD {
 					$data ["reste_zone_calcul"] .= "+";
 				$data ["reste_zone_calcul"] .= $data ["reste_" . $i];
 			}
-			return ($this->ecrire ( $data ));
+			$ret = parent::ecrire ( $data );
+			if ($ret > 0 ) {
+				/*
+				 * Ecriture des données quotidiennes
+				 */
+				$di = new DateInterval("P1D");
+				$distribQuotidien = new DistribQuotidien ( $this->connection, $this->paramori );
+				for ($i = 0 ; $i <= $nbJour; $i ++) {
+					/*
+					 * Lecture de l'enregistrement précédent, qui doit exister
+					 */
+					$dataDistrib = $distribQuotidien->lireFromDate($data["bassin_id"], $dateDebut->format("d/m/Y"));
+					if ($dataDistrib["distrib_quotidien_id"] > 0) {
+						$dataDistrib["reste"] = $data["reste_".$i];
+						$ret1 = $distribQuotidien->ecrire($dataDistrib);
+						if (! $ret1 > 0) {
+							$erreur = 1;
+							$this->errorData[] = $distribQuotidien->getErrorData(0);
+						}
+					}
+					date_add($dateDebut, $di);
+				}
+			}
+			if ($erreur != 0) return -1 ;else return $ret;
 		}
 	}
-	
 	/**
 	 *
 	 * @param int $repartition_id        	
@@ -949,6 +960,11 @@ class Distribution extends ObjetBDD {
  */
 class DistribQuotidien extends ObjetBDD {
 	/**
+	 * Liste des aliments uniques d'un intervalle de distribution
+	 * @var array
+	 */
+	public $alimentListe ;
+	/**
 	 * Constructeur de la classe
 	 *
 	 * @param connexion $bdd        	
@@ -1002,6 +1018,21 @@ class DistribQuotidien extends ObjetBDD {
 		}
 	}
 	/**
+	 * Recherche un enregistrement a partir de la date et du bassin
+	 * @param int $bassin_id
+	 * @param date $distrib_date
+	 * @return array
+	 */
+	function lireFromDate ($bassin_id, $distrib_date) {
+		$distribDate = $this->formatDateLocaleVersDB($distrib_date);
+		if ($bassin_id > 0) {
+			$sql = "select * from ".$this->table." 
+					where bassin_id = ".$bassin_id."
+						and distrib_quotidien_date = '".$distribDate."'";
+			return ($this->lireParam($sql));
+		}
+	}
+	/**
 	 * Retourne la liste des aliments consommés pendant la période définie
 	 * 
 	 * @param int $bassin_id        	
@@ -1038,8 +1069,8 @@ class DistribQuotidien extends ObjetBDD {
 				natural join bassin
 				natural join aliment_quotidien
 				natural join aliment
-				where distrib_quotidien_date >= '" . $date_debut . "' 
-						and distrib_quotidien_date <= '" . $date_fin . "
+				where distrib_quotidien_date >= ''" . $date_debut . "'' 
+						and distrib_quotidien_date <= ''" . $date_fin . "''
 						and bassin_id = " . $bassin_id . "
 				order by distrib_quotidien_date desc";
 			/*
@@ -1050,10 +1081,18 @@ class DistribQuotidien extends ObjetBDD {
 					natural join aliment_quotidien
 					natural join aliment
 					where distrib_quotidien_date >= '" . $date_debut . "'
-						and distrib_quotidien_date <= '" . $date_fin . "
+						and distrib_quotidien_date <= '" . $date_fin . "'
 						and bassin_id = " . $bassin_id . "
 					order by 1";
-			$aliment = $this->getListeParam ( $sql2 );
+			$sql3 = "select distinct aliment_libelle_court
+					from distrib_quotidien
+					natural join aliment_quotidien
+					natural join aliment
+					where distrib_quotidien_date >= ''" . $date_debut . "''
+						and distrib_quotidien_date <= ''" . $date_fin . "''
+						and bassin_id = " . $bassin_id . "
+					order by 1";
+			$this->alimentListe = $this->getListeParam ( $sql2 );
 			/*
 			 * Preparation de la clause AS
 			 */
@@ -1063,14 +1102,15 @@ class DistribQuotidien extends ObjetBDD {
 				total_distribue float4,
 				reste float4
 			";
-			foreach ( $aliment as $key => $value ) {
-				$as .= ", " . $value . " float4";
+			foreach ( $this->alimentListe as $key => $value ) {
+				$as .= ', "' . $value["aliment_libelle_court"] . '" float4';
 			}
 			/*
 			 * Preparation de la requete
 			 */
-			$sql = "select * from crosstab ('" . $sql1 . "', '" . $sql2 . "')
+			$sql = "select * from crosstab ('" . $sql1 . "', '" . $sql3 . "')
 				AS ( " . $as . " )";
+			//printr($sql);
 			return $this->getListeParam ( $sql );
 		}
 	}

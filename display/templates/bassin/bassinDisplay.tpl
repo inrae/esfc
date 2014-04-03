@@ -19,3 +19,5 @@ Modifier les informations...
 </td>
 </tr>
 </table>
+<h3>Aliments consommés</h3>
+{include file="bassin/bassinAlimentConsomme.tpl"}
