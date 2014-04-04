@@ -1,7 +1,7 @@
 <script>
 $(document).ready(function() { 
 	$("select").change(function () {
-		$("#search").submit();
+		// $("#search").submit();
 	} );
 	$(".date").datepicker({ dateFormat: "dd/mm/yy" });
 } ) ;

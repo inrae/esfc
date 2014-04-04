@@ -185,16 +185,21 @@ switch ($t_module ["param"]) {
 			/*
 			 * Recuperation de la liste des aliments utilises
 			 */
+			if ($data["categorie_id"] == 1 )
 			$dataAliment = $distribution->getListeAlimentFromRepartition ( $id );
+			elseif ($data["categorie_id"] == 2 )
+			$dataAliment = $distribution->getListeAlimentFromRepartition ( $id, "juvenile" );
 			/*
 			 * Recuperation des distributions prevues
 			 */
 			$dataDistrib = $distribution->calculDistribution ( $id );
 			if ($data ["categorie_id"] == 1) {
 				$tableau = new RepartitionAdulte ();
-				$tableau->setData ( $data, $dataDistrib, $dataAliment );
-				$tableau->exec ();
+			} elseif ($data ["categorie_id"] == 2) {
+				$tableau = new RepartitionJuvenile ();
 			}
+			$tableau->setData ( $data, $dataDistrib, $dataAliment );
+			$tableau->exec ();
 		}
 		break;
 	case "resteChange" :
@@ -229,7 +234,7 @@ switch ($t_module ["param"]) {
 			$dateDebut->add ( new DateInterval ( 'P1D' ) );
 		}
 		$smarty->assign ( "dateArray", $dateArray );
-		$smarty->assign("nbJour", $nbJour + 1);
+		$smarty->assign ( "nbJour", $nbJour + 1 );
 		/*
 		 * Mise en forme des donnees
 		 */
@@ -273,8 +278,8 @@ switch ($t_module ["param"]) {
 				/*
 				 * On divise le total_distribue par le nombre de jours
 				 */
-				if ($_REQUEST["nbJour"] > 0) {
-					$value["total_distribue"] = $value["total_distribue"] / $_REQUEST["nbJour"];
+				if ($_REQUEST ["nbJour"] > 0) {
+					$value ["total_distribue"] = $value ["total_distribue"] / $_REQUEST ["nbJour"];
 				}
 				$idDistrib = $distribution->ecrireReste ( $value );
 				if (! $idDistrib > 0) {
@@ -290,9 +295,9 @@ switch ($t_module ["param"]) {
 				$module_coderetour = - 1;
 			} else {
 				
-					$message .= $LANG["message"][5];
-					$module_coderetour = 1;
-					$log -> setLog($_SESSION["login"], get_class($dataClass)."-write",$id);
+				$message .= $LANG ["message"] [5];
+				$module_coderetour = 1;
+				$log->setLog ( $_SESSION ["login"], get_class ( $dataClass ) . "-write", $id );
 			}
 		}
 		

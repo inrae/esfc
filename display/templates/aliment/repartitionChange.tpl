@@ -174,16 +174,6 @@ $(document).ready(function() {
  <dt>Date fin :</dt>
  <dd><input class="date" name="date_fin_periode" value="{$data.date_fin_periode}"></dd>
  </dl>
- <fieldset>
- <legend>Jours de distribution</legend>
-lun : <input type="checkbox" name="lundi" value="1" {if $data.lundi == 1}checked{/if}>
-mar : <input type="checkbox" name="mardi" value="1" {if $data.mardi == 1}checked{/if}>
-mer : <input type="checkbox" name="mercredi" value="1" {if $data.mercredi == 1}checked{/if}>
-jeu : <input type="checkbox" name="jeudi" value="1" {if $data.jeudi == 1}checked{/if}>
-ven : <input type="checkbox" name="vendredi" value="1" {if $data.vendredi == 1}checked{/if}>
-sam : <input type="checkbox" name="samedi" value="1" {if $data.samedi == 1}checked{/if}>
-dim : <input type="checkbox" name="dimanche" value="1" {if $data.dimanche == 1}checked{/if}>
- </fieldset>
 <fieldset>
 <legend>Répartition des aliments par bassin</legend>
 <div id="afficher" class="masquageText"><i>Afficher tous les éléments</i></div>
@@ -243,7 +233,19 @@ Nouveau taux :
 <dd>
 <input class="num10 ration" name="total_distribue_{$dataBassin[lst].bassin_id}" id="total_distribue_{$dataBassin[lst].bassin_id}" data-cle="{$dataBassin[lst].bassin_id}" value="{$dataBassin[lst].total_distribue}">
 <br>
-<input name="distribution_consigne_{$dataBassin[lst].bassin_id}" id="distribution_consigne_{$dataBassin[lst].bassin_id}"  data-cle="{$dataBassin[lst].bassin_id}" value="{$dataPoisson[lst].distribution_consigne}" placeholder="Consignes..." Title="Consignes de distribution" size="30">
+<input name="distribution_consigne_{$dataBassin[lst].bassin_id}" id="distribution_consigne_{$dataBassin[lst].bassin_id}"  data-cle="{$dataBassin[lst].bassin_id}" value="{$dataBassin[lst].distribution_consigne}" placeholder="Consignes..." Title="Consignes de distribution" size="30">
+</dd>
+</dl>
+<dl>
+<dt>Jours de distribution :</dt>
+<dd>
+lun <input type="checkbox" name="distribution_jour_1_{$dataBassin[lst].bassin_id}" value="1" {if {$dataBassin[lst].distribution_jour_1} == 1}checked{/if}>
+mar <input type="checkbox" name="distribution_jour_2_{$dataBassin[lst].bassin_id}" value="1" {if $dataBassin[lst].distribution_jour_2 == 1}checked{/if}>
+mer <input type="checkbox" name="distribution_jour_3_{$dataBassin[lst].bassin_id}" value="1" {if $dataBassin[lst].distribution_jour_3 == 1}checked{/if}>
+jeu <input type="checkbox" name="distribution_jour_4_{$dataBassin[lst].bassin_id}" value="1" {if $dataBassin[lst].distribution_jour_4 == 1}checked{/if}>
+ven <input type="checkbox" name="distribution_jour_5_{$dataBassin[lst].bassin_id}" value="1" {if $dataBassin[lst].distribution_jour_5 == 1}checked{/if}>
+sam <input type="checkbox" name="distribution_jour_6_{$dataBassin[lst].bassin_id}" value="1" {if $dataBassin[lst].distribution_jour_6 == 1}checked{/if}>
+dim <input type="checkbox" name="distribution_jour_7_{$dataBassin[lst].bassin_id}" value="1" {if $dataBassin[lst].distribution_jour_7 == 1}checked{/if}>
 </dd>
 </dl>
 </div>

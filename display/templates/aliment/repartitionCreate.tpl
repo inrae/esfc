@@ -27,17 +27,6 @@ $(document).ready(function() {
  <dt>Date fin :</dt>
  <dd><input class="date" name="date_fin_periode" value="{$data.date_fin_periode}"></dd>
  </dl>
- <fieldset>
- <legend>Jours de distribution</legend>
-lun : <input type="checkbox" name="lundi" value="1" {if $data.lundi == 1}checked{/if}>
-mar : <input type="checkbox" name="mardi" value="1" {if $data.mardi == 1}checked{/if}>
-mer : <input type="checkbox" name="mercredi" value="1" {if $data.mercredi == 1}checked{/if}>
-jeu : <input type="checkbox" name="jeudi" value="1" {if $data.jeudi == 1}checked{/if}>
-<br>
-ven : <input type="checkbox" name="vendredi" value="1" {if $data.vendredi == 1}checked{/if}>
-sam : <input type="checkbox" name="samedi" value="1" {if $data.samedi == 1}checked{/if}>
-dim : <input type="checkbox" name="dimanche" value="1" {if $data.dimanche == 1}checked{/if}>
- </fieldset>
  <div class="formBouton">
 <input class="submit" type="submit" value="Enregistrer">
 </div>

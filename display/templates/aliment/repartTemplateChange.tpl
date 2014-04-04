@@ -1,6 +1,7 @@
 <script>
 $(document).ready(function() { 
 	$("#repart_template_date").datepicker({ dateFormat: "dd/mm/yy" });
+	$(".num3").attr("pattern", "[0-9]+(\.[0-9]+)?");
 } ) ;
 </script>
 <h2>Modification d'un modèle de répartition d'aliment</h2>
@@ -54,18 +55,18 @@ $(document).ready(function() {
 <dt>{$dataAliment[lst].aliment_libelle}</dt>
 <dd>
 <label for="repart_alim_taux_{$dataAliment[lst].aliment_id}">Pourcentage de la ration :</label>
-<input id="repart_alim_taux_{$dataAliment[lst].aliment_id}" value="{$dataAliment[lst].repart_alim_taux}" style="width:3em;" name="repart_alim_taux_{$dataAliment[lst].aliment_id}" pattern="[0-9]*" title="Taux de répartition de l'aliment (le total de tous les aliments doit faire 100)" >
+<input class="num3" id="repart_alim_taux_{$dataAliment[lst].aliment_id}" value="{$dataAliment[lst].repart_alim_taux}" style="width:3em;" name="repart_alim_taux_{$dataAliment[lst].aliment_id}" title="Taux de répartition de l'aliment (le total de tous les aliments doit faire 100)" >
 <br>
 <label>Répartition quotidienne, en pourcentage</label>
 <br>
 Matin : 
-<input type="text" name="matin_{$dataAliment[lst].aliment_id}" value="{$dataAliment[lst].matin}" style="width:3em;"  pattern="[0-9]*">
+<input class="num3" type="text" name="matin_{$dataAliment[lst].aliment_id}" value="{$dataAliment[lst].matin}" style="width:3em;"  >
 Midi : 
-<input type="text" name="midi_{$dataAliment[lst].aliment_id}" value="{$dataAliment[lst].midi}" style="width:3em;"  pattern="[0-9]*">
+<input class="num3" type="text" name="midi_{$dataAliment[lst].aliment_id}" value="{$dataAliment[lst].midi}" style="width:3em;"  >
 Soir : 
-<input type="text" name="soir_{$dataAliment[lst].aliment_id}" value="{$dataAliment[lst].soir}" style="width:3em;"  pattern="[0-9]*">
+<input class="num3" type="text" name="soir_{$dataAliment[lst].aliment_id}" value="{$dataAliment[lst].soir}" style="width:3em;"  >
 Nuit : 
-<input type="text" name="nuit_{$dataAliment[lst].aliment_id}" value="{$dataAliment[lst].nuit}" style="width:3em;"  pattern="[0-9]*">
+<input class="num3" type="text" name="nuit_{$dataAliment[lst].aliment_id}" value="{$dataAliment[lst].nuit}" style="width:3em;"  >
 <br>
 <label for="consigne">Consignes : </label>
 <input id="consigne" name="consigne_{$dataAliment[lst].aliment_id}" value="{$dataAliment[lst].consigne}" size="30">
