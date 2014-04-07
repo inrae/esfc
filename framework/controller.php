@@ -74,8 +74,13 @@ while ( isset ( $module ) ) {
 					/*
 					 * Reinitialisation du menu
 					 */
-					if (isset ( $_SESSION ["login"] ))
+					if (isset ( $_SESSION ["login"] )){
 						unset ( $_SESSION ["menu"] );
+						/*
+						 * Integration des commandes post login
+						 */
+						include "modules/postLogin.php";
+					}						
 				} else {
 					/*
 					 * Gestion de la saisie du login
@@ -116,7 +121,10 @@ while ( isset ( $module ) ) {
 			$resident = 0;
 			$motifErreur = "nologin";
 		} else {
-			$resident = $gestionDroit->getgacl ( $t_module ["droits"] );
+			$droits_array = explode(",", $t_module["droits"]);
+			foreach ($droits_array as $key=> $value ) {
+				if ($gestionDroit->getgacl($value) == 1) $resident = 1;
+			}
 			if ($resident == 0)
 				$motifErreur = "droitko";
 		}
