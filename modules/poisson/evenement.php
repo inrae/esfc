@@ -83,6 +83,16 @@ switch ($t_module ["param"]) {
 					);
 			}
 			$smarty->assign ( "dataTransfert", $dataTransfert );
+			/*
+			 * Gestion des documents associes
+			 */
+			$smarty->assign ( "moduleParent", "evenementChange" );
+			$smarty->assign ( "parentType", "evenement" );
+			$smarty->assign ( "parentIdName", "evenement_id" );
+			$smarty->assign ( "parent_id", $id );
+			include_once "modules/classes/documentSturio.class.php";
+			$documentSturio = new DocumentSturio($bdd, $ObjetBDDParam);
+			$smarty->assign("dataDoc", $documentSturio->getListeDocument("evenement", $id));
 		}
 		break;
 	case "write":

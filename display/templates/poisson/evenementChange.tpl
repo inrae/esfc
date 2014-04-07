@@ -333,3 +333,8 @@ Sélectionnez le type de mortalité...
 </div>
 </div>
 <span class="red">*</span><span class="messagebas">Champ obligatoire</span>
+{if $data.evenement_id > 0}
+
+<h3>Documents associés</h3>
+{include file="document/documentList.tpl"}
+{/if}

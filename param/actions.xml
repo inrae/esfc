@@ -183,6 +183,10 @@
 	<repartitionPrint action="modules/aliment/repartition.php" param="print" droits="bassinGestion" modulebefore=""/>
 	<repartitionResteChange action="modules/aliment/repartition.php" param="resteChange" droits="bassinGestion" />
 	<repartitionResteWrite action="modules/aliment/repartition.php" param="resteWrite" droits="bassinGestion" modulebefore="repartitionResteChange" retourok="repartitionList" retourko="repartitionResteChange"/>
+
+	<documentChange action="modules/document/document.php" param="change" droits="bassinGestion,poissonGestion" />
+	<documentWrite action="modules/document/document.php" param="write" droits="bassinGestion,poissonGestion" retourok="documentList" retourko="documentChange"  />
+	<documentDelete action="modules/document/document.php" param="delete" droits="bassinAdmin,poissonAdmin" retoursuppr="documentList" retourko="documentChange" />
 	
 	
 </navigation>
