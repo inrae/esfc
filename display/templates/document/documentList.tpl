@@ -28,9 +28,11 @@ $(document).ready(function() {
 {section name=lst loop=$dataDoc}
 <tr>
 <td>
+{if strlen($dataDoc[lst].photo_name) > 0 }
 <a href="index.php?module=documentGet&document_id={$dataDoc[lst].document_id}">
 <img class="imageLink" src="{$dataDoc[lst].photo_name}" height="30">
 </a>
+{/if}
 <td>
 <a href="index.php?module=documentGet&document_id={$dataDoc[lst].document_id}">
 {$dataDoc[lst].document_nom}
@@ -43,7 +45,7 @@ $(document).ready(function() {
 <td>
 <div class="center">
 <a href="index.php?module=documentSuppr&document_id={$dataDoc[lst].document_id}&moduleParent={$moduleParent}&parentIdName={$parentIdName}&parent_id={$parent_id}&parentType={$parentType}">
-<img src="images/bin.png" height="20">
+<img src="display/images/corbeille.png" height="20">
 </a>
 </div>
 </td>

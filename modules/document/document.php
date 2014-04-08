@@ -5,7 +5,7 @@
  * @license http://www.cecill.info/licences/Licence_CeCILL-C_V1-fr.html LICENCE DE LOGICIEL LIBRE CeCILL-C
  *  Creation 7 avr. 2014
  */
-include_once 'modules/document/documentSturio.class.php';
+include_once 'modules/classes/documentSturio.class.php';
 $dataClass = new DocumentSturio ( $bdd, $ObjetBDDParam );
 $keyName = "document_id";
 $id = $_REQUEST [$keyName];
@@ -28,24 +28,37 @@ switch ($t_module ["param"]) {
 		$smarty->assign ( "parent_id", $_REQUEST ["parent_id"] );
 		break;
 	case "write":
-		printr($_REQUEST);
 		/*
 		 * write record in database
 		 */
 		if (strlen ( $_REQUEST ["parentType"] ) > 0) {
-			foreach ( $_FILES as $key => $file ) {
+			/*
+			 * Preparation de files
+			 */
+			$files=array();
+			$fdata=$_FILES['documentName'];
+			if(is_array($fdata['name'])){
+				for($i=0;$i<count($fdata['name']);++$i){
+					$files[]=array(
+							'name'    =>$fdata['name'][$i],
+							'type'  => $fdata['type'][$i],
+							'tmp_name'=>$fdata['tmp_name'][$i],
+							'error' => $fdata['error'][$i],
+							'size'  => $fdata['size'][$i]
+					);
+				}
+			}else $files[]=$fdata;
+			foreach ( $files as $file ) {
 				$id = $dataClass->ecrire ( $file, $_REQUEST ["document_description"] );
 				if ($id > 0) {
 					$_REQUEST [$keyName] = $id;
 					/*
 					 * Ecriture de l'enregistrement en table liee
 					 */
-					
 					$documentLie = new DocumentLie ( $bdd, $ObjetBDDParam, $_REQUEST ["parentType"] );
-					$nomAttribParent = $_REQUEST ["parentType"] . "_id";
 					$data = array (
 							"document_id" => $id,
-							$nomAttribParent => $_REQUEST ["parent_id"] 
+							$_REQUEST["parentIdName"] => $_REQUEST ["parent_id"] 
 					);
 					$documentLie->ecrire ( $data );
 				}
@@ -56,7 +69,7 @@ switch ($t_module ["param"]) {
 		 */
 		$module_coderetour = 1;
 		$t_module ["retourok"] = $_REQUEST['moduleParent'];
-		$_REQUEST["parentIdName"] = $_REQUEST["parent_id"];
+		$_REQUEST[$_REQUEST["parentIdName"]] = $_REQUEST["parent_id"];
 		break;
 	case "delete":
 		/*
@@ -69,6 +82,12 @@ switch ($t_module ["param"]) {
 		$module_coderetour = 1;
 		$t_module ["retourok"] = $_REQUEST['moduleParent'];
 		$_REQUEST["parentIdName"] = $_REQUEST["parent_id"];
+		break;
+	case "get":
+		/*
+		 * Envoie vers le navigateur le document
+		 */
+		$dataClass->documentSent($id);
 		break;
 }
 

@@ -187,6 +187,8 @@
 	<documentChange action="modules/document/document.php" param="change" droits="bassinGestion,poissonGestion" />
 	<documentWrite action="modules/document/document.php" param="write" droits="bassinGestion,poissonGestion" retourok="documentList" retourko="documentChange"  />
 	<documentDelete action="modules/document/document.php" param="delete" droits="bassinAdmin,poissonAdmin" retoursuppr="documentList" retourko="documentChange" />
+	<documentGet action="modules/document/document.php" param="get" droits="consult" ajax="1"/>
+	
 	
 	
 </navigation>

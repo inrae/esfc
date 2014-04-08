@@ -76,10 +76,6 @@ while ( isset ( $module ) ) {
 					 */
 					if (isset ( $_SESSION ["login"] )){
 						unset ( $_SESSION ["menu"] );
-						/*
-						 * Integration des commandes post login
-						 */
-						include "modules/postLogin.php";
 					}						
 				} else {
 					/*
@@ -107,6 +103,10 @@ while ( isset ( $module ) ) {
 				 * Calcul des droits
 				 */
 				include "framework/identification/setDroits.php";
+				/*
+				 * Integration des commandes post login
+				*/
+				include "modules/postLogin.php";
 			}
 		}
 	}

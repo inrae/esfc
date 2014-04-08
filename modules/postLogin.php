@@ -16,7 +16,7 @@ if (strlen ( $APPLI_nomDossierStockagePhotoTemp ) > 0) {
 	*/
 	$dossier = opendir ( $APPLI_nomDossierStockagePhotoTemp );
 	while ( false !== ($entry = readdir ( $dossier )) ) {
-		$path = $APPLI_photoStockage . "/" . $entry;
+		$path = $APPLI_nomDossierStockagePhotoTemp . "/" . $entry;
 		$file = fopen($path, 'r');
 		$stat = fstat($file);
 		$atime = $stat["atime"];

@@ -89,18 +89,40 @@ include_once "modules/classes/document.class.php";
  		$this->colonnes = array (
  				$nomTable."_id" => array (
  						"type" => 1,
- 						"key" => 1,
- 						"requis" => 1
+ 						"requis" => 1,
+ 						"key" => 1
  				),
  				"document_id" => array (
  						"type" => 1,
- 						"requis" => 1
+ 						"requis" => 1,
+ 						"key" => 1
  				)
  		);
  		if (! is_array ( $param ))
  			$param == array ();
  		$param ["fullDescription"] = 1;
  		parent::__construct ( $bdd, $param );
+ 	}
+ 	/**
+ 	 * Reecriture de la fonction ecrire($data)
+ 	 * (non-PHPdoc)
+ 	 * @see ObjetBDD::ecrire()
+ 	 */
+ 	function ecrire ($data) {
+ 		$nomChamp = $this->tableOrigine."_id";
+ 		if ($data["document_id"] > 0 && $data[$nomChamp] > 0) {
+ 			$sql = "insert into ".$this->table."
+ 					(document_id, ".$nomChamp.")
+ 					values 
+ 					(".$data["document_id"].",".$data[$nomChamp].")";
+ 			$rs = $this->executeSQL($sql);
+ 			$test = $this->connection->Affected_Rows ();
+ 			if ($test > 0) {
+ 				return 1;
+ 			} else {
+ 				return -1;
+ 			}
+ 		}
  	}
  	/**
  	 * Retourne la liste des documents associes

@@ -52,7 +52,7 @@ class MimeType extends ObjetBDD {
 	function getTypeMime($extension) {
 		if (strlen ( $extension ) > 0) {
 			$extension = strtolower ( $extension );
-			$sql = "select mime_type_id from " . $this->table . " where extension = '" . $extension;
+			$sql = "select mime_type_id from " . $this->table . " where extension = '" . $extension."'";
 			$res = $this->lireParam ( $sql );
 			return $res ["mime_type_id"];
 		}
@@ -170,11 +170,13 @@ class DocumentAttach extends ObjetBDD {
 	 * @return int
 	 */
 	function ecrire($file, $description = NULL) {
+		printr($file);
 		if ($file ["error"] == 0 && $file ["size"] > 0) {
 			/*
 			 * Recuperation de l'extension
 			*/
-			$extension = substr ( $file ["name"], strrpos ( $file ["name"], "." ) );
+			$extension = substr ( $file ["name"], strrpos ( $file ["name"], "." ) + 1 );
+			printr($extension);
 			$mimeType = new MimeType ( $this->connection, $this->paramori );
 			$mime_type_id = $mimeType->getTypeMime ( $extension );
 			if ($mime_type_id > 0) {
@@ -191,6 +193,7 @@ class DocumentAttach extends ObjetBDD {
 				/*
 				 * Ecriture du document
 				*/
+				printr($data);
 				$data ["data"] = pg_escape_bytea ( $file ["tmp_name"] );
 				if ($extension == "pdf" || $extension == "jpg" || $extension == "png") {
 					$image = new Imagick ();
