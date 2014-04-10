@@ -82,6 +82,27 @@ Nouvel événement...
 </td>
 <td>
 <fieldset class="fsMasquable">
+<legend>Documents associés</legend>
+<div class="masquage">
+{include file="document/documentList.tpl"}
+<br>
+</div>
+</fieldset>
+<fieldset class="fsMasquable">
+<legend>Données morphologiques</legend>
+<div class="masquage">
+{include file="poisson/morphologieList.tpl"}
+<br>
+</div>
+</fieldset>
+<fieldset class="fsMasquable">
+<legend>Détermination du sexe</legend>
+<div class="masquage">
+{include file="poisson/genderSelectionList.tpl"}
+<br>
+</div>
+</fieldset>
+<fieldset class="fsMasquable">
 <legend>Liste des (pit)tags attribués</legend>
 <div class="masquage">
 {if $droits["poissonGestion"]==1}
@@ -102,20 +123,6 @@ Nouveau parent...
 </a>
 {/if}
 {include file="poisson/parentPoissonList.tpl"}
-<br>
-</div>
-</fieldset>
-<fieldset class="fsMasquable">
-<legend>Données morphologiques</legend>
-<div class="masquage">
-{include file="poisson/morphologieList.tpl"}
-<br>
-</div>
-</fieldset>
-<fieldset class="fsMasquable">
-<legend>Détermination du sexe</legend>
-<div class="masquage">
-{include file="poisson/genderSelectionList.tpl"}
 <br>
 </div>
 </fieldset>

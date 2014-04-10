@@ -12,6 +12,7 @@ include_once "modules/classes/document.class.php";
   *
   */
  class DocumentSturio extends DocumentAttach {
+ 	public $resolution=800;
  	/**
  	 * Surcharge de la fonction supprimer pour effacer les enregistrements liés
  	 * (non-PHPdoc)
@@ -28,7 +29,7 @@ include_once "modules/classes/document.class.php";
  					"evenement_document",
  					"bassin_document"
  			);
- 			foreach ( $table as $key => $value ) {
+ 			foreach ( $table as $value ) {
  				$sql = "delete from " . $value . " where document_id = " . $id;
  				$this->executeSQL ( $sql );
  			}
@@ -42,25 +43,47 @@ include_once "modules/classes/document.class.php";
  	 * @return array
  	 */
  	function getListeDocument($type, $id) {
- 		if (($type == "evenement" || $type = "poisson" || $type = "bassin") && $id > 0) {
+ 		if (($type == "evenement" || $type == "poisson" || $type == "bassin") && $id > 0) {
+ 			if ($type == "poisson") {
+ 				$sql = "select document_id, document_date_import, document_nom,
+ 						document_description, size, mime_type_id
+ 						from document
+ 						join poisson_document using (document_id)
+ 						where poisson_id = ".$id."
+ 						union
+ 						select document_id, document_date_import, document_nom,
+ 						document_description, size, mime_type_id
+ 						from document
+ 						join evenement_document using (document_id)
+ 						join evenement using (evenement_id)
+ 						join poisson using (poisson_id)
+ 						where poisson_id = ".$id."
+ 						order by document_date_import desc
+ 						";
+ 			}else {
  			$sql = "select " . $type . "_id, document_id, document_date_import,
-					document_nom, document_description, size / 1024,
-					thumbnail
+					document_nom, document_description, size, mime_type_id
 					from document
 					join " . $type . "_document using (document_id)
 					where " . $type . "_id = " . $id . "
 					order by document_date_import desc";
+ 			}
  			$liste = $this->getListeParam ( $sql );
  			/*
  			 * Preparation des vignettes
  			*/
  			foreach ( $liste as $key => $value ) {
  				if ($value ["mime_type_id"] == 1 || $value ["mime_type_id"] == 4 || $value ["mime_type_id"] == 5 || $value ["mime_type_id"] == 6) {
- 					$liste[$key]["photo_name"] = $this->writeFileImage($id, $value["thumbnail"]);
  					/*
- 					 * Suppression de la vignette avant envoi au navigateur (pas besoin...)
+ 					 * Traitement des vignettes
  					 */
- 					unset ($liste[$key]["thumbnail"]);
+ 					$liste[$key]["thumbnail_name"] = $this->writeFileImage($value["document_id"], 1);
+ 				}
+ 				if ($value ["mime_type_id"] == 4 || $value ["mime_type_id"] == 5 || $value ["mime_type_id"] == 6) {
+ 					/*
+ 					 * Traitement des photos
+ 					 */
+ 					$liste[$key]["photo_name"] = $this->writeFileImage($value["document_id"], 0, $this->resolution);
  				}
  			}
  			return ($liste);

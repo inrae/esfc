@@ -123,5 +123,5 @@ $OBJETBDD_debugmode = 1;
 $APPLI_moduleDroitKO = "droitko";
 $APPLI_moduleErrorBefore = "errorbefore";
 $APPLI_moduleNoLogin = "errorlogin";
-$APPLI_nomDossierStockagePhotoTemp = "temp";
+$APPLI_nomDossierStockagePhotoTemp = "tmp";
 ?>

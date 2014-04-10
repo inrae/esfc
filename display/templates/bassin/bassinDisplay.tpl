@@ -16,6 +16,9 @@ Modifier les informations...
 <td>
 <h3>Évenements survenus</h3>
 {include file="bassin/bassinEvenementList.tpl"}
+<br>
+<h3>Documents associés</h3>
+{include file="document/documentList.tpl"}
 </td>
 </tr>
 </table>

@@ -63,6 +63,7 @@ switch ($t_module ["param"]) {
 					$documentLie->ecrire ( $data );
 				}
 			}
+			$log -> setLog($_SESSION["login"], get_class($dataClass)."-write",$id);
 		}
 		/*
 		 * Retour au module initial
@@ -79,9 +80,10 @@ switch ($t_module ["param"]) {
 		/*
 		 * Retour au module initial
 		*/
-		$module_coderetour = 1;
+		$t_module ["retoursuppr"] = $_REQUEST['moduleParent'];
 		$t_module ["retourok"] = $_REQUEST['moduleParent'];
-		$_REQUEST["parentIdName"] = $_REQUEST["parent_id"];
+		$t_module ["retourko"] = $_REQUEST['moduleParent'];
+		$_REQUEST[$_REQUEST["parentIdName"]] = $_REQUEST["parent_id"];
 		break;
 	case "get":
 		/*

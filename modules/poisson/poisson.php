@@ -93,6 +93,16 @@ switch ($t_module["param"]) {
 		$anomalie = new Anomalie_db($bdd, $ObjetBDDParam);
 		$smarty->assign("dataAnomalie", $anomalie->getListByPoisson($id));
 		/*
+		 * Gestion des documents associes
+		*/
+		$smarty->assign ( "moduleParent", "poissonDisplay" );
+		$smarty->assign ( "parentType", "poisson" );
+		$smarty->assign ( "parentIdName", "poisson_id" );
+		$smarty->assign ( "parent_id", $id );
+		include_once "modules/classes/documentSturio.class.php";
+		$documentSturio = new DocumentSturio($bdd, $ObjetBDDParam);
+		$smarty->assign("dataDoc", $documentSturio->getListeDocument("poisson", $id));
+		/*
 		 * Affichage
 		 */
 		$smarty->assign("corps", "poisson/poissonDisplay.tpl");
