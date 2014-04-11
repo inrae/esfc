@@ -5,6 +5,7 @@
  * @license http://www.cecill.info/licences/Licence_CeCILL-C_V1-fr.html LICENCE DE LOGICIEL LIBRE CeCILL-C
  *  Creation 19 mars 2014
  */
+include_once 'modules/classes/categorie.class.php';
 /**
  * ORM de la table aliment_type
  *
@@ -136,42 +137,6 @@ class Aliment extends ObjetBDD {
 				natural join aliment_type
 				order by aliment_libelle";
 		return $this->getListeParam ( $sql );
-	}
-}
-/**
- * ORM de gestion de la table categorie
- *
- * @author quinton
- *        
- */
-class Categorie extends ObjetBDD {
-	/**
-	 * Constructeur de la classe
-	 *
-	 * @param
-	 *        	instance ADODB $bdd
-	 * @param array $param        	
-	 */
-	function __construct($bdd, $param = null) {
-		$this->param = $param;
-		$this->table = "categorie";
-		$this->id_auto = 1;
-		$this->colonnes = array (
-				"categorie_id" => array (
-						"type" => 1,
-						"key" => 1,
-						"requis" => 1,
-						"defaultValue" => 0 
-				),
-				"categorie_libelle" => array (
-						"type" => 0,
-						"requis" => 1 
-				) 
-		);
-		if (! is_array ( $param ))
-			$param == array ();
-		$param ["fullDescription"] = 1;
-		parent::__construct ( $bdd, $param );
 	}
 }
 class AlimentCategorie extends ObjetBDD {

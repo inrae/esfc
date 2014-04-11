@@ -21,8 +21,9 @@ $smarty->assign ("poissonSearch", $dataSearch);
  */
 include_once "modules/classes/poisson.class.php";
 $sexe = new Sexe($bdd, $ObjetBDDParam);
-$smarty->assign("sexe",$sexe->getListe());
+$smarty->assign("sexe",$sexe->getListe(1));
 $poisson_statut = new Poisson_statut($bdd, $ObjetBDDParam);
-$smarty->assign("statut", $poisson_statut->getListe());
-
+$smarty->assign("statut", $poisson_statut->getListe(1));
+$categorie = new Categorie($bdd, $ObjetBDDParam);
+$smarty->assign("categorie", $categorie->getListe(1));
 ?>

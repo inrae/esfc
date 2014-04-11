@@ -91,9 +91,10 @@ class SearchParam {
 class SearchPoisson extends SearchParam {
 	function __construct() {
 		$this->param = array (
-				"statut" => "",
+				"statut" => 1,
 				"sexe" => "",
-				"texte" => "" 
+				"texte" => "",
+				"categorie" => 1
 		);
 		parent::__construct ();
 	}

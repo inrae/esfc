@@ -4,6 +4,7 @@
  * @copyright Copyright (c) 2014, IRSTEA / Eric Quinton
  *  Creation 18 févr. 2014
  */
+include_once 'modules/classes/categorie.class.php';
 /**
  * ORM de gestion de la table poisson
  *
@@ -52,6 +53,11 @@ class Poisson extends ObjetBDD {
 				),
 				"date_naissance" => array(
 						"type" => 2
+				),
+				"categorie_id" => array(
+						"type" => 1,
+						"requis" => 1,
+						"defaultValue" => 2
 				)
 		);
 		if (! is_array ( $param ))
@@ -69,16 +75,19 @@ class Poisson extends ObjetBDD {
 		if (is_array ( $dataSearch )) {
 			$sql = "select poisson_id, sexe_id, matricule, prenom, cohorte, capture_date, sexe_libelle, sexe_libelle_court, poisson_statut_libelle,
 					array_to_string(array_agg(pittag_valeur),' ') as pittag_valeur,
-					mortalite_date
+					mortalite_date,
+					categorie_id, categorie_libelle
 					from " . $this->table . " natural join sexe
 					  natural join poisson_statut
+					  natural join categorie
 					  left outer join pittag using (poisson_id)
 						left outer join mortalite using (poisson_id)";
 			/*
 			 * Preparation de la clause group by
 			 */
 			$group = " group by poisson_id, sexe_id, matricule, prenom, 
-					cohorte, capture_date, sexe_libelle, sexe_libelle_court, poisson_statut_libelle, mortalite_date ";
+					cohorte, capture_date, sexe_libelle, sexe_libelle_court, poisson_statut_libelle, mortalite_date,
+					categorie_id, categorie_libelle ";
 			/*
 			 * Preparation de la clause order
 			 */
@@ -90,6 +99,10 @@ class Poisson extends ObjetBDD {
 			$and = "";
 			if ($dataSearch ["statut"] > 0) {
 				$where .= $and . " poisson_statut_id = " . $dataSearch ["statut"];
+				$and = " and ";
+			}
+			if ($dataSearch ["categorie"] > 0) {
+				$where .= $and . " categorie_id = " . $dataSearch ["categorie"];
 				$and = " and ";
 			}
 			if ($dataSearch ["sexe"] > 0) {
@@ -125,9 +138,11 @@ class Poisson extends ObjetBDD {
 		if ($poisson_id > 0) {
 			$sql = "select p.poisson_id, sexe_id, matricule, prenom, cohorte, capture_date, sexe_libelle, sexe_libelle_court, poisson_statut_libelle,
 					pittag_valeur, p.poisson_statut_id, date_naissance,
-					bassin_nom, b.bassin_id
+					bassin_nom, b.bassin_id,
+					categorie_id, categorie_libelle
 					from " . $this->table . " p natural join sexe
 					  natural join poisson_statut
+					  natural join categorie
 					  left outer join v_pittag_by_poisson using (poisson_id)
 					  left outer join v_transfert_last_bassin_for_poisson vlast on (vlast.poisson_id = p.poisson_id)
 					  left outer join transfert t on (vlast.poisson_id = t.poisson_id and transfert_date_last = transfert_date)
@@ -812,7 +827,7 @@ class Transfert extends ObjetBDD {
 					join poisson on (t.poisson_id = poisson.poisson_id)
 					left outer join v_pittag_by_poisson pittag on (pittag.poisson_id = poisson.poisson_id)
 					left outer join sexe using (sexe_id)
-					where  poisson_statut_id not in (3, 4) and bassin.bassin_id = ' . $bassin_id . "
+					where  poisson_statut_id = 1 and bassin.bassin_id = ' . $bassin_id . "
  					order by matricule";
 		}
 		return ($this->getListeParam ( $sql ));
@@ -850,8 +865,8 @@ class Transfert extends ObjetBDD {
 				 */
 				$poisson = new Poisson ( $this->connection, $this->paramori );
 				$dataPoisson = $poisson->lire ( $data ["poisson_id"] );
-				if ($dataPoisson ["poisson_statut_id"] == 2) {
-					$dataPoisson ["poisson_statut_id"] = 1;
+				if ($dataPoisson ["poisson_categorie_id"] == 2) {
+					$dataPoisson ["poisson_categorie_id"] = 1;
 					$poisson->ecrire ( $dataPoisson );
 				}
 			}
@@ -1125,6 +1140,11 @@ class Mortalite_type extends ObjetBDD {
 		parent::__construct ( $bdd, $param );
 	}
 }
+/**
+ * ORM de gestion de la table mortalite
+ * @author quinton
+ *
+ */
 class Mortalite extends ObjetBDD {
 	/**
 	 * Constructeur de la classe
@@ -1266,6 +1286,81 @@ class Parent_poisson extends ObjetBDD {
 				left outer join v_pittag_by_poisson pit on (poisson.poisson_id = pit.poisson_id)
 				where parent_poisson_id = ".$id;
 		return $this->lireParam($sql);
+	}
+}
+class Sortie extends ObjetBDD {
+	/**
+	 * Constructeur de la classe
+	 *
+	 * @param
+	 *        	instance ADODB $bdd
+	 * @param array $param
+	 */
+	function __construct($bdd, $param = null) {
+		$this->paramori = $param;
+		$this->param = $param;
+		$this->table = "sortie";
+		$this->id_auto = "1";
+		$this->colonnes = array (
+				"sortie_id" => array (
+						"type" => 1,
+						"key" => 1,
+						"requis" => 1,
+						"defaultValue" => 0
+				),
+				"poisson_id" => array (
+						"type" => 1,
+						"requis" => 1,
+						"parentAttrib" => 1
+				),
+				"sortie_lieu_id" => array (
+						"type" => 1
+						
+				),
+				"mortalite_date" => array (
+						"type" => 2
+				),
+				"mortalite_commentaire" => array (
+						"type" => 0
+				),
+				"evenement_id" => array (
+						"type" => 1
+				)
+		);
+		if (! is_array ( $param ))
+			$param == array ();
+		$param ["fullDescription"] = 1;
+		parent::__construct ( $bdd, $param );
+	}
+	/**
+	 * Retourne la liste des sorties pour un poisson
+	 *
+	 * @param unknown $poisson_id
+	 * @return Ambigous <tableau, boolean, $data, string>
+	 */
+	function getListByPoisson($poisson_id) {
+		if ($poisson_id > 0) {
+			$sql = "select sortie_id, sortie.poisson_id, sortie_date, sortie_commentaire,
+					localisation, evenement_type_libelle, sortie.evenement_id
+					from sortie
+					left outer join sortie_lieu using (sortie_lieu_id)
+					left outer join evenement using (evenement_id)
+					left outer join evenement_type using (evenement_type_id)
+					where sortie.poisson_id = " . $poisson_id . " order by sortie_date desc";
+			return $this->getListeParam ( $sql );
+		}
+	}
+	/**
+	 * Lit un enregistrement à partir de l'événement
+	 *
+	 * @param int $evenement_id
+	 * @return array
+	 */
+	function getDataByEvenement($evenement_id) {
+		if ($evenement_id > 0) {
+			$sql = "select * from sortie where evenement_id = " . $evenement_id;
+			return $this->lireParam ( $sql );
+		}
 	}
 }
 ?>

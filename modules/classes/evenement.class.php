@@ -86,6 +86,11 @@
  			$cohorte = new Cohorte($this->connection, $this->paramori);
  			$cohorte->supprimerChamp($id, "evenement_id");
  			/*
+ 			 * Sortie
+ 			 */
+ 			$sortie = new Sortie ($this->connection, $this->paramori);
+ 			$sortie->supprimerChamp ($id, "evenement_id");
+ 			/*
  			 * Suppression finale de l'evenement
  			 */
  			return parent::supprimer($id);

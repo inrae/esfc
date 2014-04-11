@@ -14,7 +14,15 @@ $(document).ready(function() {
 Libellé à rechercher (tag, prenom, matricule, cohorte) : 
 <input name="texte" value="{$poissonSearch.texte}" size="40" maxlength="40">
 <br>
-Statut de l'animal : 
+Catégorie :
+<select name="categorie" id="categorie">
+{section name=lst loop=$categorie}
+<option value="{$categorie[lst].categorie_id}" {if $poissonSearch.categorie == $categorie[lst].categorie_id}selected{/if}>
+{$categorie[lst].categorie_libelle}
+</option>
+{/section}
+</select>
+ Statut de l'animal : 
 <select name="statut" id="statut">
 <option value="" {if $poissonSearch.statut==""}selected{/if}>Sélectionnez le statut...</option>
 {section name=lst loop=$statut}

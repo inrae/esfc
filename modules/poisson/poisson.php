@@ -93,6 +93,11 @@ switch ($t_module["param"]) {
 		$anomalie = new Anomalie_db($bdd, $ObjetBDDParam);
 		$smarty->assign("dataAnomalie", $anomalie->getListByPoisson($id));
 		/*
+		 * Recuperation des sorties
+		 */
+		$sortie = new Sortie($bdd, $ObjetBDDParam);
+		$smarty->assign("dataSortie", $sortie->getListByPoisson($id));
+		/*
 		 * Gestion des documents associes
 		*/
 		$smarty->assign ( "moduleParent", "poissonDisplay" );
