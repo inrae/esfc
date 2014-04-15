@@ -497,26 +497,6 @@ class Pathologie extends ObjetBDD {
 			return $this->lireParam ( $sql );
 		}
 	}
-	/**
-	 * Complement de la fonction ecrire, pour forcer le statut a mort
-	 * pour le poisson en cas de type de pathologie : mortalite
-	 * (non-PHPdoc)
-	 * 
-	 * @see ObjetBDD::ecrire()
-	 */
-	function ecrire($data) {
-		$pathologie_id = parent::ecrire ( $data );
-		/*
-		 * Traitement de la mortalite - ecriture du statut mort dans le poisson
-		 */
-		if ($pathologie_id > 0 && $data ["pathologie_type_id"] == 5) {
-			$poisson = new Poisson ( $this->connection, $this->paramori );
-			$dataPoisson = $poisson->lire ( $data ["poisson_id"] );
-			$dataPoisson ["poisson_statut_id"] = 3;
-			$poisson->ecrire ( $dataPoisson );
-		}
-		return ($pathologie_id);
-	}
 }
 /**
  * ORM de la table pathologie_type
@@ -1190,6 +1170,31 @@ class Mortalite extends ObjetBDD {
 		parent::__construct ( $bdd, $param );
 	}
 	/**
+	 * Surcharge de la fonction ecrire
+	 * pour mettre a jour le statut du poisson
+	 * (non-PHPdoc)
+	 * @see ObjetBDD::ecrire()
+	 */
+	function ecrire($data) {
+		$mortalite_id = parent::ecrire($data);
+		if ($mortalite_id > 0 && $data["poisson_id"] > 0 ) {
+			/*
+			 * Lecture du poisson
+			*/
+			$poisson = new Poisson($this->connection, $this->paramori);
+			$dataPoisson = $poisson->lire($data["poisson_id"]);
+			if ($dataPoisson["poisson_id"] > 0 && $dataPoisson["poisson_statut_id"] == 1) {
+				/*
+				 * Mise a niveau du statut : le poisson a quitte l'elevage
+				*/
+				$dataPoisson["poisson_statut_id"] = 3 ;
+				$poisson->ecrire($dataPoisson);
+			}
+		}
+		return $sortie_id;
+	}
+	
+	/**
 	 * Retourne la liste des mortalites pour un poisson
 	 *
 	 * @param unknown $poisson_id        	
@@ -1313,24 +1318,50 @@ class Sortie extends ObjetBDD {
 						"requis" => 1,
 						"parentAttrib" => 1
 				),
-				"sortie_lieu_id" => array (
-						"type" => 1
-						
-				),
-				"mortalite_date" => array (
-						"type" => 2
-				),
-				"mortalite_commentaire" => array (
-						"type" => 0
-				),
 				"evenement_id" => array (
 						"type" => 1
+				),
+				"sortie_lieu_id" => array (
+						"type" => 1						
+				),
+				"sortie_date" => array (
+						"type" => 2
+				),
+				"sortie_commentaire" => array (
+						"type" => 0
+				),
+				"sevre" => array (
+						"type" => 0
 				)
 		);
 		if (! is_array ( $param ))
 			$param == array ();
 		$param ["fullDescription"] = 1;
 		parent::__construct ( $bdd, $param );
+	}
+	/**
+	 * Surcharge de la fonction ecrire
+	 * pour mettre a jour le statut du poisson
+	 * (non-PHPdoc)
+	 * @see ObjetBDD::ecrire()
+	 */
+	function ecrire($data) {
+		$sortie_id = parent::ecrire($data);
+		if ($sortie_id > 0 && $data["poisson_id"] > 0 ) {
+			/*
+			 * Lecture du poisson
+			 */
+			$poisson = new Poisson($this->connection, $this->paramori);
+			$dataPoisson = $poisson->lire($data["poisson_id"]);
+			if ($dataPoisson["poisson_id"] > 0 && $dataPoisson["poisson_statut_id"] == 1) {
+				/*
+				 * Mise a niveau du statut : le poisson a quitte l'elevage
+				 */
+				$dataPoisson["poisson_statut_id"] = 4 ;
+				$poisson->ecrire($dataPoisson);
+			}
+		}
+		return $sortie_id;
 	}
 	/**
 	 * Retourne la liste des sorties pour un poisson
@@ -1361,6 +1392,85 @@ class Sortie extends ObjetBDD {
 			$sql = "select * from sortie where evenement_id = " . $evenement_id;
 			return $this->lireParam ( $sql );
 		}
+	}
+}
+class SortieLieu extends ObjetBDD {
+	/**
+	 * Constructeur de la classe
+	 *
+	 * @param
+	 *        	instance ADODB $bdd
+	 * @param array $param
+	 */
+	function __construct($bdd, $param = null) {
+		$this->paramori = $param;
+		$this->param = $param;
+		$this->table = "sortie_lieu";
+		$this->id_auto = "1";
+		$this->colonnes = array (
+				"sortie_lieu_id" => array (
+						"type" => 1,
+						"key" => 1,
+						"requis" => 1,
+						"defaultValue" => 0
+				),
+				"localisation" => array (
+						"type" => 0,
+						"requis" => 1
+				),
+				"longitude_dd" => array (
+						"type" => 1
+				),
+				"latitude_dd" => array (
+						"type" => 1
+				),
+				"point_geom" => array (
+						"type" => 4
+				),
+				"actif" => array (
+						"type" => 1
+				),
+				"poisson_statut_id" => array (
+						"type" => 1,
+						"defaultValue" => 4
+				)
+		);
+		if (! is_array ( $param ))
+			$param == array ();
+		$param ["fullDescription"] = 1;
+		$param["srid"] = 4326;
+		parent::__construct ( $bdd, $param );
+	}
+	/**
+	 * Retourne la liste des lieux de sortie, actifs ou non
+	 * @param int $actif [-1 | 0 | 1]
+	 * @return array
+	 */
+	function getListeActif($actif = -1) {
+		$sql = "select sortie_lieu_id, localisation, longitude_dd, latitude_dd,
+				actif, poisson_statut_id, poisson_statut_libelle
+				from sortie_lieu";
+		if ($actif > -1 ) {
+			$where = " where actif = ".$actif;
+		} else {
+			$where = "";
+		}
+		$order = " order by localisation";
+		return $this->getListeParam($sql.$where.$actif);
+	}
+	/**
+	 * Surcharge de la fonction ecrire pour rajouter le point geographique
+	 * (non-PHPdoc)
+	 * @see ObjetBDD::ecrire()
+	 */
+	function ecrire ($data) {
+		/*
+		 * Preparation du point geometrique
+		 */
+		if (strlen($data["longitude_dd"]) > 0 && strlen($data["latitude_dd"]) > 0 ) {
+			$data["point_geom"] = "POINT(".$data["longitude_dd"]." ".$data["latitude_dd"].")";
+		}
+		return parent::ecrire($data);
 	}
 }
 ?>

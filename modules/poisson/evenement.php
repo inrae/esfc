@@ -46,6 +46,7 @@ switch ($t_module ["param"]) {
 			$smarty->assign("mortaliteType", $mortalite_type->getListe(2));
 			$cohorte_type = new Cohorte_type($bdd, $ObjetBDDParam);
 			$smarty->assign("cohorteType", $cohorte_type->getListe(2));
+			//$sortie_lieu =  ;
 			dataRead ( $dataClass, $id, "poisson/evenementChange.tpl", $_REQUEST ["poisson_id"] );
 			/*
 			 * Lecture du poisson
@@ -67,6 +68,8 @@ switch ($t_module ["param"]) {
 				$smarty->assign("dataMortalite", $mortalite->getDataByEvenement($id));
 				$cohorte = new Cohorte($bdd, $ObjetBDDParam);
 				$smarty->assign("dataCohorte", $cohorte->getDataByEvenement($id));
+				$sortie = new Sortie($bdd, $ObjetBDDParam);
+				$smarty->assign("dataSortie", $sortie->getDataByEvenement($id));
 				/*
 				 * Traitement particulier du transfert
 				 */				
@@ -181,6 +184,19 @@ switch ($t_module ["param"]) {
 				$cohorte_id = $cohorte->ecrire($_REQUEST);
 				if (! $cohorte_id > 0) {
 					$message .= formatErrorData ( $cohorte->getErrorData () );
+					$message .= $LANG ["message"] [12];
+					$module_coderetour = - 1;
+				}
+			}
+			/*
+			 * Sortie
+			 */
+			if ($_REQUEST["sortie_lieu_id"] > 0 ) {
+				$sortie = new Sortie($bdd, $ObjetBDDParam);
+				$_REQUEST["sortie_date"] = $_REQUEST["evenement_date"];
+				$sortie_id = $sortie->ecrire($_REQUEST);
+				if (! $sortie_id > 0) {
+					$message .= formatErrorData ( $sortie->getErrorData () );
 					$message .= $LANG ["message"] [12];
 					$module_coderetour = - 1;
 				}
