@@ -15,7 +15,7 @@ Nom du type d'événement <span class="red">*</span> :</td>
 <td class="libelleSaisie">
 Actif dans les sélections<span class="red">*</span> ?</td>
 <td class="datamodif">
-<input type="radio" name="evenement_type_actif" value="0" {if $data.evenement_type_actif == 1}checked{/if} > non
+<input type="radio" name="evenement_type_actif" value="0" {if $data.evenement_type_actif == 0}checked{/if} > non
 <br>
 <input type="radio" name="evenement_type_actif" value="1" {if $data.evenement_type_actif == 1}checked{/if} > oui
 </td>

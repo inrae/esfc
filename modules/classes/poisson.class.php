@@ -1372,7 +1372,7 @@ class Sortie extends ObjetBDD {
 	function getListByPoisson($poisson_id) {
 		if ($poisson_id > 0) {
 			$sql = "select sortie_id, sortie.poisson_id, sortie_date, sortie_commentaire,
-					localisation, evenement_type_libelle, sortie.evenement_id
+					localisation, evenement_type_libelle, sortie.evenement_id, sevre
 					from sortie
 					left outer join sortie_lieu using (sortie_lieu_id)
 					left outer join evenement using (evenement_id)
@@ -1389,7 +1389,11 @@ class Sortie extends ObjetBDD {
 	 */
 	function getDataByEvenement($evenement_id) {
 		if ($evenement_id > 0) {
-			$sql = "select * from sortie where evenement_id = " . $evenement_id;
+			$sql = "select sortie_id, poisson_id, sortie_date, sortie_commentaire,
+					localisation, evenement_id, sortie_lieu_id, sevre
+					from sortie
+					left outer join sortie_lieu using (sortie_lieu_id)
+					where evenement_id = " . $evenement_id;
 			return $this->lireParam ( $sql );
 		}
 	}
@@ -1449,14 +1453,16 @@ class SortieLieu extends ObjetBDD {
 	function getListeActif($actif = -1) {
 		$sql = "select sortie_lieu_id, localisation, longitude_dd, latitude_dd,
 				actif, poisson_statut_id, poisson_statut_libelle
-				from sortie_lieu";
+				from sortie_lieu
+				left outer join poisson_statut using (poisson_statut_id)
+				";
 		if ($actif > -1 ) {
 			$where = " where actif = ".$actif;
 		} else {
 			$where = "";
 		}
 		$order = " order by localisation";
-		return $this->getListeParam($sql.$where.$actif);
+		return $this->getListeParam($sql.$where.$order);
 	}
 	/**
 	 * Surcharge de la fonction ecrire pour rajouter le point geographique

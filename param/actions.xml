@@ -156,6 +156,11 @@
 	<bassinEvenementTypeWrite action="modules/parametre/bassinEvenementType.php" param="write" droits="paramAdmin" retourok="bassinEvenementTypeList" retourko="bassinEvenementTypeChange" modulebefore="bassinEvenementTypeChange" />
 	<bassinEvenementTypeDelete action="modules/parametre/bassinEvenementType.php" param="delete" droits="paramAdmin" retoursuppr="bassinEvenementTypeList" retourko="bassinEvenementTypeChange"  modulebefore="bassinEvenementTypeChange"/>
 
+	<sortieLieuList action="modules/parametre/sortieLieu.php" param="list" droits="consult"  retourlogin="1" menulevel="1" menuparent="3" menuorder="15" menudroits="" menuvalue="91" menutitle="92"  />
+	<sortieLieuChange action="modules/parametre/sortieLieu.php" param="change" droits="paramAdmin" />
+	<sortieLieuWrite action="modules/parametre/sortieLieu.php" param="write" droits="paramAdmin" retourok="sortieLieuList" retourko="sortieLieuChange" modulebefore="sortieLieuChange" />
+	<sortieLieuDelete action="modules/parametre/sortieLieu.php" param="delete" droits="paramAdmin" retoursuppr="sortieLieuList" retourko="sortieLieuChange"  modulebefore="sortieLieuChange"/>
+
 
 	<alimentation menulevel="0" menuorder="2" menuvalue="77" menutitle="78" retourlogin="1" />
 

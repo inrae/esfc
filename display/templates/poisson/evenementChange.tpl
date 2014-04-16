@@ -89,6 +89,7 @@ Retour à la liste des poissons
 <input type="hidden" name="anomalie_db_commentaire" id="anomalie_db_commentaire" value="">
 <input type="hidden" name="mortalite_id" id="mortalite_id" value="{$dataMortalite.mortalite_id}" >
 <input type="hidden" name="cohorte_id" id="cohorte_id" value="{$dataCohorte.cohorte_id}" >
+<input type="hidden" name="sortie_id" id="sortie_id" value="{$dataSortie.sortie_id}">
 
 <fieldset>
 <legend>Données liées à l'événement lui-même</legend>
@@ -283,6 +284,39 @@ Sélectionnez le type de détermination...
 <dt>Commentaire : </dt>
 <dd>
 <input name="cohorte_commentaire" value="{$dataCohorte.cohorte_commentaire}" size="40">
+</dd>
+</dl>
+</div>
+</fieldset>
+
+<fieldset class="fsMasquable">
+<legend>Sortie du stock</legend>
+<div class="masquage">
+<dl>
+<dt>Lieu de lâcher/destination <span class="red">*</span> :</dt>
+<dd>
+<select name="sortie_lieu_id" id="sortie_lieu_id">
+<option value="" {if $dataSortie.sortie_lieu_id == ""} selected{/if}>
+Sélectionnez le lieu de lâcher/destination...
+</option>
+{section name=lst loop=$sortieLieu}
+<option value={$sortieLieu[lst].sortie_lieu_id} {if $sortieLieu[lst].sortie_lieu_id == $dataSortie.sortie_lieu_id}selected{/if}>
+{$sortieLieu[lst].localisation}
+</option>
+{/section}
+</select>
+</dd>
+</dl>
+<dl>
+<dt>Informations de nourriture/sevrage :</dt>
+<dd>
+<input name="sevre" value="{$dataSortie.sevre}" size="40">
+</dd>
+</dl>
+<dl>
+<dt>Commentaires :</dt>
+<dd>
+<input name="sortie_lieu_commentaire" value="{$dataSortie.sortie_commentaire}" size="40">
 </dd>
 </dl>
 </div>

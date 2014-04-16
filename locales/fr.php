@@ -90,6 +90,8 @@ $LANG["menu"][87] = "Laboratoires";
 $LANG["menu"][88] = "Laboratoires sollicités pour les analyses d'eau";
 $LANG["menu"][89] = "Événements dans bassins";
 $LANG["menu"][90] = "Types d'événements survenant dans les bassins";
+$LANG["menu"][91] = "Lieux de lâchers/destination";
+$LANG["menu"][92] = "Liste des lieux de lâchers ou de destination des poissons";
 
 
 

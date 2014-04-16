@@ -46,7 +46,8 @@ switch ($t_module ["param"]) {
 			$smarty->assign("mortaliteType", $mortalite_type->getListe(2));
 			$cohorte_type = new Cohorte_type($bdd, $ObjetBDDParam);
 			$smarty->assign("cohorteType", $cohorte_type->getListe(2));
-			//$sortie_lieu =  ;
+			$sortie_lieu =  new SortieLieu($bdd, $ObjetBDDParam);
+			$smarty->assign("sortieLieu", $sortie_lieu->getListeActif(1));
 			dataRead ( $dataClass, $id, "poisson/evenementChange.tpl", $_REQUEST ["poisson_id"] );
 			/*
 			 * Lecture du poisson

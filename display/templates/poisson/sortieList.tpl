@@ -7,7 +7,7 @@ setDataTables("csortieList");
 <th>Événement associé</th>
 <th>Lieu</th>
 <th>Date</th>
-<th>Commentaire</th>
+<th>Sevrage/Commentaire</th>
 </tr>
 </thead>
 <tdata>
@@ -24,7 +24,12 @@ setDataTables("csortieList");
 </td>
 <td>{$dataSortie[lst].localisation}</td>
 <td>{$dataSortie[lst].sortie_date}</td>
-<td>{$dataSortie[lst].sortie_commentaire}</td>
+<td>
+{$dataSortie[lst].sevre}
+{if strlen($dataSortie[lst].sevre) > 0 && strlen($dataSortie[lst].sortie_commentaire) > 0}
+<br>
+{/if}
+{$dataSortie[lst].sortie_commentaire}</td>
 </tr>
 {/section}
 </tdata>

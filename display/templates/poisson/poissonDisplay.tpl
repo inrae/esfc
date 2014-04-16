@@ -66,21 +66,29 @@ Nouvel événement...
 </div>
 </fieldset>
 <fieldset class="fsMasquable">
-<legend>Mortalité</legend>
-<div class="masquage">
-{include file="poisson/mortaliteList.tpl"}
-<br>
-</div>
-</fieldset>
-<fieldset class="fsMasquable">
 <legend>Transferts effectués</legend>
 <div class="masquage">
 {include file="poisson/transfertList.tpl"}
 <br>
 </div>
 </fieldset>
+<fieldset class="fsMasquable">
+<legend>Sortie du stock</legend>
+<div class="masquage">
+{include file="poisson/sortieList.tpl"}
+<br>
+</div>
+</fieldset>
+<fieldset class="fsMasquable">
+<legend>Mortalité</legend>
+<div class="masquage">
+{include file="poisson/mortaliteList.tpl"}
+<br>
+</div>
+</fieldset>
 </td>
 <td>
+
 <fieldset class="fsMasquable">
 <legend>Documents associés</legend>
 <div class="masquage">
