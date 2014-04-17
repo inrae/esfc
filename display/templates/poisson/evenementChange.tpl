@@ -213,6 +213,12 @@ Sélectionnez le bassin de destination...
 <span class="erreur"style="display:none; color:red;"></span>
 </dd>
 </dl>
+<dl>
+<dt>Commentaire :</dt>
+<dd>
+<input name="transfert_commentaire" value="{$dataTransfert.transfert_commentaire}" size="40">
+</dd>
+</dl>
 </div>
 </fieldset>
 <fieldset class="fsMasquable">

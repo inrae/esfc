@@ -8,6 +8,7 @@ setDataTables("ctransfertList");
 <th>Date de<br>transfert</th>
 <th>Bassin d'origine</th>
 <th>Bassin de destination</th>
+<th>Commentaire</th>
 </tr>
 </thead>
 <tdata>
@@ -35,6 +36,7 @@ setDataTables("ctransfertList");
 {$dataTransfert[lst].bassin_destination_nom}</a>
 {/if}
 </td>
+<td>{$dataTransfert[lst].transfert_commentaire}</td>
 </tr>
 {/section}
 </tdata>

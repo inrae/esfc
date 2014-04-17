@@ -761,7 +761,10 @@ class Transfert extends ObjetBDD {
 				),
 				"evenement_id" => array (
 						"type" => 1 
-				) 
+				),
+				"transfert_commentaire" => array (
+						"type" => 0
+				)
 		);
 		if (! is_array ( $param ))
 			$param == array ();
@@ -778,7 +781,7 @@ class Transfert extends ObjetBDD {
 		if ($poisson_id > 0) {
 			$sql = 'select transfert_id, transfert.poisson_id, bassin_origine, bassin_destination, transfert_date, evenement_id,
 					ori.bassin_nom as "bassin_origine_nom", dest.bassin_nom as "bassin_destination_nom",
-					evenement_id, evenement_type_libelle
+					evenement_id, evenement_type_libelle, transfert_commentaire
 					from transfert
 					join poisson using (poisson_id)
 					left outer join bassin ori on (bassin_origine = ori.bassin_id)
