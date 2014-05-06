@@ -217,6 +217,7 @@ if ($t_module ["ajax"] != 1) {
 		$menu = $_SESSION ["menu"];
 	}
 	$smarty->assign ( "menu", $menu );
+	if (isset($_SESSION["login"])) $smarty->assign("isConnected", 1);
 	/*
 	 * Affichage de la page
 	 */

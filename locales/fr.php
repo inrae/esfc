@@ -136,6 +136,7 @@ $LANG["message"][31] = "Confirmez-vous la suppression ?";
 $LANG["message"][32] = "Mode développement - base de données";
 $LANG["message"]["yes"] = "oui";
 $LANG["message"]["no"] = "non";
+$LANG["message"][33] = "Vous êtes connecté";
 
 $LANG["login"][0] = "Login";
 $LANG["login"][1] = "Mot de passe";

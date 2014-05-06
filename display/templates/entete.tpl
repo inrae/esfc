@@ -13,6 +13,11 @@
 </a>
 &nbsp;
 {/if}
+{if $isConnected == 1}
+<img src='display/images/key_green.png' height='20' border='0' title="{$LANG['message'].33}">
+{else}
+<img src='display/images/key_red.png' height='20' border='0' title="{$LANG['message'].8}">
+{/if}
 </div>
 </h1>
 <div class="menu">{$menu}</div>

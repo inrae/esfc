@@ -143,10 +143,11 @@ class Identification {
 			}
 			$dn = $this->LDAP_user_attrib . "=" . $login . "," . $this->LDAP_basedn;
 			$rep = ldap_bind ( $ldap, $dn, $password );
-			global $log, $LOG_duree;
+			global $log, $LOG_duree, $message, $LANG;
 			if ($rep == 1) {
 				$_SESSION ["login"] = $login;
 				$log->setLog ( $login, "connexion", "ldap-ok - ip:" . $_SESSION ["remoteIP"] );
+				$message = $LANG["message"][10];
 				/*
 				 * Purge des anciens enregistrements dans log
 				 */
@@ -154,6 +155,7 @@ class Identification {
 				return $login;
 			} else {
 				$log->setLog ( $login, "connexion", "ldap-ko - ip:" . $_SESSION ["remoteIP"] );
+				$message = $LANG["message"][11];
 				return - 1;
 			}
 		} else
@@ -166,6 +168,7 @@ class Identification {
 	 * @return 0:1
 	 */
 	function disconnect($adresse_retour) {
+		global $message;$LANG;
 		if (! isset ( $this->ident_type )) {
 			return 0;
 		}
@@ -182,7 +185,7 @@ class Identification {
 		if (isset ( $_COOKIE [session_name ()] )) {
 			setcookie ( session_name (), '', time () - 42000, '/' );
 		}
-		
+		$message = $LANG["message"][7];
 		// Finalement, on détruit la session.
 		session_destroy ();
 		return 1;
@@ -268,9 +271,10 @@ class LoginGestion extends ObjetBDD {
 			$password = hash ( "sha256", $password );
 			$sql = "select login from LoginGestion where login ='" . $login . "' and password = '" . $password . "' and actif = 1";
 			$res = ObjetBDD::lireParam ( $sql );
-			global $log, $LOG_duree;
+			global $log, $LOG_duree, $message, $LANG;
 			if ($res ["login"] == $login) {
 				$log->setLog ( $login, "connexion", "db-ok - ip:" . $_SESSION ["remoteIP"] );
+				$message = $LANG["message"][10];
 				/*
 				 * Purge des anciens enregistrements dans log
 				 */
@@ -278,6 +282,7 @@ class LoginGestion extends ObjetBDD {
 				return TRUE;
 			} else {
 				$log->setLog ( $login, "connexion", "db-ko - ip:" . $_SESSION ["remoteIP"] );
+				$message = $LANG["message"][11];
 				return FALSE;
 			}
 		} else
