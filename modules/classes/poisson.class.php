@@ -1188,13 +1188,13 @@ class Mortalite extends ObjetBDD {
 			$dataPoisson = $poisson->lire($data["poisson_id"]);
 			if ($dataPoisson["poisson_id"] > 0 && $dataPoisson["poisson_statut_id"] == 1) {
 				/*
-				 * Mise a niveau du statut : le poisson a quitte l'elevage
+				 * Mise a niveau du statut : le poisson est mort
 				*/
-				$dataPoisson["poisson_statut_id"] = 3 ;
+				$dataPoisson["poisson_statut_id"] = 2 ;
 				$poisson->ecrire($dataPoisson);
 			}
 		}
-		return $sortie_id;
+		return $mortalite_id;
 	}
 	
 	/**

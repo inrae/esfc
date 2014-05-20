@@ -285,7 +285,7 @@ class RepartTemplate extends ObjetBDD {
 			$sql = "select * from " . $this->table . "
 					where actif = 1 
 					and categorie_id = " . $categorie_id . "
-					order by repart_template_date desc";
+					order by repart_template_libelle";
 			return $this->getListeParam ( $sql );
 		}
 	}

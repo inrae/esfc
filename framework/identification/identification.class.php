@@ -294,7 +294,7 @@ class LoginGestion extends ObjetBDD {
 	 * @return array
 	 */
 	function getListeTriee() {
-		$sql = 'select id,login,nom,prenom,mail,actif from LoginGestion order by nom,prenom';
+		$sql = 'select id,login,nom,prenom,mail,actif from LoginGestion order by nom,prenom, login';
 		return ObjetBDD::getListeParam ( $sql );
 	}
 	/**

@@ -334,15 +334,13 @@ class ObjetBDD {
 						case "parentAttrib" :
 							$this->parentAttrib = $key;
 							break;
-						case "key" or "cle" : {
+						case "key" :
+						case "cle" : 
 							if ($value1 == 1) {
 								$this->keys [] = $key;
 								$nbcle ++;
 								$this->cle = $key;
 							}
-							break;
-						}
-						default:
 							break;
 					}
 				}
@@ -868,7 +866,8 @@ class ObjetBDD {
 			}
 			$sql .= " where " . $where;
 		}
-		// echo $sql."<br>";
+		//printr($sql);
+		//die;
 		$rs = $this->execute ( $sql );
 		if ($mode == "ajout" && $rs != FALSE && $this->id_auto == 1) {
 			if (substr ( strtolower ( $this->connection->databaseType ), 0, 7 ) == 'postgre') {

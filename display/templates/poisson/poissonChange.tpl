@@ -36,7 +36,7 @@ Retour à la liste des poissons
 <td class="libelleSaisie">
 Statut <span class="red">*</span> :</td>
 <td class="datamodif">
-<select id="cpoisson_statut_id" name="poisson_statut_id" required>
+<select id="cpoisson_statut_id" name="poisson_statut_id">
 {section name=lst loop=$poissonStatut}
 <option value="{$poissonStatut[lst].poisson_statut_id}" {if $poissonStatut[lst].poisson_statut_id == $data.poisson_statut_id}selected{/if}>
 {$poissonStatut[lst].poisson_statut_libelle}
@@ -44,6 +44,18 @@ Statut <span class="red">*</span> :</td>
 {/section}
 </select>
 </td>
+</tr>
+<tr>
+<td class="libelleSaisie">
+Catégorie <span class="red">*</span> :</td>
+<td class="datamodif">
+<select id="ccategorie_id" name="categorie_id" >
+{section name=lst loop=$categorie}
+<option value="{$categorie[lst].categorie_id}" {if $categorie[lst].categorie_id == $data.categorie_id}selected{/if}>
+{$categorie[lst].categorie_libelle}
+</option>
+{/section}
+</select>
 </tr>
 <tr>
 <td class="libelleSaisie">

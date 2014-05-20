@@ -118,11 +118,14 @@ switch ($t_module["param"]) {
 		 * If is a new record, generate a new record with default value :
 		 * $_REQUEST["idParent"] contains the identifiant of the parent record
 		 */
+		include_once "modules/classes/categorie.class.php";
 		$data=dataRead($dataClass, $id, "poisson/poissonChange.tpl");
 		$sexe = new Sexe($bdd, $ObjetBDDParam);
 		$smarty->assign("sexe", $sexe->getListe(1));
 		$poissonStatut = new Poisson_statut($bdd, $ObjetBDDParam);
 		$smarty->assign("poissonStatut", $poissonStatut->getListe(1));
+		$categorie = new Categorie($bdd, $ObjetBDDParam);
+		$smarty->assign("categorie", $categorie->getListe(1));
 		/*
 		 * Recuperation de la liste des types de pittag
 		*/

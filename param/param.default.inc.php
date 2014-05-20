@@ -5,8 +5,8 @@
 * 
 * Parametres par defaut de l'application
 */
-$APPLI_version = "1.0";
-$APPLI_versiondate = "06/05/2014";
+$APPLI_version = "1.0.1";
+$APPLI_versiondate = "20/05/2014";
 $language = "fr";
 $DEFAULT_formatdate = "fr";
 /*
@@ -17,8 +17,8 @@ $navigationxml = "param/actions.xml";
  * Duree de la session par defaut
  * @var unknown_type
  */
-// 4 heures
-$APPLI_session_ttl = 14400;
+// 1 heure
+$APPLI_session_ttl = 3600;
 // 3 mois
 $APPLI_cookie_ttl = 7776000; 
 /*
