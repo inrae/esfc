@@ -633,7 +633,11 @@ class Distribution extends ObjetBDD {
 				"distribution_jour" => array (
 						"type" => 0,
 						"defaultValue" => "1,1,1,1,1,1,1" 
-				) 
+				),
+				"distribution_jour_soir" => array(
+						"type" => 0,
+						"defaultValue" => "0,0,0,0,0,0,0"
+		)
 		);
 		if (! is_array ( $param ))
 			$param == array ();
@@ -655,6 +659,10 @@ class Distribution extends ObjetBDD {
 		for($i = 0; $i < 7; $i ++) {
 			$data ["distribution_jour_" . ($i + 1)] = $distribJour [$i];
 		}
+		$distribJourSoir = explode(",", $data["distribution_jour_soir"]);
+		for($i = 0; $i < 7; $i ++) {
+			$data ["distribution_jour_soir_" . ($i + 1)] = $distribJourSoir [$i];
+		}
 		return ($data);
 	}
 	/**
@@ -667,13 +675,18 @@ class Distribution extends ObjetBDD {
 	function ecrire($data) {
 		/*
 		 * Remise en forme du champ distribution_jour
-		 */
-		if (isset ( $data ["distribution_jour_1"] )) {
+		 */		
 			$data ["distribution_jour"] = $data ["distribution_jour_1"];
 			for($i = 2; $i <= 7; $i ++) {
 				$data ["distribution_jour"] .= "," . $data ["distribution_jour_" . $i];
+			}		
+		/*
+		 * Remise en forme du champ distribution_jour_taux
+		 */
+			$data["distribution_jour_soir"] = $data["distribution_jour_soir_1"];
+			for($i = 2; $i <= 7; $i ++) {
+				$data ["distribution_jour_soir"] .= "," . $data ["distribution_jour_soir_" . $i];
 			}
-		}
 		$id = parent::ecrire ( $data );
 		if ($id > 0) {
 			/*
@@ -715,6 +728,7 @@ class Distribution extends ObjetBDD {
 			 * Mise en forme du tableau de jour de distribution
 			 */
 			$distribJour = explode ( ",", $data ["distribution_jour"] );
+			$distribJourSoir = explode(",", $data["distribution_jour_soir"]);
 			$i = 0;
 			while ( $dateDebut <= $dateFin ) {
 				/*
@@ -745,6 +759,12 @@ class Distribution extends ObjetBDD {
 				if ($distribJour [$numJour - 1] != 1) {
 					$dataDistrib ["total_distribue"] = 0;
 				}
+				/*
+				 * Recalcul de la quantité si distribution uniquement le soir à 50 %
+				 */
+				if ($distribJourSoir[$numJour - 1] == 1) {
+					$dataDistrib ["total_distribue"] = $dataDistrib["total_distribue"] * 0.5;
+				}
 				$idDataDistrib = $distribQuotidien->ecrire ( $dataDistrib );
 				if ($idDataDistrib > 0 && $distribJour [$numJour - 1] == 1) {
 					/*
@@ -755,7 +775,7 @@ class Distribution extends ObjetBDD {
 								"aliment_quotidien_id" => 0,
 								"aliment_id" => $cle,
 								"distrib_quotidien_id" => $idDataDistrib,
-								"quantite" => intval ( $data ["total_distribue"] * $taux / 100 ) 
+								"quantite" => intval ( $dataDistrib ["total_distribue"] * $taux / 100 ) 
 						);
 						$alimentQuotidien->ecrire ( $dataAlimQuot );
 					}
@@ -831,6 +851,7 @@ class Distribution extends ObjetBDD {
 				t1.repart_template_id, t1.reste_zone_calcul, t1.evol_taux_nourrissage,
 				t1.taux_nourrissage, t1.total_distribue, t1.distribution_consigne,
 				t1.ration_commentaire, t1.distribution_masse, t1.distribution_jour,
+				t1.distribution_jour_soir,
 				t1.reste_total, t1.taux_reste, t1.distribution_id_prec,
 				bassin_nom,
 				t2.reste_total as reste_precedent,
@@ -850,8 +871,10 @@ class Distribution extends ObjetBDD {
 		 */
 		foreach ( $data as $key => $value ) {
 			$distribJour = explode ( ",", $value ["distribution_jour"] );
+			$distribJourSoir = explode (",", $value["distribution_jour_soir"]);
 			for($i = 0; $i < 7; $i ++) {
 				$data [$key] ["distribution_jour_" . ($i + 1)] = $distribJour [$i];
+				$data [$key] ["distribution_jour_soir_". ($i + 1)] = $distribJourSoir[$i];
 			}
 		}
 		return ($data);
@@ -890,6 +913,7 @@ class Distribution extends ObjetBDD {
 					 */
 					for($i = 1; $i <= 7; $i ++) {
 						$value ["distribution_jour_" . $i ] = 1;
+						$value ["distribution_jour_soir_".$i] = 1;
 					}
 					$data [] = $value;
 				}

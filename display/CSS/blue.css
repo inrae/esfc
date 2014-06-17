@@ -110,6 +110,9 @@ input.num5 {
 input.num10 {
 	width: 10em;
 }
+input.num3 {
+	width: 2em;
+}
 dl select {
 	max-width: 480px;
 }

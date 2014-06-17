@@ -11,7 +11,7 @@ $(document).ready(function() {
 		}
 	} ) ;
 	$(".date").datepicker( { dateFormat: "dd/mm/yy" } );
-	$(".num5, .num10").attr( {
+	$(".num5, .num10, .num3").attr( {
 		pattern: "\-?[0-9]*(\.[0-9]+)?",
 		title: "Donnée numérique" 
 		} );
@@ -239,13 +239,26 @@ Nouveau taux :
 <dl>
 <dt>Jours de distribution :</dt>
 <dd>
-lun <input type="checkbox" name="distribution_jour_1_{$dataBassin[lst].bassin_id}" value="1" {if {$dataBassin[lst].distribution_jour_1} == 1}checked{/if}>
+lun <input type="checkbox" name="distribution_jour_1_{$dataBassin[lst].bassin_id}" value="1" {if $dataBassin[lst].distribution_jour_1 == 1}checked{/if}>
 mar <input type="checkbox" name="distribution_jour_2_{$dataBassin[lst].bassin_id}" value="1" {if $dataBassin[lst].distribution_jour_2 == 1}checked{/if}>
 mer <input type="checkbox" name="distribution_jour_3_{$dataBassin[lst].bassin_id}" value="1" {if $dataBassin[lst].distribution_jour_3 == 1}checked{/if}>
 jeu <input type="checkbox" name="distribution_jour_4_{$dataBassin[lst].bassin_id}" value="1" {if $dataBassin[lst].distribution_jour_4 == 1}checked{/if}>
 ven <input type="checkbox" name="distribution_jour_5_{$dataBassin[lst].bassin_id}" value="1" {if $dataBassin[lst].distribution_jour_5 == 1}checked{/if}>
 sam <input type="checkbox" name="distribution_jour_6_{$dataBassin[lst].bassin_id}" value="1" {if $dataBassin[lst].distribution_jour_6 == 1}checked{/if}>
 dim <input type="checkbox" name="distribution_jour_7_{$dataBassin[lst].bassin_id}" value="1" {if $dataBassin[lst].distribution_jour_7 == 1}checked{/if}>
+</dd>
+</dl>
+<dl>
+<dt>1/2 ration le soir uniquement :</dt>
+<dd>
+lun <input type="checkbox" name="distribution_jour_soir_1_{$dataBassin[lst].bassin_id}" value="1" {if $dataBassin[lst].distribution_jour_soir_1 == 1}checked{/if}>
+mar <input type="checkbox" name="distribution_jour_soir_2_{$dataBassin[lst].bassin_id}" value="1" {if $dataBassin[lst].distribution_jour_soir_2 == 1}checked{/if}>
+mer <input type="checkbox" name="distribution_jour_soir_3_{$dataBassin[lst].bassin_id}" value="1" {if $dataBassin[lst].distribution_jour_soir_3 == 1}checked{/if}>
+jeu <input type="checkbox" name="distribution_jour_soir_4_{$dataBassin[lst].bassin_id}" value="1" {if $dataBassin[lst].distribution_jour_soir_4 == 1}checked{/if}>
+ven <input type="checkbox" name="distribution_jour_soir_5_{$dataBassin[lst].bassin_id}" value="1" {if $dataBassin[lst].distribution_jour_soir_5 == 1}checked{/if}>
+sam <input type="checkbox" name="distribution_jour_soir_6_{$dataBassin[lst].bassin_id}" value="1" {if $dataBassin[lst].distribution_jour_soir_6 == 1}checked{/if}>
+dim <input type="checkbox" name="distribution_jour_soir_7_{$dataBassin[lst].bassin_id}" value="1" {if $dataBassin[lst].distribution_jour_soir_7 == 1}checked{/if}>
+
 </dd>
 </dl>
 </div>

@@ -228,9 +228,13 @@ switch ($t_module ["param"]) {
 				5 => "ven",
 				6 => "sam" 
 		);
+		$total_distribue = 0;
 		for($i = 0; $i <= $nbJour; $i ++) {
 			$dateArray [$i] ["libelle"] = $jour [$dateDebut->format ( "w" )];
 			$dateArray [$i] ["numJour"] = $i;
+			/*
+			 * Calcul du total distribue
+			 */
 			$dateDebut->add ( new DateInterval ( 'P1D' ) );
 		}
 		$smarty->assign ( "dateArray", $dateArray );
