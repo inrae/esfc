@@ -95,7 +95,7 @@ $(document).ready(function() {
 <input style="width:10em;" name="ration_commentaire_{$dataBassin[lst].distribution_id}" data-cle="{$dataBassin[lst].distribution_id}" id="ration_commentaire_{$dataBassin[lst].distribution_id}" value="{$dataBassin[lst].ration_commentaire}">
 </td>
 <td>
-<input name="total_distribue_{$dataBassin[lst].distribution_id}" class="num5" readonly id="total_distribue_{$dataBassin[lst].distribution_id}" value="{$dataBassin[lst].total_distribue * $nbJour}">
+<input name="total_distribue_{$dataBassin[lst].distribution_id}" class="num5" readonly id="total_distribue_{$dataBassin[lst].distribution_id}" value="{$dataBassin[lst].total_periode_distribue}">
 </td>
 <td>
 <input name="taux_reste_{$dataBassin[lst].distribution_id}" class="num5" readonly id="taux_reste_{$dataBassin[lst].distribution_id}" value="{$dataBassin[lst].taux_reste}">

@@ -11,6 +11,9 @@ $(document).ready(function() {
 		}
 	} ) ;
 	$(".date").datepicker( { dateFormat: "dd/mm/yy" } );
+	$(".date").change( function() {
+		$(this).next(".message").show().text("Veuillez enregistrer la fiche avant de poursuivre votre saisie");
+	} );
 	$(".num5, .num10, .num3").attr( {
 		pattern: "\-?[0-9]*(\.[0-9]+)?",
 		title: "Donnée numérique" 
@@ -168,11 +171,11 @@ $(document).ready(function() {
 </dl>
  <dl>
  <dt>Date début :</dt>
- <dd><input class="date" name="date_debut_periode" value="{$data.date_debut_periode}"></dd>
+ <dd><input class="date" name="date_debut_periode" value="{$data.date_debut_periode}"><span class="message"></span></dd>
  </dl>
  <dl>
  <dt>Date fin :</dt>
- <dd><input class="date" name="date_fin_periode" value="{$data.date_fin_periode}"></dd>
+ <dd><input class="date" name="date_fin_periode" value="{$data.date_fin_periode}"><span class="message"></span></dd>
  </dl>
 <fieldset>
 <legend>Répartition des aliments par bassin</legend>
@@ -205,12 +208,15 @@ $(document).ready(function() {
 </dd>
 </dl>
 <dl>
-<dt>Nourrissage précédent :</dt>
+<dt>Nourrissage des jours précédents (même nbre de jours) :</dt>
 <dd>
 Taux :
 <input name="taux_nourrissage_precedent_{$dataBassin[lst].bassin_id}" id="taux_nourrissage_precedent_{$dataBassin[lst].bassin_id}" data-cle="{$dataBassin[lst].bassin_id}" value="{$dataBassin[lst].taux_nourrissage_precedent}" class="num5" readonly>
 Qté : 
 <input class="num5" name="total_distrib_precedent_{$dataBassin[lst].bassin_id}" value="{$dataBassin[lst].total_distrib_precedent}" readonly>
+(global : 
+<input class="num5" name="total_distrib_precedent_{$dataBassin[lst].bassin_id}" value="{$dataBassin[lst].total_periode_distrib_precedent}" readonly>
+)
 <br>Reste :
 <input class="num5" name="reste_precedent_{$dataBassin[lst].bassin_id}" id="reste_precedent_{$dataBassin[lst].bassin_id}" data-cle="{$dataBassin[lst].bassin_id}" value="{$dataBassin[lst].reste_precedent}" readonly>
 % reste : 

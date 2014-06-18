@@ -181,7 +181,7 @@
 
 	<repartitionList action="modules/aliment/repartition.php" param="list" droits="consult" retourlogin="1" menulevel="1" menuparent="2" menuorder="1" menudroits="" menuvalue="83" menutitle="84"  />
 	<repartitionChange action="modules/aliment/repartition.php" param="change" droits="bassinGestion" />
-	<repartitionCreate action="modules/aliment/repartition.php" param="create" droits="bassinGestion" retourok="repartitionChange" retourko="repartitionList" modulebefore="repartitionList" />
+	<repartitionCreate action="modules/aliment/repartition.php" param="create" droits="bassinGestion" retourok="repartitionChange" retourko="repartitionList" modulebefore="repartitionList,repartitionDuplicate" />
 	<repartitionDuplicate action="modules/aliment/repartition.php" param="duplicate" droits="bassinGestion" retourok="repartitionChange" retourko="repartitionList" modulebefore="repartitionList" />
 	<repartitionWrite action="modules/aliment/repartition.php" param="write" droits="bassinGestion" retourok="repartitionChange" retourko="repartitionChange" modulebefore="repartitionChange,repartitionPrint" />
 	<repartitionDelete action="modules/aliment/repartition.php" param="delete" droits="bassinAdmin" retoursuppr="repartitionList" retourko="repartitionChange"  modulebefore="repartitionChange"/>

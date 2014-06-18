@@ -1,5 +1,14 @@
 Nouveautés
 ===========
+Version 1.1 du 18 juin 2014
+---------------------------
+Correction de bogues :
+- le calcul des aliments distribués quotidiennement était erroné dans le cas où une distribution n'avait pas lieu un jour donné
+- après duplication d'une feuille de distribution, le programme refusait d'afficher la feuille en modification
+Rajout de fonctionnalités concernant la distribution :
+- rajout d'une zone permettant d'indiquer une distribution à 50 % certains jours
+- recalcul des restes et des taux de restes en prenant en compte les valeurs réellement rentrées quotidiennement, et non plus les informations de la distribution précédente
+
 Version 1.0.1 du 20 mai 2014
 --------------
 Version de production, comportant les corrections suivantes :
