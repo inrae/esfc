@@ -18,6 +18,10 @@
 {$dataPoisson.bassin_nom}
 </a>
 {/if}
+{if strlen($dataPoisson.commentaire) > 0 }
+<br>
+<label>Commentaire</label> : {$dataPoisson.commentaire}
+{/if}
 </td>
 </tr>
 </table>

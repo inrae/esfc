@@ -73,10 +73,12 @@ $(document).ready(function() {
 			$(masse_id).trigger("change");
 		} );
 	} );
+	/*
 	$(".reste_zone_calcul").change(function () {
 		/*
 		* Calcul du reste à partir des données saisies dans la zone de calcul
 		*/
+		/*
 		var zone = $(this).val();
 		var valeur_table = zone.split("+");
 		var reste = 0;
@@ -89,7 +91,7 @@ $(document).ready(function() {
 		var cle = $(this).data("cle");
 		var reste_id = "#reste_precedent_" + cle;
 		$(reste_id).val(reste);
-	} );
+	} );*/
 	$( "#repartitionForm" ).submit(function() {
 		/*
 		* Verification que le modele de distribution est renseigne si ration > 0

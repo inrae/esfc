@@ -28,7 +28,7 @@ Circuit d'eau en service ?
 <input class="submit" type="submit" value="Enregistrer">
 </form>
 
-{if $data.circuit_eau_id > 0 &&$droits["admin"] == 1}
+{if $data.circuit_eau_id > 0 &&$droits["bassinAdmin"] == 1}
 <form action="index.php" method="post" onSubmit='return confirmSuppression("Confirmez-vous la suppression ?")'>
 <input type="hidden" name="circuit_eau_id" value="{$data.circuit_eau_id}">
 <input type="hidden" name="module" value="circuitEauDelete">

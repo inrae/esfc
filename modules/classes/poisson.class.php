@@ -5,6 +5,8 @@
  *  Creation 18 févr. 2014
  */
 include_once 'modules/classes/categorie.class.php';
+include_once 'modules/classes/evenement.class.php';
+include_once 'modules/classes/documentSturio.class.php';
 /**
  * ORM de gestion de la table poisson
  *
@@ -21,6 +23,7 @@ class Poisson extends ObjetBDD {
 	 */
 	function __construct($bdd, $param = null) {
 		$this->param = $param;
+		$this->paramori = $param;
 		$this->table = "poisson";
 		$this->id_auto = "1";
 		$this->colonnes = array (
@@ -51,13 +54,16 @@ class Poisson extends ObjetBDD {
 				"capture_date" => array (
 						"type" => 2 
 				),
-				"date_naissance" => array(
-						"type" => 2
+				"date_naissance" => array (
+						"type" => 2 
 				),
-				"categorie_id" => array(
+				"categorie_id" => array (
 						"type" => 1,
 						"requis" => 1,
-						"defaultValue" => 2
+						"defaultValue" => 2 
+				),
+				"commentaire" => array (
+						"type" => 0
 				)
 		);
 		if (! is_array ( $param ))
@@ -73,7 +79,7 @@ class Poisson extends ObjetBDD {
 	 */
 	function getListeSearch($dataSearch) {
 		if (is_array ( $dataSearch )) {
-			$sql = "select poisson_id, sexe_id, matricule, prenom, cohorte, capture_date, sexe_libelle, sexe_libelle_court, poisson_statut_libelle,
+			$sql = "select poisson_id, sexe_id, matricule, prenom, cohorte, capture_date, sexe_libelle, sexe_libelle_court, poisson_statut_libelle,commentaire,
 					array_to_string(array_agg(pittag_valeur),' ') as pittag_valeur,
 					mortalite_date,
 					categorie_id, categorie_libelle
@@ -87,7 +93,7 @@ class Poisson extends ObjetBDD {
 			 */
 			$group = " group by poisson_id, sexe_id, matricule, prenom, 
 					cohorte, capture_date, sexe_libelle, sexe_libelle_court, poisson_statut_libelle, mortalite_date,
-					categorie_id, categorie_libelle ";
+					categorie_id, categorie_libelle, commentaire ";
 			/*
 			 * Preparation de la clause order
 			 */
@@ -139,7 +145,7 @@ class Poisson extends ObjetBDD {
 			$sql = "select p.poisson_id, sexe_id, matricule, prenom, cohorte, capture_date, sexe_libelle, sexe_libelle_court, poisson_statut_libelle,
 					pittag_valeur, p.poisson_statut_id, date_naissance,
 					bassin_nom, b.bassin_id,
-					categorie_id, categorie_libelle
+					categorie_id, categorie_libelle, commentaire
 					from " . $this->table . " p natural join sexe
 					  natural join poisson_statut
 					  natural join categorie
@@ -154,20 +160,87 @@ class Poisson extends ObjetBDD {
 	}
 	/**
 	 * Fonction retournant la liste des poissons correspondant au libellé fourni
-	 * @param string $libelle
+	 *
+	 * @param string $libelle        	
 	 * @return array
 	 */
 	function getListPoissonFromName($libelle) {
-		if (strlen($libelle)>0) {
+		if (strlen ( $libelle ) > 0) {
 			$sql = "select poisson.poisson_id, matricule, prenom, pittag_valeur 
-					from ". $this->table."
+					from " . $this->table . "
 					left outer join v_pittag_by_poisson using (poisson_id)
-					where upper(matricule) like upper('%".$libelle."%') 
-					or upper(prenom) like upper('%".$libelle."%')
-					or upper(pittag_valeur) like upper('%".$libelle."%')
+					where upper(matricule) like upper('%" . $libelle . "%') 
+					or upper(prenom) like upper('%" . $libelle . "%')
+					or upper(pittag_valeur) like upper('%" . $libelle . "%')
 					order by matricule, pittag_valeur, prenom";
-			return $this->getListeParam($sql);				
+			return $this->getListeParam ( $sql );
 		}
+	}
+	/**
+	 * Réécriture de la fonction supprimer, pour vérifier si c'est possible, et supprimer les enregistrements
+	 * dans les tables liées
+	 * (non-PHPdoc)
+	 * 
+	 * @see ObjetBDD::supprimer()
+	 */
+	function supprimer($id) {
+		if ($id > 0) {
+			$retour = 0;
+			/*
+			 * Vérification des liens non supprimables
+			 */
+			/*
+			 * Recherche des poissons "enfants"
+			 */
+			$parent_poisson = new Parent_poisson ( $this->connection, $this->paramori );
+			$listeEnfant = $parent_poisson->lireAvecParent ( $id );
+			if (is_array ( $listeEnfant ) && count ( $listeEnfant ) > 0) {
+				$retour = - 1;
+				$this->errorData [] = array (
+						"code" => 0,
+						"message" => "Le poisson est défini comme le parent d'autres poissons" 
+				);
+			}
+			if ($retour == 0) {
+				/*
+				 * Vérification des événements
+				 */
+				$evenement = new Evenement ( $this->connection, $this->paramori );
+				$listeEvenement = $evenement->getEvenementByPoisson ( $id );
+				if (is_array ( $listeEvenement ) && count ( $listeEvenement ) > 0) {
+					$retour = - 1;
+					$this->errorData [] = array (
+							"code" => 0,
+							"message" => "Le poisson contient des événements qui doivent être supprimés préalablement" 
+					);
+				}
+			}
+			if ($retour == 0) {
+				/*
+				 * Suppression dans les tables liées
+				 */
+				/*
+				 * Documents
+				 */
+				$documentLie = new DocumentLie ( $this->connection, $this->paramori, "poisson" );
+				$listeDocument = $documentLie->getListeDocument ( $id );
+				$documentSturio = new DocumentSturio ( $this->connection, $this->paramori );
+				foreach ( $listeDocument as $key => $value ) {
+					if ($value ["document_id"] > 0)
+						$documentSturio->supprimer ( $value ["document_id"] );
+				}
+				/*
+				 * Pittag
+				 */
+				$pittag = new Pittag($this->connection, $this->paramori);
+				$pittag->supprimerChamp($id, "poisson_id");
+				/*
+				 * Suppression du poisson
+				 */
+				$retour = parent::supprimer($id);
+			}
+		}
+		return $retour;
 	}
 }
 /**
@@ -282,8 +355,8 @@ class Pittag extends ObjetBDD {
 						"type" => 0 
 				),
 				"pittag_commentaire" => array (
-						"type" => 0
-				)
+						"type" => 0 
+				) 
 		);
 		if (! is_array ( $param ))
 			$param == array ();
@@ -388,17 +461,18 @@ class Morphologie extends ObjetBDD {
 	}
 	/**
 	 * Retourne la dernière masse connue pour un poisson
-	 * @param int $poisson_id
+	 *
+	 * @param int $poisson_id        	
 	 * @return array
 	 */
-	function getMasseLast ($poisson_id) {
+	function getMasseLast($poisson_id) {
 		if ($poisson_id > 0) {
-			$sql = "select masse from ".$this->table."
+			$sql = "select masse from " . $this->table . "
 					where morphologie_date is not null 
-					and poisson_id = ".$poisson_id."
+					and poisson_id = " . $poisson_id . "
 					order by morphologie_date desc
 					limit 1";
-			return $this->lireParam($sql);
+			return $this->lireParam ( $sql );
 		}
 	}
 	/**
@@ -763,8 +837,8 @@ class Transfert extends ObjetBDD {
 						"type" => 1 
 				),
 				"transfert_commentaire" => array (
-						"type" => 0
-				)
+						"type" => 0 
+				) 
 		);
 		if (! is_array ( $param ))
 			$param == array ();
@@ -794,7 +868,7 @@ class Transfert extends ObjetBDD {
 	}
 	/**
 	 * Calcule la liste des poissons presents dans un bassin
-	 * 
+	 *
 	 * @param int $bassin_id        	
 	 * @return array
 	 */
@@ -831,7 +905,7 @@ class Transfert extends ObjetBDD {
 	 * Complement de la fonction ecrire pour mettre a jour le statut de l'animal,
 	 * en cas de transfert dans un bassin adulte
 	 * (non-PHPdoc)
-	 * 
+	 *
 	 * @see ObjetBDD::ecrire()
 	 */
 	function ecrire($data) {
@@ -859,7 +933,7 @@ class Transfert extends ObjetBDD {
 }
 /**
  * ORM de gestion de la table mime_type
- * 
+ *
  * @author quinton
  *        
  */
@@ -899,7 +973,7 @@ class Mime_type extends ObjetBDD {
 	/**
 	 * retourne la liste des types mimes triés par extension
 	 * (non-PHPdoc)
-	 * 
+	 *
 	 * @see ObjetBDD::getListe()
 	 */
 	function getListe() {
@@ -907,53 +981,17 @@ class Mime_type extends ObjetBDD {
 		return ($this->getListeParam ( $sql ));
 	}
 }
-class Document extends ObjetBDD {
-	/**
-	 * Constructeur de la classe
-	 *
-	 * @param
-	 *        	instance ADODB $bdd
-	 * @param array $param        	
-	 */
-	function __construct($bdd, $param = null) {
-		$this->param = $param;
-		$this->table = "document";
-		$this->id_auto = "1";
-		$this->colonnes = array (
-				"document_id" => array (
-						"type" => 1,
-						"key" => 1,
-						"requis" => 1,
-						"defaultValue" => 0 
-				),
-				"mime_type_id" => array (
-						"type" => 1,
-						"requis" => 1 
-				),
-				"poisson_id" => array (
-						"type" => 1 
-				),
-				"evenement_id" => array (
-						"type" => 1 
-				),
-				"document_date_import" => array (
-						"type" => 2,
-						"requis" => 1,
-						"defaultValue" => "dateJour" 
-				),
-				"document_nom" => array (
-						"requis" => 1 
-				),
-				"document_description" => array (
-						"type" => 0 
-				) 
-		);
-		if (! is_array ( $param ))
-			$param == array ();
-		$param ["fullDescription"] = 1;
-		parent::__construct ( $bdd, $param );
-	}
-}
+// class Document extends ObjetBDD {
+/**
+ * Constructeur de la classe
+ *
+ * @param
+ *        	instance ADODB $bdd
+ * @param array $param        	
+ */
+/*
+ * function __construct($bdd, $param = null) { $this->param = $param; $this->table = "document"; $this->id_auto = "1"; $this->colonnes = array ( "document_id" => array ( "type" => 1, "key" => 1, "requis" => 1, "defaultValue" => 0 ), "mime_type_id" => array ( "type" => 1, "requis" => 1 ), "poisson_id" => array ( "type" => 1 ), "evenement_id" => array ( "type" => 1 ), "document_date_import" => array ( "type" => 2, "requis" => 1, "defaultValue" => "dateJour" ), "document_nom" => array ( "requis" => 1 ), "document_description" => array ( "type" => 0 ) ); if (! is_array ( $param )) $param == array (); $param ["fullDescription"] = 1; parent::__construct ( $bdd, $param ); } }
+ */
 class Cohorte extends ObjetBDD {
 	/**
 	 * Constructeur de la classe
@@ -1034,7 +1072,7 @@ class Cohorte extends ObjetBDD {
 	/**
 	 * rajout de l'ecriture de la cohorte
 	 * (non-PHPdoc)
-	 * 
+	 *
 	 * @see ObjetBDD::ecrire()
 	 */
 	function ecrire($data) {
@@ -1125,8 +1163,9 @@ class Mortalite_type extends ObjetBDD {
 }
 /**
  * ORM de gestion de la table mortalite
- * @author quinton
  *
+ * @author quinton
+ *        
  */
 class Mortalite extends ObjetBDD {
 	/**
@@ -1176,22 +1215,23 @@ class Mortalite extends ObjetBDD {
 	 * Surcharge de la fonction ecrire
 	 * pour mettre a jour le statut du poisson
 	 * (non-PHPdoc)
+	 *
 	 * @see ObjetBDD::ecrire()
 	 */
 	function ecrire($data) {
-		$mortalite_id = parent::ecrire($data);
-		if ($mortalite_id > 0 && $data["poisson_id"] > 0 ) {
+		$mortalite_id = parent::ecrire ( $data );
+		if ($mortalite_id > 0 && $data ["poisson_id"] > 0) {
 			/*
 			 * Lecture du poisson
-			*/
-			$poisson = new Poisson($this->connection, $this->paramori);
-			$dataPoisson = $poisson->lire($data["poisson_id"]);
-			if ($dataPoisson["poisson_id"] > 0 && $dataPoisson["poisson_statut_id"] == 1) {
+			 */
+			$poisson = new Poisson ( $this->connection, $this->paramori );
+			$dataPoisson = $poisson->lire ( $data ["poisson_id"] );
+			if ($dataPoisson ["poisson_id"] > 0 && $dataPoisson ["poisson_statut_id"] == 1) {
 				/*
 				 * Mise a niveau du statut : le poisson est mort
-				*/
-				$dataPoisson["poisson_statut_id"] = 2 ;
-				$poisson->ecrire($dataPoisson);
+				 */
+				$dataPoisson ["poisson_statut_id"] = 2;
+				$poisson->ecrire ( $dataPoisson );
 			}
 		}
 		return $mortalite_id;
@@ -1230,7 +1270,7 @@ class Mortalite extends ObjetBDD {
 }
 /**
  * ORM de gestion de la table parent_poisson
- * 
+ *
  * @author quinton
  *        
  */
@@ -1270,7 +1310,7 @@ class Parent_poisson extends ObjetBDD {
 	}
 	/**
 	 * Retourne la liste des poissons parents
-	 * 
+	 *
 	 * @param int $poisson_id        	
 	 * @return array
 	 */
@@ -1285,15 +1325,14 @@ class Parent_poisson extends ObjetBDD {
 			return $this->getListeParam ( $sql );
 		}
 	}
-	
 	function lireAvecParent($id) {
 		$sql = "select parent_poisson_id, parent_poisson.poisson_id, parent_id,
 				matricule, prenom, pittag_valeur
-				from ".$this->table."
+				from " . $this->table . "
 				join poisson on (parent_poisson.parent_id = poisson.poisson_id)
 				left outer join v_pittag_by_poisson pit on (poisson.poisson_id = pit.poisson_id)
-				where parent_poisson_id = ".$id;
-		return $this->lireParam($sql);
+				where parent_poisson_id = " . $id;
+		return $this->lireParam ( $sql );
 	}
 }
 class Sortie extends ObjetBDD {
@@ -1302,7 +1341,7 @@ class Sortie extends ObjetBDD {
 	 *
 	 * @param
 	 *        	instance ADODB $bdd
-	 * @param array $param
+	 * @param array $param        	
 	 */
 	function __construct($bdd, $param = null) {
 		$this->paramori = $param;
@@ -1314,28 +1353,28 @@ class Sortie extends ObjetBDD {
 						"type" => 1,
 						"key" => 1,
 						"requis" => 1,
-						"defaultValue" => 0
+						"defaultValue" => 0 
 				),
 				"poisson_id" => array (
 						"type" => 1,
 						"requis" => 1,
-						"parentAttrib" => 1
+						"parentAttrib" => 1 
 				),
 				"evenement_id" => array (
-						"type" => 1
+						"type" => 1 
 				),
 				"sortie_lieu_id" => array (
-						"type" => 1						
+						"type" => 1 
 				),
 				"sortie_date" => array (
-						"type" => 2
+						"type" => 2 
 				),
 				"sortie_commentaire" => array (
-						"type" => 0
+						"type" => 0 
 				),
 				"sevre" => array (
-						"type" => 0
-				)
+						"type" => 0 
+				) 
 		);
 		if (! is_array ( $param ))
 			$param == array ();
@@ -1346,22 +1385,23 @@ class Sortie extends ObjetBDD {
 	 * Surcharge de la fonction ecrire
 	 * pour mettre a jour le statut du poisson
 	 * (non-PHPdoc)
+	 *
 	 * @see ObjetBDD::ecrire()
 	 */
 	function ecrire($data) {
-		$sortie_id = parent::ecrire($data);
-		if ($sortie_id > 0 && $data["poisson_id"] > 0 ) {
+		$sortie_id = parent::ecrire ( $data );
+		if ($sortie_id > 0 && $data ["poisson_id"] > 0) {
 			/*
 			 * Lecture du poisson
 			 */
-			$poisson = new Poisson($this->connection, $this->paramori);
-			$dataPoisson = $poisson->lire($data["poisson_id"]);
-			if ($dataPoisson["poisson_id"] > 0 && $dataPoisson["poisson_statut_id"] == 1) {
+			$poisson = new Poisson ( $this->connection, $this->paramori );
+			$dataPoisson = $poisson->lire ( $data ["poisson_id"] );
+			if ($dataPoisson ["poisson_id"] > 0 && $dataPoisson ["poisson_statut_id"] == 1) {
 				/*
 				 * Mise a niveau du statut : le poisson a quitte l'elevage
 				 */
-				$dataPoisson["poisson_statut_id"] = 4 ;
-				$poisson->ecrire($dataPoisson);
+				$dataPoisson ["poisson_statut_id"] = 4;
+				$poisson->ecrire ( $dataPoisson );
 			}
 		}
 		return $sortie_id;
@@ -1369,7 +1409,7 @@ class Sortie extends ObjetBDD {
 	/**
 	 * Retourne la liste des sorties pour un poisson
 	 *
-	 * @param unknown $poisson_id
+	 * @param unknown $poisson_id        	
 	 * @return Ambigous <tableau, boolean, $data, string>
 	 */
 	function getListByPoisson($poisson_id) {
@@ -1387,7 +1427,7 @@ class Sortie extends ObjetBDD {
 	/**
 	 * Lit un enregistrement à partir de l'événement
 	 *
-	 * @param int $evenement_id
+	 * @param int $evenement_id        	
 	 * @return array
 	 */
 	function getDataByEvenement($evenement_id) {
@@ -1407,7 +1447,7 @@ class SortieLieu extends ObjetBDD {
 	 *
 	 * @param
 	 *        	instance ADODB $bdd
-	 * @param array $param
+	 * @param array $param        	
 	 */
 	function __construct($bdd, $param = null) {
 		$this->paramori = $param;
@@ -1419,38 +1459,40 @@ class SortieLieu extends ObjetBDD {
 						"type" => 1,
 						"key" => 1,
 						"requis" => 1,
-						"defaultValue" => 0
+						"defaultValue" => 0 
 				),
 				"localisation" => array (
 						"type" => 0,
-						"requis" => 1
+						"requis" => 1 
 				),
 				"longitude_dd" => array (
-						"type" => 1
+						"type" => 1 
 				),
 				"latitude_dd" => array (
-						"type" => 1
+						"type" => 1 
 				),
 				"point_geom" => array (
-						"type" => 4
+						"type" => 4 
 				),
 				"actif" => array (
-						"type" => 1
+						"type" => 1 
 				),
 				"poisson_statut_id" => array (
 						"type" => 1,
-						"defaultValue" => 4
-				)
+						"defaultValue" => 4 
+				) 
 		);
 		if (! is_array ( $param ))
 			$param == array ();
 		$param ["fullDescription"] = 1;
-		$param["srid"] = 4326;
+		$param ["srid"] = 4326;
 		parent::__construct ( $bdd, $param );
 	}
 	/**
 	 * Retourne la liste des lieux de sortie, actifs ou non
-	 * @param int $actif [-1 | 0 | 1]
+	 *
+	 * @param int $actif
+	 *        	[-1 | 0 | 1]
 	 * @return array
 	 */
 	function getListeActif($actif = -1) {
@@ -1459,27 +1501,28 @@ class SortieLieu extends ObjetBDD {
 				from sortie_lieu
 				left outer join poisson_statut using (poisson_statut_id)
 				";
-		if ($actif > -1 ) {
-			$where = " where actif = ".$actif;
+		if ($actif > - 1) {
+			$where = " where actif = " . $actif;
 		} else {
 			$where = "";
 		}
 		$order = " order by localisation";
-		return $this->getListeParam($sql.$where.$order);
+		return $this->getListeParam ( $sql . $where . $order );
 	}
 	/**
 	 * Surcharge de la fonction ecrire pour rajouter le point geographique
 	 * (non-PHPdoc)
+	 *
 	 * @see ObjetBDD::ecrire()
 	 */
-	function ecrire ($data) {
+	function ecrire($data) {
 		/*
 		 * Preparation du point geometrique
 		 */
-		if (strlen($data["longitude_dd"]) > 0 && strlen($data["latitude_dd"]) > 0 ) {
-			$data["point_geom"] = "POINT(".$data["longitude_dd"]." ".$data["latitude_dd"].")";
+		if (strlen ( $data ["longitude_dd"] ) > 0 && strlen ( $data ["latitude_dd"] ) > 0) {
+			$data ["point_geom"] = "POINT(" . $data ["longitude_dd"] . " " . $data ["latitude_dd"] . ")";
 		}
-		return parent::ecrire($data);
+		return parent::ecrire ( $data );
 	}
 }
 ?>

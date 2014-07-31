@@ -155,6 +155,6 @@ include_once "modules/classes/document.class.php";
  	function getListeDocument ($id) {
  		$documentSturio = new DocumentSturio($this->connection, $this->paramori);
  		return $documentSturio->getListeDocument($this->tableOrigine, $id);
- 	}	
+ 	}
  }
 ?>

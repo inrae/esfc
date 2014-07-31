@@ -167,7 +167,7 @@ class TableauRepartition extends TCPDF {
 		$this->SetMargins ( 10, 10, 10 );
 		$this->SetFont ( "helvetica" );
 		$this->setPrintHeader ( false );
-		$this->AddPage ();
+		$this->AddPage ($this->param["orientation"]);
 		/*
 		 * Impression du titre
 		 */
@@ -414,6 +414,7 @@ class RepartitionJuvenile extends TableauRepartition {
 		$this->param ["title"] = "Répartition des aliments dans les bassins - JUVENILES";
 		$this->param ["nomFichier"] = "juvenile";
 		$this->param ["hl"] = 6;
+		$this->param["orientation"] = "L";
 		parent::__construct ();
 	}
 	/**
@@ -425,7 +426,7 @@ class RepartitionJuvenile extends TableauRepartition {
 		 * Preparation de l'entete du tableau
 		 */
 		$nbAlim = count ( $this->dataAliment );
-		$alimColumnSize = intval ( 160 / $nbAlim );
+		$alimColumnSize = intval ( 240 / $nbAlim );
 		$alimColumnSizeMatin = intval ( $alimColumnSize / 2 );
 		$alimColumnSizeSoir = $alimColumnSize - $alimColumnSizeMatin;
 		$largeurTotaleAlim = $nbAlim * $alimColumnSize;
@@ -559,7 +560,7 @@ class RepartitionJuvenile extends TableauRepartition {
 		 * Recuperation des totaux pour chaque aliment
 		*/
 		for($i = 0; $i < $nbAlim; $i ++) {
-			$this->Cell ( $alimColumnSize, $this->param["hl"], ($alimentTotal [$i] ["matin"] + $alimentTotal [$i] ["soir"]) * $this->nbJour, 1, 0, 'C', true );
+			$this->Cell ( $alimColumnSize, $this->param["hl"], ($alimentTotal [$i] ["matin"] + $alimentTotal [$i] ["soir"]) * 7, 1, 0, 'C', true );
 		}
 		/*
 		 * Envoi au navigateur

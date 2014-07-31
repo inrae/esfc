@@ -32,6 +32,7 @@ Retour à la liste des poissons
 <table class="tablesaisie">
 <form id="poissonForm" method="post" action="index.php?module=poissonWrite">
 <input type="hidden" name="poisson_id" value="{$data.poisson_id}">
+<input type="hidden" name="sexe_id" value="{$data.sexe_id}">
 <tr>
 <td class="libelleSaisie">
 Statut <span class="red">*</span> :</td>
@@ -129,12 +130,17 @@ Cohorte :
 </td>
 </tr>
 <tr>
+<td class="libelleSaisie">Commentaire :</td>
+<td class="datamodif">
+<input name="commentaire" id="ccommentaire" size="50" value="{$data.commentaire}">
+</td>
+<tr>
 <td colspan="2"><div align="center">
 <input class="submit" type="submit" value="Enregistrer">
 </form>
 
 
-{if $data.poisson_id > 0 &&$droits["admin"] == 1}
+{if $data.poisson_id > 0 &&$droits["poissonAdmin"] == 1}
 <form action="index.php" method="post" onSubmit='return confirmSuppression("Confirmez-vous la suppression ?")'>
 <input type="hidden" name="poisson_id" value="{$data.poisson_id}">
 <input type="hidden" name="module" value="poissonDelete">

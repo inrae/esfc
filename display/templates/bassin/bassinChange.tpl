@@ -157,7 +157,7 @@ Bassin en activité :
 <input class="submit" type="submit" value="Enregistrer">
 </form>
 
-{if $data.bassin_id > 0 &&$droits["admin"] == 1}
+{if $data.bassin_id > 0 &&$droits["bassinAdmin"] == 1}
 <form action="index.php" method="post" onSubmit='return confirmSuppression("Confirmez-vous la suppression ?")'>
 <input type="hidden" name="bassin_id" value="{$data.bassin_id}">
 <input type="hidden" name="module" value="bassinDelete">

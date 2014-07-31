@@ -360,7 +360,7 @@ Sélectionnez le type de mortalité...
 </form>
 
 
-{if $data.evenement_id > 0 &&$droits["admin"] == 1}
+{if $data.evenement_id > 0 &&$droits["poissonAdmin"] == 1}
 <div class="formBouton">
 <form action="index.php" method="post" onSubmit='return confirmSuppression("Confirmez-vous la suppression ?")'>
 <input type="hidden" name="evenement_id" value="{$data.evenement_id}">

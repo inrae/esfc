@@ -59,12 +59,12 @@
 	<poissonDisplay action="modules/poisson/poisson.php" param="display" droits="consult" />
 	<poissonChange action="modules/poisson/poisson.php" param="change" droits="poissonGestion" />
 	<poissonWrite action="modules/poisson/poisson.php" param="write" droits="poissonGestion" retourok="poissonDisplay" retourko="poissonChange" modulebefore="poissonChange" />
-	<poissonDelete action="modules/poisson/poisson.php" param="delete" droits="poissonGestion" retoursuppr="poissonList" retourko="poissonChange"  modulebefore="poissonChange"/>
+	<poissonDelete action="modules/poisson/poisson.php" param="delete" droits="poissonAdmin" retoursuppr="poissonList" retourko="poissonChange"  modulebefore="poissonChange"/>
 	<poissonSearchAjax action="modules/poisson/poisson.php" param="getListeAjaxJson" droits="consult" ajax="1"/>
 	
 	<evenementChange action="modules/poisson/evenement.php" param="change" droits="poissonGestion" />
 	<evenementWrite action="modules/poisson/evenement.php" param="write" droits="poissonGestion"  retourok="poissonDisplay" retourko="evenementChange" modulebefore="evenementChange" />
-	<evenementDelete action="modules/poisson/evenement.php" param="delete" droits="poissonGestion" retoursuppr="poissonDisplay" retourko="evenementChange"  modulebefore="evenementChange"/>
+	<evenementDelete action="modules/poisson/evenement.php" param="delete" droits="poissonAdmin" retoursuppr="poissonDisplay" retourko="evenementChange"  modulebefore="evenementChange"/>
 	
 	<pittagChange action="modules/poisson/pittag.php" param="change" droits="poissonGestion" />
 	<pittagWrite action="modules/poisson/pittag.php" param="write" droits="poissonGestion" retourok="poissonDisplay" retourko="pittagChange" modulebefore="pittagChange" />
@@ -90,26 +90,26 @@
 	<bassinDisplay action="modules/bassin/bassin.php" param="display" droits="consult" />
 	<bassinChange action="modules/bassin/bassin.php" param="change" droits="bassinGestion" />
 	<bassinWrite action="modules/bassin/bassin.php" param="write" droits="bassinGestion" retourok="bassinDisplay" retourko="bassinChange" modulebefore="bassinChange" />
-	<bassinDelete action="modules/bassin/bassin.php" param="delete" droits="bassinGestion" retoursuppr="bassinList" retourko="bassinChange"  modulebefore="bassinChange"/>
+	<bassinDelete action="modules/bassin/bassin.php" param="delete" droits="bassinAdmin" retoursuppr="bassinList" retourko="bassinChange"  modulebefore="bassinChange"/>
 	<bassinCalculMasseAjax action="modules/bassin/bassin.php" param="calculMasseAjax" ajax="1" droits="consult" />
 	
 	<bassinEvenementChange action="modules/bassin/bassinEvenement.php" param="change" droits="bassinGestion" />
 	<bassinEvenementWrite action="modules/bassin/bassinEvenement.php" param="write" droits="bassinGestion" retourok="bassinDisplay" retourko="bassinEvenementChange" modulebefore="bassinEvenementChange" />
-	<bassinEvenementDelete action="modules/bassin/bassinEvenement.php" param="delete" droits="bassinGestion" retoursuppr="bassinDisplay" retourko="bassinEvenementChange"  modulebefore="bassinEvenementChange"/>
+	<bassinEvenementDelete action="modules/bassin/bassinEvenement.php" param="delete" droits="bassinAdmin" retoursuppr="bassinDisplay" retourko="bassinEvenementChange"  modulebefore="bassinEvenementChange"/>
 	
 
 	<circuitEauList action="modules/bassin/circuitEau.php" param="list" droits="consult" retourlogin="1" menulevel="1" menuparent="1" menuorder="1" menudroits="" menuvalue="65" menutitle="66"  />
 	<circuitEauDisplay action="modules/bassin/circuitEau.php" param="display" droits="consult" />
 	<circuitEauChange action="modules/bassin/circuitEau.php" param="change" droits="bassinGestion" />
 	<circuitEauWrite action="modules/bassin/circuitEau.php" param="write" droits="bassinGestion" retourok="circuitEauDisplay" retourko="circuitEauChange" modulebefore="circuitEauChange" />
-	<circuitEauDelete action="modules/bassin/circuitEau.php" param="delete" droits="bassinGestion" retoursuppr="circuitEauList" retourko="circuitEauChange"  modulebefore="circuitEauChange"/>
+	<circuitEauDelete action="modules/bassin/circuitEau.php" param="delete" droits="bassinAdmin" retoursuppr="circuitEauList" retourko="circuitEauChange"  modulebefore="circuitEauChange"/>
 
 	<analyseEauDisplay action="modules/bassin/analyseEau.php" param="display" droits="consult" />
 	<analyseEauChange action="modules/bassin/analyseEau.php" param="change" droits="bassinGestion" />
 	<analyseEauWriteList action="modules/bassin/analyseEau.php" param="write" droits="bassinGestion" retourok="circuitEauList" retourko="analyseEauChange" modulebefore="analyseEauChange" />
 	<analyseEauDeleteList action="modules/bassin/analyseEau.php" param="delete" droits="bassinGestion" retoursuppr="circuitEauList" retourko="analyseEauChange"  modulebefore="analyseEauChange"/>
 	<analyseEauWrite action="modules/bassin/analyseEau.php" param="write" droits="bassinGestion" retourok="circuitEauDisplay" retourko="analyseEauChange" modulebefore="analyseEauChange" />
-	<analyseEauDelete action="modules/bassin/analyseEau.php" param="delete" droits="bassinGestion" retoursuppr="circuitEauDisplay" retourko="analyseEauChange"  modulebefore="analyseEauChange"/>
+	<analyseEauDelete action="modules/bassin/analyseEau.php" param="delete" droits="bassinAdmin" retoursuppr="circuitEauDisplay" retourko="analyseEauChange"  modulebefore="analyseEauChange"/>
 
 	<mimeTypeList action="modules/parametre/mimeType.php" param="list" droits="consult" retourlogin="1" menulevel="1" menuparent="3" menuorder="8" menudroits="" menuvalue="67" menutitle="68"  />
 	<mimeTypeChange action="modules/parametre/mimeType.php" param="change" droits="paramAdmin" />
@@ -134,7 +134,7 @@
 
 	<parentPoissonChange action="modules/poisson/parentPoisson.php" param="change" droits="poissonGestion" />
 	<parentPoissonWrite action="modules/poisson/parentPoisson.php" param="write" droits="poissonGestion" retourok="poissonDisplay" retourko="parentPoissonChange" modulebefore="parentPoissonChange" />
-	<parentPoissonDelete action="modules/poisson/parentPoisson.php" param="delete" droits="poissonGestion" retoursuppr="poissonDisplay" retourko="parentPoissonChange"  modulebefore="parentPoissonChange"/>
+	<parentPoissonDelete action="modules/poisson/parentPoisson.php" param="delete" droits="poissonAdmin" retoursuppr="poissonDisplay" retourko="parentPoissonChange"  modulebefore="parentPoissonChange"/>
 
 	<alimentTypeList action="modules/parametre/alimentType.php" param="list" droits="consult" retourlogin="1" menulevel="1" menuparent="3" menuorder="11" menudroits="" menuvalue="75" menutitle="76"  />
 	<alimentTypeChange action="modules/parametre/alimentType.php" param="change" droits="paramAdmin" />
