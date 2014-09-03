@@ -80,20 +80,25 @@ class Poisson extends ObjetBDD {
 	function getListeSearch($dataSearch) {
 		if (is_array ( $dataSearch )) {
 			$sql = "select poisson_id, sexe_id, matricule, prenom, cohorte, capture_date, sexe_libelle, sexe_libelle_court, poisson_statut_libelle,commentaire,
-					array_to_string(array_agg(pittag_valeur),' ') as pittag_valeur,
+					pittag_valeur,
 					mortalite_date,
-					categorie_id, categorie_libelle
+					categorie_id, categorie_libelle,
+					longueur_fourche, longueur_totale, masse, bassin_id, bassin_nom
 					from " . $this->table . " natural join sexe
 					  natural join poisson_statut
 					  natural join categorie
-					  left outer join pittag using (poisson_id)
-						left outer join mortalite using (poisson_id)";
+					  left outer join mortalite using (poisson_id)
+					  left outer join v_poisson_last_lf using (poisson_id)
+					  left outer join v_poisson_last_lt using (poisson_id)
+					  left outer join v_poisson_last_masse using (poisson_id)
+					  left outer join v_poisson_last_bassin using (poisson_id)
+					  left outer join v_pittag_by_poisson using (poisson_id)";
 			/*
 			 * Preparation de la clause group by
 			 */
-			$group = " group by poisson_id, sexe_id, matricule, prenom, 
+			/*$group = " group by poisson_id, sexe_id, matricule, prenom, 
 					cohorte, capture_date, sexe_libelle, sexe_libelle_court, poisson_statut_libelle, mortalite_date,
-					categorie_id, categorie_libelle, commentaire ";
+					categorie_id, categorie_libelle, commentaire ";*/
 			/*
 			 * Preparation de la clause order
 			 */
@@ -124,7 +129,7 @@ class Poisson extends ObjetBDD {
 			}
 			if (strlen ( $where ) == 7)
 				$where = "";
-			$data = $this->getListeParam ( $sql . $where . $group . $order );
+			$data = $this->getListeParam ( $sql . $where . /*$group .*/ $order );
 			/*
 			 * Mise en forme des dates
 			 */
