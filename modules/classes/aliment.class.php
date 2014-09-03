@@ -514,6 +514,12 @@ class Repartition extends ObjetBDD {
 					$dataDist = $distribution->getFromRepartition ( $id );
 					foreach ( $dataDist as $key => $value ) {
 						$data = $value;
+						/*
+						 * On ne traite que les bassins actifs et ceux de la même catégorie
+						 *  que le modèle de répartition
+						 */
+						if ($data["actif"] == 1 && 
+						$data["repart_template_categorie_id"] == $data["bassin_usage_categorie_id"]) {
 						$data ["distribution_id"] = 0;
 						$data ["repartition_id"] = $newId;
 						$data ["evol_taux_nourrissage"] = null;
@@ -532,6 +538,7 @@ class Repartition extends ObjetBDD {
 									"valeur" => $distribution->getErrorData ( 0 ) 
 							);
 							$err = - 1;
+						}
 						}
 					}
 				} else {
@@ -853,14 +860,18 @@ class Distribution extends ObjetBDD {
 				t1.ration_commentaire, t1.distribution_masse, t1.distribution_jour,
 				t1.distribution_jour_soir,
 				t1.reste_total, t1.taux_reste, t1.distribution_id_prec,
-				bassin_nom,".
+				bassin_nom, bassin.actif,".
 				/*t2.reste_total as reste_precedent,
 				t2.taux_reste as taux_reste_precedent,*/"
 				t2.total_distribue as total_distrib_precedent,
 				t2.ration_commentaire as ration_commentaire_precedent,
-				t2.taux_nourrissage as taux_nourrissage_precedent
+				t2.taux_nourrissage as taux_nourrissage_precedent,
+				bu.categorie_id as bassin_usage_categorie_id,
+				rt.categorie_id as repart_template_categorie_id
 				from distribution t1 
 				join bassin using (bassin_id)
+				left outer join bassin_usage as bu using (bassin_usage_id)
+				left outer join repart_template as rt using (repart_template_id)
 				left outer join distribution t2 on (t2.distribution_id = t1.distribution_id_prec)
 				where t1.repartition_id = " . $repartition_id . "
 				order by bassin_nom";		
