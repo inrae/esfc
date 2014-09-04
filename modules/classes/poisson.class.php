@@ -882,12 +882,13 @@ class Transfert extends ObjetBDD {
 			$sql = 'select distinct t.poisson_id,matricule, prenom, cohorte, t.transfert_date, 
 					(case when t.bassin_destination is not null then t.bassin_destination else t.bassin_origine end) as "bassin_id",
 					bassin_nom, sexe_libelle_court,
-					pittag_valeur
+					pittag_valeur, masse
  					from transfert t
  					join v_transfert_last_bassin_for_poisson v on (v.poisson_id = t.poisson_id and transfert_date_last = transfert_date)
 					join bassin on (bassin.bassin_id = (case when t.bassin_destination is not null then t.bassin_destination else t.bassin_origine end))
 					join poisson on (t.poisson_id = poisson.poisson_id)
 					left outer join v_pittag_by_poisson pittag on (pittag.poisson_id = poisson.poisson_id)
+					left outer join v_poisson_last_masse vmasse on (t.poisson_id = vmasse.poisson_id)
 					left outer join sexe using (sexe_id)
 					where  poisson_statut_id = 1 and bassin.bassin_id = ' . $bassin_id . "
  					order by matricule";

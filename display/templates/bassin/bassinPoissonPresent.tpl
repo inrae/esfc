@@ -10,6 +10,7 @@ setDataTables("cbassinPoissonList");
 <th>Sexe</th>
 <th>Cohorte</th>
 <th>Date d'arrivée</th>
+<th>Masse</th>
 </tr>
 </thead>
 <tdata>
@@ -27,6 +28,7 @@ setDataTables("cbassinPoissonList");
 <td>{$dataPoisson[lst].sexe_libelle_court}</td>
 <td>{$dataPoisson[lst].cohorte}</td>
 <td>{$dataPoisson[lst].transfert_date}</td>
+<td>{$dataPoisson[lst].masse}</td>
 </tr>
 {/section}
 </tdata>
