@@ -14,6 +14,7 @@ setDataTables("cbassinPoissonList");
 </tr>
 </thead>
 <tdata>
+{assign var=mt value=0}
 {section name=lst loop=$dataPoisson}
 <tr>
 <td>
@@ -29,7 +30,14 @@ setDataTables("cbassinPoissonList");
 <td>{$dataPoisson[lst].cohorte}</td>
 <td>{$dataPoisson[lst].transfert_date}</td>
 <td>{$dataPoisson[lst].masse}</td>
+{if $dataPoisson[lst].masse > 0}
+{assign var=mt value=$mt + $dataPoisson[lst].masse}
+{/if}
 </tr>
 {/section}
 </tdata>
 </table>
+{if $mt > 0}
+<br>
+Masse totale des poissons dans le bassin : {$mt}
+{/if}

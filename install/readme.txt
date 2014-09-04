@@ -1,5 +1,13 @@
 Nouveautés
 ===========
+Version 1.1.2 du 4 septembre 2014
+---------------------------------
+Correction d'un bogue :
+- lors de la duplication des feuilles de distribution, les bassins qui sont devenus inactifs, ou dont le type de poisson élevé a changé (adulte -> juvénile) sont exclus de la nouvelle feuille
+Évolutions mineures : 
+- la liste des poissons affichée dans l'écran de recherche intègre maintenant le dernier bassin et les dernières mensurations connus
+- dans l'affichage d'un bassin, la masse individuelle et totale des poissons a été rajoutée à la liste
+
 Version 1.1.1 du 31 juillet 2014
 --------------------------------
 Correction de bogues et évolutions mineures :
