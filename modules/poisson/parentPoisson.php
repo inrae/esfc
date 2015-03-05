@@ -52,6 +52,10 @@ switch ($t_module["param"]) {
 		 * If is a new record, generate a new record with default value :
 		 * $_REQUEST["idParent"] contains the identifiant of the parent record
 		 */
+		/*
+		 * Passage en parametre de la liste parente
+		*/
+		$smarty->assign("poissonDetailParent", $_SESSION["poissonDetailParent"]);
 		dataRead($dataClass, $id, "poisson/parentPoissonChange.tpl", $_REQUEST["poisson_id"]);
 		if ($id > 0) {
 			/*

@@ -18,7 +18,7 @@ $(document).ready(function() {
 </script>
 <h2>Traitement d'une anomalie</h2>
 {if $module_origine == "poissonDisplay"}
-<a href="index.php?module=poissonList">Retour à la liste des poissons</a>
+<a href="index.php?module={$poissonDetailParent}">Retour à la liste des poissons</a>
 >
 <a href="index.php?module=poissonDisplay&poisson_id={$dataPoisson.poisson_id}">Retour au poisson</a>
 {else}

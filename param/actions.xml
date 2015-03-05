@@ -194,7 +194,11 @@
 	<documentDelete action="modules/document/document.php" param="delete" droits="bassinAdmin,poissonAdmin" retoursuppr="documentList" retourko="documentChange" />
 	<documentGet action="modules/document/document.php" param="get" droits="consult" ajax="1"/>
 	
+	<repro menulevel="0" menuorder="4" menuvalue="100" menutitle="101" menudroits="reproConsult" />
+	<reproInit action="modules/repro/poissonCampagne.php" param="campagneInit" menulevel="1" menuparent="4" menuorder="1" menuvalue="102" menutitle="103" menudroits="reproGestion" droits="reproGestion"/>
+	<reproInitExec action="modules/repro/poissonCampagne.php" param="campagneInitExec" droits="reproGestion" modulebefore="reproInit"/>
+	<poissonCampagneList action="modules/repro/poissonCampagne.php" param="list" menulevel="1" menuparent="4" menuorder="2" menuvalue="104" menutitle="105" menudroits="reproConsult" droits="reproConsult"/>
 	
-	
+	<sequenceList action="modules/repro/sequence.php" param="list" menulevel="1" menuorder="3" menuparent="4" menudroits="reproConsult" menuvalue="106" menutitle="107" droits="reproConsult" /> 
 </navigation>
 	

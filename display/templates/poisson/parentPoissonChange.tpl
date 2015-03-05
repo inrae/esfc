@@ -29,7 +29,7 @@ $(document).ready(function() {
 </script>
 
 <h2>Attribution d'un parent au poisson</h2>
-<a href="index.php?module=poissonList">Retour à la liste des poissons</a>
+<a href="index.php?module={$poissonDetailParent}">Retour à la liste des poissons</a>
 >
 <a href="index.php?module=poissonDisplay&poisson_id={$dataPoisson.poisson_id}">Retour au poisson</a>
 {include file="poisson/poissonDetail.tpl"}

@@ -92,6 +92,14 @@ $LANG["menu"][89] = "Événements dans bassins";
 $LANG["menu"][90] = "Types d'événements survenant dans les bassins";
 $LANG["menu"][91] = "Lieux de lâchers/destination";
 $LANG["menu"][92] = "Liste des lieux de lâchers ou de destination des poissons";
+$LANG["menu"][100] = "Repro";
+$LANG["menu"][101] = "Gestion de la reproduction";
+$LANG["menu"][102] = "Init campagne";
+$LANG["menu"][103] = "Initialiser la campagne";
+$LANG["menu"][104] = "Poissons";
+$LANG["menu"][105] = "Liste des reproducteurs sélectionnés pour une campagne";
+$LANG["menu"][106] = "Séquences";
+$LANG["menu"][107] = "Liste des séquences pour une campagne";
 
 
 

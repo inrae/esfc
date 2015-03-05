@@ -65,7 +65,7 @@ $( "#evenementForm" ).submit(function() {
 	} );
  } );
 </script>
-<a href="index.php?module=poissonList">
+<a href="index.php?module={$poissonDetailParent}">
 Retour à la liste des poissons
 </a>
  > 

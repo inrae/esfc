@@ -50,6 +50,10 @@ switch ($t_module ["param"]) {
 				$smarty->assign ( "data", $data );
 			}
 		}
+		/*
+		 * Passage en parametre de la liste parente
+		*/
+		$smarty->assign("poissonDetailParent", $_SESSION["poissonDetailParent"]);
 		
 		$anomalieType = new Anomalie_db_type ( $bdd, $ObjetBDDParam );
 		$smarty->assign ( "anomalieType", $anomalieType->getListe () );

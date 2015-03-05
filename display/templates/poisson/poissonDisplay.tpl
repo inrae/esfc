@@ -35,7 +35,7 @@ $(document).ready(function() {
 </script>
 
 <h2>Détail d'un poisson</h2>
-<a href="index.php?module=poissonList">Retour à la liste des poissons</a>
+<a href="index.php?module={$poissonDetailParent}">Retour à la liste des poissons</a>
 <table class="tablemulticolonne">
 <tr>
 <td>

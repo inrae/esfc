@@ -32,6 +32,7 @@ switch ($t_module["param"]) {
 			$data = $dataClass->getListeSearch ( $dataSearch );
 			$smarty->assign ( "data", $data );
 		}
+		$_SESSION["poissonDetailParent"] = "poissonList";
 		$smarty->assign("corps", "poisson/poissonList.tpl");
 		break;
 	case "display":
@@ -40,6 +41,10 @@ switch ($t_module["param"]) {
 		 */
 		$data = $dataClass->getDetail($id);
 		$smarty->assign("dataPoisson", $data);
+		/*
+		 * Passage en parametre de la liste parente
+		 */
+		$smarty->assign("poissonDetailParent", $_SESSION["poissonDetailParent"]);
 		/*
 		 * Recuperation des morphologies
 		 */
@@ -126,6 +131,11 @@ switch ($t_module["param"]) {
 		$smarty->assign("poissonStatut", $poissonStatut->getListe(1));
 		$categorie = new Categorie($bdd, $ObjetBDDParam);
 		$smarty->assign("categorie", $categorie->getListe(1));
+		/*
+		 * Passage en parametre de la liste parente
+		*/
+		$smarty->assign("poissonDetailParent", $_SESSION["poissonDetailParent"]);
+		
 		/*
 		 * Recuperation de la liste des types de pittag
 		*/
