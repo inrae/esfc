@@ -33,7 +33,11 @@ setDataTables("csequenceList");
 <tdata>
 {section name=lst loop=$data}
 <tr>
-<td>{$data[lst].sequence_nom}</td>
+<td>
+<a href="index.php?module=sequenceDisplay&sequence_id={$data[lst].sequence_id}">
+{$data[lst].sequence_nom}
+</a>
+</td>
 <td>{$data[lst].sequence_date_debut}</td>
 </tr>
 {/section}

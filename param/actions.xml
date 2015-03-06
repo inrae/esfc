@@ -197,8 +197,26 @@
 	<repro menulevel="0" menuorder="4" menuvalue="100" menutitle="101" menudroits="reproConsult" />
 	<reproInit action="modules/repro/poissonCampagne.php" param="campagneInit" menulevel="1" menuparent="4" menuorder="1" menuvalue="102" menutitle="103" menudroits="reproGestion" droits="reproGestion"/>
 	<reproInitExec action="modules/repro/poissonCampagne.php" param="campagneInitExec" droits="reproGestion" modulebefore="reproInit"/>
+
 	<poissonCampagneList action="modules/repro/poissonCampagne.php" param="list" menulevel="1" menuparent="4" menuorder="2" menuvalue="104" menutitle="105" menudroits="reproConsult" droits="reproConsult"/>
+	<poissonCampagneDisplay action="modules/repro/poissonCampagne.php" param="display" droits="reproConsult"/>
+	<poissonCampagneChange action="modules/repro/poissonCampagne.php" param="change" droits="reproGestion"/>
+	<poissonCampagneWrite action="modules/repro/poissonCampagne.php" param="write" droits="reproGestion" modulebefore="poissonCampagneChange" retourok="poissonCampagneDisplay" retourko="poissonCampagneChange"/>
+	<poissonCampagneDelete action="modules/repro/poissonCampagne.php" param="delete" droits="reproAdmin" modulebefore="poissonCampagneChange,poissonCampagneList" retoursuppr="poissonCampagneList" retourko="poissonCampagneChange"/>
 	
-	<sequenceList action="modules/repro/sequence.php" param="list" menulevel="1" menuorder="3" menuparent="4" menudroits="reproConsult" menuvalue="106" menutitle="107" droits="reproConsult" /> 
+	<sequenceList action="modules/repro/sequence.php" param="list" retourlogin="1" menulevel="1" menuorder="3" menuparent="4" menudroits="reproConsult" menuvalue="106" menutitle="107" droits="reproConsult" />
+	<sequenceDisplay action="modules/repro/sequence.php" param="display" droits="reproConsult" />
+	<sequenceChange action="modules/repro/sequence.php" param="change" droits="reproGestion" />
+	<sequenceWrite action="modules/repro/sequence.php" param="write" droits="reproGestion" modulebefore="sequenceChange" retourok="sequenceDisplay" retourko="sequenceChange"/>
+	<sequenceDelete action="modules/repro/sequence.php" param="delete" droits="reproGestion" modulebefore="sequenceChange" retoursuppr="sequenceList" retourko="sequenceChange"/>
+
+	<dosageSanguinChange action="modules/repro/dosageSanguin.php" param="change" droits="reproGestion" />
+	<dosageSanguinWrite action="modules/repro/dosageSanguin.php" param="write" droits="reproGestion" modulebefore="dosageSanguinChange" retourok="poissonCampagneDisplay" retourko="dosageSanguinChange"/>
+	<dosageSanguinDelete action="modules/repro/dosageSanguin.php" param="delete" droits="reproGestion" modulebefore="dosageSanguinChange" retoursuppr="poissonCampagneDisplay" retourko="dosageSanguinChange"/>
+
+	<biopsieChange action="modules/repro/biopsie.php" param="change" droits="reproGestion" />
+	<biopsieWrite action="modules/repro/biopsie.php" param="write" droits="reproGestion" modulebefore="biopsieChange" retourok="poissonCampagneDisplay" retourko="biopsieChange"/>
+	<biopsieDelete action="modules/repro/biopsie.php" param="delete" droits="reproGestion" modulebefore="biopsieChange" retoursuppr="poissonCampagneDisplay" retourko="biopsieChange"/>
+	
 </navigation>
 	

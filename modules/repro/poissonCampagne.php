@@ -43,8 +43,18 @@ switch ($t_module["param"]) {
 		 * Passage en parametre de la liste parente
 		*/
 		$smarty->assign("poissonDetailParent", $_SESSION["poissonDetailParent"]);
+		/*
+		 * Lecture des tables liees
+		 */
+		require_once 'modules/classes/dosageSanguin.class.php';
+		require_once 'modules/classes/biopsie.class.php';
+		$dosageSanguin = new DosageSanguin($bdd, $ObjetBDDParam);
+		$biopsie = new Biopsie($bdd, $ObjetBDDParam);
 		
-		$smarty->assign("corps", "example/exampleDisplay.tpl");
+		$smarty->assign("dataSanguin", $dosageSanguin->getListeFromPoissonCampagne($id));
+		$smarty->assign("dataBiopsie", $biopsie->getListeFromPoissonCampagne($id));
+		
+		$smarty->assign("corps", "repro/poissonCampagneDisplay.tpl");
 		break;
 	case "change":
 		/*
@@ -52,7 +62,7 @@ switch ($t_module["param"]) {
 		 * If is a new record, generate a new record with default value :
 		 * $_REQUEST["idParent"] contains the identifiant of the parent record
 		 */
-		dataRead($dataClass, $id, "example/exampleChange.tpl", $_REQUEST["idParent"]);
+		dataRead($dataClass, $id, "repro/poissonCampagneChange.tpl", $_REQUEST["idParent"]);
 		break;
 	case "write":
 		/*

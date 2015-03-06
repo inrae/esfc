@@ -17,8 +17,14 @@ $id = $_REQUEST[$keyName];
 if (isset($_REQUEST["annee"]))
 	$_SESSION["annee"] = $_REQUEST["annee"];
 
-if (!isset($_SESSION["annee"]))
-	$_SESSION["annee"] = date ('Y');
+if (!isset($_SESSION["annee"])) {
+	$poissonCampagne = new poissonCampagne($bdd, $ObjetBDDParam);
+	$annees = $poissonCampagne->getAnnees();
+	if (is_array($annees)) {
+		$_SESSION["annee"] = $annees[0]["annee"]; 
+	} else
+		$_SESSION["annee"] = date ('Y');
+}
 $smarty->assign("annee", $_SESSION["annee"]);
 
 switch ($t_module["param"]) {
@@ -34,7 +40,7 @@ switch ($t_module["param"]) {
 		 */
 		$data = $dataClass->lire($id);
 		$smarty->assign("data", $data);
-		$smarty->assign("corps", "example/exampleDisplay.tpl");
+		$smarty->assign("corps", "repro/sequenceDisplay.tpl");
 		break;
 	case "change":
 		/*
@@ -42,7 +48,14 @@ switch ($t_module["param"]) {
 		 * If is a new record, generate a new record with default value :
 		 * $_REQUEST["idParent"] contains the identifiant of the parent record
 		 */
-		dataRead($dataClass, $id, "example/exampleChange.tpl", $_REQUEST["idParent"]);
+		$data=dataRead($dataClass, $id, "repro/sequenceChange.tpl", $_REQUEST["idParent"]);
+		if($id==0) {
+			/*
+			 * Positionnement correct de la session par rapport à l'année courante
+			 */
+			$data["annee"] = $_SESSION["annee"];
+			$smarty->assign("data", $data);
+		}
 		break;
 	case "write":
 		/*
