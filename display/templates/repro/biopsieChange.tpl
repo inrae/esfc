@@ -11,17 +11,17 @@ $(document).ready(function() {
 	$(".commentaire").attr("size","30");
 });
 </script>
+<a href="index.php?module=poissonCampagneList">Retour à la liste des poissons</a>&nbsp;
 <a href="index.php?module=poissonCampagneDisplay&poisson_campagne_id={$data.poisson_campagne_id}">
 Retour au reproducteur
 </a>
+{include file="repro/poissonCampagneDetail.tpl"}
 <h2>Modification d'une biopsie</h2>
 <div class="formSaisie">
 <div>
 <form id="biopsieForm" method="post" action="index.php?module=biopsieWrite">
 <input type="hidden" name="biopsie_id" value="{$data.biopsie_id}">
 <input type="hidden" name="poisson_campagne_id" value="{$data.poisson_campagne_id}">
-<fieldset>
-<legend>Biopsie</legend>
 <dl>
 <dt>Date du prélèvement <span class="red">*</span> :</dt>
 <dd>
@@ -103,7 +103,6 @@ Retour au reproducteur
 <input class="commentaire" name="biopsie_commentaire" value="{$data.biopsie_commentaire}">
 </dd>
 </dl>
-</fieldset>
 <div class="formBouton">
 <input class="submit" type="submit" value="Enregistrer">
 </div>

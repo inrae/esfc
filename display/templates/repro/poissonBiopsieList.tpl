@@ -1,7 +1,7 @@
 <fieldset>
 <legend>Biopsies</legend>
 {if $droits.reproGestion == 1}
-<a href="index.php?module=biopsieChange&biopsie_id=0&poisson_campagne_id={$data.poisson_campagne_id}">
+<a href="index.php?module=biopsieChange&biopsie_id=0&poisson_campagne_id={$dataPoisson.poisson_campagne_id}">
 Nouvelle biopsie...
 </a>
 {/if}

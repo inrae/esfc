@@ -1,15 +1,12 @@
 <table class="tableaffichage">
 <tr>
 <td>
-<label>Identification : </label>{$data.matricule} {$data.prenom} {$data.pittag_valeur}
+<label>Identification : </label>{$dataPoisson.matricule} {$dataPoisson.prenom} {$dataPoisson.pittag_valeur} - {$dataPoisson.sexe_libelle} 
 <br>
-<label>Sexe : </label>{$data.sexe_libelle}
+<label>Année de reproduction : </label>{$dataPoisson.annee}
 <br>
-<label>Année  : </label>{$data.annee}
-<br>
-<label>Taux de croissance journalier : </label>{$data.tx_croissance_journalier}
-<br>
-<label>Taux de croissance spécifique : </label>{$data.specific_growth_rate}
+<label>Taux de croissance journalier / spécifique : </label>{$dataPoisson.tx_croissance_journalier}
+/ {$dataPoisson.specific_growth_rate}
 </td>
 </tr>
 </table>

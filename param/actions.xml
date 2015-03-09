@@ -217,6 +217,10 @@
 	<biopsieChange action="modules/repro/biopsie.php" param="change" droits="reproGestion" />
 	<biopsieWrite action="modules/repro/biopsie.php" param="write" droits="reproGestion" modulebefore="biopsieChange" retourok="poissonCampagneDisplay" retourko="biopsieChange"/>
 	<biopsieDelete action="modules/repro/biopsie.php" param="delete" droits="reproGestion" modulebefore="biopsieChange" retoursuppr="poissonCampagneDisplay" retourko="biopsieChange"/>
+
+	<poissonSequenceChange action="modules/repro/poissonSequence.php" param="change" droits="reproGestion" />
+	<poissonSequenceWrite action="modules/repro/poissonSequence.php" param="write" droits="reproGestion" modulebefore="poissonSequenceChange" retourok="poissonCampagneDisplay" retourko="poissonSequenceChange"/>
+	<poissonSequenceDelete action="modules/repro/poissonSequence.php" param="delete" droits="reproGestion" modulebefore="poissonSequenceChange" retoursuppr="poissonCampagneDisplay" retourko="poissonSequenceChange"/>
 	
 </navigation>
 	

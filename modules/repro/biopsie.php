@@ -6,6 +6,7 @@
  *  Creation 6 mars 2015
  */
 include_once 'modules/classes/biopsie.class.php';
+require_once 'modules/classes/poissonRepro.class.php';
 $dataClass = new Biopsie($bdd,$ObjetBDDParam);
 $keyName = "biopsie_id";
 $id = $_REQUEST[$keyName];
@@ -52,7 +53,9 @@ switch ($t_module["param"]) {
 		 * If is a new record, generate a new record with default value :
 		 * $_REQUEST["idParent"] contains the identifiant of the parent record
 		 */
-		dataRead($dataClass, $id, "repro/biopsieChange.tpl", $_REQUEST["poisson_campagne_id"]);
+		$poissonCampagne = new poissonCampagne($bdd, $ObjetBDDParam);
+		$data = dataRead($dataClass, $id, "repro/biopsieChange.tpl", $_REQUEST["poisson_campagne_id"]);
+		$smarty->assign("dataPoisson", $poissonCampagne->lire($data["poisson_campagne_id"]));
 		break;
 	case "write":
 		/*

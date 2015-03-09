@@ -35,6 +35,7 @@ setDataTables("cpoissonList", false, false, true);
 <th>Pittag</th>
 <th>Cohorte</th>
 <th>Sexe</th>
+<th>Masse<br>actuelle</th>
 <th>Tx de croissance<br>journalier</th>
 <th>Specific<br>growth rate</th>
 <th>Années de<br>croisement</th>
@@ -66,6 +67,7 @@ setDataTables("cpoissonList", false, false, true);
 </td>
 <td>{$data[lst].cohorte}</td>
 <td>{$data[lst].sexe_libelle_court}</td>
+<td class="right">{$data[lst].masse}</td>
 <td class="{if $data[lst].tx_croissance_journalier > 0.02}etat3{else}right{/if}">{$data[lst].tx_croissance_journalier}</td>
 <td class="{if $data[lst].specific_growth_rate > 0.02}etat3{else}right{/if}">{$data[lst].specific_growth_rate}</td>
 <td>{$data[lst].annees}</td>

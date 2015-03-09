@@ -7,9 +7,11 @@ $(document).ready(function() {
 	$( ".date" ).datepicker( { dateFormat: "dd/mm/yy" } );
 });
 </script>
+<a href="index.php?module=poissonCampagneList">Retour à la liste des poissons</a>&nbsp;
 <a href="index.php?module=poissonCampagneDisplay&poisson_campagne_id={$data.poisson_campagne_id}">
 Retour au reproducteur
 </a>
+{include file="repro/poissonCampagneDetail.tpl"}
 <h2>Modification d'un dosage sanguin</h2>
 <div class="formSaisie">
 <div>

@@ -37,8 +37,7 @@ switch ($t_module["param"]) {
 		/*
 		 * Display the detail of the record
 		 */
-		$data = $dataClass->lire($id);
-		$smarty->assign("data", $data);
+		$smarty->assign("dataPoisson", $dataClass->lire($id));
 		/*
 		 * Passage en parametre de la liste parente
 		*/
@@ -48,11 +47,16 @@ switch ($t_module["param"]) {
 		 */
 		require_once 'modules/classes/dosageSanguin.class.php';
 		require_once 'modules/classes/biopsie.class.php';
+		require_once 'modules/classes/sequence.class.php';
 		$dosageSanguin = new DosageSanguin($bdd, $ObjetBDDParam);
 		$biopsie = new Biopsie($bdd, $ObjetBDDParam);
+		$poissonSequence = new PoissonSequence($bdd, $ObjetBDDParam);
+		$psEvenement = new PsEvenement($bdd, $ObjetBDDParam);
 		
 		$smarty->assign("dataSanguin", $dosageSanguin->getListeFromPoissonCampagne($id));
 		$smarty->assign("dataBiopsie", $biopsie->getListeFromPoissonCampagne($id));
+		$smarty->assign("dataSequence", $poissonSequence->getListFromPoisson($id));
+		$smarty->assign("dataPsEvenement", $psEvenement->getListeEvenementFromPoisson($id));
 		
 		$smarty->assign("corps", "repro/poissonCampagneDisplay.tpl");
 		break;

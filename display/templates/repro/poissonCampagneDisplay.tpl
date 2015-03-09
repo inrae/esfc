@@ -2,7 +2,7 @@
 <a href="index.php?module=poissonCampagneList">Retour à la liste des poissons</a>
 {if $droits["reproGestion"]==1}
 &nbsp;
-<a href="index.php?module=poissonCampagneChange&poisson_campagne_id={$data.poisson_campagne_id}">
+<a href="index.php?module=poissonCampagneChange&poisson_campagne_id={$dataPoisson.poisson_campagne_id}">
 Modifier les taux de croissance...
 </a>
 {/if}

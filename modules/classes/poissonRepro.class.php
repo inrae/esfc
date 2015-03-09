@@ -39,7 +39,8 @@ class poissonCampagne extends ObjetBDD {
 				),
 				"specific_growth_rate" => array (
 						"type" => 1 
-				) 
+				),
+				"masse" => array ("type"=>1)
 		);
 		if (! is_array ( $param ))
 			$param == array ();
@@ -71,7 +72,9 @@ class poissonCampagne extends ObjetBDD {
 			if (is_null ( $annee ))
 				$annee = getYear ();
 			$masse_actuelle = $morphologie->getMasseBeforeRepro ( $poisson_id, $annee );
+			$result["masse_actuelle"] = $masse_actuelle["masse"];
 			$masse_anterieure = $morphologie->getMasseBeforeDate ( $poisson_id, $masse_actuelle ["morphologie_date"] );
+			$result["masse_anterieure"] = $masse_anterieure["masse"];
 			if (is_array ( $masse_actuelle ) && is_array ( $masse_anterieure )) {
 				if ($masse_actuelle ["masse"] > 0 && $masse_anterieure ["masse"] > 0) {
 					/*
@@ -94,7 +97,7 @@ class poissonCampagne extends ObjetBDD {
 		}
 		return $result;
 	}
-	
+		
 	/**
 	 * Initialise globalement une campagne
 	 *
@@ -126,9 +129,15 @@ class poissonCampagne extends ObjetBDD {
 			 */
 			$result = $this->txCroissanceJourCalcul ( $value ["poisson_id"], $annee );
 			if (! is_null ( $result )) {
+				printr($result);
 				$data ["tx_croissance_journalier"] = $result ["txCroissance"];
 				$data ["specific_growth_rate"] = $result ["sgr"];
+				$data["masse"] = $result["masse_actuelle"];
 			}
+			/*
+			 * Recuperation de la derniere masse connue
+			 */
+			
 			if (parent::ecrire ( $data ) > 0)
 				$nb ++;
 		}
@@ -145,7 +154,7 @@ class poissonCampagne extends ObjetBDD {
 		if ($annee > 0) {
 			$sql = "select poisson_campagne_id, poisson_id, matricule, prenom, pittag_valeur, cohorte,
 				tx_croissance_journalier, specific_growth_rate,
-				sexe_libelle, sexe_libelle_court
+				sexe_libelle, sexe_libelle_court, masse
 				
 				from poisson p
 				join poisson_campagne c using (poisson_id)
@@ -243,7 +252,7 @@ class poissonCampagne extends ObjetBDD {
 		if ($id > 0) {
 			$sql = "select poisson_campagne_id, poisson_id, matricule, prenom, pittag_valeur, cohorte,
 				annee, tx_croissance_journalier, specific_growth_rate,
-				sexe_libelle, sexe_libelle_court
+				sexe_libelle, sexe_libelle_court, masse
 				
 				from poisson p
 				join poisson_campagne c using (poisson_id)
