@@ -4,7 +4,6 @@ $(document).ready(function() {
 		$("#search").submit();
 	} );
 } ) ;
-setDataTables("csequenceList");
 </script>
 <form method="get" action="index.php" id="search">
 <input type="hidden" name="module" value="sequenceList">
@@ -22,6 +21,7 @@ setDataTables("csequenceList");
 </tr>
 </table>
 </form>
+<h2>Séquences</h2>
 <a href="index.php?module=sequenceChange&sequence_id=0">Nouvelle séquence pour l'année</a>
 <table id="csequenceList" class="tableaffichage">
 <thead>
@@ -43,3 +43,6 @@ setDataTables("csequenceList");
 {/section}
 </tdata>
 </table>
+
+<h2>Bassins</h2>
+{include file="repro/bassinCampagneList.tpl"}

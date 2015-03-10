@@ -3,7 +3,7 @@ $(document).ready(function() {
 	$(".date").datepicker({ dateFormat: "dd/mm/yy" });
 } ) ;
 </script>
-<a href="index.php?module=bassinList">Retour à la liste des bassins</a>
+<a href="index.php?module={$bassinParentModule}">Retour à la liste des bassins</a>
 > <a href="index.php?module=bassinDisplay&bassin_id={$data.bassin_id}">Retour au bassin</a>
 {include file="bassin/bassinDetail.tpl"}
 <h2>Modification d'un événement survenu dans le bassin</h2>

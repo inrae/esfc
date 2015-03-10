@@ -21,6 +21,7 @@ switch ($t_module["param"]) {
 			$smarty->assign ( "data", $data );
 		}
 		$smarty->assign("corps", "bassin/bassinList.tpl");
+		$_SESSION["bassinParentModule"] = "bassinList";
 		break;
 	case "display":
 		/*
@@ -66,6 +67,7 @@ switch ($t_module["param"]) {
 		 * Affichage
 		*/
 		$smarty->assign("corps", "bassin/bassinDisplay.tpl");
+		$smarty->assign("bassinParentModule", $_SESSION["bassinParentModule"]);
 		break;
 	case "change":
 		/*
@@ -78,6 +80,7 @@ switch ($t_module["param"]) {
 		 * Integration des tables de parametres
 		 */
 		include 'modules/bassin/bassinParamAssocie.php';
+		$smarty->assign("bassinParentModule", $_SESSION["bassinParentModule"]);
 		break;
 	case "write":
 		/*

@@ -1,4 +1,4 @@
-<a href="index.php?module=bassinList">
+<a href="index.php?module={$bassinParentModule}">
 Retour à la liste des bassins
 </a>
 {if $data.bassin_id > 0}

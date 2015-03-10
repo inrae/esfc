@@ -15,4 +15,10 @@ Modifier les informations générales de la séquence...
 {include file="repro/sequenceDetail.tpl"}
 </td>
 </tr>
+<tr>
+<td>
+{include file="repro/sequencePoissonList.tpl"}
+</td>
+</tr>
 </table>
+<br>

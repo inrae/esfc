@@ -99,6 +99,13 @@ switch ($t_module["param"]) {
 	case "campagneInitExec":
 		$nb = $dataClass->initCampagne($_REQUEST["annee"]);
 		$message = $nb." poisson(s) ajouté(s)";
+		/*
+		 * Generation des bassins
+		 */
+		require_once 'modules/classes/bassinCampagne.class.php';
+		$bassinCampagne = new BassinCampagne($bdd, $ObjetBDDParam);
+		$nb = $bassinCampagne->initCampagne($_REQUEST["annee"]);
+		$message .= "<br>".$nb." bassin(s) ajouté(s)";
 		break;
 }
 

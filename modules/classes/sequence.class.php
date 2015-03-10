@@ -139,6 +139,30 @@ class PoissonSequence extends ObjetBDD {
 		} else
 			return null;
 	}
+
+	/**
+	 * Retourne la liste des poissons concernes par une sequence
+	 * @param int $sequence_id
+	 * @return tableau|NULL
+	 */
+	function getListFromSequence($sequence_id) {
+		if ($sequence_id > 0) {
+			$sql = "select poisson_campagne_id, poisson_sequence_id, sequence_id,
+					qualite_semence, ovocyte_masse,
+					matricule, prenom, pittag_valeur,
+					sexe_libelle, sexe_libelle_court
+					from poisson_sequence
+					join poisson_campagne using (poisson_campagne_id)
+					join poisson using (poisson_id)
+					left outer join sexe using (sexe_id)
+					left outer join v_pittag_by_poisson using (poisson_id)
+					
+					where sequence_id = " . $sequence_id . "
+					order by sexe_libelle_court, prenom, matricule";
+			return $this->getListeParam ( $sql );
+		} else 
+			return null;
+	}
 }
 
 /**
@@ -154,7 +178,7 @@ class PsEvenement extends ObjetBDD {
 		$this->table = "ps_evenement";
 		$this->id_auto = "1";
 		$this->colonnes = array (
-				"s_evenement_id" => array (
+				"ps_evenement_id" => array (
 						"type" => 1,
 						"key" => 1,
 						"requis" => 1,
@@ -200,6 +224,22 @@ class PsEvenement extends ObjetBDD {
 					where poisson_campagne_id = " . $poisson_campagne_id . " 
 					order by ps_date ";
 			return $this->getListeParam ( $sql );
+		} else
+			return null;
+	}
+
+	/**
+	 * Retourne la liste des evenements a partir du numero de poisson_sequence
+	 * @param int $poisson_sequence_id
+	 * @return tableau|NULL
+	 */
+	function getListeFromPoissonSequence($poisson_sequence_id) {
+		if ($poisson_sequence_id > 0) {
+			$sql = "select ps_evenement_id, poisson_sequence_id, ps_date, ps_libelle, ps_commentaire 
+					from ps_evenement 
+					where poisson_sequence_id = ".$poisson_sequence_id." 
+					order by ps_date";
+			return $this->getListeParam($sql);
 		} else
 			return null;
 	}

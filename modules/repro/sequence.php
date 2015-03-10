@@ -33,6 +33,13 @@ switch ($t_module["param"]) {
 		$smarty->assign("annees", $poissonCampagne->getAnnees());
 		$smarty->assign("data", $dataClass->getListeByYear($_SESSION["annee"]));
 		$smarty->assign("corps", "repro/sequenceList.tpl");
+		/*
+		 * Recuperation des donnees concernant les bassins
+		 */
+		require_once 'modules/classes/bassinCampagne.class.php';
+		$bassinCampagne = new BassinCampagne($bdd, $ObjetBDDParam);
+		$smarty->assign("bassins", $bassinCampagne->getListFromAnnee($_SESSION['annee']));
+		$_SESSION["bassinParentModule"] = "sequenceList";
 		break;
 	case "display":
 		/*
@@ -41,6 +48,9 @@ switch ($t_module["param"]) {
 		$data = $dataClass->lire($id);
 		$smarty->assign("data", $data);
 		$smarty->assign("corps", "repro/sequenceDisplay.tpl");
+		$poissonSequence = new PoissonSequence($bdd, $ObjetBDDParam);
+		$smarty->assign("dataPoissons", $poissonSequence->getListFromSequence($id));
+		$_SESSION["poissonDetailParent"] = "sequenceDisplay";
 		break;
 	case "change":
 		/*

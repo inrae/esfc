@@ -31,6 +31,7 @@ switch ($t_module["param"]) {
 		 */
 		$bassin = new Bassin($bdd, $ObjetBDDParam);
 		$smarty->assign("dataBassin", $bassin->getDetail($_REQUEST["bassin_id"]));
+		$smarty->assign("bassinParentModule", $_SESSION["bassinParentModule"]);
 		break;
 	case "write":
 		/*

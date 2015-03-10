@@ -7,7 +7,7 @@ $(document).ready(function() {
 	$(".commentaire").attr("size","30");
 });
 </script>
-<a href="index.php?module=poissonCampagneList">Retour à la liste des poissons</a>&nbsp;
+<a href="index.php?module={$poissonDetailParent}&sequence_id={$sequence_id}">Retour à la liste des poissons</a>&nbsp;
 <a href="index.php?module=poissonCampagneDisplay&poisson_campagne_id={$data.poisson_campagne_id}">
 Retour au reproducteur
 </a>
@@ -54,6 +54,7 @@ Retour au reproducteur
 <input type="hidden" name="module" value="poissonSequenceDelete">
 <input type="hidden" name="poisson_sequence_id" value="{$data.poisson_sequence_id}">
 <input type="hidden" name="poisson_campagne_id" value="{$data.poisson_campagne_id}">
+<input type="hidden" name="sequence_id" value="{$data.sequence_id}">
 <input class="submit" type="submit" value="Supprimer">
 </form>
 </div>
@@ -69,11 +70,13 @@ Retour au reproducteur
 <legend>Événements</legend>
 
 {if $droits.reproGestion == 1 }
-{include file="repro/psEvenementChange.tpl"}
-<br>
-<a href="index.php?module=psEvenementChange&ps_evenement_id=0&poisson_sequence_id={$data.poisson_sequence_id}">
+<a href="index.php?module=psEvenementChange&ps_evenement_id=0&poisson_sequence_id={$data.poisson_sequence_id}&sequence_id={$data.sequence_id}">
 Nouvel événement...
 </a>
+{if $ps_evenement_id > -1}
+{include file="repro/psEvenementChange.tpl"}
+<br>
+{/if}
 {/if}
 
 <table id="cpsEvenement" class="tableaffichage">
@@ -89,7 +92,7 @@ Nouvel événement...
 <tr>
 <td>
 {if $droits.reproGestion == 1}
-<a href="index.php?module=psEvenementChange&ps_evenement_id={$evenements[lst].ps_evenement_id}&poisson_sequence_id={$data.poisson_sequence_id}">
+<a href="index.php?module=psEvenementChange&ps_evenement_id={$evenements[lst].ps_evenement_id}&poisson_sequence_id={$data.poisson_sequence_id}&sequence_id={$data.sequence_id}">
 {$evenements[lst].ps_date}
 </a>
 {else}

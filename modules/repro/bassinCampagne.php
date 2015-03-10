@@ -3,12 +3,12 @@
  * @author Eric Quinton
  * @copyright Copyright (c) 2015, IRSTEA / Eric Quinton
  * @license http://www.cecill.info/licences/Licence_CeCILL-C_V1-fr.html LICENCE DE LOGICIEL LIBRE CeCILL-C
- *  Creation 9 mars 2015
+ *  Creation 10 mars 2015
  */
-include_once 'modules/classes/sequence.class.php';
-require_once 'modules/classes/poissonRepro.class.php';
-$dataClass = new PoissonSequence($bdd,$ObjetBDDParam);
-$keyName = "poisson_sequence_id";
+ 
+include_once 'modules/classes/bassinCampagne.class.php';
+$dataClass = new BassinCampagne($bdd,$ObjetBDDParam);
+$keyName = "bassin_campagne_id";
 $id = $_REQUEST[$keyName];
 
 switch ($t_module["param"]) {
@@ -44,8 +44,26 @@ switch ($t_module["param"]) {
 		 * Display the detail of the record
 		 */
 		$data = $dataClass->lire($id);
-		$smarty->assign("data", $data);
-		$smarty->assign("corps", "example/exampleDisplay.tpl");
+		$smarty->assign("dataBassinCampagne", $data);
+		$smarty->assign("corps", "repro/bassinCampagneDisplay.tpl");
+		/*
+		 * Recuperation des donnees du bassin
+		 */	
+		require_once 'modules/classes/bassin.class.php';
+		$bassin = new Bassin($bdd, $ObjetBDDParam);
+		$smarty->assign("dataBassin", $bassin->lire($data["bassin_id"]));
+		/*
+		 * Recuperation de la liste des poissons presents
+		 */
+		include_once 'modules/classes/poisson.class.php';
+		$transfert = new Transfert($bdd, $ObjetBDDParam);
+		$smarty->assign("dataPoisson", $transfert->getListPoissonPresentByBassin($data["bassin_id"]));
+		/*
+		 * Recuperation des evenements
+		*/
+		$bassinEvenement = new BassinEvenement($bdd, $ObjetBDDParam);
+		$smarty->assign("dataBassinEvnt", $bassinEvenement->getListeByBassin($data["bassin_id"]));
+		$smarty->assign("bassinParentModule", $_SESSION["bassinParentModule"]);
 		break;
 	case "change":
 		/*
@@ -53,22 +71,7 @@ switch ($t_module["param"]) {
 		 * If is a new record, generate a new record with default value :
 		 * $_REQUEST["idParent"] contains the identifiant of the parent record
 		 */
-		$data = dataRead($dataClass, $id, "repro/poissonSequenceChange.tpl", $_REQUEST["poisson_campagne_id"]);
-		$poissonCampagne = new poissonCampagne($bdd, $ObjetBDDParam);
-		$smarty->assign("dataPoisson", $poissonCampagne->lire($data["poisson_campagne_id"]));
-		$psEvenement = new PsEvenement($bdd, $ObjetBDDParam);
-		$smarty->assign("evenements", $psEvenement->getListeFromPoissonSequence($id));
-		/*
-		 * Recuperation de la liste des sequences
-		 */
-		$sequence = new Sequence($bdd, $ObjetBDDParam);
-		$smarty->assign("sequences", $sequence->getListeByYear($_SESSION['annee']));
-		/*
-		 * Passage en parametre de la liste parente
-		 */
-		$smarty->assign("poissonDetailParent", $_SESSION["poissonDetailParent"]);
-		if (isset($_REQUEST["sequence_id"])) 
-			$smarty->assign("sequence_id", $_REQUEST["sequence_id"]);
+		dataRead($dataClass, $id, "example/exampleChange.tpl", $_REQUEST["idParent"]);
 		break;
 	case "write":
 		/*
@@ -86,5 +89,4 @@ switch ($t_module["param"]) {
 		dataDelete($dataClass, $id);
 		break;
 }
-
 ?>

@@ -16,9 +16,9 @@ $( ".date" ).datepicker( { dateFormat: "dd/mm/yy" } );
 </dd>
 </dl>
 <dl>
-<dt>Libellé :</dt>
+<dt>Libellé <span class="red">*</span> :</dt>
 <dd>
-<input class="commentaire" name="ps_libelle" value="{$dataPsEvenement.ps_libelle}">
+<input class="commentaire" name="ps_libelle" required value="{$dataPsEvenement.ps_libelle}">
 </dd>
 </dl>
 <dl>
@@ -37,6 +37,7 @@ $( ".date" ).datepicker( { dateFormat: "dd/mm/yy" } );
 <input type="hidden" name="module" value="psEvenementDelete">
 <input type="hidden" name="poisson_sequence_id" value="{$data.poisson_sequence_id}">
 <input type="hidden" name="ps_evenement_id" value="{$data.ps_evenement_id}">
+<input type="hidden" name="sequence_id" value="{$sequence_id}">
 <input class="submit" type="submit" value="Supprimer">
 </form>
 </div>

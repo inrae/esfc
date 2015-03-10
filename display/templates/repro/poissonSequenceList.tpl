@@ -18,12 +18,12 @@ Rattacher une nouvelle séquence...
 {section name=lst loop=$dataSequence}
 <tr>
 <td>
-<a href="index.php?module=poissonSequenceChange&poisson_sequence_id={$dataSequence[lst].poisson_sequence_id}">
+<a href="index.php?module=poissonSequenceChange&poisson_sequence_id={$dataSequence[lst].poisson_sequence_id}&sequence_id={$dataSequence[lst].sequence_id}">
 {$dataSequence[lst].sequence_date_debut}
 </a>
 </td>
 <td>
-<a href="index.php?module=poissonSequenceChange&poisson_sequence_id={$dataSequence[lst].poisson_sequence_id}">
+<a href="index.php?module=poissonSequenceChange&poisson_sequence_id={$dataSequence[lst].poisson_sequence_id}&sequence_id={$dataSequence[lst].sequence_id}">
 {$dataSequence[lst].sequence_nom}
 </a></td>
 <td>{$dataSequence[lst].qualite_semence}</td>

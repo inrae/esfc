@@ -20,4 +20,5 @@ $smarty->assign ("bassinSearch", $dataSearch);
  * Integration des tables necessaires pour la  recherche
 */
 include 'modules/bassin/bassinParamAssocie.php';
+$_SESSION["bassinParentModule"] = "bassinListniv2";
 ?>
