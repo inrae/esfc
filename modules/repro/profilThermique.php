@@ -3,12 +3,11 @@
  * @author Eric Quinton
  * @copyright Copyright (c) 2015, IRSTEA / Eric Quinton
  * @license http://www.cecill.info/licences/Licence_CeCILL-C_V1-fr.html LICENCE DE LOGICIEL LIBRE CeCILL-C
- *  Creation 10 mars 2015
+ *  Creation 11 mars 2015
  */
- 
 include_once 'modules/classes/bassinCampagne.class.php';
-$dataClass = new BassinCampagne($bdd,$ObjetBDDParam);
-$keyName = "bassin_campagne_id";
+$dataClass = new ProfilThermique($bdd,$ObjetBDDParam);
+$keyName = "profil_thermique_id";
 $id = $_REQUEST[$keyName];
 
 switch ($t_module["param"]) {
@@ -44,36 +43,44 @@ switch ($t_module["param"]) {
 		 * Display the detail of the record
 		 */
 		$data = $dataClass->lire($id);
-		$smarty->assign("dataBassinCampagne", $data);
-		$smarty->assign("corps", "repro/bassinCampagneDisplay.tpl");
-		$profilThermique = new ProfilThermique($bdd, $ObjetBDDParam);
-		$smarty->assign("profilThermiques", $profilThermique->getListFromBassinCampagne($id));
-		/*
-		 * Recuperation des donnees du bassin
-		 */	
-		require_once 'modules/classes/bassin.class.php';
-		$bassin = new Bassin($bdd, $ObjetBDDParam);
-		$smarty->assign("dataBassin", $bassin->lire($data["bassin_id"]));
-		/*
-		 * Recuperation de la liste des poissons presents
-		 */
-		include_once 'modules/classes/poisson.class.php';
-		$transfert = new Transfert($bdd, $ObjetBDDParam);
-		$smarty->assign("dataPoisson", $transfert->getListPoissonPresentByBassin($data["bassin_id"]));
-		/*
-		 * Recuperation des evenements
-		*/
-		$bassinEvenement = new BassinEvenement($bdd, $ObjetBDDParam);
-		$smarty->assign("dataBassinEvnt", $bassinEvenement->getListeByBassin($data["bassin_id"]));
-		$smarty->assign("bassinParentModule", $_SESSION["bassinParentModule"]);
+		$smarty->assign("data", $data);
+		$smarty->assign("corps", "repro/profilThermiqueChange.tpl");
 		break;
+	case "new":
+		$id = 0;
 	case "change":
 		/*
 		 * open the form to modify the record
 		 * If is a new record, generate a new record with default value :
 		 * $_REQUEST["idParent"] contains the identifiant of the parent record
 		 */
-		dataRead($dataClass, $id, "example/exampleChange.tpl", $_REQUEST["idParent"]);
+		$data = dataRead($dataClass, $id, "repro/profilThermiqueChange.tpl", $_REQUEST["bassin_campagne_id"]);
+		/*
+		 * Recuperation des donnees du bassin
+		 */
+		require_once 'modules/classes/bassin.class.php';
+		$bassinCampagne = new BassinCampagne($bdd, $ObjetBDDParam);
+		$dataBassinCampagne = $bassinCampagne->lire($data["bassin_campagne_id"]);
+		$bassin = new Bassin($bdd, $ObjetBDDParam);
+		$smarty->assign("dataBassinCampagne", $dataBassinCampagne);
+		$smarty->assign("dataBassin", $bassin->lire($dataBassinCampagne["bassin_id"]));
+		/*
+		 * Recuperation des donnees de temperature deja existantes
+		 */
+		$profilThermiques = $dataClass->getListFromBassinCampagne($data["bassin_campagne_id"]);
+		$smarty->assign("profilThermiques", $profilThermiques );
+		/*
+		 * Assignation des valeurs par defaut en prenant en reference la derniere valeur entree
+		 */
+		$nbProfil = count($profilThermiques);
+		if ($nbProfil > 0 && $id == 0) {
+			$datetime = explode(" ", $profilThermiques[$nbProfil - 1]["pf_datetime"]);
+			$data["pf_date"] = $datetime[0];
+			$data["pf_time"] = $datetime[1];
+			$data["profil_thermique_type_id"] = $profilThermiques[$nbProfil - 1]["profil_thermique_type_id"];
+			$smarty->assign("data", $data);			
+		}
+		$smarty->assign("bassinParentModule", $_SESSION["bassinParentModule"]);
 		break;
 	case "write":
 		/*
@@ -91,4 +98,5 @@ switch ($t_module["param"]) {
 		dataDelete($dataClass, $id);
 		break;
 }
+
 ?>

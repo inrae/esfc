@@ -233,6 +233,11 @@
 	<echographieWrite action="modules/repro/echographie.php" param="write" droits="reproGestion" modulebefore="echographieChange" retourok="echographieChange" retourko="echographieChange"/>
 	<echographieDelete action="modules/repro/echographie.php" param="delete" droits="reproGestion" modulebefore="echographieChange" retoursuppr="poissonCampagneDisplay" retourko="echographieChange"/>
 
+	<profilThermiqueChange action="modules/repro/profilThermique.php" param="change" droits="reproGestion"/>
+	<profilThermiqueNew action="modules/repro/profilThermique.php" param="new" droits="reproGestion"/>
+	<profilThermiqueWrite action="modules/repro/profilThermique.php" param="write" droits="reproGestion" modulebefore="profilThermiqueChange,profilThermiqueNew" retourok="profilThermiqueNew"/>
+	<profilThermiqueDelete action="modules/repro/profilThermique.php" param="delete" droits="reproGestion" modulebefore="profilThermiqueChange" retoursuppr="profilThermiqueChange" retourko="profilThermiqueChange"/>
+
 	
 </navigation>
 	

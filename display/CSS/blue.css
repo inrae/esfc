@@ -104,6 +104,10 @@ input.date {
 	background-position: 100% 50%;
 	width: 10em;
 }
+
+input.timepicker {
+	width: 5em;
+}
 input.num5 {
 	width: 5em;
 }
