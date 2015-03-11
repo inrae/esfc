@@ -30,7 +30,7 @@ $(document).ready(function() {
 	});
 } ) ;
 </script>
-{if $droits["bassinGestion"] == 1 || $droits["poissonGestion"] == 1}
+{if $droits["bassinGestion"] == 1 || $droits["poissonGestion"] == 1 || $droits["reproGestion"] == 1} 
 <a href="#" id="documentChangeActivate">Saisir un nouveau document...</a>
 <div id="documentChange">
 {include file="document/documentChange.tpl"}
@@ -44,7 +44,7 @@ $(document).ready(function() {
 <th>Description</th>
 <th>Taille</th>
 <th>Date<br>d'import</th>
-{if $droits["bassinAdmin"] == 1 || $droits["poissonAdmin"] == 1}
+{if $droits["bassinAdmin"] == 1 || $droits["poissonAdmin"] == 1 || $droits["reproAdmin"]}
 <th>Supprimer</th>
 {/if}
 </tr>

@@ -1,3 +1,5 @@
+<fieldset>
+<legend>Événements survenus au poisson pendant la campagne</legend>
 <table id="cpsEvenement" class="tableaffichage">
 <thead>
 <tr>
@@ -18,3 +20,4 @@
 {/section}
 </tdata>
 </table>
+</fieldset>

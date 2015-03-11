@@ -69,8 +69,8 @@ $(document).ready(function() {
 {$data[lst].pittag_valeur}
 </a>
 </td>
-<td>{$data[lst].cohorte}</td>
-<td>{$data[lst].sexe_libelle_court}</td>
+<td class="center">{$data[lst].cohorte}</td>
+<td class="center">{$data[lst].sexe_libelle_court}</td>
 <td class="right">{$data[lst].masse}</td>
 <td class="{if $data[lst].tx_croissance_journalier > 0.02}etat3{else}right{/if}">{$data[lst].tx_croissance_journalier}</td>
 <td class="{if $data[lst].specific_growth_rate > 0.02}etat3{else}right{/if}">{$data[lst].specific_growth_rate}</td>

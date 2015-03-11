@@ -8,19 +8,27 @@ Modifier les taux de croissance...
 {/if}
 <table class="tablemulticolonne">
 <tr>
-<td>
+<td colspan="2">
 {include file="repro/poissonCampagneDetail.tpl"}
-</td>
-<td>
-{include file="repro/poissonSequenceList.tpl"}
 </td>
 </tr>
 <tr>
-<td colspan="2">
+<td>
+{include file="repro/poissonSequenceList.tpl"}
+</td>
+<td>
+{include file="repro/psEvenementList.tpl"}
+</td>
+</tr>
+<tr>
+<td>
 {include file="repro/poissonEchographieList.tpl"}
-<br>
+</td>
+<td>
 {include file="repro/poissonSanguinList.tpl"}
-<br>
+</td>
+<tr>
+<td colspan="2">
 {include file="repro/poissonBiopsieList.tpl"}
 </td>
 </tr>

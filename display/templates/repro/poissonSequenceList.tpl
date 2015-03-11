@@ -33,5 +33,5 @@ Rattacher une nouvelle séquence...
 </tdata>
 </table>
 <br>
-{include file="repro/psEvenementList.tpl"}
+
 </fieldset>

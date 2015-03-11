@@ -47,15 +47,18 @@ switch ($t_module ["param"]) {
 		require_once 'modules/classes/dosageSanguin.class.php';
 		require_once 'modules/classes/biopsie.class.php';
 		require_once 'modules/classes/sequence.class.php';
+		require_once 'modules/classes/echographie.class.php';
 		$dosageSanguin = new DosageSanguin ( $bdd, $ObjetBDDParam );
 		$biopsie = new Biopsie ( $bdd, $ObjetBDDParam );
 		$poissonSequence = new PoissonSequence ( $bdd, $ObjetBDDParam );
 		$psEvenement = new PsEvenement ( $bdd, $ObjetBDDParam );
+		$echographie = new Echographie($bdd, $ObjetBDDParam);
 		
 		$smarty->assign ( "dataSanguin", $dosageSanguin->getListeFromPoissonCampagne ( $id ) );
 		$smarty->assign ( "dataBiopsie", $biopsie->getListeFromPoissonCampagne ( $id ) );
 		$smarty->assign ( "dataSequence", $poissonSequence->getListFromPoisson ( $id ) );
 		$smarty->assign ( "dataPsEvenement", $psEvenement->getListeEvenementFromPoisson ( $id ) );
+		$smarty->assign ( "echographies", $echographie->getListFromPoissonCampagne($id));
 		
 		$smarty->assign ( "corps", "repro/poissonCampagneDisplay.tpl" );
 		break;

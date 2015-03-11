@@ -13,6 +13,7 @@ include_once "modules/classes/document.class.php";
   */
  class DocumentSturio extends DocumentAttach {
  	public $resolution=800;
+ 	public $modules=array("poisson", "evenement", "bassin", "echographie");
  	/**
  	 * Surcharge de la fonction supprimer pour effacer les enregistrements liés
  	 * (non-PHPdoc)
@@ -24,13 +25,8 @@ include_once "modules/classes/document.class.php";
  			/*
  			 * Suppression dans les tables liées
  			*/
- 			$table = array (
- 					"poisson_document",
- 					"evenement_document",
- 					"bassin_document"
- 			);
- 			foreach ( $table as $value ) {
- 				$sql = "delete from " . $value . " where document_id = " . $id;
+ 			foreach ( $this->modules as $value ) {
+ 				$sql = "delete from " . $value . "_document where document_id = " . $id;
  				$this->executeSQL ( $sql );
  			}
  			return parent::supprimer ( $id );
@@ -43,7 +39,7 @@ include_once "modules/classes/document.class.php";
  	 * @return array
  	 */
  	function getListeDocument($type, $id) {
- 		if (($type == "evenement" || $type == "poisson" || $type == "bassin") && $id > 0) {
+ 		if ( in_array($type, $this->modules) && $id > 0) {
  			if ($type == "poisson") {
  				$sql = "select document_id, document_date_import, document_nom,
  						document_description, size, mime_type_id
@@ -68,7 +64,7 @@ include_once "modules/classes/document.class.php";
 					where " . $type . "_id = " . $id . "
 					order by document_date_import desc";
  			}
- 			$liste = $this->getListeParam ( $sql );
+  			$liste = $this->getListeParam ( $sql );
  			/*
  			 * Preparation des vignettes
  			*/
