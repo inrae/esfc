@@ -7,7 +7,7 @@ $(document).ready(function() {
         return confirm("Confirmez-vous la suppression du reproducteur pour l'année considérée ?");
     } );
 } ) ;
-setDataTables("cpoissonList", false, false, true);
+//setDataTables("cpoissonList", false, false, true);
 </script>
 <form method="get" action="index.php" id="search">
 <input type="hidden" name="module" value="poissonCampagneList">
@@ -26,6 +26,9 @@ setDataTables("cpoissonList", false, false, true);
 </table>
 </form>
 
+<form method="post" action="index.php"  onSubmit='return confirmSuppression("Confirmez-vous la suppression des poissons sélectionnés pour cette campagne de reproduction ?")'>
+<input type="hidden" name="module" value="poissonCampagneDelete">
+
 <table id="cpoissonList" class="tableaffichage">
 <thead>
 <tr>
@@ -40,6 +43,7 @@ setDataTables("cpoissonList", false, false, true);
 <th>Specific<br>growth rate</th>
 <th>Années de<br>croisement</th>
 <th>Séquences</th>
+<th>Suppr.</th>
 <th>Suppr.</th>
 </tr>
 </thead>
@@ -75,11 +79,22 @@ setDataTables("cpoissonList", false, false, true);
 <td class="center">
 {if strlen($data[lst].sequences) == 0}
 <a class="confirmation" href="index.php?module=poissonCampagneDelete&poisson_campagne_id={$data[lst].poisson_campagne_id}">
-<img src="display/images/cross.png" height="25">
+<img src="display/images/cross.png" height="15">
 {/if}
 </a>
+</td>
+<td class="center">
+{if strlen($data[lst].sequences) == 0}
+<input type="checkbox" name="poisson_campagne_id[]" value={$data[lst].poisson_campagne_id}>
+{/if}
 </td>
 </tr>
 {/section}
 </tdata>
+<tr>
+<td colspan="13" class="right">
+<input type="submit" value="Supprimer les poissons sélectionnés">
+</td>
+
 </table>
+</form>

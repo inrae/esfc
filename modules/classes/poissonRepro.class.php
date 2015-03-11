@@ -5,7 +5,7 @@ require_once 'modules/classes/poisson.class.php';
  * @author quinton
  *        
  */
-class poissonCampagne extends ObjetBDD {
+class PoissonCampagne extends ObjetBDD {
 	
 	/**
 	 *
