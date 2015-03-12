@@ -7,7 +7,7 @@ Nouveau...
 <script>
 setDataTables("cpoissonStatutList");
 </script>
-<table id="cpoissonStatutList" class="tableaffichage">
+<table id="cpoissonStatutList" class="tableliste">
 <thead>
 <tr>
 <th>libellé</th>

@@ -1,6 +1,6 @@
 <fieldset>
 <legend>Événements survenus au poisson pendant la campagne</legend>
-<table id="cpsEvenement" class="tableaffichage">
+<table id="cpsEvenement" class="tableliste">
 <thead>
 <tr>
 <th>Séquence</th>

@@ -5,7 +5,7 @@
 Nouvelle biopsie...
 </a>
 {/if}
-<table id="cbiopsie" class="tableaffichage">
+<table id="cbiopsie" class="tableliste">
 <thead>
 <tr>
 <th>Date</th>
@@ -52,4 +52,5 @@ Nouvelle biopsie...
 </tr>
 {/section}
 </tdata>
+</table>
 </fieldset>

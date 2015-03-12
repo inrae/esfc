@@ -7,7 +7,7 @@ Nouveau...
 <script>
 setDataTables("cpathologieTypeList");
 </script>
-<table id="cpathologieTypeList" class="tableaffichage">
+<table id="cpathologieTypeList" class="tableliste">
 <thead>
 <tr>
 <th>libellé</th>

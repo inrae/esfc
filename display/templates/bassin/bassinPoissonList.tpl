@@ -1,7 +1,7 @@
 <script>
 setDataTables("cbassinList");
 </script>
-<table id="cbassinList" class="tableaffichage">
+<table id="cbassinList" class="tableliste">
 <thead>
 <tr>
 <th>Bassin</th>

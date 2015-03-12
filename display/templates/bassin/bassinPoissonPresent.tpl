@@ -1,7 +1,7 @@
 <script>
 setDataTables("cbassinPoissonList");
 </script>
-<table id="cbassinPoissonList" class="tableaffichage">
+<table id="cbassinPoissonList" class="tableliste">
 <thead>
 <tr>
 <th>matricule</th>

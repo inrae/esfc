@@ -7,7 +7,7 @@ Nouveau...
 <script>
 setDataTables("ccohorteTypeList");
 </script>
-<table id="ccohorteTypeList" class="tableaffichage">
+<table id="ccohorteTypeList" class="tableliste">
 <thead>
 <tr>
 <th>libellé</th>

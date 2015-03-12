@@ -7,7 +7,7 @@ Nouveau...
 <script>
 setDataTables("csortieLieuList");
 </script>
-<table id="csortieLieuList" class="tableaffichage">
+<table id="csortieLieuList" class="tableliste">
 <thead>
 <tr>
 <th>Lieu</th>

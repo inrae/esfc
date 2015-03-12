@@ -5,7 +5,7 @@
 Rattacher une nouvelle séquence...
 </a>
 {/if}
-<table id="csequence" class="tableaffichage">
+<table id="csequence" class="tableliste">
 <thead>
 <tr>
 <th>Date<br>début</th>

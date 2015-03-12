@@ -6,7 +6,7 @@
 <script>
 setDataTables("cbassinList",true, true, true, 50);
 </script>
-<table id="cbassinList" class="tableaffichage">
+<table id="cbassinList" class="tableliste">
 <thead>
 <tr>
 <th>Nom</th>

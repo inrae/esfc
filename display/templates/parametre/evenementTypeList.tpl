@@ -7,7 +7,7 @@ Nouveau...
 <script>
 setDataTables("cevenementTypeList");
 </script>
-<table id="cevenementTypeList" class="tableaffichage">
+<table id="cevenementTypeList" class="tableliste">
 <thead>
 <tr>
 <th>libellé</th>

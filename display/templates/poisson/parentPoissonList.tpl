@@ -1,7 +1,7 @@
 <script>
 setDataTables("cparentList");
 </script>
-<table id="cparentList" class="tableaffichage">
+<table id="cparentList" class="tableliste">
 <thead>
 <tr>
 {if $droits.poissonGestion == 1}

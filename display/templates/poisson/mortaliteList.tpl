@@ -1,7 +1,7 @@
 <script>
 setDataTables("cmortaliteList");
 </script>
-<table id="cmortaliteList" class="tableaffichage">
+<table id="cmortaliteList" class="tableliste">
 <thead>
 <tr>
 <th>Événement associé</th>

@@ -1,7 +1,7 @@
 <script>
 setDataTables("cpathologieList");
 </script>
-<table id="cpathologieList" class="tableaffichage">
+<table id="cpathologieList" class="tableliste">
 <thead>
 <tr>
 <th>Événement associé</th>

@@ -9,7 +9,7 @@ $(document).ready(function() {
 {if $droits.bassinAdmin == 1}
 <a href="index.php?module=repartTemplateChange&repart_template_id=0">Nouvelle répartition...</a>
 {/if}
-<table id="crepartTemplateList" class="tableaffichage">
+<table id="crepartTemplateList" class="tableliste">
 <thead>
 <tr>
 {if $droits.bassinAdmin == 1}

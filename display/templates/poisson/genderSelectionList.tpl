@@ -1,7 +1,7 @@
 <script>
 setDataTables("cgender_selectionList");
 </script>
-<table id="cgender_selectionList" class="tableaffichage">
+<table id="cgender_selectionList" class="tableliste">
 <thead>
 <tr>
 <th>Événement associé</th>

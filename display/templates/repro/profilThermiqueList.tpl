@@ -1,4 +1,4 @@
-<table id="cprofilThermiqueList" class="tableaffichage">
+<table id="cprofilThermiqueList" class="tableliste">
 <thead>
 <tr>
 <th>Date/heure</th>

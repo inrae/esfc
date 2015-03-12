@@ -1,7 +1,7 @@
 <script>
 setDataTables("canomalie_dbList");
 </script>
-<table id="canomalie_dbList" class="tableaffichage">
+<table id="canomalie_dbList" class="tableliste">
 <thead>
 <tr>
 <th>Événement associé</th>

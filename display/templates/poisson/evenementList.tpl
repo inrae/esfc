@@ -1,7 +1,7 @@
 <script>
 setDataTables("cevenementList");
 </script>
-<table id="cevenementList" class="tableaffichage">
+<table id="cevenementList" class="tableliste">
 <thead>
 <tr>
 <th>Nature</th>

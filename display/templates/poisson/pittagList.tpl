@@ -1,7 +1,7 @@
 <script>
 setDataTables("cpittagList");
 </script>
-<table id="cpittagList" class="tableaffichage">
+<table id="cpittagList" class="tableliste">
 <thead>
 <tr>
 <th>Valeur</th>

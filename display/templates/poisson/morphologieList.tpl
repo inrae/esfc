@@ -1,7 +1,7 @@
 <script>
 setDataTables("cmorphologieList");
 </script>
-<table id="cmorphologieList" class="tableaffichage">
+<table id="cmorphologieList" class="tableliste">
 <thead>
 <tr>
 <th>Événement associé</th>

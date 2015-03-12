@@ -1,7 +1,7 @@
 <script>
 setDataTables("ctransfertList");
 </script>
-<table id="ctransfertList" class="tableaffichage">
+<table id="ctransfertList" class="tableliste">
 <thead>
 <tr>
 <th>Événement associé</th>

@@ -12,7 +12,7 @@ setDataTables("ccircuitEauList");
 <table class="tablemulticolonne">
 <tr>
 <td>
-<table id="ccircuitEauList" class="tableaffichage">
+<table id="ccircuitEauList" class="tableliste">
 <thead>
 <tr>
 <th>libellé</th>

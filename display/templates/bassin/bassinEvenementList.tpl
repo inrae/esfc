@@ -6,7 +6,7 @@ setDataTables("cbassinEvenementList");
 Nouvel événement...
 </a>
 {/if}
-<table id="cbassinEvenementList" class="tableaffichage">
+<table id="cbassinEvenementList" class="tableliste">
 <thead>
 <tr>
 <th>Évenement</th>

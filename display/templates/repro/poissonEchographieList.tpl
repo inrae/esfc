@@ -5,7 +5,7 @@
 Nouvelle échographie...
 </a>
 {/if}
-<table id="cechographie" class="tableaffichage">
+<table id="cechographie" class="tableliste">
 <thead>
 <tr>
 <th>Date</th>

@@ -1,7 +1,7 @@
 <fieldset>
 <legend>Poissons rattachés à la séquence</legend>
 
-<table id="csequence" class="tableaffichage">
+<table id="csequence" class="tableliste">
 <thead>
 <tr>
 <th>Données générales<br>de reproduction</th>

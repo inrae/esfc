@@ -7,7 +7,7 @@ Nouveau...
 <script>
 setDataTables("cbassinZoneList");
 </script>
-<table id="cbassinZoneList" class="tableaffichage">
+<table id="cbassinZoneList" class="tableliste">
 <thead>
 <tr>
 <th>libellé</th>

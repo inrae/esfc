@@ -7,7 +7,7 @@ Nouveau...
 <script>
 setDataTables("claboratoireAnalyseList");
 </script>
-<table id="claboratoireAnalyseList" class="tableaffichage">
+<table id="claboratoireAnalyseList" class="tableliste">
 <thead>
 <tr>
 <th>libellé</th>

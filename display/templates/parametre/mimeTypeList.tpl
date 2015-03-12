@@ -7,7 +7,7 @@ Nouveau...
 <script>
 setDataTables("cmimeTypeList");
 </script>
-<table id="cmimeTypeList" class="tableaffichage">
+<table id="cmimeTypeList" class="tableliste">
 <thead>
 <tr>
 <th>extension</th>

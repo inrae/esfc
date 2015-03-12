@@ -7,7 +7,7 @@ Nouveau...
 <script>
 setDataTables("ccategorieList");
 </script>
-<table id="ccategorieList" class="tableaffichage">
+<table id="ccategorieList" class="tableliste">
 <thead>
 <tr>
 <th>Catégorie</th>

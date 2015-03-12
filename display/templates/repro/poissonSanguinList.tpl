@@ -6,7 +6,7 @@
 Nouvelle analyse...
 </a>
 {/if}
-<table id="csanguin" class="tableaffichage">
+<table id="csanguin" class="tableliste">
 <thead>
 <tr>
 <th>Date</th>

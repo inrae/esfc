@@ -29,7 +29,7 @@ $(document).ready(function() {
 <form method="post" action="index.php"  onSubmit='return confirmSuppression("Confirmez-vous la suppression des poissons sélectionnés pour cette campagne de reproduction ?")'>
 <input type="hidden" name="module" value="poissonCampagneDelete">
 
-<table id="cpoissonList" class="tableaffichage">
+<table id="cpoissonList" class="tableliste">
 <thead>
 <tr>
 <th>Données<br>d'élevage</th>

@@ -6,7 +6,7 @@ $(document).ready(function() {
     } );
 } ) ;	
 </script>
-<table id="cBassinCampagne" class="tableaffichage">
+<table id="cBassinCampagne" class="tableliste">
 <thead>
 <tr>
 <th>Données<br>générales</th>

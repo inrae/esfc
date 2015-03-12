@@ -23,7 +23,7 @@ $(document).ready(function() {
 </form>
 <h2>Séquences</h2>
 <a href="index.php?module=sequenceChange&sequence_id=0">Nouvelle séquence pour l'année</a>
-<table id="csequenceList" class="tableaffichage">
+<table id="csequenceList" class="tableliste">
 <thead>
 <tr>
 <th>Nom de la séquence</th>

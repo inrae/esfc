@@ -7,7 +7,7 @@ Nouveau...
 <script>
 setDataTables("canomalie_dbTypeList");
 </script>
-<table id="canomalie_dbTypeList" class="tableaffichage">
+<table id="canomalie_dbTypeList" class="tableliste">
 <thead>
 <tr>
 {if $droits["paramAdmin"] == 1}

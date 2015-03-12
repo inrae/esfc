@@ -7,7 +7,7 @@ Nouveau...
 <script>
 setDataTables("cgenderMethodeList");
 </script>
-<table id="cgenderMethodeList" class="tableaffichage">
+<table id="cgenderMethodeList" class="tableliste">
 <thead>
 <tr>
 <th>libellé</th>

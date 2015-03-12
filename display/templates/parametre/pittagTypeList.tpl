@@ -7,7 +7,7 @@ Nouveau...
 <script>
 setDataTables("pittagList");
 </script>
-<table id="pittagList" class="tableaffichage">
+<table id="pittagList" class="tableliste">
 <thead>
 <tr>
 <th>libellé</th>

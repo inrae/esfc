@@ -7,7 +7,7 @@ Nouveau...
 <script>
 setDataTables("cmortaliteTypeList");
 </script>
-<table id="cmortaliteTypeList" class="tableaffichage">
+<table id="cmortaliteTypeList" class="tableliste">
 <thead>
 <tr>
 <th>libellé</th>

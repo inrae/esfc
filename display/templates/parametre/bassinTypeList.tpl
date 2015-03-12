@@ -7,7 +7,7 @@ Nouveau...
 <script>
 setDataTables("cbassinTypeList");
 </script>
-<table id="cbassinTypeList" class="tableaffichage">
+<table id="cbassinTypeList" class="tableliste">
 <thead>
 <tr>
 <th>libellé</th>

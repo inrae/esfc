@@ -36,7 +36,7 @@ $(document).ready(function() {
 {include file="document/documentChange.tpl"}
 </div>
 {/if}
-<table id="documentList">
+<table id="documentList" class="tableliste">
 <thead>
 <tr>
 <th>Vignette</th>

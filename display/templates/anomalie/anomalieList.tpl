@@ -34,7 +34,7 @@ Type d'anomalie :
 
 
 {if $isSearch == 1}
-<table id="canomalieList" class="tableaffichage">
+<table id="canomalieList" class="tableliste">
 <thead>
 <tr>
 {if $droits["poissonAdmin"] == 1}

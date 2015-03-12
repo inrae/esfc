@@ -7,7 +7,7 @@ Nouveau...
 <script>
 setDataTables("calimentList");
 </script>
-<table id="calimentList" class="tableaffichage">
+<table id="calimentList" class="tableliste">
 <thead>
 <tr>
 <th>libellé</th>
