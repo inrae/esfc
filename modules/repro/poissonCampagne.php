@@ -19,6 +19,9 @@ if (! isset ( $_SESSION ["annee"] ))
 	$_SESSION ["annee"] = date ( 'Y' );
 $smarty->assign ( "annee", $_SESSION ["annee"] );
 
+if (isset($_SESSION["sequence_id"]))
+	$smarty->assign("sequence_id", $_SESSION["sequence_id"]);
+
 switch ($t_module ["param"]) {
 	case "list":
 		/*
@@ -61,6 +64,8 @@ switch ($t_module ["param"]) {
 		$smarty->assign ( "echographies", $echographie->getListFromPoissonCampagne($id));
 		
 		$smarty->assign ( "corps", "repro/poissonCampagneDisplay.tpl" );
+		if (isset ($_REQUEST["sequence_id"]))
+			$smarty->assign("sequence_id", $_REQUEST["sequence_id"]);
 		break;
 	case "change":
 		/*

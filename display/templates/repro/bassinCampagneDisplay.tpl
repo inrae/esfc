@@ -7,16 +7,16 @@ $(document).ready(function() {
 		bindto: '#profilThermique',
 		data: {
 			xs: {
-				'prévu': 'x1',
-				'relevé': 'x2'
+				'constaté': 'x1',
+				'prévu': 'x2'
 			} ,
 //	    x: 'x',
       xFormat: '%d/%m/%Y %H:%M:%S', // 'xFormat' can be used as custom format of 'x'
       columns: [
-          ['x1', '18/03/2015 15:00:00', '18/03/2015 18:00:00', '18/03/2015 23:50:00', '19/03/2015 12:00:00'],
-          ['prévu', 15, 16.5, 17, 16],
-          ['x2', '18/03/2015 15:30:00', '18/03/2015 20:00:00', '19/03/2015 08:30:00'],
-          ['relevé', 14.7, 16, 18]
+          [{$pfx1}],
+          [{$pfy1}],
+          [{$pfx2}],
+          [{$pfy2}]
           ]
 	} ,
     axis: {

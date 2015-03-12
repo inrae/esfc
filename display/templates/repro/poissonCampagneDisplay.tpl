@@ -1,5 +1,5 @@
 <h2>Détail d'un reproducteur</h2>
-<a href="index.php?module={$poissonDetailParent}">Retour à la liste des poissons</a>
+<a href="index.php?module={$poissonDetailParent}&sequence_id={$sequence_id}">Retour à la liste des poissons</a>
 {if $droits["reproGestion"]==1}
 &nbsp;
 <a href="index.php?module=poissonCampagneChange&poisson_campagne_id={$dataPoisson.poisson_campagne_id}">

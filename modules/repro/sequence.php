@@ -51,6 +51,7 @@ switch ($t_module["param"]) {
 		$poissonSequence = new PoissonSequence($bdd, $ObjetBDDParam);
 		$smarty->assign("dataPoissons", $poissonSequence->getListFromSequence($id));
 		$_SESSION["poissonDetailParent"] = "sequenceDisplay";
+		$_SESSION["sequence_id"] = $id;
 		break;
 	case "change":
 		/*

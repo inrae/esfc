@@ -12,8 +12,12 @@
 <tdata>
 {section name=lst loop=$dataPsEvenement}
 <tr>
-<td>{$dataPsEvenement[lst].sequence_nom}</td>
-<td>{$dataPsEvenement[lst].ps_date}</td>
+<td>
+<a href="index.php?module=poissonSequenceChange&poisson_sequence_id={$dataPsEvenement[lst].poisson_sequence_id}&sequence_id={$dataSequence[lst].sequence_id}">
+{$dataPsEvenement[lst].sequence_nom}
+</a>
+</td>
+<td>{$dataPsEvenement[lst].ps_datetime}</td>
 <td>{$dataPsEvenement[lst].ps_libelle}</td>
 <td>{$dataPsEvenement[lst].ps_commentaire}</td>
 </tr>

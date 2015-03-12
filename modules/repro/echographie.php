@@ -10,7 +10,9 @@ include_once 'modules/classes/echographie.class.php';
 $dataClass = new Echographie($bdd,$ObjetBDDParam);
 $keyName = "echographie_id";
 $id = $_REQUEST[$keyName];
-
+if (isset($_SESSION["sequence_id"]))
+	$smarty->assign("sequence_id", $_SESSION["sequence_id"]);
+$smarty->assign ( "poissonDetailParent", $_SESSION ["poissonDetailParent"] );
 switch ($t_module["param"]) {
 	case "list":
 		/*

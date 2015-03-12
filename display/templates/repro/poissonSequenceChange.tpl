@@ -8,7 +8,7 @@ $(document).ready(function() {
 });
 </script>
 <a href="index.php?module={$poissonDetailParent}&sequence_id={$sequence_id}">Retour à la liste des poissons</a>&nbsp;
-<a href="index.php?module=poissonCampagneDisplay&poisson_campagne_id={$data.poisson_campagne_id}">
+<a href="index.php?module=poissonCampagneDisplay&poisson_campagne_id={$data.poisson_campagne_id}&sequence_id={$data.sequence_id}">
 Retour au reproducteur
 </a>
 {include file="repro/poissonCampagneDetail.tpl"}
@@ -93,10 +93,10 @@ Nouvel événement...
 <td>
 {if $droits.reproGestion == 1}
 <a href="index.php?module=psEvenementChange&ps_evenement_id={$evenements[lst].ps_evenement_id}&poisson_sequence_id={$data.poisson_sequence_id}&sequence_id={$data.sequence_id}">
-{$evenements[lst].ps_date}
+{$evenements[lst].ps_datetime}
 </a>
 {else}
-{$evenements[lst].ps_date}
+{$evenements[lst].ps_datetime}
 {/if}</td>
 <td>{$evenements[lst].ps_libelle}</td>
 <td>{$evenements[lst].ps_commentaire}</td>

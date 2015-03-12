@@ -189,8 +189,8 @@ class PsEvenement extends ObjetBDD {
 						"requis" => 1,
 						"parentAttrib" => 1 
 				),
-				"ps_date" => array (
-						"type" => 2,
+				"ps_datetime" => array (
+						"type" => 3,
 						"requis" => 1 
 				),
 				
@@ -216,13 +216,13 @@ class PsEvenement extends ObjetBDD {
 	function getListeEvenementFromPoisson($poisson_campagne_id) {
 		if ($poisson_campagne_id > 0) {
 			$sql = "select ps_evenement_id, poisson_campagne_id, poisson_sequence_id, 
-					ps_date, ps_libelle, ps_commentaire,
+					ps_datetime, ps_libelle, ps_commentaire,
 					sequence_nom
 					from ps_evenement
 					join poisson_sequence using (poisson_sequence_id) 
 					join sequence using (sequence_id)
 					where poisson_campagne_id = " . $poisson_campagne_id . " 
-					order by ps_date ";
+					order by ps_datetime ";
 			return $this->getListeParam ( $sql );
 		} else
 			return null;
@@ -235,13 +235,37 @@ class PsEvenement extends ObjetBDD {
 	 */
 	function getListeFromPoissonSequence($poisson_sequence_id) {
 		if ($poisson_sequence_id > 0) {
-			$sql = "select ps_evenement_id, poisson_sequence_id, ps_date, ps_libelle, ps_commentaire 
+			$sql = "select ps_evenement_id, poisson_sequence_id, ps_datetime, ps_libelle, ps_commentaire 
 					from ps_evenement 
 					where poisson_sequence_id = ".$poisson_sequence_id." 
-					order by ps_date";
+					order by ps_datetime";
 			return $this->getListeParam($sql);
 		} else
 			return null;
+	}
+
+	/**
+	 * Reecriture de la fonction lire pour separer la date et l'heure dans 2 champs
+	 * (non-PHPdoc)
+	 * @see ObjetBDD::lire()
+	 */
+	function lire($id, $getDefault = false, $parentValue = 0) {
+		$data = parent::lire($id, $getDefault, $parentValue);
+		$date = explode(" ", $data["ps_datetime"]);
+		$data["ps_date"] = $date[0];
+		$data["ps_time"] = $date[1];
+		return $data;		
+	}
+
+	/**
+	 * Reecriture de la fonction ecrire pour generer le champ ps_datetime a partir 
+	 * des champs separes
+	 * (non-PHPdoc)
+	 * @see ObjetBDD::ecrire()
+	 */
+	function ecrire($data) {
+		$data["ps_datetime"] = $data["ps_date"]." ".$data["ps_time"];
+		return parent::ecrire($data);
 	}
 }
 

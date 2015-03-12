@@ -10,7 +10,9 @@ require_once 'modules/classes/poissonRepro.class.php';
 $dataClass = new Biopsie($bdd,$ObjetBDDParam);
 $keyName = "biopsie_id";
 $id = $_REQUEST[$keyName];
-
+if (isset($_SESSION["sequence_id"]))
+	$smarty->assign("sequence_id", $_SESSION["sequence_id"]);
+$smarty->assign ( "poissonDetailParent", $_SESSION ["poissonDetailParent"] );
 switch ($t_module["param"]) {
 	case "list":
 		/*

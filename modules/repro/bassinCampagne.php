@@ -46,8 +46,27 @@ switch ($t_module["param"]) {
 		$data = $dataClass->lire($id);
 		$smarty->assign("dataBassinCampagne", $data);
 		$smarty->assign("corps", "repro/bassinCampagneDisplay.tpl");
+		/*
+		 * Recuperation des donnees du profil thermique
+		 */
 		$profilThermique = new ProfilThermique($bdd, $ObjetBDDParam);
 		$smarty->assign("profilThermiques", $profilThermique->getListFromBassinCampagne($id));
+		/*
+		 * Calcul des donnees pour le graphique
+		 */
+		for ($i=1;$i<3;$i++){
+			$datapf = $profilThermique->getListFromBassinCampagne($id, $i);
+			$x = "'x".$i."'";
+			if ($i == 1) {
+				$y = "'contaté'";
+			} else $y = "'prévu'";
+			foreach ($datapf as $key => $value) {
+				$x.=",'".$value["pf_datetime"]."'";
+				$y .= ",".$value["pf_temperature"];
+			}
+			$smarty->assign("pfx".$i, $x);
+			$smarty->assign("pfy".$i, $y);
+		}
 		/*
 		 * Recuperation des donnees du bassin
 		 */	

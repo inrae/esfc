@@ -132,16 +132,19 @@ class ProfilThermique extends ObjetBDD {
 	 * @param int $bassin_campagne_id
 	 * @return tableau|NULL
 	 */
-	function getListFromBassinCampagne($bassin_campagne_id) {
+	function getListFromBassinCampagne($bassin_campagne_id, $type_id=0) {
 		if($bassin_campagne_id > 0) {
 			$sql = "select profil_thermique_id, bassin_campagne_id, profil_thermique_type_id,
 					pf_datetime, pf_temperature, 
 					profil_thermique_type_libelle
 					from profil_thermique
-					join profil_thermique_type using (profil_thermique_type_id)
-					where bassin_campagne_id = ".$bassin_campagne_id."
-					order by pf_datetime";
-			return $this->getListeParam($sql);
+					join profil_thermique_type using (profil_thermique_type_id)";
+					$where = " where bassin_campagne_id = ".$bassin_campagne_id;
+					if ($type_id > 0) {
+						$where .= " and profil_thermique_type_id = ".$type_id;
+					}
+					$order = " order by pf_datetime";
+			return $this->getListeParam($sql.$where.$order);
 		} else
 			return null;
 	}
