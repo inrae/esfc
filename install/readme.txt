@@ -1,5 +1,9 @@
 Nouveautés
 ===========
+Version 2.0 du 
+---------------------------------
+- Correction de l'affichage des listes : le survol par la souris colore la ligne considérée
+
 Version 1.1.2 du 4 septembre 2014
 ---------------------------------
 Correction d'un bogue :

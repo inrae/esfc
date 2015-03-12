@@ -23,7 +23,7 @@
 {$dataPoissons[lst].matricule} {$dataPoissons[lst].prenom} {$dataPoissons[lst].pittag_valeur}
 </a>
 </td>
-<td>{$dataPoissons[lst].sexe_libelle_court}</td>
+<td class="center">{$dataPoissons[lst].sexe_libelle_court}</td>
 <td>{$dataPoissons[lst].qualite_semence}</td>
 <td>{$dataPoissons[lst].ovocyte_masse}</td>
 </tr>

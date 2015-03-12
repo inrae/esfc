@@ -1424,7 +1424,6 @@ class ObjetBDD {
 		foreach ( $orig as $key => $value ) {
 			$orig1 [] = $value [$nomCle2];
 		}
-		
 		// calcul des intersections (les valeurs presentes dans les deux tableaux)
 		$intersect = array_intersect ( $orig1, $lignes );
 		// Calcul des tableaux de suppression ou de creation

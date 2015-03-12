@@ -4,7 +4,7 @@ Retour à la liste des séquences
 </a>
 {if $droits["reproGestion"]==1}
 &nbsp;
-<a href="index.php?module=sequenceChange&sequence_id={$data.sequence_id}">
+<a href="index.php?module=sequenceChange&sequence_id={$dataSequence.sequence_id}">
 Modifier les informations générales de la séquence...
 </a>
 {/if}
@@ -13,11 +13,10 @@ Modifier les informations générales de la séquence...
 <td>
 
 {include file="repro/sequenceDetail.tpl"}
-</td>
-</tr>
-<tr>
-<td>
+<br>
 {include file="repro/sequencePoissonList.tpl"}
+<br>
+{include file="repro/croisementList.tpl"}
 </td>
 </tr>
 </table>

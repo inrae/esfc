@@ -238,6 +238,10 @@
 	<profilThermiqueWrite action="modules/repro/profilThermique.php" param="write" droits="reproGestion" modulebefore="profilThermiqueChange,profilThermiqueNew" retourok="profilThermiqueNew"/>
 	<profilThermiqueDelete action="modules/repro/profilThermique.php" param="delete" droits="reproGestion" modulebefore="profilThermiqueChange" retoursuppr="profilThermiqueChange" retourko="profilThermiqueChange"/>
 
+	<croisementChange action="modules/repro/croisement.php" param="change" droits="reproGestion" />
+	<croisementWrite action="modules/repro/croisement.php" param="write" droits="reproGestion" modulebefore="croisementChange" retourok="sequenceDisplay" retourko="croisementChange"/>
+	<croisementDelete action="modules/repro/croisement.php" param="delete" droits="reproGestion" modulebefore="croisementChange" retoursuppr="sequenceDisplay" retourko="croisementChange"/>
+
 	
 </navigation>
 	

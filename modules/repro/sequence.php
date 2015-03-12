@@ -46,12 +46,15 @@ switch ($t_module["param"]) {
 		 * Display the detail of the record
 		 */
 		$data = $dataClass->lire($id);
-		$smarty->assign("data", $data);
+		$smarty->assign("dataSequence", $data);
 		$smarty->assign("corps", "repro/sequenceDisplay.tpl");
 		$poissonSequence = new PoissonSequence($bdd, $ObjetBDDParam);
 		$smarty->assign("dataPoissons", $poissonSequence->getListFromSequence($id));
 		$_SESSION["poissonDetailParent"] = "sequenceDisplay";
 		$_SESSION["sequence_id"] = $id;
+		require_once 'modules/classes/croisement.class.php';
+		$croisement = new Croisement($bdd, $ObjetBDDParam);
+		$smarty->assign("croisements", $croisement->getListFromSequence($id));
 		break;
 	case "change":
 		/*
