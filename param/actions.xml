@@ -248,6 +248,10 @@
 	<lotWrite action="modules/repro/lot.php" param="write" droits="reproGestion" modulebefore="lotChange" retourok="lotDisplay" retourko="lotChange"/>
 	<lotDelete action="modules/repro/lot.php" param="delete" droits="reproGestion" modulebefore="lotChange" retoursuppr="lotList" retourko="lotChange"/>
 
+	<lotMesureChange action="modules/repro/lotMesure.php" param="change" droits="reproGestion" />
+	<lotMesureWrite action="modules/repro/lotMesure.php" param="write" droits="reproGestion" modulebefore="lotMesureChange" retourok="lotDisplay" retourko="lotMesureChange"/>
+	<lotMesureDelete action="modules/repro/lotMesure.php" param="delete" droits="reproGestion" modulebefore="lotMesureChange" retoursuppr="lotDisplay" retourko="lotMesureChange"/>
+
 	
 </navigation>
 	

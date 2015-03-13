@@ -97,7 +97,7 @@ class LotMesure extends ObjetBDD {
 		$this->colonnes=array(
 				"lot_mesure_id"=>array("type"=>1,"key"=>1, "requis"=>1, "defaultValue"=>0),
 				"lot_id"=>array("type"=>1, "requis"=>1, "parentAttrib"=>1),
-				"lot_mesure_date"=>array("type"=>2, "requis"=>1),
+				"lot_mesure_date"=>array("type"=>2, "requis"=>1, "defaultValue"=>"getDateJour"),
 				"nb_jour"=>array("type"=>1),
 				"lot_mortalite"=>array("type"=>1),
 				"lot_mesure_masse"=>array("type"=>1),

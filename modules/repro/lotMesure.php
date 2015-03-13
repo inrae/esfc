@@ -3,12 +3,12 @@
  * @author Eric Quinton
  * @copyright Copyright (c) 2015, IRSTEA / Eric Quinton
  * @license http://www.cecill.info/licences/Licence_CeCILL-C_V1-fr.html LICENCE DE LOGICIEL LIBRE CeCILL-C
- *  Creation 10 mars 2015
+ *  Creation 13 mars 2015
  */
  
-include_once 'modules/classes/bassinCampagne.class.php';
-$dataClass = new BassinCampagne($bdd,$ObjetBDDParam);
-$keyName = "bassin_campagne_id";
+include_once 'modules/classes/lot.class.php';
+$dataClass = new LotMesure($bdd,$ObjetBDDParam);
+$keyName = "lot_mesure_id";
 $id = $_REQUEST[$keyName];
 
 switch ($t_module["param"]) {
@@ -44,47 +44,8 @@ switch ($t_module["param"]) {
 		 * Display the detail of the record
 		 */
 		$data = $dataClass->lire($id);
-		$smarty->assign("dataBassinCampagne", $data);
-		$smarty->assign("corps", "repro/bassinCampagneDisplay.tpl");
-		/*
-		 * Recuperation des donnees du profil thermique
-		 */
-		$profilThermique = new ProfilThermique($bdd, $ObjetBDDParam);
-		$smarty->assign("profilThermiques", $profilThermique->getListFromBassinCampagne($id));
-		/*
-		 * Calcul des donnees pour le graphique
-		 */
-		for ($i=1;$i<3;$i++){
-			$datapf = $profilThermique->getListFromBassinCampagne($id, $i);
-			$x = "'x".$i."'";
-			if ($i == 1) {
-				$y = "'constaté'";
-			} else $y = "'prévu'";
-			foreach ($datapf as $key => $value) {
-				$x.=",'".$value["pf_datetime"]."'";
-				$y .= ",".$value["pf_temperature"];
-			}
-			$smarty->assign("pfx".$i, $x);
-			$smarty->assign("pfy".$i, $y);
-		}
-		/*
-		 * Recuperation des donnees du bassin
-		 */	
-		require_once 'modules/classes/bassin.class.php';
-		$bassin = new Bassin($bdd, $ObjetBDDParam);
-		$smarty->assign("dataBassin", $bassin->lire($data["bassin_id"]));
-		/*
-		 * Recuperation de la liste des poissons presents
-		 */
-		include_once 'modules/classes/poisson.class.php';
-		$transfert = new Transfert($bdd, $ObjetBDDParam);
-		$smarty->assign("dataPoisson", $transfert->getListPoissonPresentByBassin($data["bassin_id"]));
-		/*
-		 * Recuperation des evenements
-		*/
-		$bassinEvenement = new BassinEvenement($bdd, $ObjetBDDParam);
-		$smarty->assign("dataBassinEvnt", $bassinEvenement->getListeByBassin($data["bassin_id"]));
-		$smarty->assign("bassinParentModule", $_SESSION["bassinParentModule"]);
+		$smarty->assign("data", $data);
+		$smarty->assign("corps", "example/exampleDisplay.tpl");
 		break;
 	case "change":
 		/*
@@ -92,7 +53,12 @@ switch ($t_module["param"]) {
 		 * If is a new record, generate a new record with default value :
 		 * $_REQUEST["idParent"] contains the identifiant of the parent record
 		 */
-		dataRead($dataClass, $id, "example/exampleChange.tpl", $_REQUEST["idParent"]);
+		$data = dataRead($dataClass, $id, "repro/lotMesureChange.tpl", $_REQUEST["lot_id"]);
+		/*
+		 * Lecture du lot
+		 */
+		$lot = new Lot($bdd, $ObjetBDDParam);
+		$smarty->assign("dataLot", $lot->getDetail($data["lot_id"]));
 		break;
 	case "write":
 		/*

@@ -34,8 +34,8 @@ Nouvelle mesure...
 <td class="right">{$dataMesure[lst].lot_mortalite}</td>
 {assign var=mortalite value=$mortalite + $dataMesure[lst].lot_mortalite}
 <td class="right">{$mortalite}</td>
-<td>{$dataMesure[lst].lot_mesure_masse}</td>
-<td>{$dataMesure[lst].lot_mesure_masse_indiv}</td>
+<td class="right">{$dataMesure[lst].lot_mesure_masse}</td>
+<td class="right">{$dataMesure[lst].lot_mesure_masse_indiv}</td>
 </tr>
 {/section}
 </tdata>

@@ -1,6 +1,3 @@
-{if $droits.reproGestion == 1}
-<a href="index.php?module=lotChange&lot_id={$dataLot.lot_id}">Modifier le lot</a>
-{/if}
 <table class="tableaffichage">
 <tr>
 <td>
