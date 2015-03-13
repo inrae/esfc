@@ -242,6 +242,12 @@
 	<croisementWrite action="modules/repro/croisement.php" param="write" droits="reproGestion" modulebefore="croisementChange" retourok="sequenceDisplay" retourko="croisementChange"/>
 	<croisementDelete action="modules/repro/croisement.php" param="delete" droits="reproGestion" modulebefore="croisementChange" retoursuppr="sequenceDisplay" retourko="croisementChange"/>
 
+	<lotList action="modules/repro/lot.php" param="list" retourlogin="1" menulevel="1" menuorder="4" menuparent="4" menudroits="reproConsult" menuvalue="108" menutitle="109" droits="reproConsult" />
+	<lotDisplay action="modules/repro/lot.php" param="display" droits="reproConsult" />
+	<lotChange action="modules/repro/lot.php" param="change" droits="reproGestion" />
+	<lotWrite action="modules/repro/lot.php" param="write" droits="reproGestion" modulebefore="lotChange" retourok="lotDisplay" retourko="lotChange"/>
+	<lotDelete action="modules/repro/lot.php" param="delete" droits="reproGestion" modulebefore="lotChange" retoursuppr="lotList" retourko="lotChange"/>
+
 	
 </navigation>
 	

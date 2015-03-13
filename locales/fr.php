@@ -100,6 +100,8 @@ $LANG["menu"][104] = "Poissons";
 $LANG["menu"][105] = "Liste des reproducteurs sélectionnés pour une campagne";
 $LANG["menu"][106] = "Séquences et bassins";
 $LANG["menu"][107] = "Liste des séquences et des bassins pour une campagne";
+$LANG["menu"][108] = "Lots de larves";
+$LANG["menu"][109] = "Liste des lots de larves pour une campagne";
 
 
 
