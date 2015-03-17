@@ -11,6 +11,7 @@ $(document).ready(function() {
 <tr>
 <th>Données<br>générales</th>
 <th>Nom</th>
+<th>Utilisation</th>
 <th>Suppr.</th>
 </tr>
 </thead>
@@ -27,6 +28,7 @@ $(document).ready(function() {
 {$bassins[lst].bassin_nom}
 </a>
 </td>
+<td>{$bassins[lst].bassin_utilisation}</td>
 <td class="center">
 <a class="confirmation" href="index.php?module=bassinCampagneDelete&bassin_campagne_id={$bassins[lst].bassin_campagne_id}">
 <img src="display/images/cross.png" height="25">

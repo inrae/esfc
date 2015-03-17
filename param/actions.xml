@@ -228,6 +228,7 @@
 
 	<bassinCampagneDisplay action="modules/repro/bassinCampagne.php" param="display" droits="reproConsult"/>
 	<bassinCampagneDelete action="modules/repro/bassinCampagne.php" param="delete" droits="reproGestion" modulebefore="sequenceList" retoursuppr="sequenceList" retourko="sequenceList"/>
+	<bassinCampagneWrite action="modules/repro/bassinCampagne.php" param="write" droits="reproGestion" modulebefore="bassinCampagneDisplay" retourok="bassinCampagneDisplay" retourko="bassinCampagneDisplay" />
 
 	<echographieChange action="modules/repro/echographie.php" param="change" droits="reproGestion" />
 	<echographieWrite action="modules/repro/echographie.php" param="write" droits="reproGestion" modulebefore="echographieChange" retourok="echographieChange" retourko="echographieChange"/>

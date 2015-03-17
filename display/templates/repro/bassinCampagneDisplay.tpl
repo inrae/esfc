@@ -28,6 +28,7 @@ $(document).ready(function() {
         	}
     	}
 	} );
+	$(".commentaire").attr("size","30");
 } );
 </script>
 <h2>Détail d'un bassin</h2>
@@ -37,6 +38,19 @@ $(document).ready(function() {
 <td>
 <h3>Identification du bassin</h3>
 {include file="bassin/bassinDetail.tpl"}
+
+<label>Usage du bassin pour la reproduction</label> : 
+{if $droits.reproGestion == 1}
+<form name="cbassincampagne" method="post" action="index.php?module=bassinCampagneWrite">
+<input name="bassin_utilisation" value="{$dataBassinCampagne.bassin_utilisation}" class="commentaire">
+<input type="hidden" name="bassin_campagne_id" value="{$dataBassinCampagne.bassin_campagne_id}">
+<input type="hidden" name="annee" value="{$dataBassinCampagne.annee}">
+<input type="hidden" name="bassin_id" value="{$dataBassinCampagne.bassin_id}">
+<input class="submit" type="submit" value="Enregistrer">
+</form>
+{else}
+{$dataBassinCampagne.bassin_utilisation}
+{/if}
 <h3>Liste des poissons présents</h3>
 {include file="bassin/bassinPoissonPresent.tpl"}
 <br>

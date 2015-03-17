@@ -34,6 +34,9 @@ class BassinCampagne extends ObjetBDD {
 						"type" => 1,
 						"requis" => 1,
 						"defaultValue" => "getYear" 
+				),
+				"bassin_utilisation" => array (
+						"type" => 0 
 				) 
 		);
 		if (! is_array ( $param ))
@@ -72,13 +75,13 @@ class BassinCampagne extends ObjetBDD {
 	}
 	/**
 	 * Retourne la liste des bassins utilisés pour l'année considérée
-	 * 
+	 *
 	 * @param int $annee        	
 	 * @return tableau|NULL
 	 */
 	function getListFromAnnee($annee) {
 		if ($annee > 0) {
-			$sql = "select bassin_id, bassin_campagne_id, annee, bassin_nom
+			$sql = "select bassin_id, bassin_campagne_id, annee, bassin_nom, bassin_utilisation
 					from bassin_campagne
 					join bassin using (bassin_id)
 					where annee = " . $annee . "
@@ -118,58 +121,60 @@ class ProfilThermique extends ObjetBDD {
 						"type" => 1,
 						"requis" => 1 
 				) 
-		)
-		;
+		);
 		if (! is_array ( $param ))
 			$param == array ();
 		$param ["fullDescription"] = 1;
 		
 		parent::__construct ( $p_connection, $param );
 	}
-
+	
 	/**
 	 * Recupere la liste des temperatures definies pour un bassin_campagne
-	 * @param int $bassin_campagne_id
+	 * 
+	 * @param int $bassin_campagne_id        	
 	 * @return tableau|NULL
 	 */
-	function getListFromBassinCampagne($bassin_campagne_id, $type_id=0) {
-		if($bassin_campagne_id > 0) {
+	function getListFromBassinCampagne($bassin_campagne_id, $type_id = 0) {
+		if ($bassin_campagne_id > 0) {
 			$sql = "select profil_thermique_id, bassin_campagne_id, profil_thermique_type_id,
 					pf_datetime, pf_temperature, 
 					profil_thermique_type_libelle
 					from profil_thermique
 					join profil_thermique_type using (profil_thermique_type_id)";
-					$where = " where bassin_campagne_id = ".$bassin_campagne_id;
-					if ($type_id > 0) {
-						$where .= " and profil_thermique_type_id = ".$type_id;
-					}
-					$order = " order by pf_datetime";
-			return $this->getListeParam($sql.$where.$order);
+			$where = " where bassin_campagne_id = " . $bassin_campagne_id;
+			if ($type_id > 0) {
+				$where .= " and profil_thermique_type_id = " . $type_id;
+			}
+			$order = " order by pf_datetime";
+			return $this->getListeParam ( $sql . $where . $order );
 		} else
 			return null;
 	}
-
+	
 	/**
 	 * Surcharge de la fonction lire pour eclater la zone datetime en deux champs
 	 * (non-PHPdoc)
+	 * 
 	 * @see ObjetBDD::lire()
 	 */
-	function lire($id, $getDefault=false, $parentValue = 0) {
-		$data = parent::lire($id, $getDefault, $parentValue);
-		$dateTime = explode(" ", $data["pf_datetime"]);
-		$data["pf_date"] = $dateTime[0];
-		$data["pf_time"] = $dateTime[1];
+	function lire($id, $getDefault = false, $parentValue = 0) {
+		$data = parent::lire ( $id, $getDefault, $parentValue );
+		$dateTime = explode ( " ", $data ["pf_datetime"] );
+		$data ["pf_date"] = $dateTime [0];
+		$data ["pf_time"] = $dateTime [1];
 		return $data;
 	}
-
+	
 	/**
 	 * Surcharge de la fonction ecrire pour reconstituer le champ pf_datetime
 	 * (non-PHPdoc)
+	 * 
 	 * @see ObjetBDD::ecrire()
 	 */
 	function ecrire($data) {
-		$data["pf_datetime"] = $data["pf_date"]." ".$data["pf_time"];
-		return parent::ecrire($data);
+		$data ["pf_datetime"] = $data ["pf_date"] . " " . $data ["pf_time"];
+		return parent::ecrire ( $data );
 	}
 }
 
