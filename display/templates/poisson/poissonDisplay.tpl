@@ -104,6 +104,13 @@ Nouvel événement...
 </div>
 </fieldset>
 <fieldset class="fsMasquable">
+<legend>Échographies</legend>
+<div class="masquage">
+{include file="poisson/echographieList.tpl"}
+<br></div>
+</fieldset>
+
+<fieldset class="fsMasquable">
 <legend>Détermination du sexe</legend>
 <div class="masquage">
 {include file="poisson/genderSelectionList.tpl"}

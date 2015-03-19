@@ -1565,4 +1565,110 @@ class SortieLieu extends ObjetBDD {
 		return parent::ecrire ( $data );
 	}
 }
+
+/**
+ * ORM de gestion de la table echographie
+ *
+ * @author quinton
+ *
+ */
+class Echographie extends ObjetBDD {
+	public function __construct($p_connection, $param = NULL) {
+		$this->param = $param;
+		$this->paramori = $param;
+		$this->table = "echographie";
+		$this->id_auto = "1";
+		$this->colonnes = array (
+				"echographie_id" => array (
+						"type" => 1,
+						"key" => 1,
+						"requis" => 1,
+						"defaultValue" => 0
+				),
+				"evenement_id" => array( 
+						"type" => 1,
+						"requis"=> 1
+				),
+				"poisson_id" => array (
+						"type" => 1,
+						"parentAttrib" => 1,
+						"requis" => 1
+				),
+				"echographie_date" => array (
+						"type" => 2,
+						"requis" => 1
+				),
+				"echographie_commentaire" => array (
+						"type" => 0,
+						"requis" => 1
+				),
+				"cliche_nb" => array (
+						"type" => 1
+				),
+				"cliche_ref" => array (
+						"type" => 0
+				)
+		);
+		if (! is_array ( $param ))
+			$param == array ();
+		$param ["fullDescription"] = 1;
+
+		parent::__construct ( $p_connection, $param );
+	}
+
+	/**
+	 * Retourne la liste des echographies realisees pour un poisson
+	 * @param int $poisson_id
+	 * @return tableau
+	 */
+	function getListByPoisson ($poisson_id) {
+		if ($poisson_id > 0) {
+			$sql = "select echographie_id, evenement_id, e.poisson_id, 
+					echographie_date, echographie_commentaire, 
+					cliche_nb, cliche_ref,
+					evenement_type_libelle
+					from echographie e
+					left outer join evenement using (evenement_id)
+					left outer join evenement_type using (evenement_type_id)
+					where e.poisson_id = ".$poisson_id."
+					order by echographie_date desc";
+			return $this->getListeParam($sql);
+		} else
+			return null;
+	}
+	/**
+	 * Retourne une echographie a partir du numero d'evenement
+	 * @param unknown $evenement_id
+	 * @return array|NULL
+	 */
+	function getDataByEvenement ($evenement_id) {
+		if ($evenement_id > 0) {
+			$sql = "select * from echographie 
+				where evenement_id = ".$evenement_id;
+			return $this->lireParam($sql);
+		} else 
+			return null;		
+	}
+
+	/**
+	 * Retourne la liste des echographies pour l'annee consideree
+	 * @param int $annee
+	 * @return tableau|NULL
+	 */
+	function getListByYear($annee) {
+		if ($annee > 0) {
+			$sql = "select echographie_id, evenement_id, poisson_id, 
+					echographie_date, echographie_commentaire, 
+					cliche_nb, cliche_ref,
+					evenement_type_libelle
+					from echographie
+					left outer join evenement using (evenement_id)
+					left outer join evenement_type using (evenement_type_id) 
+					where extract(year from echographie_date) = ".$annee."
+					order by echographie_date desc";
+			return $this->getListeParam($sql);
+		} else
+			return null;
+	}
+}
 ?>

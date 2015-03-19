@@ -103,6 +103,11 @@ switch ($t_module["param"]) {
 		$sortie = new Sortie($bdd, $ObjetBDDParam);
 		$smarty->assign("dataSortie", $sortie->getListByPoisson($id));
 		/*
+		 * Recuperation des echographies
+		 */
+		$echographie = new Echographie($bdd, $ObjetBDDParam);
+		$smarty->assign("dataEcho", $echographie->getListByPoisson($id));
+		/*
 		 * Gestion des documents associes
 		*/
 		$smarty->assign ( "moduleParent", "poissonDisplay" );

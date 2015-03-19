@@ -76,7 +76,7 @@ Retour à la liste des poissons
 <h2>Modification d'un événément</h2>
 <div class="formSaisie">
 <div>
-<form id="evenementForm" method="post" action="index.php?module=evenementWrite">
+<form id="evenementForm" method="post" action="index.php?module=evenementWrite" enctype="multipart/form-data">
 <input type="hidden" name="evenement_id" value="{$data.evenement_id}">
 <input type="hidden" name="poisson_id" value="{$data.poisson_id}">
 <input type="hidden" name="morphologie_id" value="{$dataMorpho.morphologie_id}">
@@ -90,7 +90,8 @@ Retour à la liste des poissons
 <input type="hidden" name="mortalite_id" id="mortalite_id" value="{$dataMortalite.mortalite_id}" >
 <input type="hidden" name="cohorte_id" id="cohorte_id" value="{$dataCohorte.cohorte_id}" >
 <input type="hidden" name="sortie_id" id="sortie_id" value="{$dataSortie.sortie_id}">
-
+<input type="hidden" name="echographie_id" id="echographie_id" value="{$dataEcho.echographie_id}">
+<input type="hidden" name="document_id" value="0">
 <fieldset>
 <legend>Données liées à l'événement lui-même</legend>
 <dl>
@@ -221,6 +222,31 @@ Sélectionnez le bassin de destination...
 </dl>
 </div>
 </fieldset>
+<fieldset class="fsMasquable">
+<legend>Échographie</legend>
+<div class="masquage">
+<dl>
+
+<dt>Résultat qualitatif de l'échographie <span class="red">*</span> :</dt>
+<dd>
+<input name="echographie_commentaire" value="{$dataEcho.echographie_commentaire}" size="40">
+</dd>
+</dl>
+<dl>
+<dt>Images(s) à importer :
+<br>(doc, jpg, png, pdf, xls, xlsx, docx, odt, ods, csv)
+</dt>
+<dt><input type="file" name="documentName[]" size="40" multiple></dt>
+</dl>
+<dl>
+<dt>Description des images :</dt>
+<dd>
+<input type="text" name="document_description" value="" size="40">
+</dd>
+</dl>
+</div>
+</fieldset>
+
 <fieldset class="fsMasquable">
 <legend>Détermination du sexe</legend>
 <div class="masquage">

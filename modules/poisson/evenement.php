@@ -28,31 +28,31 @@ switch ($t_module ["param"]) {
 			 */
 			/*
 			 * Passage en parametre de la liste parente
-			*/
-			$smarty->assign("poissonDetailParent", $_SESSION["poissonDetailParent"]);
-				
-		/*
-		 * Lecture des tables de parametres necessaires a la saisie
-		 */
-		include_once 'modules/classes/poisson.class.php';
+			 */
+			$smarty->assign ( "poissonDetailParent", $_SESSION ["poissonDetailParent"] );
+			
+			/*
+			 * Lecture des tables de parametres necessaires a la saisie
+			 */
+			include_once 'modules/classes/poisson.class.php';
 			include_once 'modules/classes/bassin.class.php';
 			$evenement_type = new Evenement_type ( $bdd, $ObjetBDDParam );
-			$smarty->assign ( "evntType", $evenement_type->getListe (2) );
+			$smarty->assign ( "evntType", $evenement_type->getListe ( 2 ) );
 			$pathologie_type = new Pathologie_type ( $bdd, $ObjetBDDParam );
-			$smarty->assign ( "pathoType", $pathologie_type->getListe (2) );
+			$smarty->assign ( "pathoType", $pathologie_type->getListe ( 2 ) );
 			$gender_methode = new Gender_methode ( $bdd, $ObjetBDDParam );
-			$smarty->assign ( "genderMethode", $gender_methode->getListe (1) );
+			$smarty->assign ( "genderMethode", $gender_methode->getListe ( 1 ) );
 			$sexe = new Sexe ( $bdd, $ObjetBDDParam );
-			$smarty->assign ( "sexe", $sexe->getListe (1) );
+			$smarty->assign ( "sexe", $sexe->getListe ( 1 ) );
 			$bassin = new Bassin ( $bdd, $ObjetBDDParam );
 			$smarty->assign ( "bassinList", $bassin->getListe () );
 			$smarty->assign ( "bassinListActif", $bassin->getListe ( 1 ) );
-			$mortalite_type = new Mortalite_type($bdd, $ObjetBDDParam);
-			$smarty->assign("mortaliteType", $mortalite_type->getListe(2));
-			$cohorte_type = new Cohorte_type($bdd, $ObjetBDDParam);
-			$smarty->assign("cohorteType", $cohorte_type->getListe(2));
-			$sortie_lieu =  new SortieLieu($bdd, $ObjetBDDParam);
-			$smarty->assign("sortieLieu", $sortie_lieu->getListeActif(1));
+			$mortalite_type = new Mortalite_type ( $bdd, $ObjetBDDParam );
+			$smarty->assign ( "mortaliteType", $mortalite_type->getListe ( 2 ) );
+			$cohorte_type = new Cohorte_type ( $bdd, $ObjetBDDParam );
+			$smarty->assign ( "cohorteType", $cohorte_type->getListe ( 2 ) );
+			$sortie_lieu = new SortieLieu ( $bdd, $ObjetBDDParam );
+			$smarty->assign ( "sortieLieu", $sortie_lieu->getListeActif ( 1 ) );
 			dataRead ( $dataClass, $id, "poisson/evenementChange.tpl", $_REQUEST ["poisson_id"] );
 			/*
 			 * Lecture du poisson
@@ -70,25 +70,27 @@ switch ($t_module ["param"]) {
 				$smarty->assign ( "dataPatho", $pathologie->getDataByEvenement ( $id ) );
 				$genderSelection = new Gender_selection ( $bdd, $ObjetBDDParam );
 				$smarty->assign ( "dataGender", $genderSelection->getDataByEvenement ( $id ) );
-				$mortalite = new Mortalite($bdd, $ObjetBDDParam);
-				$smarty->assign("dataMortalite", $mortalite->getDataByEvenement($id));
-				$cohorte = new Cohorte($bdd, $ObjetBDDParam);
-				$smarty->assign("dataCohorte", $cohorte->getDataByEvenement($id));
-				$sortie = new Sortie($bdd, $ObjetBDDParam);
-				$smarty->assign("dataSortie", $sortie->getDataByEvenement($id));
+				$mortalite = new Mortalite ( $bdd, $ObjetBDDParam );
+				$smarty->assign ( "dataMortalite", $mortalite->getDataByEvenement ( $id ) );
+				$cohorte = new Cohorte ( $bdd, $ObjetBDDParam );
+				$smarty->assign ( "dataCohorte", $cohorte->getDataByEvenement ( $id ) );
+				$sortie = new Sortie ( $bdd, $ObjetBDDParam );
+				$smarty->assign ( "dataSortie", $sortie->getDataByEvenement ( $id ) );
+				$echographie = new Echographie ( $bdd, $ObjetBDDParam );
+				$smarty->assign ( "dataEcho", $echographie->getDataByEvenement ( $id ) );
 				/*
 				 * Traitement particulier du transfert
-				 */				
+				 */
 				$transfert = new Transfert ( $bdd, $ObjetBDDParam );
 				$dataTransfert = $transfert->getDataByEvenement ( $id );
-				} else {
+			} else {
 				/*
 				 * Initialisation des donnees en cas de nouvel evenement
 				 */
 				if ($dataPoisson ["bassin_id"] > 0)
 					$dataTransfert = array (
 							"dernier_bassin_connu" => $dataPoisson ["bassin_id"],
-							"dernier_bassin_connu_libelle" =>$dataPoisson["bassin_nom"]
+							"dernier_bassin_connu_libelle" => $dataPoisson ["bassin_nom"] 
 					);
 			}
 			$smarty->assign ( "dataTransfert", $dataTransfert );
@@ -100,8 +102,8 @@ switch ($t_module ["param"]) {
 			$smarty->assign ( "parentIdName", "evenement_id" );
 			$smarty->assign ( "parent_id", $id );
 			include_once "modules/classes/documentSturio.class.php";
-			$documentSturio = new DocumentSturio($bdd, $ObjetBDDParam);
-			$smarty->assign("dataDoc", $documentSturio->getListeDocument("evenement", $id));
+			$documentSturio = new DocumentSturio ( $bdd, $ObjetBDDParam );
+			$smarty->assign ( "dataDoc", $documentSturio->getListeDocument ( "evenement", $id ) );
 		}
 		break;
 	case "write":
@@ -158,10 +160,10 @@ switch ($t_module ["param"]) {
 			/*
 			 * Transfert
 			 */
-			if ($_REQUEST["bassin_destination"] > 0 ) {
-				$transfert = new Transfert($bdd, $ObjetBDDParam);
-				$_REQUEST["transfert_date"] = $_REQUEST["evenement_date"];
-				$transfert_id = $transfert->ecrire($_REQUEST);
+			if ($_REQUEST ["bassin_destination"] > 0) {
+				$transfert = new Transfert ( $bdd, $ObjetBDDParam );
+				$_REQUEST ["transfert_date"] = $_REQUEST ["evenement_date"];
+				$transfert_id = $transfert->ecrire ( $_REQUEST );
 				if (! $transfert_id > 0) {
 					$message .= formatErrorData ( $transfert->getErrorData () );
 					$message .= $LANG ["message"] [12];
@@ -171,10 +173,10 @@ switch ($t_module ["param"]) {
 			/*
 			 * Mortalite
 			 */
-			if ($_REQUEST["mortalite_type_id"] > 0 ) {
-				$mortalite = new Mortalite($bdd, $ObjetBDDParam);
-				$_REQUEST["mortalite_date"] = $_REQUEST["evenement_date"];
-				$mortalite_id = $mortalite->ecrire($_REQUEST);
+			if ($_REQUEST ["mortalite_type_id"] > 0) {
+				$mortalite = new Mortalite ( $bdd, $ObjetBDDParam );
+				$_REQUEST ["mortalite_date"] = $_REQUEST ["evenement_date"];
+				$mortalite_id = $mortalite->ecrire ( $_REQUEST );
 				if (! $mortalite_id > 0) {
 					$message .= formatErrorData ( $mortalite->getErrorData () );
 					$message .= $LANG ["message"] [12];
@@ -184,10 +186,10 @@ switch ($t_module ["param"]) {
 			/*
 			 * Cohorte
 			 */
-			if ($_REQUEST["cohorte_type_id"] > 0) {
-				$cohorte = new Cohorte($bdd, $ObjetBDDParam);
-				$_REQUEST["cohorte_date"] = $_REQUEST["evenement_date"];
-				$cohorte_id = $cohorte->ecrire($_REQUEST);
+			if ($_REQUEST ["cohorte_type_id"] > 0) {
+				$cohorte = new Cohorte ( $bdd, $ObjetBDDParam );
+				$_REQUEST ["cohorte_date"] = $_REQUEST ["evenement_date"];
+				$cohorte_id = $cohorte->ecrire ( $_REQUEST );
 				if (! $cohorte_id > 0) {
 					$message .= formatErrorData ( $cohorte->getErrorData () );
 					$message .= $LANG ["message"] [12];
@@ -197,10 +199,10 @@ switch ($t_module ["param"]) {
 			/*
 			 * Sortie
 			 */
-			if ($_REQUEST["sortie_lieu_id"] > 0 ) {
-				$sortie = new Sortie($bdd, $ObjetBDDParam);
-				$_REQUEST["sortie_date"] = $_REQUEST["evenement_date"];
-				$sortie_id = $sortie->ecrire($_REQUEST);
+			if ($_REQUEST ["sortie_lieu_id"] > 0) {
+				$sortie = new Sortie ( $bdd, $ObjetBDDParam );
+				$_REQUEST ["sortie_date"] = $_REQUEST ["evenement_date"];
+				$sortie_id = $sortie->ecrire ( $_REQUEST );
 				if (! $sortie_id > 0) {
 					$message .= formatErrorData ( $sortie->getErrorData () );
 					$message .= $LANG ["message"] [12];
@@ -208,17 +210,67 @@ switch ($t_module ["param"]) {
 				}
 			}
 			/*
+			 * Echographie
+			 */
+			if (strlen ( $_REQUEST ["echographie_commentaire"] ) > 0) {
+				$echographie = new Echographie ( $bdd, $ObjetBDDParam );
+				$_REQUEST ["echographie_date"] = $_REQUEST ["evenement_date"];
+				$echographie_id = $echographie->ecrire ( $_REQUEST );
+				if (! $echographie_id > 0) {
+					$message .= formatErrorData ( $echographie->getErrorData () );
+					$message .= $LANG ["message"] [12];
+					$module_coderetour = - 1;
+				}
+				/*
+				 * Traitement des photos a importer
+				 */
+				if ($echographie_id > 0 && isset($_FILES["documentName"])) {
+					/*
+					 * Preparation de files
+					 */
+					$files = array ();
+					$fdata = $_FILES ['documentName'];
+					if (is_array ( $fdata ['name'] )) {
+						for($i = 0; $i < count ( $fdata ['name'] ); ++ $i) {
+							$files [] = array (
+									'name' => $fdata ['name'] [$i],
+									'type' => $fdata ['type'] [$i],
+									'tmp_name' => $fdata ['tmp_name'] [$i],
+									'error' => $fdata ['error'] [$i],
+									'size' => $fdata ['size'] [$i] 
+							);
+						}
+					} else
+						$files [] = $fdata;
+					$documentSturio = new DocumentSturio ( $bdd, $ObjetBDDParam );
+					foreach ( $files as $file ) {
+						$document_id = $documentSturio->ecrire ( $file, $_REQUEST ["document_description"] );
+						if ($document_id > 0) {
+							/*
+							 * Ecriture de l'enregistrement en table liee
+							 */
+							$documentLie = new DocumentLie ( $bdd, $ObjetBDDParam, 'evenement' );
+							$data = array (
+									"document_id" => $document_id,
+									"evenement_id" => $id 
+							);
+							$documentLie->ecrire ( $data );
+						}
+					}
+				}
+			}
+			/*
 			 * Creation d'une nouvelle anomalie a traiter en cas de souci
 			 */
-			if ($_REQUEST["anomalie_flag"] > 0 ) {
+			if ($_REQUEST ["anomalie_flag"] > 0) {
 				include_once "modules/classes/anomalie.class.php";
-				$anomalie = new Anomalie_db($bdd, $ObjetBDDParam);
-				$_REQUEST["anomalie_id"] = 0;
-				$_REQUEST["anomalie_db_date"] = $_REQUEST["evenement_date"];
-				$_REQUEST["anomalie_db_statut"] = 0;
-				$_REQUEST["anomalie_db_type_id"] = $_REQUEST["anomalie_flag"];
-				$anomalie_id = $anomalie->ecrire($_REQUEST);
-				if (! $anomalie_id > 0 ) {
+				$anomalie = new Anomalie_db ( $bdd, $ObjetBDDParam );
+				$_REQUEST ["anomalie_id"] = 0;
+				$_REQUEST ["anomalie_db_date"] = $_REQUEST ["evenement_date"];
+				$_REQUEST ["anomalie_db_statut"] = 0;
+				$_REQUEST ["anomalie_db_type_id"] = $_REQUEST ["anomalie_flag"];
+				$anomalie_id = $anomalie->ecrire ( $_REQUEST );
+				if (! $anomalie_id > 0) {
 					$message .= formatErrorData ( $anomalie->getErrorData () );
 					$message .= $LANG ["message"] [12];
 					$module_coderetour = - 1;

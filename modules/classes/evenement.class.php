@@ -91,6 +91,11 @@
  			$sortie = new Sortie ($this->connection, $this->paramori);
  			$sortie->supprimerChamp ($id, "evenement_id");
  			/*
+ 			 * Echographie
+ 			 */
+ 			$echographie = new Echographie($this->connection, $this->paramori);
+ 			$echographie->supprimerChamp($id, "evenement_id");
+ 			/*
  			 * Suppression finale de l'evenement
  			 */
  			return parent::supprimer($id);
