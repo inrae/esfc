@@ -1,5 +1,3 @@
-<fieldset>
-<legend>Séquences</legend>
 {if $droits.reproGestion == 1}
 <a href="index.php?module=poissonSequenceChange&poisson_sequence_id=0&poisson_campagne_id={$dataPoisson.poisson_campagne_id}">
 Rattacher une nouvelle séquence...
@@ -33,5 +31,3 @@ Rattacher une nouvelle séquence...
 </tdata>
 </table>
 <br>
-
-</fieldset>

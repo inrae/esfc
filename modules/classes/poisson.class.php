@@ -1652,19 +1652,21 @@ class Echographie extends ObjetBDD {
 
 	/**
 	 * Retourne la liste des echographies pour l'annee consideree
+	 * @param int $poisson_id
 	 * @param int $annee
 	 * @return tableau|NULL
 	 */
-	function getListByYear($annee) {
+	function getListByYear($poisson_id, $annee) {
 		if ($annee > 0) {
-			$sql = "select echographie_id, evenement_id, poisson_id, 
+			$sql = "select echographie_id, evenement_id, e.poisson_id, 
 					echographie_date, echographie_commentaire, 
 					cliche_nb, cliche_ref,
 					evenement_type_libelle
-					from echographie
+					from echographie e
 					left outer join evenement using (evenement_id)
 					left outer join evenement_type using (evenement_type_id) 
 					where extract(year from echographie_date) = ".$annee."
+					and e.poisson_id = ".$poisson_id." 
 					order by echographie_date desc";
 			return $this->getListeParam($sql);
 		} else

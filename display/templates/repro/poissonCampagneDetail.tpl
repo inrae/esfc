@@ -4,6 +4,7 @@
 <label>Identification : </label>{$dataPoisson.matricule} {$dataPoisson.prenom} {$dataPoisson.pittag_valeur} - {$dataPoisson.sexe_libelle} 
 <br>
 <label>Année de reproduction : </label>{$dataPoisson.annee}
+&nbsp;<label>Statut : </label>{$dataPoisson.repro_statut_libelle}
 <br>
 <label>Taux de croissance journalier / spécifique : </label>{$dataPoisson.tx_croissance_journalier}
 / {$dataPoisson.specific_growth_rate}

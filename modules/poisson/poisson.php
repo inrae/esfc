@@ -108,6 +108,12 @@ switch ($t_module["param"]) {
 		$echographie = new Echographie($bdd, $ObjetBDDParam);
 		$smarty->assign("dataEcho", $echographie->getListByPoisson($id));
 		/*
+		 * Recuperation des campagnes de reproduction
+		 */
+		require_once 'modules/classes/poissonRepro.class.php';
+		$poissonCampagne = new PoissonCampagne($bdd, $ObjetBDDParam);
+		$smarty->assign("dataRepro", $poissonCampagne->getListFromPoisson($id));
+		/*
 		 * Gestion des documents associes
 		*/
 		$smarty->assign ( "moduleParent", "poissonDisplay" );

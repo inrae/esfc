@@ -1,5 +1,3 @@
-<fieldset>
-<legend>Biopsies</legend>
 {if $droits.reproGestion == 1}
 <a href="index.php?module=biopsieChange&biopsie_id=0&poisson_campagne_id={$dataPoisson.poisson_campagne_id}">
 Nouvelle biopsie...
@@ -53,4 +51,3 @@ Nouvelle biopsie...
 {/section}
 </tdata>
 </table>
-</fieldset>

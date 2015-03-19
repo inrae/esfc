@@ -27,7 +27,8 @@ class PoissonCampagne extends ObjetBDD {
 				),
 				"poisson_id" => array (
 						"type" => 1,
-						"requis" => 1 
+						"requis" => 1,
+						"parentAttrib" => 1 
 				),
 				"annee" => array (
 						"type" => 1,
@@ -40,7 +41,14 @@ class PoissonCampagne extends ObjetBDD {
 				"specific_growth_rate" => array (
 						"type" => 1 
 				),
-				"masse" => array ("type"=>1)
+				"masse" => array (
+						"type" => 1 
+				),
+				"repro_statut_id" => array (
+						"type" => 1,
+						"requis" => 1,
+						"defaultValue" => 1 
+				) 
 		);
 		if (! is_array ( $param ))
 			$param == array ();
@@ -72,9 +80,9 @@ class PoissonCampagne extends ObjetBDD {
 			if (is_null ( $annee ))
 				$annee = getYear ();
 			$masse_actuelle = $morphologie->getMasseBeforeRepro ( $poisson_id, $annee );
-			$result["masse_actuelle"] = $masse_actuelle["masse"];
+			$result ["masse_actuelle"] = $masse_actuelle ["masse"];
 			$masse_anterieure = $morphologie->getMasseBeforeDate ( $poisson_id, $masse_actuelle ["morphologie_date"] );
-			$result["masse_anterieure"] = $masse_anterieure["masse"];
+			$result ["masse_anterieure"] = $masse_anterieure ["masse"];
 			if (is_array ( $masse_actuelle ) && is_array ( $masse_anterieure )) {
 				if ($masse_actuelle ["masse"] > 0 && $masse_anterieure ["masse"] > 0) {
 					/*
@@ -91,13 +99,18 @@ class PoissonCampagne extends ObjetBDD {
 						 * Calcul du SGR
 						 */
 						$result ["sgr"] = (log ( $masse_actuelle ["masse"] ) - log ( $masse_anterieure ["masse"] )) * 100 / $nbJour;
+						/*
+						 * Limitation du nombre de decimales
+						 */
+						$result ['txCroissance'] = intval ( $result ["txCroissance"] * 1000 ) / 1000;
+						$result ['sgr'] = intval ( $result ["sgr"] * 1000 ) / 1000;
 					}
 				}
 			}
 		}
 		return $result;
 	}
-		
+	
 	/**
 	 * Initialise globalement une campagne
 	 *
@@ -120,28 +133,53 @@ class PoissonCampagne extends ObjetBDD {
 		 * Traitement de chaque occurence de la liste
 		 */
 		foreach ( $liste as $key => $value ) {
-			$data = array (
-					"poisson_id" => $value ["poisson_id"],
-					"annee" => $annee 
-			);
-			/*
-			 * Calcul du taux de croissance journalier
-			 */
-			$result = $this->txCroissanceJourCalcul ( $value ["poisson_id"], $annee );
-			if (! is_null ( $result )) {
-				printr($result);
-				$data ["tx_croissance_journalier"] = $result ["txCroissance"];
-				$data ["specific_growth_rate"] = $result ["sgr"];
-				$data["masse"] = $result["masse_actuelle"];
-			}
-			/*
-			 * Recuperation de la derniere masse connue
-			 */
-			
-			if (parent::ecrire ( $data ) > 0)
+			if ($this->initCampagnePoisson ( $value ["poisson_id"], $annee ) > 0)
 				$nb ++;
 		}
 		return $nb;
+	}
+	/**
+	 * Initialise une annee de campagne pour un poisson
+	 *
+	 * @param int $poisson_id        	
+	 * @param int $annee        	
+	 * @return int
+	 */
+	function initCampagnePoisson($poisson_id, $annee) {
+		if ($poisson_id > 0 && $annee > 0) {
+			/*
+			 * Recherche s'il existe deja un enregistrement
+			 */
+			$exist = $this->lireFromPoissonAnnee ( $poisson_id, $annee );
+			if (! $exist ["poisson_campagne_id"] > 0) {
+				$data = array (
+						"poisson_id" => $value ["poisson_id"],
+						"annee" => $annee,
+						"repro_statut_id" => 1 
+				);
+				/*
+				 * Calcul du taux de croissance journalier
+				 */
+				$result = $this->txCroissanceJourCalcul ( $poisson_id, $annee );
+				if (! is_null ( $result )) {
+					// printr($result);
+					$data ["tx_croissance_journalier"] = $result ["txCroissance"];
+					$data ["specific_growth_rate"] = $result ["sgr"];
+					$data ["masse"] = $result ["masse_actuelle"];
+				}
+				return $this->ecrire ( $data );
+			}
+		}
+		return 0;
+	}
+	function lireFromPoissonAnnee($poisson_id, $annee) {
+		if ($poisson_id > 0 && $annee > 0) {
+			$sql = "select * from poisson_campagne 
+					where poisson_id = " . $poisson_id . "
+					and annee = " . $annee;
+			return $this->lireParam ( $sql );
+		} else
+			return null;
 	}
 	
 	/**
@@ -234,7 +272,7 @@ class PoissonCampagne extends ObjetBDD {
 	
 	/**
 	 * Retourne la liste des années de reproduction
-	 * 
+	 *
 	 * @return array
 	 */
 	function getAnnees() {
@@ -245,23 +283,107 @@ class PoissonCampagne extends ObjetBDD {
 	/**
 	 * Reecriture de la fonction lire, pour recuperer les informations liees
 	 * (non-PHPdoc)
-	 * 
+	 *
 	 * @see ObjetBDD::lire()
 	 */
 	function lire($id) {
 		if ($id > 0) {
 			$sql = "select poisson_campagne_id, poisson_id, matricule, prenom, pittag_valeur, cohorte,
 				annee, tx_croissance_journalier, specific_growth_rate,
-				sexe_libelle, sexe_libelle_court, masse
+				sexe_libelle, sexe_libelle_court, masse,
+				repro_statut_id, repro_statut_libelle
 				
 				from poisson p
 				join poisson_campagne c using (poisson_id)
+				join repro_statut using (repro_statut_id)
 				left outer join sexe using (sexe_id)
 				left outer join v_pittag_by_poisson using (poisson_id)
 				where poisson_campagne_id = " . $id;
 			return parent::lireParam ( $sql );
 		} else
 			return null;
+	}
+	/**
+	 * Surcharge de la fonction ecrire, pour calculer les taux de croissance en cas de creation
+	 * (non-PHPdoc)
+	 *
+	 * @see ObjetBDD::ecrire()
+	 */
+	function ecrire($data) {
+		$ok = false;
+		if ($data ["poisson_id"] > 0 && $data ["annee"] > 0)
+			$ok = true;
+		if ($data ["poisson_campagne_id"] == 0 && $ok == true) {
+			/*
+			 * Recherche s'il existe deja un enregistrement
+			 */
+			$exist = $this->lireFromPoissonAnnee ( $data["poisson_id"], $data["annee"] );
+			if (! $exist ["poisson_campagne_id"] > 0) {
+				$result = $this->txCroissanceJourCalcul ( $data ["poisson_id"], $data ["annee"] );
+				if (! is_null ( $result )) {
+					$data ["tx_croissance_journalier"] = $result ["txCroissance"];
+					$data ["specific_growth_rate"] = $result ["sgr"];
+					$data ["masse"] = $result ["masse_actuelle"];
+				}
+			} else
+				$ok = false;
+		}
+		if ($ok == true) {
+			return parent::ecrire ( $data );
+		} else
+			return - 1;
+	}
+	
+	/**
+	 * Retourne la liste des campagnes de reproduction pour un poisson
+	 *
+	 * @param int $poisson_id        	
+	 * @return tableau|NULL
+	 */
+	function getListFromPoisson($poisson_id) {
+		if ($poisson_id > 0) {
+			$sql = "select poisson_campagne_id, poisson_id, annee,
+					masse, tx_croissance_journalier, specific_growth_rate,
+					repro_statut_id, repro_statut_libelle
+					from poisson_campagne
+					join repro_statut using (repro_statut_id)
+					where poisson_id = " . $poisson_id . "
+					order by annee desc";
+			return $this->getListeParam ( $sql );
+		} else
+			return null;
+	}
+}
+
+/**
+ * ORM de gestion de la table repro_statut
+ *
+ * @author quinton
+ *        
+ */
+class ReproStatut extends ObjetBDD {
+	public function __construct($p_connection, $param = NULL) {
+		$this->param = $param;
+		$this->paramori = $param;
+		$this->table = "repro_statut";
+		$this->id_auto = "1";
+		$this->colonnes = array (
+				"repro_statut_id" => array (
+						"type" => 1,
+						"key" => 1,
+						"requis" => 1,
+						"defaultValue" => 0 
+				),
+				"repro_statut_libelle" => array (
+						"type" => 0,
+						"requis" => 1 
+				) 
+		);
+		if (! is_array ( $param ))
+			$param == array ();
+		$param ["fullDescription"] = 1;
+		
+		parent::__construct ( $p_connection, $param );
 	}
 }
 

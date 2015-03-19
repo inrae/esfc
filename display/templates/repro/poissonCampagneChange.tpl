@@ -9,26 +9,46 @@ $(document).ready(function() {
 <a href="index.php?module=poissonCampagneDisplay&poisson_campagne_id={$data.poisson_campagne_id}">
 Retour au détail du poisson
 </a>
-<h2>Modifier les taux de croissance d'un poisson</h2>
+<h2>Sélectionner un poisson pour une campagne</h2>
 <div class="formSaisie">
 <div>
 <form id="poissonCampagneForm" method="post" action="index.php?module=poissonCampagneWrite">
 <input type="hidden" name="poisson_campagne_id" value="{$data.poisson_campagne_id}">
+<input type="hidden" name="poisson_id" value="{$data.poisson_id}">
 <dl>
 <dt>Identification :</dt>
 <dd>
-<input name="identification" readonly value="{$data.matricule} {$data.prenom} {$data.pittag_valeur}">
+<input name="identification" readonly value="{$dataPoisson.matricule} {$dataPoisson.prenom} {$dataPoisson.pittag_valeur}">
 </dd>
 </dl>
 <dl>
 <dt>Année :</dt>
 <dd>
-<input name="annee" readonly value="{$data.annee}">
+<select name="annee">
+{section name=lst loop=$annees}
+<option value="{$annees[lst].annee}" {if $annees[lst].annee == $data.annee}selected{/if}>
+{$annees[lst].annee}
+</option>
+{/section}
+</select>
 </dd>
+</dl>
+<dl>
+<dt>
+Statut du poisson pour la repro :
+</dt>
+<dd>
+<select name="repro_statut_id">
+{section name=lst loop=$reproStatut}
+<option value="{$reproStatut[lst].repro_statut_id}" {if $reproStatut[lst].repro_statut_id == $data.repro_statut_id}selected{/if}>
+{$reproStatut[lst].repro_statut_libelle}
+</option>
+{/section}
+</select>
 </dl>
 
 <fieldset>
-<legend>Indicateurs de croissance</legend>
+<legend>Indicateurs de croissance (calculés automatiquement en cas de nouvelle sélection)</legend>
 <dl>
 <dt>Taux de croissance journalier :</dt>
 <dd>

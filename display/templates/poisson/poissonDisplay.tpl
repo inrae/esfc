@@ -73,6 +73,18 @@ Nouvel événement...
 </div>
 </fieldset>
 <fieldset class="fsMasquable">
+<legend>Campagnes de reproduction</legend>
+<div class="masquage">
+{if $droits.reproGestion == 1} 
+<a href="index.php?module=poissonCampagneChange&poisson_id={$dataPoisson.poisson_id}&poisson_campagne_id=0">
+Pré-sélectionner le poisson pour une campagne de reproduction
+</a>
+{/if}
+{include file="poisson/poissonCampagneList.tpl"}
+</div>
+</fieldset>
+
+<fieldset class="fsMasquable">
 <legend>Sortie du stock</legend>
 <div class="masquage">
 {include file="poisson/sortieList.tpl"}

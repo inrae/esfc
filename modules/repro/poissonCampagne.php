@@ -39,7 +39,8 @@ switch ($t_module ["param"]) {
 		/*
 		 * Display the detail of the record
 		 */
-		$smarty->assign ( "dataPoisson", $dataClass->lire ( $id ) );
+		$data = $dataClass->lire ( $id );
+		$smarty->assign ( "dataPoisson", $data );
 		/*
 		 * Passage en parametre de la liste parente
 		 */
@@ -50,7 +51,7 @@ switch ($t_module ["param"]) {
 		require_once 'modules/classes/dosageSanguin.class.php';
 		require_once 'modules/classes/biopsie.class.php';
 		require_once 'modules/classes/sequence.class.php';
-		require_once 'modules/classes/echographie.class.php';
+		require_once 'modules/classes/poisson.class.php';
 		$dosageSanguin = new DosageSanguin ( $bdd, $ObjetBDDParam );
 		$biopsie = new Biopsie ( $bdd, $ObjetBDDParam );
 		$poissonSequence = new PoissonSequence ( $bdd, $ObjetBDDParam );
@@ -61,7 +62,7 @@ switch ($t_module ["param"]) {
 		$smarty->assign ( "dataBiopsie", $biopsie->getListeFromPoissonCampagne ( $id ) );
 		$smarty->assign ( "dataSequence", $poissonSequence->getListFromPoisson ( $id ) );
 		$smarty->assign ( "dataPsEvenement", $psEvenement->getListeEvenementFromPoisson ( $id ) );
-		$smarty->assign ( "echographies", $echographie->getListFromPoissonCampagne($id));
+		$smarty->assign ( "dataEcho", $echographie->getListByYear($data["poisson_id"], $_SESSION["annee"]));
 		
 		$smarty->assign ( "corps", "repro/poissonCampagneDisplay.tpl" );
 		if (isset ($_REQUEST["sequence_id"]))
@@ -73,7 +74,26 @@ switch ($t_module ["param"]) {
 		 * If is a new record, generate a new record with default value :
 		 * $_REQUEST["idParent"] contains the identifiant of the parent record
 		 */
-		dataRead ( $dataClass, $id, "repro/poissonCampagneChange.tpl", $_REQUEST ["idParent"] );
+		dataRead ( $dataClass, $id, "repro/poissonCampagneChange.tpl", $_REQUEST ["poisson_id"] );
+		/*
+		 * Lecture des informations concernant le poisson
+		 */
+		require_once 'modules/classes/poisson.class.php';
+		$poisson = new Poisson($bdd, $ObjetBDDParam);
+		$smarty->assign("dataPoisson", $poisson->getDetail($_REQUEST["poisson_id"]));
+		/*
+		 * Lecture de la table des statuts
+		 */
+		$reproStatut = new ReproStatut($bdd, $ObjetBDDParam);
+		$smarty->assign("reproStatut", $reproStatut->getListe(1));
+		/*
+		 * Calcul des annees de campagne potentielles
+		 */
+		$anneeCourante = date('Y');
+		for ($i=$anneeCourante; $i > 1995; $i --) {
+			$annees[]["annee"] = $i;
+		}
+		$smarty->assign("annees", $annees);
 		break;
 	case "write":
 		/*
