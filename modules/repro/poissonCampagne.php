@@ -77,23 +77,26 @@ switch ($t_module ["param"]) {
 		$smarty->assign ( "corps", "repro/poissonCampagneDisplay.tpl" );
 		if (isset ( $_REQUEST ["sequence_id"] ))
 			$smarty->assign ( "sequence_id", $_REQUEST ["sequence_id"] );
-		/*
+			/*
 		 * Recherche des temperatures pour le graphique
 		 */
-		for ($i=1;$i<3;$i++){
-			$datapf = $dataClass->getTemperatures($data["poisson_id"], $_SESSION["annee"], $i);
-			$x = "'x".$i."'";
-			if ($i == 1) {
-				$y = "'constaté'";
-			} else $y = "'prévu'";
-			foreach ($datapf as $key => $value) {
-				$x.=",'".$value["pf_datetime"]."'";
-				$y .= ",".$value["pf_temperature"];
+		if ($_REQUEST ["graphicsEnabled"] == 1) {
+			for($i = 1; $i < 3; $i ++) {
+				$datapf = $dataClass->getTemperatures ( $data ["poisson_id"], $_SESSION ["annee"], $i );
+				$x = "'x" . $i . "'";
+				if ($i == 1) {
+					$y = "'constaté'";
+				} else
+					$y = "'prévu'";
+				foreach ( $datapf as $key => $value ) {
+					$x .= ",'" . $value ["pf_datetime"] . "'";
+					$y .= "," . $value ["pf_temperature"];
+				}
+				$smarty->assign ( "pfx" . $i, $x );
+				$smarty->assign ( "pfy" . $i, $y );
 			}
-			$smarty->assign("pfx".$i, $x);
-			$smarty->assign("pfy".$i, $y);
+			$smarty->assign("graphicsEnabled", 1);
 		}
-		
 		break;
 	case "change":
 		/*

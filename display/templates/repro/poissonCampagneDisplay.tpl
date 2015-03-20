@@ -3,6 +3,7 @@
 <script src="display/javascript/c3/c3.min.js"></script>
 <script>
 $(document).ready(function() {
+	{if $graphicsEnabled == 1}
 	var chart = c3.generate( {
 		bindto: '#profilThermique',
 		data: {
@@ -28,6 +29,7 @@ $(document).ready(function() {
         	}
     	}
 	} );
+	{/if}
 } );
 </script>
 <h2>Détail d'un reproducteur</h2>
@@ -37,7 +39,11 @@ $(document).ready(function() {
 <a href="index.php?module=poissonCampagneChange&poisson_campagne_id={$dataPoisson.poisson_campagne_id}&poisson_id={$dataPoisson.poisson_id}">
 Modifier les informations générales...
 </a>
+&nbsp;
 {/if}
+<a href="index.php?module=poissonCampagneDisplay&poisson_campagne_id={$dataPoisson.poisson_campagne_id}&graphicsEnabled=1">
+Afficher les graphiques...
+</a>
 <table class="tablemulticolonne">
 <tr>
 <td colspan="2">
