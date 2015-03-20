@@ -3,6 +3,9 @@ $(document).ready(function() {
 	$("select").change(function () {
 		$("#search").submit();
 	} );
+	 $('#confirmation').on('click', function () {
+	        return confirm("Confirmez-vous l'initialisation à partir des bassins actifs identifiés pour la reproduction ?");
+	    } );
 } ) ;
 </script>
 <form method="get" action="index.php" id="search">
@@ -45,4 +48,7 @@ $(document).ready(function() {
 </table>
 
 <h2>Bassins</h2>
+{if $droits.reproGestion == 1}
+<a id="confirmation" href="index.php?module=bassinCampagneInit&annee={$annee}">Initialiser la liste des bassins pour la campagne</a>
+{/if}
 {include file="repro/bassinCampagneList.tpl"}

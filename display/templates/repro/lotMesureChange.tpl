@@ -32,7 +32,8 @@ $(document).ready(function() {
 </dd>
 </dl>
 <dl><dt>Nombre de jours depuis l'éclosion :</dt>
-<dd><input name="nb_jour" class="entier" value="{$data.nb_jour}"></dd>
+<dd><input name="nb_jour" readonly class="entier" value="{$data.nb_jour}"> 
+(valeur calculée à l'enregistrement)</dd>
 </dl>
 <dl><dt>Nbre d'individus morts :</dt>
 <dd><input name="lot_mortalite" class="entier" value="{$data.lot_mortalite}"></dd>

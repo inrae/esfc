@@ -1,21 +1,52 @@
 <script>
 $(document).ready(function() { 
-	$("select").change(function () {
+	$("#selectStatut").change(function () {
 		$("#search").submit();
 	} );
 	$(".confirmation").on('click', function () {
-        return confirm("Confirmez-vous la suppression du reproducteur pour l'année considérée ?");
+        if (confirm("Confirmez-vous la suppression du reproducteur pour l'année considérée ?")) {
+        	return true ;
+        } else {
+        	return false;
+        }
     } );
+	$("#clistform").submit(function(){
+	    if (confirm("Confirmez-vous le changement de statut pour les poissons sélectionnés ?")) {
+			return true ;
+		} else {
+			return false;
+		}
+	} ) ;
+	$("#campagneinit").on('click', function () { 
+		if (confirm("Confirmez-vous le rajout de tous les adultes vivants dans la liste ?")) {
+			return true ;
+		} else {
+			return false ;
+		}
+	} );
 } ) ;
 //setDataTables("cpoissonList", false, false, true);
 </script>
 <form method="get" action="index.php" id="search">
 <input type="hidden" name="module" value="poissonCampagneList">
+<input type="hidden" name="isSearch" value="1">
 <table class="tableaffichage">
-<tr><td>Année : 
+<tr><td>
+Statut de reproduction : 
+<select id="selectStatut" name="repro_statut_id">
+<option value="0" {if $dataSearch.repro_statut_id == 0}selected{/if}>
+Sélectionnez le statut...
+</option>
+{section name=lst loop=$dataReproStatut}
+<option value="{$dataReproStatut[lst].repro_statut_id}" {if $dataReproStatut[lst].repro_statut_id == $dataSearch.repro_statut_id}selected{/if}>
+{$dataReproStatut[lst].repro_statut_libelle}
+</option>
+{/section}
+</select>
+<br>Année : 
 <select name="annee">
 {section name=lst loop=$annees}
-<option value="{$annees[lst].annee}" {if $annees[lst].annee == $annee}selected{/if}>
+<option value="{$annees[lst].annee}" {if $annees[lst].annee == $dataSearch.annee}selected{/if}>
 {$annees[lst].annee}
 </option>
 {/section}
@@ -26,16 +57,21 @@ $(document).ready(function() {
 </table>
 </form>
 
-<form method="post" action="index.php"  onSubmit='return confirmSuppression("Confirmez-vous la suppression des poissons sélectionnés pour cette campagne de reproduction ?")'>
-<input type="hidden" name="module" value="poissonCampagneDelete">
+{if $dataSearch.isSearch == 1}
+{if $droits.reproGestion == 1}
+<a id="campagneinit" href="index.php?module=poissonCampagneInit&annee={$dataSearch.annee}">
+Ajouter tous les adultes vivants à la campagne...
+</a>
+{/if}
+<form id="clistform" method="post" action="index.php" >
+<input type="hidden" name="module" value="poissonCampagneChangeStatut">
 
 <table id="cpoissonList" class="tableliste">
 <thead>
 <tr>
 <th>Données<br>d'élevage</th>
-<th>Matricule</th>
-<th>Prénom</th>
-<th>Pittag</th>
+<th>Identification</th>
+<th>Statut de<br>reproduction</th>
 <th>Cohorte</th>
 <th>Sexe</th>
 <th>Masse<br>actuelle</th>
@@ -43,8 +79,7 @@ $(document).ready(function() {
 <th>Specific<br>growth rate</th>
 <th>Années de<br>croisement</th>
 <th>Séquences</th>
-<th>Suppr.</th>
-<th>Suppr.</th>
+<th>Sélection</th>
 </tr>
 </thead>
 <tdata>
@@ -56,19 +91,11 @@ $(document).ready(function() {
 </a>
 <td>
 <a href="index.php?module=poissonCampagneDisplay&poisson_campagne_id={$data[lst].poisson_campagne_id}">
-{$data[lst].matricule}
+{$data[lst].matricule} {$data[lst].prenom} {$data[lst].pittag_valeur}
 </a>
 </td>
-<td>
-<a href="index.php?module=poissonCampagneDisplay&poisson_campagne_id={$data[lst].poisson_campagne_id}">
-{$data[lst].prenom}
-</a>
-</td>
-<td>
-<a href="index.php?module=poissonCampagneDisplay&poisson_campagne_id={$data[lst].poisson_campagne_id}">
-{$data[lst].pittag_valeur}
-</a>
-</td>
+<td>{$data[lst].repro_statut_libelle}</td>
+
 <td class="center">{$data[lst].cohorte}</td>
 <td class="center">{$data[lst].sexe_libelle_court}</td>
 <td class="right">{$data[lst].masse}</td>
@@ -77,24 +104,28 @@ $(document).ready(function() {
 <td>{$data[lst].annees}</td>
 <td>{$data[lst].sequences}</td>
 <td class="center">
-{if strlen($data[lst].sequences) == 0}
-<a class="confirmation" href="index.php?module=poissonCampagneDelete&poisson_campagne_id={$data[lst].poisson_campagne_id}">
-<img src="display/images/cross.png" height="15">
-{/if}
-</a>
-</td>
-<td class="center">
-{if strlen($data[lst].sequences) == 0}
 <input type="checkbox" name="poisson_campagne_id[]" value={$data[lst].poisson_campagne_id}>
-{/if}
 </td>
 </tr>
 {/section}
 </tdata>
 <tr>
-<td colspan="13" class="right">
-<input type="submit" value="Supprimer les poissons sélectionnés">
+<td colspan="10" class="right">
+<select name="repro_statut_id">
+<option value="0" {if $dataSearch.repro_statut_id == 0}selected{/if}>
+Sélectionnez le statut...
+</option>
+{section name=lst loop=$dataReproStatut}
+<option value="{$dataReproStatut[lst].repro_statut_id}" >
+{$dataReproStatut[lst].repro_statut_libelle}
+</option>
+{/section}
+</select>
+</td>
+<td colspan="1" class="right">
+<input type="submit" value="Modifier">
 </td>
 
 </table>
 </form>
+{/if}

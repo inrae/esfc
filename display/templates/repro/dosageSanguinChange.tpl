@@ -45,6 +45,12 @@ Retour au reproducteur
 </dd>
 </dl>
 <dl>
+<dt>Taux d'hématocrite :</dt>
+<dd>
+<input class="taux" name="tx_hematocrite" value="{$data.tx_hematocrite}">
+</dd>
+</dl>
+<dl>
 <dt>Commentaires :</dt>
 <dd>
 <input name="dosage_sanguin_commentaire" size="30" value="{$data.dosage_sanguin_commentaire}">

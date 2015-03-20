@@ -13,7 +13,7 @@ include_once "modules/classes/document.class.php";
   */
  class DocumentSturio extends DocumentAttach {
  	public $resolution=800;
- 	public $modules=array("poisson", "evenement", "bassin", "echographie");
+ 	public $modules=array("poisson", "evenement", "bassin", "biopsie");
  	/**
  	 * Surcharge de la fonction supprimer pour effacer les enregistrements liés
  	 * (non-PHPdoc)

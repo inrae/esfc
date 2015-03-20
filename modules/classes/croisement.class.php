@@ -34,7 +34,11 @@ class Croisement extends ObjetBDD {
 						"type" => 1 
 				),
 				"croisement_date" => array (
-						"type" => 2 
+						"type" => 3 
+				),
+				"croisement_nom" => array (
+						"type" => 0,
+						"requis" => 1 
 				),
 				"ovocyte_masse" => array (
 						"type" => 1 
@@ -47,7 +51,7 @@ class Croisement extends ObjetBDD {
 				),
 				"tx_survie_estime" => array (
 						"type" => 1 
-				) 
+				)
 		);
 		if (! is_array ( $param ))
 			$param == array ();
@@ -59,10 +63,14 @@ class Croisement extends ObjetBDD {
 	 * Surcharge de la fonction ecrire pour prendre en compte la liste des reproducteurs
 	 * attaches
 	 * (non-PHPdoc)
-	 * 
+	 *
 	 * @see ObjetBDD::ecrire()
 	 */
 	function write($data) {
+		/*
+		 * Reconstitution de la date
+		 */
+		$data ["croisement_date"] = $data ["croisement_date"] . " " . $data ["croisement_time"];
 		$id = parent::ecrire ( $data );
 		if ($id > 0) {
 			/*
@@ -71,6 +79,13 @@ class Croisement extends ObjetBDD {
 			$this->ecrireTableNN ( "poisson_croisement", "croisement_id", "poisson_campagne_id", $id, $data ["poisson_campagne_id"] );
 		}
 		return $id;
+	}
+	function lire($id, $getDefault = false, $parentValue = 0) {
+		$data = parent::lire ( $id, $getDefault, $parentValue );
+		$dateTime = explode ( " ", $data ["croisement_date"] );
+		$data ["croisement_date"] = $dateTime [0];
+		$data ["croisement_time"] = $dateTime [1];
+		return $data;
 	}
 	
 	/**
@@ -82,11 +97,13 @@ class Croisement extends ObjetBDD {
 	function getListFromSequence($sequence_id) {
 		if ($sequence_id > 0) {
 			$sql = "select croisement_id, sequence_id, croisement_qualite_id, croisement_qualite_libelle,
-					croisement_date, ovocyte_masse, ovocyte_densite, tx_fecondation, tx_survie_estime
+					croisement_date, ovocyte_masse, ovocyte_densite, tx_fecondation, tx_survie_estime,
+					sequence_nom, croisement_nom
 					from croisement
+					join sequence using (sequence_id)
 					left outer join croisement_qualite using (croisement_qualite_id)
 					where sequence_id = " . $sequence_id . "
-					order by croisement_date, croisement_id";
+					order by croisement_date, croisement_nom";
 			$data = $this->getListeParam ( $sql );
 			/*
 			 * Recherche des parents
@@ -98,10 +115,11 @@ class Croisement extends ObjetBDD {
 		} else
 			return null;
 	}
-
+	
 	/**
 	 * Recupere la liste des croisements pour une annee
-	 * @param int $annee
+	 * 
+	 * @param int $annee        	
 	 * @return array|NULL
 	 */
 	function getListFromAnnee($annee) {
@@ -127,7 +145,7 @@ class Croisement extends ObjetBDD {
 	
 	/**
 	 * Recupere la liste des parents d'un croisement, sous forme de chaine "prete a l'emploi"
-	 * 
+	 *
 	 * @param int $croisement_id        	
 	 * @return string
 	 */
@@ -156,7 +174,7 @@ class Croisement extends ObjetBDD {
 	/**
 	 * Retourne la liste de tous les poissons de la sequence, avec le fait q'ils soient
 	 * selectionnes ou non dans le croisement considere
-	 * 
+	 *
 	 * @param unknown $croisement_id        	
 	 * @param string $sequence_id        	
 	 * @return Ambigous <multitype:, number, tableau, NULL, boolean, $data>
@@ -198,7 +216,7 @@ class Croisement extends ObjetBDD {
 }
 /**
  * ORM de gestion de la table croisement_qualite
- * 
+ *
  * @author quinton
  *        
  */

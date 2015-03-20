@@ -19,17 +19,27 @@ if (! isset ( $_SESSION ["annee"] ))
 	$_SESSION ["annee"] = date ( 'Y' );
 $smarty->assign ( "annee", $_SESSION ["annee"] );
 
-if (isset($_SESSION["sequence_id"]))
-	$smarty->assign("sequence_id", $_SESSION["sequence_id"]);
+if (isset ( $_SESSION ["sequence_id"] ))
+	$smarty->assign ( "sequence_id", $_SESSION ["sequence_id"] );
 
 switch ($t_module ["param"]) {
 	case "list":
 		/*
 		 * Display the list of all records of the table
 		 */
+		$searchRepro->setParam ( $_REQUEST );
+		$dataSearch = $searchRepro->getParam ();
+		if ($searchRepro->isSearch () == 1) {
+			$smarty->assign ( "data", $dataClass->getListForDisplay ( $dataSearch ) );
+		}
+		$smarty->assign ( "dataSearch", $dataSearch );
 		$smarty->assign ( "annees", $dataClass->getAnnees () );
-		$smarty->assign ( "data", $dataClass->getListForDisplay ( $_SESSION ["annee"] ) );
 		$smarty->assign ( "corps", "repro/poissonCampagneList.tpl" );
+		/*
+		 * Lecture de la liste des statuts
+		 */
+		$reproStatut = new ReproStatut ( $bdd, $ObjetBDDParam );
+		$smarty->assign ( "dataReproStatut", $reproStatut->getListe ( 1 ) );
 		/*
 		 * Passage en parametre de la liste parente
 		 */
@@ -56,17 +66,34 @@ switch ($t_module ["param"]) {
 		$biopsie = new Biopsie ( $bdd, $ObjetBDDParam );
 		$poissonSequence = new PoissonSequence ( $bdd, $ObjetBDDParam );
 		$psEvenement = new PsEvenement ( $bdd, $ObjetBDDParam );
-		$echographie = new Echographie($bdd, $ObjetBDDParam);
+		$echographie = new Echographie ( $bdd, $ObjetBDDParam );
 		
 		$smarty->assign ( "dataSanguin", $dosageSanguin->getListeFromPoissonCampagne ( $id ) );
 		$smarty->assign ( "dataBiopsie", $biopsie->getListeFromPoissonCampagne ( $id ) );
 		$smarty->assign ( "dataSequence", $poissonSequence->getListFromPoisson ( $id ) );
 		$smarty->assign ( "dataPsEvenement", $psEvenement->getListeEvenementFromPoisson ( $id ) );
-		$smarty->assign ( "dataEcho", $echographie->getListByYear($data["poisson_id"], $_SESSION["annee"]));
+		$smarty->assign ( "dataEcho", $echographie->getListByYear ( $data ["poisson_id"], $_SESSION ["annee"] ) );
 		
 		$smarty->assign ( "corps", "repro/poissonCampagneDisplay.tpl" );
-		if (isset ($_REQUEST["sequence_id"]))
-			$smarty->assign("sequence_id", $_REQUEST["sequence_id"]);
+		if (isset ( $_REQUEST ["sequence_id"] ))
+			$smarty->assign ( "sequence_id", $_REQUEST ["sequence_id"] );
+		/*
+		 * Recherche des temperatures pour le graphique
+		 */
+		for ($i=1;$i<3;$i++){
+			$datapf = $dataClass->getTemperatures($data["poisson_id"], $_SESSION["annee"], $i);
+			$x = "'x".$i."'";
+			if ($i == 1) {
+				$y = "'constaté'";
+			} else $y = "'prévu'";
+			foreach ($datapf as $key => $value) {
+				$x.=",'".$value["pf_datetime"]."'";
+				$y .= ",".$value["pf_temperature"];
+			}
+			$smarty->assign("pfx".$i, $x);
+			$smarty->assign("pfy".$i, $y);
+		}
+		
 		break;
 	case "change":
 		/*
@@ -79,21 +106,21 @@ switch ($t_module ["param"]) {
 		 * Lecture des informations concernant le poisson
 		 */
 		require_once 'modules/classes/poisson.class.php';
-		$poisson = new Poisson($bdd, $ObjetBDDParam);
-		$smarty->assign("dataPoisson", $poisson->getDetail($_REQUEST["poisson_id"]));
+		$poisson = new Poisson ( $bdd, $ObjetBDDParam );
+		$smarty->assign ( "dataPoisson", $poisson->getDetail ( $_REQUEST ["poisson_id"] ) );
 		/*
 		 * Lecture de la table des statuts
 		 */
-		$reproStatut = new ReproStatut($bdd, $ObjetBDDParam);
-		$smarty->assign("reproStatut", $reproStatut->getListe(1));
+		$reproStatut = new ReproStatut ( $bdd, $ObjetBDDParam );
+		$smarty->assign ( "reproStatut", $reproStatut->getListe ( 1 ) );
 		/*
 		 * Calcul des annees de campagne potentielles
 		 */
-		$anneeCourante = date('Y');
-		for ($i=$anneeCourante; $i > 1995; $i --) {
-			$annees[]["annee"] = $i;
+		$anneeCourante = date ( 'Y' );
+		for($i = $anneeCourante; $i > 1995; $i --) {
+			$annees [] ["annee"] = $i;
 		}
-		$smarty->assign("annees", $annees);
+		$smarty->assign ( "annees", $annees );
 		break;
 	case "write":
 		/*
@@ -111,17 +138,17 @@ switch ($t_module ["param"]) {
 		if (is_array ( $id )) {
 			$nb = 0;
 			foreach ( $id as $key => $value ) {
-				if (is_numeric($value) && $value > 0) {
-					$ret=$dataClass->supprimer($value);
-				if ($ret > 0) {
-					$nb ++;
-					$log->setLog ( $_SESSION ["login"], get_class ( $dataClass ) . "-delete", $id );
-				} else 
-					$message.=formatErrorData($dataClass->getErrorData())."<br>";				
+				if (is_numeric ( $value ) && $value > 0) {
+					$ret = $dataClass->supprimer ( $value );
+					if ($ret > 0) {
+						$nb ++;
+						$log->setLog ( $_SESSION ["login"], get_class ( $dataClass ) . "-delete", $id );
+					} else
+						$message .= formatErrorData ( $dataClass->getErrorData () ) . "<br>";
 				}
 			}
 			$module_coderetour = 2;
-			$message .= $nb." poissons déselectionnés";
+			$message .= $nb . " poissons déselectionnés";
 		} else
 			dataDelete ( $dataClass, $id );
 		break;
@@ -138,16 +165,32 @@ switch ($t_module ["param"]) {
 		$smarty->assign ( "corps", "repro/campagneInit.tpl" );
 		
 		break;
-	case "campagneInitExec" :
+	case "init" :
 		$nb = $dataClass->initCampagne ( $_REQUEST ["annee"] );
 		$message = $nb . " poisson(s) ajouté(s)";
-		/*
-		 * Generation des bassins
-		 */
-		require_once 'modules/classes/bassinCampagne.class.php';
-		$bassinCampagne = new BassinCampagne ( $bdd, $ObjetBDDParam );
-		$nb = $bassinCampagne->initCampagne ( $_REQUEST ["annee"] );
-		$message .= "<br>" . $nb . " bassin(s) ajouté(s)";
+		$module_coderetour = 1;
+		break;
+	case "changeStatut" :
+		if ($_REQUEST ["repro_statut_id"] > 0) {
+			if (is_array ( $id )) {
+				$nb = 0;
+				foreach ( $id as $key => $value ) {
+					if (is_numeric ( $value ) && $value > 0) {
+						$ret = $dataClass->changeStatut ( $value, $_REQUEST ["repro_statut_id"] );
+						if ($ret > 0) {
+							$nb ++;
+							$log->setLog ( $_SESSION ["login"], get_class ( $dataClass ) . "-delete", $id );
+						} else
+							$message .= formatErrorData ( $dataClass->getErrorData () ) . "<br>";
+					}
+				}
+			} else {
+				if ($dataClass->changeStatut ( $id, $_REQUEST ["repro_statut_id"] ) > 0)
+					$nb = 1;
+			}
+			$message .= $nb . " statuts modifiés";
+		}
+		$module_coderetour = 1;
 		break;
 }
 

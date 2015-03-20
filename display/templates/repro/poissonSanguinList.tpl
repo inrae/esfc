@@ -9,6 +9,7 @@ Nouvelle analyse...
 <th>Date</th>
 <th>Taux E2</th>
 <th>Taux<br>calcium</th>
+<th>Taux<br>hématocrite</th>
 <th>Commentaire</th>
 </tr>
 </thead>
@@ -26,7 +27,8 @@ Nouvelle analyse...
 </td>
 <td class="right">{$dataSanguin[lst].tx_e2}{$dataSanguin[lst].tx_e2_texte}</td>
 <td class="right">{$dataSanguin[lst].tx_calcium}</td>
-<td>{$dataSanguin[lst].commentaire}</td>
+<td class="right">{$dataSanguin[lst].tx_hematocrite}</td>
+<td>{$dataSanguin[lst].dosage_sanguin_commentaire}</td>
 </tr>
 {/section}
 </tdata>

@@ -52,9 +52,26 @@ switch ($t_module["param"]) {
 		$smarty->assign("dataPoissons", $poissonSequence->getListFromSequence($id));
 		$_SESSION["poissonDetailParent"] = "sequenceDisplay";
 		$_SESSION["sequence_id"] = $id;
+		/*
+		 * Préparation des croisements
+		 */
 		require_once 'modules/classes/croisement.class.php';
 		$croisement = new Croisement($bdd, $ObjetBDDParam);
-		$smarty->assign("croisements", $croisement->getListFromSequence($id));
+		$croisements = $croisement->getListFromSequence($id);
+		/*
+		 * Recuperation du nombre de larves comptees
+		 */
+		require_once 'modules/classes/lot.class.php';
+		$lot = new Lot($bdd, $ObjetBDDParam);
+		foreach ($croisements as $key => $value) {
+			$totalLot = $lot->getNbLarveFromCroisement($value["croisement_id"]);
+			$croisements[$key]["total_larve_compte"] = $totalLot["total_larve_compte"];
+		}
+		$smarty->assign("croisements", $croisements);
+		/*
+		 * Preparation des lots
+		 */
+		$smarty->assign("lots", $lot->getLotBySequence($id));
 		break;
 	case "change":
 		/*

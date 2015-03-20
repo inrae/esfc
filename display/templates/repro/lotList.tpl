@@ -1,19 +1,4 @@
-<form method="get" action="index.php" id="search">
-<input type="hidden" name="module" value="lotList">
-<table class="tableaffichage">
-<tr><td>Année : 
-<select name="annee">
-{section name=lst loop=$annees}
-<option value="{$annees[lst].annee}" {if $annees[lst].annee == $annee}selected{/if}>
-{$annees[lst].annee}
-</option>
-{/section}
-</select>
-<input type="submit" value="Rechercher">
-</td>
-</tr>
-</table>
-</form>
+
 {if $droits.reproGestion == 1}
 <a href="index.php?module=lotChange&lot_id=0">Nouveau lot de larves...</a>
 {/if}
@@ -23,7 +8,9 @@
 <th>Nom du lot</th>
 <th>Parents</th>
 <th>Séquence</th>
+<th>Date<br>d'éclosion</th>
 <th>Nbre de larves<br>initial</th>
+<th>Nbre de larves<br>compté</th>
 </tr>
 </thead>
 <tdata>
@@ -35,8 +22,16 @@
 </a>
 </td>
 <td>{$lots[lst].parents}</td>
-<td>{$lots[lst].sequence_nom}</td>
-<td>{$lots[lst].nb_larve_initial}</td>
+<td class="center">
+<a href="index.php?module=sequenceDisplay&sequence_id={$lots[lst].sequence_id}">
+{$lots[lst].sequence_nom}
+&nbsp;
+{$lots[lst].croisement_nom}
+</a>
+</td>
+<td>{$lots[lst].eclosion_date}</td>
+<td class="right">{$lots[lst].nb_larve_initial}</td>
+<td class="right">{$lots[lst].nb_larve_compte}</td>
 </tr>
 {/section}
 </tdata>

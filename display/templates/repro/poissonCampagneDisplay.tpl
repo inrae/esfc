@@ -1,3 +1,35 @@
+<link href="display/javascript/c3/c3.css" rel="stylesheet" type="text/css">
+<script src="display/javascript/c3/d3.min.js" charset="utf-8"></script>
+<script src="display/javascript/c3/c3.min.js"></script>
+<script>
+$(document).ready(function() {
+	var chart = c3.generate( {
+		bindto: '#profilThermique',
+		data: {
+			xs: {
+				'constaté': 'x1',
+				'prévu': 'x2'
+			} ,
+//	    x: 'x',
+      xFormat: '%d/%m/%Y %H:%M:%S', // 'xFormat' can be used as custom format of 'x'
+      columns: [
+          [{$pfx1}],
+          [{$pfy1}],
+          [{$pfx2}],
+          [{$pfy2}]
+          ]
+	} ,
+    axis: {
+        x: {
+            type: 'timeseries',
+            tick: {
+                format: '%d/%m %H:%M'
+           	 	}
+        	}
+    	}
+	} );
+} );
+</script>
 <h2>Détail d'un reproducteur</h2>
 <a href="index.php?module={$poissonDetailParent}&sequence_id={$sequence_id}">Retour à la liste des poissons</a>
 {if $droits["reproGestion"]==1}
@@ -52,5 +84,13 @@ Nouvelle échographie (nouvel événement)...
 </fieldset>
 </td>
 </tr>
+<tr>
+<td>
+<fieldset>
+<legend>Profil thermique du poisson</legend>
+<div id="profilThermique"></div>
+</fieldset>
+</td>
 
+</tr>
 </table>

@@ -1,15 +1,16 @@
 <table class="tableaffichage">
 <tr>
 <td>
-Lot : {$dataLot.lot_nom}
+<label>Lot :</label> {$dataLot.lot_nom}
 &nbsp;-&nbsp;
-Séquence de reproduction : {$dataLot.annee}/
-{$dataLot.sequence_nom}
+<label>Séquence de reproduction :</label> {$dataLot.annee}/
+{$dataLot.sequence_nom} {$dataLot.croisement_nom}
 
 <br>
-Reproducteurs : {$dataLot.parents}
+<label>Reproducteurs :</label> {$dataLot.parents}
+<br><label>Date d'éclosion : </label>{$dataLot.eclosion_date}
 <br>
-Nbre de larves initial : {$dataLot.nb_larve_initial}
+<label>Nbre de larves initial / compté :</label> {$dataLot.nb_larve_initial} / {$dataLot.nb_larve_compte}
 </td>
 </tr>
 </table>

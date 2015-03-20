@@ -25,7 +25,7 @@ switch ($t_module["param"]) {
 		$poissonCampagne = new PoissonCampagne($bdd, $ObjetBDDParam);
 		$smarty->assign ( "annees", $poissonCampagne->getAnnees () );
 		$smarty->assign("lots", $dataClass->getLotByAnnee($_SESSION["annee"]));
-		$smarty->assign("corps", "repro/lotList.tpl");
+		$smarty->assign("corps", "repro/lotSearch.tpl");
 		break;
 	case "display":
 		/*

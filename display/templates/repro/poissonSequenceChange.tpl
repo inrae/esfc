@@ -37,7 +37,7 @@ Retour au reproducteur
 </dd>
 </dl>
 <dl>
-<dt>Masse de l'ovocyte (en grammes) :</dt>
+<dt>Masse des ovocytes (grammes) :</dt>
 <dd>
 <input class="taux" name="ovocyte_masse" value="{$data.ovocyte_masse}">
 </dd>

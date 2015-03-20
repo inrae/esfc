@@ -1,14 +1,26 @@
 <script>
 $(document).ready(function() {
-	$(".taux").attr("pattern","[0-9]+(\.[0-9]+)?");
-	$(".taux").attr("title","valeur numérique");
-	$(".taux").attr("size", "5");
-	$(".taux").attr("maxlength", "10");
-	$(".nombre").attr("pattern","[0-9]+");
-	$(".nombre").attr("title","valeur numérique");
-	$(".nombre").attr("size", "5");
-	$(".nombre").attr("maxlength", "10");
-	
+	$(".taux").attr( {
+		pattern: "[0-9]+(\.[0-9]+)?",
+		title: "valeur numérique",
+		size: "5em",
+		maxlength: "10"
+	});
+
+	$(".nombre").attr( { 
+		pattern: "[0-9]+",
+		title: "valeur numérique",
+		size: "5em", 
+		maxlength: "10"
+	});
+	$(".timepicker").timepicker( {
+		timeFormat: "HH:mm:ss",
+//		$.timepicker.regional['fr'],
+		stepHour: "1",
+		stepMinute: "5",
+		size: "5",
+		pattern: "[0-9][0-9]\:[0-9][0-9]\:[0-9][0-9]"
+	} );
 	$(".date").datepicker( { dateFormat: "dd/mm/yy" } );
 	$(".commentaire").attr("size","30");
 } );
@@ -27,9 +39,16 @@ Retour à la séquence
 <input type="hidden" name="croisement_id" value="{$data.croisement_id}">
 <input type="hidden" name="sequence_id" value="{$data.sequence_id}">
 <dl>
-<dt>Date de la reproduction <span class="red">*</span> :</dt>
+<dt>Date/heure de la fécondation <span class="red">*</span> :</dt>
 <dd>
 <input class="date" name="croisement_date" required size="10" maxlength="10" value="{$data.croisement_date}">
+<input class="timepicker" name="croisement_time" required value="{$data.croisement_time}">
+</dd>
+</dl>
+<dl>
+<dt>Nom du croisement <span class="red">*</span> :</dt>
+<dd>
+<input class="commentaire" name="croisement_nom" value={$data.croisement_nom}>
 </dd>
 </dl>
 <dl>
@@ -38,7 +57,7 @@ Retour à la séquence
 </dd>
 </dl>
 <dl>
-<dt>Densité des ovocytes :</dt>
+<dt>Nbre ovocytes par gramme :</dt>
 <dd><input class="taux" name="ovocyte_densite" value="{$data.ovocyte_densite}">
 </dd>
 </dl>
@@ -53,7 +72,7 @@ Retour à la séquence
 </dd>
 </dl>
 <dl>
-<dt>Qualité du croisement :</dt>
+<dt>Qualité génétique du croisement :</dt>
 <dd>
 <select name="croisement_qualite_id" >
 <option value="" {if $data.croisement_qualite_id == ''}selected{/if}>Sélectionnez...</option>

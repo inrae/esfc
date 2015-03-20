@@ -194,15 +194,15 @@
 	<documentDelete action="modules/document/document.php" param="delete" droits="bassinAdmin,poissonAdmin" retoursuppr="documentList" retourko="documentChange" />
 	<documentGet action="modules/document/document.php" param="get" droits="consult" ajax="1"/>
 	
-	<repro menulevel="0" menuorder="4" menuvalue="100" menutitle="101" menudroits="reproConsult" />
-	<reproInit action="modules/repro/poissonCampagne.php" param="campagneInit" menulevel="1" menuparent="4" menuorder="1" menuvalue="102" menutitle="103" menudroits="reproGestion" droits="reproGestion"/>
-	<reproInitExec action="modules/repro/poissonCampagne.php" param="campagneInitExec" droits="reproGestion" modulebefore="reproInit"/>
+	<repro action="modules/repro/poissonCampagne.php" param="list" menulevel="0" menuorder="4" menuvalue="100" menutitle="101" menudroits="reproConsult" droits="reproConsult" />
 
 	<poissonCampagneList action="modules/repro/poissonCampagne.php" param="list" menulevel="1" menuparent="4" menuorder="2" menuvalue="104" menutitle="105" menudroits="reproConsult" droits="reproConsult"/>
 	<poissonCampagneDisplay action="modules/repro/poissonCampagne.php" param="display" droits="reproConsult"/>
 	<poissonCampagneChange action="modules/repro/poissonCampagne.php" param="change" droits="reproGestion"/>
 	<poissonCampagneWrite action="modules/repro/poissonCampagne.php" param="write" droits="reproGestion" modulebefore="poissonCampagneChange" retourok="poissonCampagneDisplay" retourko="poissonCampagneChange"/>
 	<poissonCampagneDelete action="modules/repro/poissonCampagne.php" param="delete" droits="reproAdmin" modulebefore="poissonCampagneChange,poissonCampagneList" retoursuppr="poissonCampagneList" retourko="poissonCampagneChange"/>
+	<poissonCampagneChangeStatut action="modules/repro/poissonCampagne.php" param="changeStatut" droits="reproGestion" modulebefore="poissonCampagneList,poissonCampagneChangeStatut,repro" retourok="poissonCampagneList" />
+	<poissonCampagneInit action="modules/repro/poissonCampagne.php" param="init" droits="reproGestion" modulebefore="poissonCampagneList,poissonCampagneInit,repro" retourok="poissonCampagneList" />
 	
 	<sequenceList action="modules/repro/sequence.php" param="list" retourlogin="1" menulevel="1" menuorder="3" menuparent="4" menudroits="reproConsult" menuvalue="106" menutitle="107" droits="reproConsult" />
 	<sequenceDisplay action="modules/repro/sequence.php" param="display" droits="reproConsult" />
@@ -229,6 +229,7 @@
 	<bassinCampagneDisplay action="modules/repro/bassinCampagne.php" param="display" droits="reproConsult"/>
 	<bassinCampagneDelete action="modules/repro/bassinCampagne.php" param="delete" droits="reproGestion" modulebefore="sequenceList" retoursuppr="sequenceList" retourko="sequenceList"/>
 	<bassinCampagneWrite action="modules/repro/bassinCampagne.php" param="write" droits="reproGestion" modulebefore="bassinCampagneDisplay" retourok="bassinCampagneDisplay" retourko="bassinCampagneDisplay" />
+	<bassinCampagneInit action="modules/repro/bassinCampagne.php" param="init" droits="reproGestion" modulebefore="sequenceList" retourok="sequenceList" />
 
 	<echographieChange action="modules/repro/echographie.php" param="change" droits="reproGestion" />
 	<echographieWrite action="modules/repro/echographie.php" param="write" droits="reproGestion" modulebefore="echographieChange" retourok="echographieChange" retourko="echographieChange"/>

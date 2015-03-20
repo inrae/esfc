@@ -109,5 +109,14 @@ switch ($t_module["param"]) {
 		 */
 		dataDelete($dataClass, $id);
 		break;
+	case "init":
+		/*
+		 * Initialisation des bassins pour la campagne
+		 */
+		if ($_REQUEST["annee"] > 0) {
+			$nb = $dataClass->initCampagne($_REQUEST["annee"]);
+			$message = $nb." bassin(s) ajouté(s) à la campagne de reproduction";
+		}
+		$module_coderetour = 1;
 }
 ?>

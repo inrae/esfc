@@ -58,6 +58,22 @@ switch ($t_module["param"]) {
 		$poissonCampagne = new poissonCampagne($bdd, $ObjetBDDParam);
 		$data = dataRead($dataClass, $id, "repro/biopsieChange.tpl", $_REQUEST["poisson_campagne_id"]);
 		$smarty->assign("dataPoisson", $poissonCampagne->lire($data["poisson_campagne_id"]));
+		/*
+		 * Recuperation des methodes de calcul
+		 */
+		$biopsieTechniqueCalcul = new BiopsieTechniqueCalcul($bdd, $ObjetBDDParam);
+		$smarty->assign ("techniqueCalcul", $biopsieTechniqueCalcul->getListe(1));
+		/*
+		 * Gestion des documents associes
+		 */
+		$smarty->assign ( "moduleParent", "biopsieChange" );
+		$smarty->assign ( "parentType", "biopsie" );
+		$smarty->assign ( "parentIdName", "biopsie_id" );
+		$smarty->assign ( "parent_id", $id );
+		include_once "modules/classes/documentSturio.class.php";
+		$documentSturio = new DocumentSturio ( $bdd, $ObjetBDDParam );
+		$smarty->assign ( "dataDoc", $documentSturio->getListeDocument ( "biopsie", $id ) );
+		
 		break;
 	case "write":
 		/*
@@ -67,6 +83,44 @@ switch ($t_module["param"]) {
 		if ($id > 0) {
 			$_REQUEST[$keyName] = $id;
 		}
+		/*
+		 * Traitement des photos a importer
+		 */
+		if ($id > 0 && isset($_FILES["documentName"])) {
+			/*
+			 * Preparation de files
+			 */
+			$files = array ();
+			$fdata = $_FILES ['documentName'];
+			if (is_array ( $fdata ['name'] )) {
+				for($i = 0; $i < count ( $fdata ['name'] ); ++ $i) {
+					$files [] = array (
+							'name' => $fdata ['name'] [$i],
+							'type' => $fdata ['type'] [$i],
+							'tmp_name' => $fdata ['tmp_name'] [$i],
+							'error' => $fdata ['error'] [$i],
+							'size' => $fdata ['size'] [$i]
+					);
+				}
+			} else
+				$files [] = $fdata;
+			$documentSturio = new DocumentSturio ( $bdd, $ObjetBDDParam );
+			foreach ( $files as $file ) {
+				$document_id = $documentSturio->ecrire ( $file, "Calcul du diamètre moyen de l'ovocyte - ".$_REQUEST["biopsie_date"] );
+				if ($document_id > 0) {
+					/*
+					 * Ecriture de l'enregistrement en table liee
+					 */
+					$documentLie = new DocumentLie ( $bdd, $ObjetBDDParam, 'biopsie' );
+					$data = array (
+							"document_id" => $document_id,
+							"biopsie_id" => $id
+					);
+					$documentLie->ecrire ( $data );
+				}
+			}
+		}
+		
 		break;
 	case "delete":
 		/*

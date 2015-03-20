@@ -67,4 +67,13 @@ if (! isset ( $_SESSION ["searchAlimentation"] )) {
 } else {
 	$searchAlimentation = $_SESSION ["searchAlimentation"];
 }
+/*
+ * Déclaration de la classe de recherche des poissons sélectionnés pour les repros
+ */
+if (!isset ($_SESSION["searchRepro"])) {
+	$searchRepro = new SearchRepro();
+	$_SESSION ["searchRepro"] = $searchRepro;
+} else {
+	$searchRepro = $_SESSION["searchRepro"];
+}
 ?>

@@ -29,6 +29,7 @@ class SearchParam {
 		if (! is_array ( $this->param ))
 			$this->param = array ();
 		$this->isSearch = 0;
+		$this->param["isSearch"] = 0;
 	}
 	/**
 	 * Stocke les parametres fournis
@@ -192,6 +193,22 @@ class SearchAlimentation extends SearchParam {
 			"date_fin" => date("d/m/Y")
 		);
 		
+	}
+}
+
+/**
+ * Classe de recherche des poissons sélectionnés pour une repro
+ * @author quinton
+ *
+ */
+class SearchRepro extends SearchParam {
+	function __construct() {
+		$this->param = array(
+				"annee" => date ('Y'),
+				"repro_statut_id" => 0
+		);
+		parent::__construct();
+		printr($this->param);
 	}
 }
 ?>

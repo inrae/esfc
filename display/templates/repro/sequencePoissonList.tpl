@@ -1,5 +1,4 @@
-<fieldset>
-<legend>Poissons rattachés à la séquence</legend>
+
 
 <table id="csequence" class="tableliste">
 <thead>
@@ -8,7 +7,7 @@
 <th>Nom du poisson</th>
 <th>Sexe</th>
 <th>Qualité<br>semence</th>
-<th>Masse<br>Ovocyte</th>
+<th>Masse totale des<br>ovocytes</th>
 </tr>
 </thead>
 <tdata>
@@ -25,9 +24,8 @@
 </td>
 <td class="center">{$dataPoissons[lst].sexe_libelle_court}</td>
 <td>{$dataPoissons[lst].qualite_semence}</td>
-<td>{$dataPoissons[lst].ovocyte_masse}</td>
+<td class="right">{$dataPoissons[lst].ovocyte_masse}</td>
 </tr>
 {/section}
 </tdata>
 </table>
-</fieldset>

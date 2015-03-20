@@ -5,6 +5,7 @@ $(document).ready(function() {
 	$(".taux").attr("size", "5");
 	$(".taux").attr("maxlength", "10");
 	$(".commentaire").attr("size","30");
+	$(".date").datepicker( { dateFormat: "dd/mm/yy" } );
 });
 </script>
 <a href="index.php?module=lotList">Retour à la liste des lots</a>&nbsp;
@@ -31,14 +32,27 @@ Retour au lot
 </dd>
 </dl>
 <dl>
-<dt>Nom du lot <span class="red">*</span> :</dl>
+<dt>Nom du lot <span class="red">*</span> :</dt>
 <dd>
 <input class="commentaire" name="lot_nom" value="{$data.lot_nom}">
 </dd>
+</dl>
+<dl>
+<dt>Date d'éclosion :</dt>
+<dd>
+<input class="date" name="eclosion_date" value="{$data.eclosion_date}">
+</dd>
+</dl>
 <dl>
 <dt>Nombre de larves initial :</dt>
 <dd>
 <input class="taux" name="nb_larve_initial" value="{$data.nb_larve_initial}">
+</dd>
+</dl>
+<dl>
+<dt>Nombre de larves compté :</dt>
+<dd>
+<input class="taux" name="nb_larve_compte" value="{$data.nb_larve_compte}">
 </dd>
 </dl>
 

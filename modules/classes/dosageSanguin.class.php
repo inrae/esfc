@@ -44,6 +44,9 @@ class DosageSanguin extends \ObjetBDD {
 				"tx_calcium" => array (
 						"type" => 1 
 				),
+				"tx_hematocrite" => array(
+						"type" => 1
+				),
 				"dosage_sanguin_commentaire" => array (
 						"type" => 0 
 				) 
@@ -64,7 +67,8 @@ class DosageSanguin extends \ObjetBDD {
 	function getListeFromPoissonCampagne($poissonCampagneId) {
 		if ($poissonCampagneId > 0) {
 			$sql = "select dosage_sanguin_id, poisson_campagne_id, dosage_sanguin_date, 
-					tx_e2, tx_e2_texte, tx_calcium, dosage_sanguin_commentaire 
+					tx_e2, tx_e2_texte, tx_calcium, tx_hematocrite,
+					dosage_sanguin_commentaire 
 					from dosage_sanguin
 					where poisson_campagne_id = " . $poissonCampagneId . " 
 					order by dosage_sanguin_date";
