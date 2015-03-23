@@ -254,6 +254,10 @@
 	<lotMesureWrite action="modules/repro/lotMesure.php" param="write" droits="reproGestion" modulebefore="lotMesureChange" retourok="lotDisplay" retourko="lotMesureChange"/>
 	<lotMesureDelete action="modules/repro/lotMesure.php" param="delete" droits="reproGestion" modulebefore="lotMesureChange" retoursuppr="lotDisplay" retourko="lotMesureChange"/>
 
+	<injectionChange action="modules/repro/injection.php" param="change" droits="reproGestion" />
+	<injectionWrite action="modules/repro/injection.php" param="write" droits="reproGestion" modulebefore="injectionChange" retourok="poissonCampagneDisplay" retourko="injectionChange"/>
+	<injectionDelete action="modules/repro/injection.php" param="delete" droits="reproGestion" modulebefore="injectionChange" retoursuppr="poissonCampagneDisplay" retourko="injectionChange"/>
+
 	
 </navigation>
 	

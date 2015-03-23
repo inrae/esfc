@@ -29,6 +29,39 @@ $(document).ready(function() {
         	}
     	}
 	} );
+	var chart1 = c3.generate( { 
+		bindto:'#tauxSanguin',
+		data: { 
+			xs: { 
+				'E2': 'x1',
+				'Ca': 'x2'
+			},
+			xFormat: '%d/%m/%Y',
+			columns: [ 
+			  [{$e2x}],
+			  [{$e2y}],
+			  [{$cax}],
+			  [{$cay}]
+			  ] ,
+			  
+			axes: { 
+				E2: 'y',
+				Ca: 'y2'
+			}  			
+		} ,
+
+	    axis: {
+	        x: {
+	            type: 'timeseries',
+	            tick: {
+	                format: '%d/%m'
+	           	 	}
+	        	},
+	        y2: {
+	        	show: true
+	        }
+	    	}
+	});
 	{/if}
 } );
 </script>
@@ -56,16 +89,7 @@ Afficher les graphiques...
 <legend>Séquences de reproduction</legend>
 {include file="repro/poissonSequenceList.tpl"}
 </fieldset>
-</td>
-<td>
-<fieldset>
-<legend>Événements liés aux séquences</legend>
-{include file="repro/psEvenementList.tpl"}
-</fieldset>
-</td>
-</tr>
-<tr>
-<td>
+<br>
 <fieldset>
 <legend>Échographies de l'année</legend>
 {if $droits.reproGestion == 1}
@@ -78,11 +102,21 @@ Nouvelle échographie (nouvel événement)...
 </td>
 <td>
 <fieldset>
+<legend>Événements liés aux séquences</legend>
+{include file="repro/psEvenementList.tpl"}
+</fieldset>
+<br>
+<fieldset>
 <legend>Analyses sanguines</legend>
 {include file="repro/poissonSanguinList.tpl"}
 </fieldset>
+<br>
+<fieldset>
+<legend>Injections</legend>
+{include file="repro/injectionList.tpl"}
+</fieldset>
 </td>
-<tr>
+</tr>
 <td colspan="2">
 <fieldset>
 <legend>Biopsies</legend>
@@ -97,6 +131,11 @@ Nouvelle échographie (nouvel événement)...
 <div id="profilThermique"></div>
 </fieldset>
 </td>
+<td>
+<fieldset>
+<legend>Taux sanguins</legend>
+<div id="tauxSanguin"></div>
+</fieldset>
 
 </tr>
 </table>

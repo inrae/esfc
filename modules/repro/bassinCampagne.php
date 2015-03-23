@@ -80,6 +80,10 @@ switch ($t_module["param"]) {
 		$transfert = new Transfert($bdd, $ObjetBDDParam);
 		$smarty->assign("dataPoisson", $transfert->getListPoissonPresentByBassin($data["bassin_id"]));
 		/*
+		 * Calcul de la date du jour
+		 */
+		$smarty->assign("dateJour", date(("d/m/Y")));
+		/*
 		 * Recuperation des evenements
 		*/
 		$bassinEvenement = new BassinEvenement($bdd, $ObjetBDDParam);

@@ -1,9 +1,11 @@
 <script>
 $(document).ready(function() {
-	$(".taux").attr("pattern","[0-9]+(\.[0-9]+)?");
-	$(".taux").attr("title","valeur numérique");
-	$(".taux").attr("size", "10");
-	$(".taux").attr("maxlength", "10");
+	$(".taux").attr( {
+		pattern: "[0-9]+(\.[0-9]+)?",
+		title: "valeur numérique",
+		size: "10",
+		maxlength: "10"
+	});
 	$( ".date" ).datepicker( { dateFormat: "dd/mm/yy" } );
 });
 </script>

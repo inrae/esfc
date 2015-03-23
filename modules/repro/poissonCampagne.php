@@ -62,17 +62,21 @@ switch ($t_module ["param"]) {
 		require_once 'modules/classes/biopsie.class.php';
 		require_once 'modules/classes/sequence.class.php';
 		require_once 'modules/classes/poisson.class.php';
+		require_once 'modules/classes/injection.class.php';
 		$dosageSanguin = new DosageSanguin ( $bdd, $ObjetBDDParam );
 		$biopsie = new Biopsie ( $bdd, $ObjetBDDParam );
 		$poissonSequence = new PoissonSequence ( $bdd, $ObjetBDDParam );
 		$psEvenement = new PsEvenement ( $bdd, $ObjetBDDParam );
 		$echographie = new Echographie ( $bdd, $ObjetBDDParam );
+		$injection = new Injection ( $bdd, $ObjetBDDParam );
+		$dosages = $dosageSanguin->getListeFromPoissonCampagne ( $id );
 		
-		$smarty->assign ( "dataSanguin", $dosageSanguin->getListeFromPoissonCampagne ( $id ) );
+		$smarty->assign ( "dataSanguin", $dosages );
 		$smarty->assign ( "dataBiopsie", $biopsie->getListeFromPoissonCampagne ( $id ) );
 		$smarty->assign ( "dataSequence", $poissonSequence->getListFromPoisson ( $id ) );
 		$smarty->assign ( "dataPsEvenement", $psEvenement->getListeEvenementFromPoisson ( $id ) );
 		$smarty->assign ( "dataEcho", $echographie->getListByYear ( $data ["poisson_id"], $_SESSION ["annee"] ) );
+		$smarty->assign ( "injections", $injection->getListFromPoissonCampagne ( $id ) );
 		
 		$smarty->assign ( "corps", "repro/poissonCampagneDisplay.tpl" );
 		if (isset ( $_REQUEST ["sequence_id"] ))
@@ -80,23 +84,45 @@ switch ($t_module ["param"]) {
 			/*
 		 * Recherche des temperatures pour le graphique
 		 */
-		if ($_REQUEST ["graphicsEnabled"] == 1) {
-			for($i = 1; $i < 3; $i ++) {
-				$datapf = $dataClass->getTemperatures ( $data ["poisson_id"], $_SESSION ["annee"], $i );
-				$x = "'x" . $i . "'";
-				if ($i == 1) {
-					$y = "'constaté'";
-				} else
-					$y = "'prévu'";
-				foreach ( $datapf as $key => $value ) {
-					$x .= ",'" . $value ["pf_datetime"] . "'";
-					$y .= "," . $value ["pf_temperature"];
-				}
-				$smarty->assign ( "pfx" . $i, $x );
-				$smarty->assign ( "pfy" . $i, $y );
+			// if ($_REQUEST ["graphicsEnabled"] == 1) {
+		for($i = 1; $i < 3; $i ++) {
+			$datapf = $dataClass->getTemperatures ( $data ["poisson_id"], $_SESSION ["annee"], $i );
+			$x = "'x" . $i . "'";
+			if ($i == 1) {
+				$y = "'constaté'";
+			} else
+				$y = "'prévu'";
+			foreach ( $datapf as $key => $value ) {
+				$x .= ",'" . $value ["pf_datetime"] . "'";
+				$y .= "," . $value ["pf_temperature"];
 			}
-			$smarty->assign("graphicsEnabled", 1);
+			$smarty->assign ( "pfx" . $i, $x );
+			$smarty->assign ( "pfy" . $i, $y );
 		}
+		$smarty->assign ( "graphicsEnabled", 1 );
+		// }
+		/*
+		 * Recherche des donnees pour les taux sanguins
+		 */
+		$e2y = "'E2'";
+		$cay = "'Ca'";
+		$e2x = "'x1'";
+		$cax = "'x2'";
+		foreach ($dosages as $key => $value) {
+			if ($value["tx_e2"] > 0) {
+				$e2x .= ",'".$value["dosage_sanguin_date"]. "'";
+				$e2y .= "," .$value["tx_e2"];
+			}
+			if ($value["tx_calcium"] > 0) {
+				$cax .= ",'".$value["dosage_sanguin_date"]. "'";
+				$cay .= "," .$value["tx_calcium"];
+			}
+		}
+		$smarty->assign("e2x", $e2x);
+		$smarty->assign("e2y", $e2y);
+		$smarty->assign("cax", $cax);
+		$smarty->assign("cay", $cay);
+		
 		break;
 	case "change":
 		/*

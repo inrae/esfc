@@ -51,7 +51,7 @@ $(document).ready(function() {
 {else}
 {$dataBassinCampagne.bassin_utilisation}
 {/if}
-<h3>Liste des poissons présents</h3>
+<h3>Liste des poissons présents au {$dateJour}</h3>
 {include file="bassin/bassinPoissonPresent.tpl"}
 <br>
 <h3>Profil thermique</h3>

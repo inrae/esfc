@@ -247,7 +247,32 @@ class PoissonCampagne extends ObjetBDD {
 		return $annees;
 	}
 	/**
-	 * Retourne les séquences auxquelles participe un poisson
+	 * Retourne la liste des sequences pour un poisson, pour une annee
+	 * 
+	 * @param int $poisson_id        	
+	 * @param int $annee        	
+	 * @return tableau|NULL
+	 */
+	function getListSequence($poisson_id, $annee, $isPoissonCampagne = true) {
+		if ($poisson_id > 0 && $annee > 0) {
+			$sql = "select distinct sequence_id, sequence_nom, sequence_date_debut
+					from sequence s
+					join poisson_sequence using (sequence_id)
+					join poisson_campagne using (poisson_campagne_id)
+					where s.annee = " . $annee;
+			if ($isPoissonCampagne == true) {
+				$sql .= " and poisson_campagne_id = " . $poisson_id;
+			} else {
+				$sql .= " and poisson_id = " . $poisson_id;
+			}
+			$sql .= " order by sequence_date_debut, sequence_nom";
+			return $this->getListeParam ( $sql );
+		} else
+			return null;
+	}
+	
+	/**
+	 * Retourne les séquences auxquelles participe un poisson, sous forme textuelle
 	 *
 	 * @param int $poisson_id        	
 	 * @param int $annee        	
@@ -255,23 +280,14 @@ class PoissonCampagne extends ObjetBDD {
 	 */
 	function getSequences($poisson_id, $annee) {
 		$sequences = "";
-		if ($poisson_id > 0 && $annee > 0) {
-			$sql = "select distinct sequence_nom, sequence_date_debut
-					from sequence s
-					join poisson_sequence using (sequence_id) 
-					join poisson_campagne using (poisson_campagne_id)
-					where s.annee = " . $annee . " 
-					and poisson_id = " . $poisson_id . " 
-					order by sequence_date_debut, sequence_nom";
-			$liste = $this->getListeParam ( $sql );
-			$virgule = false;
-			foreach ( $liste as $key => $value ) {
-				$sequences .= $value ["sequence_nom"];
-				if ($virgule == true)
-					$sequences .= ",";
-				else
-					$virgule = true;
-			}
+		$liste = $this->getListSequence ( $poisson_id, $annee, false );
+		$virgule = false;
+		foreach ( $liste as $key => $value ) {
+			$sequences .= $value ["sequence_nom"];
+			if ($virgule == true)
+				$sequences .= ",";
+			else
+				$virgule = true;
 		}
 		return $sequences;
 	}
@@ -362,7 +378,7 @@ class PoissonCampagne extends ObjetBDD {
 	
 	/**
 	 * Change le statut du poisson
-	 * 
+	 *
 	 * @param int $poisson_campagne_id        	
 	 * @param int $repro_statut_id        	
 	 * @return int
@@ -375,28 +391,36 @@ class PoissonCampagne extends ObjetBDD {
 		} else
 			return - 1;
 	}
-
+	
 	/**
 	 * Fonction permettant de restituer l'ensemble des temperatures des bassins frequentes par un poisson
-	 * @param int $poisson_campagne_id
-	 * @param int $annee
-	 * @param int $profil_thermique_type_id
+	 *
+	 * @param int $poisson_campagne_id        	
+	 * @param int $annee        	
+	 * @param int $profil_thermique_type_id        	
 	 * @return array|NULL
 	 */
 	function getTemperatures($poisson_id, $annee, $profil_thermique_type_id = 1) {
 		if ($poisson_id > 0 && $annee > 0) {
-			$sql = "select pf_datetime, pf_temperature, poisson_id
-					from v_poisson_campagne_profil_thermique
-					where poisson_id = ".$poisson_id."
-					and annee = ".$annee."
-					and profil_thermique_type_id = ".$profil_thermique_type_id."
+			$sql = "SELECT b.poisson_id,b.bassin_id,b.bassin_nom,b.date_debut,b.date_fin,
+    				bc.bassin_campagne_id,pt.profil_thermique_id,bc.annee,pt.pf_datetime,
+    				pt.pf_temperature,pt.profil_thermique_type_id
+				   FROM v_poisson_bassins b
+				     join bassin_campagne bc on bc.bassin_id = b.bassin_id
+				     JOIN profil_thermique pt ON (bc.bassin_campagne_id = pt.bassin_campagne_id 
+						AND pt.pf_datetime between b.date_debut 
+						AND CASE WHEN b.date_fin IS NULL THEN 'now'::text::date ELSE b.date_fin END
+						)
+					where poisson_id = " . $poisson_id . "
+					and annee = " . $annee . "
+					and profil_thermique_type_id = " . $profil_thermique_type_id . "
 					order by pf_datetime";
-			$data = $this->getListeParam($sql);
+			$data = $this->getListeParam ( $sql );
 			/*
 			 * Remise en forme des dates
 			 */
-			foreach ($data as $key => $value ) {
-				$data[$key]["pf_datetime"] = $this->formatDateDBversLocal($value["pf_datetime"], 3); 
+			foreach ( $data as $key => $value ) {
+				$data [$key] ["pf_datetime"] = $this->formatDateDBversLocal ( $value ["pf_datetime"], 3 );
 			}
 			return $data;
 		} else
