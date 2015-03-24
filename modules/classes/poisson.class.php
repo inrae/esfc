@@ -480,6 +480,26 @@ class Morphologie extends ObjetBDD {
 			return $this->lireParam ( $sql );
 		}
 	}
+
+	/**
+	 * Retourne la masse d'un poisson entre deux dates
+	 * @param int $poisson_id
+	 * @param string $date_from
+	 * @param string $date_to
+	 * @return tableau|NULL
+	 */
+	function getListMasseFromPoisson($poisson_id, $date_from, $date_to) {
+		if ($poisson_id > 0 && strlen ($date_from) > 0 && strlen($date_to) > 0) {
+			$sql = "select poisson_id, morphologie_date, masse 
+					from morphologie
+					where poisson_id = ".$poisson_id."
+					and morphologie_date between '".$date_from."' and '".$date_to."' 
+					order by morphologie_date";
+			printr($sql);
+			return $this->getListeParam($sql);
+		} else 
+			return null;
+	}
 	
 	/**
 	 * Retourne la masse d'un poissson après le 1er juin (post-repro)

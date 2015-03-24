@@ -26,8 +26,12 @@ $(document).ready(function() {
             tick: {
                 format: '%d/%m %H:%M'
            	 	}
-        	}
+        	},
+        y: {
+        	label: '°C'
+        }
     	}
+ 
 	} );
 	var chart1 = c3.generate( { 
 		bindto:'#tauxSanguin',
@@ -57,8 +61,12 @@ $(document).ready(function() {
 	                format: '%d/%m'
 	           	 	}
 	        	},
+	        y: {
+	        	label: 'E2 - pg/ml'
+	        },
 	        y2: {
-	        	show: true
+	        	show: true,
+	        	label: 'CA - mg/ml'
 	        }
 	    	}
 	});

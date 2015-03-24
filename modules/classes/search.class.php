@@ -205,10 +205,9 @@ class SearchRepro extends SearchParam {
 	function __construct() {
 		$this->param = array(
 				"annee" => date ('Y'),
-				"repro_statut_id" => 0
+				"repro_statut_id" => 2
 		);
 		parent::__construct();
-		printr($this->param);
 	}
 }
 ?>

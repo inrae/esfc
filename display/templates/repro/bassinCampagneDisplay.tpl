@@ -26,8 +26,42 @@ $(document).ready(function() {
                 format: '%d/%m %H:%M'
            	 	}
         	}
-    	}
+    	},
+    size: { 
+    	width: "400"
+    }
+    	
 	} );
+	var chartSalinite = c3.generate( {
+		bindto: '#salinite',
+		data: {
+			xs: {
+				'constaté': 'x1',
+				'prévu': 'x2'
+			} ,
+//	    x: 'x',
+      xFormat: '%d/%m/%Y %H:%M:%S', // 'xFormat' can be used as custom format of 'x'
+      columns: [
+          [{$sx1}],
+          [{$sy1}],
+          [{$sx2}],
+          [{$sy2}]
+          ]
+	} ,
+    axis: {
+        x: {
+            type: 'timeseries',
+            tick: {
+                format: '%d/%m %H:%M'
+           	 	}
+        	}
+    	} ,
+    size: { 
+    	width: "400"
+    }
+
+	} );
+
 	$(".commentaire").attr("size","30");
 } );
 </script>
@@ -36,7 +70,7 @@ $(document).ready(function() {
 <table class="tablemulticolonne">
 <tr>
 <td>
-<h3>Identification du bassin</h3>
+<fieldset><legend>Identification du bassin</legend>
 {include file="bassin/bassinDetail.tpl"}
 
 <label>Usage du bassin pour la reproduction</label> : 
@@ -51,10 +85,27 @@ $(document).ready(function() {
 {else}
 {$dataBassinCampagne.bassin_utilisation}
 {/if}
-<h3>Liste des poissons présents au {$dateJour}</h3>
+</fieldset>
+
+</td>
+<td>
+<fieldset><legend>Événements survenus</legend>
+{include file="bassin/bassinEvenementList.tpl"}
+</fieldset>
+</td>
+</tr>
+<tr>
+<td>
+<fieldset>
+<legend>Liste des poissons présents au {$dateJour}</legend>
 {include file="bassin/bassinPoissonPresent.tpl"}
-<br>
-<h3>Profil thermique</h3>
+</fieldset>
+</td>
+</tr>
+<tr>
+<td>
+<fieldset>
+<legend>Profil thermique</legend>
 {if $droits.reproGestion == 1}
 <a href="index.php?module=profilThermiqueChange&profil_thermique_id=0&bassin_campagne_id={$dataBassinCampagne.bassin_campagne_id}">
 Nouvelle température prévue/relevée...
@@ -63,10 +114,20 @@ Nouvelle température prévue/relevée...
 {include file="repro/profilThermiqueList.tpl"}
 <br>
 <div id="profilThermique"></div>
+</fieldset>
 </td>
 <td>
-<h3>Évenements survenus</h3>
-{include file="bassin/bassinEvenementList.tpl"}
+<fieldset>
+<legend>Évolution de la salinité</legend>
+{if $droits.reproGestion == 1}
+<a href="index.php?module=saliniteChange&salinite_id=0&bassin_campagne_id={$dataBassinCampagne.bassin_campagne_id}">
+Nouvelle salinité prévue/relevée...
+</a>
+{/if}
+{include file="repro/saliniteList.tpl"}
+<br>
+<div id="salinite"></div>
+</fieldset>
 </td>
 </tr>
 </table>

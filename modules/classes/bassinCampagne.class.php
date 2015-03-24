@@ -91,6 +91,11 @@ class BassinCampagne extends ObjetBDD {
 			return null;
 	}
 }
+/**
+ * ORM de gestion de la table profil_thermique
+ * @author quinton
+ *
+ */
 class ProfilThermique extends ObjetBDD {
 	public function __construct($p_connection, $param = NULL) {
 		$this->param = $param;
@@ -178,4 +183,95 @@ class ProfilThermique extends ObjetBDD {
 	}
 }
 
+/**
+ * ORM de gestion de la table salinite
+ * @author quinton
+ *
+ */
+class Salinite extends ObjetBDD {
+	public function __construct($p_connection, $param = NULL) {
+		$this->param = $param;
+		$this->paramori = $param;
+		$this->table = "salinite";
+		$this->id_auto = "1";
+		$this->colonnes = array (
+				"salinite_id" => array (
+						"type" => 1,
+						"key" => 1,
+						"requis" => 1,
+						"defaultValue" => 0
+				),
+				"bassin_campagne_id" => array (
+						"type" => 1,
+						"requis" => 1,
+						"parentAttrib" => 1
+				),
+				"profil_thermique_type_id" => array (
+						"type" => 1,
+						"requis" => 1
+				),
+				"salinite_datetime" => array (
+						"type" => 3,
+						"requis" => 1
+				),
+				"salinite_tx" => array (
+						"type" => 1,
+						"requis" => 1
+				)
+		);
+		if (! is_array ( $param ))
+			$param == array ();
+		$param ["fullDescription"] = 1;
+
+		parent::__construct ( $p_connection, $param );
+	}
+
+	/**
+	 * Recupere la liste des salinites definies pour un bassin_campagne
+	 *
+	 * @param int $bassin_campagne_id
+	 * @return tableau|NULL
+	 */
+	function getListFromBassinCampagne($bassin_campagne_id, $type_id = 0) {
+		if ($bassin_campagne_id > 0) {
+			$sql = "select salinite_id, bassin_campagne_id, profil_thermique_type_id,
+					salinite_datetime, salinite_tx,
+					profil_thermique_type_libelle
+					from salinite
+					join profil_thermique_type using (profil_thermique_type_id)";
+			$where = " where bassin_campagne_id = " . $bassin_campagne_id;
+			if ($type_id > 0) {
+				$where .= " and profil_thermique_type_id = " . $type_id;
+			}
+			$order = " order by salinite_datetime";
+			return $this->getListeParam ( $sql . $where . $order );
+		} else
+			return null;
+	}
+
+	/**
+	 * Surcharge de la fonction lire pour eclater la zone datetime en deux champs
+	 * (non-PHPdoc)
+	 *
+	 * @see ObjetBDD::lire()
+	 */
+	function lire($id, $getDefault = false, $parentValue = 0) {
+		$data = parent::lire ( $id, $getDefault, $parentValue );
+		$dateTime = explode ( " ", $data ["salinite_datetime"] );
+		$data ["salinite_date"] = $dateTime [0];
+		$data ["salinite_time"] = $dateTime [1];
+		return $data;
+	}
+
+	/**
+	 * Surcharge de la fonction ecrire pour reconstituer le champ salinite_datetime
+	 * (non-PHPdoc)
+	 *
+	 * @see ObjetBDD::ecrire()
+	 */
+	function ecrire($data) {
+		$data ["salinite_datetime"] = $data ["salinite_date"] . " " . $data ["salinite_time"];
+		return parent::ecrire ( $data );
+	}
+}
 ?>

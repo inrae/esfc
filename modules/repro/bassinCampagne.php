@@ -68,6 +68,27 @@ switch ($t_module["param"]) {
 			$smarty->assign("pfy".$i, $y);
 		}
 		/*
+		 * Donnes de salinite
+		 */
+		$salinite = new Salinite($bdd, $ObjetBDDParam);
+		$smarty->assign("salinites", $salinite->getListFromBassinCampagne($id));
+		/*
+		 * Calcul des donnees pour le graphique
+		 */
+		for ($i=1;$i<3;$i++){
+			$datapf = $salinite->getListFromBassinCampagne($id, $i);
+			$x = "'x".$i."'";
+			if ($i == 1) {
+				$y = "'constaté'";
+			} else $y = "'prévu'";
+			foreach ($datapf as $key => $value) {
+				$x.=",'".$value["salinite_datetime"]."'";
+				$y .= ",".$value["salinite_tx"];
+			}
+			$smarty->assign("sx".$i, $x);
+			$smarty->assign("sy".$i, $y);
+		}
+		/*
 		 * Recuperation des donnees du bassin
 		 */	
 		require_once 'modules/classes/bassin.class.php';

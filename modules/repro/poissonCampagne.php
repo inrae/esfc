@@ -44,6 +44,35 @@ switch ($t_module ["param"]) {
 		 * Passage en parametre de la liste parente
 		 */
 		$_SESSION ["poissonDetailParent"] = "poissonCampagneList";
+		/*
+		 * Affichage du graphique d'evolution de la masse
+		 */
+		if ($_REQUEST["graphique_id"] > 0) {
+			require_once 'modules/classes/poisson.class.php';
+			$morphologie = new Morphologie($bdd, $ObjetBDDParam);
+			$date_from = ($_SESSION["annee"] - 5)."-01-01";
+			$date_to = $_SESSION["annee"]."-12-31";
+			$dataMorpho = $morphologie->getListMasseFromPoisson($_REQUEST["graphique_id"], $date_from, $date_to);
+			/*
+			 * Lecture des donnees du poisson
+			 */
+			$poisson = new Poisson($bdd, $ObjetBDDParam);
+			$dataPoisson = $poisson->lire($_REQUEST["graphique_id"]);
+			/*
+			 * Preparation des donnees pour le graphique
+			 */
+			$x = "'x'";
+			$y = "'data1'";
+			foreach ($dataMorpho as $key=>$value) {
+				$x .= ",'".$value["morphologie_date"]."'";
+				$y .= ",".$value["masse"];
+			}
+			printr($x);
+			printr($y);
+			$smarty->assign("poisson_nom", $dataPoisson["prenom"]." ".$dataPoisson["matricule"]);
+			$smarty->assign("massex", $x);
+			$smarty->assign("massey", $y);
+		}
 		break;
 	case "display":
 		/*

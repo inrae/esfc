@@ -1,3 +1,6 @@
+<link href="display/javascript/c3/c3.css" rel="stylesheet" type="text/css">
+<script src="display/javascript/c3/d3.min.js" charset="utf-8"></script>
+<script src="display/javascript/c3/c3.min.js"></script>
 <script>
 $(document).ready(function() { 
 	$("#selectStatut").change(function () {
@@ -24,6 +27,52 @@ $(document).ready(function() {
 			return false ;
 		}
 	} );
+	{if strlen($poisson_nom) > 0}
+	var chart = c3.generate( {
+		bindto: '#graphiqueMasse',
+		data: {
+			xs: { 
+				'data1': 'x'
+			},
+//	    x: 'x',
+      	xFormat: '%d/%m/%Y', // 'xFormat' can be used as custom format of 'x'
+      	columns: [
+         	 [{$massex}],
+        	  [{$massey}]
+          ],
+      	names: { 
+    	  data1: '{$poisson_nom}'
+      }
+	} ,
+    axis: {
+        x: {
+            type: 'timeseries',
+            tick: {
+                format: '%d/%m/%Y',
+                rotate: '90'
+           	 	}
+        	},
+        y: {
+        	label: 'grammes'
+        }
+    	},
+    grid: { 
+    	y: {
+    		show: true
+    	}
+    },
+    size: { 
+    	width: '800'
+    },
+    tooltip: {
+    	  position: function (data, width, height, element) {
+    	    return { top: 0, left: width }
+    	  }
+    	}
+ 
+	} );
+	{/if}
+
 } ) ;
 //setDataTables("cpoissonList", false, false, true);
 </script>
@@ -75,6 +124,7 @@ Ajouter tous les adultes vivants à la campagne...
 <th>Cohorte</th>
 <th>Sexe</th>
 <th>Masse<br>actuelle</th>
+<th>Croissance</th>
 <th>Tx de croissance<br>journalier</th>
 <th>Specific<br>growth rate</th>
 <th>Années de<br>croisement</th>
@@ -99,6 +149,11 @@ Ajouter tous les adultes vivants à la campagne...
 <td class="center">{$data[lst].cohorte}</td>
 <td class="center">{$data[lst].sexe_libelle_court}</td>
 <td class="right">{$data[lst].masse}</td>
+<td class="center">
+<a href="index.php?module=poissonCampagneList&graphique_id={$data[lst].poisson_id}">
+<img src="display/images/chart.png" height="25">
+</a>
+</td>
 <td class="{if $data[lst].tx_croissance_journalier > 0.02}etat3{else}right{/if}">{$data[lst].tx_croissance_journalier}</td>
 <td class="{if $data[lst].specific_growth_rate > 0.02}etat3{else}right{/if}">{$data[lst].specific_growth_rate}</td>
 <td>{$data[lst].annees}</td>
@@ -128,4 +183,7 @@ Sélectionnez le statut...
 
 </table>
 </form>
+
+<div id="graphiqueMasse"></div>
+
 {/if}

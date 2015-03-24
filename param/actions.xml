@@ -258,6 +258,11 @@
 	<injectionWrite action="modules/repro/injection.php" param="write" droits="reproGestion" modulebefore="injectionChange" retourok="poissonCampagneDisplay" retourko="injectionChange"/>
 	<injectionDelete action="modules/repro/injection.php" param="delete" droits="reproGestion" modulebefore="injectionChange" retoursuppr="poissonCampagneDisplay" retourko="injectionChange"/>
 
+	<saliniteChange action="modules/repro/salinite.php" param="change" droits="reproGestion"/>
+	<saliniteNew action="modules/repro/salinite.php" param="new" droits="reproGestion"/>
+	<saliniteWrite action="modules/repro/salinite.php" param="write" droits="reproGestion" modulebefore="saliniteChange,saliniteNew" retourok="saliniteNew"/>
+	<saliniteDelete action="modules/repro/salinite.php" param="delete" droits="reproGestion" modulebefore="saliniteChange" retoursuppr="saliniteChange" retourko="saliniteChange"/>
+
 	
 </navigation>
 	
