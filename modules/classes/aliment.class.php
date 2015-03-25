@@ -478,7 +478,8 @@ class Repartition extends ObjetBDD {
 	}
 	/**
 	 * Recopie les donnees dans une nouvelle repartition
-	 * @param int $id
+	 * 
+	 * @param int $id        	
 	 * @return int
 	 */
 	function duplicate($id) {
@@ -512,33 +513,31 @@ class Repartition extends ObjetBDD {
 					 * Recuperation de la liste des bassins rattaches a l'ancienne répartition
 					 */
 					$dataDist = $distribution->getFromRepartition ( $id );
-					foreach ( $dataDist as $key => $value ) {
-						$data = $value;
+					foreach ( $dataDist as $key => $data ) {
 						/*
 						 * On ne traite que les bassins actifs et ceux de la même catégorie
-						 *  que le modèle de répartition
+						 * que le modèle de répartition
 						 */
-						if ($data["actif"] == 1 && 
-						$data["repart_template_categorie_id"] == $data["bassin_usage_categorie_id"]) {
-						$data ["distribution_id"] = 0;
-						$data ["repartition_id"] = $newId;
-						$data ["evol_taux_nourrissage"] = null;
-						$data ["ration_commentaire"] = null;
-						$data ["reste_zone_calcul"] = null;
-						$data ["distribution_id_prec"] = $value ["distribution_id"];
-						$data ["reste_total"] = 0;
-						$data ["taux_reste"] = 0;
-						/*
-						 * Ecriture des nouvelles distributions
-						 */
-						$idDistribution = $distribution->ecrire ( $data );
-						if (! $idDistribution > 0) {
-							$this->errorData [] = array (
-									"code" => 0,
-									"valeur" => $distribution->getErrorData ( 0 ) 
-							);
-							$err = - 1;
-						}
+						if ($data ["actif"] == 1 && $data ["repart_template_categorie_id"] == $data ["bassin_usage_categorie_id"]) {
+							$data ["distribution_id"] = 0;
+							$data ["repartition_id"] = $newId;
+							$data ["evol_taux_nourrissage"] = null;
+							$data ["ration_commentaire"] = null;
+							$data ["reste_zone_calcul"] = null;
+							$data ["distribution_id_prec"] = $value ["distribution_id"];
+							$data ["reste_total"] = 0;
+							$data ["taux_reste"] = 0;
+							/*
+							 * Ecriture des nouvelles distributions
+							 */
+							$idDistribution = $distribution->ecrire ( $data );
+							if (! $idDistribution > 0) {
+								$this->errorData [] = array (
+										"code" => 0,
+										"valeur" => $distribution->getErrorData ( 0 ) 
+								);
+								$err = - 1;
+							}
 						}
 					}
 				} else {
@@ -641,10 +640,10 @@ class Distribution extends ObjetBDD {
 						"type" => 0,
 						"defaultValue" => "1,1,1,1,1,1,1" 
 				),
-				"distribution_jour_soir" => array(
+				"distribution_jour_soir" => array (
 						"type" => 0,
-						"defaultValue" => "0,0,0,0,0,0,0"
-		)
+						"defaultValue" => "0,0,0,0,0,0,0" 
+				) 
 		);
 		if (! is_array ( $param ))
 			$param == array ();
@@ -666,7 +665,7 @@ class Distribution extends ObjetBDD {
 		for($i = 0; $i < 7; $i ++) {
 			$data ["distribution_jour_" . ($i + 1)] = $distribJour [$i];
 		}
-		$distribJourSoir = explode(",", $data["distribution_jour_soir"]);
+		$distribJourSoir = explode ( ",", $data ["distribution_jour_soir"] );
 		for($i = 0; $i < 7; $i ++) {
 			$data ["distribution_jour_soir_" . ($i + 1)] = $distribJourSoir [$i];
 		}
@@ -682,24 +681,24 @@ class Distribution extends ObjetBDD {
 	function ecrire($data) {
 		/*
 		 * Remise en forme du champ distribution_jour
-		 */		
-			$data ["distribution_jour"] = $data ["distribution_jour_1"];
-			for($i = 2; $i <= 7; $i ++) {
-				$data ["distribution_jour"] .= "," . $data ["distribution_jour_" . $i];
-			}		
+		 */
+		$data ["distribution_jour"] = $data ["distribution_jour_1"];
+		for($i = 2; $i <= 7; $i ++) {
+			$data ["distribution_jour"] .= "," . $data ["distribution_jour_" . $i];
+		}
 		/*
 		 * Remise en forme du champ distribution_jour_taux
 		 */
-			$data["distribution_jour_soir"] = $data["distribution_jour_soir_1"];
-			for($i = 2; $i <= 7; $i ++) {
-				$data ["distribution_jour_soir"] .= "," . $data ["distribution_jour_soir_" . $i];
-			}
+		$data ["distribution_jour_soir"] = $data ["distribution_jour_soir_1"];
+		for($i = 2; $i <= 7; $i ++) {
+			$data ["distribution_jour_soir"] .= "," . $data ["distribution_jour_soir_" . $i];
+		}
 		$id = parent::ecrire ( $data );
 		if ($id > 0) {
 			/*
 			 * Relecture, pour récupérer les données de restes
-			*/
-			$data = $this->lire($id);
+			 */
+			$data = $this->lire ( $id );
 			/*
 			 * Ecriture de la repartition quotidienne des aliments
 			 */
@@ -735,7 +734,7 @@ class Distribution extends ObjetBDD {
 			 * Mise en forme du tableau de jour de distribution
 			 */
 			$distribJour = explode ( ",", $data ["distribution_jour"] );
-			$distribJourSoir = explode(",", $data["distribution_jour_soir"]);
+			$distribJourSoir = explode ( ",", $data ["distribution_jour_soir"] );
 			$i = 0;
 			while ( $dateDebut <= $dateFin ) {
 				/*
@@ -769,8 +768,8 @@ class Distribution extends ObjetBDD {
 				/*
 				 * Recalcul de la quantité si distribution uniquement le soir à 50 %
 				 */
-				if ($distribJourSoir[$numJour - 1] == 1) {
-					$dataDistrib ["total_distribue"] = $dataDistrib["total_distribue"] * 0.5;
+				if ($distribJourSoir [$numJour - 1] == 1) {
+					$dataDistrib ["total_distribue"] = $dataDistrib ["total_distribue"] * 0.5;
 				}
 				$idDataDistrib = $distribQuotidien->ecrire ( $dataDistrib );
 				if ($idDataDistrib > 0 && $distribJour [$numJour - 1] == 1) {
@@ -874,65 +873,65 @@ class Distribution extends ObjetBDD {
 				left outer join repart_template as rt using (repart_template_id)
 				left outer join distribution t2 on (t2.distribution_id = t1.distribution_id_prec)
 				where t1.repartition_id = " . $repartition_id . "
-				order by bassin_nom";		
+				order by bassin_nom";
 		$data = $this->getListeParam ( $sql );
 		/*
 		 * Recuperation des dates de la repartition
 		 */
-		$repartition = new Repartition($this->connection, $this->paramori);
-		$dataRepart = $repartition->lire($repartition_id);
-		$date_debut = date_create_from_format("d/m/Y", $dataRepart["date_debut_periode"]);
-		$date_fin = date_create_from_format("d/m/Y", $dataRepart["date_fin_periode"]);
-		$intervalle = $date_debut->diff( $date_fin);
-		$nbJour = $intervalle->format('%a') + 1;
-		$di_intervalle = new DateInterval("P".($nbJour)."D");
-		//$date_debut->sub($di_intervalle);
+		$repartition = new Repartition ( $this->connection, $this->paramori );
+		$dataRepart = $repartition->lire ( $repartition_id );
+		$date_debut = date_create_from_format ( "d/m/Y", $dataRepart ["date_debut_periode"] );
+		$date_fin = date_create_from_format ( "d/m/Y", $dataRepart ["date_fin_periode"] );
+		$intervalle = $date_debut->diff ( $date_fin );
+		$nbJour = $intervalle->format ( '%a' ) + 1;
+		$di_intervalle = new DateInterval ( "P" . ($nbJour) . "D" );
+		// $date_debut->sub($di_intervalle);
 		
-		$distriQuotidien = new DistribQuotidien($this->connection, $this->paramori);
-		$p1d = new DateInterval("P1D");
+		$distriQuotidien = new DistribQuotidien ( $this->connection, $this->paramori );
+		$p1d = new DateInterval ( "P1D" );
 		/*
 		 * Mise en forme des jours de distribution
 		 */
 		foreach ( $data as $key => $value ) {
 			$distribJour = explode ( ",", $value ["distribution_jour"] );
-			$distribJourSoir = explode (",", $value["distribution_jour_soir"]);
+			$distribJourSoir = explode ( ",", $value ["distribution_jour_soir"] );
 			for($i = 0; $i < 7; $i ++) {
 				$data [$key] ["distribution_jour_" . ($i + 1)] = $distribJour [$i];
-				$data [$key] ["distribution_jour_soir_". ($i + 1)] = $distribJourSoir[$i];
+				$data [$key] ["distribution_jour_soir_" . ($i + 1)] = $distribJourSoir [$i];
 			}
 			/*
 			 * Calcul de la distribution globale
 			 */
-			$data[$key]["total_periode_distribue"] = 0;
-			$date_debut = date_create_from_format("d/m/Y", $dataRepart["date_debut_periode"]);
-			for($i = 1; $i <= $nbJour; $i++) {
-				$dataDistrib = $distriQuotidien->lireFromDate($value["bassin_id"], $date_debut->format("d/m/Y"));
-				$data[$key]["total_periode_distribue"] += $dataDistrib["total_distribue"];
-				$date_debut->add($p1d);
+			$data [$key] ["total_periode_distribue"] = 0;
+			$date_debut = date_create_from_format ( "d/m/Y", $dataRepart ["date_debut_periode"] );
+			for($i = 1; $i <= $nbJour; $i ++) {
+				$dataDistrib = $distriQuotidien->lireFromDate ( $value ["bassin_id"], $date_debut->format ( "d/m/Y" ) );
+				$data [$key] ["total_periode_distribue"] += $dataDistrib ["total_distribue"];
+				$date_debut->add ( $p1d );
 			}
 			/*
 			 * Calcul des distributions et restes précédents
 			 */
-			$dateDeb = date_create_from_format("d/m/Y", $dataRepart["date_debut_periode"]);
-			$dateDeb->sub($di_intervalle);
-			$data[$key]["total_periode_distrib_precedent"] = 0;
-			$data[$key]["total_reste_precedent"] = 0;
+			$dateDeb = date_create_from_format ( "d/m/Y", $dataRepart ["date_debut_periode"] );
+			$dateDeb->sub ( $di_intervalle );
+			$data [$key] ["total_periode_distrib_precedent"] = 0;
+			$data [$key] ["total_reste_precedent"] = 0;
 			/*
 			 * Lecture des consommations et restes quotidiens
 			 */
-			for ($i=1;$i <= $nbJour;$i++) {
-				$dataDistrib = $distriQuotidien->lireFromDate($value["bassin_id"], $dateDeb->format("d/m/Y"));
-				$data[$key]["total_periode_distrib_precedent"] += $dataDistrib["total_distribue"];
-				$data[$key]["reste_precedent"] += $dataDistrib["reste"];
-				$dateDeb->add($p1d); 
+			for($i = 1; $i <= $nbJour; $i ++) {
+				$dataDistrib = $distriQuotidien->lireFromDate ( $value ["bassin_id"], $dateDeb->format ( "d/m/Y" ) );
+				$data [$key] ["total_periode_distrib_precedent"] += $dataDistrib ["total_distribue"];
+				$data [$key] ["reste_precedent"] += $dataDistrib ["reste"];
+				$dateDeb->add ( $p1d );
 			}
 			/*
 			 * Calcul du taux de reste
 			 */
-			if ($data[$key]["total_periode_distrib_precedent"] > 0) {
-				$data[$key]["taux_reste_precedent"] = round(($data[$key]["reste_precedent"] / $data[$key]["total_periode_distrib_precedent"] * 100),2);
+			if ($data [$key] ["total_periode_distrib_precedent"] > 0) {
+				$data [$key] ["taux_reste_precedent"] = round ( ($data [$key] ["reste_precedent"] / $data [$key] ["total_periode_distrib_precedent"] * 100), 2 );
 			} else {
-				$data[$key]["taux_reste_precedent"] = 0;
+				$data [$key] ["taux_reste_precedent"] = 0;
 			}
 		}
 		return ($data);
@@ -970,8 +969,8 @@ class Distribution extends ObjetBDD {
 					 * Rajout des distributions quotidiennes par defaut
 					 */
 					for($i = 1; $i <= 7; $i ++) {
-						$value ["distribution_jour_" . $i ] = 1;
-						$value ["distribution_jour_soir_".$i] = 0;
+						$value ["distribution_jour_" . $i] = 1;
+						$value ["distribution_jour_soir_" . $i] = 0;
 					}
 					$data [] = $value;
 				}

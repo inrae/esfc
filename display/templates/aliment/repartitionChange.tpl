@@ -25,6 +25,7 @@ $(document).ready(function() {
 		*/
 		var cle = $(this).data("cle");
 		var valeur = parseFloat($(this).val());
+		if (isNaN(valeur)) { valeur = 0 } ;
 		var origine_id = "#taux_nourrissage_precedent_" + cle;
 		var origine_value = parseFloat($(origine_id).val());
 		if (isNaN(origine_value)) { origine_value = 0 } ;
@@ -42,6 +43,7 @@ $(document).ready(function() {
 		*/
 		var cle = $(this).data("cle");
 		var valeur = parseFloat($(this).val());
+		if (isNaN(valeur)) { valeur = 0 } ;
 		var masse_id = "#distribution_masse_" + cle;
 		var masse = parseFloat($(masse_id).val());
 		if (isNaN(masse)) masse = 0 ;
@@ -159,6 +161,9 @@ $(document).ready(function() {
 <div>
 <form id="repartitionForm" method="post" action="index.php?module=repartitionWrite">
 <input type="hidden" name="repartition_id" value="{$data.repartition_id}">
+<div class="formBouton">
+<input class="submit" type="submit" value="Enregistrer">
+</div>
 <dl>
 <dt>Catégorie d'alimentation <span class="red">*</span> :</dt> 
 <dd>
