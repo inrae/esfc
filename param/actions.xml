@@ -161,6 +161,11 @@
 	<sortieLieuWrite action="modules/parametre/sortieLieu.php" param="write" droits="paramAdmin" retourok="sortieLieuList" retourko="sortieLieuChange" modulebefore="sortieLieuChange" />
 	<sortieLieuDelete action="modules/parametre/sortieLieu.php" param="delete" droits="paramAdmin" retoursuppr="sortieLieuList" retourko="sortieLieuChange"  modulebefore="sortieLieuChange"/>
 
+	<hormoneList action="modules/parametre/hormone.php" param="list" droits="consult"  retourlogin="1" menulevel="1" menuparent="3" menuorder="16" menudroits="" menuvalue="93" menutitle="94"  />
+	<hormoneChange action="modules/parametre/hormone.php" param="change" droits="paramAdmin" />
+	<hormoneWrite action="modules/parametre/hormone.php" param="write" droits="paramAdmin,reproAdmin" retourok="hormoneList" retourko="hormoneChange" modulebefore="hormoneChange" />
+	<hormoneDelete action="modules/parametre/hormone.php" param="delete" droits="paramAdmin,reproAdmin" retoursuppr="hormoneList" retourko="hormoneChange"  modulebefore="hormoneChange"/>
+
 
 	<alimentation menulevel="0" menuorder="2" menuvalue="77" menutitle="78" retourlogin="1" />
 

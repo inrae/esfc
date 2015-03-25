@@ -92,6 +92,9 @@ $LANG["menu"][89] = "Événements dans bassins";
 $LANG["menu"][90] = "Types d'événements survenant dans les bassins";
 $LANG["menu"][91] = "Lieux de lâchers/destination";
 $LANG["menu"][92] = "Liste des lieux de lâchers ou de destination des poissons";
+$LANG["menu"][93] = "Hormones";
+$LANG["menu"][94] = "Liste des hormones utilisées pour la reproduction";
+
 $LANG["menu"][100] = "Repro";
 $LANG["menu"][101] = "Gestion de la reproduction";
 $LANG["menu"][102] = "Init campagne";
@@ -102,6 +105,7 @@ $LANG["menu"][106] = "Séquences et bassins";
 $LANG["menu"][107] = "Liste des séquences et des bassins pour une campagne";
 $LANG["menu"][108] = "Lots de larves";
 $LANG["menu"][109] = "Liste des lots de larves pour une campagne";
+
 
 
 
