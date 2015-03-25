@@ -21,6 +21,7 @@ $(document).ready(function() {
 		stepMinute: "5",
 		size: "5"
 	} );
+	$(".commentaire").attr("size","30");
 });
 </script>
 <a href="index.php?module={$poissonDetailParent}&sequence_id={$sequence_id}">Retour à la liste des poissons</a>&nbsp;
@@ -42,7 +43,7 @@ Retour au reproducteur
 </dd>
 </dl>
 <dl>
-<dt>Séquence de reproduction <span class="red">*</span> </dt>
+<dt>Séquence de reproduction <span class="red">*</span> :</dt>
 <dd>
 <select name="sequence_id">
 {section name=lst loop=$sequences}
@@ -51,6 +52,29 @@ Retour au reproducteur
 </option>
 {/section}
 </select>
+</dl>
+<dl>
+<dt>Hormone utilisée :</dt>
+<dd>
+<select name="hormone_id">
+<option value="" {if $data.hormone_id==""}selected{/if}>Sélectionnez...</option>
+{section name=lst loop=$hormones}
+<option value="{$hormones[lst].hormone_id}" {if $data.hormone_id == $hormones[lst].hormone_id}selected{/if}>
+{$hormones[lst].hormone_nom} - unité : {$hormones[lst].hormone_unite}
+</option>
+{/section}
+</select>
+</dd>
+</dl>
+<dl>
+<dt>Dose injectée :</dt>
+<dd>
+<input class="taux" name="injection_dose" value="{$data.injection_dose}"></dl>
+<dl>
+<dt>Commentaire :</dt>
+<dd>
+<input class="commentaire" name="injection_commentaire" value="{$data.injection_commentaire}">
+</dd>
 </dl>
 <div class="formBouton">
 <input class="submit" type="submit" value="Enregistrer">

@@ -268,6 +268,10 @@
 	<saliniteWrite action="modules/repro/salinite.php" param="write" droits="reproGestion" modulebefore="saliniteChange,saliniteNew" retourok="saliniteNew"/>
 	<saliniteDelete action="modules/repro/salinite.php" param="delete" droits="reproGestion" modulebefore="saliniteChange" retoursuppr="saliniteChange" retourko="saliniteChange"/>
 
+	<spermeChange action="modules/repro/sperme.php" param="change" droits="reproGestion" />
+	<spermeWrite action="modules/repro/sperme.php" param="write" droits="reproGestion" modulebefore="spermeChange" retourok="poissonCampagneDisplay" retourko="spermeChange"/>
+	<spermeDelete action="modules/repro/sperme.php" param="delete" droits="reproGestion" modulebefore="spermeChange" retoursuppr="poissonCampagneDisplay" retourko="spermeChange"/>
+
 	
 </navigation>
 	

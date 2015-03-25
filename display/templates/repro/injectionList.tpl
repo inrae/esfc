@@ -8,6 +8,9 @@ Nouvelle injection...
 <tr>
 <th>Date/heure de l'injection</th>
 <th>Séquence correspondante</th>
+<th>Hormone</th>
+<th>Dosage</th>
+<th>Remarque</th>
 </tr>
 </thead>
 <tdata>
@@ -23,6 +26,9 @@ Nouvelle injection...
 {/if}
 </td>
 <td>{$injections[lst].sequence_nom}</td>
+<td>{$injections[lst].hormone_nom}</td>
+<td>{$injections[lst].injection_dose} {$injections[lst].hormone_unite}</td>
+<td>{$injections[lst].injection_commentaire}</td>
 </tr>
 {/section}
 </tdata>

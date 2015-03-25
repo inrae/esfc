@@ -92,12 +92,14 @@ switch ($t_module ["param"]) {
 		require_once 'modules/classes/sequence.class.php';
 		require_once 'modules/classes/poisson.class.php';
 		require_once 'modules/classes/injection.class.php';
+		require_once 'modules/classes/sperme.class.php';
 		$dosageSanguin = new DosageSanguin ( $bdd, $ObjetBDDParam );
 		$biopsie = new Biopsie ( $bdd, $ObjetBDDParam );
 		$poissonSequence = new PoissonSequence ( $bdd, $ObjetBDDParam );
 		$psEvenement = new PsEvenement ( $bdd, $ObjetBDDParam );
 		$echographie = new Echographie ( $bdd, $ObjetBDDParam );
 		$injection = new Injection ( $bdd, $ObjetBDDParam );
+		$sperme = new Sperme($bdd, $ObjetBDDParam);
 		$dosages = $dosageSanguin->getListeFromPoissonCampagne ( $id );
 		
 		$smarty->assign ( "dataSanguin", $dosages );
@@ -106,6 +108,7 @@ switch ($t_module ["param"]) {
 		$smarty->assign ( "dataPsEvenement", $psEvenement->getListeEvenementFromPoisson ( $id ) );
 		$smarty->assign ( "dataEcho", $echographie->getListByYear ( $data ["poisson_id"], $_SESSION ["annee"] ) );
 		$smarty->assign ( "injections", $injection->getListFromPoissonCampagne ( $id ) );
+		$smarty->assign ("spermes", $sperme->getListFromPoissonCampagne($id));
 		
 		$smarty->assign ( "corps", "repro/poissonCampagneDisplay.tpl" );
 		if (isset ( $_REQUEST ["sequence_id"] ))

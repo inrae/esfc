@@ -82,9 +82,6 @@ Modifier les informations générales...
 </a>
 &nbsp;
 {/if}
-<a href="index.php?module=poissonCampagneDisplay&poisson_campagne_id={$dataPoisson.poisson_campagne_id}&graphicsEnabled=1">
-Afficher les graphiques...
-</a>
 <table class="tablemulticolonne">
 <tr>
 <td colspan="2">
@@ -107,6 +104,13 @@ Nouvelle échographie (nouvel événement)...
 {/if}
 {include file="poisson/echographieList.tpl"}
 </fieldset>
+{if $dataPoisson.sexe_libelle_court == "m"}
+<br>
+<fieldset>
+<legend>Prélèvements de sperme</legend>
+{include file="repro/spermeList.tpl"}
+</fieldset>
+{/if}
 </td>
 <td>
 <fieldset>
@@ -125,6 +129,8 @@ Nouvelle échographie (nouvel événement)...
 </fieldset>
 </td>
 </tr>
+{if $dataPoisson.sexe_libelle_court == "f"}
+<tr>
 <td colspan="2">
 <fieldset>
 <legend>Biopsies</legend>
@@ -132,6 +138,7 @@ Nouvelle échographie (nouvel événement)...
 </fieldset>
 </td>
 </tr>
+{/if}
 <tr>
 <td>
 <fieldset>

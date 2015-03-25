@@ -3,12 +3,12 @@
  * @author Eric Quinton
  * @copyright Copyright (c) 2015, IRSTEA / Eric Quinton
  * @license http://www.cecill.info/licences/Licence_CeCILL-C_V1-fr.html LICENCE DE LOGICIEL LIBRE CeCILL-C
- *  Creation 23 mars 2015
+ *  Creation 25 mars 2015
  */
  
-include_once 'modules/classes/injection.class.php';
-$dataClass = new Injection($bdd,$ObjetBDDParam);
-$keyName = "injection_id";
+include_once 'modules/classes/sperme.class.php';
+$dataClass = new sperme($bdd,$ObjetBDDParam);
+$keyName = "sperme_id";
 $id = $_REQUEST[$keyName];
 
 switch ($t_module["param"]) {
@@ -53,19 +53,19 @@ switch ($t_module["param"]) {
 		 * If is a new record, generate a new record with default value :
 		 * $_REQUEST["idParent"] contains the identifiant of the parent record
 		 */
-		dataRead($dataClass, $id, "repro/injectionChange.tpl", $_REQUEST["poisson_campagne_id"]);
+		dataRead($dataClass, $id, "repro/spermeChange.tpl", $_REQUEST["poisson_campagne_id"]);
 		/*
-		 * Lecture des séquences
+		 * Lecture de sperme_qualite
+		 */
+		$spermeQualite = new SpermeQualite($bdd, $ObjetBDDParam);
+		$smarty->assign("spermeQualites", $spermeQualite->getListe(1));
+		/*
+		 * Donnees du poisson
 		 */
 		require_once 'modules/classes/poissonRepro.class.php';
 		$poissonCampagne = new PoissonCampagne($bdd, $ObjetBDDParam);
 		$smarty->assign("dataPoisson", $poissonCampagne->lire($_REQUEST["poisson_campagne_id"]));
-		$smarty->assign ("sequences", $poissonCampagne->getListSequence($_REQUEST["poisson_campagne_id"], $_SESSION["annee"]));
-		/*
-		 * Lecture des hormones
-		 */
-		$hormone = new Hormone($bdd, $ObjetBDDParam);
-		$smarty->assign("hormones", $hormone->getListe(2));
+		
 		break;
 	case "write":
 		/*
