@@ -63,6 +63,8 @@ $( "#evenementForm" ).submit(function() {
 	};
 	return valid;
 	} );
+$(".commentaire").attr("size","30");
+
  } );
 </script>
 <a href="index.php?module={$poissonDetailParent}">
@@ -113,6 +115,14 @@ Type d'événement <span class="red">*</span> :</dt>
 <input class="date" name="evenement_date" id="cevenement_date" required size="10" maxlength="10" value="{$data.evenement_date}">
 </dd>
 </dl>
+<dl>
+<dt>Commentaire général :</dt>
+<dd>
+<input class="commentaire" name="evenement_commentaire" value="{$data.evenement_commentaire}">
+</dl>
+<div class="formBouton">
+<input class="submit" type="submit" value="Enregistrer">
+</div>
 </fieldset>
 
 <div id="afficher" class="masquageText">Afficher tous les éléments</div>

@@ -25,6 +25,7 @@
  				"poisson_id"=>array("type"=>1, "requis"=>1, "parentAttrib"=>1),
  				"evenement_type_id"=>array("type"=>1, "requis"=>1),
  				"evenement_date"=>array("type"=>2,"requis"=>1, "defaultValue"=>"getDateJour"),
+ 				"evenement_commentaire"=>array("type"=>0)
  		);
  		if(!is_array($param)) $param==array();
  		$param["fullDescription"]=1;
@@ -37,7 +38,8 @@
  	 */
  	function getEvenementByPoisson ($poisson_id) {
  		if ($poisson_id > 0) {
- 			$sql = "select evenement_id, poisson_id, evenement_date, evenement_type_libelle 
+ 			$sql = "select evenement_id, poisson_id, evenement_date, evenement_type_libelle,
+ 					evenement_commentaire
  					from evenement
  					left outer join evenement_type using (evenement_type_id)
  					where poisson_id = ".$poisson_id.

@@ -6,6 +6,7 @@ setDataTables("cevenementList");
 <tr>
 <th>Nature</th>
 <th>Date</th>
+<th>Commentaire</th>
 </tr>
 </thead>
 <tdata>
@@ -21,6 +22,7 @@ setDataTables("cevenementList");
 {/if}
 </td>
 <td>{$dataEvenement[lst].evenement_date}</td>
+<td>{$dataEvenement[lst].evenement_commentaire}</td>
 </tr>
 {/section}
 </tdata>
