@@ -170,6 +170,21 @@ class Croisement extends ObjetBDD {
 		}
 		return $parents;
 	}
+
+	/**
+	 * Retourne les poissons pour un croisement
+	 * @param int $croisement_id
+	 * @return tableau|NULL
+	 */
+	function getPoissonsFromCroisement ($croisement_id) {
+		if ($croisement_id > 0) {
+			$sql = "select poisson_campagne_id 
+					from poisson_croisement
+					where croisement_id = ".$croisement_id;
+			return $this->getListeParam($sql);
+		} else 
+			return null;
+	}
 	
 	/**
 	 * Retourne la liste de tous les poissons de la sequence, avec le fait q'ils soient

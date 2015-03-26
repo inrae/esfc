@@ -72,7 +72,7 @@ class Sequence extends ObjetBDD {
 
 /**
  * ORM de gestion de la table poisson_sequence
- * 
+ *
  * @author quinton
  *        
  */
@@ -99,11 +99,12 @@ class PoissonSequence extends ObjetBDD {
 						"requis" => 1 
 				),
 				
-				"qualite_semence" => array (
-						"type" => 0 
-				),
 				"ovocyte_masse" => array (
 						"type" => 1 
+				),
+				"ps_statut_id" => array (
+						"type" => 1,
+						"defaultValue" => 1 
 				) 
 		);
 		if (! is_array ( $param ))
@@ -115,17 +116,19 @@ class PoissonSequence extends ObjetBDD {
 	/**
 	 * Retourne la liste des sequences auxquelles est rattaché un poisson, pour
 	 * l'année considérée
-	 * 
+	 *
 	 * @param int $poisson_campagne_id        	
 	 * @return array|NULL
 	 */
 	function getListFromPoisson($poisson_campagne_id) {
 		if ($poisson_campagne_id > 0) {
 			$sql = "select poisson_campagne_id, poisson_sequence_id, sequence_id,
-					qualite_semence, ovocyte_masse,
-					annee, sequence_nom, sequence_date_debut
+					ovocyte_masse,
+					annee, sequence_nom, sequence_date_debut,
+					ps_statut_libelle
 					from poisson_sequence
 					join sequence using (sequence_id)
+					left outer join ps_statut using (ps_statut_id)
 					where poisson_campagne_id = " . $poisson_campagne_id . "
 					order by sequence_date_debut";
 			$data = $this->getListeParam ( $sql );
@@ -139,35 +142,84 @@ class PoissonSequence extends ObjetBDD {
 		} else
 			return null;
 	}
-
+	
 	/**
 	 * Retourne la liste des poissons concernes par une sequence
-	 * @param int $sequence_id
+	 *
+	 * @param int $sequence_id        	
 	 * @return tableau|NULL
 	 */
 	function getListFromSequence($sequence_id) {
 		if ($sequence_id > 0) {
 			$sql = "select poisson_campagne_id, poisson_sequence_id, sequence_id,
-					qualite_semence, ovocyte_masse,
+					ovocyte_masse,
 					matricule, prenom, pittag_valeur,
-					sexe_libelle, sexe_libelle_court
+					sexe_libelle, sexe_libelle_court,
+					ps_statut_libelle
 					from poisson_sequence
 					join poisson_campagne using (poisson_campagne_id)
 					join poisson using (poisson_id)
 					left outer join sexe using (sexe_id)
 					left outer join v_pittag_by_poisson using (poisson_id)
-					
+					left outer join ps_statut using (ps_statut_id)
 					where sequence_id = " . $sequence_id . "
 					order by sexe_libelle_court, prenom, matricule";
 			return $this->getListeParam ( $sql );
-		} else 
+		} else
 			return null;
+	}
+	
+	/**
+	 * Met a jour le statut de poisson_sequence, en
+	 * incrementant uniquement la valeur du statut si $level est superieur a la valeur initiale
+	 * 
+	 * @param int $poisson_sequence_id        	
+	 * @param int $level        	
+	 */
+	function updateStatut($poisson_sequence_id, $level) {
+		if ($poisson_sequence_id > 0 && $level > 0) {
+			$data = $this->lire ( $poisson_sequence_id );
+			if ($data ["poisson_sequence_id"] > 0) {
+				if ($level > $data ["ps_statut_id"]) {
+					$data ["ps_statut_id"] = $level;
+					$this->ecrire ( $data );
+				}
+			}
+		}
+	}
+
+	/**
+	 * Met a jour le statut de poisson_sequence a partir de poisson_campagne_id et de sequence_id
+	 * @param int $poisson_campagne_id
+	 * @param int $sequence_id
+	 * @param int $level
+	 * @return NULL
+	 */
+	function updateStatutFromPoissonCampagne($poisson_campagne_id, $sequence_id, $level) {
+		if ($poisson_campagne_id > 0 && $sequence_id > 0) {
+			/*
+			 * Recherche de la sequence correspondante
+			 */
+			$sql = "select poisson_sequence_id from poisson_sequence
+					where poisson_campagne_id = " . $poisson_campagne_id . "
+					and sequence_id = " . $sequence_id;
+			$data = $this->lireParam ( $sql );
+			if ($data ["poisson_sequence_id"] > 0) 
+				$this->updateStatut ( $data ["poisson_sequence_id"], $level );
+		}
+	}
+	
+	function ecrire($data) {
+		$id = parent::ecrire($data);
+		if ($data["ovocyte_masse"] > 0 && $data["ps_statut_id"] < 4) 
+			$this->updateStatut($id, 4);
+		return $id;
 	}
 }
 
 /**
  * ORM de gestion de la table ps_evenement
- * 
+ *
  * @author quinton
  *        
  */
@@ -210,7 +262,8 @@ class PsEvenement extends ObjetBDD {
 	}
 	/**
 	 * Retourne l'ensemble des événements pour un poisson
-	 * @param int $poisson_campagne_id
+	 *
+	 * @param int $poisson_campagne_id        	
 	 * @return tableau|NULL
 	 */
 	function getListeEvenementFromPoisson($poisson_campagne_id) {
@@ -227,45 +280,72 @@ class PsEvenement extends ObjetBDD {
 		} else
 			return null;
 	}
-
+	
 	/**
 	 * Retourne la liste des evenements a partir du numero de poisson_sequence
-	 * @param int $poisson_sequence_id
+	 *
+	 * @param int $poisson_sequence_id        	
 	 * @return tableau|NULL
 	 */
 	function getListeFromPoissonSequence($poisson_sequence_id) {
 		if ($poisson_sequence_id > 0) {
 			$sql = "select ps_evenement_id, poisson_sequence_id, ps_datetime, ps_libelle, ps_commentaire 
 					from ps_evenement 
-					where poisson_sequence_id = ".$poisson_sequence_id." 
+					where poisson_sequence_id = " . $poisson_sequence_id . " 
 					order by ps_datetime";
-			return $this->getListeParam($sql);
+			return $this->getListeParam ( $sql );
 		} else
 			return null;
 	}
-
+	
 	/**
 	 * Reecriture de la fonction lire pour separer la date et l'heure dans 2 champs
 	 * (non-PHPdoc)
+	 *
 	 * @see ObjetBDD::lire()
 	 */
 	function lire($id, $getDefault = false, $parentValue = 0) {
-		$data = parent::lire($id, $getDefault, $parentValue);
-		$date = explode(" ", $data["ps_datetime"]);
-		$data["ps_date"] = $date[0];
-		$data["ps_time"] = $date[1];
-		return $data;		
+		$data = parent::lire ( $id, $getDefault, $parentValue );
+		$date = explode ( " ", $data ["ps_datetime"] );
+		$data ["ps_date"] = $date [0];
+		$data ["ps_time"] = $date [1];
+		return $data;
 	}
-
+	
 	/**
-	 * Reecriture de la fonction ecrire pour generer le champ ps_datetime a partir 
+	 * Reecriture de la fonction ecrire pour generer le champ ps_datetime a partir
 	 * des champs separes
 	 * (non-PHPdoc)
+	 *
 	 * @see ObjetBDD::ecrire()
 	 */
 	function ecrire($data) {
-		$data["ps_datetime"] = $data["ps_date"]." ".$data["ps_time"];
-		return parent::ecrire($data);
+		$data ["ps_datetime"] = $data ["ps_date"] . " " . $data ["ps_time"];
+		return parent::ecrire ( $data );
+	}
+}
+class PsStatut extends ObjetBDD {
+	public function __construct($p_connection, $param = NULL) {
+		$this->param = $param;
+		$this->paramori = $param;
+		$this->table = "ps_statut";
+		$this->id_auto = "1";
+		$this->colonnes = array (
+				"ps_statut_id" => array (
+						"type" => 1,
+						"key" => 1,
+						"requis" => 1,
+						"defaultValue" => 0 
+				),
+				"ps_libelle" => array (
+						"requis" => 1 
+				) 
+		);
+		if (! is_array ( $param ))
+			$param == array ();
+		$param ["fullDescription"] = 1;
+		
+		parent::__construct ( $p_connection, $param );
 	}
 }
 

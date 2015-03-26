@@ -64,6 +64,11 @@ switch ($t_module["param"]) {
 		$sequence = new Sequence($bdd, $ObjetBDDParam);
 		$smarty->assign("sequences", $sequence->getListeByYear($_SESSION['annee']));
 		/*
+		 * Recuperation des statuts
+		 */
+		$psStatut = new PsStatut($bdd, $ObjetBDDParam);
+		$smarty->assign("statuts", $psStatut->getListe(1));
+		/*
 		 * Passage en parametre de la liste parente
 		 */
 		$smarty->assign("poissonDetailParent", $_SESSION["poissonDetailParent"]);

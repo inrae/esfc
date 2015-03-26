@@ -31,17 +31,24 @@ Retour au reproducteur
 </dd>
 </dl>
 <dl>
-<dt>Qualité de la semence :</dt>
-<dd>
-<input class="commentaire" name="qualite_semence" value="{$data.qualite_semence}">
-</dd>
-</dl>
-<dl>
-<dt>Masse des ovocytes (grammes) :</dt>
+<dt>Masse totale des ovocytes (grammes) :</dt>
 <dd>
 <input class="taux" name="ovocyte_masse" value="{$data.ovocyte_masse}">
 </dd>
 </dl>
+<dl>
+<dt>Statut du poisson pour la séquence :</dt>
+<dd>
+<select name="ps_statut_id">
+{section name=lst loop=$statuts}
+<option value="{$statuts[lst].ps_statut_id}" {if $statuts[lst].ps_statut_id == $data.ps_statut_id}selected{/if}>
+{$statuts[lst].ps_statut_libelle}
+</option>
+{/section}
+</select>
+</dd>
+</dl>
+<dl></dl>
 {if $droits.reproGestion == 1}
 <div class="formBouton">
 <input class="submit" type="submit" value="Enregistrer">

@@ -7,6 +7,7 @@ Nouveau prélèvement...
 <thead>
 <tr>
 <th>Date/heure<br>du prélèvement</th>
+<th>Séquence</th>
 <th>Qualité<br>estimée</th>
 <th>Motilité<br>initiale</th>
 <th>Tx survie<br>initial</th>
@@ -28,6 +29,7 @@ Nouveau prélèvement...
 {$spermes[lst].sperme_date}
 {/if}
 </td>
+<td>{$spermes[lst].sequence_nom}</td>
 <td>{$spermes[lst].sperme_qualite_libelle}</td>
 <td class="center">{$spermes[lst].motilite_initiale}</td>
 <td class="right">{$spermes[lst].tx_survie_initial}</td>

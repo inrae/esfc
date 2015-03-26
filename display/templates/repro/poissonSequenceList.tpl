@@ -8,8 +8,8 @@ Rattacher une nouvelle séquence...
 <tr>
 <th>Date<br>début</th>
 <th>Nom</th>
-<th>Qualité<br>semence</th>
 <th>Masse<br>ovocyte</th>
+<th>Statut du poisson<br>pour la séquence</th>
 </tr>
 </thead>
 <tdata>
@@ -24,8 +24,8 @@ Rattacher une nouvelle séquence...
 <a href="index.php?module=poissonSequenceChange&poisson_sequence_id={$dataSequence[lst].poisson_sequence_id}&sequence_id={$dataSequence[lst].sequence_id}">
 {$dataSequence[lst].sequence_nom}
 </a></td>
-<td>{$dataSequence[lst].qualite_semence}</td>
 <td class="right">{$dataSequence[lst].ovocyte_masse}</td>
+<td>{$dataSequence[lst].ps_statut_libelle}</td>
 </tr>
 {/section}
 </tdata>

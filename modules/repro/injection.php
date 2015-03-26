@@ -74,6 +74,12 @@ switch ($t_module["param"]) {
 		$id = dataWrite($dataClass, $_REQUEST);
 		if ($id > 0) {
 			$_REQUEST[$keyName] = $id;
+			/*
+			 * Mise a jour du statut de poisson_sequence
+			 */
+			require_once 'modules/classes/sequence.class.php';
+			$poissonSequence = new PoissonSequence($bdd, $ObjetBDDParam);
+			$poissonSequence->updateStatutFromPoissonCampagne($_REQUEST["poisson_campagne_id"], $_REQUEST["sequence_id"], 3);
 		}
 		break;
 	case "delete":

@@ -61,6 +61,19 @@ switch ($t_module["param"]) {
 		$id = dataWrite($dataClass, $_REQUEST);
 		if ($id > 0) {
 			$_REQUEST[$keyName] = $id;
+			if ($_REQUEST["nb_larve_initial"] > 0) {
+				/*
+				 * Mise a jour du statut des poissons
+				 */
+				require_once 'modules/classes/sequence.class.php';
+				$poissonSequence = new PoissonSequence($bdd, $objetBDDParam);
+				$croisement = new Croisement($bdd, $ObjetBDDParam);
+				$dataCroisement = $croisement->lire($_REQUEST["croisement_id"]);
+				$poissons = $croisement->getPoissonsFromCroisement($_REQUEST["croisement_id"]);
+				foreach ($poissons as $key => $value) {
+					$poissonSequence->updateStatutFromPoissonCampagne($value["poisson_campagne_id"], $dataCroisement["sequence_id"], 6);
+				}
+			}
 		}
 		break;
 	case "delete":

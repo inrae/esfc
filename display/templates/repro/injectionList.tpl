@@ -13,7 +13,7 @@ Nouvelle injection...
 <th>Remarque</th>
 </tr>
 </thead>
-<tdata>
+<tbody>
 {section name=lst loop=$injections}
 <tr>
 <td>
@@ -31,5 +31,5 @@ Nouvelle injection...
 <td>{$injections[lst].injection_commentaire}</td>
 </tr>
 {/section}
-</tdata>
+</tbody>
 </table>

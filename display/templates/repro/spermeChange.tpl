@@ -49,6 +49,17 @@ Retour au reproducteur
 </dd>
 </dl>
 <dl>
+<dt>Séquence de reproduction <span class="red">*</span> :</dt>
+<dd>
+<select name="sequence_id">
+{section name=lst loop=$sequences}
+<option value="{$sequences[lst].sequence_id}" {if $data.sequence_id == $sequences[lst].sequence_id}selected{/if}>
+{$sequences[lst].sequence_nom}
+</option>
+{/section}
+</select>
+</dl>
+<dl>
 <dt>Qualité globale :</dt>
 <dd>
 <select name="sperme_qualite_id">
