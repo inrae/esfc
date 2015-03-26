@@ -1,10 +1,27 @@
 <script>
 $(document).ready(function() {
-	$(".taux").attr("pattern","[0-9]+(\.[0-9]+)?");
-	$(".taux").attr("title","valeur numérique");
-	$(".taux").attr("size", "5");
-	$(".taux").attr("maxlength", "10");
+	$(".taux").attr ( {
+		pattern: "[0-9]+(\.[0-9]+)?",
+		title: "valeur numérique",
+		size: "5",
+		maxlength: "10"
+	});
 	$(".commentaire").attr("size","30");
+	$( ".date" ).datepicker( { 
+		dateFormat: "dd/mm/yy",
+		parseTime: "dd/mm/yy hh:mm:ss" } );
+	$(".time").attr( {
+		pattern: "[0-9][0-9]\:[0-9][0-9]",
+		placeholder: "hh:mm",
+		size: "5"
+	} );
+	$(".timepicker").timepicker( {
+		timeFormat: "HH:mm:ss",
+//		$.timepicker.regional['fr'],
+		stepHour: "1",
+		stepMinute: "5",
+		size: "5"
+	} );
 });
 </script>
 <a href="index.php?module={$poissonDetailParent}&sequence_id={$sequence_id}">Retour à la liste des poissons</a>&nbsp;
@@ -28,6 +45,12 @@ Retour au reproducteur
 </option>
 {/section}
 </select>
+</dd>
+</dl>
+<dt>Date de l'expulsion<br>des ovocytes :</dt>
+<dd>
+<input class="date" name="ovocyte_expulsion_date"  value="{$data.ovocyte_expulsion_date}">
+<input class="timepicker" name="ovocyte_expulsion_time" value="{$data.ovocyte_expulsion_time}">
 </dd>
 </dl>
 <dl>

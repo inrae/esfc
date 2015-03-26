@@ -105,6 +105,9 @@ class PoissonSequence extends ObjetBDD {
 				"ps_statut_id" => array (
 						"type" => 1,
 						"defaultValue" => 1 
+				),
+				"ovocyte_expulsion_date" => array (
+						"type" => 3 
 				) 
 		);
 		if (! is_array ( $param ))
@@ -112,6 +115,36 @@ class PoissonSequence extends ObjetBDD {
 		$param ["fullDescription"] = 1;
 		
 		parent::__construct ( $p_connection, $param );
+	}
+	
+	/**
+	 * Surcharge de la fonction lire, pour separer le champ ovocyte_expulsion_date en date et time
+	 * (non-PHPdoc)
+	 * 
+	 * @see ObjetBDD::lire()
+	 */
+	function lire($id, $getDefault = false, $parentValue = 0) {
+		$data = parent::lire ( $id, $getDefault, $parentValue );
+		$datetime = explode ( " ", $data ["ovocyte_expulsion_date"] );
+		$data ["ovocyte_expulsion_date"] = $datetime [0];
+		$data ["ovocyte_expulsion_time"] = $datetime [1];
+		return $data;
+	}
+	
+	/**
+	 * Surcharge de la fonction ecrire, pour reintegrer l'heure a la date pour
+	 * reconstituer ovocyte_expulsion_date
+	 * (non-PHPdoc)
+	 * 
+	 * @see ObjetBDD::ecrire()
+	 */
+	function ecrire($data) {
+		if (strlen ( $data ["ovocyte_expulsion_date"] ) > 0 && strlen ( $data ["ovocyte_expulsion_time"] ) > 0)
+			$data ["ovocyte_expulsion_date"] = $data ["ovocyte_expulsion_date"] . " " . $data ["ovocyte_expulsion_time"];
+		$id = parent::ecrire ( $data );
+		if ($data ["ovocyte_masse"] > 0 && $data ["ps_statut_id"] < 4)
+			$this->updateStatut ( $id, 4 );
+		return $id;
 	}
 	/**
 	 * Retourne la liste des sequences auxquelles est rattaché un poisson, pour
@@ -123,7 +156,7 @@ class PoissonSequence extends ObjetBDD {
 	function getListFromPoisson($poisson_campagne_id) {
 		if ($poisson_campagne_id > 0) {
 			$sql = "select poisson_campagne_id, poisson_sequence_id, sequence_id,
-					ovocyte_masse,
+					ovocyte_masse, ovocyte_expulsion_date,
 					annee, sequence_nom, sequence_date_debut,
 					ps_statut_libelle
 					from poisson_sequence
@@ -152,7 +185,7 @@ class PoissonSequence extends ObjetBDD {
 	function getListFromSequence($sequence_id) {
 		if ($sequence_id > 0) {
 			$sql = "select poisson_campagne_id, poisson_sequence_id, sequence_id,
-					ovocyte_masse,
+					ovocyte_masse, ovocyte_expulsion_date,
 					matricule, prenom, pittag_valeur,
 					sexe_libelle, sexe_libelle_court,
 					ps_statut_libelle
@@ -172,7 +205,7 @@ class PoissonSequence extends ObjetBDD {
 	/**
 	 * Met a jour le statut de poisson_sequence, en
 	 * incrementant uniquement la valeur du statut si $level est superieur a la valeur initiale
-	 * 
+	 *
 	 * @param int $poisson_sequence_id        	
 	 * @param int $level        	
 	 */
@@ -187,12 +220,13 @@ class PoissonSequence extends ObjetBDD {
 			}
 		}
 	}
-
+	
 	/**
 	 * Met a jour le statut de poisson_sequence a partir de poisson_campagne_id et de sequence_id
-	 * @param int $poisson_campagne_id
-	 * @param int $sequence_id
-	 * @param int $level
+	 * 
+	 * @param int $poisson_campagne_id        	
+	 * @param int $sequence_id        	
+	 * @param int $level        	
 	 * @return NULL
 	 */
 	function updateStatutFromPoissonCampagne($poisson_campagne_id, $sequence_id, $level) {
@@ -204,16 +238,9 @@ class PoissonSequence extends ObjetBDD {
 					where poisson_campagne_id = " . $poisson_campagne_id . "
 					and sequence_id = " . $sequence_id;
 			$data = $this->lireParam ( $sql );
-			if ($data ["poisson_sequence_id"] > 0) 
+			if ($data ["poisson_sequence_id"] > 0)
 				$this->updateStatut ( $data ["poisson_sequence_id"], $level );
 		}
-	}
-	
-	function ecrire($data) {
-		$id = parent::ecrire($data);
-		if ($data["ovocyte_masse"] > 0 && $data["ps_statut_id"] < 4) 
-			$this->updateStatut($id, 4);
-		return $id;
 	}
 }
 

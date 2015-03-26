@@ -25,10 +25,14 @@ $(document).ready(function() {
             type: 'timeseries',
             tick: {
                 format: '%d/%m %H:%M'
-           	 	}
+           	 	},
+	        min: '{$dateMini} 00:00:00',
+	        max: '{$dateMaxi} 23:59:59'	
         	},
         y: {
-        	label: '°C'
+        	label: '°C',
+        	min: 10,
+        	max: 22
         }
     	}
  
@@ -38,20 +42,37 @@ $(document).ready(function() {
 		data: { 
 			xs: { 
 				'E2': 'x1',
-				'Ca': 'x2'
+				'Ca': 'x2',
+				'Injections':'x3',
+				'Expulsion':'x4'
 			},
 			xFormat: '%d/%m/%Y',
 			columns: [ 
 			  [{$e2x}],
 			  [{$e2y}],
 			  [{$cax}],
-			  [{$cay}]
+			  [{$cay}],
+			  [{$ix}],
+			  [{$iy}],
+			  [{$expx}],
+			  [{$expy}]
 			  ] ,
 			  
 			axes: { 
 				E2: 'y',
-				Ca: 'y2'
-			}  			
+				Ca: 'y2',
+				Injections: 'y2',
+				Expulsion: 'y2'
+			},
+			types: { 
+				Injections: 'bar',
+				Expulsion: 'bar'
+			}
+		} ,
+		bar: { 
+			width: { 
+				ratio: '0.05'
+			}
 		} ,
 
 	    axis: {
@@ -59,17 +80,72 @@ $(document).ready(function() {
 	            type: 'timeseries',
 	            tick: {
 	                format: '%d/%m'
-	           	 	}
-	        	},
+	           	 	},
+	           	 min: '{$dateMini}',
+	           	 max: '{$dateMaxi}'
+	        },
 	        y: {
-	        	label: 'E2 - pg/ml'
+	        	label: 'E2 - pg/ml',
+	        	min: 0
 	        },
 	        y2: {
 	        	show: true,
-	        	label: 'CA - mg/ml'
+	        	label: 'CA - mg/ml',
+	        	min: 0
 	        }
-	    	}
+	    }
 	});
+	{if $dataPoisson.sexe_libelle_court == "f"}
+	var chart2 = c3.generate( { 
+		bindto:'#biopsie',
+		data: { 
+			xs: { 
+				'Tx OPI': 'x1',
+				'T50': 'x2',
+				'Diam moyen': 'x3'
+
+			},
+			xFormat: '%d/%m/%Y',
+			columns: [ 
+			  [{$opix}],
+			  [{$opiy}],
+			  [{$t50x}],
+			  [{$t50y}],
+			  [{$diamx}],
+			  [{$diamy}]
+			  ] ,
+			  
+			axes: { 
+				"Tx OPI": 'y',
+				"T50": 'y',
+				"Diam moyen":'y2'
+			}
+			
+		} ,
+
+	    axis: {
+	        x: {
+	            type: 'timeseries',
+	            tick: {
+	                format: '%d/%m'
+	           	 	},
+	           	 min: '{$dateMini}',
+	           	 max: '{$dateMaxi}'
+	        },
+	        y: {
+	        	label: 'Tx OPI (%) et heures (fractions décimales)',
+	        	min: 0,
+	        	max: 20
+	        },
+	        y2: {
+	        	show: true,
+	        	label: 'Diamètre - mm',
+	        	min: 0,
+	        	max: 3
+	        }
+	    }
+	});
+	{/if}
 	{/if}
 } );
 </script>
@@ -139,18 +215,21 @@ Nouvelle échographie (nouvel événement)...
 </td>
 </tr>
 {/if}
-<tr>
-<td>
+
+</table>
+<fieldset>
+<legend>Taux sanguins, injections et expulsions</legend>
+<div id="tauxSanguin"></div>
+</fieldset>
+{if $dataPoisson.sexe_libelle_court == "f"}
+<br>
+<fieldset>
+<legend>Valeurs de biopsie</legend>
+<div id="biopsie"></div>
+</fieldset>
+{/if}
+<br>
 <fieldset>
 <legend>Profil thermique du poisson</legend>
 <div id="profilThermique"></div>
 </fieldset>
-</td>
-<td>
-<fieldset>
-<legend>Taux sanguins</legend>
-<div id="tauxSanguin"></div>
-</fieldset>
-
-</tr>
-</table>

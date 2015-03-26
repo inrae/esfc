@@ -47,31 +47,31 @@ switch ($t_module ["param"]) {
 		/*
 		 * Affichage du graphique d'evolution de la masse
 		 */
-		if ($_REQUEST["graphique_id"] > 0) {
+		if ($_REQUEST ["graphique_id"] > 0) {
 			require_once 'modules/classes/poisson.class.php';
-			$morphologie = new Morphologie($bdd, $ObjetBDDParam);
-			$date_from = ($_SESSION["annee"] - 5)."-01-01";
-			$date_to = $_SESSION["annee"]."-12-31";
-			$dataMorpho = $morphologie->getListMasseFromPoisson($_REQUEST["graphique_id"], $date_from, $date_to);
+			$morphologie = new Morphologie ( $bdd, $ObjetBDDParam );
+			$date_from = ($_SESSION ["annee"] - 5) . "-01-01";
+			$date_to = $_SESSION ["annee"] . "-12-31";
+			$dataMorpho = $morphologie->getListMasseFromPoisson ( $_REQUEST ["graphique_id"], $date_from, $date_to );
 			/*
 			 * Lecture des donnees du poisson
 			 */
-			$poisson = new Poisson($bdd, $ObjetBDDParam);
-			$dataPoisson = $poisson->lire($_REQUEST["graphique_id"]);
+			$poisson = new Poisson ( $bdd, $ObjetBDDParam );
+			$dataPoisson = $poisson->lire ( $_REQUEST ["graphique_id"] );
 			/*
 			 * Preparation des donnees pour le graphique
 			 */
 			$x = "'x'";
 			$y = "'data1'";
-			foreach ($dataMorpho as $key=>$value) {
-				$x .= ",'".$value["morphologie_date"]."'";
-				$y .= ",".$value["masse"];
+			foreach ( $dataMorpho as $key => $value ) {
+				$x .= ",'" . $value ["morphologie_date"] . "'";
+				$y .= "," . $value ["masse"];
 			}
-			printr($x);
-			printr($y);
-			$smarty->assign("poisson_nom", $dataPoisson["prenom"]." ".$dataPoisson["matricule"]);
-			$smarty->assign("massex", $x);
-			$smarty->assign("massey", $y);
+			printr ( $x );
+			printr ( $y );
+			$smarty->assign ( "poisson_nom", $dataPoisson ["prenom"] . " " . $dataPoisson ["matricule"] );
+			$smarty->assign ( "massex", $x );
+			$smarty->assign ( "massey", $y );
 		}
 		break;
 	case "display":
@@ -99,16 +99,20 @@ switch ($t_module ["param"]) {
 		$psEvenement = new PsEvenement ( $bdd, $ObjetBDDParam );
 		$echographie = new Echographie ( $bdd, $ObjetBDDParam );
 		$injection = new Injection ( $bdd, $ObjetBDDParam );
-		$sperme = new Sperme($bdd, $ObjetBDDParam);
+		$sperme = new Sperme ( $bdd, $ObjetBDDParam );
 		$dosages = $dosageSanguin->getListeFromPoissonCampagne ( $id );
+		$injections = $injection->getListFromPoissonCampagne ( $id );
+		$sequences = $poissonSequence->getListFromPoisson ( $id );
+		$spermes = $sperme->getListFromPoissonCampagne ( $id );
+		$biopsies = $biopsie->getListeFromPoissonCampagne ( $id );
 		
 		$smarty->assign ( "dataSanguin", $dosages );
-		$smarty->assign ( "dataBiopsie", $biopsie->getListeFromPoissonCampagne ( $id ) );
-		$smarty->assign ( "dataSequence", $poissonSequence->getListFromPoisson ( $id ) );
+		$smarty->assign ( "dataBiopsie", $biopsies );
+		$smarty->assign ( "dataSequence", $sequences );
 		$smarty->assign ( "dataPsEvenement", $psEvenement->getListeEvenementFromPoisson ( $id ) );
 		$smarty->assign ( "dataEcho", $echographie->getListByYear ( $data ["poisson_id"], $_SESSION ["annee"] ) );
-		$smarty->assign ( "injections", $injection->getListFromPoissonCampagne ( $id ) );
-		$smarty->assign ("spermes", $sperme->getListFromPoissonCampagne($id));
+		$smarty->assign ( "injections", $injections );
+		$smarty->assign ( "spermes", $spermes );
 		
 		$smarty->assign ( "corps", "repro/poissonCampagneDisplay.tpl" );
 		if (isset ( $_REQUEST ["sequence_id"] ))
@@ -116,7 +120,9 @@ switch ($t_module ["param"]) {
 			/*
 		 * Recherche des temperatures pour le graphique
 		 */
-			// if ($_REQUEST ["graphicsEnabled"] == 1) {
+		$dateMini = new DateTime ();
+		$dateMaxi = new DateTime ( "1967-01-01" );
+		// if ($_REQUEST ["graphicsEnabled"] == 1) {
 		for($i = 1; $i < 3; $i ++) {
 			$datapf = $dataClass->getTemperatures ( $data ["poisson_id"], $_SESSION ["annee"], $i );
 			$x = "'x" . $i . "'";
@@ -127,6 +133,12 @@ switch ($t_module ["param"]) {
 			foreach ( $datapf as $key => $value ) {
 				$x .= ",'" . $value ["pf_datetime"] . "'";
 				$y .= "," . $value ["pf_temperature"];
+				$datetime = explode ( " ", $value ["pf_datetime"] );
+				$d = DateTime::createFromFormat ( "d/m/Y", $datetime [0] );
+				if ($d < $dateMini)
+					$dateMini = $d;
+				if ($d > $dateMaxi)
+					$dateMaxi = $d;
 			}
 			$smarty->assign ( "pfx" . $i, $x );
 			$smarty->assign ( "pfy" . $i, $y );
@@ -134,26 +146,132 @@ switch ($t_module ["param"]) {
 		$smarty->assign ( "graphicsEnabled", 1 );
 		// }
 		/*
-		 * Recherche des donnees pour les taux sanguins
+		 * Recherche des donnees pour les taux sanguins et les injections
 		 */
 		$e2y = "'E2'";
 		$cay = "'Ca'";
 		$e2x = "'x1'";
 		$cax = "'x2'";
-		foreach ($dosages as $key => $value) {
-			if ($value["tx_e2"] > 0) {
-				$e2x .= ",'".$value["dosage_sanguin_date"]. "'";
-				$e2y .= "," .$value["tx_e2"];
+		$iy = "'Injections'";
+		$ix = "'x3'";
+		$expy = "'Expulsion'";
+		$expx = "'x4'";
+		$maxca = 0;
+		$opix = "'x1'";
+		$opiy = "'Tx OPI'";
+		$t50x = "'x2'";
+		$t50y = "'T50'";
+		$diamx = "'x3'";
+		$diamy = "'Diam moyen'";
+		foreach ( $dosages as $key => $value ) {
+			if ($value ["tx_e2"] > 0) {
+				$e2x .= ",'" . $value ["dosage_sanguin_date"] . "'";
+				$e2y .= "," . $value ["tx_e2"];
 			}
-			if ($value["tx_calcium"] > 0) {
-				$cax .= ",'".$value["dosage_sanguin_date"]. "'";
-				$cay .= "," .$value["tx_calcium"];
+			if ($value ["tx_calcium"] > 0) {
+				$cax .= ",'" . $value ["dosage_sanguin_date"] . "'";
+				$cay .= "," . $value ["tx_calcium"];
+				if ($value ["tx_calcium"] > $maxca)
+					$maxca = $value ["tx_calcium"];
+			}
+			$d = DateTime::createFromFormat ( "d/m/Y", $value ["dosage_sanguin_date"] );
+			if ($d < $dateMini)
+				$dateMini = $d;
+			if ($d > $dateMaxi)
+				$dateMaxi = $d;
+		}
+		if ($maxca == 0)
+			$maxca = 1;
+			/*
+		 * Recuperation des injections
+		 */
+		foreach ( $injections as $key => $value ) {
+			$datetime = explode ( " ", $value ["injection_date"] );
+			$ix .= ",'" . $datetime [0] . "'";
+			$iy .= "," . $maxca;
+			$d = DateTime::createFromFormat ( "d/m/Y", $datetime [0] );
+			if ($d < $dateMini)
+				$dateMini = $d;
+			if ($d > $dateMaxi)
+				$dateMaxi = $d;
+		}
+		/*
+		 * Recuperation des expulsions
+		 */
+		if ($data ["sexe_libelle_court"] == "f") {
+			foreach ( $sequences as $key => $value ) {
+				if (strlen ( $value ["ovocyte_expulsion_date"] ) > 0) {
+					$datetime = explode ( " ", $value ["ovocyte_expulsion_date"] );
+					$d = DateTime::createFromFormat ( "d/m/Y", $datetime [0] );
+					$expx .= ",'" . $datetime [0] . "'";
+					$expy .= "," . $maxca;
+				}
+			}
+			/*
+			 * Recherche des donnees concernant les biopsies
+			 */
+			
+			foreach ( $biopsies as $key => $value ) {
+				if (strlen ( $value ["biopsie_date"] ) > 0) {
+					$datetime = explode ( " ", $value ["biopsie_date"] );
+					$d = DateTime::createFromFormat ( "d/m/Y", $datetime [0] );
+					if ($d < $dateMini)
+						$dateMini = $d;
+					if ($d > $dateMaxi)
+						$dateMaxi = $d;
+					if ($value ["tx_opi"] > 0) {
+						$opix .= ",'" . $datetime [0] . "'";
+						$opiy .= "," . $value ["tx_opi"];
+					}
+					if (strlen ( $value ["ringer_t50"] ) > 0) {
+						$duree = explode ( ":", $value ["ringer_t50"] );
+						$dureeCalc = $duree [0] + ($duree [1] / 60);
+						if ($dureeCalc > 0) {
+							$t50x .= ",'" . $datetime [0] . "'";
+							$t50y .= "," . $dureeCalc;
+						}
+					}
+					if ($value["diam_moyen"] > 0) {
+						$diamx .= ",'" . $datetime [0] . "'";
+						$diamy .= "," .$value["diam_moyen"];
+					}
+				}
+			}
+		} else {
+			foreach ( $spermes as $key => $value ) {
+				$datetime = explode ( " ", $value ["sperme_date"] );
+				$expx .= ",'" . $datetime [0] . "'";
+				$expy .= "," . $maxca;
+				$d = DateTime::createFromFormat ( "d/m/Y", $datetime [0] );
+				if ($d < $dateMini)
+					$dateMini = $d;
+				if ($d > $dateMaxi)
+					$dateMaxi = $d;
 			}
 		}
-		$smarty->assign("e2x", $e2x);
-		$smarty->assign("e2y", $e2y);
-		$smarty->assign("cax", $cax);
-		$smarty->assign("cay", $cay);
+		
+		$smarty->assign ( "e2x", $e2x );
+		$smarty->assign ( "e2y", $e2y );
+		$smarty->assign ( "cax", $cax );
+		$smarty->assign ( "cay", $cay );
+		$smarty->assign ( "ix", $ix );
+		$smarty->assign ( "iy", $iy );
+		$smarty->assign ( "expx", $expx );
+		$smarty->assign ( "expy", $expy );
+		$smarty->assign ( "opix", $opix );
+		$smarty->assign ( "opiy", $opiy );
+		$smarty->assign ( "t50x", $t50x );
+		$smarty->assign ( "t50y", $t50y );
+		$smarty->assign ( "diamx", $diamx);
+		$smarty->assign ( "diamy", $diamy);
+		/*
+		 * Ajout de 3 jours aux bornes des graphiques
+		 */
+		$interval = new DateInterval ( "P1D" );
+		date_sub ( $dateMini, $interval );
+		date_add ( $dateMaxi, $interval );
+		$smarty->assign ( "dateMini", date_format ( $dateMini, 'd/m/Y' ) );
+		$smarty->assign ( "dateMaxi", date_format ( $dateMaxi, 'd/m/Y' ) );
 		
 		break;
 	case "change":

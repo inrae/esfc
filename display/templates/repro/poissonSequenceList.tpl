@@ -8,7 +8,8 @@ Rattacher une nouvelle séquence...
 <tr>
 <th>Date<br>début</th>
 <th>Nom</th>
-<th>Masse<br>ovocyte</th>
+<th>Masse des<br>ovocytes</th>
+<th>Date d'expulsion</th>
 <th>Statut du poisson<br>pour la séquence</th>
 </tr>
 </thead>
@@ -25,6 +26,7 @@ Rattacher une nouvelle séquence...
 {$dataSequence[lst].sequence_nom}
 </a></td>
 <td class="right">{$dataSequence[lst].ovocyte_masse}</td>
+<td>{$dataSequence[lst].ovocyte_expulsion_date}</td>
 <td>{$dataSequence[lst].ps_statut_libelle}</td>
 </tr>
 {/section}
