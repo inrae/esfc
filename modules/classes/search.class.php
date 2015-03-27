@@ -95,7 +95,9 @@ class SearchPoisson extends SearchParam {
 				"statut" => 1,
 				"sexe" => "",
 				"texte" => "",
-				"categorie" => 1
+				"categorie" => 1,
+				"displayMorpho" => 0,
+				"displayBassin" => 0
 		);
 		parent::__construct ();
 	}

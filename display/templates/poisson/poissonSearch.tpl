@@ -10,7 +10,7 @@ $(document).ready(function() {
 <input type="hidden" name="module" value="poissonList">
 <table class="tableaffichage">
 <tr>
-<td>
+<td colspan='2'>
 Libellé à rechercher (tag, prenom, matricule, cohorte) : 
 <input name="texte" value="{$poissonSearch.texte}" size="40" maxlength="40">
 <br>
@@ -43,8 +43,16 @@ Catégorie :
 </td>
 </tr>
 <tr>
+<td>Afficher : <label>les données morphologiques ?</label>
+<input type="radio" name="displayMorpho" value="0" {if $poissonSearch.displayMorpho == 0}checked{/if}> non
+<input type="radio" name="displayMorpho" value="1" {if $poissonSearch.displayMorpho == 1}checked{/if}> oui
+<label>&nbsp;le bassin ?</label>
+<input type="radio" name="displayBassin" value="0" {if $poissonSearch.displayBassin == 0}checked{/if}> non
+<input type="radio" name="displayBassin" value="1" {if $poissonSearch.displayBassin == 1}checked{/if}> oui
+
+</td>
 <td>
-<div class="center">
+<div>
 <input type="submit" value="Rechercher">
 </div>
 </td>

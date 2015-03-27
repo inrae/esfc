@@ -63,8 +63,8 @@ class Poisson extends ObjetBDD {
 						"defaultValue" => 2 
 				),
 				"commentaire" => array (
-						"type" => 0
-				)
+						"type" => 0 
+				) 
 		);
 		if (! is_array ( $param ))
 			$param == array ();
@@ -82,23 +82,30 @@ class Poisson extends ObjetBDD {
 			$sql = "select poisson_id, sexe_id, matricule, prenom, cohorte, capture_date, sexe_libelle, sexe_libelle_court, poisson_statut_libelle,commentaire,
 					pittag_valeur,
 					mortalite_date,
-					categorie_id, categorie_libelle,
-					longueur_fourche, longueur_totale, masse, bassin_id, bassin_nom
-					from " . $this->table . " natural join sexe
+					categorie_id, categorie_libelle";
+			$from = " from " . $this->table . " natural join sexe
 					  natural join poisson_statut
 					  natural join categorie
-					  left outer join mortalite using (poisson_id)
-					  left outer join v_poisson_last_lf using (poisson_id)
-					  left outer join v_poisson_last_lt using (poisson_id)
-					  left outer join v_poisson_last_masse using (poisson_id)
-					  left outer join v_poisson_last_bassin using (poisson_id)
+					  left outer join mortalite using (poisson_id)					  
 					  left outer join v_pittag_by_poisson using (poisson_id)";
+			if ($dataSearch ["displayMorpho"] == 1) {
+				$sql .= ", longueur_fourche, longueur_totale, masse";
+				$from .= " left outer join v_poisson_last_lf using (poisson_id)
+					  left outer join v_poisson_last_lt using (poisson_id)
+					  left outer join v_poisson_last_masse using (poisson_id) ";
+			}
+			if ($dataSearch ["displayBassin"] == 1) {
+				$sql .= ", bassin_id, bassin_nom";
+				$from .= " left outer join v_poisson_last_bassin using (poisson_id)";
+			}
 			/*
 			 * Preparation de la clause group by
 			 */
-			/*$group = " group by poisson_id, sexe_id, matricule, prenom, 
-					cohorte, capture_date, sexe_libelle, sexe_libelle_court, poisson_statut_libelle, mortalite_date,
-					categorie_id, categorie_libelle, commentaire ";*/
+			/*
+			 * $group = " group by poisson_id, sexe_id, matricule, prenom,
+			 * cohorte, capture_date, sexe_libelle, sexe_libelle_court, poisson_statut_libelle, mortalite_date,
+			 * categorie_id, categorie_libelle, commentaire ";
+			 */
 			/*
 			 * Preparation de la clause order
 			 */
@@ -129,12 +136,13 @@ class Poisson extends ObjetBDD {
 			}
 			if (strlen ( $where ) == 7)
 				$where = "";
-			$data = $this->getListeParam ( $sql . $where . /*$group .*/ $order );
+			$data = $this->getListeParam ( $sql . $from . $where . /*$group .*/ $order );
 			/*
 			 * Mise en forme des dates
 			 */
 			foreach ( $data as $key => $value ) {
-				$data [$key] ["mortalite_date"] = $this->formatDateDBversLocal ( $value ["mortalite_date"] );
+				if (strlen ( $value ["mortalite_date"] ) > 0)
+					$data [$key] ["mortalite_date"] = $this->formatDateDBversLocal ( $value ["mortalite_date"] );
 			}
 			return ($data);
 		}
@@ -185,7 +193,7 @@ class Poisson extends ObjetBDD {
 	 * Réécriture de la fonction supprimer, pour vérifier si c'est possible, et supprimer les enregistrements
 	 * dans les tables liées
 	 * (non-PHPdoc)
-	 * 
+	 *
 	 * @see ObjetBDD::supprimer()
 	 */
 	function supprimer($id) {
@@ -237,12 +245,12 @@ class Poisson extends ObjetBDD {
 				/*
 				 * Pittag
 				 */
-				$pittag = new Pittag($this->connection, $this->paramori);
-				$pittag->supprimerChamp($id, "poisson_id");
+				$pittag = new Pittag ( $this->connection, $this->paramori );
+				$pittag->supprimerChamp ( $id, "poisson_id" );
 				/*
 				 * Suppression du poisson
 				 */
-				$retour = parent::supprimer($id);
+				$retour = parent::supprimer ( $id );
 			}
 		}
 		return $retour;
@@ -480,58 +488,61 @@ class Morphologie extends ObjetBDD {
 			return $this->lireParam ( $sql );
 		}
 	}
-
+	
 	/**
 	 * Retourne la masse d'un poisson entre deux dates
-	 * @param int $poisson_id
-	 * @param string $date_from
-	 * @param string $date_to
+	 * 
+	 * @param int $poisson_id        	
+	 * @param string $date_from        	
+	 * @param string $date_to        	
 	 * @return tableau|NULL
 	 */
 	function getListMasseFromPoisson($poisson_id, $date_from, $date_to) {
-		if ($poisson_id > 0 && strlen ($date_from) > 0 && strlen($date_to) > 0) {
+		if ($poisson_id > 0 && strlen ( $date_from ) > 0 && strlen ( $date_to ) > 0) {
 			$sql = "select poisson_id, morphologie_date, masse 
 					from morphologie
-					where poisson_id = ".$poisson_id."
-					and morphologie_date between '".$date_from."' and '".$date_to."' 
+					where poisson_id = " . $poisson_id . "
+					and morphologie_date between '" . $date_from . "' and '" . $date_to . "' 
 					order by morphologie_date";
-			printr($sql);
-			return $this->getListeParam($sql);
-		} else 
+			printr ( $sql );
+			return $this->getListeParam ( $sql );
+		} else
 			return null;
 	}
 	
 	/**
 	 * Retourne la masse d'un poissson après le 1er juin (post-repro)
-	 * @param unknown $poisson_id
-	 * @param unknown $annee
+	 * 
+	 * @param unknown $poisson_id        	
+	 * @param unknown $annee        	
 	 * @return array
 	 */
 	function getMasseBeforeDate($poisson_id, $date) {
-		if ($poisson_id > 0 && strlen($date) > 0) {
-			$sql = "select masse, morphologie_date from ".$this->table. "
-					where morphologie_date < '".$date."' 
-					and poisson_id = ".$poisson_id." 
+		if ($poisson_id > 0 && strlen ( $date ) > 0) {
+			$sql = "select masse, morphologie_date from " . $this->table . "
+					where morphologie_date < '" . $date . "' 
+					and poisson_id = " . $poisson_id . " 
 					order by morphologie_date desc
 					limit 1";
-			return $this->lireParam($sql);
+			return $this->lireParam ( $sql );
 		}
 	}
-
+	
 	/**
 	 * Retourne la masse d'un poisson avant le 1er juin pré-repro
-	 * @param unknown $poisson_id
-	 * @param unknown $annee
+	 * 
+	 * @param unknown $poisson_id        	
+	 * @param unknown $annee        	
 	 * @return array
 	 */
 	function getMasseBeforeRepro($poisson_id, $annee) {
 		if ($poisson_id > 0 && $annee > 0) {
-			$sql = "select masse, morphologie_date from ".$this->table. "
-					where morphologie_date between '".$annee."-01-01' and '".$annee."-05-31' 
-					and poisson_id = ".$poisson_id." 
+			$sql = "select masse, morphologie_date from " . $this->table . "
+					where morphologie_date between '" . $annee . "-01-01' and '" . $annee . "-05-31' 
+					and poisson_id = " . $poisson_id . " 
 					order by morphologie_date asc
 					limit 1";
-			return $this->lireParam($sql);
+			return $this->lireParam ( $sql );
 		}
 	}
 	/**
@@ -1590,7 +1601,7 @@ class SortieLieu extends ObjetBDD {
  * ORM de gestion de la table echographie
  *
  * @author quinton
- *
+ *        
  */
 class Echographie extends ObjetBDD {
 	public function __construct($p_connection, $param = NULL) {
@@ -1603,45 +1614,46 @@ class Echographie extends ObjetBDD {
 						"type" => 1,
 						"key" => 1,
 						"requis" => 1,
-						"defaultValue" => 0
+						"defaultValue" => 0 
 				),
-				"evenement_id" => array( 
+				"evenement_id" => array (
 						"type" => 1,
-						"requis"=> 1
+						"requis" => 1 
 				),
 				"poisson_id" => array (
 						"type" => 1,
 						"parentAttrib" => 1,
-						"requis" => 1
+						"requis" => 1 
 				),
 				"echographie_date" => array (
 						"type" => 2,
-						"requis" => 1
+						"requis" => 1 
 				),
 				"echographie_commentaire" => array (
 						"type" => 0,
-						"requis" => 1
+						"requis" => 1 
 				),
 				"cliche_nb" => array (
-						"type" => 1
+						"type" => 1 
 				),
 				"cliche_ref" => array (
-						"type" => 0
-				)
+						"type" => 0 
+				) 
 		);
 		if (! is_array ( $param ))
 			$param == array ();
 		$param ["fullDescription"] = 1;
-
+		
 		parent::__construct ( $p_connection, $param );
 	}
-
+	
 	/**
 	 * Retourne la liste des echographies realisees pour un poisson
-	 * @param int $poisson_id
+	 * 
+	 * @param int $poisson_id        	
 	 * @return tableau
 	 */
-	function getListByPoisson ($poisson_id) {
+	function getListByPoisson($poisson_id) {
 		if ($poisson_id > 0) {
 			$sql = "select echographie_id, evenement_id, e.poisson_id, 
 					echographie_date, echographie_commentaire, 
@@ -1650,30 +1662,32 @@ class Echographie extends ObjetBDD {
 					from echographie e
 					left outer join evenement using (evenement_id)
 					left outer join evenement_type using (evenement_type_id)
-					where e.poisson_id = ".$poisson_id."
+					where e.poisson_id = " . $poisson_id . "
 					order by echographie_date desc";
-			return $this->getListeParam($sql);
+			return $this->getListeParam ( $sql );
 		} else
 			return null;
 	}
 	/**
 	 * Retourne une echographie a partir du numero d'evenement
-	 * @param unknown $evenement_id
+	 * 
+	 * @param unknown $evenement_id        	
 	 * @return array|NULL
 	 */
-	function getDataByEvenement ($evenement_id) {
+	function getDataByEvenement($evenement_id) {
 		if ($evenement_id > 0) {
 			$sql = "select * from echographie 
-				where evenement_id = ".$evenement_id;
-			return $this->lireParam($sql);
-		} else 
-			return null;		
+				where evenement_id = " . $evenement_id;
+			return $this->lireParam ( $sql );
+		} else
+			return null;
 	}
-
+	
 	/**
 	 * Retourne la liste des echographies pour l'annee consideree
-	 * @param int $poisson_id
-	 * @param int $annee
+	 * 
+	 * @param int $poisson_id        	
+	 * @param int $annee        	
 	 * @return tableau|NULL
 	 */
 	function getListByYear($poisson_id, $annee) {
@@ -1685,10 +1699,10 @@ class Echographie extends ObjetBDD {
 					from echographie e
 					left outer join evenement using (evenement_id)
 					left outer join evenement_type using (evenement_type_id) 
-					where extract(year from echographie_date) = ".$annee."
-					and e.poisson_id = ".$poisson_id." 
+					where extract(year from echographie_date) = " . $annee . "
+					and e.poisson_id = " . $poisson_id . " 
 					order by echographie_date desc";
-			return $this->getListeParam($sql);
+			return $this->getListeParam ( $sql );
 		} else
 			return null;
 	}

@@ -17,13 +17,17 @@ setDataTables("cpoissonList",true, true, true, 50);
 <th>Cohorte</th>
 <th>Date de capture<br>/naissance</th>
 <th>Date de<br>mortalité</th>
+{if $poissonSearch.displayBassin == 1}
 <th>Bassin</th>
+{/if}
+{if $poissonSearch.displayMorpho == 1}
 <th>Masse</th>
 <th>Long<br>fourche</th>
 <th>Long<br>totale</th>
+{/if}
 </tr>
 </thead>
-<tdata>
+<tbody>
 {section name=lst loop=$data}
 <tr>
 <td>
@@ -41,11 +45,12 @@ setDataTables("cpoissonList",true, true, true, 50);
 {$data[lst].prenom}
 </a>
 </td>
-<td>{$data[lst].sexe_libelle_court}</td>
+<td class="center">{$data[lst].sexe_libelle_court}</td>
 <td>{$data[lst].categorie_libelle} {$data[lst].poisson_statut_libelle}</td>
-<td>{$data[lst].cohorte}</td>
-<td>{$data[lst].capture_date}{$data[lst].date_naissance}</td>
-<td>{$data[lst].mortalite_date}</td>
+<td class="center">{$data[lst].cohorte}</td>
+<td class="center">{$data[lst].capture_date}{$data[lst].date_naissance}</td>
+<td class="center">{$data[lst].mortalite_date}</td>
+{if $poissonSearch.displayBassin == 1}
 <td>
 {if $data[lst].bassin_id > 0}
 <a href=index.php?module=bassinDisplay&bassin_id={$data[lst].bassin_id}>
@@ -53,12 +58,15 @@ setDataTables("cpoissonList",true, true, true, 50);
 </a>
 {/if}
 </td>
-<td>{$data[lst].masse}</td>
-<td>{$data[lst].longueur_fourche}</td>
-<td>{$data[lst].longueur_totale}</td>
+{/if}
+{if $poissonSearch.displayMorpho == 1}
+<td class="right">{$data[lst].masse}</td>
+<td class="right">{$data[lst].longueur_fourche}</td>
+<td class="right">{$data[lst].longueur_totale}</td>
+{/if}
 </tr>
 {/section}
-</tdata>
+</tbody>
 </table>
 <br>
 {/if}
