@@ -9,7 +9,6 @@ include_once 'modules/classes/evenement.class.php';
 $dataClass = new Evenement ( $bdd, $ObjetBDDParam );
 $keyName = "evenement_id";
 $id = $_REQUEST [$keyName];
-
 switch ($t_module ["param"]) {
 	case "list" :
 		break;
@@ -285,6 +284,36 @@ switch ($t_module ["param"]) {
 		include_once "modules/classes/poisson.class.php";
 		include_once 'modules/classes/anomalie.class.php';
 		dataDelete ( $dataClass, $id );
+		break;
+	case "getAllCSV":
+		/*
+		 * Retourne la liste de tous les événements pour les poissons sélectionnés, 
+		 * au format CSV
+		 */	
+		require_once 'modules/classes/export.class.php';
+		$export = new Export();
+		$data = $dataClass->getAllEvenements($searchPoisson->getParam());
+		if (is_array($data)) {
+			$export->exportCSVinit("sturio-evenements", "tab");
+			/*
+			 * Preparation de la ligne d'entete
+			 */
+			$entete=array();
+			foreach ($data[0] as $key => $value) {
+				$entete[] = $key;
+			}
+			$export->setLigneCSV($entete);
+			/*
+			 * Envoi de toutes les lignes
+			 */
+			foreach ($data as $key => $value) {
+				$export->setLigneCSV($value);
+			}
+			/*
+			 * Envoi au navigateur
+			 */
+			$export->exportCSV();
+		}
 		break;
 }
 

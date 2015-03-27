@@ -65,6 +65,7 @@
 	<evenementChange action="modules/poisson/evenement.php" param="change" droits="poissonGestion" />
 	<evenementWrite action="modules/poisson/evenement.php" param="write" droits="poissonGestion"  retourok="poissonDisplay" retourko="evenementChange" modulebefore="evenementChange" />
 	<evenementDelete action="modules/poisson/evenement.php" param="delete" droits="poissonAdmin" retoursuppr="poissonDisplay" retourko="evenementChange"  modulebefore="evenementChange"/>
+	<evenementGetAllCSV action="modules/poisson/evenement.php" param="getAllCSV" droits="consult" ajax="1" />
 	
 	<pittagChange action="modules/poisson/pittag.php" param="change" droits="poissonGestion" />
 	<pittagWrite action="modules/poisson/pittag.php" param="write" droits="poissonGestion" retourok="poissonDisplay" retourko="pittagChange" modulebefore="pittagChange" />
