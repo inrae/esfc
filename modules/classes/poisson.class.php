@@ -64,6 +64,9 @@ class Poisson extends ObjetBDD {
 				),
 				"commentaire" => array (
 						"type" => 0 
+				),
+				"vie_modele_id" => array (
+						"type" => 1 
 				) 
 		);
 		if (! is_array ( $param ))
@@ -189,6 +192,57 @@ class Poisson extends ObjetBDD {
 			return $this->getListeParam ( $sql );
 		}
 	}
+	
+	/**
+	 * Surcharge de la fonction ecrire pour generer les parents et la date de naissance
+	 * si indication du modele de marque VIE utilise
+	 * (non-PHPdoc)
+	 * 
+	 * @see ObjetBDD::ecrire()
+	 */
+	function ecrire($data) {
+		/*
+		 * Recuperation des donnees de naissance, si vie_modele_id est renseigne
+		 */
+		$dataLot = array ();
+		if ($data ["vie_modele_id"] > 0) {
+			require_once 'modules/classes/lot.class.php';
+			$lot = new Lot ( $this->connection, $this->paramori );
+			$dataLot = $lot->getFromVieModele ( $data ["vie_modele_id"] );
+			if ($dataLot ["lot_id"] > 0) {
+				/*
+				 * Mise a jour de la date de naissance
+				 */
+				if (strlen ( $dataLot ["eclosion_date"] ) > 0) {
+					$data ["date_naissance"] = $dataLot ["eclosion_date"];
+					$date = explode ( "/", $dataLot ["eclosion_date"] );
+					$data ["cohorte"] = $date [2];
+				}
+			}
+		}
+		/*
+		 * Ecriture de l'enregistrement
+		 */
+		$id = parent::ecrire ( $data );
+		if ($id > 0 && $dataLot ["lot_id"] > 0) {
+			/*
+			 * Recuperation et ecriture des parents
+			 */
+			$parents = $lot->getParents ( $dataLot ["lot_id"] );
+			$parentArray = array();
+			/*
+			 * Formatage de la liste en tableau simple, pour prise en compte par la fonction ad-hoc
+			 */
+			foreach ( $parents as $key => $value )
+				$parentArray[] = $value["poisson_id"];
+			/*
+			 * Ecriture des parents
+			 */
+				$this->ecrireTableNN ( "parent_poisson", "poisson_id", "parent_id", $id, $parentArray );
+		}
+		return $id;
+	}
+	
 	/**
 	 * Réécriture de la fonction supprimer, pour vérifier si c'est possible, et supprimer les enregistrements
 	 * dans les tables liées
@@ -491,7 +545,7 @@ class Morphologie extends ObjetBDD {
 	
 	/**
 	 * Retourne la masse d'un poisson entre deux dates
-	 * 
+	 *
 	 * @param int $poisson_id        	
 	 * @param string $date_from        	
 	 * @param string $date_to        	
@@ -512,7 +566,7 @@ class Morphologie extends ObjetBDD {
 	
 	/**
 	 * Retourne la masse d'un poissson après le 1er juin (post-repro)
-	 * 
+	 *
 	 * @param unknown $poisson_id        	
 	 * @param unknown $annee        	
 	 * @return array
@@ -530,7 +584,7 @@ class Morphologie extends ObjetBDD {
 	
 	/**
 	 * Retourne la masse d'un poisson avant le 1er juin pré-repro
-	 * 
+	 *
 	 * @param unknown $poisson_id        	
 	 * @param unknown $annee        	
 	 * @return array
@@ -1649,7 +1703,7 @@ class Echographie extends ObjetBDD {
 	
 	/**
 	 * Retourne la liste des echographies realisees pour un poisson
-	 * 
+	 *
 	 * @param int $poisson_id        	
 	 * @return tableau
 	 */
@@ -1670,7 +1724,7 @@ class Echographie extends ObjetBDD {
 	}
 	/**
 	 * Retourne une echographie a partir du numero d'evenement
-	 * 
+	 *
 	 * @param unknown $evenement_id        	
 	 * @return array|NULL
 	 */
@@ -1685,7 +1739,7 @@ class Echographie extends ObjetBDD {
 	
 	/**
 	 * Retourne la liste des echographies pour l'annee consideree
-	 * 
+	 *
 	 * @param int $poisson_id        	
 	 * @param int $annee        	
 	 * @return tableau|NULL

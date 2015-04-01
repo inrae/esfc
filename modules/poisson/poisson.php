@@ -142,6 +142,13 @@ switch ($t_module["param"]) {
 		$smarty->assign("poissonStatut", $poissonStatut->getListe(1));
 		$categorie = new Categorie($bdd, $ObjetBDDParam);
 		$smarty->assign("categorie", $categorie->getListe(1));
+		
+		/*
+		 * Modeles de marquages VIE, pour creation a partir des juveniles
+		 */
+		require_once "modules/classes/lot.class.php";
+		$vieModele = new VieModele($bdd, $ObjetBDDParam);
+		$smarty->assign("modeles", $vieModele->getAllModeles());
 		/*
 		 * Passage en parametre de la liste parente
 		*/

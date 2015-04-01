@@ -91,7 +91,7 @@ class Lot extends ObjetBDD {
 	 * @return array
 	 */
 	private function getDataParam($where) {
-		if (strlen ( $where) > 0 ) {
+		if (strlen ( $where ) > 0) {
 			$sql = "select lot_id, lot_nom, croisement_id, nb_larve_initial, nb_larve_compte,
 					croisement_date,
 					sequence_id, s.annee, sequence_nom, croisement_nom, eclosion_date, vie_date_marquage,
@@ -144,6 +144,30 @@ class Lot extends ObjetBDD {
 					from lot
 					where croisement_id = " . $croisement_id;
 			return $this->lireParam ( $sql );
+		} else
+			return null;
+	}
+	/**
+	 * Retourne un enregistrement a partir de la valeur de vie_modele_id
+	 * 
+	 * @param int $vie_modele_id        	
+	 * @return array|NULL
+	 */
+	function getFromVieModele($vie_modele_id) {
+		if ($vie_modele_id > 0) {
+			$sql = "select * from lot where vie_modele_id = " . $vie_modele_id;
+			return $this->lireParam ( $sql );
+		} else
+			return null;
+	}
+	function getParents($lot_id) {
+		if ($lot_id > 0) {
+			$sql = "select poisson_id
+				from lot
+				join poisson_croisement using (croisement_id)
+				join poisson_campagne using (poisson_campagne_id)
+				where lot_id = " . $lot_id;
+			return $this->getListeParam ( $sql );
 		} else
 			return null;
 	}
@@ -306,14 +330,15 @@ class VieModele extends ObjetBDD {
 			return $this->getListeParam ( $sql );
 		}
 	}
-
+	
 	/**
 	 * Recupere l'ensemble des modeles disponibles dans la base de donnees
+	 *
 	 * @return tableau
 	 */
 	function getAllModeles() {
 		$sql = "select * from v_vie_modele order by annee desc, couleur, vie_modele_id";
-		return $this->getListeParam($sql);
+		return $this->getListeParam ( $sql );
 	}
 }
 /**
