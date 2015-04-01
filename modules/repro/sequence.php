@@ -14,18 +14,7 @@ $id = $_REQUEST[$keyName];
 /*
  * Prepositionnement de l'annee
 */
-if (isset($_REQUEST["annee"]))
-	$_SESSION["annee"] = $_REQUEST["annee"];
-
-if (!isset($_SESSION["annee"])) {
-	$poissonCampagne = new poissonCampagne($bdd, $ObjetBDDParam);
-	$annees = $poissonCampagne->getAnnees();
-	if (is_array($annees)) {
-		$_SESSION["annee"] = $annees[0]["annee"]; 
-	} else
-		$_SESSION["annee"] = date ('Y');
-}
-$smarty->assign("annee", $_SESSION["annee"]);
+include "modules/repro/setAnnee.php";
 
 switch ($t_module["param"]) {
 	case "list":

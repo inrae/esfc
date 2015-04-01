@@ -43,6 +43,12 @@ class Lot extends ObjetBDD {
 				),
 				"eclosion_date" => array (
 						"type" => 2 
+				),
+				"vie_modele_id" => array (
+						"type" => 1 
+				),
+				"vie_date_marquage" => array (
+						"type" => 2 
 				) 
 		);
 		if (! is_array ( $param ))
@@ -59,38 +65,43 @@ class Lot extends ObjetBDD {
 	 */
 	function getLotByAnnee($annee) {
 		if ($annee > 0) {
-			$sql = "select lot_id, lot_nom, croisement_id, nb_larve_initial, nb_larve_compte,
-					croisement_date, 
-					sequence_id, annee, sequence_nom, croisement_nom, eclosion_date
-					from lot 
-					join croisement using (croisement_id)
-					join sequence using (sequence_id)
-					where annee = " . $annee . "
-					order by sequence_nom, croisement_id";
-			$data = $this->getListeParam ( $sql );
-			/*
-			 * Mise en forme des donnees et recuperation des reproducteurs
-			 */
-			$croisement = new Croisement ( $this->connection, $this->paramori );
-			foreach ( $data as $key => $value ) {
-				$data [$key] ["croisement_date"] = $this->formatDateDBversLocal ( $value ["croisement_date"] );
-				$data [$key] ["parents"] = $croisement->getParentsFromCroisement ( $value ["croisement_id"] );
-			}
-			return $data;
+			$where = " where s.annee = " . $annee;
+			return $this->getDataParam ( $where );
 		} else
 			return null;
 	}
+	/**
+	 * Retourne les lots a partir du numero de sequence
+	 *
+	 * @param int $sequence_id        	
+	 * @return array|NULL
+	 */
 	function getLotBySequence($sequence_id) {
 		if ($sequence_id > 0) {
+			$where = " where sequence_id = " . $sequence_id;
+			return $this->getDataParam ( $where );
+		} else
+			return null;
+	}
+	
+	/**
+	 * Fonction retournant la liste des lots en fonction du critere de recherche fourni
+	 *
+	 * @param string $where        	
+	 * @return array
+	 */
+	private function getDataParam($where) {
+		if (strlen ( $where) > 0 ) {
 			$sql = "select lot_id, lot_nom, croisement_id, nb_larve_initial, nb_larve_compte,
 					croisement_date,
-					sequence_id, annee, sequence_nom, croisement_nom, eclosion_date
+					sequence_id, s.annee, sequence_nom, croisement_nom, eclosion_date, vie_date_marquage,
+					vie_modele_id, couleur, vie_implantation_libelle, vie_implantation_libelle2
 					from lot
 					join croisement using (croisement_id)
-					join sequence using (sequence_id)
-					where sequence_id = " . $sequence_id . "
-					order by sequence_nom, croisement_id";
-			$data = $this->getListeParam ( $sql );
+					join sequence s using (sequence_id)
+					left outer join v_vie_modele vm using (vie_modele_id) ";
+			$order = " order by sequence_nom, lot_nom";
+			$data = $this->getListeParam ( $sql . $where . $order );
 			/*
 			 * Mise en forme des donnees et recuperation des reproducteurs
 			 */
@@ -112,16 +123,10 @@ class Lot extends ObjetBDD {
 	 */
 	function getDetail($lot_id) {
 		if ($lot_id > 0) {
-			$sql = "select lot_id, croisement_id, lot_nom, nb_larve_initial, nb_larve_compte,
-					sequence_id, sequence_nom, annee, croisement_nom, eclosion_date
-					from lot 
-					join croisement using (croisement_id)
-					join sequence using (sequence_id)
-					where lot_id = " . $lot_id;
-			$data = $this->lireParam ( $sql );
-			$croisement = new Croisement ( $this->connection, $this->paramori );
-			$data ["parents"] = $croisement->getParentsFromCroisement ( $data ["croisement_id"] );
-			return $data;
+			$where = "where lot_id = " . $lot_id;
+			$data = $this->getDataParam ( $where );
+			if (is_array ( $data ))
+				return $data [0];
 		} else
 			return null;
 	}
@@ -220,7 +225,7 @@ class LotMesure extends ObjetBDD {
 	/**
 	 * Calcul du nombre de jours depuis l'eclosion avant l'écriture en table
 	 * (non-PHPdoc)
-	 * 
+	 *
 	 * @see ObjetBDD::ecrire()
 	 */
 	function ecrire($data) {
@@ -232,14 +237,113 @@ class LotMesure extends ObjetBDD {
 			$dataLot = $lot->lire ( $data ["lot_id"] );
 			$dateDebut = date_parse_from_format ( "d/m/Y", $dataLot ["eclosion_date"] );
 			$dateFin = date_parse_from_format ( "d/m/Y", $data ["lot_mesure_date"] );
-			$nbJours = round ( (strtotime ( $dateFin ["year"] . "-" . $dateFin ["month"] . "-" . $dateFin ["day"] ) 
-					- strtotime ( $dateDebut ["year"] . "-" . $dateDebut ["month"] . "-" . $dateDebut ["day"] )) 
-					/ (60 * 60 * 24) );
+			$nbJours = round ( (strtotime ( $dateFin ["year"] . "-" . $dateFin ["month"] . "-" . $dateFin ["day"] ) - strtotime ( $dateDebut ["year"] . "-" . $dateDebut ["month"] . "-" . $dateDebut ["day"] )) / (60 * 60 * 24) );
 			if ($nbJours > 0 && $nbJours < 365) {
 				$data ["nb_jour"] = $nbJours;
 			}
 		}
 		return parent::ecrire ( $data );
+	}
+}
+/**
+ * ORM de gestion de la table vie_modele
+ *
+ * @author quinton
+ *        
+ */
+class VieModele extends ObjetBDD {
+	function __construct($bdd, $param = null) {
+		$this->param = $param;
+		$this->paramori = $param;
+		$this->table = "vie_modele";
+		$this->id_auto = "1";
+		$this->colonnes = array (
+				"vie_modele_id" => array (
+						"type" => 1,
+						"key" => 1,
+						"requis" => 1,
+						"defaultValue" => 0 
+				),
+				"vie_implantation_id" => array (
+						"type" => 1,
+						"requis" => 1 
+				),
+				"vie_implantation_id2" => array (
+						"type" => 1,
+						"requis" => 1 
+				),
+				"annee" => array (
+						"type" => 1,
+						"requis" => 1 
+				),
+				"couleur" => array (
+						"type" => 0,
+						"requis" => 0 
+				) 
+		);
+		if (! is_array ( $param ))
+			$param == array ();
+		$param ["fullDescription"] = 1;
+		parent::__construct ( $bdd, $param );
+	}
+	
+	/**
+	 * Retourne l'ensemble des modèles pour l'année considérée
+	 *
+	 * @param int $annee        	
+	 * @return tableau
+	 */
+	function getModelesFromAnnee($annee) {
+		if ($annee > 0) {
+			$sql = "select vie_modele_id, vm.vie_implantation_id, vie_implantation_id2,
+					annee, couleur,
+					v1.vie_implantation_libelle, v2.vie_implantation_libelle as vie_implantation_libelle2
+					from vie_modele vm
+					join vie_implantation v1 on (vm.vie_implantation_id = v1.vie_implantation_id)
+					join vie_implantation v2 on (vm.vie_implantation_id2 = v2.vie_implantation_id)
+					where annee = " . $annee . " 
+					order by vie_modele_id";
+			return $this->getListeParam ( $sql );
+		}
+	}
+
+	/**
+	 * Recupere l'ensemble des modeles disponibles dans la base de donnees
+	 * @return tableau
+	 */
+	function getAllModeles() {
+		$sql = "select * from v_vie_modele order by annee desc, couleur, vie_modele_id";
+		return $this->getListeParam($sql);
+	}
+}
+/**
+ * ORM de gestion de la table vie_implantation
+ *
+ * @author quinton
+ *        
+ */
+class VieImplantation extends ObjetBDD {
+	function __construct($bdd, $param = null) {
+		$this->param = $param;
+		$this->paramori = $param;
+		$this->table = "vie_implantation";
+		$this->id_auto = "1";
+		$this->colonnes = array (
+				"vie_implantation_id" => array (
+						"type" => 1,
+						"key" => 1,
+						"requis" => 1,
+						"defaultValue" => 0 
+				),
+				"vie_implantation_libelle" => array (
+						"type" => 0,
+						"requis" => 1 
+				) 
+		);
+		if (! is_array ( $param ))
+			$param == array ();
+		$param ["fullDescription"] = 1;
+		parent::__construct ( $bdd, $param );
 	}
 }
 

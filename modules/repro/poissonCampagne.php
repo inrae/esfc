@@ -12,12 +12,7 @@ $id = $_REQUEST [$keyName];
 /*
  * Prepositionnement de l'annee
  */
-if (isset ( $_REQUEST ["annee"] ))
-	$_SESSION ["annee"] = $_REQUEST ["annee"];
-
-if (! isset ( $_SESSION ["annee"] ))
-	$_SESSION ["annee"] = date ( 'Y' );
-$smarty->assign ( "annee", $_SESSION ["annee"] );
+include "modules/repro/setAnnee.php";
 
 if (isset ( $_SESSION ["sequence_id"] ))
 	$smarty->assign ( "sequence_id", $_SESSION ["sequence_id"] );

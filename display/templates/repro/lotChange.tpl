@@ -55,7 +55,30 @@ Retour au lot
 <input class="taux" name="nb_larve_compte" value="{$data.nb_larve_compte}">
 </dd>
 </dl>
+<fieldset>
+<legend>Marquage VIE</legend>
+<dl>
+<dt>Date du marquage :</dt>
+<dd>
+<input class="date" name="vie_date_marquage" value="{$data.vie_date_marquage}">
+</dd>
+</dl>
+<dl><dt>Modèle de marquage VIE utilisé :</dt>
+<dd>
+<select name="vie_modele_id">
+<option value="" {if $data.vie_modele_id == ""}selected{/if}>
+Sélectionnez...
+</option>
+{section name=lst loop=$modeles}
+<option value="{$modeles[lst].vie_modele_id}" {if $data.vie_modele_id == $modeles[lst].vie_modele_id}selected{/if}>
+{$modeles[lst].couleur}, {$modeles[lst].vie_implantation_libelle}, {$modeles[lst].vie_implantation_libelle2}
+</option>
+{/section}
+</select>
+</dl>
 
+</fieldset>
+<dl></dl>
 <div class="formBouton">
 <input class="submit" type="submit" value="Enregistrer">
 </div>

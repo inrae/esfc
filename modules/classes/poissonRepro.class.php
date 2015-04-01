@@ -298,7 +298,7 @@ class PoissonCampagne extends ObjetBDD {
 	 * @return array
 	 */
 	function getAnnees() {
-		$sql = "select distinct annee from poisson_campagne order by annee";
+		$sql = "select distinct annee from poisson_campagne order by annee desc";
 		return $this->getListeParam ( $sql );
 	}
 	

@@ -9,11 +9,8 @@ include_once 'modules/classes/lot.class.php';
 $dataClass = new Lot($bdd,$ObjetBDDParam);
 $keyName = "lot_id";
 $id = $_REQUEST[$keyName];
-if ($_REQUEST["annee"] > 0)
-	$_SESSION["annee"] = $_REQUEST["annee"];
-if (! isset ( $_SESSION ["annee"] ))
-	$_SESSION ["annee"] = date ( 'Y' );
-$smarty->assign ( "annee", $_SESSION ["annee"] );
+
+include "modules/repro/setAnnee.php";
 
 switch ($t_module["param"]) {
 	case "list":
@@ -53,6 +50,11 @@ switch ($t_module["param"]) {
 		require_once 'modules/classes/croisement.class.php';
 		$croisement = new Croisement($bdd, $ObjetBDDParam);
 		$smarty->assign("croisements", $croisement->getListFromAnnee($_SESSION["annee"]));
+		/*
+		 * Lecture de la liste des marquages VIE
+		 */
+		$vieModele = new VieModele($bdd, $ObjetBDDParam);
+		$smarty->assign("modeles", $vieModele->getModelesFromAnnee($_SESSION["annee"]));
 		break;
 	case "write":
 		/*

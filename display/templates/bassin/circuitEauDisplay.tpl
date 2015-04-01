@@ -64,7 +64,7 @@ suiv&gt;
 </tr>
 <tr>
 <td colspan="3">
-<table id="canalyseEauList">
+<table id="canalyseEauList" class="tableliste">
 <thead>
 <tr>
 <th>Date<br>d'analyse</th>
@@ -102,25 +102,25 @@ suiv&gt;
 {$dataAnalyse[lst].analyse_eau_date}
 {/if}
 </td>
-<td>{$dataAnalyse[lst].temperature}</td>
-<td>{$dataAnalyse[lst].oxygene}</td>
-<td>{$dataAnalyse[lst].salinite}</td>
-<td>{$dataAnalyse[lst].ph}</td>
+<td class="right">{$dataAnalyse[lst].temperature}</td>
+<td class="right">{$dataAnalyse[lst].oxygene}</td>
+<td class="right">{$dataAnalyse[lst].salinite}</td>
+<td class="right">{$dataAnalyse[lst].ph}</td>
 <td>{$dataAnalyse[lst].laboratoire_analyse_libelle}
-<td>{$dataAnalyse[lst].nh4}</td>
-<td>{$dataAnalyse[lst].n_nh4}</td>
+<td class="right">{$dataAnalyse[lst].nh4}</td>
+<td class="right">{$dataAnalyse[lst].n_nh4}</td>
 <td>{$dataAnalyse[lst].nh4_seuil}</td>
-<td>{$dataAnalyse[lst].no2}</td>
-<td>{$dataAnalyse[lst].n_no2}</td>
+<td class="right">{$dataAnalyse[lst].no2}</td>
+<td class="right">{$dataAnalyse[lst].n_no2}</td>
 <td>{$dataAnalyse[lst].no2_seuil}</td>
-<td>{$dataAnalyse[lst].no3}</td>
-<td>{$dataAnalyse[lst].n_no3}</td>
+<td class="right">{$dataAnalyse[lst].no3}</td>
+<td class="right">{$dataAnalyse[lst].n_no3}</td>
 <td>{$dataAnalyse[lst].no3_seuil}</td>
-<td>{if $dataAnalyse[lst].backwash_mecanique == 1}oui{/if}</td>
-<td>{if $dataAnalyse[lst].backwash_biologique == 1}oui{/if}</td>
+<td class="center">{if $dataAnalyse[lst].backwash_mecanique == 1}oui{/if}</td>
+<td class="center">{if $dataAnalyse[lst].backwash_biologique == 1}oui{/if}</td>
 <td>{$dataAnalyse[lst].backwash_biologique_commentaire}</td>
-<td>{$dataAnalyse[lst].debit_eau_riviere}</td>
-<td>{$dataAnalyse[lst].debit_eau_forage}</td>
+<td class="right">{$dataAnalyse[lst].debit_eau_riviere}</td>
+<td class="right">{$dataAnalyse[lst].debit_eau_forage}</td>
 <td>{$dataAnalyse[lst].observations}</td>
 </tr>
 {/section}

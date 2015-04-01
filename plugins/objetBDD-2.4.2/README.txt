@@ -1,5 +1,8 @@
 News
 ====
+Version 2.4.2.1 - 30/03/2015
+	* New parameter : transformComma = 1. If 1, all commas in numeric field are transformed to a decimal point (for french keyboards).
+
 Version 2.4.2 - 17/03/2014
 	* New parameter to getListe function : getListe($order = 0). If $order > 0, the list is sorted by $order.
 

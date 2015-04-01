@@ -51,6 +51,9 @@ class Croisement extends ObjetBDD {
 				),
 				"tx_survie_estime" => array (
 						"type" => 1 
+				),
+				"croisement_parents" => array (
+						"type" => 0
 				)
 		);
 		if (! is_array ( $param ))

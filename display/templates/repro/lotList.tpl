@@ -11,9 +11,11 @@
 <th>Date<br>d'éclosion</th>
 <th>Nbre de larves<br>initial</th>
 <th>Nbre de larves<br>compté</th>
+<th>Marque VIE</th>
+<th>Date de marquage<br>VIE</th>
 </tr>
 </thead>
-<tdata>
+<tbody>
 {section name=lst loop=$lots}
 <tr>
 <td>
@@ -32,7 +34,13 @@
 <td>{$lots[lst].eclosion_date}</td>
 <td class="right">{$lots[lst].nb_larve_initial}</td>
 <td class="right">{$lots[lst].nb_larve_compte}</td>
+<td>
+{if $lots[lst].vie_modele_id > 0}
+{$lots[lst].couleur}, {$lots[lst].vie_implantation_libelle}, {$lots[lst].vie_implantation_libelle2}
+{/if}
+</td>
+<td>{$lots[lst].vie_date_marquage}</td>
 </tr>
 {/section}
-</tdata>
+</tbody>
 </table>

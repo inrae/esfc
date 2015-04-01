@@ -94,6 +94,8 @@ $LANG["menu"][91] = "Lieux de lâchers/destination";
 $LANG["menu"][92] = "Liste des lieux de lâchers ou de destination des poissons";
 $LANG["menu"][93] = "Hormones";
 $LANG["menu"][94] = "Liste des hormones utilisées pour la reproduction";
+$LANG["menu"][95] = "Implantation VIE";
+$LANG["menu"][96] = "Liste des endroits d'implantation des marques VIE";
 
 $LANG["menu"][100] = "Repro";
 $LANG["menu"][101] = "Gestion de la reproduction";
@@ -105,9 +107,8 @@ $LANG["menu"][106] = "Séquences et bassins";
 $LANG["menu"][107] = "Liste des séquences et des bassins pour une campagne";
 $LANG["menu"][108] = "Lots de larves";
 $LANG["menu"][109] = "Liste des lots de larves pour une campagne";
-
-
-
+$LANG["menu"][110] = "Modèles de marquages VIE";
+$LANG["menu"][111] = "Liste des modèles de marquage VIE pour une campagne";
 
 $LANG["menu"]["example1"] = "Example";
 $LANG["menu"]["example2"] = "It's an example !";

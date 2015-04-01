@@ -167,6 +167,11 @@
 	<hormoneWrite action="modules/parametre/hormone.php" param="write" droits="paramAdmin,reproAdmin" retourok="hormoneList" retourko="hormoneChange" modulebefore="hormoneChange" />
 	<hormoneDelete action="modules/parametre/hormone.php" param="delete" droits="paramAdmin,reproAdmin" retoursuppr="hormoneList" retourko="hormoneChange"  modulebefore="hormoneChange"/>
 
+	<vieImplantationList action="modules/parametre/vieImplantation.php" param="list" droits="consult"  retourlogin="1" menulevel="1" menuparent="3" menuorder="16" menudroits="" menuvalue="95" menutitle="96"  />
+	<vieImplantationChange action="modules/parametre/vieImplantation.php" param="change" droits="paramAdmin" />
+	<vieImplantationWrite action="modules/parametre/vieImplantation.php" param="write" droits="paramAdmin,reproAdmin" retourok="vieImplantationList" retourko="vieImplantationChange" modulebefore="vieImplantationChange" />
+	<vieImplantationDelete action="modules/parametre/vieImplantation.php" param="delete" droits="paramAdmin,reproAdmin" retoursuppr="vieImplantationList" retourko="vieImplantationChange"  modulebefore="vieImplantationChange"/>
+
 
 	<alimentation menulevel="0" menuorder="2" menuvalue="77" menutitle="78" retourlogin="1" />
 
@@ -272,6 +277,11 @@
 	<spermeChange action="modules/repro/sperme.php" param="change" droits="reproGestion" />
 	<spermeWrite action="modules/repro/sperme.php" param="write" droits="reproGestion" modulebefore="spermeChange" retourok="poissonCampagneDisplay" retourko="spermeChange"/>
 	<spermeDelete action="modules/repro/sperme.php" param="delete" droits="reproGestion" modulebefore="spermeChange" retoursuppr="poissonCampagneDisplay" retourko="spermeChange"/>
+
+	<vieModeleList action="modules/repro/vieModele.php" param="list" retourlogin="1" menulevel="1" menuorder="5" menuparent="4" menudroits="reproConsult" menuvalue="110" menutitle="111" droits="reproConsult" />
+	<vieModeleChange action="modules/repro/vieModele.php" param="change" droits="reproGestion" />
+	<vieModeleWrite action="modules/repro/vieModele.php" param="write" droits="reproGestion" modulebefore="vieModeleChange" retourok="vieModeleList" retourko="vieModeleChange"/>
+	<vieModeleDelete action="modules/repro/vieModele.php" param="delete" droits="reproGestion" modulebefore="vieModeleChange" retoursuppr="vieModeleList" retourko="vieModeleChange"/>
 
 	
 </navigation>
