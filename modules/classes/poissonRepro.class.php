@@ -190,6 +190,7 @@ class PoissonCampagne extends ObjetBDD {
 	 * @return array number
 	 */
 	function getListForDisplay($param) {
+		$param = $this->encodeData($param);
 		if ($param ["annee"] > 0) {
 			$sql = "select poisson_campagne_id, poisson_id, 
 					matricule, prenom, pittag_valeur, cohorte,

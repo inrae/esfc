@@ -75,6 +75,7 @@ class Evenement extends ObjetBDD {
 	 * @return tableau
 	 */
 	function getAllEvenements($dataSearch) {
+		$dataSearch = $this->encodeData($dataSearch);
 		if (is_array ( $dataSearch )) {
 			$sql = "select p.poisson_id, matricule, prenom, cohorte, pittag_valeur,					 
  					e.evenement_id, evenement_type_id, evenement_type_libelle,

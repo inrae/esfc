@@ -232,6 +232,7 @@ class RepartTemplate extends ObjetBDD {
 	 * @return array
 	 */
 	function getListSearch($param) {
+		$param = $this->encodeData ( $param );
 		$sql = "select * from " . $this->table . "
 				left outer join categorie using (categorie_id)";
 		$order = " order by repart_template_date desc";
@@ -458,6 +459,7 @@ class Repartition extends ObjetBDD {
 	 * @return array
 	 */
 	function getListSearch($param) {
+		$param = $this->encodeData ( $param );
 		$sql = "select * from " . $this->table . "
 				join categorie using (categorie_id)";
 		$where = "";
@@ -478,7 +480,7 @@ class Repartition extends ObjetBDD {
 	}
 	/**
 	 * Recopie les donnees dans une nouvelle repartition
-	 * 
+	 *
 	 * @param int $id        	
 	 * @return int
 	 */
@@ -853,7 +855,8 @@ class Distribution extends ObjetBDD {
 	 * @return array
 	 */
 	function getFromRepartition($repartition_id) {
-		$sql = "select t1.distribution_id, t1.repartition_id, t1.bassin_id,
+		if ($repartition_id > 0) {
+			$sql = "select t1.distribution_id, t1.repartition_id, t1.bassin_id,
 				t1.repart_template_id, t1.reste_zone_calcul, t1.evol_taux_nourrissage,
 				t1.taux_nourrissage, t1.total_distribue, t1.distribution_consigne,
 				t1.ration_commentaire, t1.distribution_masse, t1.distribution_jour,
@@ -874,67 +877,68 @@ class Distribution extends ObjetBDD {
 				left outer join distribution t2 on (t2.distribution_id = t1.distribution_id_prec)
 				where t1.repartition_id = " . $repartition_id . "
 				order by bassin_nom";
-		$data = $this->getListeParam ( $sql );
-		/*
-		 * Recuperation des dates de la repartition
-		 */
-		$repartition = new Repartition ( $this->connection, $this->paramori );
-		$dataRepart = $repartition->lire ( $repartition_id );
-		$date_debut = date_create_from_format ( "d/m/Y", $dataRepart ["date_debut_periode"] );
-		$date_fin = date_create_from_format ( "d/m/Y", $dataRepart ["date_fin_periode"] );
-		$intervalle = $date_debut->diff ( $date_fin );
-		$nbJour = $intervalle->format ( '%a' ) + 1;
-		$di_intervalle = new DateInterval ( "P" . ($nbJour) . "D" );
-		// $date_debut->sub($di_intervalle);
-		
-		$distriQuotidien = new DistribQuotidien ( $this->connection, $this->paramori );
-		$p1d = new DateInterval ( "P1D" );
-		/*
-		 * Mise en forme des jours de distribution
-		 */
-		foreach ( $data as $key => $value ) {
-			$distribJour = explode ( ",", $value ["distribution_jour"] );
-			$distribJourSoir = explode ( ",", $value ["distribution_jour_soir"] );
-			for($i = 0; $i < 7; $i ++) {
-				$data [$key] ["distribution_jour_" . ($i + 1)] = $distribJour [$i];
-				$data [$key] ["distribution_jour_soir_" . ($i + 1)] = $distribJourSoir [$i];
-			}
+			$data = $this->getListeParam ( $sql );
 			/*
-			 * Calcul de la distribution globale
+			 * Recuperation des dates de la repartition
 			 */
-			$data [$key] ["total_periode_distribue"] = 0;
+			$repartition = new Repartition ( $this->connection, $this->paramori );
+			$dataRepart = $repartition->lire ( $repartition_id );
 			$date_debut = date_create_from_format ( "d/m/Y", $dataRepart ["date_debut_periode"] );
-			for($i = 1; $i <= $nbJour; $i ++) {
-				$dataDistrib = $distriQuotidien->lireFromDate ( $value ["bassin_id"], $date_debut->format ( "d/m/Y" ) );
-				$data [$key] ["total_periode_distribue"] += $dataDistrib ["total_distribue"];
-				$date_debut->add ( $p1d );
-			}
+			$date_fin = date_create_from_format ( "d/m/Y", $dataRepart ["date_fin_periode"] );
+			$intervalle = $date_debut->diff ( $date_fin );
+			$nbJour = $intervalle->format ( '%a' ) + 1;
+			$di_intervalle = new DateInterval ( "P" . ($nbJour) . "D" );
+			// $date_debut->sub($di_intervalle);
+			
+			$distriQuotidien = new DistribQuotidien ( $this->connection, $this->paramori );
+			$p1d = new DateInterval ( "P1D" );
 			/*
-			 * Calcul des distributions et restes précédents
+			 * Mise en forme des jours de distribution
 			 */
-			$dateDeb = date_create_from_format ( "d/m/Y", $dataRepart ["date_debut_periode"] );
-			$dateDeb->sub ( $di_intervalle );
-			$data [$key] ["total_periode_distrib_precedent"] = 0;
-			$data [$key] ["total_reste_precedent"] = 0;
-			/*
-			 * Lecture des consommations et restes quotidiens
-			 */
-			for($i = 1; $i <= $nbJour; $i ++) {
-				$dataDistrib = $distriQuotidien->lireFromDate ( $value ["bassin_id"], $dateDeb->format ( "d/m/Y" ) );
-				$data [$key] ["total_periode_distrib_precedent"] += $dataDistrib ["total_distribue"];
-				$data [$key] ["reste_precedent"] += $dataDistrib ["reste"];
-				$dateDeb->add ( $p1d );
+			foreach ( $data as $key => $value ) {
+				$distribJour = explode ( ",", $value ["distribution_jour"] );
+				$distribJourSoir = explode ( ",", $value ["distribution_jour_soir"] );
+				for($i = 0; $i < 7; $i ++) {
+					$data [$key] ["distribution_jour_" . ($i + 1)] = $distribJour [$i];
+					$data [$key] ["distribution_jour_soir_" . ($i + 1)] = $distribJourSoir [$i];
+				}
+				/*
+				 * Calcul de la distribution globale
+				 */
+				$data [$key] ["total_periode_distribue"] = 0;
+				$date_debut = date_create_from_format ( "d/m/Y", $dataRepart ["date_debut_periode"] );
+				for($i = 1; $i <= $nbJour; $i ++) {
+					$dataDistrib = $distriQuotidien->lireFromDate ( $value ["bassin_id"], $date_debut->format ( "d/m/Y" ) );
+					$data [$key] ["total_periode_distribue"] += $dataDistrib ["total_distribue"];
+					$date_debut->add ( $p1d );
+				}
+				/*
+				 * Calcul des distributions et restes précédents
+				 */
+				$dateDeb = date_create_from_format ( "d/m/Y", $dataRepart ["date_debut_periode"] );
+				$dateDeb->sub ( $di_intervalle );
+				$data [$key] ["total_periode_distrib_precedent"] = 0;
+				$data [$key] ["total_reste_precedent"] = 0;
+				/*
+				 * Lecture des consommations et restes quotidiens
+				 */
+				for($i = 1; $i <= $nbJour; $i ++) {
+					$dataDistrib = $distriQuotidien->lireFromDate ( $value ["bassin_id"], $dateDeb->format ( "d/m/Y" ) );
+					$data [$key] ["total_periode_distrib_precedent"] += $dataDistrib ["total_distribue"];
+					$data [$key] ["reste_precedent"] += $dataDistrib ["reste"];
+					$dateDeb->add ( $p1d );
+				}
+				/*
+				 * Calcul du taux de reste
+				 */
+				if ($data [$key] ["total_periode_distrib_precedent"] > 0) {
+					$data [$key] ["taux_reste_precedent"] = round ( ($data [$key] ["reste_precedent"] / $data [$key] ["total_periode_distrib_precedent"] * 100), 2 );
+				} else {
+					$data [$key] ["taux_reste_precedent"] = 0;
+				}
 			}
-			/*
-			 * Calcul du taux de reste
-			 */
-			if ($data [$key] ["total_periode_distrib_precedent"] > 0) {
-				$data [$key] ["taux_reste_precedent"] = round ( ($data [$key] ["reste_precedent"] / $data [$key] ["total_periode_distrib_precedent"] * 100), 2 );
-			} else {
-				$data [$key] ["taux_reste_precedent"] = 0;
-			}
+			return ($data);
 		}
-		return ($data);
 	}
 	/**
 	 * Retourne la liste des bassins associés à une répartition,
@@ -1102,7 +1106,7 @@ class DistribQuotidien extends ObjetBDD {
 	 * @return array
 	 */
 	function lireFromDate($bassin_id, $distrib_date) {
-		$distribDate = $this->formatDateLocaleVersDB ( $distrib_date );
+		$distribDate = $this->formatDateLocaleVersDB ( $this->encodeData($distrib_date) );
 		if ($bassin_id > 0) {
 			$sql = "select * from " . $this->table . " 
 					where bassin_id = " . $bassin_id . "
@@ -1120,8 +1124,8 @@ class DistribQuotidien extends ObjetBDD {
 	 */
 	function getListAliment($bassin_id, $date_debut, $date_fin) {
 		if ($bassin_id > 0 && strlen ( $date_debut ) > 2 && strlen ( $date_fin ) > 2) {
-			$date_debut = $this->formatDateLocaleVersDB ( $date_debut );
-			$date_fin = $this->formatDateLocaleVersDB ( $date_fin );
+			$date_debut = $this->formatDateLocaleVersDB ( $this->encodeData($date_debut) );
+			$date_fin = $this->formatDateLocaleVersDB ( $this->encodeData($date_fin ));
 			$sql = "select distinct aliment_id, aliment_libelle_court
 					from distrib_quotidien
 					natural join aliment_quotidien
@@ -1135,8 +1139,8 @@ class DistribQuotidien extends ObjetBDD {
 	}
 	function getListeConsommation($bassin_id, $date_debut, $date_fin) {
 		if ($bassin_id > 0 && strlen ( $date_debut ) > 2 && strlen ( $date_fin ) > 2) {
-			$date_debut = $this->formatDateLocaleVersDB ( $date_debut );
-			$date_fin = $this->formatDateLocaleVersDB ( $date_fin );
+			$date_debut = $this->formatDateLocaleVersDB ( $this->encodeData($date_debut) );
+			$date_fin = $this->formatDateLocaleVersDB ( $this->encodeData($date_fin) );
 			/*
 			 * Preparation de la premiere commande de selection du crosstab
 			 */
@@ -1244,6 +1248,7 @@ class AlimentQuotidien extends ObjetBDD {
 	 */
 	function deleteFromDateBassin($date, $bassin_id) {
 		if (strlen ( $date ) > 0 && $bassin_id > 0) {
+			$date = $this->encodeData($date);
 			$sql = "delete from " . $this->table . "
 					using distrib_quotidien
 					where distrib_quotidien.distrib_quotidien_id = aliment_quotidien.distrib_quotidien_id

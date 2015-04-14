@@ -105,6 +105,7 @@ class Anomalie_db extends ObjetBDD {
 	 * @return array
 	 */
 	function getListeSearch($dataSearch) {
+		$dataSearch = $this->encodeData($dataSearch);
 		$sql = "select anomalie_db_id, anomalie_db_date, anomalie_db.poisson_id, anomalie_db_commentaire, 
 				anomalie_db_type_libelle, 
 				evenement_id, evenement_type_libelle, 

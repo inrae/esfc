@@ -80,6 +80,7 @@ class Bassin extends ObjetBDD {
 	 * @param unknown $dataSearch        	
 	 */
 	function getListeSearch($dataSearch) {
+		$dataSearch = $this->encodeData($dataSearch);
 		if (is_array ( $dataSearch )) {
 			$sql = "select bassin_id, bassin_nom, bassin_description, actif,
 					bassin_type_libelle, bassin_usage_libelle, bassin_zone_libelle, 
@@ -362,6 +363,7 @@ class Circuit_eau extends ObjetBDD {
 	 * @return array
 	 */
 	function getListeSearch($data) {
+		$data = $this->encodeData($data);
 		$sql = 'select * from ' . $this->table;
 		$order = ' order by circuit_eau_libelle';
 		$where = '';

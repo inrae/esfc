@@ -155,7 +155,7 @@ class MimeType extends ObjetBDD {
 	 */
 	function getTypeMime($extension) {
 		if (strlen ( $extension ) > 0) {
-			$extension = strtolower ( $extension );
+			$extension = strtolower ( $this->encodeData($extension ) );
 			$sql = "select mime_type_id from " . $this->table . " where extension = '" . $extension . "'";
 			$res = $this->lireParam ( $sql );
 			return $res ["mime_type_id"];
@@ -292,7 +292,7 @@ class DocumentAttach extends ObjetBDD {
 			/*
 			 * Recuperation de l'extension
 			 */
-			$extension = substr ( $file ["name"], strrpos ( $file ["name"], "." ) + 1 );
+			$extension = $this->encode(substr ( $file ["name"], strrpos ( $file ["name"], "." ) + 1 ));
 			$mimeType = new MimeType ( $this->connection, $this->paramori );
 			$mime_type_id = $mimeType->getTypeMime ( $extension );
 			if ($mime_type_id > 0) {

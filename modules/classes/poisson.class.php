@@ -82,6 +82,7 @@ class Poisson extends ObjetBDD {
 	 */
 	function getListeSearch($dataSearch) {
 		if (is_array ( $dataSearch )) {
+			$dataSearch = $this->encodeData($dataSearch);
 			$sql = "select poisson_id, sexe_id, matricule, prenom, cohorte, capture_date, sexe_libelle, sexe_libelle_court, poisson_statut_libelle,commentaire,
 					pittag_valeur,
 					mortalite_date,
@@ -182,6 +183,7 @@ class Poisson extends ObjetBDD {
 	 */
 	function getListPoissonFromName($libelle) {
 		if (strlen ( $libelle ) > 0) {
+			$libelle = $this->encodeData($libelle);
 			$sql = "select poisson.poisson_id, matricule, prenom, pittag_valeur 
 					from " . $this->table . "
 					left outer join v_pittag_by_poisson using (poisson_id)
@@ -553,6 +555,8 @@ class Morphologie extends ObjetBDD {
 	 */
 	function getListMasseFromPoisson($poisson_id, $date_from, $date_to) {
 		if ($poisson_id > 0 && strlen ( $date_from ) > 0 && strlen ( $date_to ) > 0) {
+			$date_from = $this->encodeData($date_from);
+			$date_to = $this->encodeData($date_to);
 			$sql = "select poisson_id, morphologie_date, masse 
 					from morphologie
 					where poisson_id = " . $poisson_id . "
@@ -573,6 +577,7 @@ class Morphologie extends ObjetBDD {
 	 */
 	function getMasseBeforeDate($poisson_id, $date) {
 		if ($poisson_id > 0 && strlen ( $date ) > 0) {
+			$date = $this->encodeData($date);
 			$sql = "select masse, morphologie_date from " . $this->table . "
 					where morphologie_date < '" . $date . "' 
 					and poisson_id = " . $poisson_id . " 

@@ -202,7 +202,7 @@ class ObjetBDD {
 	 * est totalement decrite dans la classe
 	 * $fullDescription = 1 : tous les champs sont decrits
 	 * Defaut : 0 (compatibilite ascendante)
-	 * 
+	 *
 	 * @var int
 	 */
 	public $fullDescription;
@@ -216,25 +216,25 @@ class ObjetBDD {
 	 * tableau utilise pour stocker la valeur de $param avant d'y injecter les donnees specifiques
 	 * a la table.
 	 * Utilise lors de l'instanciation d'autres classes a l'interieur d'une classe
-	 * 
+	 *
 	 * @var array
 	 */
 	public $paramori;
 	/**
 	 * Type de base de donnees
-	 * 
+	 *
 	 * @var string
 	 */
 	private $typeDatabase;
 	/**
 	 * Indique si la base de donnees est codee en UTF8 ou non
-	 * 
+	 *
 	 * @var boolean
 	 */
 	public $UTF8;
 	/**
 	 * Tableau contenant les valeurs par defaut
-	 * 
+	 *
 	 * @var Array
 	 */
 	public $defaultValue;
@@ -242,24 +242,26 @@ class ObjetBDD {
 	/**
 	 * Nom de l'attribut utilise dans une relation pere-fils
 	 * (attribut pointant vers le pere)
-	 * 
+	 *
 	 * @var string
 	 */
 	public $parentAttrib;
 	/**
 	 * Valeur du SRID pour les imports de donnees geographiques postgis
 	 * Vaut -1 si non fourni
-	 * 
+	 *
 	 * @var integer
 	 */
 	public $srid;
 	/**
 	 * Caractere utilise pour entourer les noms des colonnes
+	 * 
 	 * @var string
 	 */
 	public $quoteIdentifier;
 	/**
 	 * Transforme les virgules en points, pour les champs numeriques
+	 * 
 	 * @var integer
 	 */
 	public $transformComma;
@@ -274,7 +276,7 @@ class ObjetBDD {
 	 * $table : nom de la table en base de donnees
 	 * $types : id de tableau : nom de la colonne, valeur : type de champ. A ne renseigner que pour les
 	 * champs numerique (1), date(2), ou datetime(3)
-	 * 
+	 *
 	 * @param
 	 *        	instance ADODB
 	 */
@@ -341,7 +343,7 @@ class ObjetBDD {
 							$this->parentAttrib = $key;
 							break;
 						case "key" :
-						case "cle" : 
+						case "cle" :
 							if ($value1 == 1) {
 								$this->keys [] = $key;
 								$nbcle ++;
@@ -384,10 +386,10 @@ class ObjetBDD {
 			$this->formatDate = 1;
 		if ($this->formatDate == "en")
 			$this->formatDate = 2;
-		/*
+			/*
 		 * Ajout du identifier quote character
 		 */
-		if ($this->typeDatabase == 'postgre') 
+		if ($this->typeDatabase == 'postgre')
 			$this->quoteIdentifier = '"';
 		elseif ($this->typeDatabase == 'mysql')
 			$this->quoteIdentifier = '`';
@@ -410,7 +412,7 @@ class ObjetBDD {
 	
 	/**
 	 * Fonction executant les requetes SQL
-	 * 
+	 *
 	 * @param
 	 *        	$sql
 	 * @return ADORecordSet
@@ -425,7 +427,7 @@ class ObjetBDD {
 	}
 	/**
 	 * Lit un enregistrement en base de donnees
-	 * 
+	 *
 	 * @param int|array $id        	
 	 * @param boolean $getDefault        	
 	 * @param int $parentValue        	
@@ -443,9 +445,10 @@ class ObjetBDD {
 			foreach ( $id as $key => $value ) {
 				if ($where != "")
 					$where .= " and ";
-				if (strlen(preg_replace("#[^A-Z]+#", "", $key) > 0))
-					$cle = $this->quoteIdentifier.$key.$this->quoteIdentifier;
-				else $cle = $key;
+				if (strlen ( preg_replace ( "#[^A-Z]+#", "", $key ) > 0 ))
+					$cle = $this->quoteIdentifier . $key . $this->quoteIdentifier;
+				else
+					$cle = $key;
 				$where .= $cle . ' = ' . $value;
 			}
 		} else {
@@ -456,9 +459,10 @@ class ObjetBDD {
 				if ($this->verifDonnees ( $this->cle ) == false)
 					return false;
 			}
-			if (strlen(preg_replace("#[^A-Z]+#", "", $this->cle) > 0))
-				$cle = $this->quoteIdentifier.$this->cle.$this->quoteIdentifier;
-			else $cle = $this->cle;
+			if (strlen ( preg_replace ( "#[^A-Z]+#", "", $this->cle ) > 0 ))
+				$cle = $this->quoteIdentifier . $this->cle . $this->quoteIdentifier;
+			else
+				$cle = $this->cle;
 			$where = $cle . ' = ' . $id;
 		}
 		/*
@@ -466,14 +470,15 @@ class ObjetBDD {
 		 */
 		if ($this->fullDescription == 1) {
 			$select = "";
-			$i = 0;			
+			$i = 0;
 			foreach ( $this->colonnes as $key => $value ) {
 				/*
 				 * Rajout des doubles quotes sur le nom des colonnes en cas de présence de majuscules
 				 */
-				if (strlen(preg_replace("#[^A-Z]+#", "", $key) > 0))
-					$cle = $this->quoteIdentifier.$key.$this->quoteIdentifier;
-				else $cle = $key;
+				if (strlen ( preg_replace ( "#[^A-Z]+#", "", $key ) > 0 ))
+					$cle = $this->quoteIdentifier . $key . $this->quoteIdentifier;
+				else
+					$cle = $key;
 				if ($i == 1)
 					$select .= ", ";
 				else
@@ -516,7 +521,7 @@ class ObjetBDD {
 	/**
 	 * function read
 	 * Synonyme de lire()
-	 * 
+	 *
 	 * @param
 	 *        	$id
 	 * @param boolean $getDefault        	
@@ -529,7 +534,7 @@ class ObjetBDD {
 	/**
 	 * function lireParam
 	 * Lit un enregistrement a partir d'une commande sql passee en parametre
-	 * 
+	 *
 	 * @param
 	 *        	string - commande sql a executer
 	 * @return array : liste des colonnes et des valeurs associees (id fonction lire)
@@ -555,7 +560,7 @@ class ObjetBDD {
 	}
 	/**
 	 * Synonyme de lireParam()
-	 * 
+	 *
 	 * @param
 	 *        	$sql
 	 * @return unknown_type
@@ -567,7 +572,7 @@ class ObjetBDD {
 	/**
 	 * function supprimer
 	 * supprime un enregistrement
-	 * 
+	 *
 	 * @param
 	 *        	:integer - cle de l'enregistrement a supprimer
 	 * @return :int retourne la valeur adodb de l'execute
@@ -584,9 +589,10 @@ class ObjetBDD {
 			foreach ( $id as $key => $value ) {
 				if ($where != "")
 					$where .= " and ";
-				if (strlen(preg_replace("#[^A-Z]+#", "", $key) > 0))
-					$cle = $this->quoteIdentifier.$key.$this->quoteIdentifier;
-				else $cle = $key;
+				if (strlen ( preg_replace ( "#[^A-Z]+#", "", $key ) > 0 ))
+					$cle = $this->quoteIdentifier . $key . $this->quoteIdentifier;
+				else
+					$cle = $key;
 				$where .= $cle . ' = ' . $value;
 			}
 		} else {
@@ -597,16 +603,17 @@ class ObjetBDD {
 				if ($this->verifDonnees ( $this->cle ) == false)
 					return false;
 			}
-			if (strlen(preg_replace("#[^A-Z]+#", "", $this->cle) > 0))
-				$cle = $this->quoteIdentifier.$this->cle.$this->quoteIdentifier;
-			else $cle = $this->cle;
+			if (strlen ( preg_replace ( "#[^A-Z]+#", "", $this->cle ) > 0 ))
+				$cle = $this->quoteIdentifier . $this->cle . $this->quoteIdentifier;
+			else
+				$cle = $this->cle;
 			$where = $cle . ' = ' . $id;
 		}
 		return $this->execute ( "delete from " . $this->table . " where " . $where );
 	}
 	/**
 	 * Synonyme de supprimer()
-	 * 
+	 *
 	 * @param
 	 *        	$id
 	 * @return unknown_type
@@ -618,7 +625,7 @@ class ObjetBDD {
 	/**
 	 * function supprimerChamp
 	 * Permet de supprimer un enregistrement identifie par une colonne autre que la cle
-	 * 
+	 *
 	 * @param
 	 *        	integer - identifiant concerne
 	 * @param
@@ -630,15 +637,16 @@ class ObjetBDD {
 		if (! is_numeric ( $id ))
 			return - 1;
 		if ($id > 0) {
-			if (strlen(preg_replace("#[^A-Z]+#", "", $champ) > 0))
-				$cle = $this->quoteIdentifier.$key.$this->quoteIdentifier;
-			else $cle = $champ;
+			if (strlen ( preg_replace ( "#[^A-Z]+#", "", $champ ) > 0 ))
+				$cle = $this->quoteIdentifier . $key . $this->quoteIdentifier;
+			else
+				$cle = $champ;
 			return $this->execute ( "delete from " . $this->table . " where " . $cle . "=" . $id );
 		}
 	}
 	/**
 	 * synonyme de supprimerChamp
-	 * 
+	 *
 	 * @param
 	 *        	$id
 	 * @param
@@ -651,7 +659,7 @@ class ObjetBDD {
 	
 	/**
 	 * Function ecrire
-	 * 
+	 *
 	 * @param
 	 *        	array with the name of the columns as identifiers of items
 	 * @return Identifier of item, or error code
@@ -681,24 +689,14 @@ class ObjetBDD {
 		 */
 		/*
 		 * Forcage a zero de la cle si cle simple et cle automatique
-		*/
+		 */
 		if ($this->cleMultiple == 0 && $data [$this->cle] == "" && $this->id_auto > 0)
 			$data [$this->cle] = 0;
 			/*
 		 * Rajout des slashes devant les quotes et autres caracteres concernes pour eviter les attaques par injection de code, et accessoirement autoriser la saisie de guillemets doubles
 		 */
 		if (get_magic_quotes_gpc () == 0) {
-			foreach ( $data as $key => $value ) {
-				if ($this->typeDatabase == 'postgre') {
-					if ($this->UTF8 == true) {
-						if (mb_detect_encoding ( $value ) != "UTF-8")
-							$data [$key] = mb_convert_encoding ( $value, 'UTF-8' );
-					}
-					$data [$key] = pg_escape_string ( $value );
-				} else {
-					$data [$key] = addslashes ( $value );
-				}
-			}
+			$data = $this->encodeData ( $data );
 		}
 		/*
 		 * Traitement des dates
@@ -734,9 +732,10 @@ class ObjetBDD {
 					
 					if ($where != "")
 						$where .= " and ";
-					if (strlen(preg_replace("#[^A-Z]+#", "", $value) > 0))
-						$cle = $this->quoteIdentifier.$value.$this->quoteIdentifier;
-					else $cle = $value;
+					if (strlen ( preg_replace ( "#[^A-Z]+#", "", $value ) > 0 ))
+						$cle = $this->quoteIdentifier . $value . $this->quoteIdentifier;
+					else
+						$cle = $value;
 					$where .= $cle . ' = ' . $data [$value];
 				}
 			} else {
@@ -751,9 +750,10 @@ class ObjetBDD {
 					);
 					return - 1;
 				}
-				if (strlen(preg_replace("#[^A-Z]+#", "", $this->cle) > 0))
-					$cle = $this->quoteIdentifier.$this->cle.$this->quoteIdentifier;
-				else $cle = $this->cle;
+				if (strlen ( preg_replace ( "#[^A-Z]+#", "", $this->cle ) > 0 ))
+					$cle = $this->quoteIdentifier . $this->cle . $this->quoteIdentifier;
+				else
+					$cle = $this->cle;
 				$where = $cle . "=" . $data [$this->cle];
 			}
 			$sql = "select * from " . $this->table . " where " . $where;
@@ -777,7 +777,7 @@ class ObjetBDD {
 		if ($this->transformComma) {
 			foreach ( $data as $key => $value ) {
 				if (@$this->types [$key] == 1) {
-					$data[$key] = str_replace(",", ".", $value);
+					$data [$key] = str_replace ( ",", ".", $value );
 				}
 			}
 		}
@@ -804,9 +804,10 @@ class ObjetBDD {
 						$valeur .= ", ";
 					}
 					// On traite la clé automatique gérée par le max()
-					if (strlen(preg_replace("#[^A-Z]+#", "", $this->cle) > 0))
-						$cle = $this->quoteIdentifier.$this->cle.$this->quoteIdentifier;
-					else $cle = $this->cle;
+					if (strlen ( preg_replace ( "#[^A-Z]+#", "", $this->cle ) > 0 ))
+						$cle = $this->quoteIdentifier . $this->cle . $this->quoteIdentifier;
+					else
+						$cle = $this->cle;
 					$sqlmax = 'select max(' . $cle . ') from ' . $this->table;
 					$rs = $this->execute ( $sqlmax );
 					$temp = $rs->fields;
@@ -816,8 +817,8 @@ class ObjetBDD {
 						$valeur .= ", ";
 					}
 					$i ++;
-					if (strlen(preg_replace("#[^A-Z]+#", "", $key) > 0))
-						$key = $this->quoteIdentifier.$key.$this->quoteIdentifier;
+					if (strlen ( preg_replace ( "#[^A-Z]+#", "", $key ) > 0 ))
+						$key = $this->quoteIdentifier . $key . $this->quoteIdentifier;
 					$sql .= $key;
 					$valeur .= $cle;
 				} else {
@@ -826,8 +827,8 @@ class ObjetBDD {
 						$valeur .= ", ";
 					}
 					$i ++;
-					if (strlen(preg_replace("#[^A-Z]+#", "", $key) > 0))
-						$key = $this->quoteIdentifier.$key.$this->quoteIdentifier;
+					if (strlen ( preg_replace ( "#[^A-Z]+#", "", $key ) > 0 ))
+						$key = $this->quoteIdentifier . $key . $this->quoteIdentifier;
 					$sql .= $key;
 					if ($value == '' || is_null ( $value )) {
 						$valeur .= "NULL";
@@ -862,9 +863,10 @@ class ObjetBDD {
 					$sql .= ",";
 				$i ++;
 				$sql .= " ";
-				if (strlen(preg_replace("#[^A-Z]+#", "", $key) > 0))
-					$cle = $this->quoteIdentifier.$key.$this->quoteIdentifier;
-				else $cle = $key;
+				if (strlen ( preg_replace ( "#[^A-Z]+#", "", $key ) > 0 ))
+					$cle = $this->quoteIdentifier . $key . $this->quoteIdentifier;
+				else
+					$cle = $key;
 				if ($value == '' || is_null ( $value )) {
 					// Traitement des null
 					$sql .= $cle . "=null";
@@ -884,8 +886,8 @@ class ObjetBDD {
 			}
 			$sql .= " where " . $where;
 		}
-		//printr($sql);
-		//die;
+		// printr($sql);
+		// die;
 		$rs = $this->execute ( $sql );
 		if ($mode == "ajout" && $rs != FALSE && $this->id_auto == 1) {
 			if (substr ( strtolower ( $this->connection->databaseType ), 0, 7 ) == 'postgre') {
@@ -908,7 +910,7 @@ class ObjetBDD {
 	}
 	/**
 	 * Synonyme de ecrire()
-	 * 
+	 *
 	 * @param
 	 *        	$data
 	 * @return unknown_type
@@ -918,7 +920,7 @@ class ObjetBDD {
 	}
 	/**
 	 * Function gestListeParam
-	 * 
+	 *
 	 * @param
 	 *        	string - code de la requete SQL
 	 * @return tableau contenant la liste des lignes concernees (identique a getListe)
@@ -941,7 +943,7 @@ class ObjetBDD {
 	}
 	/**
 	 * Synonyme de getListeParam()
-	 * 
+	 *
 	 * @param
 	 *        	$sql
 	 * @return unknown_type
@@ -951,12 +953,13 @@ class ObjetBDD {
 	}
 	/**
 	 * function getliste
-	 * 
+	 *
 	 * @return le contenu de la table
 	 */
 	function getListe($order = 0) {
 		$sql = "select * from " . $this->table;
-		if ($order > 0) $sql .= " order by ".$order;
+		if ($order > 0)
+			$sql .= " order by " . $order;
 		$rs = $this->execute ( $sql );
 		if (! $rs) {
 			$collection = false;
@@ -974,7 +977,7 @@ class ObjetBDD {
 	}
 	/**
 	 * synonyme de getListe()
-	 * 
+	 *
 	 * @return unknown_type
 	 */
 	function getList() {
@@ -983,7 +986,7 @@ class ObjetBDD {
 	/**
 	 * function utilDatesDBVersLocale
 	 * transforme les dates d'un tableau (format SGBD) en date locale pour l'affichage
-	 * 
+	 *
 	 * @param
 	 *        	collection equivalente a $this->types
 	 * @param
@@ -1002,7 +1005,7 @@ class ObjetBDD {
 							// Suppression des espaces, tabulations et autres caracteres indesirables presents en debut et fin de chaine
 							$date = ltrim ( $dates [$key1] [$key] ); // supprime les caracteres indesirables en debut de chaine
 							$date = rtrim ( $date ); // Idem mais en fin de chaine
-							                      // suppression de la partie "time" du format "datetime"
+							                         // suppression de la partie "time" du format "datetime"
 							$temp = @explode ( " ", $date );
 							$date = $temp [0]; // ne conserve que la partie "date"
 							$heure = $temp [1];
@@ -1044,7 +1047,7 @@ class ObjetBDD {
 	/**
 	 * function utilDatesLocaleVersDB
 	 * transforme les dates du tableau (selon le type $this->types, en format utilisable par le SGBD
-	 * 
+	 *
 	 * @param
 	 *        	collection equivalente a $this->types
 	 * @param
@@ -1078,13 +1081,13 @@ class ObjetBDD {
 		// Suppression des espaces, tabulations et autres caracteres indesirables presents en debut et fin de chaine
 		$date = ltrim ( $date ); // supprime les caracteres indesirables en debut de chaine
 		$date = rtrim ( $date ); // Idem mais en fin de chaine
-		                      // separation de la partie "time" du format "datetime"
+		                         // separation de la partie "time" du format "datetime"
 		$temp = @explode ( " ", $date );
 		$date = $temp [0]; // ne conserve que la partie "date"
 		$heure = $temp [1]; // stocke l'heure
-		                 // conversion de format
-		                 // les "@" servent a bloquer d'eventuels messages d'erreurs
-		                 // recherche du separateur utilise dans la chaine
+		                    // conversion de format
+		                    // les "@" servent a bloquer d'eventuels messages d'erreurs
+		                    // recherche du separateur utilise dans la chaine
 		$j = 0;
 		do {
 			$test = @strpos ( $date, $this->sepValide [$j] );
@@ -1135,7 +1138,7 @@ class ObjetBDD {
 	}
 	/**
 	 * Fonction permettant de transformer une date au format DB vers le format local
-	 * 
+	 *
 	 * @param string $date        	
 	 * @param integer $type        	
 	 * @return string
@@ -1146,7 +1149,7 @@ class ObjetBDD {
 		 */
 		$date = ltrim ( $date ); // supprime les caracteres indesirables en debut de chaine
 		$date = rtrim ( $date ); // Idem mais en fin de chaine
-		                      // suppression de la partie "time" du format "datetime"
+		                         // suppression de la partie "time" du format "datetime"
 		$temp = @explode ( " ", $date );
 		$date = $temp [0]; // ne conserve que la partie "date"
 		$heure = $temp [1];
@@ -1178,7 +1181,7 @@ class ObjetBDD {
 	}
 	/**
 	 * function executeSQL
-	 * 
+	 *
 	 * @param
 	 *        	string
 	 * @return code de retour de ADODB
@@ -1198,7 +1201,7 @@ class ObjetBDD {
 	}
 	/**
 	 * Synonyme de vidageTable()
-	 * 
+	 *
 	 * @return unknown_type
 	 */
 	function clearTable() {
@@ -1206,7 +1209,7 @@ class ObjetBDD {
 	}
 	/**
 	 * function verifDonnees
-	 * 
+	 *
 	 * @param $data :
 	 *        	collection
 	 * @return boolean Fonction permettant de verifier les donnees avant ecriture en base de donnees.
@@ -1288,7 +1291,7 @@ class ObjetBDD {
 	}
 	/**
 	 * Fonction retournant la liste des erreurs relevees lors de l'operation verifData.
-	 * 
+	 *
 	 * @param $format :
 	 *        	si vaut 1, le resultat est retourne sous forme de texte, avec saut de ligne
 	 *        	entre chaque erreur. Sinon, le tableau est retourne "brut"
@@ -1322,7 +1325,7 @@ class ObjetBDD {
 	}
 	/**
 	 * private function htmlEncode
-	 * 
+	 *
 	 * @param
 	 *        	$data
 	 * @return $data Encode les donnees devant etre affichees en utilisant la fonction htmlspecialchars
@@ -1356,7 +1359,7 @@ class ObjetBDD {
 	
 	/**
 	 * Retire les codages HTML, et convertit en iso-8859-1 le cas echeant
-	 * 
+	 *
 	 * @param unknown_type $data        	
 	 */
 	private function htmlDecode($data) {
@@ -1387,7 +1390,7 @@ class ObjetBDD {
 	
 	/**
 	 * function ecrireTableNN
-	 * 
+	 *
 	 * @param
 	 *        	$nomTable
 	 * @param
@@ -1408,12 +1411,14 @@ class ObjetBDD {
 		if (is_numeric ( $id ) == false)
 			return false;
 			// Preparation de la requete de lecture des relations existantes
-		if (strlen(preg_replace("#[^A-Z]+#", "", $nomCle1) > 0))
-			$cle1 = $this->quoteIdentifier.$nomCle1.$this->quoteIdentifier;
-		else $cle1 = $nomCle1;
-		if (strlen(preg_replace("#[^A-Z]+#", "", $nomCle2) > 0))
-			$cle2 = $this->quoteIdentifier.$nomCle2.$this->quoteIdentifier;
-		else $cle2 = $nomCle2;
+		if (strlen ( preg_replace ( "#[^A-Z]+#", "", $nomCle1 ) > 0 ))
+			$cle1 = $this->quoteIdentifier . $nomCle1 . $this->quoteIdentifier;
+		else
+			$cle1 = $nomCle1;
+		if (strlen ( preg_replace ( "#[^A-Z]+#", "", $nomCle2 ) > 0 ))
+			$cle2 = $this->quoteIdentifier . $nomCle2 . $this->quoteIdentifier;
+		else
+			$cle2 = $nomCle2;
 		$sql = "select " . $cle2 . " from " . $nomTable . " where " . $cle1 . " = " . $id;
 		$rs = $this->execute ( $sql );
 		$orig = array ();
@@ -1444,7 +1449,7 @@ class ObjetBDD {
 	}
 	/**
 	 * synonyme de ecrireTableNN()
-	 * 
+	 *
 	 * @param
 	 *        	$nomTable
 	 * @param
@@ -1474,12 +1479,12 @@ class ObjetBDD {
 		return $this->formatDateDBversLocal ( $data );
 	}
 	function getDateHeure() {
-		$data = date ('Y-m-d H:i:s');
-		return $this->formatDateDBversLocal ($data, 3);
+		$data = date ( 'Y-m-d H:i:s' );
+		return $this->formatDateDBversLocal ( $data, 3 );
 	}
 	/**
 	 * Fonction permettant de recuperer les valeurs par defaut
-	 * 
+	 *
 	 * @param int $parentValue        	
 	 * @return array
 	 */
@@ -1514,6 +1519,46 @@ class ObjetBDD {
 		 */
 		if ($parentValue > 0 && strlen ( $this->parentAttrib ) > 0) {
 			$data [$this->parentAttrib] = $parentValue;
+		}
+		return $data;
+	}
+	
+	/**
+	 * Fonction encodant toutes les quotes pour le tableau fourni en parametre
+	 * Devrait etre appelee avant toute requete SQL
+	 * 
+	 * @param array|string $data        	
+	 * @return array|string
+	 */
+	function encodeData($data) {
+		if (is_array ( $data )) {
+			/*
+			 * Traitement des tableaux
+			 */
+			foreach ( $data as $key => $value ) {
+				if ($this->typeDatabase == 'postgre') {
+					if ($this->UTF8 == true) {
+						if (mb_detect_encoding ( $value ) != "UTF-8")
+							$data [$key] = mb_convert_encoding ( $value, 'UTF-8' );
+					}
+					$data [$key] = pg_escape_string ( $value );
+				} else {
+					$data [$key] = addslashes ( $value );
+				}
+			}
+		} else {
+			/*
+			 * Traitement des chaines individuelles
+			 */
+			if ($this->typeDatabase == 'postgre') {
+				if ($this->UTF8 == true) {
+					if (mb_detect_encoding ( $value ) != "UTF-8")
+						$data = mb_convert_encoding ( $data, 'UTF-8' );
+				}
+				$data = pg_escape_string ( $data );
+			} else {
+				$data = addslashes ( $data );
+			}
 		}
 		return $data;
 	}
