@@ -14,7 +14,7 @@ setDataTables("chormonList");
 <th>Unité utilisée pour l'injection</th>
 </tr>
 </thead>
-<tdata>
+<tbody>
 {section name=lst loop=$data}
 <tr>
 <td>
@@ -31,5 +31,5 @@ setDataTables("chormonList");
 </td>
 </tr>
 {/section}
-</tdata>
+</tbody>
 </table>

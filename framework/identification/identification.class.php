@@ -147,7 +147,7 @@ class Identification {
 			if ($rep == 1) {
 				$_SESSION ["login"] = $login;
 				$log->setLog ( $login, "connexion", "ldap-ok - ip:" . $_SESSION ["remoteIP"] );
-				$message = $LANG["message"][10];
+				$message = $LANG ["message"] [10];
 				/*
 				 * Purge des anciens enregistrements dans log
 				 */
@@ -155,7 +155,7 @@ class Identification {
 				return $login;
 			} else {
 				$log->setLog ( $login, "connexion", "ldap-ko - ip:" . $_SESSION ["remoteIP"] );
-				$message = $LANG["message"][11];
+				$message = $LANG ["message"] [11];
 				return - 1;
 			}
 		} else
@@ -168,7 +168,8 @@ class Identification {
 	 * @return 0:1
 	 */
 	function disconnect($adresse_retour) {
-		global $message;$LANG;
+		global $message;
+		$LANG;
 		if (! isset ( $this->ident_type )) {
 			return 0;
 		}
@@ -185,7 +186,7 @@ class Identification {
 		if (isset ( $_COOKIE [session_name ()] )) {
 			setcookie ( session_name (), '', time () - 42000, '/' );
 		}
-		$message = $LANG["message"][7];
+		$message = $LANG ["message"] [7];
 		// Finalement, on détruit la session.
 		session_destroy ();
 		return 1;
@@ -261,12 +262,14 @@ class LoginGestion extends ObjetBDD {
 	}
 	/**
 	 * Vérification du login en mode base de données
-	 * @param string $login
-	 * @param string $password
+	 * 
+	 * @param string $login        	
+	 * @param string $password        	
 	 * @return boolean
 	 */
 	function VerifLogin($login, $password) {
 		if (strlen ( $login ) > 0 && strlen ( $password ) > 0) {
+			$login = $this->encodeData ( $login );
 			// $password = md5($password);
 			$password = hash ( "sha256", $password );
 			$sql = "select login from LoginGestion where login ='" . $login . "' and password = '" . $password . "' and actif = 1";
@@ -274,7 +277,7 @@ class LoginGestion extends ObjetBDD {
 			global $log, $LOG_duree, $message, $LANG;
 			if ($res ["login"] == $login) {
 				$log->setLog ( $login, "connexion", "db-ok - ip:" . $_SESSION ["remoteIP"] );
-				$message = $LANG["message"][10];
+				$message = $LANG ["message"] [10];
 				/*
 				 * Purge des anciens enregistrements dans log
 				 */
@@ -282,7 +285,7 @@ class LoginGestion extends ObjetBDD {
 				return TRUE;
 			} else {
 				$log->setLog ( $login, "connexion", "db-ko - ip:" . $_SESSION ["remoteIP"] );
-				$message = $LANG["message"][11];
+				$message = $LANG ["message"] [11];
 				return FALSE;
 			}
 		} else
@@ -312,7 +315,7 @@ class LoginGestion extends ObjetBDD {
 	}
 	/**
 	 * Fonction de validation de changement du mot de passe
-	 * 
+	 *
 	 * @param string $oldpassword        	
 	 * @param string $pass1        	
 	 * @param string $pass2        	
@@ -430,6 +433,7 @@ class LoginGestion extends ObjetBDD {
 	 * @return array
 	 */
 	function lireByLogin($login) {
+		$login = $this->encodeData ( $login );
 		$sql = "select * from " . $this->table . "
 				where login = '" . $login . "'";
 		return $this->lireParam ( $sql );
@@ -588,7 +592,7 @@ class Log extends ObjetBDD {
 	}
 	/**
 	 * Fonction de purge du fichier de traces
-	 * 
+	 *
 	 * @param int $nbJours
 	 *        	: nombre de jours de conservation
 	 * @return int
@@ -648,6 +652,7 @@ class LoginOldPassword extends ObjetBDD {
 	 * @return number
 	 */
 	function testPassword($login, $password_hash) {
+		$login = $this->encodeData ( $login );
 		$sql = 'select count(o.login_oldpassword_id) as "nb" 
 				from ' . $this->table . " o 
 				join logingestion on logingestion.id = o.id
@@ -664,11 +669,13 @@ class LoginOldPassword extends ObjetBDD {
 	 * @return int
 	 */
 	function setPassword($id, $password_hash) {
-		$data = array (
-				"id" => $id,
-				"password" => $password_hash 
-		);
-		return $this->ecrire ( $data );
+		if ($id > 0) {
+			$data = array (
+					"id" => $id,
+					"password" => $password_hash 
+			);
+			return $this->ecrire ( $data );
+		}
 	}
 }
 ?>

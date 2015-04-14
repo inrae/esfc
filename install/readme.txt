@@ -1,8 +1,23 @@
 Nouveautés
 ===========
-Version 2.0 du 
+Version 1.2 du 14 avril 2015
 ---------------------------------
-- Correction de l'affichage des listes : le survol par la souris colore la ligne considérée
+Création du module de gestion de la reproduction
+- première version opérationnelle
+
+Améliorations :
+- pour améliorer la performance, la liste des poissons s'affiche par défaut sans les mensurations, activables manuellement
+- à partir de la liste des poissons, il est possible de générer un fichier CSV comprenant l'ensemble des événements pour les poissons sélectionnés
+- les échographies peuvent être renseignées directement lors de la saisie d'un événement, les photos pouvant y être associées directement
+
+Corrections de bogues :
+- affichage des listes : le survol par la souris colore la ligne considérée
+- rajout d'une fonction dans ObjetBDD permettant de limiter les risques d'injection SQL, et modification de l'ensemble des classes pour gérer cet aspect (requêtes de sélection portant sur des chaînes de caractères)
+
+Version 1.1.3
+-------------
+Correction d'un bogue : 
+- les valeurs nulles dans l'écran de saisie des répartitions d'aliments généraient des anomalies dans les données.
 
 Version 1.1.2 du 4 septembre 2014
 ---------------------------------
