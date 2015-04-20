@@ -1,5 +1,10 @@
 Nouveautés
 ===========
+
+Version 1.2.1 du 20 avril 2015
+------------------------------
+Correction d'un bug lors de la génération d'une nouvelle répartition : le numéro de la répartition précédente n'était pas restranscrit
+
 Version 1.2 du 14 avril 2015
 ---------------------------------
 Création du module de gestion de la reproduction

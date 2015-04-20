@@ -515,12 +515,13 @@ class Repartition extends ObjetBDD {
 					 * Recuperation de la liste des bassins rattaches a l'ancienne répartition
 					 */
 					$dataDist = $distribution->getFromRepartition ( $id );
-					foreach ( $dataDist as $key => $data ) {
+					foreach ( $dataDist as $key => $value ) {
 						/*
 						 * On ne traite que les bassins actifs et ceux de la même catégorie
 						 * que le modèle de répartition
 						 */
-						if ($data ["actif"] == 1 && $data ["repart_template_categorie_id"] == $data ["bassin_usage_categorie_id"]) {
+						if ($value ["actif"] == 1 && $value ["repart_template_categorie_id"] == $value ["bassin_usage_categorie_id"]) {
+							$data = $value;
 							$data ["distribution_id"] = 0;
 							$data ["repartition_id"] = $newId;
 							$data ["evol_taux_nourrissage"] = null;
