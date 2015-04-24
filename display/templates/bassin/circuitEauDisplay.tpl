@@ -74,14 +74,8 @@ suiv&gt;
 <th>pH</th>
 <th>Laboratoire</th>
 <th>NH4</th>
-<th>N-NH4</th>
-<th>NH4<br>seuil</th>
 <th>NO2</th>
-<th>N-NO2</th>
-<th>NO2<br>seuil</th>
 <th>NO3</th>
-<th>N-NO3</th>
-<th>NO3<br>seuil</th>
 <th>Backwash<br>mécanique</th>
 <th>Backwash<br>biologique</th>
 <th>Commentaire<br>backwash bio</th>
@@ -108,14 +102,8 @@ suiv&gt;
 <td class="right">{$dataAnalyse[lst].ph}</td>
 <td>{$dataAnalyse[lst].laboratoire_analyse_libelle}
 <td class="right">{$dataAnalyse[lst].nh4}</td>
-<td class="right">{$dataAnalyse[lst].n_nh4}</td>
-<td>{$dataAnalyse[lst].nh4_seuil}</td>
 <td class="right">{$dataAnalyse[lst].no2}</td>
-<td class="right">{$dataAnalyse[lst].n_no2}</td>
-<td>{$dataAnalyse[lst].no2_seuil}</td>
 <td class="right">{$dataAnalyse[lst].no3}</td>
-<td class="right">{$dataAnalyse[lst].n_no3}</td>
-<td>{$dataAnalyse[lst].no3_seuil}</td>
 <td class="center">{if $dataAnalyse[lst].backwash_mecanique == 1}oui{/if}</td>
 <td class="center">{if $dataAnalyse[lst].backwash_biologique == 1}oui{/if}</td>
 <td>{$dataAnalyse[lst].backwash_biologique_commentaire}</td>
