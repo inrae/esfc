@@ -26,13 +26,9 @@ setDataTables("ccircuitEauList");
 {section name=lst loop=$data}
 <tr>
 <td>
-{if $droits["bassinAdmin"] == 1}
 <a href="index.php?module=circuitEauDisplay&circuit_eau_id={$data[lst].circuit_eau_id}">
 {$data[lst].circuit_eau_libelle}
 </a>
-{else}
-{$data[lst].circuit_eau_libelle}
-{/if}
 </td>
 {if $droits["bassinGestion"] == 1}
 <td>
