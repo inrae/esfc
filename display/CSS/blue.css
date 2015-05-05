@@ -280,16 +280,18 @@ table {
 	width: auto;
 }
 
+
 table a:link {
 	display: block;
-	margin: -2px;
-	padding: 2px;
+	/*margin: -2px;
+	padding: 2px;*/
 	color: black;
+	white-space: nowrap;
 }
 table a:visited {
 	display: block;
-	margin: -2px;
-	padding: 2px;
+	/*margin: -2px;
+	padding: 2px;*/
 	color: dimGrey;
 }
 table a:active,table a:hover { 
