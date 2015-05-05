@@ -6,9 +6,9 @@ setDataTables("cmorphologieList");
 <tr>
 <th>Événement associé</th>
 <th>Date de mesure</th>
-<th>Longueur<br>à la fourche</th>
-<th>Longueur<br>totale</th>
-<th>Masse</th>
+<th>Longueur<br>à la fourche (cm)</th>
+<th>Longueur<br>totale (cm)</th>
+<th>Masse (g)</th>
 <th>Commentaire</th>
 </tr>
 </thead>
@@ -24,12 +24,12 @@ setDataTables("cmorphologieList");
 {$dataMorpho[lst].evenement_type_libelle}
 {/if}
 </td>
-<td>
+<td class="center">
 {$dataMorpho[lst].morphologie_date}
 </td>
-<td>{$dataMorpho[lst].longueur_fourche}</td>
-<td>{$dataMorpho[lst].longueur_totale}</td>
-<td>{$dataMorpho[lst].masse}</td>
+<td class="right">{$dataMorpho[lst].longueur_fourche}</td>
+<td class="right">{$dataMorpho[lst].longueur_totale}</td>
+<td class="right">{$dataMorpho[lst].masse}</td>
 <td>{$dataMorpho[lst].morphologie_commentaire}</td>
 </tr>
 {/section}

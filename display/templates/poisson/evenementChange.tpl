@@ -131,19 +131,19 @@ Type d'événement <span class="red">*</span> :</dt>
 <legend>Données morphologiques</legend>
 <div class="masquage">
 <dl>
-<dt>Longueur à la fourche :</dt>
+<dt>Longueur à la fourche (cm) :</dt>
 <dd>
 <input name="longueur_fourche" id="clongueur_fourche" value="{$dataMorpho.longueur_fourche}" size="10" maxlength="10" title="Valeur numérique" pattern="[0-9]+(\.[0-9]+)?">
 </dd>
 </dl>
 <dl>
-<dt>Longueur totale :</dt>
+<dt>Longueur totale (cm) :</dt>
 <dd>
 <input name="longueur_totale" id="clongueur_totale" value="{$dataMorpho.longueur_totale}" size="10" maxlength="10" title="Valeur numérique" pattern="[0-9]+(\.[0-9]+)?">
 </dd>
 </dl>
 <dl>
-<dt>Masse :</dt>
+<dt>Masse (g) :</dt>
 <dd>
 <input name="masse" id="cmasse" value="{$dataMorpho.masse}" size="10" maxlength="10" title="Valeur numérique" pattern="[0-9]+(\.[0-9]+)?">
 </dd>
