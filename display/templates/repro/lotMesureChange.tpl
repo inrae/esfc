@@ -19,7 +19,7 @@ $(document).ready(function() {
 <a href="index.php?module=lotList">Retour à la liste des lots</a>&nbsp;
 <a href="index.php?module=lotDisplay&lot_id={$data.lot_id}">Retour au lot</a>
 {include file="repro/lotDetail.tpl"}
-<h2>profil thermique du bassin</h2>
+<h2>Mesures pour le lot</h2>
 <div class="formSaisie">
 <div>
 <form id="lotMesureForm" method="post" action="index.php?module=lotMesureWrite">
