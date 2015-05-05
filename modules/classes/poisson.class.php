@@ -562,7 +562,7 @@ class Morphologie extends ObjetBDD {
 					where poisson_id = " . $poisson_id . "
 					and morphologie_date between '" . $date_from . "' and '" . $date_to . "' 
 					order by morphologie_date";
-			printr ( $sql );
+			//printr ( $sql );
 			return $this->getListeParam ( $sql );
 		} else
 			return null;

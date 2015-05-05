@@ -62,8 +62,8 @@ switch ($t_module ["param"]) {
 				$x .= ",'" . $value ["morphologie_date"] . "'";
 				$y .= "," . $value ["masse"];
 			}
-			printr ( $x );
-			printr ( $y );
+			//printr ( $x );
+			//printr ( $y );
 			$smarty->assign ( "poisson_nom", $dataPoisson ["prenom"] . " " . $dataPoisson ["matricule"] );
 			$smarty->assign ( "massex", $x );
 			$smarty->assign ( "massey", $y );
