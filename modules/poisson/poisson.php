@@ -127,6 +127,10 @@ switch ($t_module["param"]) {
 		 * Affichage
 		 */
 		$smarty->assign("corps", "poisson/poissonDisplay.tpl");
+		/*
+		 * Module de retour au poisson
+		 */
+		$_SESSION ["poissonParent"] = "poissonDisplay";
 		break;
 	case "change":
 		/*

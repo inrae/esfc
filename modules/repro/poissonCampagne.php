@@ -39,6 +39,7 @@ switch ($t_module ["param"]) {
 		 * Passage en parametre de la liste parente
 		 */
 		$_SESSION ["poissonDetailParent"] = "poissonCampagneList";
+		
 		/*
 		 * Affichage du graphique d'evolution de la masse
 		 */
@@ -79,6 +80,10 @@ switch ($t_module ["param"]) {
 		 * Passage en parametre de la liste parente
 		 */
 		$smarty->assign ( "poissonDetailParent", $_SESSION ["poissonDetailParent"] );
+		/*
+		 * Module de retour au poisson
+		 */
+		$_SESSION ["poissonParent"] = "poissonCampagneDisplay";
 		/*
 		 * Lecture des tables liees
 		 */
@@ -295,6 +300,11 @@ switch ($t_module ["param"]) {
 			$annees [] ["annee"] = $i;
 		}
 		$smarty->assign ( "annees", $annees );
+		/*
+		 * Passage en parametre de la liste parente
+		 */
+		$smarty->assign ( "poissonDetailParent", $_SESSION ["poissonDetailParent"] );
+		$smarty->assign ("poissonParent", $_SESSION["poissonParent"]);
 		break;
 	case "write":
 		/*

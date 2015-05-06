@@ -4,9 +4,9 @@ $(document).ready(function() {
 	$(".taux").attr("title","valeur numérique");
 });
 </script>
-<a href="index.php?module=poissonCampagneList">Retour à la liste des poissons</a>
+<a href="index.php?module={$poissonDetailParent}">Retour à la liste des poissons</a>
 &nbsp;
-<a href="index.php?module=poissonCampagneDisplay&poisson_campagne_id={$data.poisson_campagne_id}">
+<a href="index.php?module={$poissonParent}&poisson_campagne_id={$data.poisson_campagne_id}&poisson_id={$data.poisson_id}">
 Retour au détail du poisson
 </a>
 <h2>Sélectionner un poisson pour une campagne</h2>
