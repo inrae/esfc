@@ -96,6 +96,9 @@ $LANG["menu"][93] = "Hormones";
 $LANG["menu"][94] = "Liste des hormones utilisées pour la reproduction";
 $LANG["menu"][95] = "Implantation VIE";
 $LANG["menu"][96] = "Liste des endroits d'implantation des marques VIE";
+$LANG["menu"][97] = "Métaux";
+$LANG["menu"][98] = "Liste des métaux analysés";
+
 
 $LANG["menu"][100] = "Repro";
 $LANG["menu"][101] = "Gestion de la reproduction";

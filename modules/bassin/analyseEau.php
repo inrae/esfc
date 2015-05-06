@@ -76,6 +76,26 @@ switch ($t_module["param"]) {
 			$smarty->assign("data", $data);
 		}
 		$smarty->assign("origine", $_REQUEST["origine"]);
+		/*
+		 * Recuperation des analyses de metaux
+		 */
+		$dataMetal = array();
+		if ($id > 0) {
+		$analyseMetal = new AnalyseMetal($bdd, $ObjetBDDParam);
+		$dataMetal = $analyseMetal->getListeFromAnalyse($id);
+		}
+		/*
+		 * Recuperation de la liste des metaux non analyses, mais actifs
+		 */
+		$metal = new Metal($bdd, $ObjetBDDParam);
+		$newMetal = $metal->getListActifInconnu($dataMetal);
+		foreach ($newMetal as $key => $value) {
+			$dataMetal[]= array("metal_id"=>$value["metal_id"],
+					"metal_nom"=>$value["metal_nom"],
+					"metal_unite"=>$value["metal_unite"]
+			);
+		}
+		$smarty->assign("dataMetal", $dataMetal);
 		break;
 	case "write":
 		/*
@@ -83,6 +103,11 @@ switch ($t_module["param"]) {
 		 */
 		$id = dataWrite($dataClass, $_REQUEST);
 		if ($id > 0) {
+			/*
+			 * Ecriture des donnees concernant les analyses de metaux
+			 */
+			$analyseMetal = new AnalyseMetal($bdd, $ObjetBDDParam);
+			$analyseMetal->ecrireGlobal($_REQUEST, $id);
 			$_REQUEST[$keyName] = $id;
 		}
 		break;

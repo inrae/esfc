@@ -159,6 +159,19 @@ Retour au circuit d'eau {$dataCircuitEau.circuit_eau_libelle}
 <dd><input id="debit_eau_mer" name="debit_eau_mer" value="{$data.debit_eau_mer}" class="taux">
 <input type='text' id="mer_mls" name="mer_mls" class="taux" placeholder="ml/s">
 </dd></dl>
+<dl></dl>
+<fieldset>
+<legend>Analyse des métaux lourds</legend>
+{section name=lst loop=$dataMetal}
+<dl>
+<dt>{$dataMetal[lst].metal_nom} ({$dataMetal[lst].metal_unite}) :</dt>
+<dd>
+<input class="taux" name="mesure-{$dataMetal[lst].analyse_metal_id}-{$dataMetal[lst].metal_id}" value="{$dataMetal[lst].mesure}">
+<input name="mesure_seuil-{$dataMetal[lst].analyse_metal_id}-{$dataMetal[lst].metal_id}" value="{$dataMetal[lst].mesure_seuil}" placeholder="valeur seuil">
+</dd>
+</dl>
+{/section}
+</fieldset>
 <dl>
 <dt>Observations : </dt>
 <dd><input name="observations" value="{$data.observations}" class="commentaire">

@@ -30,6 +30,7 @@ setDataTables("cevenementTypeList");
 {if $data[lst].evenement_type_actif == 1}oui
 {elseif $data[lst].evenement_type_actif == 0}non
 {/if}
+</td>
 </tr>
 {/section}
 </tdata>

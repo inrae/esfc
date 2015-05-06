@@ -82,6 +82,7 @@ suiv&gt;
 <th>Débit<br>rivière</th>
 <th>Débit<br>forage</th>
 <th>Débit<br>mer</th>
+<th>Métaux</th>
 <th>Observations</th>
 </tr>
 </thead>
@@ -111,6 +112,7 @@ suiv&gt;
 <td class="right">{$dataAnalyse[lst].debit_eau_riviere}</td>
 <td class="right">{$dataAnalyse[lst].debit_eau_forage}</td>
 <td class="right">{$dataAnalyse[lst].debit_eau_mer}</td>
+<td>{$dataAnalyse[lst].metaux}</td>
 <td>{$dataAnalyse[lst].observations}</td>
 </tr>
 {/section}

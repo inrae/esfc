@@ -89,6 +89,13 @@ Modifier les résultats de l'analyse...
 <td>{$dataAnalyse.debit_eau_mer}</td>
 </tr>
 <tr>
+<td colspan="2">
+<fieldset><legend>Métaux analysés</legend>
+{$dataAnalyse.metaux}
+</fieldset>
+</td>
+</tr>
+<tr>
 <td>Observations : </td>
 <td>{$dataAnalyse.observations}</td>
 </tr>

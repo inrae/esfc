@@ -1,4 +1,4 @@
-<h2>Modification d'un type d'utilisation des bassins</h2>
+<h2>Modification d'une hormone</h2>
 
 <a href="index.php?module=hormoneList">Retour à la liste</a>
 <div class="formSaisie">
