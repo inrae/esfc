@@ -1,28 +1,11 @@
 <script>
 $(document).ready(function() {
-	$(".taux").attr( {
-		pattern: "[0-9]+(\.[0-9]+)?",
-		title: "valeur numérique",
-		size: "5em",
-		maxlength: "10"
-	});
-
-	$(".nombre").attr( { 
-		pattern: "[0-9]+",
-		title: "valeur numérique",
-		size: "5em", 
-		maxlength: "10"
-	});
 	$(".timepicker").timepicker( {
 		timeFormat: "HH:mm:ss",
 //		$.timepicker.regional['fr'],
 		stepHour: "1",
 		stepMinute: "5",
-		size: "5",
-		pattern: "[0-9][0-9]\:[0-9][0-9]\:[0-9][0-9]"
 	} );
-	$(".date").datepicker( { dateFormat: "dd/mm/yy" } );
-	$(".commentaire").attr("size","30");
 } );
 </script>
 <a href="index.php?module=sequenceList">
@@ -48,11 +31,11 @@ Retour à la séquence
 <dl>
 <dt>Nom du croisement <span class="red">*</span> :</dt>
 <dd>
-<input class="commentaire" name="croisement_nom" value={$data.croisement_nom}>
+<input name="croisement_nom" value={$data.croisement_nom}>
 </dd>
 </dl>
 <dl>
-<dt>Masse des ovocytes :</dt>
+<dt>Masse des ovocytes (en grammes) :</dt>
 <dd><input class="taux" name="ovocyte_masse" value="{$data.ovocyte_masse}">
 </dd>
 </dl>
