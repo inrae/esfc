@@ -81,6 +81,7 @@ suiv&gt;
 <th>Commentaire<br>backwash bio</th>
 <th>Débit<br>rivière</th>
 <th>Débit<br>forage</th>
+<th>Débit<br>mer</th>
 <th>Observations</th>
 </tr>
 </thead>
@@ -109,6 +110,7 @@ suiv&gt;
 <td>{$dataAnalyse[lst].backwash_biologique_commentaire}</td>
 <td class="right">{$dataAnalyse[lst].debit_eau_riviere}</td>
 <td class="right">{$dataAnalyse[lst].debit_eau_forage}</td>
+<td class="right">{$dataAnalyse[lst].debit_eau_mer}</td>
 <td>{$dataAnalyse[lst].observations}</td>
 </tr>
 {/section}

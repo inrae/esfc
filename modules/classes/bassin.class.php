@@ -473,6 +473,9 @@ class AnalyseEau extends ObjetBDD {
 				"debit_eau_forage" => array (
 						"type" => 1 
 				),
+				"debit_eau_mer" => array (
+						"type" => 1
+				),
 				"observations" => array (
 						"type" => 0 
 				) 

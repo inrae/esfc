@@ -19,7 +19,6 @@ Nom du circuit d'eau <span class="red">*</span> :</td>
 Circuit d'eau en service ? 
 </td>
 <td class="datamodif">
-{$data.circuit_eau_actif}
 <input type="radio" name="circuit_eau_actif" value="1" {if $data.circuit_eau_actif == 1 || $data.circuit_eau_actif == ""}checked{/if}> oui
 <input type="radio" name="circuit_eau_actif" value="0" {if $data.circuit_eau_actif == 0}checked{/if}> non
 

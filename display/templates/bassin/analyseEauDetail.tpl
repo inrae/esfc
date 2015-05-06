@@ -85,6 +85,10 @@ Modifier les résultats de l'analyse...
 <td>{$dataAnalyse.debit_eau_forage}</td>
 </tr>
 <tr>
+<td>Débit d'eau de mer : </td>
+<td>{$dataAnalyse.debit_eau_mer}</td>
+</tr>
+<tr>
 <td>Observations : </td>
 <td>{$dataAnalyse.observations}</td>
 </tr>
