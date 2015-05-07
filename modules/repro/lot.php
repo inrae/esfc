@@ -36,6 +36,12 @@ switch ($t_module["param"]) {
 		 */
 		$lotMesure = new LotMesure($bdd, $ObjetBDDParam);
 		$smarty->assign("dataMesure", $lotMesure->getListFromLot($id));
+		/*
+		 * Recuperation de la liste des bassins
+		 */
+		require_once 'modules/classes/bassin.class.php';
+		$bassinLot = new BassinLot($bdd, $ObjetBDDParam);
+		$smarty->assign ("bassinLot", $bassinLot->getListeFromLot($id));
 		break;
 	case "change":
 		/*

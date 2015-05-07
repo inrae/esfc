@@ -288,6 +288,10 @@
 	<vieModeleWrite action="modules/repro/vieModele.php" param="write" droits="reproGestion" modulebefore="vieModeleChange" retourok="vieModeleList" retourko="vieModeleChange"/>
 	<vieModeleDelete action="modules/repro/vieModele.php" param="delete" droits="reproGestion" modulebefore="vieModeleChange" retoursuppr="vieModeleList" retourko="vieModeleChange"/>
 
+	<bassinLotChange action="modules/repro/bassinLot.php" param="change" droits="reproGestion" />
+	<bassinLotWrite action="modules/repro/bassinLot.php" param="write" droits="reproGestion" modulebefore="bassinLotChange" retourok="lotDisplay" retourko="bassinLotChange"/>
+	<bassinLotDelete action="modules/repro/bassinLot.php" param="delete" droits="reproGestion" modulebefore="bassinLotChange" retoursuppr="lotDisplay" retourko="bassinLotChange"/>
+
 	
 </navigation>
 	

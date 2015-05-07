@@ -732,3 +732,7 @@ div.bloc {
 	text-align: right;
 }
 
+.tableCell {
+	display: table-cell;
+}
+

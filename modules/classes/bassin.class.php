@@ -148,22 +148,29 @@ class Bassin extends ObjetBDD {
 	}
 	/**
 	 * Retourne la liste des bassins, actifs ou non, ou tous
+	 * rajout le 7/5/15 d'un parametre concernant l'usage
 	 *
 	 * @param
 	 *        	int actif
 	 * @return array (non-PHPdoc)
 	 * @see ObjetBDD::getListe()
 	 */
-	function getListe($actif = -1) {
+	function getListe($actif = -1, $usage = 0) {
 		$sql = "select * from bassin ";
+		$where = " where ";
 		if ($actif > - 1)
-			$sql .= " where actif = " . $actif;
-		$sql .= " order by bassin_nom";
-		return ($this->getListeParam ( $sql ));
+			$where .= " actif = " . $actif;
+		if ($usage > 0) {
+			if ($where != " where ")
+				$where .= " and ";
+			$where .= " bassin_usage_id = " . $usage;
+		}
+		$order = " order by bassin_nom";
+		return ($this->getListeParam ( $sql . $where . $order ));
 	}
 	/**
 	 * Retourne la liste des bassins associes a un circuit d'eau
-	 * 
+	 *
 	 * @param int $circuitId        	
 	 * @return array
 	 */
@@ -176,7 +183,7 @@ class Bassin extends ObjetBDD {
 	}
 	/**
 	 * Calcule la masse des poissons présents dans un bassin
-	 * 
+	 *
 	 * @param unknown $bassinId        	
 	 * @return unknown
 	 */
@@ -274,7 +281,7 @@ class Bassin_usage extends ObjetBDD {
 	/**
 	 * Réécriture de la liste pour prendre en compte la table categorie
 	 * (non-PHPdoc)
-	 * 
+	 *
 	 * @see ObjetBDD::getListe()
 	 */
 	function getListe($order = 0) {
@@ -509,24 +516,25 @@ class AnalyseEau extends ObjetBDD {
 			$dateRef = $this->formatDateLocaleVersDB ( $dateRef, 2 );
 			$where = " where analyse_eau_date <= '" . $dateRef . "' and circuit_eau.circuit_eau_id = " . $id;
 			$order = " order by analyse_eau_date desc LIMIT " . $limit . " OFFSET " . $offset;
-			$analyseMetal = new AnalyseMetal($this->connection, $this->paramori);
+			$analyseMetal = new AnalyseMetal ( $this->connection, $this->paramori );
 			if ($limit == 1) {
 				$data = $this->lireParam ( $sql . $where . $order );
-				if ($data["analyse_eau_id"] > 0)
-					$data["metaux"] = $analyseMetal->getAnalyseToText($data["analyse_eau_id"]);
+				if ($data ["analyse_eau_id"] > 0)
+					$data ["metaux"] = $analyseMetal->getAnalyseToText ( $data ["analyse_eau_id"] );
 			} else {
 				$data = $this->getListeParam ( $sql . $where . $order );
-				foreach($data as $key => $value) {
-					$data[$key]["metaux"] = $analyseMetal->getAnalyseToText($value["analyse_eau_id"]);
+				foreach ( $data as $key => $value ) {
+					$data [$key] ["metaux"] = $analyseMetal->getAnalyseToText ( $value ["analyse_eau_id"] );
 				}
 			}
 			return $data;
 		}
 	}
-
+	
 	/**
 	 * Surcharge de la fonction supprimer, pour effacer les analyses de metaux lourds
 	 * (non-PHPdoc)
+	 *
 	 * @see ObjetBDD::supprimer()
 	 */
 	function supprimer($id) {
@@ -534,22 +542,22 @@ class AnalyseEau extends ObjetBDD {
 			/*
 			 * Suppression des analyses des metaux
 			 */
-			$analyseMetal = new AnalyseMetal($this->connection, $this->paramori);
-			$analyseMetal->supprimerChamp($id, "analyse_eau_id");
-			return parent::supprimer($id);
+			$analyseMetal = new AnalyseMetal ( $this->connection, $this->paramori );
+			$analyseMetal->supprimerChamp ( $id, "analyse_eau_id" );
+			return parent::supprimer ( $id );
 		}
 	}
 }
 /**
  * ORM de gestion de la table laboratoire_analyse
- * 
+ *
  * @author quinton
  *        
  */
 class LaboratoireAnalyse extends ObjetBDD {
 	/**
 	 * Constructeur de la classe
-	 * 
+	 *
 	 * @param AdoDB $bdd        	
 	 * @param array $param        	
 	 */
@@ -590,14 +598,14 @@ class LaboratoireAnalyse extends ObjetBDD {
 }
 /**
  * ORM de gestion de la table bassin_evenement_type
- * 
+ *
  * @author quinton
  *        
  */
 class BassinEvenementType extends ObjetBDD {
 	/**
 	 * Constructeur de la classe
-	 * 
+	 *
 	 * @param AdoDB $bdd        	
 	 * @param array $param        	
 	 */
@@ -625,14 +633,14 @@ class BassinEvenementType extends ObjetBDD {
 }
 /**
  * ORM de gestion de la table bassin_evenement
- * 
+ *
  * @author quinton
  *        
  */
 class BassinEvenement extends ObjetBDD {
 	/**
 	 * Constructeur de la classe
-	 * 
+	 *
 	 * @param AdoDB $bdd        	
 	 * @param array $param        	
 	 */
@@ -671,7 +679,7 @@ class BassinEvenement extends ObjetBDD {
 	}
 	/**
 	 * Retourne la liste des événements pour un bassin
-	 * 
+	 *
 	 * @param int $bassin_id        	
 	 * @return array
 	 */
@@ -687,13 +695,14 @@ class BassinEvenement extends ObjetBDD {
 }
 /**
  * ORM de gestion de la table metal
- * @author quinton
  *
+ * @author quinton
+ *        
  */
 class Metal extends ObjetBDD {
 	/**
 	 * Constructeur de la classe
-	 * 
+	 *
 	 * @param AdoDB $bdd        	
 	 * @param array $param        	
 	 */
@@ -726,56 +735,59 @@ class Metal extends ObjetBDD {
 		$param ["fullDescription"] = 1;
 		parent::__construct ( $bdd, $param );
 	}
-
+	
 	/**
 	 * Retourne la liste des metaux analyses, selon qu'ils sont actifs ou non
-	 * @param number $actif
+	 *
+	 * @param number $actif        	
 	 * @return tableau
 	 */
 	function getListActif($actif = 1) {
-		$actif = $this->encodeData($actif);
+		$actif = $this->encodeData ( $actif );
 		$sql = "select * from metal";
 		$order = " order by metal_nom";
 		$where = "";
-		if ($actif == 1 || $actif == 0) 
-			$where = " where actif = ".$actif;
-		return $this->getListeParam($sql.$where.$order);
+		if ($actif == 1 || $actif == 0)
+			$where = " where actif = " . $actif;
+		return $this->getListeParam ( $sql . $where . $order );
 	}
-
+	
 	/**
 	 * Retourne la liste des metaux actifs qui ne figurent pas dans la liste fournie
-	 * @param array $analyse
+	 *
+	 * @param array $analyse        	
 	 * @return tableau
 	 */
 	function getListActifInconnu($analyse) {
 		$sql = "select * from metal";
 		$order = " order by metal_nom";
 		$where = " where metal_actif = 1";
-		if (count($analyse) > 0) {
+		if (count ( $analyse ) > 0) {
 			$where .= " and metal_id not in ( ";
 			$comma = false;
-			foreach ($analyse as $key => $value) {
+			foreach ( $analyse as $key => $value ) {
 				if ($comma == true) {
 					$where .= ",";
-				} else 
+				} else
 					$comma = true;
-				$where .= $value["metal_id"];			
+				$where .= $value ["metal_id"];
 			}
 			$where .= ")";
 		}
-		return $this->getListeParam($sql.$where.$order);
+		return $this->getListeParam ( $sql . $where . $order );
 	}
 }
 
 /**
  * ORM de gestion de la table analyse_metal
- * @author quinton
  *
+ * @author quinton
+ *        
  */
 class AnalyseMetal extends ObjetBDD {
 	/**
 	 * Constructeur de la classe
-	 * 
+	 *
 	 * @param AdoDB $bdd        	
 	 * @param array $param        	
 	 */
@@ -814,7 +826,8 @@ class AnalyseMetal extends ObjetBDD {
 	}
 	/**
 	 * Retourne la liste des analyses de metaux realisees pour une analyse
-	 * @param int $analyse_id
+	 *
+	 * @param int $analyse_id        	
 	 * @return tableau|NULL
 	 */
 	function getListeFromAnalyse($analyse_id) {
@@ -830,67 +843,178 @@ class AnalyseMetal extends ObjetBDD {
 		} else
 			return null;
 	}
-	
 	function getAnalyseToText($analyse_id) {
-		$data = $this->getListeFromAnalyse($analyse_id);
+		$data = $this->getListeFromAnalyse ( $analyse_id );
 		$texte = "";
 		$comma = false;
-		foreach ($data as $key => $value) {
+		foreach ( $data as $key => $value ) {
 			if ($comma == true) {
 				$texte .= ", ";
-			} else 
+			} else
 				$comma = true;
-			$texte .= $value["metal_nom"].":".$value["mesure"].$value["mesure_seuil"].$value["metal_unite"];
+			$texte .= $value ["metal_nom"] . ":" . $value ["mesure"] . $value ["mesure_seuil"] . $value ["metal_unite"];
 		}
 		return $texte;
 	}
-
+	
 	/**
-	 * Fonction permettant d'ecrire globalement les analyses de metaux, a partir 
+	 * Fonction permettant d'ecrire globalement les analyses de metaux, a partir
 	 * des variables transmises par le formulaire
-	 * @param array $data : donnees du formulaire. Les donnees interessantes commencent
-	 * par mesure- et mesure_seuil-
-	 * @param int $analyse_eau_id
+	 *
+	 * @param array $data
+	 *        	: donnees du formulaire. Les donnees interessantes commencent
+	 *        	par mesure- et mesure_seuil-
+	 * @param int $analyse_eau_id        	
 	 */
 	function ecrireGlobal($data, $analyse_eau_id) {
-		foreach ($data as $key => $value ) {
+		foreach ( $data as $key => $value ) {
 			/*
 			 * Recuperation des cles concernant les analyses de metaux
 			 */
-			if (substr($key,0,7) == "mesure-") {
-				$cle = explode("-", $key);
+			if (substr ( $key, 0, 7 ) == "mesure-") {
+				$cle = explode ( "-", $key );
 				/*
 				 * cle[1] contient la valeur d'analyse_metal_id
 				 * cle[2] contient la valeur de metal_id
 				 */
-				$cleSeuil = "mesure_seuil-".$cle[1]."-".$cle[2];
+				$cleSeuil = "mesure_seuil-" . $cle [1] . "-" . $cle [2];
 				/*
 				 * Recherche s'il faut ou non ecrire l'enregistrement
 				 */
 				$ecrire = false;
-				if ($cle[1] > 0 || strlen($value) > 0) {
+				if ($cle [1] > 0 || strlen ( $value ) > 0) {
 					$ecrire = true;
 				} else {
 					/*
 					 * On regarde s'il existe une valeur seuil
 					 */
-					if (strlen($data[$cleSeuil])>0)
-						$ecrire = true;				
+					if (strlen ( $data [$cleSeuil] ) > 0)
+						$ecrire = true;
 				}
-				if ($ecrire == true ) {
-					$donnee = array("");
-					if ($cle[1] > 0) {
-						$donnee["analyse_metal_id"] = $cle[1];
-					} else 
-						$donnee["analyse_metal_id"] = 0;
-					$donnee["analyse_eau_id"] = $analyse_eau_id;
-					$donnee["metal_id"] = $cle[2];
-					$donnee["mesure"] = $value;
-					$donnee["mesure_seuil"] = $data[$cleSeuil];
-					$this->ecrire($donnee);
+				if ($ecrire == true) {
+					$donnee = array (
+							"" 
+					);
+					if ($cle [1] > 0) {
+						$donnee ["analyse_metal_id"] = $cle [1];
+					} else
+						$donnee ["analyse_metal_id"] = 0;
+					$donnee ["analyse_eau_id"] = $analyse_eau_id;
+					$donnee ["metal_id"] = $cle [2];
+					$donnee ["mesure"] = $value;
+					$donnee ["mesure_seuil"] = $data [$cleSeuil];
+					$this->ecrire ( $donnee );
 				}
 			}
 		}
+	}
+}
+class BassinLot extends ObjetBDD {
+	/**
+	 * Constructeur de la classe
+	 *
+	 * @param AdoDB $bdd        	
+	 * @param array $param        	
+	 */
+	function __construct($bdd, $param = null) {
+		$this->param = $param;
+		$this->table = "bassin_lot";
+		$this->id_auto = "1";
+		$this->colonnes = array (
+				"bassin_lot_id" => array (
+						"type" => 1,
+						"key" => 1,
+						"requis" => 1,
+						"defaultValue" => 0 
+				),
+				"lot_id" => array (
+						"type" => 1,
+						"requis" => 1,
+						"parentAttrib" => 1 
+				),
+				
+				"bassin_id" => array (
+						"type" => 1,
+						"requis" => 1 
+				),
+				"bl_date_arrivee" => array (
+						"type" => 2,
+						"requis" => 1 
+				),
+				"bl_date_depart" => array (
+						"type" => 2 
+				) 
+		);
+		if (! is_array ( $param ))
+			$param == array ();
+		$param ["fullDescription"] = 1;
+		parent::__construct ( $bdd, $param );
+	}
+	
+	/**
+	 * Retourne la liste des bassins utilisés pour un lot
+	 *
+	 * @param int $lot_id        	
+	 * @return tableau|NULL
+	 */
+	function getListeFromLot($lot_id) {
+		if ($lot_id > 0) {
+			$sql = "select bassin_lot_id, lot_id, bassin_id, 
+					bl_date_arrivee, bl_date_depart,
+					bassin_nom
+					from bassin_lot
+					join bassin using (bassin_id)
+					where lot_id = " . $lot_id . "
+					order by bl_date_arrivee desc";
+			return $this->getListeParam ( $sql );
+		} else
+			return null;
+	}
+	
+	/**
+	 * Surcharge de la fonction ecrire pour mettre a jour la date de fin pour
+	 * le bassin precedent
+	 * (non-PHPdoc)
+	 * 
+	 * @see ObjetBDD::ecrire()
+	 */
+	function write($data) {
+		$data ["bassin_lot_id"] == 0 ? $creation = true : $creation = false;
+		$id = parent::ecrire ( $data );
+		if ($id > 0 && $creation == true) {
+			/*
+			 * Ecrit la date d'arrivee dans le bassin comme date de depart du bassin precedent
+			 */
+			$dataPrec = $this->getPrecedentBassin($data["lot_id"], $data["bl_date_arrivee"]);
+			if ($dataPrec["bassin_lot_id"] > 0 && strlen($dataPrec["bl_date_depart"]) == 0) {
+				/*
+				 * Calcul de la veille de la date d'arrivee
+				 */
+				$date = DateTime::createFromFormat('d/m/Y',$data["bl_date_arrivee"]);
+				$date->sub(new DateInterval('P1D'));
+				$dataPrec["bl_date_depart"] = $date->format('d/m/Y');
+				parent::ecrire($dataPrec);
+			}
+		}
+		return $id;
+	}
+	/**
+	 * Retourne le bassin precedemment utilise
+	 * @param unknown $lot_id
+	 * @param unknown $bl_date_arrivee
+	 * @return array|NULL
+	 */
+	function getPrecedentBassin($lot_id, $bl_date_arrivee) {
+		if ($lot_id > 0 && strlen ( $bl_date_arrivee ) > 0) {
+			$bl_date_arrivee = $this->formatDateLocaleVersDB ( $this->encodeData ( $bl_date_arrivee ) );
+			$sql = "select * from bassin_lot
+				where bl_date_arrivee < '" . $bl_date_arrivee . "' 
+						and lot_id = " . $lot_id . "
+				order by bl_date_arrivee desc
+				limit 1";
+			return $this->lireParam ( $sql );
+		} else
+			return null;
 	}
 }
 ?>

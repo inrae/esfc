@@ -1259,4 +1259,40 @@ class AlimentQuotidien extends ObjetBDD {
 		}
 	}
 }
+
+class LotRepartTemplate extends ObjetBDD {
+	/**
+	 * Constructeur de la classe
+	 *
+	 * @param connexion $bdd
+	 * @param array $param
+	 */
+	function __construct($bdd, $param = null) {
+		$this->param = $param;
+		$this->table = "lot_repart_template";
+		$this->id_auto = 1;
+		$this->colonnes = array (
+				"lot_repart_template_id" => array (
+						"type" => 1,
+						"key" => 1,
+						"requis" => 1,
+						"defaultValue" => 0
+				),
+				"age" => array (
+						"type" => 1,
+						"requis" => 1
+				),
+				"artemia" => array (
+						"type" => 1
+				),
+				"chironome" => array (
+						"type" => 1
+				)
+		);
+		if (! is_array ( $param ))
+			$param == array ();
+		$param ["fullDescription"] = 1;
+		parent::__construct ( $bdd, $param );
+	}
+}
 ?>

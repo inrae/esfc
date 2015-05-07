@@ -15,7 +15,7 @@ $(document).ready(function() {
 <th>Suppr.</th>
 </tr>
 </thead>
-<tdata>
+<tbody>
 {section name=lst loop=$bassins}
 <tr>
 <td class="center">
@@ -36,5 +36,5 @@ $(document).ready(function() {
 </td>
 </tr>
 {/section}
-</tdata>
+</tbody>
 </table>
