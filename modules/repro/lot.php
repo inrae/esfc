@@ -23,6 +23,7 @@ switch ($t_module["param"]) {
 		$smarty->assign ( "annees", $poissonCampagne->getAnnees () );
 		$smarty->assign("lots", $dataClass->getLotByAnnee($_SESSION["annee"]));
 		$smarty->assign("corps", "repro/lotSearch.tpl");
+		$smarty->assign("dataAlim", $alimJuv->getParam());
 		break;
 	case "display":
 		/*

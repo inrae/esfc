@@ -160,6 +160,11 @@ class Lot extends ObjetBDD {
 		} else
 			return null;
 	}
+	/**
+	 * Retourne les parents d'un lot
+	 * @param int $lot_id
+	 * @return tableau|NULL
+	 */
 	function getParents($lot_id) {
 		if ($lot_id > 0) {
 			$sql = "select poisson_id
@@ -168,6 +173,29 @@ class Lot extends ObjetBDD {
 				join poisson_campagne using (poisson_campagne_id)
 				where lot_id = " . $lot_id;
 			return $this->getListeParam ( $sql );
+		} else
+			return null;
+	}
+	
+	/**
+	 * Retourne la liste des lots dont la date de naissance est anterieure a la date fournie,
+	 * pour l'annee consideree
+	 * @param unknown $dateDebut
+	 */
+	function getListAfterDate($dateDebut) {
+		$dateDebut = $this->encodeData($dateDebut);
+		if (strlen($dateDebut) > 0) {
+			$dateDebut = $this->formatDateLocaleVersDB($dateDebut);
+			$sql = "select lot_id, lot_nom, croisement_id, nb_larve_initial, eclosion_date,
+					s.annee, sequence_nom
+				from lot
+				join sequence s using (sequence_id)
+				where eclosion_date < '".$dateDebut."' 
+					and extract(year from eclosion_date) = ".substr($dateDebut, 0, 4)."
+				order by lot_nom";
+			$data = $this->getListeParam($sql);
+			return ($data);
+
 		} else
 			return null;
 	}
@@ -267,6 +295,43 @@ class LotMesure extends ObjetBDD {
 			}
 		}
 		return parent::ecrire ( $data );
+	}
+
+	/**
+	 * Retourne le nombre de poissons morts et la derniere masse individuelle connue
+	 * pour un lot a une date connue
+	 * @param unknown $lot_id
+	 * @param unknown $date
+	 * @return array|NULL
+	 */
+	function getMesureAtDate($lot_id, $date) {
+		if ($lot_id > 0 && strlen($date) > 0) {
+			$date = $this->encodeData($date);
+			$date = $this->formatDateLocaleVersDB($date);
+			/*
+			 * Recuperation de la mortalite totale
+			 */
+			$sql = "select sum(lot_mortalite) as lot_mortalite
+					from lot_mesure
+					where lot_mesure_date <= '".$date."' 
+						and lot_id = ".$lot_id;
+			$data = $this->lireParam($sql);
+			if (!is_array($data))
+				$data ["lot_mortalite"] = 0;
+			/*
+			 * Recuperation de la derniere masse individuelle connue
+			 */
+			$sql = "select lot_mesure_masse_indiv 
+					from lot_mesure
+					where lot_mesure_date <= '".$date."' 
+						and lot_id = ".$lot_id."
+					order by lot_mesure_date desc
+					limit 1";
+			$dataMasse = $this->lireParam($sql);
+			$data["masse_indiv"] = $dataMasse["lot_mesure_masse_indiv"];
+			return $data;
+		} else 
+			return null;
 	}
 }
 /**

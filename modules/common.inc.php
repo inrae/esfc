@@ -76,4 +76,13 @@ if (!isset ($_SESSION["searchRepro"])) {
 } else {
 	$searchRepro = $_SESSION["searchRepro"];
 }
+/*
+ * Declaration de la classe contenant les parametres de l'alimentation des juveniles-lots
+ */
+if (!isset($_SESSION["alimJuv"])) {
+	$alimJuv = new AlimJuv();
+	$_SESSION["alimJuv"] = $alimJuv;
+} else {
+	$alimJuv = $_SESSION["alimJuv"];
+}
 ?>

@@ -212,4 +212,20 @@ class SearchRepro extends SearchParam {
 		parent::__construct();
 	}
 }
+
+/**
+ * Parametres utilises pour generer l'alimentation des juveniles
+ * @author quinton
+ *
+ */
+class AlimJuv extends SearchParam {
+	function __construct() {
+		$this->param = array (
+				"date_debut_alim" =>date("d/m/Y"),
+				"duree" => 1,
+				"densite" => 1500
+				);
+		parent::__construct();
+	}
+}
 ?>

@@ -1107,7 +1107,7 @@ class DistribQuotidien extends ObjetBDD {
 	 * @return array
 	 */
 	function lireFromDate($bassin_id, $distrib_date) {
-		$distribDate = $this->formatDateLocaleVersDB ( $this->encodeData($distrib_date) );
+		$distribDate = $this->formatDateLocaleVersDB ( $this->encodeData ( $distrib_date ) );
 		if ($bassin_id > 0) {
 			$sql = "select * from " . $this->table . " 
 					where bassin_id = " . $bassin_id . "
@@ -1125,8 +1125,8 @@ class DistribQuotidien extends ObjetBDD {
 	 */
 	function getListAliment($bassin_id, $date_debut, $date_fin) {
 		if ($bassin_id > 0 && strlen ( $date_debut ) > 2 && strlen ( $date_fin ) > 2) {
-			$date_debut = $this->formatDateLocaleVersDB ( $this->encodeData($date_debut) );
-			$date_fin = $this->formatDateLocaleVersDB ( $this->encodeData($date_fin ));
+			$date_debut = $this->formatDateLocaleVersDB ( $this->encodeData ( $date_debut ) );
+			$date_fin = $this->formatDateLocaleVersDB ( $this->encodeData ( $date_fin ) );
 			$sql = "select distinct aliment_id, aliment_libelle_court
 					from distrib_quotidien
 					natural join aliment_quotidien
@@ -1140,8 +1140,8 @@ class DistribQuotidien extends ObjetBDD {
 	}
 	function getListeConsommation($bassin_id, $date_debut, $date_fin) {
 		if ($bassin_id > 0 && strlen ( $date_debut ) > 2 && strlen ( $date_fin ) > 2) {
-			$date_debut = $this->formatDateLocaleVersDB ( $this->encodeData($date_debut) );
-			$date_fin = $this->formatDateLocaleVersDB ( $this->encodeData($date_fin) );
+			$date_debut = $this->formatDateLocaleVersDB ( $this->encodeData ( $date_debut ) );
+			$date_fin = $this->formatDateLocaleVersDB ( $this->encodeData ( $date_fin ) );
 			/*
 			 * Preparation de la premiere commande de selection du crosstab
 			 */
@@ -1249,7 +1249,7 @@ class AlimentQuotidien extends ObjetBDD {
 	 */
 	function deleteFromDateBassin($date, $bassin_id) {
 		if (strlen ( $date ) > 0 && $bassin_id > 0) {
-			$date = $this->encodeData($date);
+			$date = $this->encodeData ( $date );
 			$sql = "delete from " . $this->table . "
 					using distrib_quotidien
 					where distrib_quotidien.distrib_quotidien_id = aliment_quotidien.distrib_quotidien_id
@@ -1259,13 +1259,12 @@ class AlimentQuotidien extends ObjetBDD {
 		}
 	}
 }
-
 class LotRepartTemplate extends ObjetBDD {
 	/**
 	 * Constructeur de la classe
 	 *
-	 * @param connexion $bdd
-	 * @param array $param
+	 * @param connexion $bdd        	
+	 * @param array $param        	
 	 */
 	function __construct($bdd, $param = null) {
 		$this->param = $param;
@@ -1276,23 +1275,36 @@ class LotRepartTemplate extends ObjetBDD {
 						"type" => 1,
 						"key" => 1,
 						"requis" => 1,
-						"defaultValue" => 0
+						"defaultValue" => 0 
 				),
 				"age" => array (
 						"type" => 1,
-						"requis" => 1
+						"requis" => 1 
 				),
 				"artemia" => array (
-						"type" => 1
+						"type" => 1 
 				),
 				"chironome" => array (
-						"type" => 1
-				)
+						"type" => 1 
+				) 
 		);
 		if (! is_array ( $param ))
 			$param == array ();
 		$param ["fullDescription"] = 1;
 		parent::__construct ( $bdd, $param );
+	}
+	/**
+	 * Retourne la quantite a distribuer en fonction de l'age (en jours)
+	 * @param int $age
+	 * @return array|NULL
+	 */
+	function getFromAge($age) {
+		if ($age > 0) {
+			$sql = "select * from lot_repart_template
+				where age = " . $age;
+			return $this->lireParam ( $sql );
+		} else
+			return null;
 	}
 }
 ?>

@@ -1,11 +1,11 @@
 <?php
 /**
  * @author Eric Quinton
- * 11 août 2009
+ * 11 aoï¿½t 2009
  */
 
 
-
+/*
 include ("test/testclass.php");
 $param = array ("debug_mode"=>1);
 $test = new Test($bdd,$param);
@@ -31,4 +31,8 @@ $test->ecrireTableNN("test","id1","id2",2,$lignes);
 
 //$test->lire(3);
 //phpinfo();
+ * 
+ */
+$smarty->assign("nom", "Eric Quinton");
+$smarty->assign("corps", "test/test.tpl");
 ?>

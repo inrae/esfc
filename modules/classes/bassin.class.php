@@ -975,7 +975,7 @@ class BassinLot extends ObjetBDD {
 	 * Surcharge de la fonction ecrire pour mettre a jour la date de fin pour
 	 * le bassin precedent
 	 * (non-PHPdoc)
-	 * 
+	 *
 	 * @see ObjetBDD::ecrire()
 	 */
 	function write($data) {
@@ -985,23 +985,24 @@ class BassinLot extends ObjetBDD {
 			/*
 			 * Ecrit la date d'arrivee dans le bassin comme date de depart du bassin precedent
 			 */
-			$dataPrec = $this->getPrecedentBassin($data["lot_id"], $data["bl_date_arrivee"]);
-			if ($dataPrec["bassin_lot_id"] > 0 && strlen($dataPrec["bl_date_depart"]) == 0) {
+			$dataPrec = $this->getPrecedentBassin ( $data ["lot_id"], $data ["bl_date_arrivee"] );
+			if ($dataPrec ["bassin_lot_id"] > 0 && strlen ( $dataPrec ["bl_date_depart"] ) == 0) {
 				/*
 				 * Calcul de la veille de la date d'arrivee
 				 */
-				$date = DateTime::createFromFormat('d/m/Y',$data["bl_date_arrivee"]);
-				$date->sub(new DateInterval('P1D'));
-				$dataPrec["bl_date_depart"] = $date->format('d/m/Y');
-				parent::ecrire($dataPrec);
+				$date = DateTime::createFromFormat ( 'd/m/Y', $data ["bl_date_arrivee"] );
+				$date->sub ( new DateInterval ( 'P1D' ) );
+				$dataPrec ["bl_date_depart"] = $date->format ( 'd/m/Y' );
+				parent::ecrire ( $dataPrec );
 			}
 		}
 		return $id;
 	}
 	/**
 	 * Retourne le bassin precedemment utilise
-	 * @param unknown $lot_id
-	 * @param unknown $bl_date_arrivee
+	 * 
+	 * @param unknown $lot_id        	
+	 * @param unknown $bl_date_arrivee        	
 	 * @return array|NULL
 	 */
 	function getPrecedentBassin($lot_id, $bl_date_arrivee) {
@@ -1012,6 +1013,30 @@ class BassinLot extends ObjetBDD {
 						and lot_id = " . $lot_id . "
 				order by bl_date_arrivee desc
 				limit 1";
+			return $this->lireParam ( $sql );
+		} else
+			return null;
+	}
+	
+	/**
+	 * Retourne le bassin occupe a la date fournie par le lot considere
+	 * 
+	 * @param int $lot_id        	
+	 * @param string $date        	
+	 * @return array|NULL
+	 */
+	function getBassin($lot_id, $date) {
+		if ($lot_id > 0 && strlen ( $date ) > 0) {
+			$this->encodeData ( $date );
+			$date = $this->formatDateLocaleVersDB ( $date );
+			$sql = "select bassin_id, lot_id, bl_date_arrivee, bl_date_depart,
+					bassin_nom
+					from bassin_lot
+					join bassin using (bassin_id)
+					where bl_date_arrivee < '" . $date . "' 
+						and lot_id = " . $lot_id . "
+					order by bl_date_arrivee desc
+					limit 1";
 			return $this->lireParam ( $sql );
 		} else
 			return null;

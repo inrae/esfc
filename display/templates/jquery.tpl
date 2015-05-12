@@ -15,16 +15,17 @@
 <!--  Definition des balises titre par defaut -->
 <script>
 $(document).ready(function() {
-	$('.taux,nombre').attr('title','Valeur numérique...');
 	<!--$('.taux').attr('placeholder', '100, 95.5...');-->
 	$(".date").datepicker( { dateFormat: "dd/mm/yy" } );
 	$('.taux').attr( {
 		'pattern': '[0-9]+(\.[0-9]+)?',
-		'maxlength' : "10"
+		'maxlength' : "10",
+		'title' : "Nombre avec ou sans décimales (séparateur : point)"
 	} );
 	$('.nombre').attr( {
 		'pattern': '[0-9]+',
-		'maxlength' : "10"
+		'maxlength' : "10",
+		'title' : 'Nombre entier (sans décimales)'
 	}
 	);
 	$('.timepicker').attr('pattern', '[0-9][0-9]\:[0-9][0-9]\:[0-9][0-9]');
