@@ -6,6 +6,12 @@
  *  Creation 13 mars 2015
  */
 require_once "modules/classes/croisement.class.php";
+require_once "modules/classes/bassin.class.php";
+/**
+ * ORM  de gestion de la table Lot
+ * @author quinton
+ *
+ */
 class Lot extends ObjetBDD {
 	/**
 	 * Constructeur de la classe
@@ -95,7 +101,8 @@ class Lot extends ObjetBDD {
 			$sql = "select lot_id, lot_nom, croisement_id, nb_larve_initial, nb_larve_compte,
 					croisement_date,
 					sequence_id, s.annee, sequence_nom, croisement_nom, eclosion_date, vie_date_marquage,
-					vie_modele_id, couleur, vie_implantation_libelle, vie_implantation_libelle2
+					vie_modele_id, couleur, vie_implantation_libelle, vie_implantation_libelle2,
+					 extract(epoch from age(eclosion_date))/86400 as age
 					from lot
 					join croisement using (croisement_id)
 					join sequence s using (sequence_id)
@@ -103,12 +110,20 @@ class Lot extends ObjetBDD {
 			$order = " order by sequence_nom, lot_nom";
 			$data = $this->getListeParam ( $sql . $where . $order );
 			/*
-			 * Mise en forme des donnees et recuperation des reproducteurs
+			 * Mise en forme des donnees, recuperation des reproducteurs et du bassin
 			 */
+			$bassinLot = new BassinLot($this->connection, $this->paramori);
 			$croisement = new Croisement ( $this->connection, $this->paramori );
 			foreach ( $data as $key => $value ) {
 				$data [$key] ["croisement_date"] = $this->formatDateDBversLocal ( $value ["croisement_date"] );
 				$data [$key] ["parents"] = $croisement->getParentsFromCroisement ( $value ["croisement_id"] );
+				/*
+				 * Recherche du bassin
+				 */
+				$date = new DateTime();
+				$dataBassin = $bassinLot->getBassin($value["lot_id"], $date->format("d/m/Y"));
+				$data[$key] ["bassin_id"] = $dataBassin["bassin_id"];
+				$data[$key] ["bassin_nom"] = $dataBassin["bassin_nom"];
 			}
 			return $data;
 		} else
@@ -189,6 +204,7 @@ class Lot extends ObjetBDD {
 			$sql = "select lot_id, lot_nom, croisement_id, nb_larve_initial, eclosion_date,
 					s.annee, sequence_nom
 				from lot
+				join croisement using (croisement_id)
 				join sequence s using (sequence_id)
 				where eclosion_date < '".$dateDebut."' 
 					and extract(year from eclosion_date) = ".substr($dateDebut, 0, 4)."

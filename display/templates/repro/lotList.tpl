@@ -8,9 +8,11 @@
 <th>Nom du lot</th>
 <th>Parents</th>
 <th>Séquence</th>
+<th>Bassin</th>
 <th>Date<br>d'éclosion</th>
+<th>Age<br>(jours)</th>
 <th>Nbre de larves<br>initial</th>
-<th>Nbre de larves<br>compté</th>
+<th>Nbre de larves<br>comptées</th>
 <th>Marque VIE</th>
 <th>Date de marquage<br>VIE</th>
 </tr>
@@ -31,7 +33,9 @@
 {$lots[lst].croisement_nom}
 </a>
 </td>
+<td>{$lots[lst].bassin_nom}</td>
 <td>{$lots[lst].eclosion_date}</td>
+<td class="center">{$lots[lst].age}</td>
 <td class="right">{$lots[lst].nb_larve_initial}</td>
 <td class="right">{$lots[lst].nb_larve_compte}</td>
 <td>

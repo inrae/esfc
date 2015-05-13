@@ -570,6 +570,26 @@ class Repartition extends ObjetBDD {
 			return (parent::supprimer ( $id ));
 		}
 	}
+	
+	function ecrireFromDateCategorie($dataRepartition) {
+		/*
+		 * Recuperation de la cle, si existante
+		 */
+		$data = $this->encodeData ( $data );
+		if ($data ["categorie"] > 0 && strlen ( $data ["date_debut_periode"] ) > 0) {
+			$date = $this->formatDateLocaleVersDB ( $data ["date_debut_periode"] );
+			$sql = "select repartition_id from repartition
+				where categorie_id = " . $data["categorie_id"] . "
+					and date_debut_periode '" . $date . "'";
+			$dataCle = $this->lireParam($sql);
+			if ($dataCle["categorie_id"] > 0) {
+				$data["categorie_id"] = $dataCle["categorie_id"];
+			} else
+				$data["categorie_id"] = 0;
+			return $this->ecrire($data);
+		} else
+			return -1;
+	}
 }
 /**
  * ORM de gestion de la table distribution
@@ -1197,6 +1217,30 @@ class DistribQuotidien extends ObjetBDD {
 			return $this->getListeParam ( $sql );
 		}
 	}
+	/**
+	 * Ecrit un enregistrement à partir du bassin et de la date
+	 * @param array $data
+	 * @return int
+	 */
+	function ecrireFromBassinDate($data) {
+		/*
+		 * Recuperation de la cle, si existante
+		 */
+		$data = $this->encodeData ( $data );
+		if ($data ["bassin_id"] > 0 && strlen ( $data ["distrib_quotidien_date"] ) > 0) {
+			$date = $this->formatDateLocaleVersDB ( $data ["distrib_quotidien_date"] );			
+			$sql = "select distrib_quotidien_id from distrib_quotidien
+				where bassin_id = " . $data["bassin_id"] . " 
+					and distrib_quotidien_date '" . $date . "'";
+			$dataCle = $this->lireParam($sql);
+			if ($dataCle["distrib_quotidien_id"] > 0) {
+				$data["distrib_quotidien_id"] = $dataCle["distrib_quotidien_id"];
+			} else 
+				$data["distri_quotidien_id"] = 0;
+			return $this->ecrire($data);
+		} else 
+			return -1;		
+	}
 }
 /**
  * ORM de gestion de la table aliment_quotidien
@@ -1295,7 +1339,8 @@ class LotRepartTemplate extends ObjetBDD {
 	}
 	/**
 	 * Retourne la quantite a distribuer en fonction de l'age (en jours)
-	 * @param int $age
+	 * 
+	 * @param int $age        	
 	 * @return array|NULL
 	 */
 	function getFromAge($age) {

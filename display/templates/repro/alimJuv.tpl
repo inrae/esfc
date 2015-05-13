@@ -1,5 +1,9 @@
 <script>
 $('document').ready(function() { 
+	var duree = $('#duree').val();
+	if (duree > 1) {
+		$('#densite').prop("disabled", true);
+	}
 	$('#duree').change(function () { 
 		var duree = $(this).val();
 		if (duree == 1) {
@@ -15,7 +19,7 @@ $('document').ready(function() {
 <input type="hidden" name="module" value="lotalimGenerate">
 Date de début d'alimentation :
 <input name="date_debut_alim" class="date" value="{$dataAlim.date_debut_alim}">
-Durée de calcul (en jours) : 
+Durée d'alimentation (en jours) : 
 <input id="duree" name="duree" required value="{$dataAlim.duree}" class="nombre">
 <br>
 Nombre d'artémies par ml : 
