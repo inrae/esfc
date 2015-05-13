@@ -33,7 +33,11 @@
 {$lots[lst].croisement_nom}
 </a>
 </td>
-<td>{$lots[lst].bassin_nom}</td>
+<td>
+<a href="index.php?module=bassinDisplay&bassin_id={$lots[lst].bassin_id}">
+{$lots[lst].bassin_nom}
+</a>
+</td>
 <td>{$lots[lst].eclosion_date}</td>
 <td class="center">{$lots[lst].age}</td>
 <td class="right">{$lots[lst].nb_larve_initial}</td>

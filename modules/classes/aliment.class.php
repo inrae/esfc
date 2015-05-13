@@ -571,21 +571,21 @@ class Repartition extends ObjetBDD {
 		}
 	}
 	
-	function ecrireFromDateCategorie($dataRepartition) {
+	function ecrireFromDateCategorie($data) {
 		/*
 		 * Recuperation de la cle, si existante
 		 */
 		$data = $this->encodeData ( $data );
-		if ($data ["categorie"] > 0 && strlen ( $data ["date_debut_periode"] ) > 0) {
+		if ($data ["categorie_id"] > 0 && strlen ( $data ["date_debut_periode"] ) > 0) {
 			$date = $this->formatDateLocaleVersDB ( $data ["date_debut_periode"] );
 			$sql = "select repartition_id from repartition
 				where categorie_id = " . $data["categorie_id"] . "
-					and date_debut_periode '" . $date . "'";
+					and date_debut_periode = '" . $date . "'";
 			$dataCle = $this->lireParam($sql);
-			if ($dataCle["categorie_id"] > 0) {
-				$data["categorie_id"] = $dataCle["categorie_id"];
+			if ($dataCle["repartition_id"] > 0) {
+				$data["repartition_id"] = $dataCle["repartition_id"];
 			} else
-				$data["categorie_id"] = 0;
+				$data["repartition_id"] = 0;
 			return $this->ecrire($data);
 		} else
 			return -1;
@@ -1231,12 +1231,12 @@ class DistribQuotidien extends ObjetBDD {
 			$date = $this->formatDateLocaleVersDB ( $data ["distrib_quotidien_date"] );			
 			$sql = "select distrib_quotidien_id from distrib_quotidien
 				where bassin_id = " . $data["bassin_id"] . " 
-					and distrib_quotidien_date '" . $date . "'";
+					and distrib_quotidien_date = '" . $date . "'";
 			$dataCle = $this->lireParam($sql);
 			if ($dataCle["distrib_quotidien_id"] > 0) {
 				$data["distrib_quotidien_id"] = $dataCle["distrib_quotidien_id"];
 			} else 
-				$data["distri_quotidien_id"] = 0;
+				$data["distrib_quotidien_id"] = 0;
 			return $this->ecrire($data);
 		} else 
 			return -1;		
