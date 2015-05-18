@@ -1,6 +1,19 @@
 Nouveautés
 ===========
 
+Version 1.3 du 18 mai 2015
+--------------------------
+Améliorations :
+- modification de l'affichage des analyses d'eau
+- ajout d'une colonne de débit d'eau dans les analyses d'eau et de la saisie des métaux lourds
+- ajout de la gestion de l'alimentation des juvéniles traités par lots (stade post-larve)
+
+Corrections de bogues :
+- correction d'un problème de droits dans l'accès à la saisie des analyses des circuits d'eau
+- corrections de libellés
+- corrections d'anomalies liées au mode développement/production
+- correction de la navigation dans le module de gestion de la campagne de reproduction, pour un poisson
+
 Version 1.2.1 du 20 avril 2015
 ------------------------------
 Correction d'un bug lors de la génération d'une nouvelle répartition : le numéro de la répartition précédente n'était pas restranscrit
