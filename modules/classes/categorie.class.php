@@ -40,6 +40,17 @@ class Categorie extends ObjetBDD {
 		$param ["fullDescription"] = 1;
 		parent::__construct ( $bdd, $param );
 	}
+
+	/**
+	 * Retourne uniquement les categories 1 et 2
+	 * @return tableau
+	 */
+	function getListeSansLot() {
+		$sql = "select * from categorie
+				where categorie_id in (1, 2)
+				order by categorie_id";
+		return ($this->getListeParam($sql));
+	}
 }
 
 ?>

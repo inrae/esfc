@@ -68,7 +68,7 @@ switch ($t_module ["param"]) {
 		 * Recherche de la categorie
 		 */
 		$categorie = new Categorie ( $bdd, $ObjetBDDParam );
-		$smarty->assign ( "categorie", $categorie->getListe ( 2 ) );
+		$smarty->assign ( "categorie", $categorie->getListeSansLot ( ) );
 		break;
 	case "display":
 		/*
