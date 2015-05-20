@@ -158,13 +158,17 @@ class Bassin extends ObjetBDD {
 	function getListe($actif = -1, $usage = 0) {
 		$sql = "select * from bassin ";
 		$where = " where ";
-		if ($actif > - 1)
+		$bwhere = false;
+		if ($actif > - 1) {
 			$where .= " actif = " . $actif;
-		if ($usage > 0) {
-			if ($where != " where ")
-				$where .= " and ";
-			$where .= " bassin_usage_id = " . $usage;
+			$bwhere = true;
 		}
+		if ($usage > 0) {
+			$bwhere == true ? $where .= " and " : $bwhere = true;
+			$where .= " bassin_usage_id = " . $usage;		
+		}
+		if ($bwhere == false)
+			$where = "";
 		$order = " order by bassin_nom";
 		return ($this->getListeParam ( $sql . $where . $order ));
 	}
