@@ -9,6 +9,14 @@
  */
 include_once ("framework/common.inc.php");
 /**
+ * Verification des donnees entrantes.
+ * Codage UTF-8
+ */
+if (check_encoding($_REQUEST) == false) {
+	$message = "Problème dans les données fournies : l'encodage des caractères n'est pas celui attendu";
+	$_REQUEST["module"] = "default";
+}
+/**
  * Recuperation du module
  */
 unset ( $module );
