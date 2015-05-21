@@ -21,5 +21,9 @@
 			</div>
 		</td>
 	</tr>
+	<tr>
+	<td colspan="2">
+	{$LANG.login.25}
+	</td>
 </table>
 </form>

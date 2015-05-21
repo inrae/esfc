@@ -179,6 +179,9 @@ $LANG["login"][21] = "Générez un mot de passe aléatoire";
 $LANG["login"][22] = "Générez";
 $LANG["login"][23] = "Ancien mot de passe";
 $LANG["login"][24] = "Nouveau mot de passe";
+$LANG["login"][25] = "Le mot de passe doit avoir une longueur minimale de 8 caractères<br>
+Il doit comprendre au minimum 3 types de caractères différents<br>
+(minuscule, majuscule, chiffre, ponctuation et autre symboles)";
 
 $LANG["ObjetBDDError"][0] = "Le champ ";
 $LANG["ObjetBDDError"][1] = " n'est pas numerique.";

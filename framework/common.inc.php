@@ -24,7 +24,9 @@ ini_set ( 'session.gc_maxlifetime', $APPLI_session_ttl );
 // $session_path = ini_get('session.save_path').'/'.$APPLI_path_stockage_session;
 // if (!is_dir($session_path)) mkdir($session_path);
 // ini_set('session.save_path',$session_path);
-
+ini_set( 'session.cookie_httponly', 1 );
+if ($APPLI_modeDeveloppement == false)
+	ini_set('session.cookie_secure', true);
 session_set_cookie_params ( $APPLI_session_ttl );
 /**
  * Integration de la bibliotheque ADODB
