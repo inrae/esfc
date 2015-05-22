@@ -292,7 +292,7 @@ class DocumentAttach extends ObjetBDD {
 			/*
 			 * Recuperation de l'extension
 			 */
-			$extension = $this->encode(substr ( $file ["name"], strrpos ( $file ["name"], "." ) + 1 ));
+			$extension = $this->encodeData(substr ( $file ["name"], strrpos ( $file ["name"], "." ) + 1 ));
 			$mimeType = new MimeType ( $this->connection, $this->paramori );
 			$mime_type_id = $mimeType->getTypeMime ( $extension );
 			if ($mime_type_id > 0) {
