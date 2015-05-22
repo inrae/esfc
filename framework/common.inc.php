@@ -15,6 +15,11 @@ include_once ("param/param.default.inc.php");
 include_once ("param/param.inc.php");
 
 /**
+ * Protection contre les IFRAMES
+ */
+header("X-Frame-Options: SAMEORIGIN");
+
+/**
  * Gestion de la session
  */
 // ini_set('session.cookie_secure', 1);

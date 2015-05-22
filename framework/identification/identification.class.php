@@ -134,6 +134,15 @@ class Identification {
 				echo "Cette fonction doit être appelee apres init_LDAP";
 				die ();
 			}
+			$login = str_replace(array('\\', '*', '(', ')'), array('\5c', '\2a', '\28', '\29'), $login);
+			for ($i = 0; $i<strlen($login); $i++) {
+				$char = substr($login, $i, 1);
+				if (ord($char)<32) {
+					$hex = dechex(ord($char));
+					if (strlen($hex) == 1) $hex = '0' . $hex;
+					$login = str_replace($char, '\\' . $hex, $login);
+				}
+			}
 			$ldap = @ldap_connect ( $this->LDAP_address, $this->LDAP_port ) or die ( "Impossible de se connecter au serveur LDAP." );
 			if ($this->LDAP_v3) {
 				ldap_set_option ( $ldap, LDAP_OPT_PROTOCOL_VERSION, 3 );

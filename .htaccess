@@ -1,9 +1,10 @@
+<LimitExcept GET POST>
+Deny from all
+</LimitExcept>
 RewriteEngine off
 Options -Indexes
-<IfModule php5_module>
-    php_flag session.cookie_httponly on
-    php_flag session.cookie_secure on
-    php_flag register_globals off
-	php_flag magic_quotes_gpc true
-	php_flag display_errors Off
-</IfModule>
+php_flag session.cookie_httponly on
+php_flag session.cookie_secure on
+php_flag register_globals off
+php_flag magic_quotes_gpc true
+php_flag display_errors Off
