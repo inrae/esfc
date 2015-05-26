@@ -8,7 +8,12 @@
 include_once 'modules/classes/bassin.class.php';
 $dataClass = new Bassin($bdd,$ObjetBDDParam);
 $keyName = "bassin_id";
+if (isset ($_REQUEST[$keyName])) {
 $id = $_REQUEST[$keyName];
+} elseif (isset($_SESSION ["bassin_id"])) {
+	$id = $_SESSION["bassin_id"];
+} else 
+	$id = -1;
 
 switch ($t_module["param"]) {
 	case "list":
@@ -68,6 +73,8 @@ switch ($t_module["param"]) {
 		*/
 		$smarty->assign("corps", "bassin/bassinDisplay.tpl");
 		$smarty->assign("bassinParentModule", $_SESSION["bassinParentModule"]);
+		$_SESSION["poissonDetailParent"] = "bassinDisplay";
+		$_SESSION["bassin_id"] = $id;
 		break;
 	case "change":
 		/*
