@@ -30,15 +30,15 @@ $( "input[type='text']" ).change(function() {
 		}
 	} else if (name == "riviere_mls") {
 		if (valeur > 0) {
-			$("#debit_eau_riviere").val(Math.floor(valeur * 100 / 6));
+			$("#debit_eau_riviere").val(Math.floor(valeur * 6 / 100));
 		}
 	}else if (name == "mer_mls") {
 		if (valeur > 0) {
-			$("#debit_eau_mer").val(Math.floor(valeur * 100 / 6));
+			$("#debit_eau_mer").val(Math.floor(valeur * 6 / 100));
 		}
 	}else if (name == "forage_mls") {
 		if (valeur > 0) {
-			$("#debit_eau_forage").val(Math.floor(valeur * 100 / 6));
+			$("#debit_eau_forage").val(Math.floor(valeur * 6 / 100));
 		}
 	}
 	} );
