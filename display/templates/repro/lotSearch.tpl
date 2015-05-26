@@ -24,9 +24,10 @@ Année :
 </form>
 </fieldset>
 </td>
+</tr>
+<tr>
 <td>
-{include file="repro/alimJuv.tpl"}
+{include file="repro/lotList.tpl"}
 </td>
 </tr>
 </table>
-{include file="repro/lotList.tpl"}

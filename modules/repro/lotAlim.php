@@ -29,7 +29,8 @@ $alimentQuotidien = new AlimentQuotidien ( $bdd, $ObjetBDDParam );
 $distribQuotidien = new DistribQuotidien ( $bdd, $ObjetBDDParam );
 $lotRepartTempate = new LotRepartTemplate ( $bdd, $ObjetBDDParam );
 $repartition = new Repartition ( $bdd, $ObjetBDDParam );
-$lots = $lot->getListAfterDate ( $paramAlim ["date_debut_alim"] );
+//$lots = $lot->getListAfterDate ( $paramAlim ["date_debut_alim"] );
+$lots = $lot->getDataFromListe($_REQUEST["lots"]);
 $date = DateTime::createFromFormat ( "d/m/Y", $paramAlim ["date_debut_alim"] );
 
 /**

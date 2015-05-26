@@ -215,6 +215,34 @@ class Lot extends ObjetBDD {
 		} else
 			return null;
 	}
+
+	/**
+	 * Retourne les informations sur les lots pour la liste des lots fournie
+	 * @param array $lots
+	 * @return tableau
+	 */
+	function getDataFromListe($lots) {
+		$empty = true;
+		$liste = "";
+		foreach($lots as $key => $value) {
+			if ($value > 0) {
+			if ($empty == false) {
+				$liste .= ", ";
+			} else 
+				$empty = false;
+			}
+			$liste .= $value;
+		}
+		if ($empty == false) {
+			$sql = "select lot_id, lot_nom, croisement_id, nb_larve_initial, eclosion_date,
+					s.annee, sequence_nom
+				from lot
+				join croisement using (croisement_id)
+				join sequence s using (sequence_id)
+				where lot_id in (".$liste.")";
+			return $this->getListeParam($sql);
+		}
+	}
 }
 
 /**
