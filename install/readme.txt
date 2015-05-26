@@ -1,6 +1,19 @@
 Nouveautés
 ===========
 
+Version 1.3.2 du xx-mmm-2015
+----------------------------
+Corrections de bogues :
+- l'import de documents était impossible après rajout d'une fonction de sécurité
+
+Améliorations :
+- implémentation de plusieurs mécanismes de sécurité
+
+Version 1.3.1 du 20 mai 2015
+----------------------------
+Corrections de bogues :
+- En modification d'un événement, le bassin d'origine n'est pas renseigné
+
 Version 1.3 du 18 mai 2015
 --------------------------
 Améliorations :
