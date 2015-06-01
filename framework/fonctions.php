@@ -145,4 +145,20 @@ function check_encoding($data) {
 	}
 	return $result;
 }
+
+/**
+ * Encode les donnees en html avant envoi vers le navigateur
+ * @param unknown $data
+ * @return string
+ */
+function encodehtml($data) {
+	if (is_array($data)) {
+		foreach ($data as $key => $value) {
+			$data[$key] = encodehtml($value);
+		}
+	} else {
+		$data = htmlspecialchars($data);
+	}
+	return $data;
+}
 ?>

@@ -52,7 +52,7 @@ include_once ('plugins/objetBDD-2.4.2/ObjetBDD.php');
 include_once ('plugins/objetBDD-2.4.2/ObjetBDD_functions.php');
 if ($APPLI_utf8 == true)
 	$ObjetBDDParam ["UTF8"] = true;
-
+$ObjetBDDParam ["codageHtml"] = false;
 /**
  * Integration de la classe gerant la navigation dans les modules
  */

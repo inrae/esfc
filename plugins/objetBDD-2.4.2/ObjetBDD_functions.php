@@ -71,6 +71,7 @@ function formatErrorData($data) {
 	$LANG = & $GLOBALS['LANG'];
 	$res = "";
 	foreach ($data as $key => $value) {
+		$data[$key]["valeur"] = htmlentities($data[$key]["valeur"]);
 		if ($data[$key]["code"]==0) {
 			$res .= $data[$key]["message"]."<br>";
 		}elseif ($data[$key]["code"]==1) {

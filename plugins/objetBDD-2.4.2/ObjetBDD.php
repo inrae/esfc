@@ -255,13 +255,13 @@ class ObjetBDD {
 	public $srid;
 	/**
 	 * Caractere utilise pour entourer les noms des colonnes
-	 * 
+	 *
 	 * @var string
 	 */
 	public $quoteIdentifier;
 	/**
 	 * Transforme les virgules en points, pour les champs numeriques
-	 * 
+	 *
 	 * @var integer
 	 */
 	public $transformComma;
@@ -511,9 +511,10 @@ class ObjetBDD {
 				$dates = $this->utilDatesDBVersLocale ( $this->types, $dates );
 				$collection = $dates [0];
 			}
-			if ($this->codageHtml == true) {
+			if ($this->codageHtml == true)
 				$collection = $this->htmlEncode ( $collection );
-			}
+			if ($this->UTF8 == true)
+				$collection = $this->utf8Encode ( $collection );
 			$rs->close ();
 		}
 		return $collection;
@@ -553,9 +554,10 @@ class ObjetBDD {
 			$dates = $this->utilDatesDBVersLocale ( $this->types, $dates );
 			$collection = $dates [0];
 		}
-		if ($this->codageHtml == true) {
+		if ($this->codageHtml == true)
 			$collection = $this->htmlEncode ( $collection );
-		}
+		if ($this->UTF8 == true)
+			$collection = $this->utf8Encode ( $collection );
 		return $collection;
 	}
 	/**
@@ -681,9 +683,9 @@ class ObjetBDD {
 		/*
 		 * Decodage HTML (retour de saisie avec codage prealable)
 		 */
-		if ($this->codageHtml == true) {
-			$data = $this->htmlDecode ( $data );
-		}
+		// if ($this->codageHtml == true)
+		$data = $this->htmlDecode ( $data );
+		
 		/*
 		 * Verification des donnees entrees
 		 */
@@ -936,9 +938,10 @@ class ObjetBDD {
 				$collection = $this->utilDatesDBVersLocale ( $this->types, $collection );
 			}
 		}
-		if ($this->codageHtml == true) {
+		if ($this->codageHtml == true)
 			$collection = $this->htmlEncode ( $collection );
-		}
+		if ($this->UTF8 == true)
+			$collection = $this->utf8Encode ( $collection );
 		return $collection;
 	}
 	/**
@@ -970,9 +973,10 @@ class ObjetBDD {
 				$collection = $this->utilDatesDBVersLocale ( $this->types, $collection );
 			}
 		}
-		if ($this->codageHtml == true) {
+		if ($this->codageHtml == true)
 			$collection = $this->htmlEncode ( $collection );
-		}
+		if ($this->UTF8 == true)
+			$collection = $this->utf8Encode ( $collection );
 		return $collection;
 	}
 	/**
@@ -1334,27 +1338,29 @@ class ObjetBDD {
 	private function htmlEncode($data) {
 		if (is_array ( $data )) {
 			foreach ( $data as $key => $value ) {
-				if (is_array ( $value )) {
-					foreach ( $value as $key1 => $value1 ) {
-						$data [$key] [$key1] = htmlspecialchars ( $value1 );
-						/*
-						 * Traitement de l'UTF8
-						 */
-						if ($this->param ["utf8"] == true)
-							$data [$key] [$key1] = utf8_encode ( $data [$key] [$key1] );
-					}
-				} else {
-					$data [$key] = htmlspecialchars ( $value );
-					if ($this->param ["utf8"] == true)
-						$data [$key] = utf8_encode ( $data [$key] );
-				}
+				$data [$key] = $this->htmlEncode ( $value );
 			}
 		} else {
 			$data = htmlspecialchars ( $data );
-			if ($this->param ["utf8"] == true)
-				$data = utf8_encode ( $data );
 		}
 		return $data;
+	}
+	
+	/**
+	 * Encode en utf8 si demande
+	 * 
+	 * @param unknown $data        	
+	 */
+	private function utf8Encode($data) {
+		return $data;
+/*		if (is_array ( $data )) {
+			foreach ( $data as $key => $value ) {
+				$data [$key] = $this->utf8Encode ( $value );
+			}
+		} else {
+			$data = utf8_encode ( $data );
+		}
+		return $data;*/
 	}
 	
 	/**
@@ -1526,7 +1532,7 @@ class ObjetBDD {
 	/**
 	 * Fonction encodant toutes les quotes pour le tableau fourni en parametre
 	 * Devrait etre appelee avant toute requete SQL
-	 * 
+	 *
 	 * @param array|string $data        	
 	 * @return array|string
 	 */
@@ -1536,15 +1542,7 @@ class ObjetBDD {
 			 * Traitement des tableaux
 			 */
 			foreach ( $data as $key => $value ) {
-				if ($this->typeDatabase == 'postgre') {
-					if ($this->UTF8 == true) {
-						if (mb_detect_encoding ( $value ) != "UTF-8")
-							$data [$key] = mb_convert_encoding ( $value, 'UTF-8' );
-					}
-					$data [$key] = pg_escape_string ( $value );
-				} else {
-					$data [$key] = addslashes ( $value );
-				}
+				$data [$key] = $this->encodeData ( $value );
 			}
 		} else {
 			/*

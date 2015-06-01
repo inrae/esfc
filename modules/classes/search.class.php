@@ -68,6 +68,7 @@ class SearchParam {
 	 * Retourne les parametres existants
 	 */
 	function getParam() {
+		//return $this->encodeData($this->param);
 		return $this->param;
 	}
 	/**
@@ -81,6 +82,22 @@ class SearchParam {
 		} else {
 			return 0;
 		}
+	}
+
+	/**
+	 * Encode les donnees avant de les envoyer au navigateur
+	 * @param unknown $data
+	 * @return string|array
+	 */
+	function encodeData ($data) {
+		if (is_array ( $data )) {
+			foreach ($data as $key => $value) {
+				$data[$key] = $this->encodeData($value);
+			}
+		} else {
+			$data = htmlspecialchars($data);
+		}
+		return $data;
 	}
 }
 /**

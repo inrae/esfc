@@ -216,7 +216,8 @@ if ($t_module ["ajax"] != 1) {
 	 */
 	if ($message == "")
 		$message = $LANG ["message"] [0];
-	$smarty->assign ( "message", $message );
+	$smarty->assign("message", $message);
+//	$smarty->assign ( "message", htmlspecialchars($message) );
 	/*
 	 * Gestion du menu Rajout du 17/8/09 : mise en cache du menu
 	 */
@@ -238,6 +239,14 @@ if ($t_module ["ajax"] != 1) {
 		$smarty->assign ( "developpementMode", $texteDeveloppement );
 	}
 	$smarty->assign ( "moduleListe", $_SESSION ["moduleListe"] );
+	/*
+	 * Encodage ultime des donnees avant envoi vers le navigateur
+	 */
+	foreach ($smarty->getTemplateVars() as $key => $value) {
+		if ($key != "menu" && $key != "LANG" && $key != "message") {
+			$smarty->assign($key, encodehtml($value));
+		}
+	}
 	$smarty->display ( $SMARTY_principal );
 }
 ?>
