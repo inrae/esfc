@@ -17,6 +17,10 @@ include "modules/repro/setAnnee.php";
 if (isset ( $_SESSION ["sequence_id"] ))
 	$smarty->assign ( "sequence_id", $_SESSION ["sequence_id"] );
 
+if (isset ($_REQUEST["annee"]) && !($_REQUEST["annee"] > 0 )  ) {
+	$_REQUEST['annee'] = "";
+}
+
 switch ($t_module ["param"]) {
 	case "list":
 		/*

@@ -23,6 +23,7 @@ header("X-Frame-Options: SAMEORIGIN");
  * Gestion de la session
  */
 // ini_set('session.cookie_secure', 1);
+ini_set("session.use_strict_mode", true);
 ini_set('session.gc_probability', 1);
 ini_set('session.cookie_lifetime', $APPLI_session_ttl);
 ini_set ( 'session.gc_maxlifetime', $APPLI_session_ttl );
@@ -32,7 +33,7 @@ ini_set ( 'session.gc_maxlifetime', $APPLI_session_ttl );
 ini_set( 'session.cookie_httponly', 1 );
 if ($APPLI_modeDeveloppement == false)
 	ini_set('session.cookie_secure', true);
-session_set_cookie_params ( $APPLI_session_ttl );
+//session_set_cookie_params ( $APPLI_session_ttl );
 /**
  * Integration de la bibliotheque ADODB
  */
