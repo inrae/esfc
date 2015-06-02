@@ -165,7 +165,7 @@ class Bassin extends ObjetBDD {
 		}
 		if ($usage > 0) {
 			$bwhere == true ? $where .= " and " : $bwhere = true;
-			$where .= " bassin_usage_id = " . $usage;		
+			$where .= " bassin_usage_id = " . $usage;
 		}
 		if ($bwhere == false)
 			$where = "";
@@ -913,6 +913,12 @@ class AnalyseMetal extends ObjetBDD {
 		}
 	}
 }
+/**
+ * ORM de gestion de la table bassin_lot
+ * 
+ * @author quinton
+ *        
+ */
 class BassinLot extends ObjetBDD {
 	/**
 	 * Constructeur de la classe
@@ -1004,7 +1010,7 @@ class BassinLot extends ObjetBDD {
 	}
 	/**
 	 * Retourne le bassin precedemment utilise
-	 * 
+	 *
 	 * @param unknown $lot_id        	
 	 * @param unknown $bl_date_arrivee        	
 	 * @return array|NULL
@@ -1024,7 +1030,7 @@ class BassinLot extends ObjetBDD {
 	
 	/**
 	 * Retourne le bassin occupe a la date fournie par le lot considere
-	 * 
+	 *
 	 * @param int $lot_id        	
 	 * @param string $date        	
 	 * @return array|NULL

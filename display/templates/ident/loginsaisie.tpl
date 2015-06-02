@@ -27,11 +27,11 @@
 	
 	<tr>
 		<td>{$LANG.login.1} :</td>
-		<td><input type="password" id="pass1" name="pass1" onchange="verifieMdp(this.form.pass1, this.form.pass2)"></td>
+		<td><input type="password" autocomplete="off" id="pass1" name="pass1" onchange="verifieMdp(this.form.pass1, this.form.pass2)"></td>
 	</tr>
 	<tr>
 		<td>{$LANG.login.12} :</td>
-		<td><input type="password" id="pass2" name="pass2" onchange="verifieMdp(this.form.pass1, this.form.pass2)"></td>
+		<td><input type="password" id="pass2" autocomplete="off" name="pass2" onchange="verifieMdp(this.form.pass1, this.form.pass2)"></td>
 	</tr>
 	<tr>
 	<td>{$LANG.login.21} :</td>

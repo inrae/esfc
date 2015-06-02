@@ -22,7 +22,7 @@ function dataRead($dataClass, $id, $smartyPage, $idParent = null) {
 			 * Gestion des valeurs par defaut
 			 */
 		} else {
-			if (is_int ( $idParent ) || $idParent == null)
+			if (is_numeric ( $idParent ) || $idParent == null)
 				$data = $dataClass->getDefaultValue ( $idParent );
 		}
 		/*
