@@ -27,7 +27,7 @@ $cookieParam ["lifetime"] = $APPLI_session_ttl;
 if ($APPLI_modeDeveloppement == false)
 	$cookieParam ["secure"] = true;
 $cookieParam ["httponly"] = true;
-session_set_cookie_params ( $cookieParam ["lifetime"], $cookieParam ["path"], $cookieParam ["domain"], $cookieParam ["secure"], $cookieParam ["httponly"] );
+//session_set_cookie_params ( $cookieParam ["lifetime"], $cookieParam ["path"], $cookieParam ["domain"], $cookieParam ["secure"], $cookieParam ["httponly"] );
 // ini_set('session.cookie_secure', 1);
 ini_set ( "session.use_strict_mode", true );
 ini_set ( 'session.gc_probability', 1 );
@@ -79,7 +79,7 @@ include_once "modules/beforesession.inc.php";
 /*
  * Regeneration du cookie de session
  */
-setcookie ( session_name (), session_id (), time () + $APPLI_session_ttl, '/' );
+setcookie ( session_name (), session_id (), time () + $APPLI_session_ttl, $cookieParam ["path"], $cookieParam ["domain"], $cookieParam ["secure"], $cookieParam ["httponly"] );
 $identification = new Identification ();
 $identification->setidenttype ( $ident_type );
 if ($ident_type == "CAS") {
@@ -219,7 +219,6 @@ if (isset ( $_SESSION ["gestionDroit"] ) && $APPLI_modeDeveloppement == false) {
 include_once 'modules/fonctions.php';
 
 include_once 'framework/functionsDebug.php';
-
 /*
  * Chargement des traitements communs specifiques a l'application
  */

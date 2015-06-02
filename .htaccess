@@ -1,15 +1,18 @@
 <LimitExcept GET POST>
 Deny from all
 </LimitExcept>
-RewriteEngine off
-Options -Indexes
+#Options -Indexes
 php_flag session.cookie_httponly on
 php_flag session.cookie_secure on
 php_flag register_globals off
 php_flag magic_quotes_gpc true
 php_flag display_errors Off
-<ifModule mod_headers.c>
-Header set X-XSS-Protection "1; mode=block"
-Header always append X-Frame-Options SAMEORIGIN
-Header set X-Content-Type-Options: "nosniff”
-</ifModule>
+Header unset ETag
+Header set Cache-Control "max-age=0, no-cache, no-store, must-revalidate, private"
+Header set Pragma "no-cache"
+Header set X-Frame-Options SAMEORIGIN
+Header set X-XSS-Protection: "1; mode=block"
+Header set X-Content-Type-Options: "nosniff"
+<FilesMatch "\.(ico|pdf|flv|jpg|jpeg|png|gif|js|css|swf)$">
+    Header set Cache-Control "max-age=604800, private"
+</FilesMatch>

@@ -15,7 +15,7 @@
  */
 function dataRead($dataClass, $id, $smartyPage, $idParent = null) {
 	global $smarty;
-	if (is_int ( $id )) {
+	if (is_numeric ( $id )) {
 		if ($id > 0) {
 			$data = $dataClass->lire ( $id );
 			/*
@@ -31,7 +31,7 @@ function dataRead($dataClass, $id, $smartyPage, $idParent = null) {
 		$smarty->assign ( "data", $data );
 		$smarty->assign ( "corps", $smartyPage );
 		return $data;
-	}
+	} ;
 }
 /**
  * Ecrit un enregistrement en base de donnees

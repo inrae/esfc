@@ -31,6 +31,8 @@ class SearchParam {
 			$this->param = array ();
 		$this->isSearch = 0;
 		$this->param ["isSearch"] = 0;
+		if (is_array ( $this->paramNum ))
+			$this->paramNum = array_flip ( $this->paramNum );
 	}
 	/**
 	 * Stocke les parametres fournis
@@ -186,6 +188,7 @@ class SearchCircuitEau extends SearchParam {
 				"offset",
 				"limit" 
 		);
+		parent::__construct ();
 	}
 }
 /**
@@ -204,6 +207,8 @@ class SearchAnomalie extends SearchParam {
 				"statut",
 				"type" 
 		);
+		parent::__construct ();
+		
 	}
 }
 /**
@@ -222,6 +227,8 @@ class SearchRepartTemplate extends SearchParam {
 				"categorie_id",
 				"actif" 
 		);
+		parent::__construct ();
+		
 	}
 }
 /**
@@ -239,7 +246,13 @@ class SearchRepartition extends SearchParam {
 				"offset" => 0,
 				"limit" => 10 
 		);
-		$this->paramNum = array ( "categorie_id", "offset", "limit" );
+		$this->paramNum = array (
+				"categorie_id",
+				"offset",
+				"limit" 
+		);
+		parent::__construct ();
+		
 	}
 }
 /**
@@ -256,6 +269,8 @@ class SearchAlimentation extends SearchParam {
 				"date_debut" => date_format ( $date_debut, "d/m/Y" ),
 				"date_fin" => date ( "d/m/Y" ) 
 		);
+		parent::__construct ();
+		
 	}
 }
 
