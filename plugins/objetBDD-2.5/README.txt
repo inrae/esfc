@@ -1,5 +1,9 @@
 News
 ====
+Version 2.5 - 02/06/2015
+	* New security controls
+	* utf8 encode now separate from htmlentities
+
 Version 2.4.2.1 - 30/03/2015
 	* New parameter : transformComma = 1. If 1, all commas in numeric field are transformed to a decimal point (for french keyboards).
 
