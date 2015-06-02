@@ -233,6 +233,12 @@ class ObjetBDD {
 	 */
 	public $UTF8;
 	/**
+	 * Indique s'il faut ou non transformer les valeurs en UTF8
+	 * (application codée en UTF8, base de données en autre codage)
+	 * @var boolean
+	 */
+	public $toUTF8 = false;
+	/**
 	 * Tableau contenant les valeurs par defaut
 	 *
 	 * @var Array
@@ -513,7 +519,7 @@ class ObjetBDD {
 			}
 			if ($this->codageHtml == true)
 				$collection = $this->htmlEncode ( $collection );
-			if ($this->UTF8 == true)
+			if ($this->toUTF8 == true)
 				$collection = $this->utf8Encode ( $collection );
 			$rs->close ();
 		}
@@ -556,7 +562,7 @@ class ObjetBDD {
 		}
 		if ($this->codageHtml == true)
 			$collection = $this->htmlEncode ( $collection );
-		if ($this->UTF8 == true)
+		if ($this->toUTF8 == true)
 			$collection = $this->utf8Encode ( $collection );
 		return $collection;
 	}
@@ -940,7 +946,7 @@ class ObjetBDD {
 		}
 		if ($this->codageHtml == true)
 			$collection = $this->htmlEncode ( $collection );
-		if ($this->UTF8 == true)
+		if ($this->toUTF8 == true)
 			$collection = $this->utf8Encode ( $collection );
 		return $collection;
 	}
@@ -975,7 +981,7 @@ class ObjetBDD {
 		}
 		if ($this->codageHtml == true)
 			$collection = $this->htmlEncode ( $collection );
-		if ($this->UTF8 == true)
+		if ($this->toUTF8 == true)
 			$collection = $this->utf8Encode ( $collection );
 		return $collection;
 	}
@@ -1306,6 +1312,7 @@ class ObjetBDD {
 			// Formatage du tableau
 			$res = "";
 			foreach ( $this->errorData as $key => $value ) {
+				$data[$key]["valeur"] = htmlentities($data[$key]["valeur"]);
 				if ($this->errorData [$key] ["code"] == 0) {
 					$res .= $this->errorData [$key] ["message"] . "<br>";
 				} elseif ($this->errorData [$key] ["code"] == 1) {
@@ -1333,7 +1340,6 @@ class ObjetBDD {
 	 * @param
 	 *        	$data
 	 * @return $data Encode les donnees devant etre affichees en utilisant la fonction htmlspecialchars
-	 *         transforme en utf-8 depuis iso-8859-1 le cas echeant
 	 */
 	private function htmlEncode($data) {
 		if (is_array ( $data )) {
@@ -1353,14 +1359,14 @@ class ObjetBDD {
 	 */
 	private function utf8Encode($data) {
 		return $data;
-/*		if (is_array ( $data )) {
+		if (is_array ( $data )) {
 			foreach ( $data as $key => $value ) {
 				$data [$key] = $this->utf8Encode ( $value );
 			}
 		} else {
 			$data = utf8_encode ( $data );
 		}
-		return $data;*/
+		return $data;
 	}
 	
 	/**
