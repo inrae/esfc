@@ -6,7 +6,7 @@
 /**
  * Lit un enregistrement dans la base de donnees, affecte le tableau a Smarty,
  * et declenche l'affichage de la page associee
- * 
+ *
  * @param instance $dataClass        	
  * @param int $id        	
  * @param string $smartyPage        	
@@ -15,24 +15,27 @@
  */
 function dataRead($dataClass, $id, $smartyPage, $idParent = null) {
 	global $smarty;
-	if ($id > 0) {
-		$data = $dataClass->lire ( $id );
+	if (is_int ( $id )) {
+		if ($id > 0) {
+			$data = $dataClass->lire ( $id );
+			/*
+			 * Gestion des valeurs par defaut
+			 */
+		} else {
+			if (is_int ( $idParent ) || $idParent == null)
+				$data = $dataClass->getDefaultValue ( $idParent );
+		}
 		/*
-		 * Gestion des valeurs par defaut
+		 * Affectation des donnees a smarty
 		 */
-	} else {
-		$data = $dataClass->getDefaultValue ( $idParent );
+		$smarty->assign ( "data", $data );
+		$smarty->assign ( "corps", $smartyPage );
+		return $data;
 	}
-	/*
-	 * Affectation des donnees a smarty
-	 */
-	$smarty->assign ( "data", $data );
-	$smarty->assign ( "corps", $smartyPage );
-	return $data;
 }
 /**
  * Ecrit un enregistrement en base de donnees
- * 
+ *
  * @param instance $dataClass        	
  * @param array $data        	
  * @return int
@@ -58,7 +61,7 @@ function dataWrite($dataClass, $data) {
 }
 /**
  * Supprime un enregistrement en base de donnees
- * 
+ *
  * @param instance $dataClass        	
  * @param int $id        	
  * @return int
@@ -86,7 +89,7 @@ function dataDelete($dataClass, $id) {
 }
 /**
  * Modifie la langue utilisee dans l'application
- * 
+ *
  * @param string $langue        	
  */
 function setlanguage($langue) {
@@ -126,7 +129,7 @@ function setlanguage($langue) {
 
 /**
  * Fonction testant si la donnee fournie est de type UTF-8 ou non
- * 
+ *
  * @param array|string $data        	
  * @return boolean
  */
@@ -139,7 +142,7 @@ function check_encoding($data) {
 		}
 	} else {
 		if (strlen ( $data ) > 0) {
-			if (mb_check_encoding ( $data, "UTF-8" ) == false) 
+			if (mb_check_encoding ( $data, "UTF-8" ) == false)
 				$result = false;
 		}
 	}
@@ -148,16 +151,17 @@ function check_encoding($data) {
 
 /**
  * Encode les donnees en html avant envoi vers le navigateur
- * @param unknown $data
+ * 
+ * @param unknown $data        	
  * @return string
  */
 function encodehtml($data) {
-	if (is_array($data)) {
-		foreach ($data as $key => $value) {
-			$data[$key] = encodehtml($value);
+	if (is_array ( $data )) {
+		foreach ( $data as $key => $value ) {
+			$data [$key] = encodehtml ( $value );
 		}
 	} else {
-		$data = htmlspecialchars($data);
+		$data = htmlspecialchars ( $data );
 	}
 	return $data;
 }

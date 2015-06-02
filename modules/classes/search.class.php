@@ -1,11 +1,11 @@
 <?php
 /**
  * Classe de base pour gerer des parametres de recherche
-* Classe non instanciable, a heriter
-* L'instance doit etre conservee en variable de session
-* @author Eric Quinton
-*
-*/
+ * Classe non instanciable, a heriter
+ * L'instance doit etre conservee en variable de session
+ * @author Eric Quinton
+ *
+ */
 class SearchParam {
 	/**
 	 * Tableau des parametres geres par la classe
@@ -14,6 +14,7 @@ class SearchParam {
 	 * @var array
 	 */
 	public $param;
+	public $paramNum;
 	/**
 	 * Indique si la lecture des parametres a ete realisee au moins une fois
 	 * Permet ainsi de declencher ou non la recherche
@@ -29,7 +30,7 @@ class SearchParam {
 		if (! is_array ( $this->param ))
 			$this->param = array ();
 		$this->isSearch = 0;
-		$this->param["isSearch"] = 0;
+		$this->param ["isSearch"] = 0;
 	}
 	/**
 	 * Stocke les parametres fournis
@@ -48,15 +49,28 @@ class SearchParam {
 				/*
 				 * Recherche si une valeur de $data correspond a un parametre
 				 */
-				if (isset ( $data [$key] ))
+				if (isset ( $data [$key] )) {
+					/*
+					 * Recherche si la valeur doit etre numerique
+					 */
+					if (isset ( $this->paramNum [$key] )) {
+						if (! is_numeric ( $data [$key] ))
+							$data [$key] = "";
+					}
 					$this->param [$key] = $data [$key];
+				}
 			}
 		} else {
 			/*
 			 * Une donnee unique est fournie
 			 */
-			if (isset ( $this->param [$data] ) && ! is_null ( $valeur ))
+			if (isset ( $this->param [$data] ) && ! is_null ( $valeur )) {
+				if (isset ( $this->paramNum [$data] )) {
+					if (! is_numeric ( $valeur ))
+						$valeur = "";
+				}
 				$this->param [$data] = $valeur;
+			}
 		}
 		/*
 		 * Gestion de l'indicateur de recherche
@@ -68,7 +82,7 @@ class SearchParam {
 	 * Retourne les parametres existants
 	 */
 	function getParam() {
-		//return $this->encodeData($this->param);
+		// return $this->encodeData($this->param);
 		return $this->param;
 	}
 	/**
@@ -83,19 +97,20 @@ class SearchParam {
 			return 0;
 		}
 	}
-
+	
 	/**
 	 * Encode les donnees avant de les envoyer au navigateur
-	 * @param unknown $data
+	 *
+	 * @param unknown $data        	
 	 * @return string|array
 	 */
-	function encodeData ($data) {
+	function encodeData($data) {
 		if (is_array ( $data )) {
-			foreach ($data as $key => $value) {
-				$data[$key] = $this->encodeData($value);
+			foreach ( $data as $key => $value ) {
+				$data [$key] = $this->encodeData ( $value );
 			}
 		} else {
-			$data = htmlspecialchars($data);
+			$data = htmlspecialchars ( $data );
 		}
 		return $data;
 	}
@@ -114,7 +129,14 @@ class SearchPoisson extends SearchParam {
 				"texte" => "",
 				"categorie" => 1,
 				"displayMorpho" => 0,
-				"displayBassin" => 0
+				"displayBassin" => 0 
+		);
+		$this->paramNum = array (
+				"statut",
+				"displayMorpho",
+				"displayBassin",
+				"categorie",
+				"sexe" 
 		);
 		parent::__construct ();
 	}
@@ -134,6 +156,13 @@ class SearchBassin extends SearchParam {
 				"circuit_eau" => "",
 				"bassin_actif" => "" 
 		);
+		$this->paramNum = array (
+				"bassin_type",
+				"bassin_usage",
+				"bassin_zone",
+				"circuit_eau",
+				"bassin_actif" 
+		);
 		parent::__construct ();
 	}
 }
@@ -152,11 +181,16 @@ class SearchCircuitEau extends SearchParam {
 				"offset" => 0,
 				"limit" => 100 
 		);
+		$this->paramNum = array (
+				"circuit_eau_actif",
+				"offset",
+				"limit" 
+		);
 	}
 }
 /**
  * Classe de recherche des anomalies détectées dans la base de données
- * 
+ *
  * @author quinton
  *        
  */
@@ -166,11 +200,15 @@ class SearchAnomalie extends SearchParam {
 				"statut" => 0,
 				"type" => 0 
 		);
+		$this->paramNum = array (
+				"statut",
+				"type" 
+		);
 	}
 }
 /**
  * Classe de recherche des modèles de répartition des aliments
- * 
+ *
  * @author quinton
  *        
  */
@@ -180,69 +218,85 @@ class SearchRepartTemplate extends SearchParam {
 				"categorie_id" => 0,
 				"actif" => - 1 
 		);
+		$this->paramNum = array (
+				"categorie_id",
+				"actif" 
+		);
 	}
 }
 /**
  * Classe de recherche des répartions d'aliments dans les bassins
- * @author quinton
  *
+ * @author quinton
+ *        
  */
 class SearchRepartition extends SearchParam {
 	function __construct() {
-		$annee_prec = date ('Y') -1;
+		$annee_prec = date ( 'Y' ) - 1;
 		$this->param = array (
 				"categorie_id" => 0,
-				"date_reference" => date ( 'd/m/' ).$annee_prec,
+				"date_reference" => date ( 'd/m/' ) . $annee_prec,
 				"offset" => 0,
 				"limit" => 10 
 		);
+		$this->paramNum = array ( "categorie_id", "offset", "limit" );
 	}
 }
 /**
  * Classe de recherche des aliments
- * @author quinton
  *
+ * @author quinton
+ *        
  */
 class SearchAlimentation extends SearchParam {
 	function __construct() {
-		$date_debut = new DateTime();
-		date_sub($date_debut, new DateInterval("P30D"));
+		$date_debut = new DateTime ();
+		date_sub ( $date_debut, new DateInterval ( "P30D" ) );
 		$this->param = array (
-			"date_debut" => date_format($date_debut, "d/m/Y"),
-			"date_fin" => date("d/m/Y")
+				"date_debut" => date_format ( $date_debut, "d/m/Y" ),
+				"date_fin" => date ( "d/m/Y" ) 
 		);
-		
 	}
 }
 
 /**
  * Classe de recherche des poissons sélectionnés pour une repro
- * @author quinton
  *
+ * @author quinton
+ *        
  */
 class SearchRepro extends SearchParam {
 	function __construct() {
-		$this->param = array(
-				"annee" => date ('Y'),
-				"repro_statut_id" => 2
+		$this->param = array (
+				"annee" => date ( 'Y' ),
+				"repro_statut_id" => 2 
 		);
-		parent::__construct();
+		$this->paramNum = array (
+				"annee",
+				"repro_statut_id" 
+		);
+		parent::__construct ();
 	}
 }
 
 /**
  * Parametres utilises pour generer l'alimentation des juveniles
- * @author quinton
  *
+ * @author quinton
+ *        
  */
 class AlimJuv extends SearchParam {
 	function __construct() {
 		$this->param = array (
-				"date_debut_alim" =>date("d/m/Y"),
+				"date_debut_alim" => date ( "d/m/Y" ),
 				"duree" => 1,
-				"densite" => 1500
-				);
-		parent::__construct();
+				"densite" => 1500 
+		);
+		$this->paramNum = array (
+				"duree",
+				"densite" 
+		);
+		parent::__construct ();
 	}
 }
 ?>
