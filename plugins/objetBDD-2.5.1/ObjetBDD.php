@@ -24,7 +24,7 @@
  *
  * @author Eric Quinton, Franck Huby
  * @copyright (C) Eric Quinton 2006-2015
- * @version 2.4.2.1 du 30/03/2015
+ * @version 2.5.1 du 3 juin 2015
  * @package ObjetBDD
  *
  * Utilisation :
@@ -992,6 +992,31 @@ class ObjetBDD {
 	 */
 	function getList() {
 		return $this->getListe ();
+	}
+
+	/**
+	 * Fonction permettant de renvoyer la liste des enregistrements 
+	 * a partir de la cle du parent
+	 * @param int $parentId
+	 * @param number $order
+	 * @return tableau|NULL
+	 */
+	function getListFromParent($parentId, $order = 0) {
+		if ($parentId > 0 && strlen ( $this->parentAttrib ) > 0)  {
+			$sql = "select * from " . $this->table;
+			/*
+			 * Preparation du where
+			 */
+			if (strlen ( preg_replace ( "#[^A-Z]+#", "", $this->parentAttrib ) > 0 ))
+				$cle = $this->quoteIdentifier . $this->parentAttrib . $this->quoteIdentifier;
+			else
+				$cle = $this->parentAttrib;
+			$sql .= " where ".$cle." = ".$parentId;
+			if ($order > 0)
+				$sql .= " order by " . $order;
+			return $this->getListeParam($sql);
+		} else
+			return null;
 	}
 	/**
 	 * function utilDatesDBVersLocale
