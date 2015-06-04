@@ -295,17 +295,21 @@
 	<lotalimGenerate action="modules/repro/lotAlim.php" droits="reproGestion,bassinGestion" ajax="1" modulebefore="lotList"/>
 
 <!-- Gestion des droits -->
-	<appliList action="framework/droits/appli.php" param="list" droits="admin" retourlogin="1" menulevel="1" menuparent="7" menuorder="10" menudroits="admin" menuvalue="appliliste" menutitle="applilistetitle"  />
+	<appliList action="framework/droits/appli.php" param="list" droits="admin" retourlogin="1" menulevel="1" menuparent="7" menuorder="12" menudroits="admin" menuvalue="appliliste" menutitle="applilistetitle"  />
 	<appliDisplay action="framework/droits/appli.php" param="display" droits="admin" />
 	<appliChange action="framework/droits/appli.php" param="change" droits="admin" />
 	<appliWrite action="framework/droits/appli.php" param="write" droits="admin" retourok="appliDisplay" retourko="appliChange" modulebefore="appliChange" />
 	<appliDelete action="framework/droits/appli.php" param="delete" droits="admin" retoursuppr="appliList" retourko="appliChange"  modulebefore="appliChange"/>
 
-	<aclloginList action="framework/droits/login.php" param="list" droits="admin" retourlogin="1" menulevel="1" menuparent="7" menuorder="11" menudroits="admin" menuvalue="aclloginliste" menutitle="aclloginlistetitle"  />
+	<aclloginList action="framework/droits/login.php" param="list" droits="admin" retourlogin="1" menulevel="1" menuparent="7" menuorder="10" menudroits="admin" menuvalue="aclloginliste" menutitle="aclloginlistetitle"  />
 	<aclloginChange action="framework/droits/login.php" param="change" droits="admin" />
 	<aclloginWrite action="framework/droits/login.php" param="write" droits="admin" retourok="aclloginList" retourko="aclloginChange" modulebefore="aclloginChange" />
 	<aclloginDelete action="framework/droits/login.php" param="delete" droits="admin" retoursuppr="aclloginList" retourko="aclloginChange"  modulebefore="aclloginChange"/>
 
+	<groupList action="framework/droits/group.php" param="list" droits="admin" retourlogin="1" menulevel="1" menuparent="7" menuorder="11" menudroits="admin" menuvalue="groupliste" menutitle="grouplistetitle"  />
+	<groupChange action="framework/droits/group.php" param="change" droits="admin" />
+	<groupWrite action="framework/droits/group.php" param="write" droits="admin" retourok="groupList" retourko="groupChange" modulebefore="groupChange" />
+	<groupDelete action="framework/droits/group.php" param="delete" droits="admin" retoursuppr="groupList" retourko="groupChange"  modulebefore="groupChange"/>
 
 	<acoDisplay action="framework/droits/aco.php" param="display" droits="admin" />
 	<acoChange action="framework/droits/aco.php" param="change" droits="admin" />

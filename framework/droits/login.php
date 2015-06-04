@@ -24,7 +24,9 @@ switch ($t_module["param"]) {
 		 * If is a new record, generate a new record with default value :
 		 * $_REQUEST["idParent"] contains the identifiant of the parent record
 		 */
-		dataRead($dataClass, $id, "droits/loginChange.tpl");
+		$data = dataRead($dataClass, $id, "droits/loginChange.tpl");
+		if (strlen($data["login"]) > 0) 
+		$smarty->assign ("droits", $dataClass->getListDroits($data["login"], $GACL_aco));
 		break;
 	case "write":
 		/*

@@ -3,22 +3,31 @@
  * @author Eric Quinton
  * @copyright Copyright (c) 2015, IRSTEA / Eric Quinton
  * @license http://www.cecill.info/licences/Licence_CeCILL-C_V1-fr.html LICENCE DE LOGICIEL LIBRE CeCILL-C
- *  Creation 3 juin 2015
+ *  Creation 4 juin 2015
  */
+ 
 include_once 'framework/droits/droits.class.php';
-$dataClass = new Aclaco($bdd_gacl,$ObjetBDDParam);
-$keyName = "aclaco_id";
+$dataClass = new Aclgroup($bdd_gacl,$ObjetBDDParam);
+$keyName = "aclgroup_id";
 $id = $_REQUEST[$keyName];
 
 switch ($t_module["param"]) {
-
+	case "list":
+		/*
+		 * Display the list of all records of the table
+		 */
+		$smarty->assign("data", $dataClass->getGroups());
+		$smarty->assign("corps", "droits/groupList.tpl");
+		break;
 	case "display":
 		/*
 		 * Display the detail of the record
 		 */
 		$data = $dataClass->lire($id);
 		$smarty->assign("data", $data);
-		$smarty->assign("corps", "droits/appliDisplay.tpl");
+		$smarty->assign("corps", "droits/groupDisplay.tpl");
+		//$aclAco = new Aclaco($bdd_gacl, $ObjetBDDParam);
+		//$smarty->assign ("dataAco", $aclAco->getListFromParent($id, 2));
 		break;
 	case "change":
 		/*
@@ -26,11 +35,12 @@ switch ($t_module["param"]) {
 		 * If is a new record, generate a new record with default value :
 		 * $_REQUEST["idParent"] contains the identifiant of the parent record
 		 */
-		$data = dataRead($dataClass, $id, "droits/acoChange.tpl", $_REQUEST["aclappli_id"]);
-		$aclAppli = new Aclappli($bdd_gacl, $ObjetBDDParam);
-		$smarty->assign("dataAppli", $aclAppli->lire($data["aclappli_id"]));
-		$aclgroup = new Aclgroup($bdd_gacl, $ObjetBDDParam);
-		$smarty->assign("groupes", $aclgroup->getGroupsFromAco($id));
+		dataRead($dataClass, $id, "droits/groupChange.tpl", $_REQUEST["aclgroup_id_parent"]);
+		/*
+		 * Recuperation des logins associes
+		 */
+		$acllogin = new Acllogin($bdd_gacl, $ObjetBDDParam);
+		$smarty->assign("logins", $acllogin->getAllFromGroup($id));
 		break;
 	case "write":
 		/*
@@ -48,5 +58,4 @@ switch ($t_module["param"]) {
 		dataDelete($dataClass, $id);
 		break;
 }
-
 ?>

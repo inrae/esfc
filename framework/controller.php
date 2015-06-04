@@ -12,15 +12,15 @@ include_once ("framework/common.inc.php");
  * Verification des donnees entrantes.
  * Codage UTF-8
  */
-if (check_encoding($_REQUEST) == false) {
+if (check_encoding ( $_REQUEST ) == false) {
 	$message = "Problème dans les données fournies : l'encodage des caractères n'est pas celui attendu";
-	$_REQUEST["module"] = "default";
+	$_REQUEST ["module"] = "default";
 }
 /**
  * Recuperation du module
  */
 unset ( $module );
-if (isset ( $_REQUEST ["module"] )&& strlen($_REQUEST["module"]) > 0 ) {
+if (isset ( $_REQUEST ["module"] ) && strlen ( $_REQUEST ["module"] ) > 0) {
 	$module = $_REQUEST ["module"];
 } else {
 	/*
@@ -39,8 +39,8 @@ while ( isset ( $module ) ) {
 	$t_module = $navigation->getModule ( $module );
 	/*
 	 * Verification si le login est requis
-	*/
-	if (strlen ( $t_module ["droits"] ) > 1 || $t_module ["loginrequis"] == 1 || isset($_REQUEST["login"])) {
+	 */
+	if (strlen ( $t_module ["droits"] ) > 1 || $t_module ["loginrequis"] == 1 || isset ( $_REQUEST ["login"] )) {
 		/*
 		 * Verification du login
 		 */
@@ -82,9 +82,9 @@ while ( isset ( $module ) ) {
 					/*
 					 * Reinitialisation du menu
 					 */
-					if (isset ( $_SESSION ["login"] )){
+					if (isset ( $_SESSION ["login"] )) {
 						unset ( $_SESSION ["menu"] );
-					}						
+					}
 				} else {
 					/*
 					 * Gestion de la saisie du login
@@ -113,7 +113,7 @@ while ( isset ( $module ) ) {
 				include "framework/identification/setDroits.php";
 				/*
 				 * Integration des commandes post login
-				*/
+				 */
 				include "modules/postLogin.php";
 			}
 		}
@@ -129,10 +129,16 @@ while ( isset ( $module ) ) {
 			$resident = 0;
 			$motifErreur = "nologin";
 		} else {
-			$droits_array = explode(",", $t_module["droits"]);
+			$droits_array = explode ( ",", $t_module ["droits"] );
 			$resident = 0;
-			foreach ($droits_array as $key=> $value ) {
-				if ($gestionDroit->getgacl($value) == 1) $resident = 1;
+			foreach ( $droits_array as $key => $value ) {
+				if ($GACL_new == true) {
+					if ($_SESSION ["droits"] [$value] == 1)
+						$resident = 1;
+				} else {
+					if ($gestionDroit->getgacl ( $value ) == 1)
+						$resident = 1;
+				}
 			}
 			if ($resident == 0)
 				$motifErreur = "droitko";
@@ -216,8 +222,8 @@ if ($t_module ["ajax"] != 1) {
 	 */
 	if ($message == "")
 		$message = $LANG ["message"] [0];
-	$smarty->assign("message", $message);
-//	$smarty->assign ( "message", htmlspecialchars($message) );
+	$smarty->assign ( "message", $message );
+	// $smarty->assign ( "message", htmlspecialchars($message) );
 	/*
 	 * Gestion du menu Rajout du 17/8/09 : mise en cache du menu
 	 */
@@ -227,13 +233,14 @@ if ($t_module ["ajax"] != 1) {
 		$menu = $_SESSION ["menu"];
 	}
 	$smarty->assign ( "menu", $menu );
-	if (isset($_SESSION["login"])) $smarty->assign("isConnected", 1);
-	/*
+	if (isset ( $_SESSION ["login"] ))
+		$smarty->assign ( "isConnected", 1 );
+		/*
 	 * Affichage de la page
 	 */
-	/*
+		/*
 	 * Alerte Mode developpement
-	*/
+	 */
 	if ($APPLI_modeDeveloppement == true) {
 		$texteDeveloppement = $LANG ["message"] [32] . " : " . $BDDDEV_server . '/' . $BDDDEV_database;
 		$smarty->assign ( "developpementMode", $texteDeveloppement );
@@ -242,9 +249,9 @@ if ($t_module ["ajax"] != 1) {
 	/*
 	 * Encodage ultime des donnees avant envoi vers le navigateur
 	 */
-	foreach ($smarty->getTemplateVars() as $key => $value) {
+	foreach ( $smarty->getTemplateVars () as $key => $value ) {
 		if ($key != "menu" && $key != "LANG" && $key != "message") {
-			$smarty->assign($key, encodehtml($value));
+			$smarty->assign ( $key, encodehtml ( $value ) );
 		}
 	}
 	$smarty->display ( $SMARTY_principal );

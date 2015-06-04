@@ -736,3 +736,6 @@ div.bloc {
 	display: table-cell;
 }
 
+.tablenoborder {
+	border: 0px;
+}

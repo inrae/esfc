@@ -27,7 +27,7 @@ $cookieParam ["lifetime"] = $APPLI_session_ttl;
 if ($APPLI_modeDeveloppement == false)
 	$cookieParam ["secure"] = true;
 $cookieParam ["httponly"] = true;
-//session_set_cookie_params ( $cookieParam ["lifetime"], $cookieParam ["path"], $cookieParam ["domain"], $cookieParam ["secure"], $cookieParam ["httponly"] );
+// session_set_cookie_params ( $cookieParam ["lifetime"], $cookieParam ["path"], $cookieParam ["domain"], $cookieParam ["secure"], $cookieParam ["httponly"] );
 // ini_set('session.cookie_secure', 1);
 ini_set ( "session.use_strict_mode", true );
 ini_set ( 'session.gc_probability', 1 );
@@ -35,8 +35,8 @@ ini_set ( 'session.gc_maxlifetime', $APPLI_session_ttl );
 /**
  * Integration de la bibliotheque ADODB
  */
-	// include_once('plugins/adodb5/adodb-errorhandler.inc.php');
-	// include_once('plugins/adodb5/adodb-exceptions.inc.php');
+// include_once('plugins/adodb5/adodb-errorhandler.inc.php');
+// include_once('plugins/adodb5/adodb-exceptions.inc.php');
 include_once ('plugins/adodb5.18a/adodb.inc.php');
 
 /**
@@ -199,18 +199,26 @@ $log = new Log ( $bdd_gacl, $ObjetBDDParam );
 /*
  * Preparation de la gestion des droits
  */
-if (isset ( $_SESSION ["gestionDroit"] ) && $APPLI_modeDeveloppement == false) {
-	$gestionDroit = $_SESSION ["gestionDroit"];
-	$smarty->assign ( "droits", $gestionDroit->getDroits () );
-} else {
-	$gestionDroit = new GestionDroit ();
-	if ($APPLI_modeDeveloppement == false) {
-		$_SESSION ["gestionDroit"] = $gestionDroit;
+if ($GACL_new == true) {
+	if (isset($_SESSION["droits"]) && $APPLI_modeDeveloppement == false ) {
+		$smarty->assign("droits", $_SESSION["droits"]);
 	} else {
-		/*
-		 * Traitement du mode developpement ; calcul a chaque appel
-		 */
 		include "framework/identification/setDroits.php";
+	}
+} else {
+	if (isset ( $_SESSION ["gestionDroit"] ) && $APPLI_modeDeveloppement == false) {
+		$gestionDroit = $_SESSION ["gestionDroit"];
+		$smarty->assign ( "droits", $gestionDroit->getDroits () );
+	} else {
+		$gestionDroit = new GestionDroit ();
+		if ($APPLI_modeDeveloppement == false) {
+			$_SESSION ["gestionDroit"] = $gestionDroit;
+		} else {
+			/*
+			 * Traitement du mode developpement ; calcul a chaque appel
+			 */
+			include "framework/identification/setDroits.php";
+		}
 	}
 }
 /*

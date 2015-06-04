@@ -36,7 +36,15 @@ switch ($t_module["param"]) {
 		/*
 		 * write record in database
 		 */
-		dataWrite($dataClass, $_REQUEST);
+		$id = dataWrite($dataClass, $_REQUEST);
+		if ($id > 0) {
+			/*
+			 * Ecriture du compte dans la table acllogin
+			 */
+			require_once 'framework/droits/droits.class.php';
+			$acllogin = new Acllogin($bdd_gacl, $ObjetBDDParam);
+			$acllogin->addLoginByLoginAndName($_REQUEST["login"], $_REQUEST["login"]);
+		}
 		break;
 	case "delete":
 		/*

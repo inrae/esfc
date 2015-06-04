@@ -486,7 +486,6 @@ class GestionDroit {
 		$this->gacl = $gacl;
 		$this->aco = $aco;
 		$this->aro = $aro;
-		
 		$login = $this->getLogin ();
 		if (! is_null ( $listeDroitsGeres ) && ! is_null ( $login )) {
 			$droits = explode ( ",", $listeDroitsGeres );

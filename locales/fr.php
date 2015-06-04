@@ -20,10 +20,12 @@ $LANG["menu"][15] = "Gestion des logins et des droits d'accès";
 /*
  * Gestion des droits nouvelle formule
  */
-$LANG["menu"]["appliliste"] = "Applications et droits";
+$LANG["menu"]["appliliste"] = "ACL - droits";
 $LANG["menu"]["applilistetitle"] = "applications et droits gérés";
-$LANG["menu"]["aclloginliste"] = "Logins autorisés";
+$LANG["menu"]["aclloginliste"] = "ACL - logins";
 $LANG["menu"]["aclloginlistetitle"] = "Logins déclarés dans le module de gestion des droits";
+$LANG["menu"]["groupliste"] = "ACL - groupes de logins";
+$LANG["menu"]["grouplistetitle"] = "Groupes de logins et logins rattachés aux groupes";
 
 
 $LANG["menu"][20] = "Aide";

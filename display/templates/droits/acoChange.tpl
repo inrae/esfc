@@ -10,9 +10,30 @@ Retour à {$dataAppli.appli} ({$dataAppli.applidetail})
 <form id="acoForm" method="post" action="index.php?module=acoWrite">
 <input type="hidden" name="aclaco_id" value="{$data.aclaco_id}">
 <input type="hidden" name="aclappli_id" value="{$data.aclappli_id}">
+<div class="formBouton">
+<input class="submit" type="submit" value="Enregistrer">
+</div>
 <dl>
 <dt>Nom du droit utilisé dans l'application <span class="red">*</span> :</dt>
 <dd><input name="aco" value="{$data.aco}" autofocus required></dd>
+</dl>
+<dl>
+<dt>Groupes disposant du droit :</dt>
+<dd>
+<table class="tablenoborder">
+{section name=lst loop=$groupes}
+<tr><td>
+{for $boucle = 1 to $groupes[lst].level}
+&nbsp;&nbsp;&nbsp;
+{/for}
+{$groupes[lst].groupe}
+</td>
+<td>
+<input type="checkbox" name="groupes[]" value="{$groupes[lst].aclgroup_id}" {if $groupes[lst].checked == 1}checked{/if}>
+</td>
+</tr>
+{/section}
+</table>
 </dl>
 <dl></dl>
 
