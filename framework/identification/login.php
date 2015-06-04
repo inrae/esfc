@@ -43,7 +43,11 @@ switch ($t_module["param"]) {
 			 */
 			require_once 'framework/droits/droits.class.php';
 			$acllogin = new Acllogin($bdd_gacl, $ObjetBDDParam);
-			$acllogin->addLoginByLoginAndName($_REQUEST["login"], $_REQUEST["login"]);
+			if (strlen($_REQUEST["nom"]) > 0) {
+				$nom = $_REQUEST["nom"]." ".$_REQUEST["prenom"];
+			} else 
+				$nom = $_REQUEST["login"];
+			$acllogin->addLoginByLoginAndName($_REQUEST["login"], $nom);
 		}
 		break;
 	case "delete":

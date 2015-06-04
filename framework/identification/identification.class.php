@@ -257,6 +257,8 @@ class LoginGestion extends ObjetBDD {
 				"login" => array (
 						'requis' => 1 
 				),
+				"nom" => array ("type"=>0),
+				"prenom" => array ("type"=>0),
 				"actif" => array (
 						'type' => 1,
 						'defaultValue' => 1 
