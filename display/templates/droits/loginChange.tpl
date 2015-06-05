@@ -38,7 +38,7 @@
 <tr>
 <th>Droits attribués</th>
 </tr>
-{foreach $droits as $droit=>$value}
+{foreach $loginDroits as $droit=>$value}
 <tr><td>{$droit}</td></tr>
 {/foreach}
 

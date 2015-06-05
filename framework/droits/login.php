@@ -26,7 +26,7 @@ switch ($t_module["param"]) {
 		 */
 		$data = dataRead($dataClass, $id, "droits/loginChange.tpl");
 		if (strlen($data["login"]) > 0) 
-		$smarty->assign ("droits", $dataClass->getListDroits($data["login"], $GACL_aco));
+		$smarty->assign ("loginDroits", $dataClass->getListDroits($data["login"], $GACL_aco));
 		break;
 	case "write":
 		/*

@@ -27,7 +27,7 @@ switch ($t_module["param"]) {
 		$smarty->assign("data", $data);
 		$smarty->assign("corps", "droits/appliDisplay.tpl");
 		$aclAco = new Aclaco($bdd_gacl, $ObjetBDDParam);
-		$smarty->assign ("dataAco", $aclAco->getListFromParent($id, 2));
+		$smarty->assign ("dataAco", $aclAco->getListFromParent($id, 3));
 		break;
 	case "change":
 		/*
