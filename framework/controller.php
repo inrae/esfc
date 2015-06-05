@@ -245,7 +245,7 @@ if ($t_module ["ajax"] != 1) {
 	 * Encodage ultime des donnees avant envoi vers le navigateur
 	 */
 	foreach ( $smarty->getTemplateVars () as $key => $value ) {
-		if ($key != "menu" && $key != "LANG" && $key != "message") {
+		if (in_array($key, array("menu", "LANG", "message", "texteNews")) == false) {
 			$smarty->assign ( $key, encodehtml ( $value ) );
 		}
 	}

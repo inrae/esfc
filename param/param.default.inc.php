@@ -5,8 +5,8 @@
 * 
 * Parametres par defaut de l'application
 */
-$APPLI_version = "1.3.2";
-$APPLI_versiondate = "26/05/2015";
+$APPLI_version = "1.4";
+$APPLI_versiondate = "05/06/2015";
 $language = "fr";
 $DEFAULT_formatdate = "fr";
 /*
@@ -101,11 +101,7 @@ $GACL_dblogin = "proto";
 $GACL_dbpasswd = "proto";
 $GACL_database = "proto";
 $GACL_dbprefixe = "gacl";
-$GACL_aro = "login";
 $GACL_aco = "appli";
-$GACL_path = "param/gacl.ini.php";
-$GACL_listeDroitsGeres = "admin,consult,poissonGestion,bassinGestion,poissonAdmin,bassinAdmin,paramAdmin,reproAdmin,reproGestion,reproConsult";
-$GACL_new = false;
 /*
  * Gestion des erreurs
  */

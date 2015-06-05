@@ -1,6 +1,12 @@
 Nouveautés
 ===========
 
+Version 1.4 du 5 juin 2015
+--------------------------
+Améliorations techniques :
+- implémentation de contrôles de sécurité complémentaires suite à audit sécurité
+- écriture d'un nouveau module de gestion des droits et abandon de phpgacl
+
 Version 1.3.2 du 26 mai 2015
 ----------------------------
 Corrections de bogues :

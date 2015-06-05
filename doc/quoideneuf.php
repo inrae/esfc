@@ -9,6 +9,6 @@ foreach($fichier as $key=>$value) {
 	$doc .= htmlentities($value)."<br>";
 }
 
-$smarty->assign("texte",$doc);
+$smarty->assign("texteNews",$doc);
 $smarty->assign("corps","documentation/quoideneuf.tpl");
 ?>

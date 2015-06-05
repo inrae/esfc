@@ -16,13 +16,8 @@ foreach ( $menuarray as $key => $value ) {
 	if ($value ["menuloginrequis"] == 1 && ! isset ( $_SESSION ["login"] ))
 		$ok = false;
 	if (strlen ( $value ["menudroits"] ) > 1) {
-		if ($GACL_new == true) {
-			if ($_SESSION ["droits"] [$value ["menudroits"]] != 1)
-				$ok = false;
-		} else {
-			if ($gestionDroit->getgacl ( $value ["menudroits"] ) != 1)
-				$ok = false;
-		}
+		if ($_SESSION ["droits"] [$value ["menudroits"]] != 1)
+			$ok = false;
 	}
 	if ($value ["onlynoconnect"] == 1 && strlen ( $_SESSION ["login"] ) > 0)
 		$ok = false;
@@ -45,13 +40,8 @@ foreach ( $menuarray as $key => $value ) {
 				if ($value1 ["menuloginrequis"] == 1 && ! isset ( $_SESSION ["login"] ))
 					$ok1 = false;
 				if (strlen ( $value1 ["menudroits"] ) > 1) {
-					if ($GACL_new == true) {
-						if ($_SESSION ["droits"] [$value1 ["menudroits"]] != 1)
-							$ok = false;
-					} else {
-						if ($gestionDroit->getgacl ( $value1 ["menudroits"] ) != 1)
-							$ok = false;
-					}
+					if ($_SESSION ["droits"] [$value1 ["menudroits"]] != 1)
+						$ok = false;
 				}
 				if ($ok1) {
 					/*
