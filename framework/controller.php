@@ -131,14 +131,9 @@ while ( isset ( $module ) ) {
 		} else {
 			$droits_array = explode ( ",", $t_module ["droits"] );
 			$resident = 0;
-			foreach ( $droits_array as $key => $value ) {
-				if ($GACL_new == true) {
-					if ($_SESSION ["droits"] [$value] == 1)
-						$resident = 1;
-				} else {
-					if ($gestionDroit->getgacl ( $value ) == 1)
-						$resident = 1;
-				}
+			foreach ( $droits_array as $key => $value ) {				
+				if ($_SESSION ["droits"] [$value] == 1)
+					$resident = 1;
 			}
 			if ($resident == 0)
 				$motifErreur = "droitko";

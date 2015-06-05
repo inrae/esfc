@@ -450,87 +450,7 @@ class LoginGestion extends ObjetBDD {
 		return $this->lireParam ( $sql );
 	}
 }
-/**
- *
- *
- *
- *
- *
- * Classe de gestion des droits
- *
- * @author eric.quinton
- *        
- */
-class GestionDroit {
-	public $droits = array ();
-	private $gacl;
-	private $aco;
-	private $aro;
-	private $listeDroitsGeres;
-	
-	/**
-	 * Recherche des droits attribues au login, a partir de phpgacl et autres...
-	 * Impose que les droits geres dans l'application soient declares dans la
-	 * variable globale $GACL_listeDroitsGeres (fichier param.default.inc.php)
-	 *
-	 * @param
-	 *        	$gacl
-	 * @param
-	 *        	$aco
-	 * @param
-	 *        	$aro
-	 * @param
-	 *        	$ressource
-	 * @param
-	 *        	$listeDroitsGeres
-	 */
-	function setgacl(&$gacl, $aco, $aro, $listeDroitsGeres) {
-		$this->gacl = $gacl;
-		$this->aco = $aco;
-		$this->aro = $aro;
-		$login = $this->getLogin ();
-		if (! is_null ( $listeDroitsGeres ) && ! is_null ( $login )) {
-			$droits = explode ( ",", $listeDroitsGeres );
-			$this->droits = array ();
-			foreach ( $droits as $value ) {
-				if ($this->gacl->acl_check ( $this->aco, $value, $this->aro, $login ) == 1) {
-					$this->droits [$value] = 1;
-				}
-			}
-		}
-	}
-	/**
-	 * Retourne le login stocke en variable de session
-	 */
-	function getLogin() {
-		return $_SESSION ["login"];
-	}
-	
-	/**
-	 * Test des droits
-	 *
-	 * @param $aco Categorie_a_tester        	
-	 * @return -1 1
-	 */
-	function getgacl($aco) {
-		$login = $this->getLogin ();
-		if (is_null ( $login ))
-			return - 1;
-		if ($this->droits [$aco] == 1) {
-			return 1;
-		} else {
-			return - 1;
-		}
-	}
-	/**
-	 * Retourne les droits affectes au login courant
-	 *
-	 * @return array
-	 */
-	function getDroits() {
-		return $this->droits;
-	}
-}
+
 /**
  * Classe permettant d'enregistrer toutes les operations effectuees dans la base
  *
@@ -583,6 +503,7 @@ class Log extends ObjetBDD {
 	 * @return integer
 	 */
 	function setLog($login, $module, $commentaire = NULL) {
+		global $GACL_aco;
 		$data = array (
 				"log_id" => 0,
 				"commentaire" => $commentaire 
@@ -596,7 +517,7 @@ class Log extends ObjetBDD {
 		$data ["login"] = $login;
 		if (is_null ( $module ))
 			$module = "unknown";
-		$data ["nom_module"] = $module;
+		$data ["nom_module"] = $GACL_aco."-".$module;
 		$data ["log_date"] = date ( "d/m/Y H:i:s" );
 		return $this->ecrire ( $data );
 	}

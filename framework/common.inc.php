@@ -199,28 +199,12 @@ $log = new Log ( $bdd_gacl, $ObjetBDDParam );
 /*
  * Preparation de la gestion des droits
  */
-if ($GACL_new == true) {
-	if (isset($_SESSION["droits"]) && $APPLI_modeDeveloppement == false ) {
-		$smarty->assign("droits", $_SESSION["droits"]);
-	} else {
-		include "framework/identification/setDroits.php";
-	}
+if (isset ( $_SESSION ["droits"] ) && $APPLI_modeDeveloppement == false) {
+	$smarty->assign ( "droits", $_SESSION ["droits"] );
 } else {
-	if (isset ( $_SESSION ["gestionDroit"] ) && $APPLI_modeDeveloppement == false) {
-		$gestionDroit = $_SESSION ["gestionDroit"];
-		$smarty->assign ( "droits", $gestionDroit->getDroits () );
-	} else {
-		$gestionDroit = new GestionDroit ();
-		if ($APPLI_modeDeveloppement == false) {
-			$_SESSION ["gestionDroit"] = $gestionDroit;
-		} else {
-			/*
-			 * Traitement du mode developpement ; calcul a chaque appel
-			 */
-			include "framework/identification/setDroits.php";
-		}
-	}
+	include "framework/identification/setDroits.php";
 }
+
 /*
  * Chargement des fonctions specifiques
  */

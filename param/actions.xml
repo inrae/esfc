@@ -12,7 +12,6 @@
 	<logindelete action="framework/identification/login.php" param="delete" droits="admin" retourko="loginmodif" retoursuppr="loginliste" modulebefore="loginmodif"/>
 	<loginChangePassword action="framework/identification/login.php" param="changePassword" loginrequis="1" />
 	<loginChangePasswordExec action="framework/identification/login.php" param="changePasswordExec" loginrequis="1" retourko="loginChangePassword" modulebefore="loginChangePassword" />
-	<gestiondroits action="framework/identification/gestiondroits.php" droits="admin" loginrequis="0" menulevel="1" retourlogin="1" menuorder="99" menudroits="admin" menuloginrequis="" menuparent="7" menutitle="13" menuvalue="12" droitko="droitko"/>
 
 	<parametre action="modules/paramAdministration/index.php" droits="paramAdmin"
 		retourko="" retourok="" retournull="" menuvalue="4" menutitle="5" menuorder="3" menulevel="0"  retourlogin="1" droitko="droitko"/>
