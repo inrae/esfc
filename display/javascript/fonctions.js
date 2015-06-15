@@ -44,6 +44,38 @@ function setDataTables(nomTable, bPaginate, bSort, bFilter, iDisplayLength, bLen
 		                "sNext":       "Suivant",
 		                "sLast":       "Dernier"
 		            }
+			 }
+		} );
+	});
+};
+		
+
+function setDataTablesFull(nomTable, bPaginate, bSort, bFilter, iDisplayLength, bLengthChange) {
+	if (bPaginate == null) bPaginate = true;
+	if (bSort == null) bSort = false;
+	if (bFilter == null) bFilter = false;
+	if (iDisplayLength == null) iDisplayLength = 25;
+	if (bLengthChange == null) bLengthChange = true;
+	$(document).ready( function () {
+		$('#'+nomTable).dataTable( {
+			 "bPaginate": bPaginate,
+			"bFilter": bFilter,
+	        "bSort": bSort,
+	        "iDisplayLength": iDisplayLength,
+	        "bLengthChange": bLengthChange,
+			 "oLanguage": {
+		            "sLengthMenu": "Afficher _MENU_ lignes par page",
+		            "sZeroRecords": "Pas de données",
+		            "sInfo": "_START_ - _END_ / _TOTAL_ lignes",
+		            "sInfoEmpty": "0 - 0 / 0 lignes",
+		            "sInfoFiltered": "(Filtré pour _MAX_ total lignes)",
+		            "sSearch": "Chercher...",
+		            "oPaginate": {
+		                "sFirst":      "Premier",
+		                "sPrevious":   "Pr&eacute;c&eacute;dent",
+		                "sNext":       "Suivant",
+		                "sLast":       "Dernier"
+		            }
 		        },
 		        "sDom": 'T<"clear">lfrtip',
 				"oTableTools": {
