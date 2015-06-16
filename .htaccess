@@ -1,7 +1,7 @@
 <LimitExcept GET POST>
 Deny from all
 </LimitExcept>
-#Options -Indexes
+Options -Indexes
 php_flag session.cookie_httponly on
 php_flag session.cookie_secure on
 php_flag register_globals off
