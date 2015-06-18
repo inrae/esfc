@@ -282,9 +282,9 @@ switch ($t_module ["param"]) {
 				/*
 				 * On divise le total_distribue par le nombre de jours
 				 */
-				if ($_REQUEST ["nbJour"] > 0) {
+				/*if ($_REQUEST ["nbJour"] > 0) {
 					$value ["total_distribue"] = $value ["total_distribue"] / $_REQUEST ["nbJour"];
-				}
+				}*/
 				$idDistrib = $distribution->ecrireReste ( $value );
 				if (! $idDistrib > 0) {
 					$error = 1;
