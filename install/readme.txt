@@ -3,7 +3,8 @@ Nouveautés
 
 Version 1.4.2 du 3 août 2015
 ----------------------------
-Réactivation du module permettant l'export de tableaux pour 4 tableaux (liste des poissons, liste des poissons d'un bassin, liste des morphologies et des transferts effectués)
+- Réactivation du module permettant l'export de tableaux pour 4 tableaux (liste des poissons, liste des poissons d'un bassin, liste des morphologies et des transferts effectués)
+- correction du calcul (en affichage) du nombre d'oeufs et d'ovocytes dans le module repro
 
 Version 1.4 du 5 juin 2015
 --------------------------
