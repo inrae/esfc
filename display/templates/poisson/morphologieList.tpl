@@ -1,5 +1,5 @@
 <script>
-setDataTables("cmorphologieList");
+setDataTablesFull("cmorphologieList");
 </script>
 <table id="cmorphologieList" class="tableliste">
 <thead>

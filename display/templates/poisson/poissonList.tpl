@@ -5,7 +5,7 @@
 {/if}
 <a href="index.php?module=evenementGetAllCSV">Liste de tous les événements pour les poissons sélectionnés au format CSV</a>
 <script>
-setDataTables("cpoissonList",true, true, true, 50);
+setDataTablesFull("cpoissonList",true, true, true, 50);
 </script>
 <table id="cpoissonList" class="tableliste">
 <thead>

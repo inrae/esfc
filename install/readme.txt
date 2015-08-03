@@ -1,6 +1,10 @@
 Nouveautés
 ===========
 
+Version 1.4.2 du 3 août 2015
+----------------------------
+Réactivation du module permettant l'export de tableaux pour 4 tableaux (liste des poissons, liste des poissons d'un bassin, liste des morphologies et des transferts effectués)
+
 Version 1.4 du 5 juin 2015
 --------------------------
 Améliorations techniques :

@@ -1,5 +1,5 @@
 <script>
-setDataTables("ctransfertList");
+setDataTablesFull("ctransfertList");
 </script>
 <table id="ctransfertList" class="tableliste">
 <thead>

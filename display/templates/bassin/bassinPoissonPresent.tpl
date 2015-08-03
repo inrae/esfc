@@ -1,5 +1,5 @@
 <script>
-setDataTables("cbassinPoissonList");
+setDataTablesFull("cbassinPoissonList");
 </script>
 <table id="cbassinPoissonList" class="tableliste">
 <thead>
