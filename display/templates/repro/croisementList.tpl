@@ -26,8 +26,16 @@ Nouveau croisement...
 {section name=lst loop=$croisements}
 <!-- calculs -->
 {assign var="ovocyte" value=intval($croisements[lst].ovocyte_masse * $croisements[lst].ovocyte_densite)}
+{if $croisements[lst].tx_fecondation > 1}
+{assign var="oeuf" value=intval($croisements[lst].tx_fecondation * $ovocyte / 100)}
+{else}
 {assign var="oeuf" value=intval($croisements[lst].tx_fecondation * $ovocyte)}
+{/if}
+{if $croisements[lst].tx_survie_estime > 1}
+{assign var="larve" value=intval($oeuf * $croisements[lst].tx_survie_estime / 100)}
+{else}
 {assign var="larve" value=intval($oeuf * $croisements[lst].tx_survie_estime)}
+{/if}
 <tr>
 <td>
 {if $droits["reproGestion"] == 1}
