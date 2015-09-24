@@ -162,14 +162,22 @@ if (! isset ( $bdd )) {
 		$bdd = ADONewConnection ( $BDDDEV_type );
 		$bdd->debug = $ADODB_debugmode;
 		$etaconn = $bdd->Connect ( $BDDDEV_server, $BDDDEV_login, $BDDDEV_passwd, $BDDDEV_database );
+		$schema = $BDDDEV_schema;
 	} else {
 		$bdd = ADONewConnection ( $BDD_type );
 		$bdd->debug = $ADODB_debugmode;
 		$etaconn = $bdd->Connect ( $BDD_server, $BDD_login, $BDD_passwd, $BDD_database );
+		$schema = $BDD_schema;
 	}
 	if ($etaconn == false) {
 		echo $LANG ["message"] [22];
 	} else {
+		/*
+		 * Mise en place du schema par defaut
+		 */
+		if (strlen ( $schema ) > 0)
+			$bdd->Execute ( "set search_path = " . $schema );
+		
 		/*
 		 * Connexion a la base de gestion des droits
 		 */
@@ -178,7 +186,13 @@ if (! isset ( $bdd )) {
 		$etaconn = $bdd_gacl->Connect ( $GACL_dbserver, $GACL_dblogin, $GACL_dbpasswd, $GACL_database );
 		if ($etaconn == false) {
 			echo ($LANG ["message"] [29]);
-		}
+		} else 
+			/*
+			 * Mise en place du schema par defaut
+			 */
+			if (strlen ( $BDDDEV_schema ) > 0)
+				$bdd_gacl->Execute ( "set search_path = " . $GACL_schema );
+				
 	}
 }
 /*
