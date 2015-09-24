@@ -253,7 +253,7 @@ class Poisson extends ObjetBDD {
 	 * @see ObjetBDD::supprimer()
 	 */
 	function supprimer($id) {
-		if ($id > 0) {
+		if ($id > 0 && is_numeric($id)) {
 			$retour = 0;
 			/*
 			 * Vérification des liens non supprimables
@@ -262,12 +262,15 @@ class Poisson extends ObjetBDD {
 			 * Recherche des poissons "enfants"
 			 */
 			$parent_poisson = new Parent_poisson ( $this->connection, $this->paramori );
-			$listeEnfant = $parent_poisson->lireAvecParent ( $id );
-			if (is_array ( $listeEnfant ) && count ( $listeEnfant ) > 0) {
+			$listeEnfant = $parent_poisson->lireEnfant( $id );
+			if (is_array ( $listeEnfant ) == true && count ( $listeEnfant ) > 0) {
+				$detailEnfant = "";
+				foreach($listeEnfant as $key => $value)
+					$detailEnfant .= $value["matricule"]." ";
 				$retour = - 1;
 				$this->errorData [] = array (
 						"code" => 0,
-						"message" => "Le poisson est défini comme le parent d'autres poissons" 
+						"message" => "Le poisson est défini comme le parent d'autres poissons (".$detailEnfant.")" 
 				);
 			}
 			if ($retour == 0) {
@@ -1445,7 +1448,7 @@ class Parent_poisson extends ObjetBDD {
 	 * @return array
 	 */
 	function getListParent($poisson_id) {
-		if ($poisson_id > 0) {
+		if ($poisson_id > 0  && is_numeric($id)){
 			$sql = "select parent_poisson_id, par.poisson_id, parent_id, matricule, pittag_valeur, prenom, sexe_libelle, cohorte
 					from " . $this->table . " par
 					join poisson pois on (par.parent_id = pois.poisson_id)
@@ -1455,7 +1458,14 @@ class Parent_poisson extends ObjetBDD {
 			return $this->getListeParam ( $sql );
 		}
 	}
+
+	/**
+	 * Retourne les parents
+	 * @param int $id
+	 * @return array
+	 */
 	function lireAvecParent($id) {
+		if ($id > 0 && is_numeric($id)){
 		$sql = "select parent_poisson_id, parent_poisson.poisson_id, parent_id,
 				matricule, prenom, pittag_valeur
 				from " . $this->table . "
@@ -1463,8 +1473,27 @@ class Parent_poisson extends ObjetBDD {
 				left outer join v_pittag_by_poisson pit on (poisson.poisson_id = pit.poisson_id)
 				where parent_poisson_id = " . $id;
 		return $this->lireParam ( $sql );
+		}
+	}
+
+	/**
+	 * Retourne la liste des enfants attaches a un parent
+	 * @param int $parent_id
+	 * @return array
+	 */
+	function lireEnfant($parent_id) {
+		if ($parent_id > 0 && is_numeric($parent_id)){
+			$sql = "select parent_poisson_id, parent_poisson.poisson_id, parent_id,
+				matricule, prenom, pittag_valeur
+				from " . $this->table . "
+				join poisson on (parent_poisson.poisson_id = poisson.poisson_id)
+				left outer join v_pittag_by_poisson pit on (poisson.poisson_id = pit.poisson_id)
+				where parent_id = " . $parent_id;
+		}
+		return $this->getListeParam( $sql );
 	}
 }
+
 class Sortie extends ObjetBDD {
 	/**
 	 * Constructeur de la classe

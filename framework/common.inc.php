@@ -175,8 +175,9 @@ if (! isset ( $bdd )) {
 		/*
 		 * Mise en place du schema par defaut
 		 */
-		if (strlen ( $schema ) > 0)
+		if (strlen ( $schema ) > 0) {
 			$bdd->Execute ( "set search_path = " . $schema );
+		}		
 		
 		/*
 		 * Connexion a la base de gestion des droits
@@ -186,12 +187,13 @@ if (! isset ( $bdd )) {
 		$etaconn = $bdd_gacl->Connect ( $GACL_dbserver, $GACL_dblogin, $GACL_dbpasswd, $GACL_database );
 		if ($etaconn == false) {
 			echo ($LANG ["message"] [29]);
-		} else 
+		} else {
 			/*
 			 * Mise en place du schema par defaut
 			 */
 			if (strlen ( $BDDDEV_schema ) > 0)
 				$bdd_gacl->Execute ( "set search_path = " . $GACL_schema );
+		}
 				
 	}
 }

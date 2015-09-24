@@ -148,7 +148,7 @@ class Evenement extends ObjetBDD {
 	 * @see ObjetBDD::supprimer()
 	 */
 	function supprimer($id) {
-		if ($id > 0) {
+		if ($id > 0 &&is_numeric($id)) {
 			/*
 			 * Traitement des suppressions en cascade
 			 */
@@ -192,6 +192,16 @@ class Evenement extends ObjetBDD {
 			 */
 			$echographie = new Echographie ( $this->connection, $this->paramori );
 			$echographie->supprimerChamp ( $id, "evenement_id" );
+			/*
+			 * Mortalite
+			 */
+			$mortalite = new Mortalite($this->connection, $this->paramori);
+			$mortalite->supprimerChamp($id, "evenement_id");
+			/*
+			 * Documents associes
+			 */
+			$sql = "delete from evenement_document where evenement_id = ".$id;
+			$this->executeSQL($sql);
 			/*
 			 * Suppression finale de l'evenement
 			 */
