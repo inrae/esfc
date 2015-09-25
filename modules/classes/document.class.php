@@ -227,7 +227,7 @@ class DocumentAttach extends ObjetBDD {
 	 * @return array
 	 */
 	function getData($id) {
-		if ($id > 0) {
+		if ($id > 0 && is_numeric($id)) {
 			$this->UTF8 = false;
 			$this->codageHtml = false;
 			$sql = "select document_id, document_nom, data, content_type, thumbnail, mime_type_id
@@ -248,7 +248,7 @@ class DocumentAttach extends ObjetBDD {
 	 *        	[inline|attachment]
 	 */
 	function documentSent($id, $thumnbnail = 0, $methode = "inline") {
-		if ($id > 0) {
+		if ($id > 0 && is_numeric($id)) {
 			$data = $this->getData ( $id );
 			if ($data ["document_id"] > 0) {
 				if ($thumnbnail == 1) {
@@ -338,7 +338,7 @@ class DocumentAttach extends ObjetBDD {
 	 * @return string
 	 */
 	function writeFileImage($id, $thumbnail = 0, $resolution = 800) {
-		if ($id > 0) {
+		if ($id > 0 && is_numeric($id)) {
 			/*
 			 * Preparation du nom de la photo
 			 */

@@ -67,7 +67,7 @@ class Sperme extends ObjetBDD {
 	 * @return tableau|NULL
 	 */
 	function getListFromPoissonCampagne($poisson_campagne_id) {
-		if ($poisson_campagne_id > 0) {
+		if ($poisson_campagne_id > 0 && is_numeric($poisson_campagne_id)) {
 			$sql = "select sperme_id, poisson_campagne_id, sperme_date,
 					sequence_id, sequence_nom,
 					motilite_initiale, tx_survie_initial,

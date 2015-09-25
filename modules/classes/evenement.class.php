@@ -60,7 +60,7 @@ class Evenement extends ObjetBDD {
 	 * @return array
 	 */
 	function getEvenementByPoisson($poisson_id) {
-		if ($poisson_id > 0) {
+		if ($poisson_id > 0 && is_numeric($poisson_id)) {
 			$sql = "select evenement_id, poisson_id, evenement_date, evenement_type_libelle,
  					evenement_commentaire
  					from evenement
@@ -113,15 +113,15 @@ class Evenement extends ObjetBDD {
 			$order = " order by matricule, evenement_date";
 			$where = " where ";
 			$and = "";
-			if ($dataSearch ["statut"] > 0) {
+			if ($dataSearch ["statut"] > 0 && is_numeric($dataSearch["statut"])) {
 				$where .= $and . " p.poisson_statut_id = " . $dataSearch ["statut"];
 				$and = " and ";
 			}
-			if ($dataSearch ["categorie"] > 0) {
+			if ($dataSearch ["categorie"] > 0 && is_numeric($dataSearch["categorie"])) {
 				$where .= $and . " p.categorie_id = " . $dataSearch ["categorie"];
 				$and = " and ";
 			}
-			if ($dataSearch ["sexe"] > 0) {
+			if ($dataSearch ["sexe"] > 0 && is_numeric($dataSearch["sexe"])) {
 				$where .= $and . " p.sexe_id = " . $dataSearch ["sexe"];
 				$and = " and ";
 			}

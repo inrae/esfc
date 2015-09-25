@@ -93,7 +93,7 @@ class Aliment extends ObjetBDD {
 	}
 	function ecrire($data) {
 		$id = parent::ecrire ( $data );
-		if ($id > 0) {
+		if ($id > 0 && is_numeric($id)) {
 			/*
 			 * Traitement des categories rattachees
 			 */
@@ -108,7 +108,7 @@ class Aliment extends ObjetBDD {
 	 * @see ObjetBDD::supprimer()
 	 */
 	function supprimer($id) {
-		if ($id > 0) {
+		if ($id > 0 && is_numeric($id)) {
 			/*
 			 * Suppression des rattachements aux catégories
 			 */
@@ -175,7 +175,7 @@ class AlimentCategorie extends ObjetBDD {
 	 * @return array
 	 */
 	function getListeFromAliment($aliment_id) {
-		if ($aliment_id > 0) {
+		if ($aliment_id > 0 && is_numeric($aliment_id)) {
 			$sql = "select * from " . $this->table . "
 				where aliment_id = " . $aliment_id;
 			return $this->getListeParam ( $sql );
@@ -257,7 +257,7 @@ class RepartTemplate extends ObjetBDD {
 	 * @see ObjetBDD::supprimer()
 	 */
 	function supprimer($id) {
-		if ($id > 0) {
+		if ($id > 0 && is_numeric($id)) {
 			/*
 			 * Verification que le modele n'a pas été utilisé
 			 */
@@ -282,7 +282,7 @@ class RepartTemplate extends ObjetBDD {
 	 * @return array
 	 */
 	function getListActifFromCategorie($categorie_id) {
-		if ($categorie_id > 0) {
+		if ($categorie_id > 0 && is_numeric($categorie_id)) {
 			$sql = "select * from " . $this->table . "
 					where actif = 1 
 					and categorie_id = " . $categorie_id . "
@@ -357,7 +357,7 @@ class RepartAliment extends ObjetBDD {
 	 * @return array
 	 */
 	function getFromTemplate($templateId) {
-		if ($templateId > 0) {
+		if ($templateId > 0 && is_numeric($templateId)) {
 			$sql = "select * from " . $this->table . "
 				join aliment using (aliment_id)
 				where repart_template_id = " . $templateId . " 
@@ -375,12 +375,12 @@ class RepartAliment extends ObjetBDD {
 	 * @return array
 	 */
 	function getFromTemplateWithAliment($templateId, $categorieId) {
-		if ($templateId > 0) {
+		if ($templateId > 0 && is_numeric($templateId)) {
 			$data = $this->getFromTemplate ( $templateId );
 			/*
 			 * Recuperation des aliments du même type
 			 */
-			if ($categorieId > 0) {
+			if ($categorieId > 0 && is_numeric($categorieId)) {
 				$sql = "select distinct aliment_id, aliment_type_id, aliment_libelle
 						from aliment 
 						join aliment_categorie using (aliment_id)
@@ -446,7 +446,7 @@ class Repartition extends ObjetBDD {
 	 * @return array
 	 */
 	function lireWithCategorie($id) {
-		if ($id > 0)
+		if ($id > 0 && is_numeric($id))
 			$sql = "select * from " . $this->table . " left outer join categorie using (categorie_id)
 					 where repartition_id = " . $id;
 		return $this->lireParam ( $sql );
@@ -464,7 +464,7 @@ class Repartition extends ObjetBDD {
 				join categorie using (categorie_id)";
 		$where = "";
 		$and = "";
-		if ($param ["categorie_id"] > 0) {
+		if ($param ["categorie_id"] > 0  && is_numeric($param["categorie_id"])) {
 			$where .= $and . "categorie_id = " . $param ["categorie_id"];
 			$and = " and ";
 		}
@@ -485,7 +485,7 @@ class Repartition extends ObjetBDD {
 	 * @return int
 	 */
 	function duplicate($id) {
-		if ($id > 0) {
+		if ($id > 0 && is_numeric($id)) {
 			/*
 			 * Lecture des infos précédentes
 			 */
@@ -561,7 +561,7 @@ class Repartition extends ObjetBDD {
 	 * @see ObjetBDD::supprimer()
 	 */
 	function supprimer($id) {
-		if ($id > 0) {
+		if ($id > 0 && is_numeric($id)) {
 			/*
 			 * Suppression des enregistrements lies dans distribution
 			 */
@@ -876,7 +876,7 @@ class Distribution extends ObjetBDD {
 	 * @return array
 	 */
 	function getFromRepartition($repartition_id) {
-		if ($repartition_id > 0) {
+		if ($repartition_id > 0 && is_numeric($repartition_id)) {
 			$sql = "select t1.distribution_id, t1.repartition_id, t1.bassin_id,
 				t1.repart_template_id, t1.reste_zone_calcul, t1.evol_taux_nourrissage,
 				t1.taux_nourrissage, t1.total_distribue, t1.distribution_consigne,
@@ -970,12 +970,12 @@ class Distribution extends ObjetBDD {
 	 * @return array
 	 */
 	function getFromRepartitionWithBassin($repartition_id, $categorie_id) {
-		if ($repartition_id > 0) {
+		if ($repartition_id > 0 && is_numeric($repartition_id)) {
 			$data = $this->getFromRepartition ( $repartition_id );
 			/*
 			 * Recuperation des bassins du même type
 			 */
-			if ($categorie_id > 0) {
+			if ($categorie_id > 0 && is_numeric($categorie_id)) {
 				$sql = "select distinct bassin_id, bassin_nom
 						from bassin
 						join bassin_usage using (bassin_usage_id)
@@ -1010,7 +1010,7 @@ class Distribution extends ObjetBDD {
 	 * @return array
 	 */
 	function calculDistribution($repartition_id) {
-		if ($repartition_id > 0) {
+		if ($repartition_id > 0 && is_numeric($repartition_id)) {
 			$sql = 'select bassin_nom, aliment_id, taux_nourrissage, evol_taux_nourrissage, total_distribue, repart_alim_taux, 
 					round (total_distribue * repart_alim_taux / 100) as "quantite",
 					round (total_distribue * repart_alim_taux  * matin / 10000) as "quantiteMatin",
@@ -1035,7 +1035,7 @@ class Distribution extends ObjetBDD {
 	 * @return array
 	 */
 	function getListeAlimentFromRepartition($repartition_id, $order = "adulte") {
-		if ($repartition_id > 0) {
+		if ($repartition_id > 0 && is_numeric($repartition_id)) {
 			$sql = "select distinct aliment_id, aliment_libelle_court, aliment_type_id
 					from distribution
 					join repart_template using (repart_template_id)
@@ -1112,7 +1112,7 @@ class DistribQuotidien extends ObjetBDD {
 	 * @return code
 	 */
 	function deleteFromDateBassin($date, $bassin_id) {
-		if (strlen ( $date ) > 0 && $bassin_id > 0) {
+		if (strlen ( $date ) > 0 && $bassin_id > 0 && is_numeric($bassin_id)) {
 			$sql = "delete from " . $this->table . "
 					where distrib_quotidien_date = '" . $date . "'
 					and bassin_id = " . $bassin_id;
@@ -1128,7 +1128,7 @@ class DistribQuotidien extends ObjetBDD {
 	 */
 	function lireFromDate($bassin_id, $distrib_date) {
 		$distribDate = $this->formatDateLocaleVersDB ( $this->encodeData ( $distrib_date ) );
-		if ($bassin_id > 0) {
+		if ($bassin_id > 0 && is_numeric($bassin_id)) {
 			$sql = "select * from " . $this->table . " 
 					where bassin_id = " . $bassin_id . "
 						and distrib_quotidien_date = '" . $distribDate . "'";
@@ -1144,7 +1144,7 @@ class DistribQuotidien extends ObjetBDD {
 	 * @return array
 	 */
 	function getListAliment($bassin_id, $date_debut, $date_fin) {
-		if ($bassin_id > 0 && strlen ( $date_debut ) > 2 && strlen ( $date_fin ) > 2) {
+		if ($bassin_id > 0 && is_numeric($bassin_id) && strlen ( $date_debut ) > 2 && strlen ( $date_fin ) > 2) {
 			$date_debut = $this->formatDateLocaleVersDB ( $this->encodeData ( $date_debut ) );
 			$date_fin = $this->formatDateLocaleVersDB ( $this->encodeData ( $date_fin ) );
 			$sql = "select distinct aliment_id, aliment_libelle_court
@@ -1159,7 +1159,7 @@ class DistribQuotidien extends ObjetBDD {
 		}
 	}
 	function getListeConsommation($bassin_id, $date_debut, $date_fin) {
-		if ($bassin_id > 0 && strlen ( $date_debut ) > 2 && strlen ( $date_fin ) > 2) {
+		if ($bassin_id > 0 && is_numeric($bassin_id) && strlen ( $date_debut ) > 2 && strlen ( $date_fin ) > 2) {
 			$date_debut = $this->formatDateLocaleVersDB ( $this->encodeData ( $date_debut ) );
 			$date_fin = $this->formatDateLocaleVersDB ( $this->encodeData ( $date_fin ) );
 			/*
@@ -1227,7 +1227,7 @@ class DistribQuotidien extends ObjetBDD {
 		 * Recuperation de la cle, si existante
 		 */
 		$data = $this->encodeData ( $data );
-		if ($data ["bassin_id"] > 0 && strlen ( $data ["distrib_quotidien_date"] ) > 0) {
+		if ($data ["bassin_id"] > 0  && is_numeric($data["bassin_id"]) && strlen ( $data ["distrib_quotidien_date"] ) > 0) {
 			$date = $this->formatDateLocaleVersDB ( $data ["distrib_quotidien_date"] );			
 			$sql = "select distrib_quotidien_id from distrib_quotidien
 				where bassin_id = " . $data["bassin_id"] . " 
@@ -1292,7 +1292,7 @@ class AlimentQuotidien extends ObjetBDD {
 	 * @return code
 	 */
 	function deleteFromDateBassin($date, $bassin_id) {
-		if (strlen ( $date ) > 0 && $bassin_id > 0) {
+		if (strlen ( $date ) > 0 && $bassin_id > 0 && is_numeric($bassin_id)) {
 			$date = $this->encodeData ( $date );
 			$sql = "delete from " . $this->table . "
 					using distrib_quotidien
@@ -1344,7 +1344,7 @@ class LotRepartTemplate extends ObjetBDD {
 	 * @return array|NULL
 	 */
 	function getFromAge($age) {
-		if ($age > 0) {
+		if ($age > 0 && is_numeric($age)) {
 			$sql = "select * from lot_repart_template
 				where age = " . $age;
 			return $this->lireParam ( $sql );

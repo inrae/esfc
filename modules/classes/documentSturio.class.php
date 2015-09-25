@@ -21,7 +21,7 @@ include_once "modules/classes/document.class.php";
  	 * @see ObjetBDD::supprimer()
  	 */
  	function supprimer($id) {
- 		if ($id > 0) {
+ 		if ($id > 0 && is_numeric($id)) {
  			/*
  			 * Suppression dans les tables liées
  			*/
@@ -39,7 +39,7 @@ include_once "modules/classes/document.class.php";
  	 * @return array
  	 */
  	function getListeDocument($type, $id) {
- 		if ( in_array($type, $this->modules) && $id > 0) {
+ 		if ( in_array($type, $this->modules) && $id > 0 && is_numeric($id)) {
  			if ($type == "poisson") {
  				$sql = "select document_id, document_date_import, document_nom,
  						document_description, size, mime_type_id

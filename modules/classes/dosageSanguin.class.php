@@ -65,7 +65,7 @@ class DosageSanguin extends \ObjetBDD {
 	 * @return NULL array
 	 */
 	function getListeFromPoissonCampagne($poissonCampagneId) {
-		if ($poissonCampagneId > 0) {
+		if ($poissonCampagneId > 0 && is_numeric($poissonCampagneId)) {
 			$sql = "select dosage_sanguin_id, poisson_campagne_id, dosage_sanguin_date, 
 					tx_e2, tx_e2_texte, tx_calcium, tx_hematocrite,
 					dosage_sanguin_commentaire 

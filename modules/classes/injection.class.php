@@ -53,7 +53,7 @@ class Injection extends ObjetBDD {
 	 * @return tableau|NULL
 	 */
 	function getListFromPoissonCampagne($poisson_campagne_id) {
-		if ($poisson_campagne_id > 0) {
+		if ($poisson_campagne_id > 0 && is_numeric($poisson_campagne_id)) {
 			$sql = "select injection_id, poisson_campagne_id, sequence_id, injection_date,
 					sequence_nom, injection_dose, injection_commentaire,
 					hormone_id, hormone_nom, hormone_unite

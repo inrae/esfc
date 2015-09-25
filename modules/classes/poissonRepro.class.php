@@ -75,7 +75,7 @@ class PoissonCampagne extends ObjetBDD {
 	 */
 	function txCroissanceJourCalcul($poisson_id, $annee = NULL) {
 		$result = array ();
-		if ($poisson_id > 0) {
+		if ($poisson_id > 0 && is_numeric($poisson_id)) {
 			$morphologie = new Morphologie ( $this->connection, $this->paramori );
 			if (is_null ( $annee ))
 				$annee = getYear ();
@@ -119,7 +119,7 @@ class PoissonCampagne extends ObjetBDD {
 	 */
 	function initCampagne($annee) {
 		$nb = 0;
-		if ($annee > 0) {
+		if ($annee > 0 && is_numeric($annee)) {
 			/*
 			 * recherche des adultes qui n'existent pas dans la table poisson_campagne pour l'annee consideree
 			 */
@@ -147,7 +147,7 @@ class PoissonCampagne extends ObjetBDD {
 	 * @return int
 	 */
 	function initCampagnePoisson($poisson_id, $annee) {
-		if ($poisson_id > 0 && $annee > 0) {
+		if ($poisson_id > 0 && is_numeric($poisson_id) && $annee > 0 && is_numeric($annee)) {
 			/*
 			 * Recherche s'il existe deja un enregistrement
 			 */
@@ -191,7 +191,7 @@ class PoissonCampagne extends ObjetBDD {
 	 */
 	function getListForDisplay($param) {
 		$param = $this->encodeData($param);
-		if ($param ["annee"] > 0) {
+		if ($param ["annee"] > 0 && is_numeric($param["annee"])) {
 			$sql = "select poisson_campagne_id, poisson_id, 
 					matricule, prenom, pittag_valeur, cohorte,
 				tx_croissance_journalier, specific_growth_rate,
@@ -205,7 +205,7 @@ class PoissonCampagne extends ObjetBDD {
 				left outer join v_pittag_by_poisson using (poisson_id)";
 			
 			$where = " where annee = " . $param ["annee"];
-			if ($param ["repro_statut_id"] > 0)
+			if ($param ["repro_statut_id"] > 0 && is_numeric($param["repro_statut_id"]))
 				$where .= " and repro_statut_id = " . $param ["repro_statut_id"];
 			$order = " order by sexe_libelle, prenom";
 			
@@ -229,7 +229,7 @@ class PoissonCampagne extends ObjetBDD {
 	 */
 	function getAnneeCroisement($poisson_id) {
 		$annees = "";
-		if ($poisson_id > 0) {
+		if ($poisson_id > 0 && is_numeric($poisson_id)) {
 			$sql = "select distinct annee 
 					from poisson_campagne 
 					join poisson_croisement using(poisson_campagne_id)
@@ -255,7 +255,7 @@ class PoissonCampagne extends ObjetBDD {
 	 * @return tableau|NULL
 	 */
 	function getListSequence($poisson_id, $annee, $isPoissonCampagne = true) {
-		if ($poisson_id > 0 && $annee > 0) {
+		if ($poisson_id > 0 && is_numeric($poisson_id) && $annee > 0 && is_numeric($annee)) {
 			$sql = "select distinct sequence_id, sequence_nom, sequence_date_debut
 					from sequence s
 					join poisson_sequence using (sequence_id)
@@ -310,7 +310,7 @@ class PoissonCampagne extends ObjetBDD {
 	 * @see ObjetBDD::lire()
 	 */
 	function lire($id) {
-		if ($id > 0) {
+		if ($id > 0 && is_numeric($id)) {
 			$sql = "select poisson_campagne_id, poisson_id, matricule, prenom, pittag_valeur, cohorte,
 				annee, tx_croissance_journalier, specific_growth_rate,
 				sexe_libelle, sexe_libelle_court, masse,
@@ -334,7 +334,7 @@ class PoissonCampagne extends ObjetBDD {
 	 */
 	function ecrire($data) {
 		$ok = false;
-		if ($data ["poisson_id"] > 0 && $data ["annee"] > 0)
+		if ($data ["poisson_id"] > 0 && is_numeric($data["poisson_id"]) && $data ["annee"] > 0 && is_numeric($data["annee"]))
 			$ok = true;
 		if ($data ["poisson_campagne_id"] == 0 && $ok == true) {
 			/*
@@ -364,7 +364,7 @@ class PoissonCampagne extends ObjetBDD {
 	 * @return tableau|NULL
 	 */
 	function getListFromPoisson($poisson_id) {
-		if ($poisson_id > 0) {
+		if ($poisson_id > 0 && is_numeric($poisson_id)) {
 			$sql = "select poisson_campagne_id, poisson_id, annee,
 					masse, tx_croissance_journalier, specific_growth_rate,
 					repro_statut_id, repro_statut_libelle
@@ -385,7 +385,7 @@ class PoissonCampagne extends ObjetBDD {
 	 * @return int
 	 */
 	function changeStatut($poisson_campagne_id, $repro_statut_id) {
-		if ($poisson_campagne_id > 0 && $repro_statut_id > 0) {
+		if ($poisson_campagne_id > 0 && is_numeric($poisson_campagne_id) && $repro_statut_id > 0 && is_numeric($repro_statut_id)) {
 			$data = parent::lire ( $poisson_campagne_id );
 			$data ["repro_statut_id"] = $repro_statut_id;
 			return $this->ecrire ( $data );
@@ -402,7 +402,7 @@ class PoissonCampagne extends ObjetBDD {
 	 * @return array|NULL
 	 */
 	function getTemperatures($poisson_id, $annee, $profil_thermique_type_id = 1) {
-		if ($poisson_id > 0 && $annee > 0) {
+		if ($poisson_id > 0 && is_numeric($poisson_id) && $annee > 0 && is_numeric($annee)) {
 			$sql = "SELECT b.poisson_id,b.bassin_id,b.bassin_nom,b.date_debut,b.date_fin,
     				bc.bassin_campagne_id,pt.profil_thermique_id,bc.annee,pt.pf_datetime,
     				pt.pf_temperature,pt.profil_thermique_type_id

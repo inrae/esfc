@@ -62,7 +62,7 @@ class Anomalie_db extends ObjetBDD {
 	 * @see ObjetBDD::lire()
 	 */
 	function lire($id) {
-		if ($id > 0) {
+		if ($id > 0 && is_numeric($id)) {
 			$sql = "select anomalie_db_id, anomalie_db_date, anomalie_db.poisson_id, anomalie_db_commentaire, 
 				anomalie_db_type_libelle, evenement_type_libelle, anomalie_db.evenement_id,
 					anomalie_db_statut, anomalie_db_date_traitement,
@@ -84,7 +84,7 @@ class Anomalie_db extends ObjetBDD {
 	 * @return array
 	 */
 	function getListByPoisson($poisson_id) {
-		if ($poisson_id > 0) {
+		if ($poisson_id > 0 && is_numeric($poisson_id)) {
 			$sql = "select anomalie_db_id, anomalie_db.poisson_id, anomalie_db_date, anomalie_db_commentaire,
 					anomalie_db_type_libelle, 
 					evenement_id, evenement_type_libelle, 
@@ -120,11 +120,11 @@ class Anomalie_db extends ObjetBDD {
 					left outer join evenement_type using (evenement_type_id)";
 		$where = "";
 		$and = "";
-		if ($dataSearch ["statut"] > - 1) {
+		if ($dataSearch ["statut"] > - 1 && is_numeric($dataSearch["statut"])) {
 			$where .= $and . " anomalie_db_statut = " . $dataSearch ["statut"];
 			$and = " and ";
 		}
-		if ($dataSearch ["type"] > 0) {
+		if ($dataSearch ["type"] > 0 && is_numeric($dataSearch["type"])) {
 			$where .= $and . " anomalie_db_type_id = " . $dataSearch ["type"];
 			$and = " and ";
 		}

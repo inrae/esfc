@@ -101,19 +101,19 @@ class Bassin extends ObjetBDD {
 			 */
 			$where = " where ";
 			$and = "";
-			if ($dataSearch ["bassin_type"] > 0) {
+			if ($dataSearch ["bassin_type"] > 0 && is_numeric($dataSearch["bassin_type"])) {
 				$where .= $and . " bassin_type_id = " . $dataSearch ["bassin_type"];
 				$and = " and ";
 			}
-			if ($dataSearch ["bassin_usage"] > 0) {
+			if ($dataSearch ["bassin_usage"] > 0 && is_numeric($dataSearch["bassin_usage"])) {
 				$where .= $and . " bassin_usage_id = " . $dataSearch ["bassin_usage"];
 				$and = " and ";
 			}
-			if ($dataSearch ["bassin_zone"] > 0) {
+			if ($dataSearch ["bassin_zone"] > 0 && is_numeric($dataSearch["bassin_zone"])) {
 				$where .= $and . " bassin_zone_id = " . $dataSearch ["bassin_zone"];
 				$and = " and ";
 			}
-			if ($dataSearch ["circuit_eau"] > 0) {
+			if ($dataSearch ["circuit_eau"] > 0 && is_numeric($dataSearch["circuit_eau"])) {
 				$where .= $and . " circuit_eau_id = " . $dataSearch ["circuit_eau"];
 				$and = " and ";
 			}
@@ -133,7 +133,7 @@ class Bassin extends ObjetBDD {
 	 * @return array
 	 */
 	function getDetail($bassinId) {
-		if ($bassinId > 0) {
+		if ($bassinId > 0 && is_numeric($bassinId)) {
 			$sql = "select bassin_id, bassin_nom, bassin_description, actif,
 					bassin_type_libelle, bassin_usage_libelle, bassin_zone_libelle, 
 					bassin.circuit_eau_id, circuit_eau_libelle
@@ -159,11 +159,11 @@ class Bassin extends ObjetBDD {
 		$sql = "select * from bassin ";
 		$where = " where ";
 		$bwhere = false;
-		if ($actif > - 1) {
+		if ($actif > - 1 && is_numeric($actif)) {
 			$where .= " actif = " . $actif;
 			$bwhere = true;
 		}
-		if ($usage > 0) {
+		if ($usage > 0 && is_numeric($usage)) {
 			$bwhere == true ? $where .= " and " : $bwhere = true;
 			$where .= " bassin_usage_id = " . $usage;
 		}
@@ -179,7 +179,7 @@ class Bassin extends ObjetBDD {
 	 * @return array
 	 */
 	function getListeByCircuitEau($circuitId) {
-		if ($circuitId > 0) {
+		if ($circuitId > 0 && is_numeric($circuitId)) {
 			$sql = "select bassin_id, bassin_nom from bassin where circuit_eau_id = " . $circuitId . "
 				order by bassin_nom";
 			return $this->getListeParam ( $sql );
@@ -192,7 +192,7 @@ class Bassin extends ObjetBDD {
 	 * @return unknown
 	 */
 	function calculMasse($bassinId) {
-		if ($bassinId > 0) {
+		if ($bassinId > 0 && is_numeric($bassinId)) {
 			/*
 			 * Recuperation de la liste des poissons
 			 */
@@ -291,7 +291,7 @@ class Bassin_usage extends ObjetBDD {
 	function getListe($order = 0) {
 		$sql = "select * from " . $this->table . "
 				left outer join categorie using (categorie_id)";
-		if ($order > 0)
+		if ($order > 0 && is_numeric($order))
 			$sql .= " order by " . $order;
 		return $this->getListeParam ( $sql );
 	}
@@ -387,7 +387,7 @@ class Circuit_eau extends ObjetBDD {
 			$where .= $and . " upper(circuit_eau_libelle) like upper('%" . $data ["circuit_eau_libelle"] . "%') ";
 			$and = " and ";
 		}
-		if ($data ["circuit_eau_actif"] > - 1) {
+		if ($data ["circuit_eau_actif"] > - 1 && is_numeric($data["circuit_eau_actif"])) {
 			$where .= $and . " circuit_eau_actif = " . $data ["circuit_eau_actif"];
 			$and = " and ";
 		}
@@ -511,7 +511,7 @@ class AnalyseEau extends ObjetBDD {
 	 * @return array
 	 */
 	function getDetailByCircuitEau($id, $dateRef = NULL, $limit = 1, $offset = 0) {
-		if ($id > 0) {
+		if ($id > 0 && is_numeric($id)) {
 			$sql = "select * from " . $this->table . " 
 					natural join circuit_eau
 					left outer join laboratoire_analyse using (laboratoire_analyse_id)";
@@ -523,7 +523,7 @@ class AnalyseEau extends ObjetBDD {
 			$analyseMetal = new AnalyseMetal ( $this->connection, $this->paramori );
 			if ($limit == 1) {
 				$data = $this->lireParam ( $sql . $where . $order );
-				if ($data ["analyse_eau_id"] > 0)
+				if ($data ["analyse_eau_id"] > 0 && is_numeric($data["analyse_eau_id"]))
 					$data ["metaux"] = $analyseMetal->getAnalyseToText ( $data ["analyse_eau_id"] );
 			} else {
 				$data = $this->getListeParam ( $sql . $where . $order );
@@ -542,7 +542,7 @@ class AnalyseEau extends ObjetBDD {
 	 * @see ObjetBDD::supprimer()
 	 */
 	function supprimer($id) {
-		if ($id > 0) {
+		if ($id > 0 && is_numeric($id)) {
 			/*
 			 * Suppression des analyses des metaux
 			 */
@@ -688,7 +688,7 @@ class BassinEvenement extends ObjetBDD {
 	 * @return array
 	 */
 	function getListeByBassin($bassin_id) {
-		if ($bassin_id > 0) {
+		if ($bassin_id > 0 && is_numeric($bassin_id)) {
 			$sql = "select * from bassin_evenement
 					natural join bassin_evenement_type
 					where bassin_id = " . $bassin_id . "
@@ -835,7 +835,7 @@ class AnalyseMetal extends ObjetBDD {
 	 * @return tableau|NULL
 	 */
 	function getListeFromAnalyse($analyse_id) {
-		if ($analyse_id > 0) {
+		if ($analyse_id > 0 && is_numeric($analyse_id)) {
 			$sql = "select analyse_metal_id, analyse_eau_id, metal_id, 
 					mesure, mesure_seuil, metal_nom, metal_unite
 					from analyse_metal
@@ -968,7 +968,7 @@ class BassinLot extends ObjetBDD {
 	 * @return tableau|NULL
 	 */
 	function getListeFromLot($lot_id) {
-		if ($lot_id > 0) {
+		if ($lot_id > 0 && is_numeric($lot_id)) {
 			$sql = "select bassin_lot_id, lot_id, bassin_id, 
 					bl_date_arrivee, bl_date_depart,
 					bassin_nom
@@ -1016,7 +1016,7 @@ class BassinLot extends ObjetBDD {
 	 * @return array|NULL
 	 */
 	function getPrecedentBassin($lot_id, $bl_date_arrivee) {
-		if ($lot_id > 0 && strlen ( $bl_date_arrivee ) > 0) {
+		if ($lot_id > 0 && is_numeric($lot_id) && strlen ( $bl_date_arrivee ) > 0) {
 			$bl_date_arrivee = $this->formatDateLocaleVersDB ( $this->encodeData ( $bl_date_arrivee ) );
 			$sql = "select * from bassin_lot
 				where bl_date_arrivee < '" . $bl_date_arrivee . "' 
@@ -1036,7 +1036,7 @@ class BassinLot extends ObjetBDD {
 	 * @return array|NULL
 	 */
 	function getBassin($lot_id, $date) {
-		if ($lot_id > 0 && strlen ( $date ) > 0) {
+		if ($lot_id > 0 && is_numeric($lot_id) && strlen ( $date ) > 0) {
 			$this->encodeData ( $date );
 			$date = $this->formatDateLocaleVersDB ( $date );
 			$sql = "select bassin_id, lot_id, bl_date_arrivee, bl_date_depart,

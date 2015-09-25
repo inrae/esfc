@@ -98,7 +98,7 @@ class Croisement extends ObjetBDD {
 	 * @return tableau|NULL
 	 */
 	function getListFromSequence($sequence_id) {
-		if ($sequence_id > 0) {
+		if ($sequence_id > 0 && is_numeric($sequence_id)) {
 			$sql = "select croisement_id, sequence_id, croisement_qualite_id, croisement_qualite_libelle,
 					croisement_date, ovocyte_masse, ovocyte_densite, tx_fecondation, tx_survie_estime,
 					sequence_nom, croisement_nom
@@ -126,7 +126,7 @@ class Croisement extends ObjetBDD {
 	 * @return array|NULL
 	 */
 	function getListFromAnnee($annee) {
-		if ($annee > 0) {
+		if ($annee > 0 && is_numeric($annee)) {
 			$sql = "select croisement_id, sequence_id, croisement_qualite_id, croisement_qualite_libelle,
 					croisement_date, ovocyte_masse, ovocyte_densite, tx_fecondation, tx_survie_estime
 					from croisement
@@ -154,7 +154,7 @@ class Croisement extends ObjetBDD {
 	 */
 	function getParentsFromCroisement($croisement_id) {
 		$parents = "";
-		if ($croisement_id > 0) {
+		if ($croisement_id > 0 && is_numeric($croisement_id)) {
 			$sql = "select prenom, sexe_libelle_court
 						from poisson_croisement
 						join poisson_campagne using (poisson_campagne_id)
@@ -180,7 +180,7 @@ class Croisement extends ObjetBDD {
 	 * @return tableau|NULL
 	 */
 	function getPoissonsFromCroisement ($croisement_id) {
-		if ($croisement_id > 0) {
+		if ($croisement_id > 0 && is_numeric($croisement_id)) {
 			$sql = "select poisson_campagne_id 
 					from poisson_croisement
 					where croisement_id = ".$croisement_id;
@@ -199,7 +199,7 @@ class Croisement extends ObjetBDD {
 	 */
 	function getListAllPoisson($croisement_id, $sequence_id = null) {
 		$data = array ();
-		if ($croisement_id > 0) {
+		if ($croisement_id > 0 && is_numeric($croisement_id)) {
 			if (is_null ( $sequence_id )) {
 				/*
 				 * Recuperation du numero de sequence
@@ -207,7 +207,7 @@ class Croisement extends ObjetBDD {
 				$data = $this->lire ( $croisement_id );
 				$sequence_id = $data ["sequence_id"];
 			}
-			if ($sequence_id > 0) {
+			if ($sequence_id > 0 && is_numeric($sequence_id)) {
 				/*
 				 * Recherche des poissons attaches a la sequence
 				 */

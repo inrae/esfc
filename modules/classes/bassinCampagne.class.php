@@ -53,7 +53,7 @@ class BassinCampagne extends ObjetBDD {
 	 */
 	function initCampagne($annee) {
 		$nb = 0;
-		if ($annee > 0) {
+		if ($annee > 0 && is_numeric($annee)) {
 			/*
 			 * Recherche des bassins de reproduction
 			 */
@@ -80,7 +80,7 @@ class BassinCampagne extends ObjetBDD {
 	 * @return tableau|NULL
 	 */
 	function getListFromAnnee($annee) {
-		if ($annee > 0) {
+		if ($annee > 0 && is_numeric($annee)) {
 			$sql = "select bassin_id, bassin_campagne_id, annee, bassin_nom, bassin_utilisation
 					from bassin_campagne
 					join bassin using (bassin_id)
@@ -141,14 +141,14 @@ class ProfilThermique extends ObjetBDD {
 	 * @return tableau|NULL
 	 */
 	function getListFromBassinCampagne($bassin_campagne_id, $type_id = 0) {
-		if ($bassin_campagne_id > 0) {
+		if ($bassin_campagne_id > 0 && is_numeric($bassin_campagne_id)) {
 			$sql = "select profil_thermique_id, bassin_campagne_id, profil_thermique_type_id,
 					pf_datetime, pf_temperature, 
 					profil_thermique_type_libelle
 					from profil_thermique
 					join profil_thermique_type using (profil_thermique_type_id)";
 			$where = " where bassin_campagne_id = " . $bassin_campagne_id;
-			if ($type_id > 0) {
+			if ($type_id > 0 && is_numeric($type_id)) {
 				$where .= " and profil_thermique_type_id = " . $type_id;
 			}
 			$order = " order by pf_datetime";
@@ -233,14 +233,14 @@ class Salinite extends ObjetBDD {
 	 * @return tableau|NULL
 	 */
 	function getListFromBassinCampagne($bassin_campagne_id, $type_id = 0) {
-		if ($bassin_campagne_id > 0) {
+		if ($bassin_campagne_id > 0 && is_numeric($bassin_campagne_id)) {
 			$sql = "select salinite_id, bassin_campagne_id, profil_thermique_type_id,
 					salinite_datetime, salinite_tx,
 					profil_thermique_type_libelle
 					from salinite
 					join profil_thermique_type using (profil_thermique_type_id)";
 			$where = " where bassin_campagne_id = " . $bassin_campagne_id;
-			if ($type_id > 0) {
+			if ($type_id > 0 && is_numeric($type_id)) {
 				$where .= " and profil_thermique_type_id = " . $type_id;
 			}
 			$order = " order by salinite_datetime";

@@ -97,7 +97,7 @@ class Biopsie extends \ObjetBDD {
 	 * @return array|NULL
 	 */
 	function getListeFromPoissonCampagne($poisson_campagne_id) {
-		if ($poisson_campagne_id > 0) {
+		if ($poisson_campagne_id > 0 && is_numeric($poisson_campagne_id)) {
 			$sql = "select * from biopsie 
 					left outer join biopsie_technique_calcul using (biopsie_technique_calcul_id)
 					where poisson_campagne_id = " . $poisson_campagne_id . " 

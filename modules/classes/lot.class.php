@@ -70,7 +70,7 @@ class Lot extends ObjetBDD {
 	 * @return array|NULL
 	 */
 	function getLotByAnnee($annee) {
-		if ($annee > 0) {
+		if ($annee > 0 && is_numeric($annee)) {
 			$where = " where s.annee = " . $annee;
 			return $this->getDataParam ( $where );
 		} else
@@ -83,7 +83,7 @@ class Lot extends ObjetBDD {
 	 * @return array|NULL
 	 */
 	function getLotBySequence($sequence_id) {
-		if ($sequence_id > 0) {
+		if ($sequence_id > 0 && is_numeric($sequence_id)) {
 			$where = " where sequence_id = " . $sequence_id;
 			return $this->getDataParam ( $where );
 		} else
@@ -137,7 +137,7 @@ class Lot extends ObjetBDD {
 	 * @return array|NULL
 	 */
 	function getDetail($lot_id) {
-		if ($lot_id > 0) {
+		if ($lot_id > 0 && is_numeric($lot_id)) {
 			$where = "where lot_id = " . $lot_id;
 			$data = $this->getDataParam ( $where );
 			if (is_array ( $data ))
@@ -153,7 +153,7 @@ class Lot extends ObjetBDD {
 	 * @return array|NULL
 	 */
 	function getNbLarveFromCroisement($croisement_id) {
-		if ($croisement_id > 0) {
+		if ($croisement_id > 0 && is_numeric($croisement_id)) {
 			$sql = "select sum(nb_larve_initial) as total_larve_initial, 
 					sum(nb_larve_compte) as total_larve_compte
 					from lot
@@ -169,7 +169,7 @@ class Lot extends ObjetBDD {
 	 * @return array|NULL
 	 */
 	function getFromVieModele($vie_modele_id) {
-		if ($vie_modele_id > 0) {
+		if ($vie_modele_id > 0 && is_numeric($vie_modele_id)) {
 			$sql = "select * from lot where vie_modele_id = " . $vie_modele_id;
 			return $this->lireParam ( $sql );
 		} else
@@ -181,7 +181,7 @@ class Lot extends ObjetBDD {
 	 * @return tableau|NULL
 	 */
 	function getParents($lot_id) {
-		if ($lot_id > 0) {
+		if ($lot_id > 0 && is_numeric($lot_id)) {
 			$sql = "select poisson_id
 				from lot
 				join poisson_croisement using (croisement_id)
@@ -307,7 +307,7 @@ class LotMesure extends ObjetBDD {
 	 * @return tableau|NULL
 	 */
 	function getListFromLot($lot_id) {
-		if ($lot_id > 0) {
+		if ($lot_id > 0 && is_numeric($lot_id)) {
 			$sql = "select lot_mesure_id, lot_id, lot_mesure_date, nb_jour, lot_mortalite,
 					lot_mesure_masse, lot_mesure_masse_indiv
 					from lot_mesure
@@ -349,7 +349,7 @@ class LotMesure extends ObjetBDD {
 	 * @return array|NULL
 	 */
 	function getMesureAtDate($lot_id, $date) {
-		if ($lot_id > 0 && strlen($date) > 0) {
+		if ($lot_id > 0  && is_numeric($lot_id) && strlen($date) > 0) {
 			$date = $this->encodeData($date);
 			$date = $this->formatDateLocaleVersDB($date);
 			/*
@@ -427,7 +427,7 @@ class VieModele extends ObjetBDD {
 	 * @return tableau
 	 */
 	function getModelesFromAnnee($annee) {
-		if ($annee > 0) {
+		if ($annee > 0 && is_numeric($annee)) {
 			$sql = "select vie_modele_id, vm.vie_implantation_id, vie_implantation_id2,
 					annee, couleur,
 					v1.vie_implantation_libelle, v2.vie_implantation_libelle as vie_implantation_libelle2

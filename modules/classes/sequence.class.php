@@ -60,7 +60,7 @@ class Sequence extends ObjetBDD {
 	 * @param unknown $annee        	
 	 */
 	function getListeByYear($annee) {
-		if ($annee > 0) {
+		if ($annee > 0 && is_numeric($annee)) {
 			$sql = "select sequence_id, sequence_nom, annee, sequence_date_debut 
 				from sequence
 				where annee = " . $annee . " 
@@ -154,7 +154,7 @@ class PoissonSequence extends ObjetBDD {
 	 * @return array|NULL
 	 */
 	function getListFromPoisson($poisson_campagne_id) {
-		if ($poisson_campagne_id > 0) {
+		if ($poisson_campagne_id > 0 && is_numeric($poisson_campagne_id)) {
 			$sql = "select poisson_campagne_id, poisson_sequence_id, sequence_id,
 					ovocyte_masse, ovocyte_expulsion_date,
 					annee, sequence_nom, sequence_date_debut,
@@ -183,7 +183,7 @@ class PoissonSequence extends ObjetBDD {
 	 * @return tableau|NULL
 	 */
 	function getListFromSequence($sequence_id) {
-		if ($sequence_id > 0) {
+		if ($sequence_id > 0 && is_numeric($sequence_id)) {
 			$sql = "select poisson_campagne_id, poisson_sequence_id, sequence_id,
 					ovocyte_masse, ovocyte_expulsion_date,
 					matricule, prenom, pittag_valeur,
@@ -210,7 +210,7 @@ class PoissonSequence extends ObjetBDD {
 	 * @param int $level        	
 	 */
 	function updateStatut($poisson_sequence_id, $level) {
-		if ($poisson_sequence_id > 0 && $level > 0) {
+		if ($poisson_sequence_id > 0 && is_numeric($poisson_sequence_id) && $level > 0 && is_numeric($level)) {
 			$data = $this->lire ( $poisson_sequence_id );
 			if ($data ["poisson_sequence_id"] > 0) {
 				if ($level > $data ["ps_statut_id"]) {
@@ -230,7 +230,7 @@ class PoissonSequence extends ObjetBDD {
 	 * @return NULL
 	 */
 	function updateStatutFromPoissonCampagne($poisson_campagne_id, $sequence_id, $level) {
-		if ($poisson_campagne_id > 0 && $sequence_id > 0) {
+		if ($poisson_campagne_id > 0 && is_numeric($poisson_campagne_id) && $sequence_id > 0 && is_numeric($sequence_id)) {
 			/*
 			 * Recherche de la sequence correspondante
 			 */
@@ -294,7 +294,7 @@ class PsEvenement extends ObjetBDD {
 	 * @return tableau|NULL
 	 */
 	function getListeEvenementFromPoisson($poisson_campagne_id) {
-		if ($poisson_campagne_id > 0) {
+		if ($poisson_campagne_id > 0 && is_numeric($poisson_campagne_id)) {
 			$sql = "select ps_evenement_id, poisson_campagne_id, poisson_sequence_id, 
 					ps_datetime, ps_libelle, ps_commentaire,
 					sequence_nom
@@ -315,7 +315,7 @@ class PsEvenement extends ObjetBDD {
 	 * @return tableau|NULL
 	 */
 	function getListeFromPoissonSequence($poisson_sequence_id) {
-		if ($poisson_sequence_id > 0) {
+		if ($poisson_sequence_id > 0 && is_numeric($poisson_sequence_id)) {
 			$sql = "select ps_evenement_id, poisson_sequence_id, ps_datetime, ps_libelle, ps_commentaire 
 					from ps_evenement 
 					where poisson_sequence_id = " . $poisson_sequence_id . " 
