@@ -15,6 +15,13 @@ $( "#poissonForm" ).submit(function() {
 	} ;
 	return valid;
 	} ) ;
+	$("#cpittag_valeur").change(function () {
+		var pittag = $("#cpittag_valeur").val();
+		if (pittag.length > 0 && $("#cmatricule").val().length == 0) {
+			$("#cmatricule").val(pittag);
+		}
+		
+	});
  } );
 </script>
 <a href="index.php?module=poissonList">
@@ -107,9 +114,9 @@ Sélectionnez le type de marque...
 </fieldset>
 
 <dl>
-<dt>Matricule :</dt>
+<dt>Matricule<span class="red">*</span> :</dt>
 <dd>
-<input name="matricule" id="cmatricule" value="{$data.matricule}" size="30">
+<input name="matricule" id="cmatricule" value="{$data.matricule}" size="30" required>
 </dd>
 </dl>
 
