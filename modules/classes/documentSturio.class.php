@@ -66,22 +66,14 @@ include_once "modules/classes/document.class.php";
  			}
   			$liste = $this->getListeParam ( $sql );
  			/*
- 			 * Preparation des vignettes
+ 			 * Stockage des photos dans le dossier temporaire
  			*/
  			foreach ( $liste as $key => $value ) {
- 				if ($value ["mime_type_id"] == 1 || $value ["mime_type_id"] == 4 || $value ["mime_type_id"] == 5 || $value ["mime_type_id"] == 6) {
- 					/*
- 					 * Traitement des vignettes
- 					 */
- 					$liste[$key]["thumbnail_name"] = $this->writeFileImage($value["document_id"], 1);
- 				}
- 				if ($value ["mime_type_id"] == 4 || $value ["mime_type_id"] == 5 || $value ["mime_type_id"] == 6) {
- 					/*
- 					 * Traitement des photos
- 					 */
- 					$liste[$key]["photo_name"] = $this->writeFileImage($value["document_id"], 0, $this->resolution);
- 				}
- 			}
+ 				$filenames = $this->writeFileImage($value["document_id"], $this->resolution);
+ 				$liste[$key]["photo_name"] = $filenames[0];
+ 				$liste[$key]["photo_preview"] = $filenames[1];
+ 				$liste[$key]["thumbnail_name"] = $filenames[2];
+  			}
  			return ($liste);
  		}
  	}
@@ -135,8 +127,8 @@ include_once "modules/classes/document.class.php";
  					values 
  					(".$data["document_id"].",".$data[$nomChamp].")";
  			$rs = $this->executeSQL($sql);
- 			$test = $this->connection->Affected_Rows ();
- 			if ($test > 0) {
+ 			
+ 			if (count($rs) > 0) {
  				return 1;
  			} else {
  				return -1;

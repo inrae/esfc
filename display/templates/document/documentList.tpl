@@ -53,8 +53,8 @@ $(document).ready(function() {
 {section name=lst loop=$dataDoc}
 <tr>
 <td style="text-align:center;">
-{if strlen($dataDoc[lst].photo_name) > 0 }
-<a class="image-popup-no-margins" href="{$dataDoc[lst].photo_name}" title="aperçu de la photo : {substr($dataDoc[lst].photo_name, strrpos($dataDoc[lst].photo_name, '/') + 1)}">
+{if strlen($dataDoc[lst].photo_preview) > 0 }
+<a class="image-popup-no-margins" href="{$dataDoc[lst].photo_preview}" title="aperçu de la photo : {substr($dataDoc[lst].photo_name, strrpos($dataDoc[lst].photo_name, '/') + 1)}">
 <img src="{$dataDoc[lst].thumbnail_name}" height="30">
 </a>
 {elseif strlen($dataDoc[lst].thumbnail_name) > 0 }
@@ -63,7 +63,7 @@ $(document).ready(function() {
 </a>
 {/if}
 <td>
-<a href="index.php?module=documentGet&document_id={$dataDoc[lst].document_id}" title="document original">
+<a href="{$dataDoc[lst].photo_name}" title="document original">
 {$dataDoc[lst].document_nom}
 </a>
 </td>
