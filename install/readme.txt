@@ -1,6 +1,19 @@
 Nouveautés
 ===========
 
+Version 1.4.3 du 28 septembre 2015
+----------------------------
+Corrections de bogues :
+- dans certains cas, il était impossible de supprimer un poisson (poisson indiqué comme parent sans raison)
+- la suppression d'un événement ne fonctionnait pas si certaines informations étaient renseignées
+
+Améliorations :
+- la saisie du matricule est maintenant obligatoire (le matricule est généré automatiquement dans la grille de saisie à partir du n° TAG)
+
+Améliorations techniques :
+- basculement vers la dernière version du framework (réorganisation des menus, modification du moteur d'accès aux données)
+- réécriture d'une partie du module de gestion des pièces jointes
+
 Version 1.4.2 du 3 août 2015
 ----------------------------
 - Réactivation du module permettant l'export de tableaux pour 4 tableaux (liste des poissons, liste des poissons d'un bassin, liste des morphologies et des transferts effectués)
