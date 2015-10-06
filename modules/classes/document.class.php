@@ -339,10 +339,10 @@ class DocumentAttach extends ObjetBDD {
 							5,
 							6 
 					) )) {
+						try {
+						$image = new Imagick ();
+						$image->readImageFile ( $docRef );
 						if ($i != 1) {
-							$image = new Imagick ();
-							$image->readImageFile ( $docRef );
-						} else {
 							/*
 							 * Redimensionnement de l'image
 							 */
@@ -366,6 +366,7 @@ class DocumentAttach extends ObjetBDD {
 						}
 						$document = $image->getimageblob ();
 						$writeOk = true;
+						} catch (Exception $e){};
 					} else {
 						/*
 						 * Autres types de documents : ecriture directe du contenu
@@ -399,12 +400,12 @@ class DocumentAttach extends ObjetBDD {
 					1,
 					4,
 					5,
-					6
+					6 
 			) )) {
 				$nomPhoto [1] = "";
 				$nomPhoto [2] = "";
 			} elseif ($data ["mime_type_id"] == 1)
-			$nomPhoto [1] = "";
+				$nomPhoto [1] = "";
 		}
 		return $nomPhoto;
 	}
