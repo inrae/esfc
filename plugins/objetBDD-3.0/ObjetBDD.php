@@ -256,7 +256,7 @@ class ObjetBDD {
 	 *
 	 * @var integer
 	 */
-	public $srid = -1;
+	public $srid = - 1;
 	/**
 	 * Caractere utilise pour entourer les noms des colonnes
 	 *
@@ -288,31 +288,31 @@ class ObjetBDD {
 		/**
 		 * valeurs par defaut / Defaults values *
 		 */
-		//$this->auto_date = 1; // verification automatique des dates par defaut
-		//$this->separateurDB = "-";
-		//$this->formatDate = 1;
+		// $this->auto_date = 1; // verification automatique des dates par defaut
+		// $this->separateurDB = "-";
+		// $this->formatDate = 1;
 		$this->sepValide = array (
 				"/",
 				"-",
 				".",
 				" " 
 		);
-		//$this->separateurLocal = "/";
-		//$this->dateMini = 49;
-		//$this->id_auto = 1;
-		//$this->verifData = 1;
-		//$this->debug_mode = 1;
-		//$this->codageHtml = true;
-		//$this->cleMultiple = 0;
-		//$this->fullDescription = 0;
+		// $this->separateurLocal = "/";
+		// $this->dateMini = 49;
+		// $this->id_auto = 1;
+		// $this->verifData = 1;
+		// $this->debug_mode = 1;
+		// $this->codageHtml = true;
+		// $this->cleMultiple = 0;
+		// $this->fullDescription = 0;
 		// $this->typeDatabase = substr ( strtolower ( $this->connection->databaseType ), 0, 7 );
 		// $this->connection->SetFetchMode ( ADODB_FETCH_ASSOC );
 		$this->typeDatabase = $this->connection->getAttribute ( $p_connection::ATTR_DRIVER_NAME );
 		
 		$this->connection->setAttribute ( $p_connection::ATTR_DEFAULT_FETCH_MODE, $p_connection::FETCH_ASSOC );
-		//$this->UTF8 = false;
-		//$this->srid = - 1;
-		//$this->transformComma = 1;
+		// $this->UTF8 = false;
+		// $this->srid = - 1;
+		// $this->transformComma = 1;
 		/*
 		 * Preparation des tableaux intermediaires a partir du tableau $colonnes
 		 */
@@ -804,9 +804,9 @@ class ObjetBDD {
 			$sql = "insert into " . $this->table . "(";
 			$i = 0;
 			$valeur = ") values (";
-			//echo $this->id_auto."<br>";
+			// echo $this->id_auto."<br>";
 			foreach ( $data as $key => $value ) {
-				//echo $key." ".$value."<br>";
+				// echo $key." ".$value."<br>";
 				
 				// Traitement de la cle automatique. Uniquement sur cle unique !
 				if ($this->id_auto == 1 && $key == $this->cle) {
@@ -899,10 +899,10 @@ class ObjetBDD {
 			}
 			$sql .= " where " . $where;
 		}
-		if ($this->debug_mode == 2) 
-			echo $sql."<br>";
-		// printr($sql);
-		// die;
+		if ($this->debug_mode == 2)
+			echo $sql . "<br>";
+			// printr($sql);
+			// die;
 		$rs = $this->execute ( $sql );
 		if ($mode == "ajout" && $this->id_auto == 1) {
 			if ($this->typeDatabase == 'pgsql' && count ( $rs ) > 0) {
@@ -1037,7 +1037,7 @@ class ObjetBDD {
 						/*
 						 * Formatage de la date
 						 */
-						$dates [$key] = $this->formatDateDBversLocal($value, $types[$key]);
+						$dates [$key] = $this->formatDateDBversLocal ( $value, $types [$key] );
 					}
 				}
 			}
@@ -1413,8 +1413,8 @@ class ObjetBDD {
 			return false;
 		if (is_numeric ( $id ) == false)
 			return false;
-		if(!is_array($lignes))
-			$lignes=array();
+		if (! is_array ( $lignes ))
+			$lignes = array ();
 			// Preparation de la requete de lecture des relations existantes
 		if (strlen ( preg_replace ( "#[^A-Z]+#", "", $nomCle1 ) > 0 ))
 			$cle1 = $this->quoteIdentifier . $nomCle1 . $this->quoteIdentifier;
@@ -1574,18 +1574,27 @@ class ObjetBDD {
 	 */
 	function getBlobReference($id, $fieldName) {
 		if ($id > 0) {
+			if ($this->UTF8 == 1)
+				$this->connection->exec ( "SET CLIENT_ENCODING TO ISO-8859-1" );
 			$sql = "select " . $fieldName . " from " . $this->table . " 
 			where " . $this->cle . " = ?";
 			$query = $this->connection->prepare ( $sql );
+			if ($this->typeDatabase == "pgsql")
+				$query->bindColumn ( 1, $BlobRef, PDO::PARAM_LOB );
 			$query->execute ( array (
 					$id 
 			) );
 			if ($query->rowCount () == 1) {
-				$query->bindColumn ( 1, $BlobRef, PDO::PARAM_LOB );
+				if ($this->typeDatabase != "pgsql")
+					$query->bindColumn ( 1, $BlobRef, PDO::PARAM_LOB );
 				$query->fetch ( PDO::FETCH_BOUND );
+				if ($this->UTF8 == 1)
+					$this->connection->exec ( "SET CLIENT_ENCODING TO UTF8" );
 				return $BlobRef;
 			}
 		}
+		if ($this->UTF8 == 1)
+			$this->connection->exec ( "SET CLIENT_ENCODING TO UTF8" );
 		return null;
 	}
 }

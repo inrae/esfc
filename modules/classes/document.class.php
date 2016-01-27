@@ -239,6 +239,43 @@ class DocumentAttach extends ObjetBDD {
 	}
 	
 	/**
+	 * Envoie un fichier au navigateur, pour affichage
+	 *
+	 * @param string $nomfile
+	 *        	: nom du fichier stocke dans le dossier temporaire
+	 * @param int $id
+	 *        	: cle du document, necessaire pour recuperer le type mime
+	 */
+	function documentSent($nomfile, $id, $attached = false) {
+		$id = $this->encodeData ( $id );
+		$nomfile = $this->encodeData ( $nomfile );
+		/*
+		 * Suppression des .. pour eviter une descente dans l'arborescence
+		 */
+		$nomfile = preg_replace("/\.\./", "", $nomfile);
+		if (strlen ( $nomfile ) > 0 && is_numeric ( $id ) && $id > 0) {
+			$filename = $this->temp . "/" . $nomfile;
+			if (file_exists ( $filename )) {
+				/*
+				 * Lecture du type mime
+				 */
+				$data = $this->getData ( $id );
+				if (strlen ( $data ["content_type"] ) > 0) {
+					header ( "content-type: " . $data ["content_type"] );
+					header ( 'Content-Transfer-Encoding: binary' );
+					if ($attached == true)
+						header ( 'Content-Disposition: attachment; filename="' . $data ["document_nom"] . '"' );
+						
+					ob_clean ();
+					flush ();
+					readfile ( $filename );
+				}
+			}
+		}
+	}
+	
+	
+	/**
 	 * Ecriture d'un document
 	 *
 	 * @param array $file
@@ -338,35 +375,37 @@ class DocumentAttach extends ObjetBDD {
 							4,
 							5,
 							6 
-					) )) {
+					) ) && $docRef != NULL) {
 						try {
-						$image = new Imagick ();
-						$image->readImageFile ( $docRef );
-						if ($i != 1) {
-							/*
-							 * Redimensionnement de l'image
-							 */
-							$resize = 0;
-							$geo = $image->getimagegeometry ();
-							if ($geo ["width"] > $resolution || $geo ["height"] > $resolution) {
-								$resize = 1;
+							$image = new Imagick ();
+							$image->readImageFile ( $docRef );
+							if ($i != 1) {
 								/*
-								 * Calcul de la résolution dans les deux sens
+								 * Redimensionnement de l'image
 								 */
-								if ($geo ["width"] > $resolution) {
-									$resx = $resolution;
-									$resy = $geo ["height"] * ($resolution / $geo ["width"]);
-								} else {
-									$resy = $resolution;
-									$resx = $geo ["width"] * ($resolution / $geo ["height"]);
+								$resize = 0;
+								$geo = $image->getimagegeometry ();
+								if ($geo ["width"] > $resolution || $geo ["height"] > $resolution) {
+									$resize = 1;
+									/*
+									 * Calcul de la résolution dans les deux sens
+									 */
+									if ($geo ["width"] > $resolution) {
+										$resx = $resolution;
+										$resy = $geo ["height"] * ($resolution / $geo ["width"]);
+									} else {
+										$resy = $resolution;
+										$resx = $geo ["width"] * ($resolution / $geo ["height"]);
+									}
 								}
+								if ($resize == 1)
+									$image->resizeImage ( $resx, $resy, imagick::FILTER_LANCZOS, 1 );
 							}
-							if ($resize == 1)
-								$image->resizeImage ( $resx, $resy, imagick::FILTER_LANCZOS, 1 );
+							$document = $image->getimageblob ();
+							$writeOk = true;
+						} catch ( Exception $e ) {
 						}
-						$document = $image->getimageblob ();
-						$writeOk = true;
-						} catch (Exception $e){};
+						;
 					} else {
 						/*
 						 * Autres types de documents : ecriture directe du contenu
