@@ -254,8 +254,8 @@ class DocumentAttach extends ObjetBDD {
 		 */
 		$nomfile = preg_replace("/\.\./", "", $nomfile);
 		if (strlen ( $nomfile ) > 0 && is_numeric ( $id ) && $id > 0) {
-			$filename = $this->temp . "/" . $nomfile;
-			if (file_exists ( $filename )) {
+			//$filename = $this->temp . "/" . $nomfile;
+			if (file_exists ( $nomfile )) {
 				/*
 				 * Lecture du type mime
 				 */
@@ -268,7 +268,7 @@ class DocumentAttach extends ObjetBDD {
 						
 					ob_clean ();
 					flush ();
-					readfile ( $filename );
+					readfile ( $nomfile );
 				}
 			}
 		}
@@ -369,7 +369,7 @@ class DocumentAttach extends ObjetBDD {
 					/*
 					 * Recuperation des donnees concernant la photo
 					 */
-					if ($i != 1)
+					//if ($i != 1)
 						$docRef = $this->getBlobReference ( $id, $colonne );
 					if (in_array ( $data ["mime_type_id"], array (
 							4,
@@ -379,7 +379,7 @@ class DocumentAttach extends ObjetBDD {
 						try {
 							$image = new Imagick ();
 							$image->readImageFile ( $docRef );
-							if ($i != 1) {
+							if ($i == 1) {
 								/*
 								 * Redimensionnement de l'image
 								 */
