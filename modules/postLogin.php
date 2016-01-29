@@ -11,6 +11,7 @@
  */
 if (strlen ( $APPLI_nomDossierStockagePhotoTemp ) > 0) {
 	$dureeVie = 3600 * 24; // Suppression de tous les fichiers de plus de 24 heures
+	$keepfiles=array(".htaccess", ".gitignore");
 	/*
 	 * Ouverture du dossier
 	*/
@@ -22,8 +23,10 @@ if (strlen ( $APPLI_nomDossierStockagePhotoTemp ) > 0) {
 		$atime = $stat["atime"];
 		fclose($file);
 		$infos = pathinfo ( $path );
-		$extension = $infos ['extension'];
-		if ($extension == "png" && ! is_dir($path)) {
+		$filename = $infos["basename"];
+		//$extension = $infos ['extension'];
+		//if ($extension == "png" && ! is_dir($path)) {
+		if (!in_array($filename, $keepfiles) && ! is_dir($path)) {
 			$age = time () - $atime;
 			if ($age > $dureeVie) {
 				unlink ( $path );
