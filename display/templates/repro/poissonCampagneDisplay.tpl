@@ -180,6 +180,11 @@ Nouvelle échographie (nouvel événement)...
 {/if}
 {include file="poisson/echographieList.tpl"}
 </fieldset>
+<br>
+<fieldset>
+<legend>Analyses sanguines</legend>
+{include file="repro/poissonSanguinList.tpl"}
+</fieldset>
 {if $dataPoisson.sexe_libelle_court == "m"}
 <br>
 <fieldset>
@@ -190,15 +195,15 @@ Nouvelle échographie (nouvel événement)...
 </td>
 <td>
 <fieldset>
+<legend>Transferts de l'année</legend>
+{include file="poisson/transfertList.tpl"}
+</fieldset>
+<fieldset>
 <legend>Événements liés aux séquences</legend>
 {include file="repro/psEvenementList.tpl"}
 </fieldset>
 <br>
-<fieldset>
-<legend>Analyses sanguines</legend>
-{include file="repro/poissonSanguinList.tpl"}
-</fieldset>
-<br>
+
 <fieldset>
 <legend>Injections</legend>
 {include file="repro/injectionList.tpl"}

@@ -983,7 +983,7 @@ class Transfert extends ObjetBDD {
 	 * @param int $poisson_id        	
 	 * @return array
 	 */
-	function getListByPoisson($poisson_id) {
+	function getListByPoisson($poisson_id, $annee=0) {
 		if ($poisson_id > 0 && is_numeric($poisson_id)) {
 			$sql = 'select transfert_id, transfert.poisson_id, bassin_origine, bassin_destination, transfert_date, evenement_id,
 					ori.bassin_nom as "bassin_origine_nom", dest.bassin_nom as "bassin_destination_nom",
@@ -993,9 +993,12 @@ class Transfert extends ObjetBDD {
 					left outer join bassin ori on (bassin_origine = ori.bassin_id)
 					left outer join bassin dest on (bassin_destination = dest.bassin_id)
 					left outer join evenement using (evenement_id)
-					left outer join evenement_type using (evenement_type_id)
-					where transfert.poisson_id = ' . $poisson_id . " order by transfert_date desc";
-			return $this->getListeParam ( $sql );
+					left outer join evenement_type using (evenement_type_id)';
+					$where = ' where transfert.poisson_id = ' . $poisson_id;
+					if ($annee > 0 && is_numeric($annee))
+						$where .= " and extract(year from transfert_date) = ".$annee; 
+					$order = " order by transfert_date desc";
+			return $this->getListeParam ( $sql . $where . $order);
 		}
 	}
 	/**

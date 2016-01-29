@@ -183,6 +183,7 @@ a:hover {
 	font-style: normal;
 	color: #a66d1a;
 }
+
 .lienimage a:link,a:active,a:hover,a:visited {
 	display: inline;
 	background-color: white;

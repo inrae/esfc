@@ -104,11 +104,13 @@ switch ($t_module ["param"]) {
 		$echographie = new Echographie ( $bdd, $ObjetBDDParam );
 		$injection = new Injection ( $bdd, $ObjetBDDParam );
 		$sperme = new Sperme ( $bdd, $ObjetBDDParam );
+		$transfert = new Transfert($bdd, $ObjetBDDParam);
 		$dosages = $dosageSanguin->getListeFromPoissonCampagne ( $id );
 		$injections = $injection->getListFromPoissonCampagne ( $id );
 		$sequences = $poissonSequence->getListFromPoisson ( $id );
 		$spermes = $sperme->getListFromPoissonCampagne ( $id );
 		$biopsies = $biopsie->getListeFromPoissonCampagne ( $id );
+		$transferts = $transfert->getListByPoisson($data["poisson_id"], $_SESSION["annee"]);
 		
 		$smarty->assign ( "dataSanguin", $dosages );
 		$smarty->assign ( "dataBiopsie", $biopsies );
@@ -117,6 +119,7 @@ switch ($t_module ["param"]) {
 		$smarty->assign ( "dataEcho", $echographie->getListByYear ( $data ["poisson_id"], $_SESSION ["annee"] ) );
 		$smarty->assign ( "injections", $injections );
 		$smarty->assign ( "spermes", $spermes );
+		$smarty->assign ("dataTransfert", $transferts);
 		
 		$smarty->assign ( "corps", "repro/poissonCampagneDisplay.tpl" );
 		if (isset ( $_REQUEST ["sequence_id"] ))
