@@ -18,8 +18,6 @@ include "modules/repro/setAnnee.php";
 
 switch ($t_module["param"]) {
 	case "list":
-		$poissonCampagne = new poissonCampagne($bdd, $ObjetBDDParam);
-		$smarty->assign("annees", $poissonCampagne->getAnnees());
 		$smarty->assign("data", $dataClass->getListeByYear($_SESSION["annee"]));
 		$smarty->assign("corps", "repro/sequenceList.tpl");
 		/*

@@ -15,4 +15,9 @@
 <legend>Bassins utilisés</legend>
 {include file="repro/bassinLotList.tpl"}
 </fieldset>
+<br>
+<fieldset>
+<legend>Devenir du lot</legend>
+{include file="repro/devenirList.tpl"}
+</fieldset>
 </div>

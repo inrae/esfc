@@ -122,6 +122,8 @@ $LANG["menu"][108] = "Lots de larves";
 $LANG["menu"][109] = "Liste des lots de larves pour une campagne";
 $LANG["menu"][110] = "Modèles de marquages VIE";
 $LANG["menu"][111] = "Liste des modèles de marquage VIE pour une campagne";
+$LANG["menu"][112] = "Destination des lots";
+$LANG["menu"][113] = "Liste des lâchers ou des rentrées dans le stock captif";
 
 $LANG["menu"]["example1"] = "Example";
 $LANG["menu"]["example2"] = "It's an example !";

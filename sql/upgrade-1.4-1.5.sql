@@ -58,4 +58,7 @@ ON UPDATE NO ACTION
 NOT DEFERRABLE;
 
 insert into categorie (categorie_id, categorie_libelle) values (4, 'Larves');
-
+insert into devenir_type (devenir_type_id, devenir_type_libelle) 
+values
+(1, 'lâcher'),
+(2, 'stock captif');

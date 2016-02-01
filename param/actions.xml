@@ -292,6 +292,16 @@
 
 	<lotalimGenerate action="modules/repro/lotAlim.php" droits="reproGestion,bassinGestion" ajax="1" modulebefore="lotList"/>
 
+	<devenirList action="modules/repro/devenir.php" param="list" retourlogin="1" droits="reproConsult" />
+	<devenirChange action="modules/repro/devenir.php" param="change" droits="reproGestion" />
+	<devenirWrite action="modules/repro/devenir.php" param="write" droits="reproGestion" modulebefore="devenirChange" retourok="devenirList" retourko="devenirChange"/>
+	<devenirDelete action="modules/repro/devenir.php" param="delete" droits="reproGestion" modulebefore="devenirChange" retoursuppr="devenirList" retourko="devenirChange"/>
+
+	<devenirlotChange action="modules/repro/devenir.php" param="change" droits="reproGestion" />
+	<devenirlotWrite action="modules/repro/devenir.php" param="write" droits="reproGestion" modulebefore="devenirlotChange" retourok="lotDisplay" retourko="devenirlotChange"/>
+	<devenirlotDelete action="modules/repro/devenir.php" param="delete" droits="reproGestion" modulebefore="devenirlotChange" retoursuppr="lotDisplay" retourko="devenirlotChange"/>
+
+
 <!-- Gestion des droits -->
 	<appliList action="framework/droits/appli.php" param="list" droits="admin" retourlogin="1"  />
 	<appliDisplay action="framework/droits/appli.php" param="display" droits="admin" />

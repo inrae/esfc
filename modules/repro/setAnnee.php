@@ -7,18 +7,18 @@
  *  
  *  Initialise l'annee ou recupere l'annee saisie pour utilisation dans les modules de repro
  */
- 
 if ($_REQUEST ["annee"] > 0)
 	$_SESSION ["annee"] = $_REQUEST ["annee"];
+require_once 'modules/classes/poissonRepro.class.php';
+$poissonCampagne = new PoissonCampagne ( $bdd, $ObjetBDDParam );
+$annees = $poissonCampagne->getAnnees ();
+$smarty->assign ( "annees", $annees );
 if (! isset ( $_SESSION ["annee"] )) {
-	require_once 'modules/classes/poissonRepro.class.php';
-	$poissonCampagne = new PoissonCampagne ( $bdd, $ObjetBDDParam );
-	$annees = $poissonCampagne->getAnnees ();
+	$smarty->assign ( "annees", $annees );
 	$_SESSION ["annee"] = $annees [0] ["annee"];
 	if (! isset ( $_SESSION ["annee"] ))
 		$_SESSION ["annee"] = date ( 'Y' );
 }
-
 $smarty->assign ( "annee", $_SESSION ["annee"] );
 
 ?>

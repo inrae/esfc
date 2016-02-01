@@ -43,6 +43,13 @@ switch ($t_module["param"]) {
 		require_once 'modules/classes/bassin.class.php';
 		$bassinLot = new BassinLot($bdd, $ObjetBDDParam);
 		$smarty->assign ("bassinLot", $bassinLot->getListeFromLot($id));
+		/*
+		 * Lecture des devenirs d'un lot
+		 */
+		require_once 'modules/classes/devenir.class.php';
+		$devenir = new Devenir($bdd, $ObjetBDDParam);
+		$smarty->assign("dataDevenir", $devenir->getListFromLot($id));
+		$smarty->assign("devenirOrigine", "lot");
 		break;
 	case "change":
 		/*
