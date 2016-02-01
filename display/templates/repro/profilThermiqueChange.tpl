@@ -33,6 +33,8 @@ $(document).ready(function() {
 <form id="profilThermiqueForm" method="post" action="index.php?module=profilThermiqueWrite">
 <input type="hidden" name="profil_thermique_id" value="{$data.profil_thermique_id}">
 <input type="hidden" name="bassin_campagne_id" value="{$data.bassin_campagne_id}">
+<input type="hidden" name="bassin_id" value="{$dataBassin.bassin_id}">
+<input type="hidden" name="circuit_eau_id" value="{$dataBassin.circuit_eau_id}">
 <dl>
 <dt>Date/heure <span class="red">*</span> :</dt>
 <dd>

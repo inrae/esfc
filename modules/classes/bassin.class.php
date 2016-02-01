@@ -551,6 +551,27 @@ class AnalyseEau extends ObjetBDD {
 			return parent::supprimer ( $id );
 		}
 	}
+
+	/**
+	 * Retourne le numero d'analyse en fonction de la date et du bassin concerne
+	 * @param unknown $dateAnalyse
+	 * @param unknown $bassin_id
+	 * @return int
+	 */
+	function getIdFromDateBassin($dateAnalyse, $bassin_id) {
+		$dateAnalyse = $this->encodeData($dateAnalyse);
+		$dateAnalyse = $this->formatDateLocaleVersDB($dateAnalyse, 3);
+		if (strlen($dateAnalyse) > 0 && is_numeric($bassin_id) && $bassin_id > 0) {
+			$sql = "select analyse_eau_id
+					from analyse_eau
+					natural join circuit_eau
+					natural join bassin
+					where bassin_id = ".$bassin_id."
+					and analyse_eau_date = '".$dateAnalyse."'";
+			$data = $this->lireParam($sql);
+			return ($data["analyse_eau_id"]);
+		}
+	}
 }
 /**
  * ORM de gestion de la table laboratoire_analyse
