@@ -33,6 +33,8 @@ $(document).ready(function() {
 <form id="saliniteForm" method="post" action="index.php?module=saliniteWrite">
 <input type="hidden" name="salinite_id" value="{$data.salinite_id}">
 <input type="hidden" name="bassin_campagne_id" value="{$data.bassin_campagne_id}">
+<input type="hidden" name="bassin_id" value="{$dataBassin.bassin_id}">
+<input type="hidden" name="circuit_eau_id" value="{$dataBassin.circuit_eau_id}">
 <dl>
 <dt>Date/heure <span class="red">*</span> :</dt>
 <dd>
@@ -58,7 +60,7 @@ $(document).ready(function() {
 <input class="submit" type="submit" value="Enregistrer">
 </div>
 </form>
-{if $data.profil_thermique_id > 0 &&$droits["reproGestion"] == 1}
+{if $data.salinite_id > 0 &&$droits["reproGestion"] == 1}
 <div class="formBouton">
 <form action="index.php" method="post" onSubmit='return confirmSuppression("Confirmez-vous la suppression ?")'>
 <input type="hidden" name="module" value="saliniteDelete">
@@ -72,7 +74,7 @@ $(document).ready(function() {
 </div>
 <span class="red">*</span><span class="messagebas">Champ obligatoire</span>
 <br>
-{if $data.profil_thermique_id > 0}
+{if $data.salinite_id > 0}
 <a href="index.php?module=saliniteNew&bassin_campagne_id={$data.bassin_campagne_id}">
 Nouvelle donnée...
 </a>

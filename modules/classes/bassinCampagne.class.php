@@ -93,7 +93,7 @@ class BassinCampagne extends ObjetBDD {
 }
 /**
  * ORM de gestion de la table profil_thermique
- * 
+ *
  * @author quinton
  *        
  */
@@ -204,9 +204,8 @@ class ProfilThermique extends ObjetBDD {
 			/*
 			 * Mise a jour de la temperature
 			 */
-			$dataAnalyse["temperature"] = $data["pf_temperature"];
-			$analyseEau->ecrire($dataAnalyse);
-			
+			$dataAnalyse ["temperature"] = $data ["pf_temperature"];
+			$analyseEau->ecrire ( $dataAnalyse );
 		}
 		return ($id);
 	}
@@ -214,7 +213,7 @@ class ProfilThermique extends ObjetBDD {
 
 /**
  * ORM de gestion de la table salinite
- * 
+ *
  * @author quinton
  *        
  */
@@ -301,7 +300,34 @@ class Salinite extends ObjetBDD {
 	 */
 	function ecrire($data) {
 		$data ["salinite_datetime"] = $data ["salinite_date"] . " " . $data ["salinite_time"];
-		return parent::ecrire ( $data );
+		$id = parent::ecrire ( $data );
+		if ($data ["profil_thermique_type_id"] == 1 && $id > 0 && $data ["bassin_id"] > 0 && is_numeric ( $data ["bassin_id"] )) {
+			/*
+			 * Ecriture de l'enregistrement dans les analyses du bassin
+			 * Recuperation du numero d'analyse correspondant
+			 */
+			$analyseEau = new AnalyseEau ( $this->connection, $this->paramori );
+			/*
+			 * Forcage du champ date en datetime
+			 */
+			$analyseEau->types ["analyse_eau_date"] = 3;
+			$analyse_eau_id = $analyseEau->getIdFromDateBassin ( $data ["salinite_datetime"], $data ["bassin_id"] );
+			if ($analyse_eau_id > 0) {
+				$dataAnalyse = $analyseEau->lire ( $analyse_eau_id );
+			} else {
+				$dataAnalyse = array (
+						"analyse_eau_id" => 0,
+						"analyse_eau_date" => $data ["salinite_datetime"],
+						"circuit_eau_id" => $data ["circuit_eau_id"] 
+				);
+			}
+			/*
+			 * Mise a jour de la salinite
+			 */
+			$dataAnalyse ["salinite"] = $data ["salinite_tx"];
+			$analyseEau->ecrire ( $dataAnalyse );
+		}
+		return ($id);
 	}
 }
 ?>
