@@ -1,5 +1,0 @@
-Nouveautés
-===========
-Version 1.0 du 6 mai 2014
------------
-Version de pré-production.
