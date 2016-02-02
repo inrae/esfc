@@ -1,5 +1,18 @@
 Nouveautés
 ===========
+Version 1.5 du 2 février 2016
+----------------------------
+Corrections de bogues :
+- l'affichage et la gestion des photos ont été corrigés. Le téléchargement des pièces impose maintenant un respect des droits en vigueur, dans tous les cas de figure
+- il n'était pas possible de supprimer un relevé de salinité dans les bassins de reproduction
+
+Évolutions :
+- les transferts effectués dans l'année sont maintenant affichés dans la fiche de détail d'un reproducteur
+- le devenir d'un lot (lâcher en milieu naturel, stock captif...) peut maintenant être saisi
+- les différents lâchers ou rentrées dans le stock captif peuvent également être saisis sans passer par l'intermédiaire d'un lot, pour la reprise d'historique
+
+Divers :
+- nettoyage du code et suppression des modules tiers non utilisés
 
 Version 1.4.3 du 28 septembre 2015
 ----------------------------
