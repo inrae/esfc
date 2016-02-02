@@ -10,6 +10,7 @@ Corrections de bogues :
 - les transferts effectués dans l'année sont maintenant affichés dans la fiche de détail d'un reproducteur
 - le devenir d'un lot (lâcher en milieu naturel, stock captif...) peut maintenant être saisi
 - les différents lâchers ou rentrées dans le stock captif peuvent également être saisis sans passer par l'intermédiaire d'un lot, pour la reprise d'historique
+- la saisie de la température ou de la salinité constatés sont mis à jour dans les tables des analyses chimiques des bassins (circuits d'eau)
 
 Divers :
 - nettoyage du code et suppression des modules tiers non utilisés
