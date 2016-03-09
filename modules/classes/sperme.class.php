@@ -52,7 +52,10 @@ class Sperme extends ObjetBDD {
 				),
 				"sperme_commentaire" => array (
 						"type" => 0 
-				) 
+				),
+				"sperme_ph" => array (
+						"type" => 1
+				)
 		);
 		if (! is_array ( $param ))
 			$param == array ();
@@ -72,7 +75,7 @@ class Sperme extends ObjetBDD {
 					sequence_id, sequence_nom,
 					motilite_initiale, tx_survie_initial,
 					motilite_60, tx_survie_60, 
-					temps_survie, sperme_commentaire,
+					temps_survie, sperme_commentaire, sperme_ph,
 					sperme_qualite_id, sperme_qualite_libelle
 					from sperme
 					left outer join sperme_qualite using (sperme_qualite_id)

@@ -106,6 +106,10 @@ Sélectionnez...
 </dd>
 </dl>
 <dl>
+<dt>pH :</dt>
+<dd><input class="taux" name="sperme_ph" value="{$data.sperme_ph}"></dd>
+</dl>
+<dl>
 <dt>Commentaire :</dt>
 <dd>
 <input class="commentaire" name="sperme_commentaire" value="{$data.sperme_commentaire}">
