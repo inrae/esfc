@@ -246,6 +246,19 @@ class DocumentAttach extends ObjetBDD {
 				$data ["document_description"] = $description;
 				$data ["document_date_import"] = date ( "d/m/Y" );
 				$dataDoc = array ();
+				/*
+				 * Recherche antivirale
+				 */
+				$virus = false;
+				if (extension_loaded ( 'clamav' )) {
+					$retcode = cl_scanfile ( $file ["tmp_name"], $virusname );
+					if ($retcode == CL_VIRUS) {
+						$virus = true;
+						$texte_erreur = $file ["name"] . " : " . cl_pretcode ( $retcode ) . ". Virus found name : " . $virusname;
+						$message .= "<br>" . $texte_erreur;
+						$log->setLog ( $_SESSION ["login"], "Document-ecrire", $texte_erreur );
+					}
+				}
 				
 				/*
 				 * Recherche pour savoir s'il s'agit d'une image ou d'un pdf pour créer une vignette
@@ -254,30 +267,32 @@ class DocumentAttach extends ObjetBDD {
 				/*
 				 * Ecriture du document
 				 */
-				$dataBinaire = fread ( fopen ( $file ["tmp_name"], "r" ), $file ["size"] );
-				
-				$dataDoc ["data"] = pg_escape_bytea ( $dataBinaire );
-				if ($extension == "pdf" || $extension == "png" || $extension == "jpg") {
-					$image = new Imagick ();
-					$image->readImageBlob ( $dataBinaire );
-					$image->setiteratorindex ( 0 );
-					$image->resizeimage ( 200, 200, imagick::FILTER_LANCZOS, 1, true );
-					$image->setformat ( "png" );
-					$dataDoc ["thumbnail"] = pg_escape_bytea ( $image->getimageblob () );
+				if ($virus == false) {
+					$dataBinaire = fread ( fopen ( $file ["tmp_name"], "r" ), $file ["size"] );
+					
+					$dataDoc ["data"] = pg_escape_bytea ( $dataBinaire );
+					if ($extension == "pdf" || $extension == "png" || $extension == "jpg") {
+						$image = new Imagick ();
+						$image->readImageBlob ( $dataBinaire );
+						$image->setiteratorindex ( 0 );
+						$image->resizeimage ( 200, 200, imagick::FILTER_LANCZOS, 1, true );
+						$image->setformat ( "png" );
+						$dataDoc ["thumbnail"] = pg_escape_bytea ( $image->getimageblob () );
+					}
+					/*
+					 * suppression du stockage temporaire
+					 */
+					unset ( $file ["tmp_name"] );
+					/*
+					 * Ecriture dans la base de données
+					 */
+					$id = parent::ecrire ( $data );
+					if ($id > 0) {
+						$sql = "update " . $this->table . " set data = '" . $dataDoc ["data"] . "', thumbnail = '" . $dataDoc ["thumbnail"] . "' where document_id = " . $id;
+						$this->executeSQL ( $sql );
+					}
+					return $id;
 				}
-				/*
-				 * suppression du stockage temporaire
-				 */
-				unset ( $file ["tmp_name"] );
-				/*
-				 * Ecriture dans la base de données
-				 */
-				$id = parent::ecrire ( $data );
-				if ($id > 0) {
-					$sql = "update " . $this->table . " set data = '" . $dataDoc ["data"] . "', thumbnail = '" . $dataDoc ["thumbnail"] . "' where document_id = " . $id;
-					$this->executeSQL ( $sql );
-				}
-				return $id;
 			}
 		}
 	}
