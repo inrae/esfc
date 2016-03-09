@@ -32,6 +32,7 @@ suiv&gt;
 <th>Modif</th>
 {/if}
 <th>Catégorie</th>
+<th>Nom</th>
 <th>Date début</th>
 <th>Date fin</th>
 {if $droits.bassinGestion == 1}
@@ -50,6 +51,7 @@ suiv&gt;
 </td>
 {/if}
 <td>{$dataList[lst].categorie_libelle}</td>
+<td>{$dataList[lst].repartition_name}</td>
 <td>{$dataList[lst].date_debut_periode}</td>
 <td>{$dataList[lst].date_fin_periode}</td>
 {if $droits.bassinGestion == 1}

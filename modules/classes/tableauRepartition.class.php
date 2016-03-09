@@ -185,7 +185,7 @@ class TableauRepartition extends TCPDF {
 		$interval = date_diff ( $dateDebut, $dateFin );
 		$this->nbJour = $interval->format ( '%a' ) + 1;
 		$jourFin = date_format ( $dateFin, "w" );
-		$titre = $this->jourSemaine [$jourDebut] . " " . $this->dataRepartition ["date_debut_periode"] . " au " . $this->jourSemaine [$jourFin] . " " . $this->dataRepartition ["date_fin_periode"];
+		$titre = $this->dataRepartition["repartition_name"]. " " . $this->jourSemaine [$jourDebut] . " ".  $this->dataRepartition ["date_debut_periode"] . " au " . $this->jourSemaine [$jourFin] . " " . $this->dataRepartition ["date_fin_periode"];
 		$this->SetFont ( "", "B" );
 		$this->SetFontSize ( 14 );
 		$this->Write ( 0, $titre, "", 0, "C" );

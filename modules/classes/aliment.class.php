@@ -432,7 +432,10 @@ class Repartition extends ObjetBDD {
 				"date_fin_periode" => array (
 						"type" => 2,
 						"requis" => 1 
-				) 
+				),
+				"repartition_name" => array (
+						"type"=>0
+				)
 		);
 		if (! is_array ( $param ))
 			$param == array ();

@@ -176,6 +176,9 @@ $(document).ready(function() {
 </select>
 </dd>
 </dl>
+<dl><dt>Nom :</dt>
+<dd><input class="commentaire" name="repartition_name" value="{$data.repartition_name}" placeholder="Élevage, repro..."></dd>
+</dl>
  <dl>
  <dt>Date début :</dt>
  <dd><input class="date" name="date_debut_periode" value="{$data.date_debut_periode}"><span class="message"></span></dd>

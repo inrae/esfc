@@ -60,7 +60,7 @@ $(document).ready(function() {
 </script>
 <a href="index.php?module=repartitionList">Retour à la liste</a>
 <h2>Saisie des restes</h2>
-<b>{$data.categorie_libelle}</b> - Période du <b>{$data.date_debut_periode}</b> au <b>{$data.date_fin_periode}</b>
+<b>{$data.categorie_libelle}</b> <i>{$data.repartition_name}</i> - Période du <b>{$data.date_debut_periode}</b> au <b>{$data.date_fin_periode}</b>
 <div>
 <form id="repartitionForm" method="post" action="index.php?module=repartitionResteWrite">
 <input type="hidden" name="repartition_id" value="{$data.repartition_id}">

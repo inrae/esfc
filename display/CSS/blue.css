@@ -122,7 +122,10 @@ input.timepicker {
 	width: 5em;
 }
 input.commentaire {
-	size: 20em;
+	width: 20em;
+}
+input.commentaireCourt{
+	width: 10em;
 }
 input.num5 {
 	width: 5em;
