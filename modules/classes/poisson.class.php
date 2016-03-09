@@ -82,7 +82,7 @@ class Poisson extends ObjetBDD {
 	 */
 	function getListeSearch($dataSearch) {
 		if (is_array ( $dataSearch )) {
-			$dataSearch = $this->encodeData($dataSearch);
+			$dataSearch = $this->encodeData ( $dataSearch );
 			$sql = "select poisson_id, sexe_id, matricule, prenom, cohorte, capture_date, sexe_libelle, sexe_libelle_court, poisson_statut_libelle,commentaire,
 					pittag_valeur,
 					mortalite_date,
@@ -119,15 +119,15 @@ class Poisson extends ObjetBDD {
 			 */
 			$where = " where ";
 			$and = "";
-			if ($dataSearch ["statut"] > 0 && is_numeric($dataSearch["statut"])) {
+			if ($dataSearch ["statut"] > 0 && is_numeric ( $dataSearch ["statut"] )) {
 				$where .= $and . " poisson_statut_id = " . $dataSearch ["statut"];
 				$and = " and ";
 			}
-			if ($dataSearch ["categorie"] > 0 && is_numeric($dataSearch["categorie"])) {
+			if ($dataSearch ["categorie"] > 0 && is_numeric ( $dataSearch ["categorie"] )) {
 				$where .= $and . " categorie_id = " . $dataSearch ["categorie"];
 				$and = " and ";
 			}
-			if ($dataSearch ["sexe"] > 0 && is_numeric($dataSearch["sexe"])) {
+			if ($dataSearch ["sexe"] > 0 && is_numeric ( $dataSearch ["sexe"] )) {
 				$where .= $and . " sexe_id = " . $dataSearch ["sexe"];
 				$and = " and ";
 			}
@@ -158,7 +158,7 @@ class Poisson extends ObjetBDD {
 	 * @return array
 	 */
 	function getDetail($poisson_id) {
-		if ($poisson_id > 0 && is_numeric($poisson_id)) {
+		if ($poisson_id > 0 && is_numeric ( $poisson_id )) {
 			$sql = "select p.poisson_id, sexe_id, matricule, prenom, cohorte, capture_date, sexe_libelle, sexe_libelle_court, poisson_statut_libelle,
 					pittag_valeur, p.poisson_statut_id, date_naissance,
 					bassin_nom, b.bassin_id,
@@ -183,7 +183,7 @@ class Poisson extends ObjetBDD {
 	 */
 	function getListPoissonFromName($libelle) {
 		if (strlen ( $libelle ) > 0) {
-			$libelle = $this->encodeData($libelle);
+			$libelle = $this->encodeData ( $libelle );
 			$sql = "select poisson.poisson_id, matricule, prenom, pittag_valeur 
 					from " . $this->table . "
 					left outer join v_pittag_by_poisson using (poisson_id)
@@ -199,7 +199,7 @@ class Poisson extends ObjetBDD {
 	 * Surcharge de la fonction ecrire pour generer les parents et la date de naissance
 	 * si indication du modele de marque VIE utilise
 	 * (non-PHPdoc)
-	 * 
+	 *
 	 * @see ObjetBDD::ecrire()
 	 */
 	function ecrire($data) {
@@ -231,16 +231,16 @@ class Poisson extends ObjetBDD {
 			 * Recuperation et ecriture des parents
 			 */
 			$parents = $lot->getParents ( $dataLot ["lot_id"] );
-			$parentArray = array();
+			$parentArray = array ();
 			/*
 			 * Formatage de la liste en tableau simple, pour prise en compte par la fonction ad-hoc
 			 */
 			foreach ( $parents as $key => $value )
-				$parentArray[] = $value["poisson_id"];
-			/*
+				$parentArray [] = $value ["poisson_id"];
+				/*
 			 * Ecriture des parents
 			 */
-				$this->ecrireTableNN ( "parent_poisson", "poisson_id", "parent_id", $id, $parentArray );
+			$this->ecrireTableNN ( "parent_poisson", "poisson_id", "parent_id", $id, $parentArray );
 		}
 		return $id;
 	}
@@ -253,7 +253,7 @@ class Poisson extends ObjetBDD {
 	 * @see ObjetBDD::supprimer()
 	 */
 	function supprimer($id) {
-		if ($id > 0 && is_numeric($id)) {
+		if ($id > 0 && is_numeric ( $id )) {
 			$retour = 0;
 			/*
 			 * Vérification des liens non supprimables
@@ -262,15 +262,15 @@ class Poisson extends ObjetBDD {
 			 * Recherche des poissons "enfants"
 			 */
 			$parent_poisson = new Parent_poisson ( $this->connection, $this->paramori );
-			$listeEnfant = $parent_poisson->lireEnfant( $id );
+			$listeEnfant = $parent_poisson->lireEnfant ( $id );
 			if (is_array ( $listeEnfant ) == true && count ( $listeEnfant ) > 0) {
 				$detailEnfant = "";
-				foreach($listeEnfant as $key => $value)
-					$detailEnfant .= $value["matricule"]." ";
+				foreach ( $listeEnfant as $key => $value )
+					$detailEnfant .= $value ["matricule"] . " ";
 				$retour = - 1;
 				$this->errorData [] = array (
 						"code" => 0,
-						"message" => "Le poisson est défini comme le parent d'autres poissons (".$detailEnfant.")" 
+						"message" => "Le poisson est défini comme le parent d'autres poissons (" . $detailEnfant . ")" 
 				);
 			}
 			if ($retour == 0) {
@@ -443,13 +443,13 @@ class Pittag extends ObjetBDD {
 	 * @return array
 	 */
 	function getListByPoisson($poisson_id, $limit = 0) {
-		if ($poisson_id > 0 && is_numeric($poisson_id)) {
+		if ($poisson_id > 0 && is_numeric ( $poisson_id )) {
 			$sql = "select pittag_id, poisson_id, pittag_date_pose, pittag_valeur, pittag_type_libelle,
 					pittag_commentaire
 					from pittag
 					left outer join pittag_type using (pittag_type_id)
 					where poisson_id = " . $poisson_id . " order by pittag_date_pose desc, pittag_id desc";
-			if ($limit > 0 && is_numeric($limit)) {
+			if ($limit > 0 && is_numeric ( $limit )) {
 				$sql .= " limit " . $limit;
 			}
 			if ($limit == 1) {
@@ -521,7 +521,7 @@ class Morphologie extends ObjetBDD {
 	 * @return array
 	 */
 	function getListeByPoisson($poisson_id) {
-		if ($poisson_id > 0 && is_numeric($poisson_id)) {
+		if ($poisson_id > 0 && is_numeric ( $poisson_id )) {
 			$sql = "select morphologie_id, m.poisson_id, longueur_fourche, longueur_totale, masse, morphologie_date, morphologie_commentaire, 
 					m.evenement_id, evenement_type_libelle
 					from morphologie m
@@ -538,7 +538,7 @@ class Morphologie extends ObjetBDD {
 	 * @return array
 	 */
 	function getMasseLast($poisson_id) {
-		if ($poisson_id > 0 && is_numeric($poisson_id)) {
+		if ($poisson_id > 0 && is_numeric ( $poisson_id )) {
 			$sql = "select masse from " . $this->table . "
 					where morphologie_date is not null 
 					and poisson_id = " . $poisson_id . "
@@ -557,15 +557,15 @@ class Morphologie extends ObjetBDD {
 	 * @return tableau|NULL
 	 */
 	function getListMasseFromPoisson($poisson_id, $date_from, $date_to) {
-		if ($poisson_id > 0 && is_numeric($poisson_id) && strlen ( $date_from ) > 0 && strlen ( $date_to ) > 0) {
-			$date_from = $this->encodeData($date_from);
-			$date_to = $this->encodeData($date_to);
+		if ($poisson_id > 0 && is_numeric ( $poisson_id ) && strlen ( $date_from ) > 0 && strlen ( $date_to ) > 0) {
+			$date_from = $this->encodeData ( $date_from );
+			$date_to = $this->encodeData ( $date_to );
 			$sql = "select poisson_id, morphologie_date, masse 
 					from morphologie
 					where poisson_id = " . $poisson_id . "
 					and morphologie_date between '" . $date_from . "' and '" . $date_to . "' 
 					order by morphologie_date";
-			//printr ( $sql );
+			// printr ( $sql );
 			return $this->getListeParam ( $sql );
 		} else
 			return null;
@@ -579,8 +579,8 @@ class Morphologie extends ObjetBDD {
 	 * @return array
 	 */
 	function getMasseBeforeDate($poisson_id, $date) {
-		if ($poisson_id > 0 && is_numeric($poisson_id) && strlen ( $date ) > 0) {
-			$date = $this->encodeData($date);
+		if ($poisson_id > 0 && is_numeric ( $poisson_id ) && strlen ( $date ) > 0) {
+			$date = $this->encodeData ( $date );
 			$sql = "select masse, morphologie_date from " . $this->table . "
 					where morphologie_date < '" . $date . "' 
 					and poisson_id = " . $poisson_id . " 
@@ -598,7 +598,7 @@ class Morphologie extends ObjetBDD {
 	 * @return array
 	 */
 	function getMasseBeforeRepro($poisson_id, $annee) {
-		if ($poisson_id > 0 && is_numeric($poisson_id) && $annee > 0 && is_numeric($annee)) {
+		if ($poisson_id > 0 && is_numeric ( $poisson_id ) && $annee > 0 && is_numeric ( $annee )) {
 			$sql = "select masse, morphologie_date from " . $this->table . "
 					where morphologie_date between '" . $annee . "-01-01' and '" . $annee . "-05-31' 
 					and poisson_id = " . $poisson_id . " 
@@ -614,7 +614,7 @@ class Morphologie extends ObjetBDD {
 	 * @return array
 	 */
 	function getDataByEvenement($evenement_id) {
-		if ($evenement_id > 0 && is_numeric($evenement_id)) {
+		if ($evenement_id > 0 && is_numeric ( $evenement_id )) {
 			$sql = "select * from morphologie where evenement_id = " . $evenement_id;
 			return $this->lireParam ( $sql );
 		}
@@ -680,7 +680,7 @@ class Pathologie extends ObjetBDD {
 	 * @return Ambigous <tableau, boolean, $data, string>
 	 */
 	function getListByPoisson($poisson_id) {
-		if ($poisson_id > 0 && is_numeric($poisson_id)) {
+		if ($poisson_id > 0 && is_numeric ( $poisson_id )) {
 			$sql = "select pathologie_id, patho.poisson_id, pathologie_date, pathologie_commentaire,
 					pathologie_type_libelle, evenement_type_libelle, patho.evenement_id
 					from pathologie patho
@@ -698,7 +698,7 @@ class Pathologie extends ObjetBDD {
 	 * @return Ambigous <multitype:, boolean, $data, string>
 	 */
 	function getDataByEvenement($evenement_id) {
-		if ($evenement_id > 0 && is_numeric($evenement_id)) {
+		if ($evenement_id > 0 && is_numeric ( $evenement_id )) {
 			$sql = "select * from pathologie where evenement_id = " . $evenement_id;
 			return $this->lireParam ( $sql );
 		}
@@ -898,7 +898,7 @@ class Gender_selection extends ObjetBDD {
 	 * @return array
 	 */
 	function getListByPoisson($poisson_id) {
-		if ($poisson_id > 0 && is_numeric($poisson_id)) {
+		if ($poisson_id > 0 && is_numeric ( $poisson_id )) {
 			$sql = "select gender_selection_id, g.poisson_id, gender_selection_date, gender_selection_commentaire,
 					gender_methode_libelle, sexe_libelle_court, sexe_libelle, g.evenement_id,
 					evenement_type_libelle
@@ -918,7 +918,7 @@ class Gender_selection extends ObjetBDD {
 	 * @return array
 	 */
 	function getDataByEvenement($evenement_id) {
-		if ($evenement_id > 0 && is_numeric($evenement_id)) {
+		if ($evenement_id > 0 && is_numeric ( $evenement_id )) {
 			$sql = "select * from gender_selection where evenement_id = " . $evenement_id;
 			return $this->lireParam ( $sql );
 		}
@@ -983,8 +983,8 @@ class Transfert extends ObjetBDD {
 	 * @param int $poisson_id        	
 	 * @return array
 	 */
-	function getListByPoisson($poisson_id, $annee=0) {
-		if ($poisson_id > 0 && is_numeric($poisson_id)) {
+	function getListByPoisson($poisson_id, $annee = 0) {
+		if ($poisson_id > 0 && is_numeric ( $poisson_id )) {
 			$sql = 'select transfert_id, transfert.poisson_id, bassin_origine, bassin_destination, transfert_date, evenement_id,
 					ori.bassin_nom as "bassin_origine_nom", dest.bassin_nom as "bassin_destination_nom",
 					evenement_id, evenement_type_libelle, transfert_commentaire
@@ -994,11 +994,11 @@ class Transfert extends ObjetBDD {
 					left outer join bassin dest on (bassin_destination = dest.bassin_id)
 					left outer join evenement using (evenement_id)
 					left outer join evenement_type using (evenement_type_id)';
-					$where = ' where transfert.poisson_id = ' . $poisson_id;
-					if ($annee > 0 && is_numeric($annee))
-						$where .= " and extract(year from transfert_date) = ".$annee; 
-					$order = " order by transfert_date desc";
-			return $this->getListeParam ( $sql . $where . $order);
+			$where = ' where transfert.poisson_id = ' . $poisson_id;
+			if ($annee > 0 && is_numeric ( $annee ))
+				$where .= " and extract(year from transfert_date) = " . $annee;
+			$order = " order by transfert_date desc";
+			return $this->getListeParam ( $sql . $where . $order );
 		}
 	}
 	/**
@@ -1008,7 +1008,7 @@ class Transfert extends ObjetBDD {
 	 * @return array
 	 */
 	function getListPoissonPresentByBassin($bassin_id) {
-		if ($bassin_id > 0 && is_numeric($bassin_id)) {
+		if ($bassin_id > 0 && is_numeric ( $bassin_id )) {
 			$sql = 'select distinct t.poisson_id,matricule, prenom, cohorte, t.transfert_date, 
 					(case when t.bassin_destination is not null then t.bassin_destination else t.bassin_origine end) as "bassin_id",
 					bassin_nom, sexe_libelle_court,
@@ -1032,7 +1032,7 @@ class Transfert extends ObjetBDD {
 	 * @return array
 	 */
 	function getDataByEvenement($evenement_id) {
-		if ($evenement_id > 0 && is_numeric($evenement_id)) {
+		if ($evenement_id > 0 && is_numeric ( $evenement_id )) {
 			$sql = "select * from transfert where evenement_id = " . $evenement_id;
 			return $this->lireParam ( $sql );
 		}
@@ -1181,7 +1181,7 @@ class Cohorte extends ObjetBDD {
 	 * @return array <tableau, boolean, $data, string>
 	 */
 	function getListByPoisson($poisson_id) {
-		if ($poisson_id > 0 && is_numeric($poisson_id)) {
+		if ($poisson_id > 0 && is_numeric ( $poisson_id )) {
 			$sql = "select cohorte_id, cohorte.poisson_id, cohorte_date, cohorte_commentaire,
 					cohorte_determination, evenement_type_libelle, cohorte.evenement_id,
 					cohorte_type_id, cohorte_type_libelle
@@ -1200,7 +1200,7 @@ class Cohorte extends ObjetBDD {
 	 * @return Ambigous <multitype:, boolean, $data, string>
 	 */
 	function getDataByEvenement($evenement_id) {
-		if ($evenement_id > 0 && is_numeric($evenement_id)) {
+		if ($evenement_id > 0 && is_numeric ( $evenement_id )) {
 			$sql = "select * from " . $this->table . " where evenement_id = " . $evenement_id;
 			return $this->lireParam ( $sql );
 		}
@@ -1380,7 +1380,7 @@ class Mortalite extends ObjetBDD {
 	 * @return Ambigous <tableau, boolean, $data, string>
 	 */
 	function getListByPoisson($poisson_id) {
-		if ($poisson_id > 0 && is_numeric($poisson_id)) {
+		if ($poisson_id > 0 && is_numeric ( $poisson_id )) {
 			$sql = "select mortalite_id, mortalite.poisson_id, mortalite_date, mortalite_commentaire,
 					mortalite_type_libelle, evenement_type_libelle, mortalite.evenement_id
 					from mortalite 
@@ -1398,7 +1398,7 @@ class Mortalite extends ObjetBDD {
 	 * @return array
 	 */
 	function getDataByEvenement($evenement_id) {
-		if ($evenement_id > 0 && is_numeric($evenement_id)) {
+		if ($evenement_id > 0 && is_numeric ( $evenement_id )) {
 			$sql = "select * from mortalite where evenement_id = " . $evenement_id;
 			return $this->lireParam ( $sql );
 		}
@@ -1451,7 +1451,7 @@ class Parent_poisson extends ObjetBDD {
 	 * @return array
 	 */
 	function getListParent($poisson_id) {
-		if ($poisson_id > 0  && is_numeric($poisson_id)){
+		if ($poisson_id > 0 && is_numeric ( $poisson_id )) {
 			$sql = "select parent_poisson_id, par.poisson_id, parent_id, matricule, pittag_valeur, prenom, sexe_libelle, cohorte
 					from " . $this->table . " par
 					join poisson pois on (par.parent_id = pois.poisson_id)
@@ -1461,31 +1461,33 @@ class Parent_poisson extends ObjetBDD {
 			return $this->getListeParam ( $sql );
 		}
 	}
-
+	
 	/**
 	 * Retourne les parents
-	 * @param int $id
+	 * 
+	 * @param int $id        	
 	 * @return array
 	 */
 	function lireAvecParent($id) {
-		if ($id > 0 && is_numeric($id)){
-		$sql = "select parent_poisson_id, parent_poisson.poisson_id, parent_id,
+		if ($id > 0 && is_numeric ( $id )) {
+			$sql = "select parent_poisson_id, parent_poisson.poisson_id, parent_id,
 				matricule, prenom, pittag_valeur
 				from " . $this->table . "
 				join poisson on (parent_poisson.parent_id = poisson.poisson_id)
 				left outer join v_pittag_by_poisson pit on (poisson.poisson_id = pit.poisson_id)
 				where parent_poisson_id = " . $id;
-		return $this->lireParam ( $sql );
+			return $this->lireParam ( $sql );
 		}
 	}
-
+	
 	/**
 	 * Retourne la liste des enfants attaches a un parent
-	 * @param int $parent_id
+	 * 
+	 * @param int $parent_id        	
 	 * @return array
 	 */
 	function lireEnfant($parent_id) {
-		if ($parent_id > 0 && is_numeric($parent_id)){
+		if ($parent_id > 0 && is_numeric ( $parent_id )) {
 			$sql = "select parent_poisson_id, parent_poisson.poisson_id, parent_id,
 				matricule, prenom, pittag_valeur
 				from " . $this->table . "
@@ -1493,10 +1495,9 @@ class Parent_poisson extends ObjetBDD {
 				left outer join v_pittag_by_poisson pit on (poisson.poisson_id = pit.poisson_id)
 				where parent_id = " . $parent_id;
 		}
-		return $this->getListeParam( $sql );
+		return $this->getListeParam ( $sql );
 	}
 }
-
 class Sortie extends ObjetBDD {
 	/**
 	 * Constructeur de la classe
@@ -1575,7 +1576,7 @@ class Sortie extends ObjetBDD {
 	 * @return Ambigous <tableau, boolean, $data, string>
 	 */
 	function getListByPoisson($poisson_id) {
-		if ($poisson_id > 0 && is_numeric($poisson_id)) {
+		if ($poisson_id > 0 && is_numeric ( $poisson_id )) {
 			$sql = "select sortie_id, sortie.poisson_id, sortie_date, sortie_commentaire,
 					localisation, evenement_type_libelle, sortie.evenement_id, sevre
 					from sortie
@@ -1593,7 +1594,7 @@ class Sortie extends ObjetBDD {
 	 * @return array
 	 */
 	function getDataByEvenement($evenement_id) {
-		if ($evenement_id > 0 && is_numeric($evenement_id)) {
+		if ($evenement_id > 0 && is_numeric ( $evenement_id )) {
 			$sql = "select sortie_id, poisson_id, sortie_date, sortie_commentaire,
 					localisation, evenement_id, sortie_lieu_id, sevre
 					from sortie
@@ -1663,7 +1664,7 @@ class SortieLieu extends ObjetBDD {
 				from sortie_lieu
 				left outer join poisson_statut using (poisson_statut_id)
 				";
-		if ($actif > - 1 && is_numeric($actif)) {
+		if ($actif > - 1 && is_numeric ( $actif )) {
 			$where = " where actif = " . $actif;
 		} else {
 			$where = "";
@@ -1745,7 +1746,7 @@ class Echographie extends ObjetBDD {
 	 * @return tableau
 	 */
 	function getListByPoisson($poisson_id) {
-		if ($poisson_id > 0 && is_numeric($poisson_id)) {
+		if ($poisson_id > 0 && is_numeric ( $poisson_id )) {
 			$sql = "select echographie_id, evenement_id, e.poisson_id, 
 					echographie_date, echographie_commentaire, 
 					cliche_nb, cliche_ref,
@@ -1766,7 +1767,7 @@ class Echographie extends ObjetBDD {
 	 * @return array|NULL
 	 */
 	function getDataByEvenement($evenement_id) {
-		if ($evenement_id > 0 && is_numeric($evenement_id)) {
+		if ($evenement_id > 0 && is_numeric ( $evenement_id )) {
 			$sql = "select * from echographie 
 				where evenement_id = " . $evenement_id;
 			return $this->lireParam ( $sql );
@@ -1782,7 +1783,7 @@ class Echographie extends ObjetBDD {
 	 * @return tableau|NULL
 	 */
 	function getListByYear($poisson_id, $annee) {
-		if ($annee > 0 && is_numeric($annee) && is_numeric($poisson_id)) {
+		if ($annee > 0 && is_numeric ( $annee ) && is_numeric ( $poisson_id )) {
 			$sql = "select echographie_id, evenement_id, e.poisson_id, 
 					echographie_date, echographie_commentaire, 
 					cliche_nb, cliche_ref,
@@ -1798,4 +1799,144 @@ class Echographie extends ObjetBDD {
 			return null;
 	}
 }
+class Anesthesie extends ObjetBDD {
+	public function __construct($p_connection, $param = NULL) {
+		$this->param = $param;
+		$this->paramori = $param;
+		$this->table = "anesthesie";
+		$this->id_auto = "1";
+		$this->colonnes = array (
+				"anesthesie_id" => array (
+						"type" => 1,
+						"key" => 1,
+						"requis" => 1,
+						"defaultValue" => 0 
+				),
+				"evenement_id" => array (
+						"type" => 1,
+						"requis" => 1 
+				),
+				"poisson_id" => array (
+						"type" => 1,
+						"parentAttrib" => 1,
+						"requis" => 1 
+				),
+				"anesthesie_date" => array (
+						"type" => 2,
+						"requis" => 1 
+				),
+				"anesthesie_commentaire" => array (
+						"type" => 0,
+						"requis" => 1 
+				),
+				"anesthesie_produit_id" => array (
+						"type" => 1,
+						"requis" => 1 
+				),
+				"anesthesie_dosage" => array (
+						"type" => 1
+				)
+		);
+		if (! is_array ( $param ))
+			$param == array ();
+		$param ["fullDescription"] = 1;
+		
+		parent::__construct ( $p_connection, $param );
+	}
+	
+	/**
+	 * Retourne une anesthésie a partir du numero d'evenement
+	 *
+	 * @param unknown $evenement_id        	
+	 * @return array|NULL
+	 */
+	function getDataByEvenement($evenement_id) {
+		if ($evenement_id > 0 && is_numeric ( $evenement_id )) {
+			$sql = "select * from anesthesie
+					natural join anesthesie_produit
+				where evenement_id = " . $evenement_id;
+			return $this->lireParam ( $sql );
+		} else
+			return null;
+	}
+	
+	/**
+	 * Retourne la liste des echographies realisees pour un poisson
+	 *
+	 * @param int $poisson_id
+	 * @return tableau
+	 */
+	function getListByPoisson($poisson_id) {
+		if ($poisson_id > 0 && is_numeric ( $poisson_id )) {
+			$sql = "select anesthesie_id, evenement_id, e.poisson_id,
+					anesthesie_date, anesthesie_commentaire,
+					cliche_nb, cliche_ref,
+					evenement_type_libelle,
+					anesthesie_produit_libelle
+					from anesthesie e
+					natural join  evenement
+					left outer join evenement_type using (evenement_type_id)
+					natural join anesthesie_produit
+					where e.poisson_id = " . $poisson_id . "
+					order by anesthesie_date desc";
+			return $this->getListeParam ( $sql );
+		} else
+			return null;
+	}
+	
+}
+/**
+ * ORM de la table pathologie_type
+ *
+ * @author quinton
+ *
+ */
+class Anesthesie_produit extends ObjetBDD {
+	/**
+	 * Constructeur de la classe
+	 *
+	 * @param
+	 *        	instance ADODB $bdd
+	 * @param array $param
+	 */
+	function __construct($bdd, $param = null) {
+		$this->param = $param;
+		$this->table = "anesthesie_produit";
+		$this->id_auto = "1";
+		$this->colonnes = array (
+				"anesthesie_produit_id" => array (
+						"type" => 1,
+						"key" => 1,
+						"requis" => 1,
+						"defaultValue" => 0
+				),
+				"anesthesie_produit_libelle" => array (
+						"type" => 0,
+						"requis" => 1
+				),
+				"anesthesie_produit_actif" => array (
+						"type" => 1,
+						"requis" =>1,
+						"defaultValue"=>1
+				)
+		);
+		if (! is_array ( $param ))
+			$param == array ();
+		$param ["fullDescription"] = 1;
+		parent::__construct ( $bdd, $param );
+	}
+	
+	function getListeActif($actif = -1) {
+		$sql = "select *
+				from ".$this->table;
+		if ($actif > - 1 && is_numeric ( $actif )) {
+			$where = " where anesthesie_produit_actif = " . $actif;
+		} else {
+			$where = "";
+		}
+		$order = " order by anesthesie_produit_libelle";
+		return $this->getListeParam ( $sql . $where . $order );
+	}
+}
+
 ?>

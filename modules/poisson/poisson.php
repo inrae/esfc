@@ -108,6 +108,11 @@ switch ($t_module["param"]) {
 		$echographie = new Echographie($bdd, $ObjetBDDParam);
 		$smarty->assign("dataEcho", $echographie->getListByPoisson($id));
 		/*
+		 * Recuperation des anesthesies
+		 */
+		$anesthesie = new Anesthesie($bdd, $ObjetBDDParam);
+		$smarty->assign("dataAnesthesie", $anesthesie->getListByPoisson($id));
+		/*
 		 * Recuperation des campagnes de reproduction
 		 */
 		require_once 'modules/classes/poissonRepro.class.php';

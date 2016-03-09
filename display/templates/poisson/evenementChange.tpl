@@ -258,6 +258,36 @@ Sélectionnez le bassin de destination...
 </fieldset>
 
 <fieldset class="fsMasquable">
+<legend>Anesthésie</legend>
+<div class="masquage">
+<dl>
+
+<dt>Produit utilisé <span class="red">*</span> :</dt>
+<dd>
+<select name="anesthesie_produit_id">
+{section name=lst loop=$produit}
+<option value="{$produit[lst].anesthesie_produit_id}" {if $produit[lst].anesthesie_produit_id == $dataAnesthesie.anesthesie_produit_id}selected{/if}>
+{$produit.anesthesie_produit_libelle}
+</option>
+{/section}
+</select>
+</dd>
+<dt>Dosage (mg/l) : </dt>
+<dd>
+<input class="taux" name="anesthesie_dosage" value="{$dataAnesthesie.anesthesie_dosage}">
+</dd>
+</dl>
+<dl>
+<dt>Commentaire :</dt>
+<dd>
+<input class="commentaire" name="anesthesie_commentaire" value="{$dataAnesthesie.anesthesie_commentaire}">
+</dd>
+</dl>
+
+</div>
+</fieldset>
+
+<fieldset class="fsMasquable">
 <legend>Détermination du sexe</legend>
 <div class="masquage">
 <dl>

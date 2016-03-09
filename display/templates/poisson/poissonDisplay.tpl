@@ -121,7 +121,12 @@ Pré-sélectionner le poisson pour une campagne de reproduction
 {include file="poisson/echographieList.tpl"}
 <br></div>
 </fieldset>
-
+<fieldset class="fsMasquable">
+<legend>Anesthésies</legend>
+<div class="masquage">
+{include file="poisson/anesthesieList.tpl"}
+<br></div>
+</fieldset>
 <fieldset class="fsMasquable">
 <legend>Détermination du sexe</legend>
 <div class="masquage">

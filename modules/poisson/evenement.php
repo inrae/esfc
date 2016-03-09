@@ -52,6 +52,8 @@ switch ($t_module ["param"]) {
 			$smarty->assign ( "cohorteType", $cohorte_type->getListe ( 2 ) );
 			$sortie_lieu = new SortieLieu ( $bdd, $ObjetBDDParam );
 			$smarty->assign ( "sortieLieu", $sortie_lieu->getListeActif ( 1 ) );
+			$anesthesie_produit = new Anesthesie_produit($bdd, $ObjetBDDParam);
+			$dataProduit = $anesthesie_produit->getListeActif(1);
 			dataRead ( $dataClass, $id, "poisson/evenementChange.tpl", $_REQUEST ["poisson_id"] );
 			/*
 			 * Lecture du poisson
@@ -77,6 +79,24 @@ switch ($t_module ["param"]) {
 				$smarty->assign ( "dataSortie", $sortie->getDataByEvenement ( $id ) );
 				$echographie = new Echographie ( $bdd, $ObjetBDDParam );
 				$smarty->assign ( "dataEcho", $echographie->getDataByEvenement ( $id ) );
+				$anesthesie = new Anesthesie($bdd, $ObjetBDDParam);
+				$dataAnesthesie = $anesthesie->getDataByEvenement($id);
+				$smarty->assign("dataAnesthesie", $dataAnesthesie);
+				/*
+				 * Recherche si le produit est toujours utilise
+				 */
+				if (isset($dataAnesthesie["anesthesie_produit_id"])) {
+					$is_found = false;
+					foreach ($dataProduit as $key=>$value) {
+						if ($value["anesthesie_produit_id"] == $dataAnesthesie["anesthesie_produit_id"])
+							$is_found = true;
+					}
+					if ($is_found == false) {
+						$dataProduit[] = array ($dataAnesthesie["anesthesie_produit_id"], $dataAnesthesie["anesthesie_produit_libelle"]);
+					}
+				}
+				$smarty->assign("dataProduit", $dataProduit);
+				
 				/*
 				 * Traitement particulier du transfert
 				 */
@@ -258,6 +278,20 @@ switch ($t_module ["param"]) {
 					}
 				}
 			}
+			/*
+			 * Anesthesie
+			 */
+			if ($_REQUEST ["anesthesie_produit_id"] > 0) {
+				$anesthesie = new Anesthesie ( $bdd, $ObjetBDDParam );
+				$_REQUEST ["anesthesie_date"] = $_REQUEST ["evenement_date"];
+				$anesthesie_id = $anesthesie->ecrire ( $_REQUEST );
+				if (! $anesthesie_id > 0) {
+					$message .= formatErrorData ( $sortie->getErrorData () );
+					$message .= $LANG ["message"] [12];
+					$module_coderetour = - 1;
+				}
+			}
+			
 			/*
 			 * Creation d'une nouvelle anomalie a traiter en cas de souci
 			 */
