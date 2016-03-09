@@ -220,60 +220,6 @@ class DocumentAttach extends ObjetBDD {
 		$param ["fullDescription"] = 1;
 		parent::__construct ( $bdd, $param );
 	}
-	/**
-	 * Recupere les informations d'un document
-	 *
-	 * @param int $id        	
-	 * @return array
-	 */
-	function getData($id) {
-		if ($id > 0 && is_numeric ( $id )) {
-			$this->UTF8 = false;
-			$this->codageHtml = false;
-			$sql = "select document_id, document_nom, content_type, mime_type_id, extension
-				from " . $this->table . "
-				join mime_type using (mime_type_id)
-				where document_id = " . $id;
-			return $this->lireParam ( $sql );
-		}
-	}
-	
-	/**
-	 * Envoie un fichier au navigateur, pour affichage
-	 *
-	 * @param string $nomfile
-	 *        	: nom du fichier stocke dans le dossier temporaire
-	 * @param int $id
-	 *        	: cle du document, necessaire pour recuperer le type mime
-	 */
-	function documentSent($nomfile, $id, $attached = false) {
-		$id = $this->encodeData ( $id );
-		$nomfile = $this->encodeData ( $nomfile );
-		/*
-		 * Suppression des .. pour eviter une descente dans l'arborescence
-		 */
-		$nomfile = preg_replace("/\.\./", "", $nomfile);
-		if (strlen ( $nomfile ) > 0 && is_numeric ( $id ) && $id > 0) {
-			//$filename = $this->temp . "/" . $nomfile;
-			if (file_exists ( $nomfile )) {
-				/*
-				 * Lecture du type mime
-				 */
-				$data = $this->getData ( $id );
-				if (strlen ( $data ["content_type"] ) > 0) {
-					header ( "content-type: " . $data ["content_type"] );
-					header ( 'Content-Transfer-Encoding: binary' );
-					if ($attached == true)
-						header ( 'Content-Disposition: attachment; filename="' . $data ["document_nom"] . '"' );
-						
-					ob_clean ();
-					flush ();
-					readfile ( $nomfile );
-				}
-			}
-		}
-	}
-	
 	
 	/**
 	 * Ecriture d'un document
@@ -335,42 +281,161 @@ class DocumentAttach extends ObjetBDD {
 			}
 		}
 	}
+	
+	/**
+	 * Recupere les informations d'un document
+	 *
+	 * @param int $id        	
+	 * @return array
+	 */
+	function getData($id) {
+		if ($id > 0 && is_numeric ( $id )) {
+			$this->UTF8 = false;
+			$this->codageHtml = false;
+			$sql = "select document_id, document_nom, content_type, mime_type_id, extension
+				from " . $this->table . "
+				join mime_type using (mime_type_id)
+				where document_id = " . $id;
+			return $this->lireParam ( $sql );
+		}
+	}
+	
+	/**
+	 * Envoie un fichier au navigateur, pour affichage
+	 *
+	 * @param string $nomfile
+	 *        	: nom du fichier stocke dans le dossier temporaire
+	 *        	
+	 * @param int $id
+	 *        	: cle du document, necessaire pour recuperer le type mime
+	 */
+	
+	/**
+	 * Envoie un fichier au navigateur, pour affichage
+	 *
+	 * @param int $id
+	 *        	: cle de la photo
+	 * @param int $phototype
+	 *        	: 0 - photo originale, 1 - resolution fournie, 2 - vignette
+	 * @param boolean $attached        	
+	 * @param int $resolution
+	 *        	: resolution pour les photos redimensionnees
+	 */
+	function documentSent($id, $phototype, $attached = false, $resolution = 800) {
+		$id = $this->encodeData ( $id );
+		$filename = $this->generateFileName ( $id, $phototype, $resolution );
+		if (strlen ( $filename ) > 0 && is_numeric ( $id ) && $id > 0) {
+			// $filename = $this->temp . "/" . $nomfile;
+			if (! file_exists ( $filename ))
+				$this->writeFileImage ( $id, $phototype, $resolution );
+			if (file_exists ( $filename )) {
+				$this->_documentSent ( $filename, $id, $attached );
+			}
+		}
+	}
+	
+	/**
+	 * Fonction generant l'envoi au navigateur
+	 *
+	 * @param string $nomfile        	
+	 * @param int $id        	
+	 * @param boolean $attached        	
+	 */
+	private function _documentSent($nomfile, $id, $attached = false) {
+		/*
+		 * Lecture du type mime
+		 */
+		$data = $this->getData ( $id );
+		if (strlen ( $data ["content_type"] ) > 0) {
+			header ( "content-type: " . $data ["content_type"] );
+			header ( 'Content-Transfer-Encoding: binary' );
+			if ($attached == true)
+				header ( 'Content-Disposition: attachment; filename="' . $data ["document_nom"] . '"' );
+			
+			ob_clean ();
+			flush ();
+			readfile ( $nomfile );
+		}
+	}
+	
+	/**
+	 * Calcule le nom de la photo
+	 *
+	 * @param int $id        	
+	 * @param int $phototype
+	 *        	: type de la photo - 0 : original, 1 : photo reduite, 2 : vignette
+	 * @param number $resolution        	
+	 * @return string
+	 */
+	function generateFileName($id, $phototype, $resolution = 800) {
+		/*
+		 * Preparation du nom de la photo
+		 */
+		switch ($phototype) {
+			case 0 :
+				if (is_numeric ( $id ))
+					$data = $this->getData ( $id );
+				$filename = $this->temp . '/' . $id . "-" . $data ["document_nom"];
+				break;
+			case 1 :
+				$filename = $this->temp . '/' . $id . "x" . $resolution . ".png";
+				break;
+			case 2 :
+				$filename = $this->temp . '/' . $id . '_vignette.png';
+		}
+		return $filename;
+	}
+	
 	/**
 	 * Ecrit une photo dans un dossier temporaire, pour lien depuis navigateur
 	 *
 	 * @param int $id        	
+	 * @param $phototype :
+	 *        	0 - photo originale, 1 - photo a la resolution fournie, 2 - vignette
 	 * @param binary $document        	
 	 * @return string
 	 */
-	function writeFileImage($id, $resolution = 800) {
-		if ($id > 0 && is_numeric ( $id )) {
+	function writeFileImage($id, $phototype = 0, $resolution = 800) {
+		if ($id > 0 && is_numeric ( $id ) && is_numeric ( $phototype ) && is_numeric ( $resolution )) {
 			$data = $this->getData ( $id );
-			$nomPhoto = array ();
-			for($i = 0; $i < 3; $i ++) {
+			$okgenerate = false;
+			switch ($phototype) {
+				case 0 :
+					$okgenerate = true;
+					break;
+				case 2 :
+					if (in_array ( $data ["mime_type_id"], array (
+							1,
+							4,
+							5,
+							6 
+					) ))
+						$okgenerate = true;
+					break;
+				case 1 :
+					if (in_array ( $data ["mime_type_id"], array (
+							4,
+							5,
+							6 
+					) ))
+						$okgenerate = true;
+					break;
+			}
+			if ($okgenerate) {
+				// $nomPhoto = array ();
+				
 				$writeOk = false;
 				/*
 				 * Selection de la colonne contenant la photo
 				 */
-				$i == 2 ? $colonne = "thumbnail" : $colonne = "data";
-				/*
-				 * Preparation du nom de la photo
-				 */
-				switch ($i) {
-					case 0 :
-						$filename = $this->temp . '/' . $id . "-" . $data ["document_nom"];
-						break;
-					case 1 :
-						$filename = $this->temp . '/' . $id . "x" . $resolution . ".png";
-						break;
-					case 2 :
-						$filename = $this->temp . '/' . $id . '_vignette.png';
-				}
-				if (! file_exists ( $filename )) {
+				$phototype == 2 ? $colonne = "thumbnail" : $colonne = "data";
+				$filename = $this->generateFileName ( $id, $phototype, $resolution );
+				if (strlen ( $filename ) > 0 && ! file_exists ( $filename )) {
 					/*
 					 * Recuperation des donnees concernant la photo
 					 */
-					//if ($i != 1)
-						$docRef = $this->getBlobReference ( $id, $colonne );
+					// if ($i != 1)
+					$docRef = $this->getBlobReference ( $id, $colonne );
 					if (in_array ( $data ["mime_type_id"], array (
 							4,
 							5,
@@ -427,26 +492,9 @@ class DocumentAttach extends ObjetBDD {
 						fclose ( $handle );
 					}
 				}
-				/*
-				 * Stockage du nom de la photo
-				 */
-				$nomPhoto [$i] = $filename;
 			}
-			/*
-			 * Suppression des liens en cas de documents autres que photos
-			 */
-			if (! in_array ( $data ["mime_type_id"], array (
-					1,
-					4,
-					5,
-					6 
-			) )) {
-				$nomPhoto [1] = "";
-				$nomPhoto [2] = "";
-			} elseif ($data ["mime_type_id"] == 1)
-				$nomPhoto [1] = "";
 		}
-		return $nomPhoto;
+		return $filename;
 	}
 }
 

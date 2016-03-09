@@ -90,7 +90,7 @@ switch ($t_module ["param"]) {
 		 * Envoie vers le navigateur le document
 		 */
 		$_REQUEST["attached"] = 1 ? $attached = true : $attached = false;
-		$dataClass->documentSent($_REQUEST["document_name"], $id, $attached);
+		$dataClass->documentSent( $id, $_REQUEST["phototype"], $attached);
 		break;
 }
 

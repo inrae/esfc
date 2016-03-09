@@ -69,10 +69,10 @@ include_once "modules/classes/document.class.php";
  			 * Stockage des photos dans le dossier temporaire
  			*/
  			foreach ( $liste as $key => $value ) {
- 				$filenames = $this->writeFileImage($value["document_id"], $this->resolution);
- 				$liste[$key]["photo_name"] = $filenames[0];
- 				$liste[$key]["photo_preview"] = $filenames[1];
- 				$liste[$key]["thumbnail_name"] = $filenames[2];
+ 				//$filenames = $this->writeFileImage($value["document_id"], $this->resolution);
+ 				$liste[$key]["photo_name"] = $this->generateFileName($value["document_id"], 0, $this->resolution);
+ 				$liste[$key]["photo_preview"] = $this->generateFileName($value["document_id"], 1, $this->resolution);
+ 				$liste[$key]["thumbnail_name"] = $this->generateFileName($value["document_id"], 2, $this->resolution);
   			}
  			return ($liste);
  		}
