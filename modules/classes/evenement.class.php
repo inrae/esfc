@@ -88,7 +88,8 @@ class Evenement extends ObjetBDD {
  					b1.bassin_nom as bassin_origine_nom, b2.bassin_nom as bassin_destination_nom,
  					echographie_commentaire, cliche_nb, cliche_ref,
  					cohorte_determination, cohorte_commentaire, cohorte_type_id, cohorte_type_libelle,
- 					gender_methode_id, gender_methode_libelle, gs.sexe_id, sexe_libelle, gender_selection_commentaire				
+ 					gender_methode_id, gender_methode_libelle, gs.sexe_id, sexe_libelle, gender_selection_commentaire,
+					anesthesie_produit_libelle, anesthesie_dosage, anesthesie_commentaire				
  					";
 			$from = " from evenement e 
  					join poisson p using (poisson_id)
@@ -109,6 +110,8 @@ class Evenement extends ObjetBDD {
  					left outer join cohorte_type using (cohorte_type_id)
  					left outer join gender_selection gs on (e.evenement_id = gs.evenement_id)
  					left outer join gender_methode using (gender_methode_id)
+					left outer join anesthesie on (e.evenement_id = anesthesie.evenement_id)
+					left outer join anesthesie_produit using (anesthesie_produit_id)
 					left outer join sexe on (gs.sexe_id = sexe.sexe_id)";
 			$order = " order by matricule, evenement_date";
 			$where = " where ";
@@ -192,6 +195,11 @@ class Evenement extends ObjetBDD {
 			 */
 			$echographie = new Echographie ( $this->connection, $this->paramori );
 			$echographie->supprimerChamp ( $id, "evenement_id" );
+			/*
+			 * Anesthesie
+			 */
+			$anesthesie = new Anesthesie($this->connection, $this->paramori);
+			$anesthesie->supprimerChamp($id, "evenement_id");
 			/*
 			 * Mortalite
 			 */

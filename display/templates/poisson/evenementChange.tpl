@@ -93,6 +93,7 @@ Retour à la liste des poissons
 <input type="hidden" name="cohorte_id" id="cohorte_id" value="{$dataCohorte.cohorte_id}" >
 <input type="hidden" name="sortie_id" id="sortie_id" value="{$dataSortie.sortie_id}">
 <input type="hidden" name="echographie_id" id="echographie_id" value="{$dataEcho.echographie_id}">
+<input type="hidden" name="anesthesie_id" id="anesthesie_id" value="{$dataAnesthesie.anesthesie_id}">
 <input type="hidden" name="document_id" value="0">
 <fieldset>
 <legend>Données liées à l'événement lui-même</legend>
@@ -265,9 +266,10 @@ Sélectionnez le bassin de destination...
 <dt>Produit utilisé <span class="red">*</span> :</dt>
 <dd>
 <select name="anesthesie_produit_id">
+<option value="" {if $dataAnesthesie.anesthesie_produit_id==""}selected{/if}>Sélectionnez le produit</option>
 {section name=lst loop=$produit}
 <option value="{$produit[lst].anesthesie_produit_id}" {if $produit[lst].anesthesie_produit_id == $dataAnesthesie.anesthesie_produit_id}selected{/if}>
-{$produit.anesthesie_produit_libelle}
+{$produit[lst].anesthesie_produit_libelle}
 </option>
 {/section}
 </select>

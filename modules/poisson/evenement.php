@@ -95,7 +95,7 @@ switch ($t_module ["param"]) {
 						$dataProduit[] = array ($dataAnesthesie["anesthesie_produit_id"], $dataAnesthesie["anesthesie_produit_libelle"]);
 					}
 				}
-				$smarty->assign("dataProduit", $dataProduit);
+				$smarty->assign("produit", $dataProduit);
 				
 				/*
 				 * Traitement particulier du transfert
@@ -286,7 +286,7 @@ switch ($t_module ["param"]) {
 				$_REQUEST ["anesthesie_date"] = $_REQUEST ["evenement_date"];
 				$anesthesie_id = $anesthesie->ecrire ( $_REQUEST );
 				if (! $anesthesie_id > 0) {
-					$message .= formatErrorData ( $sortie->getErrorData () );
+					$message .= formatErrorData ( $anesthesie->getErrorData () );
 					$message .= $LANG ["message"] [12];
 					$module_coderetour = - 1;
 				}

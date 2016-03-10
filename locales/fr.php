@@ -125,6 +125,10 @@ $LANG["menu"][111] = "Liste des modèles de marquage VIE pour une campagne";
 $LANG["menu"][112] = "Destination des lots";
 $LANG["menu"][113] = "Liste des lâchers ou des rentrées dans le stock captif";
 
+$LANG["menu"][121] = "Produits d'anesthésie";
+$LANG["menu"][122] = "Liste des produits utilisés pour les anesthésies";
+
+
 $LANG["menu"]["example1"] = "Example";
 $LANG["menu"]["example2"] = "It's an example !";
 $LANG["menu"]["connexionvalue"] = "Connexion";

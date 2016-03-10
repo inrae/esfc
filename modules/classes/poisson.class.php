@@ -1870,9 +1870,9 @@ class Anesthesie extends ObjetBDD {
 		if ($poisson_id > 0 && is_numeric ( $poisson_id )) {
 			$sql = "select anesthesie_id, evenement_id, e.poisson_id,
 					anesthesie_date, anesthesie_commentaire,
-					cliche_nb, cliche_ref,
 					evenement_type_libelle,
-					anesthesie_produit_libelle
+					anesthesie_produit_libelle,
+					anesthesie_dosage
 					from anesthesie e
 					natural join  evenement
 					left outer join evenement_type using (evenement_type_id)

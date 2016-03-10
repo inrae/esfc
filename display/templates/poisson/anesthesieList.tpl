@@ -7,6 +7,7 @@ setDataTables("canesthesieList");
 <th>Événement associé</th>
 <th>Date</th>
 <th>Produit utilisé</th>
+<th>Dosage (mg/l)</th>
 <th>Commentaire</th>
 </tr>
 </thead>
@@ -26,6 +27,7 @@ setDataTables("canesthesieList");
 {$dataAnesthesie[lst].anesthesie_date}
 </td>
 <td>{$dataAnesthesie[lst].anesthesie_produit_libelle}</td>
+<td class="center">{$dataAnesthesie[lst].anesthesie_dosage}</td>
 <td>{$dataAnesthesie[lst].anesthesie_commentaire}</td>
 </tr>
 {/section}

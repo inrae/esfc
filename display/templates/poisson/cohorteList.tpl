@@ -11,7 +11,7 @@ setDataTables("ccohorteList");
 <th>Commentaire</th>
 </tr>
 </thead>
-<tdata>
+<tbody>
 {section name=lst loop=$dataCohorte}
 <tr>
 <td>
@@ -29,5 +29,5 @@ setDataTables("ccohorteList");
 <td>{$dataCohorte[lst].cohorte_commentaire}</td>
 </tr>
 {/section}
-</tdata>
+</tbody>
 </table>

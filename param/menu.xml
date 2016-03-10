@@ -35,6 +35,7 @@
 	<item module="bassinEvenementTypeList" droits="consult" value="89" title="90" />
 	<item module="sortieLieuList" droits="consult" value="91" title="92" />
 	<item module="hormoneList" droits="consult" value="93" title="94" />
+	<item module="anesthesieProduitList" droits="consult" value="121" title="122"/>
 	<item module="vieImplantationList" droits="consult" value="95" title="96" />
 	<item module="metalList" droits="consult" value="97" title="98" />	
 </item>

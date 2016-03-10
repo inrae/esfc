@@ -175,6 +175,11 @@
 	<metalWrite action="modules/parametre/metal.php" param="write" droits="paramAdmin,bassinAdmin" retourok="metalList" retourko="metalChange" modulebefore="metalChange" />
 	<metalDelete action="modules/parametre/metal.php" param="delete" droits="paramAdmin,bassinAdmin" retoursuppr="metalList" retourko="metalChange"  modulebefore="metalChange"/>
 
+	<anesthesieProduitList action="modules/parametre/anesthesieProduit.php" param="list" droits="consult"  retourlogin="1" />
+	<anesthesieProduitChange action="modules/parametre/anesthesieProduit.php" param="change" droits="paramAdmin,reproAdmin" />
+	<anesthesieProduitWrite action="modules/parametre/anesthesieProduit.php" param="write" droits="paramAdmin,reproAdmin" retourok="anesthesieProduitList" retourko="anesthesieProduitChange" modulebefore="anesthesieProduitChange" />
+	<anesthesieProduitDelete action="modules/parametre/anesthesieProduit.php" param="delete" droits="paramAdmin,reproAdmin" retoursuppr="anesthesieProduitList" retourko="anesthesieProduitChange"  modulebefore="anesthesieProduitChange"/>
+
 
 	<alimentation retourlogin="1" />
 
