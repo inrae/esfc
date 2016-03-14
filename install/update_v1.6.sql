@@ -56,5 +56,21 @@ ON DELETE NO ACTION
 ON UPDATE NO ACTION
 NOT DEFERRABLE;
 
-
 ALTER SEQUENCE "sturio"."public"."anesthesie_produit_anesthesie_produit_id_seq" OWNED BY "sturio"."public"."anesthesie_produit"."anesthesie_produit_id";
+
+CREATE SEQUENCE "sturio"."public"."ventilation_ventilation_id_seq";
+
+CREATE TABLE "sturio"."public"."ventilation" (
+                "ventilation_id" INTEGER NOT NULL DEFAULT nextval('"sturio"."public"."ventilation_ventilation_id_seq"'),
+                "poisson_id" INTEGER NOT NULL,
+                "ventilation_date" TIMESTAMP NOT NULL,
+                "battement_nb" SMALLINT NOT NULL,
+                CONSTRAINT "ventilation_pk" PRIMARY KEY ("ventilation_id")
+);
+alter table ventilation add column ventilation_commentaire varchar;
+COMMENT ON TABLE "sturio"."public"."ventilation" IS 'Table des relevés de ventilation pour un poissons (nombre de battements par minute)';
+COMMENT ON COLUMN "sturio"."public"."ventilation"."ventilation_date" IS 'Date/heure précise de la mesure';
+COMMENT ON COLUMN "sturio"."public"."ventilation"."battement_nb" IS 'Nombre de battements/minute';
+
+
+ALTER SEQUENCE "sturio"."public"."ventilation_ventilation_id_seq" OWNED BY "sturio"."public"."ventilation"."ventilation_id";

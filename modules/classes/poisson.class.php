@@ -1799,6 +1799,11 @@ class Echographie extends ObjetBDD {
 			return null;
 	}
 }
+/**
+ * ORM de gestion de la table anesthesie
+ * @author quinton
+ *
+ */
 class Anesthesie extends ObjetBDD {
 	public function __construct($p_connection, $param = NULL) {
 		$this->param = $param;
@@ -1886,7 +1891,7 @@ class Anesthesie extends ObjetBDD {
 	
 }
 /**
- * ORM de la table pathologie_type
+ * ORM de la table anesthesie_produit
  *
  * @author quinton
  *
@@ -1939,4 +1944,67 @@ class Anesthesie_produit extends ObjetBDD {
 	}
 }
 
+/**
+ * ORM de gestion de la table ventilation
+ * @author quinton
+ *
+ */
+class Ventilation extends ObjetBDD {
+	/**
+	 * Constructeur de la classe
+	 *
+	 * @param
+	 *        	instance ADODB $bdd
+	 * @param array $param
+	 */
+	private $sql = "select * from ventilation";
+	private $order = " order by ventilation_date desc";
+	
+	function __construct($bdd, $param = null) {
+		$this->paramori = $param;
+		$this->param = $param;
+		$this->table = "ventilation";
+		$this->id_auto = "1";
+		$this->colonnes = array (
+				"ventilation_id" => array (
+						"type" => 1,
+						"key" => 1,
+						"requis" => 1,
+						"defaultValue" => 0
+				),
+				"poisson_id" => array (
+						"type" => 1,
+						"requis" => 1,
+						"parentAttrib" => 1
+				),
+				"battement_nb"=>array (
+						"type"=>1,
+						"requis"=>1
+				),
+				"ventilation_date" => array (
+						"type" => 3,
+						"defaultValue"=>"getDateHeure"
+				),
+				"ventilation_commentaire" => array (
+						"type" => 0
+				)
+		);
+		if (! is_array ( $param ))
+			$param == array ();
+		$param ["fullDescription"] = 1;
+		parent::__construct ( $bdd, $param );
+	}
+
+	/**
+	 * Retourne la liste des releves pour un poisson
+	 * @param int $poisson_id
+	 * @return tableau
+	 */
+	function getListByPoisson($poisson_id) {
+		if (is_numeric($poisson_id) && $poisson_id > 0) {
+			$where = " where poisson_id = ".$poisson_id;
+			return $this->getListeParam($this->sql.$where.$this->order);
+		}
+	}
+}
 ?>
