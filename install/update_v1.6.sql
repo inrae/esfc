@@ -77,3 +77,51 @@ ALTER SEQUENCE "sturio"."public"."ventilation_ventilation_id_seq" OWNED BY "stur
 
 alter table document add column document_date_creation timestamp;
 comment on column document.document_date_creation is 'Date de création du document (date de prise de vue de la photo)';
+
+CREATE SEQUENCE "sturio"."public"."circuit_evenement_circuit_evenement_id_seq";
+
+CREATE TABLE "sturio"."public"."circuit_evenement" (
+                "circuit_evenement_id" INTEGER NOT NULL DEFAULT nextval('"sturio"."public"."circuit_evenement_circuit_evenement_id_seq"'),
+                "circuit_eau_id" INTEGER NOT NULL,
+                "circuit_evenement_type_id" INTEGER NOT NULL,
+                "circuit_evenement_date" TIMESTAMP NOT NULL,
+                "circuit_evenement_commentaire" VARCHAR,
+                CONSTRAINT "circuit_evenement_pk" PRIMARY KEY ("circuit_evenement_id")
+);
+COMMENT ON TABLE "sturio"."public"."circuit_evenement" IS 'Table des événements sur les circuits d''eau';
+
+
+ALTER SEQUENCE "sturio"."public"."circuit_evenement_circuit_evenement_id_seq" OWNED BY "sturio"."public"."circuit_evenement"."circuit_evenement_id";
+
+CREATE SEQUENCE "sturio"."public"."circuit_evenement_type_circuit_evenement_type_id_seq";
+
+CREATE TABLE "sturio"."public"."circuit_evenement_type" (
+                "circuit_evenement_type_id" INTEGER NOT NULL DEFAULT nextval('"sturio"."public"."circuit_evenement_type_circuit_evenement_type_id_seq"'),
+                "circuit_evenement_type_libelle" VARCHAR NOT NULL,
+                CONSTRAINT "circuit_evenement_type_pk" PRIMARY KEY ("circuit_evenement_type_id")
+);
+COMMENT ON TABLE "sturio"."public"."circuit_evenement_type" IS 'Table des types d''événement pour les circuits d''eau';
+
+
+ALTER SEQUENCE "sturio"."public"."circuit_evenement_type_circuit_evenement_type_id_seq" OWNED BY "sturio"."public"."circuit_evenement_type"."circuit_evenement_type_id";
+
+ALTER TABLE "sturio"."public"."circuit_evenement" ADD CONSTRAINT "circuit_eau_circuit_evenement_fk"
+FOREIGN KEY ("circuit_eau_id")
+REFERENCES "sturio"."public"."circuit_eau" ("circuit_eau_id")
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
+
+ALTER TABLE "sturio"."public"."circuit_evenement" ADD CONSTRAINT "circuit_evenement_type_circuit_evenement_fk"
+FOREIGN KEY ("circuit_evenement_type_id")
+REFERENCES "sturio"."public"."circuit_evenement_type" ("circuit_evenement_type_id")
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
+
+ALTER TABLE "sturio"."public"."ventilation" ADD CONSTRAINT "poisson_ventilation_fk"
+FOREIGN KEY ("poisson_id")
+REFERENCES "sturio"."public"."poisson" ("poisson_id")
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE;

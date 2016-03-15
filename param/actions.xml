@@ -95,6 +95,10 @@
 	<bassinEvenementChange action="modules/bassin/bassinEvenement.php" param="change" droits="bassinGestion" />
 	<bassinEvenementWrite action="modules/bassin/bassinEvenement.php" param="write" droits="bassinGestion" retourok="bassinDisplay" retourko="bassinEvenementChange" modulebefore="bassinEvenementChange" />
 	<bassinEvenementDelete action="modules/bassin/bassinEvenement.php" param="delete" droits="bassinAdmin" retoursuppr="bassinDisplay" retourko="bassinEvenementChange"  modulebefore="bassinEvenementChange"/>
+
+	<circuitEvenementChange action="modules/bassin/circuitEvenement.php" param="change" droits="bassinGestion" />
+	<circuitEvenementWrite action="modules/bassin/circuitEvenement.php" param="write" droits="bassinGestion" retourok="circuitEauDisplay" retourko="circuitEvenementChange" modulebefore="circuitEvenementChange" />
+	<circuitEvenementDelete action="modules/bassin/circuitEvenement.php" param="delete" droits="bassinAdmin" retoursuppr="circuitEauDisplay" retourko="circuitEvenementChange"  modulebefore="circuitEvenementChange"/>
 	
 
 	<circuitEauList action="modules/bassin/circuitEau.php" param="list" droits="consult" retourlogin="1"  />
@@ -154,6 +158,11 @@
 	<bassinEvenementTypeChange action="modules/parametre/bassinEvenementType.php" param="change" droits="paramAdmin" />
 	<bassinEvenementTypeWrite action="modules/parametre/bassinEvenementType.php" param="write" droits="paramAdmin" retourok="bassinEvenementTypeList" retourko="bassinEvenementTypeChange" modulebefore="bassinEvenementTypeChange" />
 	<bassinEvenementTypeDelete action="modules/parametre/bassinEvenementType.php" param="delete" droits="paramAdmin" retoursuppr="bassinEvenementTypeList" retourko="bassinEvenementTypeChange"  modulebefore="bassinEvenementTypeChange"/>
+
+	<circuitEvenementTypeList action="modules/parametre/circuitEvenementType.php" param="list" droits="consult"  retourlogin="1" />
+	<circuitEvenementTypeChange action="modules/parametre/circuitEvenementType.php" param="change" droits="paramAdmin" />
+	<circuitEvenementTypeWrite action="modules/parametre/circuitEvenementType.php" param="write" droits="paramAdmin" retourok="circuitEvenementTypeList" retourko="circuitEvenementTypeChange" modulebefore="circuitEvenementTypeChange" />
+	<circuitEvenementTypeDelete action="modules/parametre/circuitEvenementType.php" param="delete" droits="paramAdmin" retoursuppr="circuitEvenementTypeList" retourko="circuitEvenementTypeChange"  modulebefore="circuitEvenementTypeChange"/>
 
 	<sortieLieuList action="modules/parametre/sortieLieu.php" param="list" droits="consult"  retourlogin="1" />
 	<sortieLieuChange action="modules/parametre/sortieLieu.php" param="change" droits="paramAdmin" />

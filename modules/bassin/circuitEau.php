@@ -68,6 +68,11 @@ switch ($t_module["param"]) {
 		$bassin = new Bassin($bdd, $ObjetBDDParam);
 		$smarty->assign("dataBassin", $bassin->getListeByCircuitEau($id));
 		/*
+		 * Recuperation des evenements
+		 */
+		$circuitEvenement = new CircuitEvenement($bdd, $ObjetBDDParam);
+		$smarty->assign("dataCircuitEvnt", $circuitEvenement->getListeBycircuit($id));
+		/*
 		 * Affichage
 		*/
 		$smarty->assign("corps", "bassin/circuitEauDisplay.tpl");

@@ -127,6 +127,9 @@ $LANG["menu"][113] = "Liste des lâchers ou des rentrées dans le stock captif";
 
 $LANG["menu"][121] = "Produits d'anesthésie";
 $LANG["menu"][122] = "Liste des produits utilisés pour les anesthésies";
+$LANG["menu"][123] = "Événements sur circuits d'eau";
+$LANG["menu"][124] = "Liste des types d'événement survenant sur les circuits d'eau";
+
 
 
 $LANG["menu"]["example1"] = "Example";

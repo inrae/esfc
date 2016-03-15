@@ -33,6 +33,7 @@
 	<item module="anomalieDbTypeList" droits="consult" value="85" title="86" />
 	<item module="laboratoireAnalyseList" droits="consult" value="87" title="88" />
 	<item module="bassinEvenementTypeList" droits="consult" value="89" title="90" />
+	<item module="circuitEvenementTypeList" droits="consult" value="123" title="124" />	
 	<item module="sortieLieuList" droits="consult" value="91" title="92" />
 	<item module="hormoneList" droits="consult" value="93" title="94" />
 	<item module="anesthesieProduitList" droits="consult" value="121" title="122"/>

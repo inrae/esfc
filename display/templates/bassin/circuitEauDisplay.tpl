@@ -1,9 +1,3 @@
-<script>
-$(document).ready(function() { 
-$( "#analyse_date" ).datepicker( { dateFormat: "dd/mm/yy" } );
-});
-</script>
-
 <h2>Données physico-chimiques du circuit d'eau {$data.circuit_eau_libelle}</h2>
 <a href="index.php?module=circuitEauList">Retour à la liste des circuits d'eau</a>
 {if $droits["bassinGestion"]==1}
@@ -16,6 +10,9 @@ Modifier le nom ou l'activité du circuit d'eau...
 {section name=lst loop=$dataBassin}
 <a href="index.php?module=bassinDisplay&bassin_id={$dataBassin[lst].bassin_id}">{$dataBassin[lst].bassin_nom} </a>
 {/section}
+<table class="tablemulticolonne">
+<tr>
+<td>
 <form method="get" action="index.php">
 <input type="hidden" name="isSearch" value="1">
 <input type="hidden" name="module" value="circuitEauDisplay">
@@ -24,7 +21,7 @@ Modifier le nom ou l'activité du circuit d'eau...
 <tr>
 <td>
 <label for "analyse_date">Date de référence pour les analyses d'eau : </label>
-<input id="analyse_date" name="analyse_date" value="{$dataSearch.analyse_date}" size="10">
+<input id="analyse_date" class="date" name="analyse_date" value="{$dataSearch.analyse_date}" size="10">
 <br>
 <label for "limit">Nombre d'analyses à afficher : </label>
 <input id="limit" name="limit" value="{$dataSearch.limit}" pattern="[0-9]+" required size="5">
@@ -37,6 +34,15 @@ Modifier le nom ou l'activité du circuit d'eau...
 </tr>
 </table>
 </form>
+</td>
+<td>
+<fieldset>
+<legend>Évements</legend>
+{include file="bassin/circuitEvenementList.tpl"}
+</fieldset>
+</td>
+</tr>
+</table>
 
 {if $droits.bassinGestion == 1}
 <a href="index.php?module=analyseEauChange&analyse_eau_id=0&circuit_eau_id={$data.circuit_eau_id}">
