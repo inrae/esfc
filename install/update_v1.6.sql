@@ -125,3 +125,5 @@ REFERENCES "sturio"."public"."poisson" ("poisson_id")
 ON DELETE NO ACTION
 ON UPDATE NO ACTION
 NOT DEFERRABLE;
+
+insert into circuit_evenement_type (circuit_evenement_type_libelle) values ('Autres');
