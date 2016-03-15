@@ -74,3 +74,6 @@ COMMENT ON COLUMN "sturio"."public"."ventilation"."battement_nb" IS 'Nombre de b
 
 
 ALTER SEQUENCE "sturio"."public"."ventilation_ventilation_id_seq" OWNED BY "sturio"."public"."ventilation"."ventilation_id";
+
+alter table document add column document_date_creation timestamp;
+comment on column document.document_date_creation is 'Date de création du document (date de prise de vue de la photo)';

@@ -42,13 +42,15 @@ include_once "modules/classes/document.class.php";
  		if ( in_array($type, $this->modules) && $id > 0 && is_numeric($id)) {
  			if ($type == "poisson") {
  				$sql = "select document_id, document_date_import, document_nom,
- 						document_description, size, mime_type_id
+ 						document_description, size, mime_type_id,
+ 						document_date_creation
  						from document
  						join poisson_document using (document_id)
  						where poisson_id = ".$id."
  						union
  						select document_id, document_date_import, document_nom,
- 						document_description, size, mime_type_id
+ 						document_description, size, mime_type_id,
+ 						document_date_creation
  						from document
  						join evenement_document using (document_id)
  						join evenement using (evenement_id)
@@ -58,7 +60,8 @@ include_once "modules/classes/document.class.php";
  						";
  			}else {
  			$sql = "select " . $type . "_id, document_id, document_date_import,
-					document_nom, document_description, size, mime_type_id
+					document_nom, document_description, size, mime_type_id,
+ 					document_date_creation
 					from document
 					join " . $type . "_document using (document_id)
 					where " . $type . "_id = " . $id . "

@@ -49,7 +49,7 @@ switch ($t_module ["param"]) {
 				}
 			}else $files[]=$fdata;
 			foreach ( $files as $file ) {
-				$id = $dataClass->ecrire ( $file, $_REQUEST ["document_description"] );
+				$id = $dataClass->ecrire ( $file, $_REQUEST ["document_description"], $_REQUEST["document_date_creation"] );
 				if ($id > 0) {
 					$_REQUEST [$keyName] = $id;
 					/*

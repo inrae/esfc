@@ -43,6 +43,7 @@ $(document).ready(function() {
 <th>Nom du document</th>
 <th>Description</th>
 <th>Taille</th>
+<th>Date de<br>création</th>
 <th>Date<br>d'import</th>
 {if $droits["bassinAdmin"] == 1 || $droits["poissonAdmin"] == 1 || $droits["reproAdmin"]}
 <th>Supprimer</th>
@@ -69,6 +70,7 @@ $(document).ready(function() {
 </td>
 <td>{$dataDoc[lst].document_description}</td>
 <td>{$dataDoc[lst].size}</td>
+<td>{$dataDoc[lst].document_date_creation}</td>
 <td>{$dataDoc[lst].document_date_import}</td>
 {if $droits["bassinAdmin"] == 1 || $droits["poissonAdmin"] == 1}
 <td>

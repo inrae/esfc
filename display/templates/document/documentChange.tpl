@@ -21,6 +21,12 @@
 <input type="text" name="document_description" value="" size="40">
 </dd>
 </dl>
+<dl>
+<dt>Date de création (ou de prise de vue) :</dt>
+<dd>
+<input name="document_date_creation" class="date" value="{$data.document_date_creation}">
+</dd>
+</dl>
 <div class="formBouton">
 <input class="submit" type="submit" value="Enregistrer">
 </div>

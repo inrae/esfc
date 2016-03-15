@@ -195,7 +195,7 @@ class DocumentAttach extends ObjetBDD {
 				),
 				"document_date_import" => array (
 						"type" => 2,
-						"requis" => 1 
+						"requis" => 1
 				),
 				"document_nom" => array (
 						"type" => 0,
@@ -213,7 +213,11 @@ class DocumentAttach extends ObjetBDD {
 				"size" => array (
 						"type" => 1,
 						"defaultValue" => 0 
-				) 
+				),
+				"document_date_creation" => array (
+						"type"=>2,
+						"defaultValue" => "getDateJour"
+				)
 		);
 		if (! is_array ( $param ))
 			$param == array ();
@@ -230,7 +234,7 @@ class DocumentAttach extends ObjetBDD {
 	 *        	string description : description du contenu du document
 	 * @return int
 	 */
-	function ecrire($file, $description = NULL) {
+	function ecrire($file, $description = NULL, $document_date_creation = NULL) {
 		if ($file ["error"] == 0 && $file ["size"] > 0) {
 			/*
 			 * Recuperation de l'extension
@@ -245,6 +249,7 @@ class DocumentAttach extends ObjetBDD {
 				$data ["mime_type_id"] = $mime_type_id;
 				$data ["document_description"] = $description;
 				$data ["document_date_import"] = date ( "d/m/Y" );
+				$data["document_date_creation"] = $document_date_creation;
 				$dataDoc = array ();
 				/*
 				 * Recherche antivirale
@@ -307,7 +312,7 @@ class DocumentAttach extends ObjetBDD {
 		if ($id > 0 && is_numeric ( $id )) {
 			$this->UTF8 = false;
 			$this->codageHtml = false;
-			$sql = "select document_id, document_nom, content_type, mime_type_id, extension
+			$sql = "select document_id, document_nom, content_type, mime_type_id, extension, document_date_creation
 				from " . $this->table . "
 				join mime_type using (mime_type_id)
 				where document_id = " . $id;
