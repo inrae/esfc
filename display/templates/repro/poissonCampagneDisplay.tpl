@@ -179,6 +179,8 @@ Nouvelle échographie (nouvel événement)...
 </a>
 {/if}
 {include file="poisson/echographieList.tpl"}
+<br>
+{include file="document/documentListOnly.tpl"}
 </fieldset>
 <br>
 <fieldset>

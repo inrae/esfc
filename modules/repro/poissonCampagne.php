@@ -97,6 +97,7 @@ switch ($t_module ["param"]) {
 		require_once 'modules/classes/poisson.class.php';
 		require_once 'modules/classes/injection.class.php';
 		require_once 'modules/classes/sperme.class.php';
+		require_once 'modules/classes/documentSturio.class.php';
 		$dosageSanguin = new DosageSanguin ( $bdd, $ObjetBDDParam );
 		$biopsie = new Biopsie ( $bdd, $ObjetBDDParam );
 		$poissonSequence = new PoissonSequence ( $bdd, $ObjetBDDParam );
@@ -118,7 +119,8 @@ switch ($t_module ["param"]) {
 		$smarty->assign ( "dataBiopsie", $biopsies );
 		$smarty->assign ( "dataSequence", $sequences );
 		$smarty->assign ( "dataPsEvenement", $psEvenement->getListeEvenementFromPoisson ( $id ) );
-		$smarty->assign ( "dataEcho", $echographie->getListByYear ( $data ["poisson_id"], $_SESSION ["annee"] ) );
+		$dataEcho = $echographie->getListByYear ( $data ["poisson_id"], $_SESSION ["annee"] );
+		$smarty->assign ( "dataEcho", $dataEcho );
 		$smarty->assign ( "injections", $injections );
 		$smarty->assign ( "spermes", $spermes );
 		$smarty->assign ("dataTransfert", $transferts);
@@ -126,6 +128,22 @@ switch ($t_module ["param"]) {
 		if (is_numeric($id))
 			$smarty->assign("poisson_campagne_id", $id);
 		
+		/*
+		 * Recuperation des photos associees aux evenements
+		 */
+		$smarty->assign ( "moduleParent", "poissonCampagneDisplay" );
+		$smarty->assign ( "parentType", "evenement" );
+		$smarty->assign ( "parentIdName", "poisson_campagne_id" );
+		$smarty->assign ( "parent_id", $id );
+		/*
+		 * Generation de la liste des evenements issus des echographies
+		 */
+		$a_id = array();
+		foreach ($dataEcho as $key=> $value) {
+			$a_id[] = $value["evenement_id"];
+		}
+		$documentSturio = new DocumentSturio ( $bdd, $ObjetBDDParam );
+		$smarty->assign ( "dataDoc", $documentSturio->getListeDocument ( "evenement", $a_id ) );		
 		
 		$smarty->assign ( "corps", "repro/poissonCampagneDisplay.tpl" );
 		if (isset ( $_REQUEST ["sequence_id"] ))
