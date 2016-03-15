@@ -43,6 +43,9 @@ $(document).ready(function() {
 			xs: { 
 				'E2': 'x1',
 				'Ca': 'x2',
+				'Tx_Hematocrite': 'x5',
+				'E2_x_hema':'x5',
+				'Ca_x_hema':'x5',
 				'Injections':'x3',
 				'Expulsion':'x4'
 			},
@@ -52,6 +55,10 @@ $(document).ready(function() {
 			  [{$e2y}],
 			  [{$cax}],
 			  [{$cay}],
+			  [{$thx}],
+			  [{$thy}],
+			  [{$e2hy}],
+			  [{$cahy}],
 			  [{$ix}],
 			  [{$iy}],
 			  [{$expx}],
@@ -61,6 +68,7 @@ $(document).ready(function() {
 			axes: { 
 				E2: 'y',
 				Ca: 'y2',
+				Tx_Hematocrite: 'y2',
 				Injections: 'y2',
 				Expulsion: 'y2'
 			},

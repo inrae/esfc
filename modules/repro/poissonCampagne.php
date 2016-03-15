@@ -183,6 +183,10 @@ switch ($t_module ["param"]) {
 		$cay = "'Ca'";
 		$e2x = "'x1'";
 		$cax = "'x2'";
+		$thx = "'x5'";
+		$thy = "'Tx_Hematocrite'";
+		$e2hy ="'E2_x_hema'";
+		$cahy = "'Ca_x_hema'";
 		$iy = "'Injections'";
 		$ix = "'x3'";
 		$expy = "'Expulsion'";
@@ -204,6 +208,19 @@ switch ($t_module ["param"]) {
 				$cay .= "," . $value ["tx_calcium"];
 				if ($value ["tx_calcium"] > $maxca)
 					$maxca = $value ["tx_calcium"];
+			}
+			/*
+			 * Ajout du taux d'hematocrite, et calcul des courbes corrigees de E2 et Ca
+			 */
+			if ($value["tx_hematocrite"] > 0) {
+				$thx .=",'".$value["dosage_sanguin_date"]."'";
+				$thy .= ",".$value["tx_hematocrite"];
+				if ($value ["tx_calcium"] > 0) {
+					$cahy .= ",".($value["tx_calcium"] / 100 * $value["tx_hematocrite"]);
+				}
+				if ($value ["tx_e2"] > 0) {
+					$e2hy .= ",".($value["tx_e2"] / 100 * $value["tx_hematocrite"]);
+				}			
 			}
 			$d = DateTime::createFromFormat ( "d/m/Y", $value ["dosage_sanguin_date"] );
 			if ($d < $dateMini)
@@ -285,6 +302,10 @@ switch ($t_module ["param"]) {
 		$smarty->assign ( "e2y", $e2y );
 		$smarty->assign ( "cax", $cax );
 		$smarty->assign ( "cay", $cay );
+		$smarty->assign ("thx", $thx);
+		$smarty->assign("thy", $thy);
+		$smarty->assign ("e2hy",$e2hy);
+		$smarty->assign ("cahy", $cahy);
 		$smarty->assign ( "ix", $ix );
 		$smarty->assign ( "iy", $iy );
 		$smarty->assign ( "expx", $expx );
