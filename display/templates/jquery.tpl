@@ -33,7 +33,8 @@ $(document).ready(function() {
 	);
 	$('.timepicker').attr('pattern', '[0-9][0-9]\:[0-9][0-9]\:[0-9][0-9]');
 	$('.datetimepicker').datetimepicker({ 
-		format:'d/m/Y H:i:s'
+		format:'d/m/Y H:i',
+		step: "30"
 	});
 } ) ;
 </script>

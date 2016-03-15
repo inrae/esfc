@@ -306,6 +306,12 @@
 	<devenirlotWrite action="modules/repro/devenir.php" param="write" droits="reproGestion" modulebefore="devenirlotChange" retourok="lotDisplay" retourko="devenirlotChange"/>
 	<devenirlotDelete action="modules/repro/devenir.php" param="delete" droits="reproGestion" modulebefore="devenirlotChange" retoursuppr="lotDisplay" retourko="devenirlotChange"/>
 
+	<ventilationChange action="modules/poisson/ventilation.php" param="change" droits="reproGestion,poissonGestion" />
+	<ventilationWrite action="modules/poisson/ventilation.php" param="write" droits="reproGestion,poissonGestion" modulebefore="ventilationChange" retourok="poissonDisplay" retourko="ventilationChange"/>
+	<ventilationDelete action="modules/poisson/ventilation.php" param="delete" droits="reproGestion,poissonGestion" modulebefore="ventilationChange" retoursuppr="poissonDisplay" retourko="ventilationChange"/>
+	<ventilationCampagneWrite action="modules/poisson/ventilation.php" param="write" droits="reproGestion,poissonGestion" modulebefore="ventilationChange" retourok="poissonCampagneDisplay" retourko="ventilationChange"/>
+	<ventilationCampagneDelete action="modules/poisson/ventilation.php" param="delete" droits="reproGestion,poissonGestion" modulebefore="ventilationChange" retoursuppr="poissonCampagneDisplay" retourko="ventilationChange"/>
+
 
 <!-- Gestion des droits -->
 	<appliList action="framework/droits/appli.php" param="list" droits="admin" retourlogin="1"  />

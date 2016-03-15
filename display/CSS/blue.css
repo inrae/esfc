@@ -121,6 +121,13 @@ input.timepicker {
 	background-position: 100% 50%;
 	width: 5em;
 }
+input.datetimepicker {
+	background-image: url("images/clock.png");
+	background-size: 1em;
+	background-repeat: no-repeat;
+	background-position: 100% 50%;
+	width: 15em;
+}
 input.commentaire {
 	width: 20em;
 }

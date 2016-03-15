@@ -21,7 +21,7 @@ switch ($t_module["param"]) {
 		 * If is a new record, generate a new record with default value :
 		 * $_REQUEST["idParent"] contains the identifiant of the parent record
 		 */
-		dataRead($dataClass, $id, "poisson/ventilationChange.tpl", $_REQUEST["poisson_id"]);
+		$data = dataRead($dataClass, $id, "poisson/ventilationChange.tpl", $_REQUEST["poisson_id"]);
 		/*
 		 * Recuperation de la liste des types de pittag
 		*/
@@ -30,6 +30,8 @@ switch ($t_module["param"]) {
 		*/
 		$poisson = new Poisson($bdd, $ObjetBDDParam);
 		$smarty->assign("dataPoisson", $poisson->getDetail($_REQUEST["poisson_id"]));
+		if (isset ($_REQUEST["poisson_campagne_id"]) && is_numeric($_REQUEST["poisson_campagne_id"]))
+			$smarty->assign("poisson_campagne_id", $_REQUEST["poisson_campagne_id"]);
 		break;
 	case "write":
 		/*

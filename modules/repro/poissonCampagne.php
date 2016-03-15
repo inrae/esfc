@@ -105,12 +105,14 @@ switch ($t_module ["param"]) {
 		$injection = new Injection ( $bdd, $ObjetBDDParam );
 		$sperme = new Sperme ( $bdd, $ObjetBDDParam );
 		$transfert = new Transfert($bdd, $ObjetBDDParam);
+		$ventilation = new Ventilation($bdd, $ObjetBDDParam);
 		$dosages = $dosageSanguin->getListeFromPoissonCampagne ( $id );
 		$injections = $injection->getListFromPoissonCampagne ( $id );
 		$sequences = $poissonSequence->getListFromPoisson ( $id );
 		$spermes = $sperme->getListFromPoissonCampagne ( $id );
 		$biopsies = $biopsie->getListeFromPoissonCampagne ( $id );
 		$transferts = $transfert->getListByPoisson($data["poisson_id"], $_SESSION["annee"]);
+		$ventilations = $ventilation->getListByPoisson($data["poisson_id"], $_SESSION["annee"]);
 		
 		$smarty->assign ( "dataSanguin", $dosages );
 		$smarty->assign ( "dataBiopsie", $biopsies );
@@ -120,6 +122,10 @@ switch ($t_module ["param"]) {
 		$smarty->assign ( "injections", $injections );
 		$smarty->assign ( "spermes", $spermes );
 		$smarty->assign ("dataTransfert", $transferts);
+		$smarty->assign ("dataVentilation", $ventilations);
+		if (is_numeric($id))
+			$smarty->assign("poisson_campagne_id", $id);
+		
 		
 		$smarty->assign ( "corps", "repro/poissonCampagneDisplay.tpl" );
 		if (isset ( $_REQUEST ["sequence_id"] ))

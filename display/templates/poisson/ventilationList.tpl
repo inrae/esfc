@@ -2,7 +2,7 @@
 setDataTables("cventilationList");
 </script>
 {if $droits.poissonGestion==1 || $droits.reproGestion == 1}
-<a href="index.php?module=ventilationChange&poisson_id={$dataPoisson.poisson_id}">Nouvelle mesure...</a>
+<a href="index.php?module=ventilationChange&poisson_id={$dataPoisson.poisson_id}&ventilation_id=0&poisson_campagne_id={$poisson_campagne_id}">Nouvelle mesure...</a>
 {/if}
 <table id="cventilationList" class="tableliste">
 <thead>
@@ -17,7 +17,7 @@ setDataTables("cventilationList");
 <tr>
 <td>
 {if $droits.poissonGestion==1 || $droits.reproGestion == 1}
-<a href="index.php?module=ventilationChange&poisson_id={$dataVentilation[lst].poisson_id}&ventilation_id={$dataVentilation[lst].ventilation_id}">
+<a href="index.php?module=ventilationChange&poisson_id={$dataVentilation[lst].poisson_id}&ventilation_id={$dataVentilation[lst].ventilation_id}&poisson_campagne_id={$poisson_campagne_id}">
 {$dataVentilation[lst].ventilation_date}
 </a>
 {else}

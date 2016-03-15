@@ -203,7 +203,11 @@ Nouvelle échographie (nouvel événement)...
 {include file="repro/psEvenementList.tpl"}
 </fieldset>
 <br>
-
+<fieldset>
+<legend>Mesures de ventilation</legend>
+{include file="poisson/ventilationList.tpl"}
+</fieldset>
+<br>
 <fieldset>
 <legend>Injections</legend>
 {include file="repro/injectionList.tpl"}

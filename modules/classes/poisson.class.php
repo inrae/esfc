@@ -1998,11 +1998,15 @@ class Ventilation extends ObjetBDD {
 	/**
 	 * Retourne la liste des releves pour un poisson
 	 * @param int $poisson_id
+	 * @param int annee : annee de la campagne de reproduction, si requis
 	 * @return tableau
 	 */
-	function getListByPoisson($poisson_id) {
+	function getListByPoisson($poisson_id, $annee = 0) {
 		if (is_numeric($poisson_id) && $poisson_id > 0) {
 			$where = " where poisson_id = ".$poisson_id;
+			if (is_numeric ($annee) && $annee > 0) {
+				$where .= " and extract(year from ventilation_date) = ".$annee;
+			}
 			return $this->getListeParam($this->sql.$where.$this->order);
 		}
 	}
