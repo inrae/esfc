@@ -44,7 +44,7 @@ Retour au lot
 </dd>
 </dl>
 <dl>
-<dt>Nombre de larves initial :</dt>
+<dt>Nombre de larves estimé :</dt>
 <dd>
 <input class="taux" name="nb_larve_initial" value="{$data.nb_larve_initial}">
 </dd>

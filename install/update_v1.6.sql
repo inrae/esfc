@@ -127,3 +127,5 @@ ON UPDATE NO ACTION
 NOT DEFERRABLE;
 
 insert into circuit_evenement_type (circuit_evenement_type_libelle) values ('Autres');
+
+comment on column lot.nb_larve_initial is 'Nombre de larves estimées';

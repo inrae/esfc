@@ -13,7 +13,7 @@
 <label>Reproducteurs :</label> {$dataLot.parents}
 <br><label>Date d'éclosion : </label>{$dataLot.eclosion_date}
 <br>
-<label>Nbre de larves initial / compté :</label> {$dataLot.nb_larve_initial} / {$dataLot.nb_larve_compte}
+<label>Nbre de larves estimé / compté :</label> {$dataLot.nb_larve_initial} / {$dataLot.nb_larve_compte}
 </td>
 </tr>
 </table>

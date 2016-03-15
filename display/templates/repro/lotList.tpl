@@ -37,7 +37,7 @@ $('document').ready(function() {
 <th>Bassin</th>
 <th>Date<br>d'éclosion</th>
 <th>Age<br>(jours)</th>
-<th>Nbre de larves<br>initial</th>
+<th>Nbre de larves<br>estimé</th>
 <th>Nbre de larves<br>comptées</th>
 <th>Marque VIE</th>
 <th>Date de marquage<br>VIE</th>
