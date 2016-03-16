@@ -6,6 +6,7 @@
  *  Creation 7 avr. 2014
  */
 include_once 'modules/classes/documentSturio.class.php';
+require_once 'modules/document/documentFunctions.php';
 $dataClass = new DocumentSturio ( $bdd, $ObjetBDDParam );
 $keyName = "document_id";
 $id = $_REQUEST [$keyName];
@@ -36,18 +37,7 @@ switch ($t_module ["param"]) {
 			 * Preparation de files
 			 */
 			$files=array();
-			$fdata=$_FILES['documentName'];
-			if(is_array($fdata['name'])){
-				for($i=0;$i<count($fdata['name']);++$i){
-					$files[]=array(
-							'name'    =>$fdata['name'][$i],
-							'type'  => $fdata['type'][$i],
-							'tmp_name'=>$fdata['tmp_name'][$i],
-							'error' => $fdata['error'][$i],
-							'size'  => $fdata['size'][$i]
-					);
-				}
-			}else $files[]=$fdata;
+			$fdata= formatFiles();
 			foreach ( $files as $file ) {
 				$id = $dataClass->ecrire ( $file, $_REQUEST ["document_description"], $_REQUEST["document_date_creation"] );
 				if ($id > 0) {

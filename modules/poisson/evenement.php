@@ -244,23 +244,11 @@ switch ($t_module ["param"]) {
 				 * Traitement des photos a importer
 				 */
 				if ($echographie_id > 0 && isset($_FILES["documentName"])) {
+					require_once 'modules/document/documentFunctions.php'; 
 					/*
 					 * Preparation de files
 					 */
-					$files = array ();
-					$fdata = $_FILES ['documentName'];
-					if (is_array ( $fdata ['name'] )) {
-						for($i = 0; $i < count ( $fdata ['name'] ); ++ $i) {
-							$files [] = array (
-									'name' => $fdata ['name'] [$i],
-									'type' => $fdata ['type'] [$i],
-									'tmp_name' => $fdata ['tmp_name'] [$i],
-									'error' => $fdata ['error'] [$i],
-									'size' => $fdata ['size'] [$i] 
-							);
-						}
-					} else
-						$files [] = $fdata;
+					$files = formatFiles();
 					$documentSturio = new DocumentSturio ( $bdd, $ObjetBDDParam );
 					foreach ( $files as $file ) {
 						$document_id = $documentSturio->ecrire ( $file, $_REQUEST ["document_description"] );
