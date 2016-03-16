@@ -301,9 +301,15 @@
 	<saliniteWrite action="modules/repro/salinite.php" param="write" droits="reproGestion" modulebefore="saliniteChange,saliniteNew" retourok="saliniteNew"/>
 	<saliniteDelete action="modules/repro/salinite.php" param="delete" droits="reproGestion" modulebefore="saliniteChange" retoursuppr="saliniteChange" retourko="saliniteChange"/>
 
+	<spermeDisplay action="modules/repro/sperme.php" param="display" droits="reproConsult" />
 	<spermeChange action="modules/repro/sperme.php" param="change" droits="reproGestion" />
 	<spermeWrite action="modules/repro/sperme.php" param="write" droits="reproGestion" modulebefore="spermeChange" retourok="poissonCampagneDisplay" retourko="spermeChange"/>
 	<spermeDelete action="modules/repro/sperme.php" param="delete" droits="reproGestion" modulebefore="spermeChange" retoursuppr="poissonCampagneDisplay" retourko="spermeChange"/>
+
+	<spermeMesureChange action="modules/repro/spermeMesure.php" param="change" droits="reproGestion" />
+	<spermeMesureWrite action="modules/repro/spermeMesure.php" param="write" droits="reproGestion" modulebefore="spermeMesureChange" retourok="spermeDisplay" retourko="spermeMesureChange"/>
+	<spermeMesureDelete action="modules/repro/spermeMesure.php" param="delete" droits="reproGestion" modulebefore="spermeMesureChange" retoursuppr="spermeDisplay" retourko="spermeMesureChange"/>
+
 
 	<vieModeleList action="modules/repro/vieModele.php" param="list" retourlogin="1" droits="reproConsult" />
 	<vieModeleChange action="modules/repro/vieModele.php" param="change" droits="reproGestion" />

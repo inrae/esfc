@@ -1,29 +1,3 @@
-<script>
-$(document).ready(function() {
-	$(".taux").attr ( {
-		pattern: "[0-9]+(\.[0-9]+)?",
-		title: "valeur numérique",
-		size: "5",
-		maxlength: "10"
-	});
-	$(".commentaire").attr("size","30");
-	$( ".date" ).datepicker( { 
-		dateFormat: "dd/mm/yy",
-		parseTime: "dd/mm/yy hh:mm:ss" } );
-	$(".time").attr( {
-		pattern: "[0-9][0-9]\:[0-9][0-9]",
-		placeholder: "hh:mm",
-		size: "5"
-	} );
-	$(".timepicker").timepicker( {
-		timeFormat: "HH:mm:ss",
-//		$.timepicker.regional['fr'],
-		stepHour: "1",
-		stepMinute: "5",
-		size: "5"
-	} );
-});
-</script>
 <a href="index.php?module={$poissonDetailParent}&sequence_id={$sequence_id}">Retour à la liste des poissons</a>&nbsp;
 <a href="index.php?module=poissonCampagneDisplay&poisson_campagne_id={$data.poisson_campagne_id}&sequence_id={$data.sequence_id}">
 Retour au reproducteur
@@ -47,18 +21,6 @@ Retour au reproducteur
 </select>
 </dd>
 </dl>
-<dt>Date de l'expulsion<br>des ovocytes :</dt>
-<dd>
-<input class="date" name="ovocyte_expulsion_date"  value="{$data.ovocyte_expulsion_date}">
-<input class="timepicker" name="ovocyte_expulsion_time" value="{$data.ovocyte_expulsion_time}">
-</dd>
-</dl>
-<dl>
-<dt>Masse totale des ovocytes (grammes) :</dt>
-<dd>
-<input class="taux" name="ovocyte_masse" value="{$data.ovocyte_masse}">
-</dd>
-</dl>
 <dl>
 <dt>Statut du poisson pour la séquence :</dt>
 <dd>
@@ -71,6 +33,28 @@ Retour au reproducteur
 </select>
 </dd>
 </dl>
+<dl></dl>
+{if $dataPoisson.sexe_id == 2}
+<dl>
+<dt>Date de l'expulsion<br>des ovocytes :</dt>
+<dd>
+<input class="date" name="ovocyte_expulsion_date"  value="{$data.ovocyte_expulsion_date}">
+<input class="timepicker" name="ovocyte_expulsion_time" value="{$data.ovocyte_expulsion_time}">
+</dd>
+</dl>
+<dl>
+<dt>Masse totale des ovocytes (grammes) :</dt>
+<dd>
+<input class="taux" name="ovocyte_masse" value="{$data.ovocyte_masse}">
+</dd>
+</dl>
+{/if}
+{if $dataPoisson.sexe_id == 1}
+<fieldset><legend>Sperme récupéré</legend>
+{include file="repro/spermeChangeCorps.tpl"}
+</fieldset>
+{/if}
+
 <dl></dl>
 {if $droits.reproGestion == 1}
 <div class="formBouton">

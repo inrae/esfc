@@ -15,10 +15,12 @@ Nouveau prélèvement...
 <th>Tx survie<br>60"</th>
 <th>Temps survie<br>à 5% (en sec.)</th>
 <th>pH</th>
+<th>Date<br>mesure</th>
+<th>Date<br>congélation</th>
 <th>Remarque</th>
 </tr>
 </thead>
-<tdata>
+<tbody>
 {section name=lst loop=$spermes}
 <tr>
 <td>
@@ -38,8 +40,10 @@ Nouveau prélèvement...
 <td class="right">{$spermes[lst].tx_survie_60}</td>
 <td class="right">{$spermes[lst].temps_survie}</td>
 <td class="right">{$spermes[lst].sperme_ph}</td>
+<td>{$spermes[lst].sperme_date_mesure}</td>
+<td>{$spermes[lst].sperme_date_congelation}</td>
 <td>{$spermes[lst].sperme_commentaire}</td>
 </tr>
 {/section}
-</tdata>
+</tbody>
 </table>

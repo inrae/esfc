@@ -1,4 +1,4 @@
-<table class="tableaffichage,lienimage">
+<table class="tableaffichage">
 <tr>
 <td>
 <label>Identification : </label>{$dataPoisson.matricule} {$dataPoisson.prenom} {$dataPoisson.pittag_valeur} - {$dataPoisson.sexe_libelle}

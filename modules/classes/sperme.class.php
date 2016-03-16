@@ -65,6 +65,19 @@ class Sperme extends ObjetBDD {
 		$param ["fullDescription"] = 1;
 		parent::__construct ( $bdd, $param );
 	}
+
+	/**
+	 * Surcharge pour ecrire la mesure realisee en meme temps que le prelevement
+	 * @see ObjetBDD::ecrire()
+	 */
+	function ecrire($data) {
+		$id = parent::ecrire($data);
+		if ($id > 0 && strlen($_REQUEST ["sperme_mesure_date"])>0) {
+			$spermeMesure = new SpermeMesure($this->connection, $this->paramori);
+			$spermeMesure->ecrire($data);
+		}
+		return $id;
+	}
 	
 	/**
 	 * Retourne la liste des prelevements de sperme pour un poisson
@@ -76,13 +89,20 @@ class Sperme extends ObjetBDD {
 		if ($poisson_campagne_id > 0 && is_numeric($poisson_campagne_id)) {
 			$sql = "select sperme_id, poisson_campagne_id, sperme_date,
 					sequence_id, sequence_nom,
-					 sperme_commentaire, sperme_ph
+					 sperme_commentaire, 
+					sperme_qualite_libelle,
+					sperme_mesure_date,
+					motilite_initiale, tx_survie_initial,
+					motilite_60, tx_survie_60, temps_survie,
+					congelation_date,
+					sperme_ph
 					
 					from sperme
-					
+					left outer join sperme_mesure using (sperme_id)
+					left outer join sperme_qualite using (sperme_qualite_id)
 					left outer join sequence using (sequence_id)
 					where poisson_campagne_id = " . $poisson_campagne_id . "
-					order by sperme_date";
+					order by sperme_date, sperme_mesure_date";
 			return $this->getListeParam ( $sql );
 		} else
 			return null;
@@ -123,6 +143,41 @@ class Sperme extends ObjetBDD {
 			return $this->getListeParam($sql.$from.$where.$order);
 		}
 	}
+
+	/**
+	 * Lit un enregistrement a partir du numero de poisson_campagne et de la sequence
+	 * @param int $poissonCampagneId
+	 * @param int $sequenceId
+	 * @return array 
+	 */
+	function lireFromSequence($poissonCampagneId, $sequenceId) {
+		if (is_numeric($poissonCampagneId) && is_numeric($sequenceId) && $poissonCampagneId > 0 && $sequenceId > 0) {
+			/*
+			 * Recherche de l'identifiant correspondant
+			 */
+			$sql = "select sperme_id from sperme where poisson_campagne_id = ".$poissonCampagneId."
+					and sequence_id = ".$sequenceId;
+			$data = $this->lireParam($sql);
+			$data["sperme_id"] > 0 ? $id = $data["sperme_id"] : $id = 0;
+			return $this->lire($id, false);
+		}
+	}
+
+	/**
+	 * Surcharge de la fonction lire, pour recuperer la mesure effectuee le meme jour que le prelevement
+	 * @see ObjetBDD::lire()
+	 */
+	function lire($id, $getDefault = false, $defaultValue = "") {
+		$data = parent::lire($id, $getDefault, $defaultValue);
+		if ($data["sperme_id"] > 0) {
+			$spermeMesure = new SpermeMesure($this->connection, $this->paramori);
+			$dataMesure = $spermeMesure->getFromSpermeDate($data["sperme_id"]);
+			foreach($dataMesure as $key => $value)
+				$data[$key] = $value;
+		}
+		return $data;
+	}
+	
 	
 }
 /**
@@ -162,6 +217,13 @@ class SpermeQualite extends ObjetBDD {
  *
  */
 class SpermeMesure extends ObjetBDD {
+	private $sql = "select sperme_mesure_id, sperme_id, sperme_mesure_date,
+			motilite_initiale, tx_survie_initial, motilite_60, tx_survie_60, temps_survie,
+			sperme_ph
+			from sperme_mesure
+			join sperme using (sperme_id)
+			left outer join sperme_qualite using (sperme_qualite_id)";
+	private $order = " order by sperme_mesure_date";
 	function __construct($bdd, $param = null) {
 		$this->param = $param;
 		$this->paramori = $param;
@@ -178,6 +240,9 @@ class SpermeMesure extends ObjetBDD {
 						"type"=>1,
 						"requis"=>1,
 						"parentAttrib"=>1
+				),
+				"sperme_qualite_id" => array(
+						"type"=>1
 				),
 				"sperme_mesure_date"=>array(
 						"type"=>3,
@@ -207,6 +272,51 @@ class SpermeMesure extends ObjetBDD {
 			$param == array ();
 		$param ["fullDescription"] = 1;
 		parent::__construct ( $bdd, $param );
+	}
+
+	/**
+	 * Surcharge de la fonction ecrire, pour renseigner les caracteristiques et les mesures realisees au moment du prelevement
+	 * @see ObjetBDD::ecrire()
+	 */
+	function ecrire($data) {
+		$id = parent::ecrire($data);
+		if ($id > 0) {
+			/*
+			 * Ecriture des caracteristiques
+			 */
+			$this->ecrireTableNN("sperme_caract", "sperme_id", "sperme_caracteristique_id", $id, $_REQUEST["sperme_caracteristique_id"]);
+			/*
+			 * Ecriture des mesures realisees
+			 */
+			
+		}
+		return $id;
+	}
+
+	/**
+	 * Recherche la liste des analyses effectuees
+	 * @param int $sperme_id
+	 * @return tableau
+	 */
+	function getListFromSperme($sperme_id) {
+		if (is_numeric($sperme_id) && $sperme_id > 0) {
+			$where = " where sperme_id = ".$sperme_id;
+			return $this->getListeParam($this->sql.$where.$this->order);
+		}
+	}
+
+	/**
+	 * Retourne l'analyse realisee le jour du prelevement
+	 * @param int $sperme_id
+	 * @return array
+	 */
+	function getFromSpermeDate($sperme_id) {
+		if (is_numeric($sperme_id) && $sperme_id > 0) {
+		$where = " where sperme_id = ".$sperme_id."
+				and sperme_date::date = sperme_mesure_date::date";
+		$limit = " LIMIT 1";
+		return $this->lireParam($this->sql.$where.$this->order.$limit);
+		}		
 	}
 }
 
@@ -269,6 +379,24 @@ class SpermeCaracteristique extends ObjetBDD {
 			$param == array ();
 		$param ["fullDescription"] = 1;
 		parent::__construct ( $bdd, $param );
+	}
+
+	/**
+	 * Retourne la liste des caracteristiques, attachees ou non au sperme_id fourni
+	 * @param number $sperme_id
+	 * @return tableau
+	 */
+	function getFromSperme($sperme_id = 0) {
+		if (strlen($sperme_id) == 0 )
+			$sperme_id = 0;
+		if (is_numeric($sperme_id)) {
+			$sql = "select s.sperme_caracteristique_id, s.sperme_caracteristique_libelle, sperme_id
+					from sperme_caracteristique s
+					left outer join sperme_caract c on (s.sperme_caracteristique_id = c.sperme_caracteristique_id 
+					and c.sperme_id = ".$sperme_id.")
+						order by sperme_caracteristique_libelle";
+			return $this->getListeParam($sql);
+		}
 	}
 }
 

@@ -45,7 +45,17 @@ switch ($t_module["param"]) {
 		 */
 		$data = $dataClass->lire($id);
 		$smarty->assign("data", $data);
-		$smarty->assign("corps", "example/exampleDisplay.tpl");
+		/*
+		 * Recherche des caracteristiques particulieres
+		 */
+		$caract = new SpermeCaracteristique($bdd, $ObjetBDDParam);
+		$smarty->assign("spermeCaract", $caract->getFromSperme($id));
+		/*
+		 * Recherche des mesures effectuees
+		 */
+		$mesure = new SpermeMesure($bdd, $ObjetBDDParam);
+		$smarty->assign("dataMesure", $mesure->getListFromSperme($id));
+		$smarty->assign("corps", "repro/spermeDisplay.tpl");
 		break;
 	case "change":
 		/*
@@ -54,11 +64,8 @@ switch ($t_module["param"]) {
 		 * $_REQUEST["idParent"] contains the identifiant of the parent record
 		 */
 		dataRead($dataClass, $id, "repro/spermeChange.tpl", $_REQUEST["poisson_campagne_id"]);
-		/*
-		 * Lecture de sperme_qualite
-		 */
-		$spermeQualite = new SpermeQualite($bdd, $ObjetBDDParam);
-		$smarty->assign("spermeQualites", $spermeQualite->getListe(1));
+		require_once 'modules/repro/spermeFunction.php';
+		initSpermeChange($id);
 		/*
 		 * Donnees du poisson
 		 */

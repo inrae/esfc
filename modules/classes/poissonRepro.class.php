@@ -315,7 +315,7 @@ class PoissonCampagne extends ObjetBDD {
 		if ($id > 0 && is_numeric($id)) {
 			$sql = "select poisson_campagne_id, poisson_id, matricule, prenom, pittag_valeur, cohorte,
 				annee, tx_croissance_journalier, specific_growth_rate,
-				sexe_libelle, sexe_libelle_court, masse,
+				sexe_libelle, sexe_libelle_court, masse, sexe_id,
 				repro_statut_id, repro_statut_libelle,
 				poisson_statut_libelle, poisson_statut_id
 				from poisson p
