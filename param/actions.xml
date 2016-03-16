@@ -189,6 +189,16 @@
 	<anesthesieProduitWrite action="modules/parametre/anesthesieProduit.php" param="write" droits="paramAdmin,reproAdmin" retourok="anesthesieProduitList" retourko="anesthesieProduitChange" modulebefore="anesthesieProduitChange" />
 	<anesthesieProduitDelete action="modules/parametre/anesthesieProduit.php" param="delete" droits="paramAdmin,reproAdmin" retoursuppr="anesthesieProduitList" retourko="anesthesieProduitChange"  modulebefore="anesthesieProduitChange"/>
 
+	<spermeDilueurList action="modules/parametre/spermeDilueur.php" param="list" droits="consult"  retourlogin="1"  />
+	<spermeDilueurChange action="modules/parametre/spermeDilueur.php" param="change" droits="paramAdmin,reproAdmin" />
+	<spermeDilueurWrite action="modules/parametre/spermeDilueur.php" param="write" droits="paramAdmin,reproAdmin" retourok="spermeDilueurList" retourko="spermeDilueurChange" modulebefore="spermeDilueurChange" />
+	<spermeDilueurDelete action="modules/parametre/spermeDilueur.php" param="delete" droits="paramAdmin,reproAdmin" retoursuppr="spermeDilueurList" retourko="spermeDilueurChange"  modulebefore="spermeDilueurChange"/>
+
+	<spermeCaracteristiqueList action="modules/parametre/spermeCaracteristique.php" param="list" droits="consult"  retourlogin="1"  />
+	<spermeCaracteristiqueChange action="modules/parametre/spermeCaracteristique.php" param="change" droits="paramAdmin,reproAdmin" />
+	<spermeCaracteristiqueWrite action="modules/parametre/spermeCaracteristique.php" param="write" droits="paramAdmin,reproAdmin" retourok="spermeCaracteristiqueList" retourko="spermeCaracteristiqueChange" modulebefore="spermeCaracteristiqueChange" />
+	<spermeCaracteristiqueDelete action="modules/parametre/spermeCaracteristique.php" param="delete" droits="paramAdmin,reproAdmin" retoursuppr="spermeCaracteristiqueList" retourko="spermeCaracteristiqueChange"  modulebefore="spermeCaracteristiqueChange"/>
+
 
 	<alimentation retourlogin="1" />
 

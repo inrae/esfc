@@ -132,7 +132,7 @@ Ajouter tous les adultes vivants à la campagne...
 <th>Sélection</th>
 </tr>
 </thead>
-<tdata>
+<tbody>
 {section name=lst loop=$data}
 <tr>
 <td class="center">
@@ -164,7 +164,7 @@ Ajouter tous les adultes vivants à la campagne...
 </td>
 </tr>
 {/section}
-</tdata>
+</tbody>
 <tr>
 <td colspan="10" class="right">
 <select name="repro_statut_id">

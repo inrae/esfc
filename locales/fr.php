@@ -129,6 +129,10 @@ $LANG["menu"][121] = "Produits d'anesthésie";
 $LANG["menu"][122] = "Liste des produits utilisés pour les anesthésies";
 $LANG["menu"][123] = "Événements sur circuits d'eau";
 $LANG["menu"][124] = "Liste des types d'événement survenant sur les circuits d'eau";
+$LANG["menu"][125] = "Dilueurs de sperme";
+$LANG["menu"][126] = "Liste des produits de dilution du sperme utilisés en congélation";
+$LANG["menu"][127] = "Caractéristiques du sperme";
+$LANG["menu"][128] = "Liste des caractéristiques potentielles du sperme";
 
 
 

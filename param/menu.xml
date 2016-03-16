@@ -39,6 +39,9 @@
 	<item module="anesthesieProduitList" droits="consult" value="121" title="122"/>
 	<item module="vieImplantationList" droits="consult" value="95" title="96" />
 	<item module="metalList" droits="consult" value="97" title="98" />	
+	<item module="spermeDilueurList" droits="consult" value="125" title="126" />
+	<item module="spermeCaracteristiqueList" droits="consult" value="127" title="128" />
+	
 </item>
 
 <item module="repro" value="100" title="101" droits="reproConsult" >
