@@ -55,8 +55,10 @@ class DocumentSturio extends DocumentAttach {
 				if (! is_numeric ( $value ))
 					$ok = false;
 			}
+			if (count($id) == 0 )
+				$ok = false;
 		} else {
-			if (! is_numeric ( $id ) || $id < 1)
+			if (! is_numeric ( $id ) || $id < 1 || strlen($id) == 0)
 				$ok = false;
 		}
 		if (in_array ( $type, $this->modules ) && $ok == true) {

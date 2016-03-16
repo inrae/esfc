@@ -143,6 +143,7 @@ Ajouter tous les adultes vivants à la campagne...
 <a href="index.php?module=poissonCampagneDisplay&poisson_campagne_id={$data[lst].poisson_campagne_id}">
 {$data[lst].matricule} {$data[lst].prenom} {$data[lst].pittag_valeur}
 </a>
+{if $data[lst].poisson_statut_id != 1} ({$data[lst].poisson_statut_libelle}){/if}
 </td>
 <td>{$data[lst].repro_statut_libelle}</td>
 

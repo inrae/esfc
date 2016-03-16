@@ -196,12 +196,14 @@ class PoissonCampagne extends ObjetBDD {
 					matricule, prenom, pittag_valeur, cohorte,
 				tx_croissance_journalier, specific_growth_rate,
 				sexe_libelle, sexe_libelle_court, masse,
-				repro_statut_id, repro_statut_libelle
+				repro_statut_id, repro_statut_libelle,
+				poisson_statut_libelle, poisson_statut_id
 				
 				from poisson p
 				join poisson_campagne c using (poisson_id)
 				join repro_statut using (repro_statut_id)
 				left outer join sexe using (sexe_id)
+				left outer join poisson_statut using (poisson_statut_id)
 				left outer join v_pittag_by_poisson using (poisson_id)";
 			
 			$where = " where annee = " . $param ["annee"];
@@ -314,12 +316,13 @@ class PoissonCampagne extends ObjetBDD {
 			$sql = "select poisson_campagne_id, poisson_id, matricule, prenom, pittag_valeur, cohorte,
 				annee, tx_croissance_journalier, specific_growth_rate,
 				sexe_libelle, sexe_libelle_court, masse,
-				repro_statut_id, repro_statut_libelle
-				
+				repro_statut_id, repro_statut_libelle,
+				poisson_statut_libelle, poisson_statut_id
 				from poisson p
 				join poisson_campagne c using (poisson_id)
 				join repro_statut using (repro_statut_id)
 				left outer join sexe using (sexe_id)
+				left outer join poisson_statut using (poisson_statut_id)
 				left outer join v_pittag_by_poisson using (poisson_id)
 				where poisson_campagne_id = " . $id;
 			return parent::lireParam ( $sql );

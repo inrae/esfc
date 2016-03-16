@@ -2,6 +2,7 @@
 <tr>
 <td>
 <label>Identification : </label>{$dataPoisson.matricule} {$dataPoisson.prenom} {$dataPoisson.pittag_valeur} - {$dataPoisson.sexe_libelle}
+ {if $dataPoisson.poisson_statut_id != 1}- {$dataPoisson.poisson_statut_libelle}{/if}
 <span class="lienimage"><a href=index.php?module=poissonDisplay&poisson_id={$dataPoisson.poisson_id}>
 <img src="display/images/fish.png" height="24" title="Accéder à la fiche détaillée du poisson">
 </a> 
