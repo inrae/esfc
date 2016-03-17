@@ -64,7 +64,7 @@ class Sperme extends ObjetBDD {
 						"type" => 2 
 				),
 				"congelation_volume" => array (
-						"type" => 2 
+						"type" => 1 
 				),
 				"sperme_dilueur_id" => array (
 						"type" => 1 

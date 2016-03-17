@@ -6,6 +6,9 @@
 <input class="datetimepicker" name="sperme_date" value="{$data.sperme_date}">
 </dd>
 </dl>
+<dl><dt>Volume prélevé (en ml) :</dt>
+<dd><input class="taux" name="sperme_volume" value="{$data.sperme_volume}"></dd>
+</dl>
 <dl>
 <dt>Aspect :</dt>
 <dd>
@@ -62,7 +65,7 @@
 <select name="sperme_dilueur_id">
 <option value="" {if $data.sperme_dilueur_id == ""}selected{/if}>Choisissez...</option>
 {section name=lst loop=$spermeDilueur}
-<option value="{$spermeAspect[lst].sperme_dilueur_id}" {if $data.sperme_dilueur_id == $spermeDilueur[lst].sperme_dilueur_id}selected{/if}>
+<option value="{$spermeDilueur[lst].sperme_dilueur_id}" {if $data.sperme_dilueur_id == $spermeDilueur[lst].sperme_dilueur_id}selected{/if}>
 {$spermeDilueur[lst].sperme_dilueur_libelle}
 </option>
 {/section}

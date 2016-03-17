@@ -20,7 +20,7 @@ Sélectionnez...
 </dl>
 
 <dl><dt>Nbre de paillettes utilisées pour l'analyse :</dt>
-<dd><input class="nombre" value="{$data.nb_paillette_utilise}"></dd>
+<dd><input class="nombre" name="nb_paillette_utilise" value="{$data.nb_paillette_utilise}"></dd>
 </dl>
 
 <dl>
