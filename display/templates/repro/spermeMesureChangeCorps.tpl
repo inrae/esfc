@@ -19,6 +19,9 @@ Sélectionnez...
 </select>
 </dl>
 
+<dl><dt>Nbre de paillettes utilisées pour l'analyse :</dt>
+<dd><input class="nombre" value="{$data.nb_paillette_utilise}"></dd>
+</dl>
 
 <dl>
 <dt>Motilité initiale (1 à 5) :</dt>

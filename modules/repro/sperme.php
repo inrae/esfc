@@ -7,7 +7,7 @@
  */
  
 include_once 'modules/classes/sperme.class.php';
-$dataClass = new sperme($bdd,$ObjetBDDParam);
+$dataClass = new Sperme($bdd,$ObjetBDDParam);
 $keyName = "sperme_id";
 $id = $_REQUEST[$keyName];
 

@@ -17,8 +17,7 @@ function initSpermeChange($sperme_id) {
 	 * Recherche des caracteristiques particulieres
 	*/
 	$caract = new SpermeCaracteristique($bdd, $ObjetBDDParam);
-	$dataCaract = $caract->getFromSperme($sperme_id);
-	$smarty->assign("spermeCaract",$dataCaract );
+	$smarty->assign("spermeCaract", $caract->getFromSperme($sperme_id));
 	/*
 	 * Recherche des dilueurs
 	*/
