@@ -279,7 +279,8 @@
 	<profilThermiqueDelete action="modules/repro/profilThermique.php" param="delete" droits="reproGestion" modulebefore="profilThermiqueChange" retoursuppr="profilThermiqueChange" retourko="profilThermiqueChange"/>
 
 	<croisementChange action="modules/repro/croisement.php" param="change" droits="reproGestion" />
-	<croisementWrite action="modules/repro/croisement.php" param="write" droits="reproGestion" modulebefore="croisementChange" retourok="sequenceDisplay" retourko="croisementChange"/>
+	<croisementDisplay action="modules/repro/croisement.php" param="display" droits="reproGestion" />
+	<croisementWrite action="modules/repro/croisement.php" param="write" droits="reproGestion" modulebefore="croisementChange" retourok="croisementDisplay" retourko="croisementChange"/>
 	<croisementDelete action="modules/repro/croisement.php" param="delete" droits="reproGestion" modulebefore="croisementChange" retoursuppr="sequenceDisplay" retourko="croisementChange"/>
 
 	<lotList action="modules/repro/lot.php" param="list" retourlogin="1" droits="reproConsult" />
@@ -305,6 +306,11 @@
 	<spermeChange action="modules/repro/sperme.php" param="change" droits="reproGestion" />
 	<spermeWrite action="modules/repro/sperme.php" param="write" droits="reproGestion" modulebefore="spermeChange" retourok="poissonCampagneDisplay" retourko="spermeChange"/>
 	<spermeDelete action="modules/repro/sperme.php" param="delete" droits="reproGestion" modulebefore="spermeChange" retoursuppr="poissonCampagneDisplay" retourko="spermeChange"/>
+
+	<spermeUtiliseChange action="modules/repro/spermeUtilise.php" param="change" droits="reproGestion" />
+	<spermeUtiliseWrite action="modules/repro/spermeUtilise.php" param="write" droits="reproGestion" modulebefore="spermeUtiliseChange" retourok="poissonCampagneDisplay" retourko="spermeUtiliseChange"/>
+	<spermeUtiliseDelete action="modules/repro/spermeUtilise.php" param="delete" droits="reproGestion" modulebefore="spermeUtiliseChange" retoursuppr="poissonCampagneDisplay" retourko="spermeUtiliseChange"/>
+
 
 	<spermeMesureChange action="modules/repro/spermeMesure.php" param="change" droits="reproGestion" />
 	<spermeMesureWrite action="modules/repro/spermeMesure.php" param="write" droits="reproGestion" modulebefore="spermeMesureChange" retourok="spermeDisplay" retourko="spermeMesureChange"/>

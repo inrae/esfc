@@ -70,10 +70,6 @@ class Croisement extends ObjetBDD {
 	 * @see ObjetBDD::ecrire()
 	 */
 	function write($data) {
-		/*
-		 * Reconstitution de la date
-		 */
-		$data ["croisement_date"] = $data ["croisement_date"] . " " . $data ["croisement_time"];
 		$id = parent::ecrire ( $data );
 		if ($id > 0) {
 			/*
@@ -82,13 +78,6 @@ class Croisement extends ObjetBDD {
 			$this->ecrireTableNN ( "poisson_croisement", "croisement_id", "poisson_campagne_id", $id, $data ["poisson_campagne_id"] );
 		}
 		return $id;
-	}
-	function lire($id, $getDefault = false, $parentValue = 0) {
-		$data = parent::lire ( $id, $getDefault, $parentValue );
-		$dateTime = explode ( " ", $data ["croisement_date"] );
-		$data ["croisement_date"] = $dateTime [0];
-		$data ["croisement_time"] = $dateTime [1];
-		return $data;
 	}
 	
 	/**
@@ -230,6 +219,22 @@ class Croisement extends ObjetBDD {
 			}
 		}
 		return $data;
+	}
+
+	/**
+	 * Retourne le detail d'un croisement, pour affichage
+	 * @param int $id
+	 * @return array
+	 */
+	function getDetail($id) {
+		if ($id > 0 && is_numeric($id)) {
+			$sql = "select * from croisement
+					left outer join croisement_qualite using (croisement_qualite_id)";
+			$where = " where croisement_id = ".$id;
+			$data = $this->lireParam($sql.$where);
+			$data["parents"] = $this->getParentsFromCroisement($id);
+			return $data;
+		}
 	}
 }
 /**

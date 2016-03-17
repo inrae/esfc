@@ -439,4 +439,60 @@ class SpermeAspect extends ObjetBDD {
 		parent::__construct ( $bdd, $param );
 	}
 }
+
+/**
+ * ORM de gestion de la table sperme_utilise
+ * @author quinton
+ *
+ */
+class SpermeUtilise extends ObjetBDD {
+	function __construct($bdd, $param = null) {
+		$this->param = $param;
+		$this->paramori = $param;
+		$this->table = "sperme_utilise";
+		$this->id_auto = "1";
+		$this->colonnes = array (
+				"sperme_utilise_id" => array (
+						"type" => 1,
+						"key" => 1,
+						"requis" => 1,
+						"defaultValue" => 0
+				),
+				"croisement_id" => array(
+						"type"=>1,
+						"requis"=>1,
+						"parentAttrib"=>1
+				), 
+				"volume_utilise"=>array("type"=>1),
+				"nb_paillette_croisement"=>array("type"=>1)
+		);
+		if (! is_array ( $param ))
+			$param == array ();
+		$param ["fullDescription"] = 1;
+		parent::__construct ( $bdd, $param );
+	}
+
+	/**
+	 * Fonction recuperant la liste des spermes utilises dans un croisement
+	 * @param unknown $croisement_id
+	 * @return tableau
+	 */
+	function getListFromCroisement($croisement_id) {
+		if (is_numeric($croisement_id) && $croisement_id > 0) {
+			$sql = "select matricule, prenom,
+					sperme_date, congelation_date,
+					volume_utilise, nb_paillette_croisement
+					from sperme_utilise
+					join sperme using (sperme_id)
+					join poisson_campagne using (poisson_campagne_id)
+					join poisson using (poisson_id)";
+			$where = " where croisement_id = ".$croisement_id;
+			$order = " order by sperme_id";
+			$this->types["sperme_date"] = 2;
+			$this->types["congelation_date"] = 2;
+			return $this->getListeParam($sql.$where.$order);
+		}
+	}
+	
+}
 ?>

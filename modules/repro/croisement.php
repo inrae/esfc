@@ -43,9 +43,22 @@ switch ($t_module["param"]) {
 		/*
 		 * Display the detail of the record
 		 */
-		$data = $dataClass->lire($id);
+		$data = $dataClass->getDetail($id);
 		$smarty->assign("data", $data);
-		$smarty->assign("corps", "example/exampleDisplay.tpl");
+		/*
+		 * Lecture de la sequence
+		 */
+		$sequence = new Sequence($bdd, $ObjetBDDParam);
+		$smarty->assign("dataSequence", $sequence->lire($data["sequence_id"]));
+		
+		/*
+		 * Recherche des spermes utilises
+		 */
+		require_once 'modules/classes/sperme.class.php';
+		$spermeUtilise = new SpermeUtilise($bdd, $ObjetBDDParam);
+		$smarty->assign("spermesUtilises", $spermeUtilise->getListFromCroisement($id));
+		
+		$smarty->assign("corps", "repro/croisementDisplay.tpl");
 		break;
 	case "change":
 		require_once 'modules/classes/sequence.class.php';

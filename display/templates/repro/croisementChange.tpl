@@ -1,13 +1,3 @@
-<script>
-$(document).ready(function() {
-	$(".timepicker").timepicker( {
-		timeFormat: "HH:mm:ss",
-//		$.timepicker.regional['fr'],
-		stepHour: "1",
-		stepMinute: "5",
-	} );
-} );
-</script>
 <a href="index.php?module=sequenceList">
 Retour à la liste des séquences
 </a>
@@ -24,8 +14,7 @@ Retour à la séquence
 <dl>
 <dt>Date/heure de la fécondation <span class="red">*</span> :</dt>
 <dd>
-<input class="date" name="croisement_date" required size="10" maxlength="10" value="{$data.croisement_date}">
-<input class="timepicker" name="croisement_time" required value="{$data.croisement_time}">
+<input class="datetimepicker" name="croisement_date" required value="{$data.croisement_date}">
 </dd>
 </dl>
 <dl>

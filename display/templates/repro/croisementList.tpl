@@ -39,7 +39,7 @@ Nouveau croisement...
 <tr>
 <td>
 {if $droits["reproGestion"] == 1}
-<a href="index.php?module=croisementChange&croisement_id={$croisements[lst].croisement_id}">
+<a href="index.php?module=croisementDisplay&croisement_id={$croisements[lst].croisement_id}">
 {$croisements[lst].sequence_nom} {$croisements[lst].croisement_nom}
 </a>
 {else}

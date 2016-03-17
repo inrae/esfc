@@ -98,6 +98,63 @@ dl {
 	width: 400px;
 }
 
+/*
+ * Affichage basé sur <dl>
+ */
+.formDisplay {
+	border-style: solid;
+	border-width: 1px;
+	/*background:  #98c1e9;*/
+	background-color: rgba(152, 193, 233, 0.5);
+	width: 800px;
+}
+.formDisplay dt {
+	float: left;
+	text-align: right;
+	width: 250px;
+	margin: 0 10px 10px 0;
+}
+.formDisplay dd {
+	float: left;
+	text-align: left;
+	width: 450px;
+	margin: 0 0 10px 0;
+	background-color: white;
+	word-wrap: break-word;
+	border-style: solid;
+	border-width: 1px;
+	min-height: 20px;
+	border-radius: 0.4em;
+	border-color: grey;
+}
+
+.formDisplayNarrow {
+	border-style: solid;
+	border-width: 1px;
+	/*background:  #98c1e9;*/
+	background-color: rgba(152, 193, 233, 0.5);
+	width: 430px;
+}
+.formDisplayNarrow dt {
+	float: left;
+	text-align: right;
+	width: 150px;
+	margin: 0 10px 10px 0;
+}
+.formDisplayNarrow dd {
+	float: left;
+	text-align: left;
+	width: 250px;
+	margin: 0 0 10px 0;
+	background-color: white;
+	word-wrap: break-word;
+	border-style: solid;
+	border-width: 1px;
+	min-height: 20px;
+	border-radius: 0.4em;
+	border-color: grey;
+}
+
 input.date {
 	background-image: url("images/calendar-small.gif");
 	background-size: 1em;
