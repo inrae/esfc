@@ -95,6 +95,7 @@ class Sperme extends ObjetBDD {
 		$id = parent::ecrire ( $data );
 		if ($id > 0 && strlen ( $_REQUEST ["sperme_mesure_date"] ) > 0) {
 			$spermeMesure = new SpermeMesure ( $this->connection, $this->paramori );
+			$data["sperme_id"] = $id;
 			$spermeMesure->ecrire ( $data );
 		}
 		return $id;
@@ -143,6 +144,26 @@ class Sperme extends ObjetBDD {
 			$where .= ")";
 			$order = " order by matricule, sperme_date";
 			return $this->getListeParam ( $this->sql . $this->from . $where . $order );
+		}
+	}
+
+	/**
+	 * Recherche la liste de tous les spermes potentiels pour un croisement (congeles ou ceux de la sequence)
+	 * @param int $croisement_id
+	 * @return tableau
+	 */
+	function getListPotentielFromCroisement($croisement_id) {
+		if ($croisement_id > 0 && is_numeric ($croisement_id)) {
+			$where = " where poisson_id in (
+					select poisson_id from croisement
+					join poisson_croisement using (croisement_id)
+					join poisson_campagne using (poisson_campagne_id)
+					where croisement_id = ".$croisement_id."
+						and (congelation_date is not null
+					or sperme.sequence_id = croisement.sequence_id))";
+			$order = " order by prenom, matricule, sperme_date";
+			// printr($this->sql.$this->from. $where.$order);
+			return $this->getListeParam($this->sql.$this->from. $where.$order);
 		}
 	}
 	
@@ -463,6 +484,7 @@ class SpermeUtilise extends ObjetBDD {
 						"requis"=>1,
 						"parentAttrib"=>1
 				), 
+				"sperme_id"=>array("type"=>1, "requis"=>1),
 				"volume_utilise"=>array("type"=>1),
 				"nb_paillette_croisement"=>array("type"=>1)
 		);
@@ -479,7 +501,7 @@ class SpermeUtilise extends ObjetBDD {
 	 */
 	function getListFromCroisement($croisement_id) {
 		if (is_numeric($croisement_id) && $croisement_id > 0) {
-			$sql = "select matricule, prenom,
+			$sql = "select sperme_utilise_id, matricule, prenom,
 					sperme_date, congelation_date,
 					volume_utilise, nb_paillette_croisement
 					from sperme_utilise

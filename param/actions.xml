@@ -308,8 +308,8 @@
 	<spermeDelete action="modules/repro/sperme.php" param="delete" droits="reproGestion" modulebefore="spermeChange" retoursuppr="poissonCampagneDisplay" retourko="spermeChange"/>
 
 	<spermeUtiliseChange action="modules/repro/spermeUtilise.php" param="change" droits="reproGestion" />
-	<spermeUtiliseWrite action="modules/repro/spermeUtilise.php" param="write" droits="reproGestion" modulebefore="spermeUtiliseChange" retourok="poissonCampagneDisplay" retourko="spermeUtiliseChange"/>
-	<spermeUtiliseDelete action="modules/repro/spermeUtilise.php" param="delete" droits="reproGestion" modulebefore="spermeUtiliseChange" retoursuppr="poissonCampagneDisplay" retourko="spermeUtiliseChange"/>
+	<spermeUtiliseWrite action="modules/repro/spermeUtilise.php" param="write" droits="reproGestion" modulebefore="spermeUtiliseChange" retourok="croisementDisplay" retourko="spermeUtiliseChange"/>
+	<spermeUtiliseDelete action="modules/repro/spermeUtilise.php" param="delete" droits="reproGestion" modulebefore="spermeUtiliseChange" retoursuppr="croisementDisplay" retourko="spermeUtiliseChange"/>
 
 
 	<spermeMesureChange action="modules/repro/spermeMesure.php" param="change" droits="reproGestion" />

@@ -15,7 +15,15 @@ Nouveau...
 <tbody>
 {section name=lst loop=$spermesUtilises}
 <tr>
-<td>{$spermesUtilises[lst].matricule} $spermesUtilises[lst].prenom}</td>
+<td>
+{if $droits["reproGestion"] == 1}
+<a href="index.php?module=spermeUtiliseChange&sperme_utilise_id={$spermesUtilises[lst].sperme_utilise_id}&croisement_id={$data.croisement_id}">
+{$spermesUtilises[lst].matricule} {$spermesUtilises[lst].prenom}
+</a>
+{else}
+{$spermesUtilises[lst].matricule} {$spermesUtilises[lst].prenom}
+{/if}
+</td>
 <td>{$spermesUtilises[lst].sperme_date}</td>
 <td>{$spermesUtilises[lst].congelation_date}</td>
 <td>{$spermesUtilises[lst].volume_utilise}</td>

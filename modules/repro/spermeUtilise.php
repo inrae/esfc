@@ -23,19 +23,26 @@ switch ($t_module["param"]) {
 		 */
 		require_once 'modules/classes/croisement.class.php';
 		$croisement = new Croisement($bdd, $ObjetBDDParam);
-		$smarty->assign("croisementData", $croisement->getDetail($_REQUEST["croisement_id"]));
+		$croisementData = $croisement->getDetail($_REQUEST["croisement_id"]);
+		$smarty->assign("croisementData", $croisementData);
+		/*
+		 * Lecture de la sequence
+		 */
+		$sequence = new Sequence($bdd, $ObjetBDDParam);
+		$smarty->assign("dataSequence", $sequence->lire($croisementData["sequence_id"]));
 		/*
 		 * Recuperation de la liste des spermes potentiels
 		 */
 		$sperme = new Sperme($bdd, $ObjetBDDParam);
-		$dataPoisson = $croisement->getPoissonIdFromCroisement($_REQUEST["croisement_id"]);
-		$poissons = array();
-		/*
-		 * Mise en forme du tableau en tableau simple
-		 */
-		foreach ($dataPoisson as $value) 
-			$poissons[] = $value["poisson_id"];
-		$spermes = $sperme->getListPotentielFromPoissons($poissons);
+// 		$dataPoisson = $croisement->getPoissonIdFromCroisement($_REQUEST["croisement_id"]);
+// 		$poissons = array();
+// 		/*
+// 		 * Mise en forme du tableau en tableau simple
+// 		 */
+// 		foreach ($dataPoisson as $value) 
+// 			$poissons[] = $value["poisson_id"];
+// 		$spermes = $sperme->getListPotentielFromPoissons($poissons);
+		$spermes = $sperme->getListPotentielFromCroisement($_REQUEST["croisement_id"]);
 		$smarty->assign( "spermes", $spermes);
 		break;
 	case "write":

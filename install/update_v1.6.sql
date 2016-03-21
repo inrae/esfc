@@ -343,3 +343,4 @@ select setval('sperme_aspect_sperme_aspect_id_seq', (select max(sperme_aspect_id
 
 alter table sperme_mesure alter column sperme_qualite_id drop not null;
 alter table sperme_mesure rename column nb_paillette to nb_paillette_utilise;
+alter table sperme_utilise rename column nb_paillette to nb_paillette_croisement;
