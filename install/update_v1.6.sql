@@ -344,3 +344,31 @@ select setval('sperme_aspect_sperme_aspect_id_seq', (select max(sperme_aspect_id
 alter table sperme_mesure alter column sperme_qualite_id drop not null;
 alter table sperme_mesure rename column nb_paillette to nb_paillette_utilise;
 alter table sperme_utilise rename column nb_paillette to nb_paillette_croisement;
+
+create or replace function f_poisson_masse_at_date(int, timestamp) 
+returns real
+language sql
+as
+$$
+select masse from morphologie
+where poisson_id = $1
+and morphologie_date <= $2
+order by morphologie_date desc
+limit 1
+$$
+;
+
+comment on function f_poisson_masse_at_date(int, timestamp) is 'Dernière masse connue d''un poisson à une date définie';
+
+create or replace function f_bassin_masse_at_date (int, timestamp)
+returns real
+language sql 
+as 
+$$
+select sum(f_poisson_masse_at_date(poisson_id, $2))
+from transfert t1
+where t1.transfert_id in (select t2.transfert_id from transfert t2 where t2.transfert_date <= $2 and t1.poisson_id = t2.poisson_id order by t2.transfert_date desc limit 1)
+and t1.bassin_destination = $1
+$$;
+
+comment on function f_poisson_masse_at_date(int, timestamp) is 'Masse des poissons présents dans un bassin à une date';
