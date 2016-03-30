@@ -101,6 +101,10 @@ class Bassin extends ObjetBDD {
 			 */
 			$where = " where ";
 			$and = "";
+			if (strlen($dataSearch["bassin_nom"]) > 0) {
+				$where .= $and . " upper(bassin_nom) like upper('".$dataSearch["bassin_nom"]."')";
+				$and = " and ";
+			}
 			if ($dataSearch ["bassin_type"] > 0 && is_numeric($dataSearch["bassin_type"])) {
 				$where .= $and . " bassin_type_id = " . $dataSearch ["bassin_type"];
 				$and = " and ";

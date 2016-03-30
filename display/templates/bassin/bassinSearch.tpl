@@ -11,7 +11,18 @@ $(document).ready(function() {
 <table class="tableaffichage">
 <tr>
 <td>
-Type de bassin : 
+Nom :</td><td> <input name="bassin_nom" value="{$bassinSearch.bassin_nom}">
+</td>
+<td>
+Bassin en activité ?</td><td> 
+<input type="radio" name="bassin_actif" value="1" {if $bassinSearch.bassin_actif == 1}checked{/if}>oui
+<input type="radio" name="bassin_actif" value="0" {if $bassinSearch.bassin_actif == 0}checked{/if}>non
+<input type="radio" name="bassin_actif" value="" {if $bassinSearch.bassin_actif == ""}checked{/if}>Indifférent
+</td>
+</tr>
+<tr>
+<td>
+Type de bassin :</td><td> 
 <select name="bassin_type">
 <option value="" {if $bassinSearch.bassin_type==""}selected{/if}>Sélectionnez le type de bassin...</option>
 {section name=lst loop=$bassin_type}
@@ -20,8 +31,9 @@ Type de bassin :
 </option>
 {/section}
 </select>
-
-Usage : 
+</td>
+<td>
+Usage : </td><td>
 <select name="bassin_usage">
 <option value="" {if $bassinSearch.bassin_usage==""}selected{/if}>Sélectionnez l'usage du bassin...</option>
 {section name=lst loop=$bassin_usage}
@@ -30,8 +42,11 @@ Usage :
 </option>
 {/section}
 </select>
-<br>
-Zone d'implantation : 
+</td>
+</tr>
+<tr>
+<td>
+Zone d'implantation : </td><td>
 <select name="bassin_zone">
 <option value="" {if $bassinSearch.bassin_zone==""}selected{/if}>Sélectionnez la zone d'implantation...</option>
 {section name=lst loop=$bassin_zone}
@@ -40,9 +55,9 @@ Zone d'implantation :
 </option>
 {/section}
 </select>
-
-<br>
-Circuit d'eau : 
+</td>
+<td>
+Circuit d'eau : </td><td>
 <select name="circuit_eau">
 <option value="" {if $bassinSearch.circuit_eau==""}selected{/if}>Sélectionnez le circuit d'eau...</option>
 {section name=lst loop=$circuit_eau}
@@ -51,16 +66,10 @@ Circuit d'eau :
 </option>
 {/section}
 </select>
-
-Bassin en activité ? 
-<input type="radio" name="bassin_actif" value="1" {if $bassinSearch.bassin_actif == 1}checked{/if}>oui
-<input type="radio" name="bassin_actif" value="0" {if $bassinSearch.bassin_actif == 0}checked{/if}>non
-<input type="radio" name="bassin_actif" value="" {if $bassinSearch.bassin_actif == ""}checked{/if}>Indifférent
-
 </td>
 </tr>
 <tr>
-<td>
+<td colspan="4">
 <div class="center">
 <input type="submit" value="Rechercher">
 </div>

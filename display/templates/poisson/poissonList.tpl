@@ -4,12 +4,11 @@
 <a href="index.php?module=poissonChange&poisson_id=0">Nouveau poisson...</a>
 {/if}
 <a href="index.php?module=evenementGetAllCSV">Liste de tous les événements pour les poissons sélectionnés au format CSV</a>
-<script>
-setDataTablesFull("cpoissonList",true, true, true, 50);
-</script>
+
 <table id="cpoissonList" class="tableliste">
 <thead>
 <tr>
+<th>Id</th>
 <th>(Pit)tag</th>
 <th>Matricule</th>
 <th>Prénom</th>
@@ -31,6 +30,10 @@ setDataTablesFull("cpoissonList",true, true, true, 50);
 <tbody>
 {section name=lst loop=$data}
 <tr>
+<td><a href="index.php?module=poissonDisplay&poisson_id={$data[lst].poisson_id}">
+{$data[lst].poisson_id}
+</a>
+</td>
 <td>
 <a href="index.php?module=poissonDisplay&poisson_id={$data[lst].poisson_id}">
 {$data[lst].pittag_valeur}
@@ -70,4 +73,7 @@ setDataTablesFull("cpoissonList",true, true, true, 50);
 </tbody>
 </table>
 <br>
+<script>
+$dt = setDataTablesFull("cpoissonList",true, false, true, 50);
+</script>
 {/if}

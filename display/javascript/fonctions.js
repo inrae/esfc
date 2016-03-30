@@ -24,7 +24,7 @@ function setDataTables(nomTable, bPaginate, bSort, bFilter, iDisplayLength, bLen
 	if (bFilter == null) bFilter = false;
 	if (iDisplayLength == null) iDisplayLength = 25;
 	if (bLengthChange == null) bLengthChange = true;
-	$(document).ready( function () {
+	return $(document).ready( function () {
 		$('#'+nomTable).dataTable( {
 			 "bPaginate": bPaginate,
 			"bFilter": bFilter,
@@ -56,7 +56,7 @@ function setDataTablesFull(nomTable, bPaginate, bSort, bFilter, iDisplayLength, 
 	if (bFilter == null) bFilter = false;
 	if (iDisplayLength == null) iDisplayLength = 25;
 	if (bLengthChange == null) bLengthChange = true;
-	$(document).ready( function () {
+	return $(document).ready( function () {
 		$('#'+nomTable).dataTable( {
 			 "bPaginate": bPaginate,
 			"bFilter": bFilter,

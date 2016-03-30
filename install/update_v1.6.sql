@@ -345,6 +345,7 @@ alter table sperme_mesure alter column sperme_qualite_id drop not null;
 alter table sperme_mesure rename column nb_paillette to nb_paillette_utilise;
 alter table sperme_utilise rename column nb_paillette to nb_paillette_croisement;
 
+/*
 create or replace function f_poisson_masse_at_date(int, timestamp) 
 returns real
 language sql
@@ -372,3 +373,9 @@ and t1.bassin_destination = $1
 $$;
 
 comment on function f_poisson_masse_at_date(int, timestamp) is 'Masse des poissons présents dans un bassin à une date';
+
+create index distrib_quotidien_date_idx on distrib_quotidien(distrib_quotidien_date);
+
+create index transfert_date_idx on transfert(transfert_date);
+*/
+

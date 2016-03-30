@@ -156,7 +156,8 @@ class SearchBassin extends SearchParam {
 				"bassin_usage" => "",
 				"bassin_zone" => "",
 				"circuit_eau" => "",
-				"bassin_actif" => "" 
+				"bassin_actif" => "",
+				"bassin_nom" =>"" 
 		);
 		$this->paramNum = array (
 				"bassin_type",

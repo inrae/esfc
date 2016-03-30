@@ -113,7 +113,7 @@ class Poisson extends ObjetBDD {
 			/*
 			 * Preparation de la clause order
 			 */
-			$order = " order by prenom, cohorte ";
+			$order = " order by matricule ";
 			/*
 			 * Preparation de la clause where
 			 */
@@ -136,11 +136,15 @@ class Poisson extends ObjetBDD {
 				$where .= $and . " (upper(matricule) like '" . $texte . "' 
 						or upper(prenom) like '" . $texte . "' 
 						or cohorte like '" . $texte . "' 
-						or upper(pittag_valeur) like '" . $texte . "')";
+						or upper(pittag_valeur) like '" . $texte . "'";
+				if (is_numeric($dataSearch["texte"])) {
+					$where .= " or poisson_id = ".$dataSearch["texte"];
+				}
+				$where .= ")";
+				$and = " and ";
 			}
-			if (strlen ( $where ) == 7)
-				$where = "";
-			$data = $this->getListeParam ( $sql . $from . $where . /*$group .*/ $order );
+			if (strlen ( $where ) > 7)
+				$data = $this->getListeParam ( $sql . $from . $where . /*$group .*/ $order );
 			/*
 			 * Mise en forme des dates
 			 */
