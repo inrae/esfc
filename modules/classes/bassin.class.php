@@ -77,10 +77,9 @@ class Bassin extends ObjetBDD {
 	/**
 	 * Fonction de recherche des bassins selon les criteres definis
 	 *
-	 * @param unknown $dataSearch        	
+	 * @param array $dataSearch        	
 	 */
 	function getListeSearch($dataSearch) {
-		$dataSearch = $this->encodeData ( $dataSearch );
 		if (is_array ( $dataSearch )) {
 			$sql = "select bassin_id, bassin_nom, bassin_description, actif,
 					bassin_type_libelle, bassin_usage_libelle, bassin_zone_libelle, 
@@ -96,40 +95,46 @@ class Bassin extends ObjetBDD {
 			 * Preparation de la clause order
 			 */
 			$order = " order by bassin_nom ";
-			/*
-			 * Preparation de la clause where
-			 */
-			$where = " where ";
-			$and = "";
-			if (strlen($dataSearch["bassin_nom"]) > 0) {
-				$where .= $and . " upper(bassin_nom) like upper('".$dataSearch["bassin_nom"]."')";
-				$and = " and ";
-			}
-			if ($dataSearch ["bassin_type"] > 0 && is_numeric($dataSearch["bassin_type"])) {
-				$where .= $and . " bassin_type_id = " . $dataSearch ["bassin_type"];
-				$and = " and ";
-			}
-			if ($dataSearch ["bassin_usage"] > 0 && is_numeric($dataSearch["bassin_usage"])) {
-				$where .= $and . " bassin_usage_id = " . $dataSearch ["bassin_usage"];
-				$and = " and ";
-			}
-			if ($dataSearch ["bassin_zone"] > 0 && is_numeric($dataSearch["bassin_zone"])) {
-				$where .= $and . " bassin_zone_id = " . $dataSearch ["bassin_zone"];
-				$and = " and ";
-			}
-			if ($dataSearch ["circuit_eau"] > 0 && is_numeric($dataSearch["circuit_eau"])) {
-				$where .= $and . " circuit_eau_id = " . $dataSearch ["circuit_eau"];
-				$and = " and ";
-			}
-			if ($dataSearch ["bassin_actif"] != "") {
-				$where .= $and . " actif = " . $dataSearch ["bassin_actif"];
-				$and = " and ";
-			}
-			if (strlen ( $where ) == 7)
-				$where = "";
-			return $this->getListeParam ( $sql . $where . $order );
+			
+			return $this->getListeParam ( $sql . $this->getWhere ( $dataSearch ) . $order );
 		}
 	}
+	function getWhere($dataSearch) {
+		$dataSearch = $this->encodeData ( $dataSearch );
+		/*
+		 * Preparation de la clause where
+		 */
+		$where = " where ";
+		$and = "";
+		if (strlen ( $dataSearch ["bassin_nom"] ) > 0) {
+			$where .= $and . " upper(bassin_nom) like upper('" . $dataSearch ["bassin_nom"] . "')";
+			$and = " and ";
+		}
+		if ($dataSearch ["bassin_type"] > 0 && is_numeric ( $dataSearch ["bassin_type"] )) {
+			$where .= $and . " bassin_type_id = " . $dataSearch ["bassin_type"];
+			$and = " and ";
+		}
+		if ($dataSearch ["bassin_usage"] > 0 && is_numeric ( $dataSearch ["bassin_usage"] )) {
+			$where .= $and . " bassin_usage_id = " . $dataSearch ["bassin_usage"];
+			$and = " and ";
+		}
+		if ($dataSearch ["bassin_zone"] > 0 && is_numeric ( $dataSearch ["bassin_zone"] )) {
+			$where .= $and . " bassin_zone_id = " . $dataSearch ["bassin_zone"];
+			$and = " and ";
+		}
+		if ($dataSearch ["circuit_eau"] > 0 && is_numeric ( $dataSearch ["circuit_eau"] )) {
+			$where .= $and . " circuit_eau_id = " . $dataSearch ["circuit_eau"];
+			$and = " and ";
+		}
+		if ($dataSearch ["bassin_actif"] != "") {
+			$where .= $and . " actif = " . $dataSearch ["bassin_actif"];
+			$and = " and ";
+		}
+		if (strlen ( $where ) == 7)
+			$where = "";
+		return $where;
+	}
+	
 	/**
 	 * Retourne les informations generales d'un bassin (cartouche)
 	 *
@@ -137,7 +142,7 @@ class Bassin extends ObjetBDD {
 	 * @return array
 	 */
 	function getDetail($bassinId) {
-		if ($bassinId > 0 && is_numeric($bassinId)) {
+		if ($bassinId > 0 && is_numeric ( $bassinId )) {
 			$sql = "select bassin_id, bassin_nom, bassin_description, actif,
 					bassin_type_libelle, bassin_usage_libelle, bassin_zone_libelle, 
 					bassin.circuit_eau_id, circuit_eau_libelle
@@ -163,11 +168,11 @@ class Bassin extends ObjetBDD {
 		$sql = "select * from bassin ";
 		$where = " where ";
 		$bwhere = false;
-		if ($actif > - 1 && is_numeric($actif)) {
+		if ($actif > - 1 && is_numeric ( $actif )) {
 			$where .= " actif = " . $actif;
 			$bwhere = true;
 		}
-		if ($usage > 0 && is_numeric($usage)) {
+		if ($usage > 0 && is_numeric ( $usage )) {
 			$bwhere == true ? $where .= " and " : $bwhere = true;
 			$where .= " bassin_usage_id = " . $usage;
 		}
@@ -183,7 +188,7 @@ class Bassin extends ObjetBDD {
 	 * @return array
 	 */
 	function getListeByCircuitEau($circuitId) {
-		if ($circuitId > 0 && is_numeric($circuitId)) {
+		if ($circuitId > 0 && is_numeric ( $circuitId )) {
 			$sql = "select bassin_id, bassin_nom from bassin where circuit_eau_id = " . $circuitId . "
 				order by bassin_nom";
 			return $this->getListeParam ( $sql );
@@ -196,7 +201,7 @@ class Bassin extends ObjetBDD {
 	 * @return unknown
 	 */
 	function calculMasse($bassinId) {
-		if ($bassinId > 0 && is_numeric($bassinId)) {
+		if ($bassinId > 0 && is_numeric ( $bassinId )) {
 			/*
 			 * Recuperation de la liste des poissons
 			 */
@@ -209,6 +214,33 @@ class Bassin extends ObjetBDD {
 				$masse += $data ["masse"];
 			}
 			return ($masse);
+		}
+	}
+	/**
+	 * Fonction calculant la quantite hebdomadaire d'aliments distribues pour les bassins consideres
+	 * @param array $data : $_REQUEST
+	 * @param array $search : parametres de recherche des bassins
+	 * @return tableau
+	 */
+	function getRecapAlim($data, $search) {
+		$data = $this->encodeData ( $data );
+		if (isset ( $data ["dateDebut"] ) && isset ( $data ["dateFin"] )) {
+			$dateDebut = $this->formatDateLocaleVersDB ( $data ["dateDebut"] );
+			$dateFin = $this->formatDateLocaleVersDB ( $data ["dateFin"] );
+			
+			$sql = "with dq as (
+				select bassin_id, bassin_nom, date_trunc('week', distrib_quotidien_date) as week,
+				sum(total_distribue) as total_distribue,
+				sum(reste) as restes
+				from distrib_quotidien
+				join bassin using (bassin_id) " . $this->getWhere ( $search ) . "
+				and distrib_quotidien_date between '" . $dateDebut . "' and '" . $dateFin . "'
+				group by bassin_id, bassin_nom, week
+				order by bassin_id, week)
+				select dq.*, f_bassin_masse_at_date(dq.bassin_id, week::timestamp) as poissons_masse
+				from dq";
+			$this->types ["week"] = 2;
+			return $this->getListeParam ( $sql );
 		}
 	}
 }
@@ -295,7 +327,7 @@ class Bassin_usage extends ObjetBDD {
 	function getListe($order = 0) {
 		$sql = "select * from " . $this->table . "
 				left outer join categorie using (categorie_id)";
-		if ($order > 0 && is_numeric($order))
+		if ($order > 0 && is_numeric ( $order ))
 			$sql .= " order by " . $order;
 		return $this->getListeParam ( $sql );
 	}
@@ -391,7 +423,7 @@ class Circuit_eau extends ObjetBDD {
 			$where .= $and . " upper(circuit_eau_libelle) like upper('%" . $data ["circuit_eau_libelle"] . "%') ";
 			$and = " and ";
 		}
-		if ($data ["circuit_eau_actif"] > - 1 && is_numeric($data["circuit_eau_actif"])) {
+		if ($data ["circuit_eau_actif"] > - 1 && is_numeric ( $data ["circuit_eau_actif"] )) {
 			$where .= $and . " circuit_eau_actif = " . $data ["circuit_eau_actif"];
 			$and = " and ";
 		}
@@ -515,7 +547,7 @@ class AnalyseEau extends ObjetBDD {
 	 * @return array
 	 */
 	function getDetailByCircuitEau($id, $dateRef = NULL, $limit = 1, $offset = 0) {
-		if ($id > 0 && is_numeric($id)) {
+		if ($id > 0 && is_numeric ( $id )) {
 			$sql = "select * from " . $this->table . " 
 					natural join circuit_eau
 					left outer join laboratoire_analyse using (laboratoire_analyse_id)";
@@ -527,7 +559,7 @@ class AnalyseEau extends ObjetBDD {
 			$analyseMetal = new AnalyseMetal ( $this->connection, $this->paramori );
 			if ($limit == 1) {
 				$data = $this->lireParam ( $sql . $where . $order );
-				if ($data ["analyse_eau_id"] > 0 && is_numeric($data["analyse_eau_id"]))
+				if ($data ["analyse_eau_id"] > 0 && is_numeric ( $data ["analyse_eau_id"] ))
 					$data ["metaux"] = $analyseMetal->getAnalyseToText ( $data ["analyse_eau_id"] );
 			} else {
 				$data = $this->getListeParam ( $sql . $where . $order );
@@ -546,7 +578,7 @@ class AnalyseEau extends ObjetBDD {
 	 * @see ObjetBDD::supprimer()
 	 */
 	function supprimer($id) {
-		if ($id > 0 && is_numeric($id)) {
+		if ($id > 0 && is_numeric ( $id )) {
 			/*
 			 * Suppression des analyses des metaux
 			 */
@@ -555,25 +587,26 @@ class AnalyseEau extends ObjetBDD {
 			return parent::supprimer ( $id );
 		}
 	}
-
+	
 	/**
 	 * Retourne le numero d'analyse en fonction de la date et du bassin concerne
-	 * @param unknown $dateAnalyse
-	 * @param unknown $bassin_id
+	 * 
+	 * @param unknown $dateAnalyse        	
+	 * @param unknown $bassin_id        	
 	 * @return int
 	 */
 	function getIdFromDateBassin($dateAnalyse, $bassin_id) {
-		$dateAnalyse = $this->encodeData($dateAnalyse);
-		$dateAnalyse = $this->formatDateLocaleVersDB($dateAnalyse, 3);
-		if (strlen($dateAnalyse) > 0 && is_numeric($bassin_id) && $bassin_id > 0) {
+		$dateAnalyse = $this->encodeData ( $dateAnalyse );
+		$dateAnalyse = $this->formatDateLocaleVersDB ( $dateAnalyse, 3 );
+		if (strlen ( $dateAnalyse ) > 0 && is_numeric ( $bassin_id ) && $bassin_id > 0) {
 			$sql = "select analyse_eau_id
 					from analyse_eau
 					natural join circuit_eau
 					natural join bassin
-					where bassin_id = ".$bassin_id."
-					and analyse_eau_date = '".$dateAnalyse."'";
-			$data = $this->lireParam($sql);
-			return ($data["analyse_eau_id"]);
+					where bassin_id = " . $bassin_id . "
+					and analyse_eau_date = '" . $dateAnalyse . "'";
+			$data = $this->lireParam ( $sql );
+			return ($data ["analyse_eau_id"]);
 		}
 	}
 }
@@ -713,7 +746,7 @@ class BassinEvenement extends ObjetBDD {
 	 * @return array
 	 */
 	function getListeByBassin($bassin_id) {
-		if ($bassin_id > 0 && is_numeric($bassin_id)) {
+		if ($bassin_id > 0 && is_numeric ( $bassin_id )) {
 			$sql = "select * from bassin_evenement
 					natural join bassin_evenement_type
 					where bassin_id = " . $bassin_id . "
@@ -860,7 +893,7 @@ class AnalyseMetal extends ObjetBDD {
 	 * @return tableau|NULL
 	 */
 	function getListeFromAnalyse($analyse_id) {
-		if ($analyse_id > 0 && is_numeric($analyse_id)) {
+		if ($analyse_id > 0 && is_numeric ( $analyse_id )) {
 			$sql = "select analyse_metal_id, analyse_eau_id, metal_id, 
 					mesure, mesure_seuil, metal_nom, metal_unite
 					from analyse_metal
@@ -940,7 +973,7 @@ class AnalyseMetal extends ObjetBDD {
 }
 /**
  * ORM de gestion de la table bassin_lot
- * 
+ *
  * @author quinton
  *        
  */
@@ -993,7 +1026,7 @@ class BassinLot extends ObjetBDD {
 	 * @return tableau|NULL
 	 */
 	function getListeFromLot($lot_id) {
-		if ($lot_id > 0 && is_numeric($lot_id)) {
+		if ($lot_id > 0 && is_numeric ( $lot_id )) {
 			$sql = "select bassin_lot_id, lot_id, bassin_id, 
 					bl_date_arrivee, bl_date_depart,
 					bassin_nom
@@ -1041,7 +1074,7 @@ class BassinLot extends ObjetBDD {
 	 * @return array|NULL
 	 */
 	function getPrecedentBassin($lot_id, $bl_date_arrivee) {
-		if ($lot_id > 0 && is_numeric($lot_id) && strlen ( $bl_date_arrivee ) > 0) {
+		if ($lot_id > 0 && is_numeric ( $lot_id ) && strlen ( $bl_date_arrivee ) > 0) {
 			$bl_date_arrivee = $this->formatDateLocaleVersDB ( $this->encodeData ( $bl_date_arrivee ) );
 			$sql = "select * from bassin_lot
 				where bl_date_arrivee < '" . $bl_date_arrivee . "' 
@@ -1061,7 +1094,7 @@ class BassinLot extends ObjetBDD {
 	 * @return array|NULL
 	 */
 	function getBassin($lot_id, $date) {
-		if ($lot_id > 0 && is_numeric($lot_id) && strlen ( $date ) > 0) {
+		if ($lot_id > 0 && is_numeric ( $lot_id ) && strlen ( $date ) > 0) {
 			$this->encodeData ( $date );
 			$date = $this->formatDateLocaleVersDB ( $date );
 			$sql = "select bassin_id, lot_id, bl_date_arrivee, bl_date_depart,
@@ -1082,14 +1115,14 @@ class BassinLot extends ObjetBDD {
  * ORM de gestion de la table circuit_evenement_type
  *
  * @author quinton
- *
+ *        
  */
 class CircuitEvenementType extends ObjetBDD {
 	/**
 	 * Constructeur de la classe
 	 *
-	 * @param AdoDB $bdd
-	 * @param array $param
+	 * @param AdoDB $bdd        	
+	 * @param array $param        	
 	 */
 	function __construct($bdd, $param = null) {
 		$this->param = $param;
@@ -1100,12 +1133,12 @@ class CircuitEvenementType extends ObjetBDD {
 						"type" => 1,
 						"key" => 1,
 						"requis" => 1,
-						"defaultValue" => 0
+						"defaultValue" => 0 
 				),
 				"circuit_evenement_type_libelle" => array (
 						"type" => 0,
-						"requis" => 1
-				)
+						"requis" => 1 
+				) 
 		);
 		if (! is_array ( $param ))
 			$param == array ();
@@ -1117,14 +1150,14 @@ class CircuitEvenementType extends ObjetBDD {
  * ORM de gestion de la table circuit_evenement
  *
  * @author quinton
- *
+ *        
  */
 class CircuitEvenement extends ObjetBDD {
 	/**
 	 * Constructeur de la classe
 	 *
-	 * @param AdoDB $bdd
-	 * @param array $param
+	 * @param AdoDB $bdd        	
+	 * @param array $param        	
 	 */
 	function __construct($bdd, $param = null) {
 		$this->param = $param;
@@ -1135,24 +1168,24 @@ class CircuitEvenement extends ObjetBDD {
 						"type" => 1,
 						"key" => 1,
 						"requis" => 1,
-						"defaultValue" => 0
+						"defaultValue" => 0 
 				),
 				"circuit_eau_id" => array (
 						"type" => 1,
 						"requis" => 1,
-						"parentAttrib" => 1
+						"parentAttrib" => 1 
 				),
 				"circuit_evenement_type_id" => array (
 						"type" => 1,
-						"requis" => 1
+						"requis" => 1 
 				),
 				"circuit_evenement_date" => array (
 						"type" => 2,
-						"defaultValue" => "getDateJour"
+						"defaultValue" => "getDateJour" 
 				),
 				"circuit_evenement_commentaire" => array (
-						"type" => 0
-				)
+						"type" => 0 
+				) 
 		);
 		if (! is_array ( $param ))
 			$param == array ();
@@ -1162,11 +1195,11 @@ class CircuitEvenement extends ObjetBDD {
 	/**
 	 * Retourne la liste des événements pour un circuit
 	 *
-	 * @param int $circuit_id
+	 * @param int $circuit_id        	
 	 * @return array
 	 */
 	function getListeBycircuit($circuit_eau_id) {
-		if ($circuit_eau_id > 0 && is_numeric($circuit_eau_id)) {
+		if ($circuit_eau_id > 0 && is_numeric ( $circuit_eau_id )) {
 			$sql = "select * from circuit_evenement
 					natural join circuit_evenement_type
 					where circuit_eau_id = " . $circuit_eau_id . "

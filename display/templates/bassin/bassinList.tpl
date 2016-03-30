@@ -1,10 +1,23 @@
 {include file="bassin/bassinSearch.tpl"}
 {if $isSearch == 1}
+
+<table class="tableaffichage">
+<tr>
+<td>
+Récapitulatif hebdomadaire des quantités d'aliments distribués<br>
+<form name="f_distrib" method="get" action="index.php">
+<input type="hidden" name="module" value="bassinRecapAlim">
+du <input class="date" name="dateDebut" value="{$dateDebut}"> au <input class="date" name="dateFin" value="{$dateFin}">
+<input value="Générer le fichier (peut être long...)" type="submit">
+</form>
+</td>
+</tr>
+</table>
 {if $droits.bassinGestion == 1}
 <a href="index.php?module=bassinChange&bassin_id=0">Nouveau bassin...</a>
 {/if}
 <script>
-setDataTables("cbassinList",true, true, true, 50);
+setDataTables("cbassinList",true, true, false, 50);
 </script>
 <table id="cbassinList" class="tableliste">
 <thead>
@@ -20,7 +33,7 @@ setDataTables("cbassinList",true, true, true, 50);
 <th>Utilisé<br>actuellement ?</th>
 </tr>
 </thead>
-<tdata>
+<tbody>
 {section name=lst loop=$data}
 <tr>
 <td>
@@ -46,7 +59,7 @@ setDataTables("cbassinList",true, true, true, 50);
 </td>
 </tr>
 {/section}
-</tdata>
+</tbody>
 </table>
 <br>
 {/if}

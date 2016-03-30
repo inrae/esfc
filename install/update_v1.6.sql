@@ -360,20 +360,27 @@ $$
 ;
 
 comment on function f_poisson_masse_at_date(int, timestamp) is 'Dernière masse connue d''un poisson à une date définie';
-
+*/
 create or replace function f_bassin_masse_at_date (int, timestamp)
 returns real
 language sql 
 as 
 $$
 select sum(f_poisson_masse_at_date(poisson_id, $2))
-from transfert t1
-where t1.transfert_id in (select t2.transfert_id from transfert t2 where t2.transfert_date <= $2 and t1.poisson_id = t2.poisson_id order by t2.transfert_date desc limit 1)
-and t1.bassin_destination = $1
+from transfert t
+where  t.transfert_id in 
+(select t2.transfert_id from transfert t2 
+join poisson using (poisson_id)
+left outer join mortalite using (poisson_id)
+where t.poisson_id = t2.poisson_id
+and (mortalite_date is null or mortalite_date > $2)
+and t2.transfert_date <= $2 order by t2.transfert_date desc limit 1)
+and t.bassin_destination = $1
+
 $$;
 
 comment on function f_poisson_masse_at_date(int, timestamp) is 'Masse des poissons présents dans un bassin à une date';
-
+/*
 create index distrib_quotidien_date_idx on distrib_quotidien(distrib_quotidien_date);
 
 create index transfert_date_idx on transfert(transfert_date);
