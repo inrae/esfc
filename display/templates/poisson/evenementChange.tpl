@@ -94,6 +94,7 @@ Retour à la liste des poissons
 <input type="hidden" name="sortie_id" id="sortie_id" value="{$dataSortie.sortie_id}">
 <input type="hidden" name="echographie_id" id="echographie_id" value="{$dataEcho.echographie_id}">
 <input type="hidden" name="anesthesie_id" id="anesthesie_id" value="{$dataAnesthesie.anesthesie_id}">
+<input type="hidden" name="dosage_sanguin_id" id="dosage_sanguin_id" value="{$dataDosageSanguin.dosage_sanguin_id}">
 <input type="hidden" name="document_id" value="0">
 <fieldset>
 <legend>Données liées à l'événement lui-même</legend>
@@ -287,6 +288,39 @@ Sélectionnez le bassin de destination...
 </dl>
 
 </div>
+</fieldset>
+
+<fieldset class="fsMasquable">
+<legend>Dosage sanguin</legend>
+<dl>
+<dt>Taux E2 :</dt>
+<dd>
+<input class="taux" name="tx_e2" value="{$dataDosageSanguin.tx_e2}">
+</dd>
+</dl>
+<dl>
+<dt>Taux E2 (forme textuelle) :</dt>
+<dd>
+<input name="tx_e2_texte" size="20" value="{$dataDosageSanguin.tx_e2_texte}">
+</dd>
+</dl>
+<dl>
+<dt>Taux de calcium :</dt>
+<dd>
+<input class="taux" name="tx_calcium" value="{$dataDosageSanguin.tx_calcium}">
+</dd>
+</dl>
+<dl>
+<dt>Taux d'hématocrite :</dt>
+<dd>
+<input class="taux" name="tx_hematocrite" value="{$dataDosageSanguin.tx_hematocrite}">
+</dd>
+</dl>
+<dl>
+<dt>Commentaires :</dt>
+<dd>
+<input name="dosage_sanguin_commentaire" class="commentaire" value="{$dataDosageSanguin.dosage_sanguin_commentaire}">
+</dl>
 </fieldset>
 
 <fieldset class="fsMasquable">

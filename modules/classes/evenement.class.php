@@ -89,7 +89,8 @@ class Evenement extends ObjetBDD {
  					echographie_commentaire, cliche_nb, cliche_ref,
  					cohorte_determination, cohorte_commentaire, cohorte_type_id, cohorte_type_libelle,
  					gender_methode_id, gender_methode_libelle, gs.sexe_id, sexe_libelle, gender_selection_commentaire,
-					anesthesie_produit_libelle, anesthesie_dosage, anesthesie_commentaire				
+					anesthesie_produit_libelle, anesthesie_dosage, anesthesie_commentaire,
+					tx_e2, tx_e2_texte, tx_calcium, tx_hematocrite, dosage_sanguin_commentaire			
  					";
 			$from = " from evenement e 
  					join poisson p using (poisson_id)
@@ -112,7 +113,8 @@ class Evenement extends ObjetBDD {
  					left outer join gender_methode using (gender_methode_id)
 					left outer join anesthesie on (e.evenement_id = anesthesie.evenement_id)
 					left outer join anesthesie_produit using (anesthesie_produit_id)
-					left outer join sexe on (gs.sexe_id = sexe.sexe_id)";
+					left outer join sexe on (gs.sexe_id = sexe.sexe_id)
+					left outer join dosage_sanguin ds on (e.evenement_id = ds.evenement_id)";
 			$order = " order by matricule, evenement_date";
 			$where = " where ";
 			$and = "";
@@ -205,6 +207,12 @@ class Evenement extends ObjetBDD {
 			 */
 			$mortalite = new Mortalite($this->connection, $this->paramori);
 			$mortalite->supprimerChamp($id, "evenement_id");
+			/*
+			 * Dosage sanguin
+			 */
+			require_once 'modules/classes/dosageSanguin.class.php';
+			$dosageSanguin = new DosageSanguin($this->connection, $this->paramori);
+			$dosageSanguin -> supprimerChamp($id, "evenement_id");
 			/*
 			 * Documents associes
 			 */

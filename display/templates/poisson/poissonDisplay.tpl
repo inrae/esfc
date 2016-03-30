@@ -83,6 +83,12 @@ Pré-sélectionner le poisson pour une campagne de reproduction
 {include file="poisson/poissonCampagneList.tpl"}
 </div>
 </fieldset>
+<fieldset class="fsMasquable">
+<legend>Dosages sanguins</legend>
+<div class="masquage">
+{include file="poisson/dosageSanguinList.tpl"}
+</div>
+</fieldset>
 
 <fieldset class="fsMasquable">
 <legend>Sortie du stock</legend>

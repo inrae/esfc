@@ -124,6 +124,12 @@ switch ($t_module["param"]) {
 		$poissonCampagne = new PoissonCampagne($bdd, $ObjetBDDParam);
 		$smarty->assign("dataRepro", $poissonCampagne->getListFromPoisson($id));
 		/*
+		 * Recuperation des dosages sanguins
+		 */
+		require_once 'modules/classes/dosageSanguin.class.php';
+		$dosageSanguin = new DosageSanguin($bdd, $ObjetBDDParam);
+		$smarty->assign("dataDosageSanguin", $dosageSanguin->getListeFromPoisson($id));
+		/*
 		 * Gestion des documents associes
 		*/
 		$smarty->assign ( "moduleParent", "poissonDisplay" );

@@ -386,3 +386,28 @@ create index distrib_quotidien_date_idx on distrib_quotidien(distrib_quotidien_d
 create index transfert_date_idx on transfert(transfert_date);
 */
 
+ALTER TABLE "sturio"."public"."dosage_sanguin" ADD COLUMN "evenement_id" INTEGER;
+
+ALTER TABLE "sturio"."public"."dosage_sanguin" ADD COLUMN "poisson_id" INTEGER;
+
+alter table dosage_sanguin alter column poisson_campagne_id drop not null;
+
+ALTER TABLE "sturio"."public"."dosage_sanguin" ADD CONSTRAINT "evenement_dosage_sanguin_fk"
+FOREIGN KEY ("evenement_id")
+REFERENCES "sturio"."public"."evenement" ("evenement_id")
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
+
+ALTER TABLE "sturio"."public"."dosage_sanguin" ADD CONSTRAINT "poisson_dosage_sanguin_fk"
+FOREIGN KEY ("poisson_id")
+REFERENCES "sturio"."public"."poisson" ("poisson_id")
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
+
+update dosage_sanguin ds
+set poisson_id = pc.poisson_id
+from poisson_campagne pc
+where ds.poisson_campagne_id = pc.poisson_campagne_id
+and ds.poisson_id is null;

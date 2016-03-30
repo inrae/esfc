@@ -35,6 +35,7 @@ switch ($t_module ["param"]) {
 			 */
 			include_once 'modules/classes/poisson.class.php';
 			include_once 'modules/classes/bassin.class.php';
+			require_once 'modules/classes/dosageSanguin.class.php';
 			$evenement_type = new Evenement_type ( $bdd, $ObjetBDDParam );
 			$smarty->assign ( "evntType", $evenement_type->getListe ( 2 ) );
 			$pathologie_type = new Pathologie_type ( $bdd, $ObjetBDDParam );
@@ -81,6 +82,8 @@ switch ($t_module ["param"]) {
 				$smarty->assign ( "dataEcho", $echographie->getDataByEvenement ( $id ) );
 				$anesthesie = new Anesthesie($bdd, $ObjetBDDParam);
 				$dataAnesthesie = $anesthesie->getDataByEvenement($id);
+				$dosageSanguin = new DosageSanguin($bdd, $ObjetBDDParam);
+				$smarty->assign("dataDosageSanguin", $dosageSanguin->getDataByEvenement($id));
 				$smarty->assign("dataAnesthesie", $dataAnesthesie);
 				/*
 				 * Recherche si le produit est toujours utilise
@@ -278,6 +281,27 @@ switch ($t_module ["param"]) {
 					$message .= $LANG ["message"] [12];
 					$module_coderetour = - 1;
 				}
+			}
+			/*
+			 * Dosage sanguin
+			 */
+			$fields = array ("tx_e2", "tx_e2_texte", "tx_calcium", "tx_hematocrite", "dosage_sanguin_commentaire");
+			$flag = false;
+			foreach ($fields as $field) {
+				if (strlen($_REQUEST[$field]) > 0)
+						$flag = true;
+			}
+			if ($flag == true) {
+				require_once 'modules/classes/dosageSanguin.class.php';
+				$_REQUEST["dosage_sanguin_date"] = $_REQUEST["evenement_date"];
+				$dosageSanguin = new DosageSanguin($bdd, $ObjetBDDParam);
+				$dosage_sanguin_id = $dosageSanguin->ecrire($_REQUEST);
+				if (! $dosage_sanguin_id > 0) {
+					$message .= formatErrorData ( $dosageSanguin->getErrorData () );
+					$message .= $LANG ["message"] [12];
+					$module_coderetour = - 1;
+				}
+	
 			}
 			
 			/*
