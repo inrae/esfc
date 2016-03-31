@@ -56,6 +56,8 @@ switch ($t_module ["param"]) {
 			$anesthesie_produit = new Anesthesie_produit($bdd, $ObjetBDDParam);
 			$dataProduit = $anesthesie_produit->getListeActif(1);
 			dataRead ( $dataClass, $id, "poisson/evenementChange.tpl", $_REQUEST ["poisson_id"] );
+			$nageoire = new Nageoire($bdd, $ObjetBDDParam);
+			$smarty->assign("nageoire", $nageoire->getListe(1));
 			/*
 			 * Lecture du poisson
 			 */
@@ -84,6 +86,8 @@ switch ($t_module ["param"]) {
 				$dataAnesthesie = $anesthesie->getDataByEvenement($id);
 				$dosageSanguin = new DosageSanguin($bdd, $ObjetBDDParam);
 				$smarty->assign("dataDosageSanguin", $dosageSanguin->getDataByEvenement($id));
+				$genetique = new Genetique($bdd, $ObjetBDDParam);
+				$smarty->assign("dataGenetique", $genetique->getDataByEvenement($id));
 				$smarty->assign("dataAnesthesie", $dataAnesthesie);
 				/*
 				 * Recherche si le produit est toujours utilise
@@ -300,8 +304,20 @@ switch ($t_module ["param"]) {
 					$message .= formatErrorData ( $dosageSanguin->getErrorData () );
 					$message .= $LANG ["message"] [12];
 					$module_coderetour = - 1;
+				}	
+			}
+			/*
+			 * Prelevement genetique
+			 */
+			if (strlen($_REQUEST["genetique_reference"]) > 0) {
+				$_REQUEST["genetique_date"] = $_REQUEST["evenement_date"];
+				$genetique = new Genetique($bdd, $ObjetBDDParam);
+				$genetique_id = $genetique->ecrire($_REQUEST);
+				if (! $genetique_id > 0) {
+					$message .= formatErrorData ( $genetique->getErrorData () );
+					$message .= $LANG ["message"] [12];
+					$module_coderetour = - 1;
 				}
-	
 			}
 			
 			/*

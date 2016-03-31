@@ -10,7 +10,7 @@ setDataTables("csortieList");
 <th>Sevrage/Commentaire</th>
 </tr>
 </thead>
-<tdata>
+<tbody>
 {section name=lst loop=$dataSortie}
 <tr>
 <td>
@@ -32,5 +32,5 @@ setDataTables("csortieList");
 {$dataSortie[lst].sortie_commentaire}</td>
 </tr>
 {/section}
-</tdata>
+</tbody>
 </table>

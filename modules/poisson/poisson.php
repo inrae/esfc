@@ -129,6 +129,12 @@ switch ($t_module["param"]) {
 		require_once 'modules/classes/dosageSanguin.class.php';
 		$dosageSanguin = new DosageSanguin($bdd, $ObjetBDDParam);
 		$smarty->assign("dataDosageSanguin", $dosageSanguin->getListeFromPoisson($id));
+		
+		/*
+		 * Recuperation des prelevements genetiques
+		 */
+		$genetique = new Genetique($bdd, $ObjetBDDParam);
+		$smarty->assing("dataGenetique", $genetique->getListByPoisson($id));
 		/*
 		 * Gestion des documents associes
 		*/

@@ -214,6 +214,11 @@ class Evenement extends ObjetBDD {
 			$dosageSanguin = new DosageSanguin($this->connection, $this->paramori);
 			$dosageSanguin -> supprimerChamp($id, "evenement_id");
 			/*
+			 * Genetique
+			 */
+			$genetique = new Genetique($this->connection, $this->paramori);
+			$genetique->supprimerChamp($id, "evenement_id");
+			/*
 			 * Documents associes
 			 */
 			$sql = "delete from evenement_document where evenement_id = ".$id;

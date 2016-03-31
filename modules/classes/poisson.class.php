@@ -137,15 +137,15 @@ class Poisson extends ObjetBDD {
 						or upper(prenom) like '" . $texte . "' 
 						or cohorte like '" . $texte . "' 
 						or upper(pittag_valeur) like '" . $texte . "'";
-				if (is_numeric($dataSearch["texte"])) {
-					$where .= " or poisson_id = ".$dataSearch["texte"];
+				if (is_numeric ( $dataSearch ["texte"] )) {
+					$where .= " or poisson_id = " . $dataSearch ["texte"];
 				}
 				$where .= ")";
 				$and = " and ";
 			}
 			if (strlen ( $where ) > 7)
 				$data = $this->getListeParam ( $sql . $from . $where . /*$group .*/ $order );
-			/*
+				/*
 			 * Mise en forme des dates
 			 */
 			foreach ( $data as $key => $value ) {
@@ -1468,7 +1468,7 @@ class Parent_poisson extends ObjetBDD {
 	
 	/**
 	 * Retourne les parents
-	 * 
+	 *
 	 * @param int $id        	
 	 * @return array
 	 */
@@ -1486,7 +1486,7 @@ class Parent_poisson extends ObjetBDD {
 	
 	/**
 	 * Retourne la liste des enfants attaches a un parent
-	 * 
+	 *
 	 * @param int $parent_id        	
 	 * @return array
 	 */
@@ -1805,8 +1805,9 @@ class Echographie extends ObjetBDD {
 }
 /**
  * ORM de gestion de la table anesthesie
+ * 
  * @author quinton
- *
+ *        
  */
 class Anesthesie extends ObjetBDD {
 	public function __construct($p_connection, $param = NULL) {
@@ -1843,8 +1844,8 @@ class Anesthesie extends ObjetBDD {
 						"requis" => 1 
 				),
 				"anesthesie_dosage" => array (
-						"type" => 1
-				)
+						"type" => 1 
+				) 
 		);
 		if (! is_array ( $param ))
 			$param == array ();
@@ -1872,7 +1873,7 @@ class Anesthesie extends ObjetBDD {
 	/**
 	 * Retourne la liste des echographies realisees pour un poisson
 	 *
-	 * @param int $poisson_id
+	 * @param int $poisson_id        	
 	 * @return tableau
 	 */
 	function getListByPoisson($poisson_id) {
@@ -1892,13 +1893,12 @@ class Anesthesie extends ObjetBDD {
 		} else
 			return null;
 	}
-	
 }
 /**
  * ORM de la table anesthesie_produit
  *
  * @author quinton
- *
+ *        
  */
 class Anesthesie_produit extends ObjetBDD {
 	/**
@@ -1906,7 +1906,7 @@ class Anesthesie_produit extends ObjetBDD {
 	 *
 	 * @param
 	 *        	instance ADODB $bdd
-	 * @param array $param
+	 * @param array $param        	
 	 */
 	function __construct($bdd, $param = null) {
 		$this->param = $param;
@@ -1917,27 +1917,26 @@ class Anesthesie_produit extends ObjetBDD {
 						"type" => 1,
 						"key" => 1,
 						"requis" => 1,
-						"defaultValue" => 0
+						"defaultValue" => 0 
 				),
 				"anesthesie_produit_libelle" => array (
 						"type" => 0,
-						"requis" => 1
+						"requis" => 1 
 				),
 				"anesthesie_produit_actif" => array (
 						"type" => 1,
-						"requis" =>1,
-						"defaultValue"=>1
-				)
+						"requis" => 1,
+						"defaultValue" => 1 
+				) 
 		);
 		if (! is_array ( $param ))
 			$param == array ();
 		$param ["fullDescription"] = 1;
 		parent::__construct ( $bdd, $param );
 	}
-	
 	function getListeActif($actif = -1) {
 		$sql = "select *
-				from ".$this->table;
+				from " . $this->table;
 		if ($actif > - 1 && is_numeric ( $actif )) {
 			$where = " where anesthesie_produit_actif = " . $actif;
 		} else {
@@ -1950,8 +1949,9 @@ class Anesthesie_produit extends ObjetBDD {
 
 /**
  * ORM de gestion de la table ventilation
+ * 
  * @author quinton
- *
+ *        
  */
 class Ventilation extends ObjetBDD {
 	/**
@@ -1959,11 +1959,10 @@ class Ventilation extends ObjetBDD {
 	 *
 	 * @param
 	 *        	instance ADODB $bdd
-	 * @param array $param
+	 * @param array $param        	
 	 */
 	private $sql = "select * from ventilation";
 	private $order = " order by ventilation_date desc";
-	
 	function __construct($bdd, $param = null) {
 		$this->paramori = $param;
 		$this->param = $param;
@@ -1974,45 +1973,174 @@ class Ventilation extends ObjetBDD {
 						"type" => 1,
 						"key" => 1,
 						"requis" => 1,
-						"defaultValue" => 0
+						"defaultValue" => 0 
 				),
 				"poisson_id" => array (
 						"type" => 1,
 						"requis" => 1,
-						"parentAttrib" => 1
+						"parentAttrib" => 1 
 				),
-				"battement_nb"=>array (
-						"type"=>1,
-						"requis"=>1
+				"battement_nb" => array (
+						"type" => 1,
+						"requis" => 1 
 				),
 				"ventilation_date" => array (
 						"type" => 3,
-						"defaultValue"=>"getDateHeure"
+						"defaultValue" => "getDateHeure" 
 				),
 				"ventilation_commentaire" => array (
-						"type" => 0
-				)
+						"type" => 0 
+				) 
 		);
 		if (! is_array ( $param ))
 			$param == array ();
 		$param ["fullDescription"] = 1;
 		parent::__construct ( $bdd, $param );
 	}
-
+	
 	/**
 	 * Retourne la liste des releves pour un poisson
-	 * @param int $poisson_id
-	 * @param int annee : annee de la campagne de reproduction, si requis
+	 * 
+	 * @param int $poisson_id        	
+	 * @param
+	 *        	int annee : annee de la campagne de reproduction, si requis
 	 * @return tableau
 	 */
 	function getListByPoisson($poisson_id, $annee = 0) {
-		if (is_numeric($poisson_id) && $poisson_id > 0) {
-			$where = " where poisson_id = ".$poisson_id;
-			if (is_numeric ($annee) && $annee > 0) {
-				$where .= " and extract(year from ventilation_date) = ".$annee;
+		if (is_numeric ( $poisson_id ) && $poisson_id > 0) {
+			$where = " where poisson_id = " . $poisson_id;
+			if (is_numeric ( $annee ) && $annee > 0) {
+				$where .= " and extract(year from ventilation_date) = " . $annee;
 			}
-			return $this->getListeParam($this->sql.$where.$this->order);
+			return $this->getListeParam ( $this->sql . $where . $this->order );
 		}
+	}
+}
+
+/**
+ * ORM de gestion de la table ventilation
+ * 
+ * @author quinton
+ *        
+ */
+class Genetique extends ObjetBDD {
+	/**
+	 * Constructeur de la classe
+	 *
+	 * @param
+	 *        	instance ADODB $bdd
+	 * @param array $param        	
+	 */
+	private $sql = "select * from genetique
+			left outer join nageoire using (nageoire_id)
+			left outer join evenement using (evenement_id)
+			left outer join evenement_type using (evenement_type_id)";
+	private $order = " order by genetique_date desc";
+	function __construct($bdd, $param = null) {
+		$this->paramori = $param;
+		$this->param = $param;
+		$this->table = "genetique";
+		$this->id_auto = "1";
+		$this->colonnes = array (
+				"genetique_id" => array (
+						"type" => 1,
+						"key" => 1,
+						"requis" => 1,
+						"defaultValue" => 0 
+				),
+				"poisson_id" => array (
+						"type" => 1,
+						"requis" => 1,
+						"parentAttrib" => 1 
+				),
+				"nageoire_id" => array (
+						"type" => 1 
+				),
+				"genetique_date" => array (
+						"type" => 3,
+						"defaultValue" => "getDate" 
+				),
+				"genetique_commentaire" => array (
+						"type" => 0 
+				),
+				"genetique_reference" => array (
+						"type" => 1,
+						"requis" => 1 
+				) 
+		);
+		if (! is_array ( $param ))
+			$param == array ();
+		$param ["fullDescription"] = 1;
+		parent::__construct ( $bdd, $param );
+	}
+	
+	/**
+	 * Retourne la liste des releves pour un poisson
+	 * 
+	 * @param int $poisson_id        	
+	 * @param
+	 *        	int annee : annee de la campagne de reproduction, si requis
+	 * @return tableau
+	 */
+	function getListByPoisson($poisson_id, $annee = 0) {
+		if (is_numeric ( $poisson_id ) && $poisson_id > 0) {
+			$where = " where poisson_id = " . $poisson_id;
+			if (is_numeric ( $annee ) && $annee > 0) {
+				$where .= " and extract(year from genetique_date) = " . $annee;
+			}
+			return $this->getListeParam ( $this->sql . $where . $this->order );
+		}
+	}
+	
+	/**
+	 * Retrouve le prelevement attache a l'evenement
+	 * 
+	 * @param int $evenement_id        	
+	 * @return array|NULL
+	 */
+	function getDataByEvenement($evenement_id) {
+		if ($evenement_id > 0 && is_numeric ( $evenement_id )) {
+			$where = " where evenement_id = " . $evenement_id;
+			return $this->lireParam ( $this->sql . $where );
+		} else
+			return null;
+	}
+}
+
+/**
+ * ORM de gestion de la table nageoire
+ * 
+ * @author quinton
+ *        
+ */
+class Nageoire extends ObjetBDD {
+	/**
+	 * Constructeur de la classe
+	 *
+	 * @param
+	 *        	instance ADODB $bdd
+	 * @param array $param        	
+	 */
+	function __construct($bdd, $param = null) {
+		$this->param = $param;
+		$this->table = "nageoire";
+		$this->id_auto = "1";
+		$this->colonnes = array (
+				"nageoire_id" => array (
+						"type" => 1,
+						"key" => 1,
+						"requis" => 1,
+						"defaultValue" => 0 
+				),
+				"nageoire_libelle" => array (
+						"type" => 0,
+						"requis" => 1 
+				) 
+		);
+		if (! is_array ( $param ))
+			$param == array ();
+		$param ["fullDescription"] = 1;
+		parent::__construct ( $bdd, $param );
 	}
 }
 ?>

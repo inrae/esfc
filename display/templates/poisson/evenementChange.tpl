@@ -322,7 +322,31 @@ Sélectionnez le bassin de destination...
 <input name="dosage_sanguin_commentaire" class="commentaire" value="{$dataDosageSanguin.dosage_sanguin_commentaire}">
 </dl>
 </fieldset>
-
+<fieldset class="fsMasquable">
+<legend>Prélèvement génétique</legend>
+<div class="masquage">
+<dl><dt>Référence du prélèvement<span class="red">*</span> :</dt>
+<dd><input class="commentaire" name="genetique_reference" value="{$dataGenetique.genetique_reference}"></dd>
+</dl>
+<dl><dt>Nageoire :</dt>
+<dd>
+<select name="nageoire_id">
+<option value="" {if $dataGenetique.nageoire_id == ""}selected{/if}>Sélectionnez...</option>
+{section name=lst loop=$nageoire}
+<option value="{$nageoire[lst].nageoire_id}" {if $dataGenetique.nageoire_id == $nageoire[lst].nageoire_id}selected{/if}>
+{$dataGenetique[lst].nageoire_libelle}
+</option>
+{/section}
+</select>
+</dd></dl>
+<dl>
+<dt>Commentaire :</dt>
+<dd>
+<input name="genetique_commentaire" class="commentaire" value="{$dataGenetique.genetique_commentaire}">
+</dd>
+</dl>
+</div>
+</fieldset>
 <fieldset class="fsMasquable">
 <legend>Détermination du sexe</legend>
 <div class="masquage">

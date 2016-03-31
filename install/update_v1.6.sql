@@ -413,3 +413,69 @@ set poisson_id = pc.poisson_id
 from poisson_campagne pc
 where ds.poisson_campagne_id = pc.poisson_campagne_id
 and ds.poisson_id is null;
+
+
+CREATE TABLE nageoire
+(
+   nageoire_id    serial    NOT NULL,
+   nageoire_libelle  varchar   NOT NULL
+);
+
+ALTER TABLE nageoire
+   ADD CONSTRAINT nageoire_pk
+   PRIMARY KEY (nageoire_id);
+
+COMMENT ON TABLE nageoire IS 'Nom des nageoires';
+
+
+
+insert into nageoire (nageoire_id, nageoire_libelle)
+values 
+(1, 'anale'),
+(2, 'pectorale droite'),
+(3, 'pectorale gauche'),
+(4, 'pelvienne droite'),
+(5, 'pelvienne gauche'),
+(6, 'pelvienne droite et gauche');
+
+select setval('nageoire_nageoire_id_seq', (select max(nageoire_id) from nageoire));
+
+CREATE SEQUENCE "sturio"."public"."genetique_genetique_id_seq";
+
+CREATE TABLE "sturio"."public"."genetique" (
+                "genetique_id" INTEGER NOT NULL DEFAULT nextval('"sturio"."public"."genetique_genetique_id_seq"'),
+                "poisson_id" INTEGER NOT NULL,
+                "evenement_id" INTEGER NOT NULL,
+                "nageoire_id" INTEGER,
+                "genetique_date" TIMESTAMP NOT NULL,
+                "genetique_commentaire" VARCHAR,
+                CONSTRAINT "genetique_pk" PRIMARY KEY ("genetique_id")
+);
+COMMENT ON TABLE "sturio"."public"."genetique" IS 'Table des prélèvements réalisés pour des tests génétiques';
+
+
+ALTER SEQUENCE "sturio"."public"."genetique_genetique_id_seq" OWNED BY "sturio"."public"."genetique"."genetique_id";
+
+ALTER TABLE "sturio"."public"."genetique" ADD CONSTRAINT "evenement_genetique_fk"
+FOREIGN KEY ("evenement_id")
+REFERENCES "sturio"."public"."evenement" ("evenement_id")
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
+
+ALTER TABLE "sturio"."public"."genetique" ADD CONSTRAINT "nageoire_genetique_fk"
+FOREIGN KEY ("nageoire_id")
+REFERENCES "sturio"."public"."nageoire" ("nageoire_id")
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
+
+ALTER TABLE "sturio"."public"."genetique" ADD CONSTRAINT "poisson_genetique_fk"
+FOREIGN KEY ("poisson_id")
+REFERENCES "sturio"."public"."poisson" ("poisson_id")
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
+
+alter table genetique add column genetique_reference varchar not null;
+comment on column genetique.genetique_reference is 'Référence du prélèvement';
