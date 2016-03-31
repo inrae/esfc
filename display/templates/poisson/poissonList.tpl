@@ -25,6 +25,9 @@
 <th>Long<br>fourche</th>
 <th>Long<br>totale</th>
 {/if}
+{if $poissonSearch.displayCumulTemp == 1}
+<th>Température<br>cumulée (bassin)</th>
+{/if}
 </tr>
 </thead>
 <tbody>
@@ -67,6 +70,9 @@
 <td class="right">{$data[lst].masse}</td>
 <td class="right">{$data[lst].longueur_fourche}</td>
 <td class="right">{$data[lst].longueur_totale}</td>
+{/if}
+{if $poissonSearch.displayCumulTemp == 1}
+<td class="right">{$data[lst].temperature}</td>
 {/if}
 </tr>
 {/section}

@@ -131,14 +131,18 @@ class SearchPoisson extends SearchParam {
 				"texte" => "",
 				"categorie" => 1,
 				"displayMorpho" => 0,
-				"displayBassin" => 0 
+				"displayBassin" => 0,
+				"displayCumulTemp" => 0,
+				"dateDebutTemp" => date("d/m/").(date("Y")-1),
+				"dateFinTemp" => date("d/m/Y")
 		);
 		$this->paramNum = array (
 				"statut",
 				"displayMorpho",
 				"displayBassin",
 				"categorie",
-				"sexe" 
+				"sexe",
+				"displayCumulTemp"
 		);
 		parent::__construct ();
 	}

@@ -57,5 +57,17 @@ Catégorie :
 </div>
 </td>
 </tr>
+<tr>
+<td colspan = "2">
+Afficher : <label>le cumul des températures ? </label>
+<input type="radio" name="displayCumulTemp" value="0" {if $poissonSearch.displayCumulTemp == 0}checked{/if}> non
+<input type="radio" name="displayCumulTemp" value="1" {if $poissonSearch.displayCumulTemp == 1}checked{/if}> oui
+(du 
+<input class="date" name="dateDebutTemp" value="{$poissonSearch.dateDebutTemp}">
+au 
+<input class="date" name="dateFinTemp" value="{$poissonSearch.dateFinTemp}">
+- calcul long...)
+</td>
+<tr>
 </table>
 </form>

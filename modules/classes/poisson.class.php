@@ -152,6 +152,14 @@ class Poisson extends ObjetBDD {
 				if (strlen ( $value ["mortalite_date"] ) > 0)
 					$data [$key] ["mortalite_date"] = $this->formatDateDBversLocal ( $value ["mortalite_date"] );
 			}
+			/*
+			 * Recherche des temperatures cumulees
+			 */
+			if ($dataSearch ["displayCumulTemp"] == 1) {
+				foreach ($data as $key => $value) {
+					$data[$key]["temperature"] = $this->calcul_temperature($value["poisson_id"], $dataSearch["dateDebutTemp"], $dataSearch["dateFinTemp"]);
+				}
+			}
 			return ($data);
 		}
 	}
@@ -317,6 +325,65 @@ class Poisson extends ObjetBDD {
 			}
 		}
 		return $retour;
+	}
+	/**
+	 * Fonction permettant de calculer le cumul de temperature recu par un poisson
+	 * entre deux dates, en fonction des bassins frequentes
+	 * 
+	 * @param int $poisson_id        	
+	 * @param date $date_debut        	
+	 * @param date $date_fin        	
+	 * @return numeric
+	 */
+	function calcul_temperature($poisson_id, $date_debut, $date_fin) {
+		$date_debut = $this->encodeData ( $date_debut );
+		$date_debut = $this->formatDateLocaleVersDB ( $date_debut );
+		$date_fin = $this->encodeData ( $date_fin );
+		$date_fin = $this->formatDateLocaleVersDB ( $date_fin );
+		if (is_numeric ( $poisson_id ) && $poisson_id > 0) {
+			/*
+			 * Recherche des bassins frequentes
+			 */
+			$sql = "select pb.* from v_poisson_bassins pb
+				where (date_debut <= '" . $date_debut . "' and ( date_fin > '" . $date_fin . "' or date_fin is null)
+				or (date_debut <= '" . $date_debut . "' and date_fin > '" . $date_debut . "')
+				or (date_debut > '" . $date_debut . "' and date_fin <= '" . $date_fin . "')
+				or (date_debut between '" . $date_debut . "' and '" . $date_fin . "' and (date_fin > '" . $date_fin . "' or date_fin is null))
+				)
+				and poisson_id = " . $poisson_id . "
+				order by date_debut, date_fin";
+			$bassins = $this->getListeParam ( $sql );
+			$temperature = 0;
+			foreach ( $bassins as $bassin ) {
+				if ($bassin ["date_debut"] < $date_debut)
+					$bassin ["date_debut"] = $date_debut;
+				if (strlen ( $bassin ["date_fin"] ) == 0)
+					$bassin ["date_fin"] = $date_fin;
+					/*
+				 * Calcul du total de la temperature
+				 */
+				$sqltemp = "with gs as (
+				select generate_series('" . $bassin ["date_debut"] . "'::date, '" . $bassin ["date_fin"] . "'::date, interval ' 1 day') as date_jour
+				)
+				select  sum( ae.temperature) as temperature
+				from gs, analyse_eau ae, circuit_eau ce, bassin b
+				where b.circuit_eau_id = ce.circuit_eau_id 
+				and b.bassin_id = ".$bassin["bassin_id"]."
+				and ae.circuit_eau_id = ce.circuit_eau_id
+				and ae.analyse_eau_id = 
+				(select a2.analyse_eau_id from analyse_eau a2
+				join circuit_eau ce2 using (circuit_eau_id)
+				where a2.temperature is not null
+				and a2.analyse_eau_date <= gs.date_jour
+				and ce.circuit_eau_id = ce2.circuit_eau_id
+				order by a2.analyse_eau_date desc limit 1)
+				";
+				$dataTotal = $this->lireParam ( $sqltemp );
+				if ($dataTotal ["temperature"] > 0)
+					$temperature += $dataTotal ["temperature"];
+			}
+			return $temperature;
+		}
 	}
 }
 /**
