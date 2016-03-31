@@ -1805,7 +1805,7 @@ class Echographie extends ObjetBDD {
 }
 /**
  * ORM de gestion de la table anesthesie
- * 
+ *
  * @author quinton
  *        
  */
@@ -1949,7 +1949,7 @@ class Anesthesie_produit extends ObjetBDD {
 
 /**
  * ORM de gestion de la table ventilation
- * 
+ *
  * @author quinton
  *        
  */
@@ -2000,7 +2000,7 @@ class Ventilation extends ObjetBDD {
 	
 	/**
 	 * Retourne la liste des releves pour un poisson
-	 * 
+	 *
 	 * @param int $poisson_id        	
 	 * @param
 	 *        	int annee : annee de la campagne de reproduction, si requis
@@ -2019,7 +2019,7 @@ class Ventilation extends ObjetBDD {
 
 /**
  * ORM de gestion de la table ventilation
- * 
+ *
  * @author quinton
  *        
  */
@@ -2031,9 +2031,9 @@ class Genetique extends ObjetBDD {
 	 *        	instance ADODB $bdd
 	 * @param array $param        	
 	 */
-	private $sql = "select * from genetique
+	private $sql = "select * from genetique g
 			left outer join nageoire using (nageoire_id)
-			left outer join evenement using (evenement_id)
+			join evenement using (evenement_id)
 			left outer join evenement_type using (evenement_type_id)";
 	private $order = " order by genetique_date desc";
 	function __construct($bdd, $param = null) {
@@ -2057,13 +2057,17 @@ class Genetique extends ObjetBDD {
 						"type" => 1 
 				),
 				"genetique_date" => array (
-						"type" => 3,
+						"type" => 2,
 						"defaultValue" => "getDate" 
 				),
 				"genetique_commentaire" => array (
 						"type" => 0 
 				),
 				"genetique_reference" => array (
+						"type" => 0,
+						"requis" => 1 
+				),
+				"evenement_id" => array (
 						"type" => 1,
 						"requis" => 1 
 				) 
@@ -2076,7 +2080,7 @@ class Genetique extends ObjetBDD {
 	
 	/**
 	 * Retourne la liste des releves pour un poisson
-	 * 
+	 *
 	 * @param int $poisson_id        	
 	 * @param
 	 *        	int annee : annee de la campagne de reproduction, si requis
@@ -2084,7 +2088,7 @@ class Genetique extends ObjetBDD {
 	 */
 	function getListByPoisson($poisson_id, $annee = 0) {
 		if (is_numeric ( $poisson_id ) && $poisson_id > 0) {
-			$where = " where poisson_id = " . $poisson_id;
+			$where = " where g.poisson_id = " . $poisson_id;
 			if (is_numeric ( $annee ) && $annee > 0) {
 				$where .= " and extract(year from genetique_date) = " . $annee;
 			}
@@ -2094,7 +2098,7 @@ class Genetique extends ObjetBDD {
 	
 	/**
 	 * Retrouve le prelevement attache a l'evenement
-	 * 
+	 *
 	 * @param int $evenement_id        	
 	 * @return array|NULL
 	 */
@@ -2109,7 +2113,7 @@ class Genetique extends ObjetBDD {
 
 /**
  * ORM de gestion de la table nageoire
- * 
+ *
  * @author quinton
  *        
  */

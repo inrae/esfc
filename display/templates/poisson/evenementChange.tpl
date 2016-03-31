@@ -95,6 +95,7 @@ Retour à la liste des poissons
 <input type="hidden" name="echographie_id" id="echographie_id" value="{$dataEcho.echographie_id}">
 <input type="hidden" name="anesthesie_id" id="anesthesie_id" value="{$dataAnesthesie.anesthesie_id}">
 <input type="hidden" name="dosage_sanguin_id" id="dosage_sanguin_id" value="{$dataDosageSanguin.dosage_sanguin_id}">
+<input type="hidden" name="genetique_id" id="genetique_id" value="{$dataGenetique.genetique_id}">
 <input type="hidden" name="document_id" value="0">
 <fieldset>
 <legend>Données liées à l'événement lui-même</legend>
@@ -334,7 +335,7 @@ Sélectionnez le bassin de destination...
 <option value="" {if $dataGenetique.nageoire_id == ""}selected{/if}>Sélectionnez...</option>
 {section name=lst loop=$nageoire}
 <option value="{$nageoire[lst].nageoire_id}" {if $dataGenetique.nageoire_id == $nageoire[lst].nageoire_id}selected{/if}>
-{$dataGenetique[lst].nageoire_libelle}
+{$nageoire[lst].nageoire_libelle}
 </option>
 {/section}
 </select>

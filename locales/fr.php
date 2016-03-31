@@ -133,6 +133,8 @@ $LANG["menu"][125] = "Dilueurs de sperme";
 $LANG["menu"][126] = "Liste des produits de dilution du sperme utilisés en congélation";
 $LANG["menu"][127] = "Caractéristiques du sperme";
 $LANG["menu"][128] = "Liste des caractéristiques potentielles du sperme";
+$LANG["menu"][129] = "Nageoires";
+$LANG["menu"][130] = "Liste des nageoires (prélèvements génétiques)";
 
 
 

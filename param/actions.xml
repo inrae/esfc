@@ -170,6 +170,11 @@
 	<sortieLieuWrite action="modules/parametre/sortieLieu.php" param="write" droits="paramAdmin" retourok="sortieLieuList" retourko="sortieLieuChange" modulebefore="sortieLieuChange" />
 	<sortieLieuDelete action="modules/parametre/sortieLieu.php" param="delete" droits="paramAdmin" retoursuppr="sortieLieuList" retourko="sortieLieuChange"  modulebefore="sortieLieuChange"/>
 
+	<nageoireList action="modules/parametre/nageoire.php" param="list" droits="consult"  retourlogin="1" />
+	<nageoireChange action="modules/parametre/nageoire.php" param="change" droits="paramAdmin" />
+	<nageoireWrite action="modules/parametre/nageoire.php" param="write" droits="paramAdmin" retourok="nageoireList" retourko="nageoireChange" modulebefore="nageoireChange" />
+	<nageoireDelete action="modules/parametre/nageoire.php" param="delete" droits="paramAdmin" retoursuppr="nageoireList" retourko="nageoireChange"  modulebefore="nageoireChange"/>
+
 	<hormoneList action="modules/parametre/hormone.php" param="list" droits="consult"  retourlogin="1"  />
 	<hormoneChange action="modules/parametre/hormone.php" param="change" droits="paramAdmin,reproAdmin" />
 	<hormoneWrite action="modules/parametre/hormone.php" param="write" droits="paramAdmin,reproAdmin" retourok="hormoneList" retourko="hormoneChange" modulebefore="hormoneChange" />

@@ -134,7 +134,7 @@ switch ($t_module["param"]) {
 		 * Recuperation des prelevements genetiques
 		 */
 		$genetique = new Genetique($bdd, $ObjetBDDParam);
-		$smarty->assing("dataGenetique", $genetique->getListByPoisson($id));
+		$smarty->assign("dataGenetique", $genetique->getListByPoisson($id));
 		/*
 		 * Gestion des documents associes
 		*/
