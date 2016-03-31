@@ -479,3 +479,19 @@ NOT DEFERRABLE;
 
 alter table genetique add column genetique_reference varchar not null;
 comment on column genetique.genetique_reference is 'Référence du prélèvement';
+
+insert into devenir_type (devenir_type_id, devenir_type_libelle)
+values (3, 'Transfert vers un autre site'),
+(4, 'Transfert pour expérimentation'), 
+(5, 'Transfert pour élevage juvénile');
+
+ALTER TABLE "sturio"."public"."devenir" ADD COLUMN "parent_devenir_id" INTEGER;
+
+comment on column devenir.parent_devenir_id is 'Pour un lot, permet de suivre les différentes destinations successives';
+
+ALTER TABLE "sturio"."public"."devenir" ADD CONSTRAINT "devenir_devenir_fk"
+FOREIGN KEY ("parent_devenir_id")
+REFERENCES "sturio"."public"."devenir" ("devenir_id")
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE;

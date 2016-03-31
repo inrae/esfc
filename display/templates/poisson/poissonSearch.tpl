@@ -11,7 +11,7 @@ $(document).ready(function() {
 <table class="tableaffichage">
 <tr>
 <td colspan='2'>
-Libellé à rechercher (tag, prenom, matricule, cohorte) : 
+Libellé à rechercher (id, tag, prenom, matricule, cohorte) : 
 <input name="texte" value="{$poissonSearch.texte}" size="40" maxlength="40">
 <br>
 Catégorie :
