@@ -372,8 +372,10 @@ where  t.transfert_id in
 (select t2.transfert_id from transfert t2 
 join poisson using (poisson_id)
 left outer join mortalite using (poisson_id)
+left outer join sortie using (poisson_id)
 where t.poisson_id = t2.poisson_id
 and (mortalite_date is null or mortalite_date > $2)
+and (sortie_date is null or sortie_date > $2)
 and t2.transfert_date <= $2 order by t2.transfert_date desc limit 1)
 and t.bassin_destination = $1
 
