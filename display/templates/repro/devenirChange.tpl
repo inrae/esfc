@@ -5,7 +5,7 @@
 {else}
 <a href="index.php?module=devenirList">Retour à la liste des lâchers et entrées dans le stock</a>
 {/if}
-<h2>Saisie du devenir d'une reproduction</h2>
+<h2>Saisie de la destination d'une reproduction</h2>
 <div class="formSaisie">
 <div>
 <form id="devenirForm" method="post" action="index.php?module=devenir{$devenirOrigine}Write">
@@ -18,6 +18,20 @@
 <input class="date"  name="devenir_date" required value="{$data.devenir_date}">
 </dd>
 </dl>
+<dl>
+<dt>Destination parente :</dt>
+<dd>
+<select name="parent_devenir_id">
+<option value ="" {if $data.parent_devenir_id = ""}selected{/if}>Sélectionnez...</option>
+{section name=lst loop=$devenirParent}
+<option value="{$devenirParent[lst].devenir_id}" {if $devenirParent[lst].devenir_id == $data.devenir_id}selected{/if}>
+{$devenirParent[lst].devenir_date} {$devenirParent[lst].devenir_type_libelle} {$devenirParent[lst].categorie_libelle}
+{$devenirParent[lst].localisation} {$devenirParent[lst].poisson_nombre}
+</option>
+{/section}
+</select>
+</dl>
+
 <dl><dt>Nature<span class="red">*</span> :</dt>
 <dd>
 <select name="devenir_type_id">

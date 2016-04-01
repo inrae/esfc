@@ -33,16 +33,28 @@ switch ($t_module ["param"]) {
 		require_once 'modules/classes/poisson.class.php';
 		$sortie = new SortieLieu ( $bdd, $ObjetBDDParam );
 		$smarty->assign ( "sorties", $sortie->getListe ( 2 ) );
-		$devenirType = new DevenirType($bdd, $ObjetBDDParam);
-		$smarty->assign("devenirType", $devenirType->getListe(1));
+		$devenirType = new DevenirType ( $bdd, $ObjetBDDParam );
+		$smarty->assign ( "devenirType", $devenirType->getListe ( 1 ) );
 		/*
 		 * Lecture du lot
 		 */
 		if ($data ["lot_id"] > 0) {
 			require_once 'modules/classes/lot.class.php';
-			$lot = new Lot($bdd, $ObjetBDDParam);
+			$lot = new Lot ( $bdd, $ObjetBDDParam );
 			$smarty->assign ( "dataLot", $lot->getDetail ( $data [lot_id] ) );
 		}
+		/*
+		 * Recuperation de la liste des devenirs parents potentiels
+		 */
+		if ($data ["lot_id"] > 0) {
+			$lotId = $data ["lot_id"];
+			$annee = 0;
+		} else {
+			$lotId = 0;
+			$annee = $_SESSION ["annee"];
+		}
+		$parents = $dataClass->getParentsPotentiels ( $data ["devenir_id"], $lotId, $annee );
+		$smarty->assign("devenirParent", $parents);
 		break;
 	case "write":
 		/*

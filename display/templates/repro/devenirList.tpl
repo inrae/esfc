@@ -1,6 +1,6 @@
 {if $droits["reproGestion"] == 1}
 <a href="index.php?module=devenir{$devenirOrigine}Change&devenir_id=0{if $dataLot.lot_id > 0}&lot_id={$dataLot.lot_id}{/if}&devenirOrigine={$devenirOrigine}">
-Nouveau devenir (lâcher, entrée dans le stock captif, etc.)
+Nouvelle destination (lâcher, entrée dans le stock captif, etc.)
 </a>
 {/if}
 
@@ -14,10 +14,9 @@ Nouveau devenir (lâcher, entrée dans le stock captif, etc.)
 {/if}
 <th>N° de lot</th>
 <th>Date</th>
-<th>Catégorie</th>
-<th>Nature</th>
-<th>Lieu</th>
+<th>Destination</th>
 <th>Nbre<br>poissons</th>
+<th>Destination parente</th>
 </tr>
 </thead><tbody>
 {section name=lst loop=$dataDevenir}
@@ -31,10 +30,18 @@ Nouveau devenir (lâcher, entrée dans le stock captif, etc.)
 {/if}
 <td>{$dataDevenir[lst].lot_nom}</td>
 <td>{$dataDevenir[lst].devenir_date}</td>
-<td>{$dataDevenir[lst].categorie_libelle}</td>
-<td>{$dataDevenir[lst].devenir_type_libelle}</td>
-<td>{$dataDevenir[lst].localisation}</td>
+<td>{$dataDevenir[lst].devenir_type_libelle}&nbsp;
+{$dataDevenir[lst].categorie_libelle}&nbsp;
+{$dataDevenir[lst].localisation}</td>
 <td class="right">{$dataDevenir[lst].poisson_nombre}</td>
+<td>
+{if strlen($dataDevenir[lst].devenir_date_parent)>0}
+{$dataDevenir[lst].devenir_date_parent}&nbsp;
+{$dataDevenir[lst].devenir_type_libelle_parent}&nbsp;
+{$dataDevenir[lst].categorie_libelle_parent}&nbsp;
+{$dataDevenir[lst].localisation_parent}&nbsp;
+({$dataDevenir[lst].poisson_nombre_parent} poissons)
+{/if}
 </tr>
 {/section}
 </tbody>
