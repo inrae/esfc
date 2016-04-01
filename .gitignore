@@ -9,6 +9,7 @@ templates_c/*
 *.tpl.php
 display/templates_c/*
 tmp/*
+*.doxyfile
 
 # PDT-specific
 .buildpath
