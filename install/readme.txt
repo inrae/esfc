@@ -1,5 +1,35 @@
 Nouveautés
 ===========
+Version 1.6 du 5 avril 2016
+----------------------------
+Modifications techniques :
+- les photos ne sont générées dans le fichier temporaire que si c'est nécessaire (gain en terme de performance lors du premier accès à un poisson)
+- les pièces jointes sont analysées avec un antivirus avant d'être stockées dans la base
+
+Évolutions générales :
+- les répartitions d'aliment peuvent maintenant être nommées (affichage également dans les fiches de répartition)
+- les anesthésies peuvent être renseignées
+- les mesures de ventilations peuvent être enregistrées
+- il est possible d'indiquer, au moment du chargement d'une photo, sa date de création
+- il est possible de saisir des événements liés aux circuits d'eau
+- la recherche d'un poisson peut maintenant être réalisée en utilisant son numéro informatique (poisson_id)
+- les bassins peuvent être recherchés maintenant à partir de leur nom
+- à partir de la liste des bassins, il est possible de générer un fichier CSV contenant un récapitulatif hebdomadaire (qté totale d'aliments distribués, restes, masse des poissons correspondante)
+- les dosages sanguins peuvent maintenant être saisis au sein d'un événement général (poisson)
+- il est possible de saisir les informations sur les prélèvements génétiques (nageoire, référence), dans un événement
+- à partir de la liste des poissons, il est possible de calculer le cumul des températures journalières sur une période donnée
+
+Évolutions pour les aspects liés à la reproduction :
+- le pH du sperme peut être renseigné, ainsi que ses caractéristiques
+- correction du libellé "nombre de larves estimé" en "nombre de larves initial"
+- ajout de l'affichage direct, dans les écrans de reproduction, des photos associées aux échographies
+- dans les graphiques, ajout du taux d'hématocrite, et des courbes Ca et E2 corrigées en fonction de ce taux
+- correction de bugs divers d'affichage, et ajout du statut du poisson s'il n'est pas vivant (dans le cas d'une utilisation du sperme congelé, p. e.)
+- refonte de la gestion du sperme, pour tenir compte des reproductions à partir de sperme congelé
+- pour la congélation du sperme, rajout du dilueur utilisé
+- il est possible maintenant d'utiliser du sperme congelé (le père concerné doit être rajouté dans les reproducteurs potentiels, même s'il est mort)
+- il est possible de subdiviser une destination d'un lot en d'autres destinations (notion de destination parente lors de la création d'une nouvelle)
+
 Version 1.5 du 2 février 2016
 ----------------------------
 Corrections de bogues :
