@@ -156,6 +156,11 @@ while ( isset ( $module ) ) {
 		}
 	}
 	/*
+	 * Enregistrement de l'acces au module
+	 */
+	$log->setLog ( $_SESSION ["login"], $module, $motifErreur );
+		
+	/*
 	 * fin d'analyse du module
 	 */
 	if ($t_module ["ajax"] != 1)
