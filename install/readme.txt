@@ -5,6 +5,7 @@ Version 1.6 du 5 avril 2016
 Modifications techniques :
 - les photos ne sont générées dans le fichier temporaire que si c'est nécessaire (gain en terme de performance lors du premier accès à un poisson)
 - les pièces jointes sont analysées avec un antivirus avant d'être stockées dans la base
+- tous les accès aux modules (réussite ou échec) sont maintenant tracés
 
 Évolutions générales :
 - les répartitions d'aliment peuvent maintenant être nommées (affichage également dans les fiches de répartition)
