@@ -45,7 +45,7 @@ class DocumentSturio extends DocumentAttach {
 	 * @param int $id        	
 	 * @return array
 	 */
-	function getListeDocument($type, $id) {
+	function getListeDocument($type, $id, $limit = "all", $offset = 0) {
 		/*
 		 * Verification des valeurs numeriques
 		 */
@@ -97,7 +97,13 @@ class DocumentSturio extends DocumentAttach {
 					$where = " where " . $type . "_id = " . $id;
 				}
 			}
-			$liste = $this->getListeParam ( $sql . $where . $order );
+			if (!is_numeric($limit))
+				$limit = "all";
+			if ($is_numeric($offset))
+				$offset = 0;
+			$limit = " limit ".$limit;
+			$offset = " offset ".$offset;
+			$liste = $this->getListeParam ( $sql . $where . $order . $limit . $offset);
 			/*
 			 * Stockage des photos dans le dossier temporaire
 			 */
