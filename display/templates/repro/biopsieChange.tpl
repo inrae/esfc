@@ -161,6 +161,6 @@ Sélectionnez...
 {if $data.biopsie_id > 0}
 
 <h3>Documents associés</h3>
-{include file="document/documentList.tpl"}
+{include file="document/documentListOnly.tpl"}
 {/if}
 <span class="red">*</span><span class="messagebas">Champ obligatoire</span>

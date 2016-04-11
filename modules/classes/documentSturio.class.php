@@ -99,7 +99,7 @@ class DocumentSturio extends DocumentAttach {
 			}
 			if (!is_numeric($limit))
 				$limit = "all";
-			if ($is_numeric($offset))
+			if (!is_numeric($offset))
 				$offset = 0;
 			$limit = " limit ".$limit;
 			$offset = " offset ".$offset;

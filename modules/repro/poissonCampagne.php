@@ -142,8 +142,8 @@ switch ($t_module ["param"]) {
 		foreach ($dataEcho as $key=> $value) {
 			$a_id[] = $value["evenement_id"];
 		}
-		$documentSturio = new DocumentSturio ( $bdd, $ObjetBDDParam );
-		$smarty->assign ( "dataDoc", $documentSturio->getListeDocument ( "evenement", $a_id ) );		
+		require_once 'modules/document/documentFunctions.php';
+		$smarty->assign ( "dataDoc", getListeDocument ( "evenement", $a_id, $_REQUEST["document_limit"], $_REQUEST["document_offset"] ) );		
 		
 		$smarty->assign ( "corps", "repro/poissonCampagneDisplay.tpl" );
 		if (isset ( $_REQUEST ["sequence_id"] ))

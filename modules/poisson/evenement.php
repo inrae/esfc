@@ -127,9 +127,8 @@ switch ($t_module ["param"]) {
 			$smarty->assign ( "parentType", "evenement" );
 			$smarty->assign ( "parentIdName", "evenement_id" );
 			$smarty->assign ( "parent_id", $id );
-			include_once "modules/classes/documentSturio.class.php";
-			$documentSturio = new DocumentSturio ( $bdd, $ObjetBDDParam );
-			$smarty->assign ( "dataDoc", $documentSturio->getListeDocument ( "evenement", $id ) );
+			require_once 'modules/document/documentFunctions.php';
+			$smarty->assign ( "dataDoc", getListeDocument ( "evenement", $id, $_REQUEST["document_limit"], $_REQUEST["document_offset"] ) );
 		}
 		break;
 	case "write":

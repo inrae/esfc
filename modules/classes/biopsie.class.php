@@ -128,6 +128,21 @@ class Biopsie extends \ObjetBDD {
 		$data ["biopsie_date"] = $data ["biopsie_date"] . " " . $data ["biopsie_time"];
 		return parent::ecrire ( $data );
 	}
+
+	/**
+	 * Retourne le poisson_id correspondant a la biopsie
+	 * @param int $id
+	 * @return array
+	 */
+	function getPoissonId($id) {
+		if (is_numeric($id)) {
+			$sql = "select poisson_id from biopsie
+					 join poisson_campagne using (poisson_campagne_id)
+					where biopsie_id = ".$id;
+			$data = $this->lireParam($sql);
+			return $data["poisson_id"];
+		}
+	}
 }
 /**
  * ORM de gestion de la table biopsie_technique_calcul

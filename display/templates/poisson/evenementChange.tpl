@@ -97,6 +97,9 @@ Retour à la liste des poissons
 <input type="hidden" name="dosage_sanguin_id" id="dosage_sanguin_id" value="{$dataDosageSanguin.dosage_sanguin_id}">
 <input type="hidden" name="genetique_id" id="genetique_id" value="{$dataGenetique.genetique_id}">
 <input type="hidden" name="document_id" value="0">
+<div class="formBouton">
+<input class="submit" type="submit" value="Enregistrer">
+</div>
 <fieldset>
 <legend>Données liées à l'événement lui-même</legend>
 <dl>
@@ -123,9 +126,6 @@ Type d'événement <span class="red">*</span> :</dt>
 <dd>
 <input class="commentaire" name="evenement_commentaire" value="{$data.evenement_commentaire}">
 </dl>
-<div class="formBouton">
-<input class="submit" type="submit" value="Enregistrer">
-</div>
 </fieldset>
 
 <div id="afficher" class="masquageText">Afficher tous les éléments</div>
@@ -255,6 +255,12 @@ Sélectionnez le bassin de destination...
 <dt>Description des images :</dt>
 <dd>
 <input type="text" name="document_description" value="" size="40">
+</dd>
+</dl>
+<dl>
+<dt>Date de création (ou de prise de vue) :</dt>
+<dd>
+<input name="document_date_creation" class="date" value="{$data.document_date_creation}">
 </dd>
 </dl>
 </div>

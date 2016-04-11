@@ -27,6 +27,8 @@ switch ($t_module ["param"]) {
 		$smarty->assign ( "parentType", $_REQUEST ["parentType"] );
 		$smarty->assign ( "parentIdName", $_REQUEST ["parentIdName"] );
 		$smarty->assign ( "parent_id", $_REQUEST ["parent_id"] );
+		$smarty->assign("document_limit", $_REQUEST["document_limit"]);
+		$smarty->assign( "document_offset", $_REQUEST["document_offset"]);
 		break;
 	case "write":
 		/*
@@ -36,8 +38,7 @@ switch ($t_module ["param"]) {
 			/*
 			 * Preparation de files
 			 */
-			$files=array();
-			$fdata= formatFiles();
+			$files = formatFiles();
 			foreach ( $files as $file ) {
 				$id = $dataClass->ecrire ( $file, $_REQUEST ["document_description"], $_REQUEST["document_date_creation"] );
 				if ($id > 0) {

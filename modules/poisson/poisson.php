@@ -142,9 +142,8 @@ switch ($t_module["param"]) {
 		$smarty->assign ( "parentType", "poisson" );
 		$smarty->assign ( "parentIdName", "poisson_id" );
 		$smarty->assign ( "parent_id", $id );
-		include_once "modules/classes/documentSturio.class.php";
-		$documentSturio = new DocumentSturio($bdd, $ObjetBDDParam);
-		$smarty->assign("dataDoc", $documentSturio->getListeDocument("poisson", $id));
+		require_once 'modules/document/documentFunctions.php';
+		$smarty->assign("dataDoc", getListeDocument("poisson", $id, $_REQUEST["document_limit"], $_REQUEST["document_offset"]));
 		/*
 		 * Affichage
 		 */

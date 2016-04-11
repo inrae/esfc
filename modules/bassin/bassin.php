@@ -103,9 +103,8 @@ switch ($t_module ["param"]) {
 		$smarty->assign ( "parentType", "bassin" );
 		$smarty->assign ( "parentIdName", "bassin_id" );
 		$smarty->assign ( "parent_id", $id );
-		include_once "modules/classes/documentSturio.class.php";
-		$documentSturio = new DocumentSturio ( $bdd, $ObjetBDDParam );
-		$smarty->assign ( "dataDoc", $documentSturio->getListeDocument ( "bassin", $id ) );
+		require_once 'modules/document/documentFunctions.php';
+		$smarty->assign ( "dataDoc", getListeDocument ( "bassin", $id, $_REQUEST["document_limit"], $_REQUEST["document_offset"] ) );
 		/*
 		 * Affichage
 		 */

@@ -2,7 +2,7 @@
 <script src="display/javascript/magnific-popup/jquery.magnific-popup.min.js"></script> 
 <script>
 $(document).ready(function() { 
-	setDataTables("documentList");
+	//setDataTables("documentList");
 	$('.image-popup-no-margins').magnificPopup( {
 		type: 'image',
 		closeOnContentClick: true,
@@ -19,9 +19,29 @@ $(document).ready(function() {
 	});
 });
 </script>
-
+<table class="tablemulticolonne">
+<tr>
+<td style="width:25%;">
+{if $document_offset > 0}
+{$document_offset_prec = $document_offset - 10}
+<a href="index.php?document_offset={$document_offset_prec}&document_limit={$document_limit}&module={$moduleParent}&{$parentIdName}={$parent_id}&parentType={$parentType}&poisson_id={$data.poisson_id}" title="Données précédentes">
+&lt;préc
+</a>
+{/if}
+</td>
+<td style="width:50%;">&nbsp;</td>
+<td style="width:25%;text-align:right;">
+{$document_offset_suiv=$document_offset + 10}
+<a href="index.php?document_offset={$document_offset_suiv}&document_limit={$document_limit}&module={$moduleParent}&{$parentIdName}={$parent_id}&parentType={$parentType}&poisson_id={$data.poisson_id}" title="Données suivantes">
+suiv&gt;
+</a>
+</td>
+</tr>
+<tr>
+<td colspan="3">
 <table id="documentList" class="tableliste">
 <thead>
+
 <tr>
 <th>Vignette</th>
 <th>Nom du document</th>
@@ -68,4 +88,7 @@ $(document).ready(function() {
 </tr>
 {/section}
 </tbody>
+</table>
+</td>
+</tr>
 </table>

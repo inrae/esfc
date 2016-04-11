@@ -70,9 +70,8 @@ switch ($t_module["param"]) {
 		$smarty->assign ( "parentType", "biopsie" );
 		$smarty->assign ( "parentIdName", "biopsie_id" );
 		$smarty->assign ( "parent_id", $id );
-		include_once "modules/classes/documentSturio.class.php";
-		$documentSturio = new DocumentSturio ( $bdd, $ObjetBDDParam );
-		$smarty->assign ( "dataDoc", $documentSturio->getListeDocument ( "biopsie", $id ) );
+		require_once 'modules/document/documentFunctions.php';
+		$smarty->assign ( "dataDoc", getListeDocument ( "biopsie", $id, $_REQUEST["document_limit"], $_REQUEST["document_offset"] ) );
 		
 		break;
 	case "write":
@@ -117,6 +116,12 @@ switch ($t_module["param"]) {
 							"biopsie_id" => $id
 					);
 					$documentLie->ecrire ( $data );
+					/*
+					 * Ajout de l'information pour le poisson
+					 */
+					$documentPoisson = new DocumentLie($bdd, $ObjetBDDParam, "poisson");
+					$data["poisson_id"] = $dataClass->getPoissonId($id);
+					$documentPoisson->ecrire($data);
 				}
 			}
 		}
