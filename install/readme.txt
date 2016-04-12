@@ -1,5 +1,14 @@
 Nouveautés
 ===========
+Version 1.6.1 du 12 avril 2016
+----------------------------
+Corrections diverses :
+- saisie du sperme : changement d'un libellé dans l'écran de saisie, et vérification du bon enregistrement des données
+- en saisie d'événement (échographie), il n'était pas possible de saisir la date de création/prise de vue
+
+Améliorations :
+- les photos/documents sont affichés par 10, pour limiter le nombre de requêtes vers le serveur à l'ouverture d'une fiche
+
 Version 1.6 du 5 avril 2016
 ----------------------------
 Modifications techniques :
