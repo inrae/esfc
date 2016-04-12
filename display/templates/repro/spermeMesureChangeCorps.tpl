@@ -30,7 +30,7 @@ Sélectionnez...
 </dd>
 </dl>
 <dl>
-<dt>Taux de survie (en %) :</dt>
+<dt>Taux de survie initial (en %) :</dt>
 <dd>
 <input class="taux" name="tx_survie_initial" value="{$data.tx_survie_initial}">
 </dd>
