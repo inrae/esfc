@@ -24,7 +24,7 @@ $(document).ready(function() {
 <td style="width:25%;">
 {if $document_offset > 0}
 {$document_offset_prec = $document_offset - 10}
-<a href="index.php?document_offset={$document_offset_prec}&document_limit={$document_limit}&module={$moduleParent}&{$parentIdName}={$parent_id}&parentType={$parentType}&poisson_id={$data.poisson_id}" title="Données précédentes">
+<a href="index.php?document_offset={$document_offset_prec}&document_limit={$document_limit}&module={$moduleParent}&{$parentIdName}={$parent_id}&parentType={$parentType}{if $parentIdName != 'poisson_id'}&poisson_id={$data.poisson_id}{/if}" title="Données précédentes">
 &lt;préc
 </a>
 {/if}
@@ -32,7 +32,7 @@ $(document).ready(function() {
 <td style="width:50%;">&nbsp;</td>
 <td style="width:25%;text-align:right;">
 {$document_offset_suiv=$document_offset + 10}
-<a href="index.php?document_offset={$document_offset_suiv}&document_limit={$document_limit}&module={$moduleParent}&{$parentIdName}={$parent_id}&parentType={$parentType}&poisson_id={$data.poisson_id}" title="Données suivantes">
+<a href="index.php?document_offset={$document_offset_suiv}&document_limit={$document_limit}&module={$moduleParent}&{$parentIdName}={$parent_id}&parentType={$parentType}{if $parentIdName != 'poisson_id'}&poisson_id={$data.poisson_id}{/if}" title="Données suivantes">
 suiv&gt;
 </a>
 </td>
@@ -79,7 +79,7 @@ suiv&gt;
 {if $droits["bassinAdmin"] == 1 || $droits["poissonAdmin"] == 1}
 <td>
 <div class="center">
-<a href="index.php?module=documentDelete&document_id={$dataDoc[lst].document_id}&moduleParent={$moduleParent}&parentIdName={$parentIdName}&parent_id={$parent_id}&parentType={$parentType}" onclick="return confirm('Confirmez-vous la suppression ?');">
+<a href="index.php?module=documentDelete&document_id={$dataDoc[lst].document_id}&moduleParent={$moduleParent}&parentIdName={$parentIdName}&parent_id={$parent_id}&parentType={$parentType}{if $parentIdName != 'poisson_id'}&poisson_id={$data.poisson_id}{/if}" onclick="return confirm('Confirmez-vous la suppression ?');">
 <img src="display/images/corbeille.png" height="20">
 </a>
 </div>
