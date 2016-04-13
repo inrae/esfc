@@ -50,7 +50,7 @@ Sélectionnez...
 <dl>
 <dt>Temps de survie à 5%<br>(en secondes) :</dt>
 <dd>
-<input class="numeric" name="temps_survie" value="{$data.temps_survie}">
+<input class="nombre" name="temps_survie" value="{$data.temps_survie}">
 </dd>
 </dl>
 <dl>
