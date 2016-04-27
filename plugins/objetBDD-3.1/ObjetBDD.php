@@ -23,9 +23,13 @@
  *
  *
  * @author Eric Quinton, Franck Huby
- * @copyright (C) Eric Quinton 2006-2015
- * @version 3.0 du 10/06/2015
+ * @copyright (C) Eric Quinton 2006-2016
+ * @version 3.1 du 27/04/2016
  * @package ObjetBDD
+ * 
+ * News :
+ * 27/04/2016
+ * Ajout du support des exceptions pour toutes les commandes utilisant PDO
  *
  * Utilisation :
  *  class Test inherits ObjetBDD {
@@ -54,7 +58,7 @@ class ObjetBDD {
 	
 	/**
 	 * @public $connection
-	 * instance adodb pass by reference
+	 * instance PDO
 	 */
 	public $connection;
 	/**
@@ -430,17 +434,15 @@ class ObjetBDD {
 	 */
 	private function execute($sql) {
 		$rs = array ();
-		if ($this->debug_mode == 1 || $this->debug_mode == 2) {
-			try {
-				foreach ( $this->connection->query ( $sql ) as $row )
-					$rs [] = $row;
-			} catch ( PDOException $e ) {
-				print ($e->getCode () . " " . $e->getMessage () . "<br>") ;
-			}
-		} else {
+		
+		try {
 			foreach ( $this->connection->query ( $sql ) as $row )
 				$rs [] = $row;
-		}
+		} catch ( PDOException $e ) {
+			if ($this->debug_mode > 0) {
+				$this->addMessage($e->getCode () . " " . $e->getMessage ());
+			}
+		}		
 		return $rs;
 	}
 	/**
@@ -455,7 +457,7 @@ class ObjetBDD {
 		// Integration cles multiples
 		if ($this->cleMultiple == 1) {
 			// Verification de la structure de la cle
-			if ($this->verifData) {
+			if ($this->verifData == 1) {
 				if ($this->verifDonnees ( $id ) == false)
 					return false;
 			}
@@ -463,7 +465,7 @@ class ObjetBDD {
 			foreach ( $id as $key => $value ) {
 				if ($where != "")
 					$where .= " and ";
-				if (strlen ( preg_replace ( "#[^A-Z]+#", "", $key ) > 0 ))
+				if (strlen ( preg_replace ( "#[^A-Z]+#", "", $key ) ) > 0)
 					$cle = $this->quoteIdentifier . $key . $this->quoteIdentifier;
 				else
 					$cle = $key;
@@ -473,11 +475,11 @@ class ObjetBDD {
 			/*
 			 * Verification de la cle unique
 			 */
-			if ($this->verifData) {
-				if ($this->verifDonnees ( $this->cle ) == false)
+			if ($this->verifData == 1) {
+				if (is_numeric ( $id ) == false)
 					return false;
 			}
-			if (strlen ( preg_replace ( "#[^A-Z]+#", "", $this->cle ) > 0 ))
+			if (strlen ( preg_replace ( "#[^A-Z]+#", "", $this->cle ) ) > 0)
 				$cle = $this->quoteIdentifier . $this->cle . $this->quoteIdentifier;
 			else
 				$cle = $this->cle;
@@ -493,7 +495,7 @@ class ObjetBDD {
 				/*
 				 * Rajout des doubles quotes sur le nom des colonnes en cas de présence de majuscules
 				 */
-				if (strlen ( preg_replace ( "#[^A-Z]+#", "", $key ) > 0 ))
+				if (strlen ( preg_replace ( "#[^A-Z]+#", "", $key ) ) > 0)
 					$cle = $this->quoteIdentifier . $key . $this->quoteIdentifier;
 				else
 					$cle = $key;
@@ -591,7 +593,7 @@ class ObjetBDD {
 		// Integration cles multiples
 		if ($this->cleMultiple == 1) {
 			// Verification de la structure de la cle
-			if ($this->verifData) {
+			if ($this->verifData == 1) {
 				if ($this->verifDonnees ( $id ) == false)
 					return false;
 			}
@@ -609,8 +611,8 @@ class ObjetBDD {
 			/*
 			 * Verification de la cle unique
 			 */
-			if ($this->verifData) {
-				if ($this->verifDonnees ( $this->cle ) == false)
+			if ($this->verifData == 1) {
+				if (is_numeric ( $id ) == false)
 					return false;
 			}
 			if (strlen ( preg_replace ( "#[^A-Z]+#", "", $this->cle ) > 0 ))
@@ -619,7 +621,15 @@ class ObjetBDD {
 				$cle = $this->cle;
 			$where = $cle . ' = ' . $id;
 		}
-		return $this->connection->exec ( "delete from " . $this->table . " where " . $where );
+		$sql = "delete from " . $this->table . " where " . $where;
+		try {
+			$res = $this->connection->exec ( $sql );
+		} catch ( PDOException $e ) {
+			$res = - 1;
+			if ($this->debug_mode > 0)
+				$this->addMessage ( $e->getMessage () );
+		}
+		return $res;
 	}
 	/**
 	 * Synonyme de supprimer()
@@ -651,7 +661,14 @@ class ObjetBDD {
 				$cle = $this->quoteIdentifier . $key . $this->quoteIdentifier;
 			else
 				$cle = $champ;
-			return $this->connection->exec ( "delete from " . $this->table . " where " . $cle . "=" . $id );
+			try {
+				$res = $this->connection->exec ( "delete from " . $this->table . " where " . $cle . "=" . $id );
+			} catch ( PDOException $e ) {
+				$res = - 1;
+				if ($this->debug_mode > 0)
+					$this->addMessage ( $e->getMessage () );
+			}
+			return $res;
 		}
 	}
 	/**
@@ -742,7 +759,7 @@ class ObjetBDD {
 					
 					if ($where != "")
 						$where .= " and ";
-					if (strlen ( preg_replace ( "#[^A-Z]+#", "", $value ) > 0 ))
+					if (strlen ( preg_replace ( "#[^A-Z]+#", "", $value ) ) > 0)
 						$cle = $this->quoteIdentifier . $value . $this->quoteIdentifier;
 					else
 						$cle = $value;
@@ -760,7 +777,7 @@ class ObjetBDD {
 					);
 					return - 1;
 				}
-				if (strlen ( preg_replace ( "#[^A-Z]+#", "", $this->cle ) > 0 ))
+				if (strlen ( preg_replace ( "#[^A-Z]+#", "", $this->cle ) ) > 0)
 					$cle = $this->quoteIdentifier . $this->cle . $this->quoteIdentifier;
 				else
 					$cle = $this->cle;
@@ -792,7 +809,7 @@ class ObjetBDD {
 			}
 		}
 		
-		if ($this->verifData) {
+		if ($this->verifData == 1) {
 			if ($this->verifDonnees ( $data, $mode ) == false)
 				return false;
 		}
@@ -817,7 +834,7 @@ class ObjetBDD {
 						$valeur .= ", ";
 					}
 					// On traite la clé automatique gérée par le max()
-					if (strlen ( preg_replace ( "#[^A-Z]+#", "", $this->cle ) > 0 ))
+					if (strlen ( preg_replace ( "#[^A-Z]+#", "", $this->cle ) ) > 0)
 						$cle = $this->quoteIdentifier . $this->cle . $this->quoteIdentifier;
 					else
 						$cle = $this->cle;
@@ -830,7 +847,7 @@ class ObjetBDD {
 						$valeur .= ", ";
 					}
 					$i ++;
-					if (strlen ( preg_replace ( "#[^A-Z]+#", "", $key ) > 0 ))
+					if (strlen ( preg_replace ( "#[^A-Z]+#", "", $key ) ) > 0)
 						$key = $this->quoteIdentifier . $key . $this->quoteIdentifier;
 					$sql .= $key;
 					$valeur .= $cle;
@@ -840,7 +857,7 @@ class ObjetBDD {
 						$valeur .= ", ";
 					}
 					$i ++;
-					if (strlen ( preg_replace ( "#[^A-Z]+#", "", $key ) > 0 ))
+					if (strlen ( preg_replace ( "#[^A-Z]+#", "", $key ) ) > 0)
 						$key = $this->quoteIdentifier . $key . $this->quoteIdentifier;
 					$sql .= $key;
 					if ($value == '' || is_null ( $value )) {
@@ -876,7 +893,7 @@ class ObjetBDD {
 					$sql .= ",";
 				$i ++;
 				$sql .= " ";
-				if (strlen ( preg_replace ( "#[^A-Z]+#", "", $key ) > 0 ))
+				if (strlen ( preg_replace ( "#[^A-Z]+#", "", $key ) ) > 0)
 					$cle = $this->quoteIdentifier . $key . $this->quoteIdentifier;
 				else
 					$cle = $key;
@@ -899,10 +916,8 @@ class ObjetBDD {
 			}
 			$sql .= " where " . $where;
 		}
-		if ($this->debug_mode == 2)
-			echo $sql . "<br>";
-			// printr($sql);
-			// die;
+		// printr($sql);
+		// die;
 		$rs = $this->execute ( $sql );
 		if ($mode == "ajout" && $this->id_auto == 1) {
 			if ($this->typeDatabase == 'pgsql' && count ( $rs ) > 0) {
@@ -1002,7 +1017,7 @@ class ObjetBDD {
 			/*
 			 * Preparation du where
 			 */
-			if (strlen ( preg_replace ( "#[^A-Z]+#", "", $this->parentAttrib ) > 0 ))
+			if (strlen ( preg_replace ( "#[^A-Z]+#", "", $this->parentAttrib ) ) > 0)
 				$cle = $this->quoteIdentifier . $this->parentAttrib . $this->quoteIdentifier;
 			else
 				$cle = $this->parentAttrib;
@@ -1181,6 +1196,28 @@ class ObjetBDD {
 		return ($date);
 	}
 	/**
+	 * Fonction permettant de formater l'ensemble des dates d'un tableau
+	 * en fournissant les attributs de date concernes
+	 * Fonction recursive, traitant les tableaux multilignes
+	 *
+	 * @param array $data        	
+	 * @param array $fields        	
+	 * @param number $type        	
+	 * @return array
+	 */
+	function formatDatesVersLocal(array $data, array $fields, $type = 2) {
+		foreach ( $data as $key => $value ) {
+			if (is_array ( $value )) {
+				$data [$key] = $this->formatDatesVersLocal ( $value, $fields );
+			} else {
+				if (in_array ( $key, $fields ))
+					$data [$key] = $this->formatDateDBversLocal ( $value, $type );
+			}
+		}
+		return $data;
+	}
+	
+	/**
 	 * function executeSQL
 	 *
 	 * @param
@@ -1198,7 +1235,14 @@ class ObjetBDD {
 	 * @return codeerreur
 	 */
 	function vidageTable() {
-		return $this->connection->exec ( 'delete from ' . $this->table );
+		try {
+			$res = $this->connection->exec ( 'delete from ' . $this->table );
+		} catch ( PDOException $e ) {
+			$res = - 1;
+			if ($this->debug_mode > 0)
+				$this->addMessage ( $e->getMessage () );
+		}
+		return $res;
 	}
 	/**
 	 * Synonyme de vidageTable()
@@ -1221,7 +1265,7 @@ class ObjetBDD {
 			/*
 			 * Verification des cles
 			 */
-			if (@$this->types [$key] == 1) {
+			if ($this->types [$key] == 1) {
 				if (strlen ( $value ) > 0 && is_numeric ( $value ) == false) {
 					$testok = false;
 					$this->errorData [] = array (
@@ -1290,6 +1334,16 @@ class ObjetBDD {
 		
 		return $testok;
 	}
+	
+	/**
+	 * Ajoute un message d'erreur
+	 *
+	 * @param string $texte        	
+	 */
+	function addMessage($texte) {
+		$this->errorData [] ["message"] = $texte;
+	}
+	
 	/**
 	 * Fonction retournant la liste des erreurs relevees lors de l'operation verifData.
 	 *
@@ -1413,14 +1467,23 @@ class ObjetBDD {
 			return false;
 		if (is_numeric ( $id ) == false)
 			return false;
+			/*
+		 * Verification du tableau de valeurs
+		 */
+		if (! is_array ( $lignes ) && strlen ( $lignes ) > 0)
+			return false;
 		if (! is_array ( $lignes ))
 			$lignes = array ();
-			// Preparation de la requete de lecture des relations existantes
-		if (strlen ( preg_replace ( "#[^A-Z]+#", "", $nomCle1 ) > 0 ))
+		foreach ( $lignes as $key => $value ) {
+			if (! is_numeric ( $value ))
+				return false;
+		}
+		// Preparation de la requete de lecture des relations existantes
+		if (strlen ( preg_replace ( "#[^A-Z]+#", "", $nomCle1 ) ) > 0)
 			$cle1 = $this->quoteIdentifier . $nomCle1 . $this->quoteIdentifier;
 		else
 			$cle1 = $nomCle1;
-		if (strlen ( preg_replace ( "#[^A-Z]+#", "", $nomCle2 ) > 0 ))
+		if (strlen ( preg_replace ( "#[^A-Z]+#", "", $nomCle2 ) ) > 0)
 			$cle2 = $this->quoteIdentifier . $nomCle2 . $this->quoteIdentifier;
 		else
 			$cle2 = $nomCle2;
@@ -1484,6 +1547,15 @@ class ObjetBDD {
 	function getDateHeure() {
 		$data = date ( 'Y-m-d H:i:s' );
 		return $this->formatDateDBversLocal ( $data, 3 );
+	}
+	/**
+	 * Retourne le login, pour creer la valeur par defaut
+	 *
+	 * @return string
+	 */
+	function getLogin() {
+		if (isset ( $_SESSION ["login"] ))
+			return $_SESSION ["login"];
 	}
 	/**
 	 * Fonction permettant de recuperer les valeurs par defaut
@@ -1574,27 +1646,18 @@ class ObjetBDD {
 	 */
 	function getBlobReference($id, $fieldName) {
 		if ($id > 0) {
-			if ($this->UTF8 == 1)
-				$this->connection->exec ( "SET CLIENT_ENCODING TO ISO-8859-1" );
 			$sql = "select " . $fieldName . " from " . $this->table . " 
 			where " . $this->cle . " = ?";
 			$query = $this->connection->prepare ( $sql );
-			if ($this->typeDatabase == "pgsql")
-				$query->bindColumn ( 1, $BlobRef, PDO::PARAM_LOB );
 			$query->execute ( array (
 					$id 
 			) );
 			if ($query->rowCount () == 1) {
-				if ($this->typeDatabase != "pgsql")
-					$query->bindColumn ( 1, $BlobRef, PDO::PARAM_LOB );
+				$query->bindColumn ( 1, $BlobRef, PDO::PARAM_LOB );
 				$query->fetch ( PDO::FETCH_BOUND );
-				if ($this->UTF8 == 1)
-					$this->connection->exec ( "SET CLIENT_ENCODING TO UTF8" );
 				return $BlobRef;
 			}
 		}
-		if ($this->UTF8 == 1)
-			$this->connection->exec ( "SET CLIENT_ENCODING TO UTF8" );
 		return null;
 	}
 }
