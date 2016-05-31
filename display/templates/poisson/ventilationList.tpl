@@ -8,7 +8,7 @@ setDataTables("cventilationList");
 <thead>
 <tr>
 <th>Date</th>
-<th>Nombre de battements</th>
+<th>Nombre de battements/s</th>
 <th>Commentaire</th>
 </tr>
 </thead>
@@ -24,7 +24,7 @@ setDataTables("cventilationList");
 {$dataVentilation[lst].ventilation_date}
 {/if}
 </td>
-<td>{$dataVentilation[lst].battement_nb}</td>
+<td class="right">{$dataVentilation[lst].battement_nb}</td>
 <td>{$dataVentilation[lst].ventilation_commentaire}</td>
 </tr>
 {/section}

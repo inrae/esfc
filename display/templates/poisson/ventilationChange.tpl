@@ -25,9 +25,9 @@ Retour à la liste des poissons
 </dd>
 </dl>
 <dl>
-<dt>Nb de battements/mn <span class="red">*</span> :</dt>
+<dt>Nb de battements/seconde <span class="red">*</span> :</dt>
 <dd>
-<input class="nombre" name="battement_nb" value="{$data.battement_nb}">
+<input class="taux" name="battement_nb" value="{$data.battement_nb}">
 </dd>
 </dl>
 <dl>
