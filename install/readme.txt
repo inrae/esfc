@@ -1,5 +1,13 @@
 Nouveautés
 ===========
+
+Version 1.6.2 du 31 mai 2016
+----------------------------
+Corrections diverses :
+- la mesure de ventilation des géniteurs est maintenant exprimée en battements par seconde, et le nombre peut contenir des décimales
+- corrections diverses sur la saisie du sperme (la suppression était impossible, et la date de mesure est forcée à la date de collecte)
+- en gestion de la reproduction, l'année courante est maintenant systématiquement ajoutée à la liste des campagnes, pour pouvoir initialiser la nouvelle campagne (rajout des adultes vivants en une seule passe)
+
 Version 1.6.1 du 12 avril 2016
 ----------------------------
 Corrections diverses :

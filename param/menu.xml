@@ -50,7 +50,7 @@
 	<item module="sequenceList" value="106" title="107" droits="reproConsult" />
 	<item module="lotList" droits="reproConsult" value="108" title="109" />
 	<item module="devenirList" droits="reproConsult" value="112" title="113" />
-	<item module="vieModeleList" droits="reproConsult" value="110" title="111" />	
+	<item module="vieModeleList" droits="reproConsult" value="110" title="111" />
 </item>
 
 <item module="administration" value="12" title="13" droits="admin">
