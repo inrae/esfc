@@ -2,7 +2,7 @@
 <input type="hidden" name="sperme_id" value="{$data.sperme_id}">
 <dl>
 <dt>Date/heure de la mesure<span class="red">*</span> :</dt>
-<dd><input class="datetimepicker" name="sperme_mesure_date" value="{$data.sperme_mesure_date}"></dd>
+<dd><input id="sperme_mesure_date" class="" name="sperme_mesure_date" value="{$data.sperme_mesure_date}" placeholder="1/6/16 14:15"></dd>
 </dl>
 <dl>
 <dt>Qualité globale :</dt>

@@ -1,9 +1,17 @@
+<script>
+$(document).ready(function() {
+	$("#sperme_date").change( function () { 
+	$("#sperme_mesure_date").val($(this).val());
+	});
+});
+</script>
+
 <input type="hidden" name="sperme_id" value="{$data.sperme_id}">
 <input type="hidden" name="poisson_campagne_id" value="{$data.poisson_campagne_id}">
 <dl>
 <dt>Date du prélèvement <span class="red">*</span> :</dt>
 <dd>
-<input class="datetimepicker" name="sperme_date" value="{$data.sperme_date}">
+<input id="sperme_date" class="" name="sperme_date" value="{$data.sperme_date}" placeholder="1/6/16 14:15">
 </dd>
 </dl>
 <dl><dt>Volume prélevé (en ml) :</dt>

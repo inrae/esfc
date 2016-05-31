@@ -32,7 +32,7 @@ switch ($t_module ["param"]) {
 			$smarty->assign ( "data", $dataClass->getListForDisplay ( $dataSearch ) );
 		}
 		$smarty->assign ( "dataSearch", $dataSearch );
-		$smarty->assign ( "annees", $dataClass->getAnnees () );
+		//$smarty->assign ( "annees", $dataClass->getAnnees () );
 		$smarty->assign ( "corps", "repro/poissonCampagneList.tpl" );
 		/*
 		 * Lecture de la liste des statuts
