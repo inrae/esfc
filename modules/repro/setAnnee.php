@@ -12,12 +12,15 @@ if ($_REQUEST ["annee"] > 0)
 require_once 'modules/classes/poissonRepro.class.php';
 $poissonCampagne = new PoissonCampagne ( $bdd, $ObjetBDDParam );
 $annees = $poissonCampagne->getAnnees ();
+$thisannee = date ('Y');
+if ($annees[0]["annee"] < $thisannee)
+	$annees[]["annee"]=$thisannee;
 $smarty->assign ( "annees", $annees );
 if (! isset ( $_SESSION ["annee"] )) {
 	$smarty->assign ( "annees", $annees );
 	$_SESSION ["annee"] = $annees [0] ["annee"];
 	if (! isset ( $_SESSION ["annee"] ))
-		$_SESSION ["annee"] = date ( 'Y' );
+		$_SESSION ["annee"] = $thisannee;
 }
 $smarty->assign ( "annee", $_SESSION ["annee"] );
 
