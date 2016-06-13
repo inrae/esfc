@@ -108,28 +108,6 @@ class Biopsie extends \ObjetBDD {
 	}
 
 	/**
-	 * Surcharge de la fonction lire, pour separer la date et l'heure en 2 zones
-	 * (non-PHPdoc)
-	 * @see ObjetBDD::lire()
-	 */
-	function lire($id, $getDefault=false, $parentValue=0) {
-		$data = parent::lire($id, $getDefault, $parentValue);
-		$dateTime = explode ( " ", $data ["biopsie_date"] );
-		$data ["biopsie_date"] = $dateTime [0];
-		$data ["biopsie_time"] = $dateTime [1];
-		return $data;
-	}
-	/**
-	 * Surcharge de la fonction ecrire, pour reconstituer la date/heure
-	 * (non-PHPdoc)
-	 * @see ObjetBDD::ecrire()
-	 */
-	function ecrire($data) {
-		$data ["biopsie_date"] = $data ["biopsie_date"] . " " . $data ["biopsie_time"];
-		return parent::ecrire ( $data );
-	}
-
-	/**
 	 * Retourne le poisson_id correspondant a la biopsie
 	 * @param int $id
 	 * @return array

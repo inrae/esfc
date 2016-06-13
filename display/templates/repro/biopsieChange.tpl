@@ -38,8 +38,7 @@ Retour au reproducteur
 <dl>
 <dt>Date du prélèvement <span class="red">*</span> :</dt>
 <dd>
-<input class="date" name="biopsie_date" required size="10" maxlength="10" value="{$data.biopsie_date}">
-<input class="timepicker" name="biopsie_time" required value="{$data.biopsie_time}">
+<input class="datetimepicker" name="biopsie_date" required value="{$data.biopsie_date}">
 </dd>
 </dl>
 <dl>
