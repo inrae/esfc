@@ -1,5 +1,9 @@
 Nouveautés
 ===========
+Version 1.6.3 du 1er aout 2016
+----------------------------
+Corrections :
+- la saisie des dates/heures était incohérente et ne fonctionnait pas de manière optimale. Retour au composant d'origine, avec intégration des nouvelles versions et de la francisation
 
 Version 1.6.2 du 31 mai 2016
 ----------------------------
