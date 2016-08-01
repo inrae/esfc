@@ -1,26 +1,6 @@
 <script>
 $(document).ready(function() {
-	$(".taux").attr( {
-		pattern: "[0-9]+(\.[0-9]+)?",
-		title: "valeur numérique",
-		size: "10",
-		maxlength: "10"
-	});
-	$( ".date" ).datepicker( { 
-		dateFormat: "dd/mm/yy",
-		parseTime: "dd/mm/yy hh:mm:ss" } );
-	$(".time").attr( {
-		pattern: "[0-9][0-9]\:[0-9][0-9]",
-		placeholder: "hh:mm",
-		size: "5"
-	} );
-	$(".timepicker").timepicker( {
-		timeFormat: "HH:mm:ss",
-//		$.timepicker.regional['fr'],
-		stepHour: "1",
-		stepMinute: "5",
-		size: "5"
-	} );
+
 	$(".commentaire").attr("size","30");
 });
 </script>
@@ -38,8 +18,8 @@ Retour au reproducteur
 <dl>
 <dt>Date de l'injection <span class="red">*</span> :</dt>
 <dd>
-<input class="date" name="injection_date" required size="10" maxlength="10" value="{$data.injection_date}">
-<input class="timepicker" name="injection_time" required value="{$data.injection_time}">
+<input class="datetimepicker" name="injection_date" required size="10" maxlength="10" value="{$data.injection_date}">
+<!--  input class="timepicker" name="injection_time" required value="{$data.injection_time}"-->
 </dd>
 </dl>
 <dl>

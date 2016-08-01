@@ -36,7 +36,7 @@ class Injection extends ObjetBDD {
 				"injection_date" => array (
 						"type" => 3,
 						"requis" => 1,
-						"defaultValue" => "getDateJour" 
+						"defaultValue" => "getDateHeure" 
 				),
 				"injection_dose" => array ("type"=>1),
 				"injection_commentaire" => array("type"=>0)
@@ -66,32 +66,6 @@ class Injection extends ObjetBDD {
 		} else
 			return null;
 	}
-	
-	/**
-	 * Surcharge de la fonction lire pour eclater la zone datetime en deux champs
-	 * (non-PHPdoc)
-	 *
-	 * @see ObjetBDD::lire()
-	 */
-	function lire($id, $getDefault = false, $parentValue = 0) {
-		$data = parent::lire ( $id, $getDefault, $parentValue );
-		$dateTime = explode ( " ", $data ["injection_date"] );
-		$data ["injection_date"] = $dateTime [0];
-		$data ["injection_time"] = $dateTime [1];
-		return $data;
-	}
-	
-	/**
-	 * Surcharge de la fonction ecrire pour reconstituer le champ injection_date
-	 * (non-PHPdoc)
-	 *
-	 * @see ObjetBDD::ecrire()
-	 */
-	function ecrire($data) {
-		$data ["injection_date"] = $data ["injection_date"] . " " . $data ["injection_time"];
-		return parent::ecrire ( $data );
-	}
-	
 }
 
 class Hormone extends ObjetBDD {

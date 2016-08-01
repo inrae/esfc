@@ -1,26 +1,5 @@
 <script>
 $(document).ready(function() {
-	$(".taux").attr( {
-		pattern: "[0-9]+(\.[0-9]+)?",
-		title: "valeur numérique",
-		size: "5em",
-		maxlength: "10"
-	});
-	$(".date").datepicker( { dateFormat: "dd/mm/yy" } );
-	$(".time").attr( {
-		pattern: "[0-9][0-9]\:[0-9][0-9]",
-		placeholder: "hh:mm",
-		size: "5em",
-		autocomplete: "false"
-	});
-	$(".timepicker").timepicker( {
-		timeFormat: "HH:mm:ss",
-//		$.timepicker.regional['fr'],
-		stepHour: "1",
-		stepMinute: "5",
-		size: "5",
-		pattern: "[0-9][0-9]\:[0-9][0-9]\:[0-9][0-9]"
-	} );
 	$(".commentaire").attr("size","30");
 });
 </script>
