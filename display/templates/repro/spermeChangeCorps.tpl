@@ -47,27 +47,6 @@ $(document).ready(function() {
 </dd>
 </dl>
 <dl>
-<dt>Commentaire :</dt>
-<dd>
-<input class="commentaire" name="sperme_commentaire" value="{$data.sperme_commentaire}">
-</dl>
-<fieldset>
-<legend>Analyse réalisée au prélèvement</legend>
-{include file="repro/spermeMesureChangeCorps.tpl"}
-</fieldset>
-
-<fieldset>
-<legend>Congélation</legend>
-<dl>
-<dt>Date de congélation :</dt>
-<dd><input class="date" name="congelation_date" value="{$data.congelation_date}"></dd>
-</dl>
-<dl>
-<dt>Volume congelé (ml) :</dt>
-<dd><input class="taux" name="congelation_volume" value="{$data.congelation_volume}">
-</dd>
-</dl>
-<dl>
 <dt>Dilueur utilisé : </dt>
 <dd>
 <select name="sperme_dilueur_id">
@@ -81,22 +60,11 @@ $(document).ready(function() {
 </dd>
 </dl>
 <dl>
-<dt>Nombre de paillettes :</dt>
-<dd><input class="nombre" name="nb_paillette" value="{$data.nb_paillette}"></dd>
-</dl>
-<dl>
-<dt>Numéro de canister :</dt>
-<dd><input name="numero_canister" value="{$data.numero_canister}">
-</dd>
-</dl>
-<dl>
-<dt>Position du canister :</dt>
+<dt>Commentaire :</dt>
 <dd>
-<select name="position_canister">
-<option value="" {if $data.position_canister == ""}selected{/if}>Sélectionnez...</option>
-<option value="1" {if $data.position_canister == "1"}selected{/if}>Bas</option>
-<option value="2" {if $data.position_canister == "2"}selected{/if}>Haut</option>
-</select>
-</dd>
+<input class="commentaire" name="sperme_commentaire" value="{$data.sperme_commentaire}">
 </dl>
+<fieldset>
+<legend>Analyse réalisée au prélèvement</legend>
+{include file="repro/spermeMesureChangeCorps.tpl"}
 </fieldset>

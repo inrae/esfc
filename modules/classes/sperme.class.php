@@ -13,7 +13,6 @@ class Sperme extends ObjetBDD {
 					sperme_mesure_date,
 					motilite_initiale, tx_survie_initial,
 					motilite_60, tx_survie_60, temps_survie,
-					congelation_date,
 					sperme_ph,
 					sperme_aspect_id, sperme_aspect_libelle,
 					poisson_campagne.annee, poisson_id, matricule, prenom";
@@ -60,22 +59,7 @@ class Sperme extends ObjetBDD {
 				"sperme_commentaire" => array (
 						"type" => 0 
 				),
-				"congelation_date" => array (
-						"type" => 2 
-				),
-				"congelation_volume" => array (
-						"type" => 1 
-				),
 				"sperme_dilueur_id" => array (
-						"type" => 1 
-				),
-				"nb_paillette" => array (
-						"type" => 1 
-				),
-				"numero_canister" => array (
-						"type" => 0 
-				),
-				"position_canister" => array (
 						"type" => 1 
 				) 
 		);
@@ -102,8 +86,8 @@ class Sperme extends ObjetBDD {
 	
 	/**
 	 * Surcharge de la fonction supprimer pour effacer les enregistrements lies
-	 * 
-	 * {@inheritDoc}
+	 *
+	 * {@inheritdoc}
 	 *
 	 * @see ObjetBDD::supprimer()
 	 */
@@ -168,7 +152,7 @@ class Sperme extends ObjetBDD {
 	
 	/**
 	 * Recherche la liste de tous les spermes potentiels pour un croisement (congeles ou ceux de la sequence)
-	 * 
+	 *
 	 * @param int $croisement_id        	
 	 * @return tableau
 	 */
@@ -251,6 +235,77 @@ class SpermeQualite extends ObjetBDD {
 			$param == array ();
 		$param ["fullDescription"] = 1;
 		parent::__construct ( $bdd, $param );
+	}
+}
+class SpermeCongelation extends ObjetBDD {
+	private $sql = "select sperme_congelation_id, sperme_id, congelation_date, congelation_volume,
+			sperme_dilueur_id, sperme_dilueur_libelle, nb_paillette, numero_canister, position_canister,
+			sperme_congelation_commentaire 
+			from sperme_congelation 
+			left outer join sperme_dilueur using (sperme_dilueur_id) ";
+	function __construct($bdd, $param = null) {
+		$this->param = $param;
+		$this->paramori = $param;
+		$this->table = "sperme_congelation";
+		$this->id_auto = "1";
+		$this->colonnes = array (
+				"sperme_congelation_id" => array (
+						"type" => 1,
+						"key" => 1,
+						"requis" => 1,
+						"defaultValue" => 0 
+				),
+				"sperme_id" => array (
+						"type" => 1,
+						"requis" => 1,
+						"parentAttrib" => 1 
+				),
+				
+				"congelation_date" => array (
+						"type" => 2,
+						"requis" => 1 
+				),
+				"congelation_volume" => array (
+						"type" => 1 
+				),
+				"sperme_dilueur_id" => array (
+						"type" => 1 
+				),
+				"nb_paillette" => array (
+						"type" => 1 
+				),
+				"nb_visiotube" => array (
+						"type" => 1 
+				),
+				"numero_canister" => array (
+						"type" => 0 
+				),
+				"position_canister" => array (
+						"type" => 1 
+				),
+				"sperme_congelation_commentaire" => array (
+						"type" => 0 
+				) 
+		);
+		if (! is_array ( $param ))
+			$param == array ();
+		$param ["fullDescription"] = 1;
+		parent::__construct ( $bdd, $param );
+	}
+	/**
+	 * Retourne la liste des congelations associees a un sperme
+	 * 
+	 * @param int $sperme_id        	
+	 */
+	function getListFromSperme($sperme_id) {
+		if ($sperme_id > 0) {
+			$where = " where sperme_id = :sperme_id";
+			$order = " order by congelation_date";
+			$arg = array (
+					"sperme_id" => $sperme_id 
+			);
+			return $this->getListeParamAsPrepared ( $sql . $where . $order, $arg );
+		}
 	}
 }
 
@@ -502,7 +557,7 @@ class SpermeAspect extends ObjetBDD {
 
 /**
  * ORM de gestion de la table sperme_utilise
- * 
+ *
  * @author quinton
  *        
  */
@@ -543,7 +598,7 @@ class SpermeUtilise extends ObjetBDD {
 	
 	/**
 	 * Fonction recuperant la liste des spermes utilises dans un croisement
-	 * 
+	 *
 	 * @param unknown $croisement_id        	
 	 * @return tableau
 	 */

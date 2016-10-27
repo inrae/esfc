@@ -12,33 +12,6 @@ $keyName = "sperme_id";
 $id = $_REQUEST[$keyName];
 
 switch ($t_module["param"]) {
-	case "list":
-		/*
-		 * Display the list of all records of the table
-		 */
-		/*
-		 * $searchExample must be defined into modules/beforesession.inc.php :
-		 * include_once 'modules/classes/searchParam.class.php';
-		 * and into modules/common.inc.php :
-		 * if (!isset($_SESSION["searchExample"])) {
-		 * $searchExample = new SearchExample();
-		 *	$_SESSION["searchExample"] = $searchExample;
-		 *	} else {
-		 *	$searchExample = $_SESSION["searchExample"];
-		 *	}
-		 * and, also, into modules/classes/searchParam.class.php...
-		 */
-		$searchExample->setParam ( $_REQUEST );
-		$dataSearch = $searchExample->getParam ();
-		if ($searchExample->isSearch () == 1) {
-			$data = $dataClass->getListeSearch ( $dataExample );
-			$smarty->assign ( "data", $data );
-			$smarty->assign ("isSearch", 1);
-		}
-		$smarty->assign ("exampleSearch", $dataSearch);
-		$smarty->assign("data", $dataClass->getListe());
-		$smarty->assign("corps", "example/exampleList.tpl");
-		break;
 	case "display":
 		/*
 		 * Display the detail of the record

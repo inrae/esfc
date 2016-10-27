@@ -29,6 +29,10 @@ function initSpermeChange($sperme_id) {
 	 */
 	$qualite = new SpermeQualite($bdd, $ObjetBDDParam);
 	$smarty->assign("spermeQualite", $qualite->getListe(1));
-	
+	/*
+	 * Recherche des congelations associees
+	 */
+	$congelation = new SpermeCongelation($bdd, $ObjetBDDParam);
+	$smarty->assign("congelation", $congelation->getListFromSperme($sperme_id));
 }
 ?>

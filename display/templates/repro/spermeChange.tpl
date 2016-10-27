@@ -38,3 +38,11 @@ Retour au reproducteur
 </div>
 </div>
 <span class="red">*</span><span class="messagebas">Champ obligatoire</span>
+
+<!-- Ajout de l'affichage des congelations -->
+{if $data.sperme_id > 0}
+<fieldset>
+<legend>Congélations</legend>
+{include file="repro/spermeCongelationList.tpl"}
+</fieldset>
+{/if}
