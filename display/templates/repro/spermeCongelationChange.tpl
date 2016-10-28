@@ -1,8 +1,24 @@
+<a href="index.php?module={$poissonDetailParent}">Retour à la liste des poissons</a>&nbsp;
+<a href="index.php?module=poissonCampagneDisplay&poisson_campagne_id={$dataPoisson.poisson_campagne_id}">
+Retour au reproducteur
+</a>&nbsp;
+<a href="index.php?module=spermeChange&poisson_campagne_id={$dataPoisson.poisson_campagne_id}&sperme_id={$data.sperme_id}">
+Retour au sperme
+</a>
+{include file="repro/poissonCampagneDetail.tpl"}
+
+<h2>Modification d'une congélation de sperme</h2>
+<div class="formSaisie">
+<div>
+<form id="spermeForm" method="post" action="index.php?module=spermeCongelationWrite">
+
+
 <input type="hidden" name="sperme_id" value="{$data.sperme_id}">
 <input type="hidden" name="sperme_congelation_id" value="{$data.sperme_congelation_id}">
+<input type="hidden" name="poisson_campagne_id" value="{$dataPoisson.poisson_campagne_id}">
 <dl>
-<dt>Date de congélation :</dt>
-<dd><input class="date" name="congelation_date" value="{$data.congelation_date}"></dd>
+<dt>Date de congélation<span class="red">*</span> :</dt>
+<dd><input class="date" name="congelation_date" value="{$data.congelation_date}" required ></dd>
 </dl>
 <dl>
 <dt>Volume congelé (ml) :</dt>
@@ -50,3 +66,22 @@
 <dd>
 <input class="commentaire" name="sperme_congelation_commentaire" value="{$data.sperme_congelation_commentaire}">
 </dl>
+
+<div class="formBouton">
+<input class="submit" type="submit" value="Enregistrer">
+</div>
+</form>
+{if $data.sperme_congelation_id > 0 &&$droits["reproGestion"] == 1}
+<div class="formBouton">
+<form action="index.php" method="post" onSubmit='return confirmSuppression("Confirmez-vous la suppression ?")'>
+<input type="hidden" name="module" value="spermeCongelationDelete">
+<input type="hidden" name="sperme_congelation_id" value="{$data.sperme_congelation_id}">
+<input type="hidden" name="sperme_id" value="{$data.sperme_id}">
+<input type="hidden" name="poisson_campagne_id" value="{$dataPoisson.poisson_campagne_id}">
+<input class="submit" type="submit" value="Supprimer">
+</form>
+</div>
+{/if}
+</div>
+</div>
+<span class="red">*</span><span class="messagebas">Champ obligatoire</span>

@@ -43,7 +43,7 @@ Nouveau prélèvement...
 <td class="right">{$spermes[lst].temps_survie}</td>
 <td class="right">{$spermes[lst].sperme_ph}</td>
 <td>{$spermes[lst].sperme_mesure_date}</td>
-<td>{$spermes[lst].congelation_date}</td>
+<td>{$spermes[lst].congelation_dates}</td>
 <td>{$spermes[lst].sperme_commentaire}</td>
 </tr>
 {/section}

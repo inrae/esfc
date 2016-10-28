@@ -310,7 +310,7 @@
 
 	<spermeDisplay action="modules/repro/sperme.php" param="display" droits="reproConsult" />
 	<spermeChange action="modules/repro/sperme.php" param="change" droits="reproGestion" />
-	<spermeWrite action="modules/repro/sperme.php" param="write" droits="reproGestion" modulebefore="spermeChange" retourok="poissonCampagneDisplay" retourko="spermeChange"/>
+	<spermeWrite action="modules/repro/sperme.php" param="write" droits="reproGestion" modulebefore="spermeChange" retourok="spermeChange" retourko="spermeChange"/>
 	<spermeDelete action="modules/repro/sperme.php" param="delete" droits="reproGestion" modulebefore="spermeChange" retoursuppr="poissonCampagneDisplay" retourko="spermeChange"/>
 
 	<spermeUtiliseChange action="modules/repro/spermeUtilise.php" param="change" droits="reproGestion" />
@@ -321,6 +321,10 @@
 	<spermeMesureChange action="modules/repro/spermeMesure.php" param="change" droits="reproGestion" />
 	<spermeMesureWrite action="modules/repro/spermeMesure.php" param="write" droits="reproGestion" modulebefore="spermeMesureChange" retourok="spermeDisplay" retourko="spermeMesureChange"/>
 	<spermeMesureDelete action="modules/repro/spermeMesure.php" param="delete" droits="reproGestion" modulebefore="spermeMesureChange" retoursuppr="spermeDisplay" retourko="spermeMesureChange"/>
+
+	<spermeCongelationChange action="modules/repro/spermeCongelation.php" param="change" droits="reproGestion" />
+	<spermeCongelationWrite action="modules/repro/spermeCongelation.php" param="write" droits="reproGestion" modulebefore="spermeCongelationChange" retourok="spermeChange" retourko="spermeCongelationChange"/>
+	<spermeCongelationDelete action="modules/repro/spermeCongelation.php" param="delete" droits="reproGestion" modulebefore="spermeCongelationChange" retoursuppr="spermeChange" retourko="spermeCongelationChange"/>
 
 
 	<vieModeleList action="modules/repro/vieModele.php" param="list" retourlogin="1" droits="reproConsult" />

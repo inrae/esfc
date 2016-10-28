@@ -15,14 +15,16 @@ class Sperme extends ObjetBDD {
 					motilite_60, tx_survie_60, temps_survie,
 					sperme_ph,
 					sperme_aspect_id, sperme_aspect_libelle,
-					poisson_campagne.annee, poisson_id, matricule, prenom";
+					poisson_campagne.annee, poisson_id, matricule, prenom,
+					congelation_dates";
 	private $from = " from sperme
 					natural join poisson_campagne
 					natural join poisson
 					left outer join sperme_aspect using (sperme_aspect_id)
 					left outer join sperme_mesure using (sperme_id)
 					left outer join sperme_qualite using (sperme_qualite_id)
-					left outer join sequence using (sequence_id)";
+					left outer join sequence using (sequence_id)
+					left outer join v_sperme_congelation_date using (sperme_id)";
 	function __construct($bdd, $param = null) {
 		$this->param = $param;
 		$this->paramori = $param;
@@ -113,9 +115,12 @@ class Sperme extends ObjetBDD {
 	function getListFromPoissonCampagne($poisson_campagne_id) {
 		if ($poisson_campagne_id > 0 && is_numeric ( $poisson_campagne_id )) {
 			$this->types ["sperme_mesure_date"] = 3;
+			$this->colonnes["sperme_mesure_date"] = array("type"=>3);
+			//printr($this->colonnes);
 			$where = " where poisson_campagne_id = " . $poisson_campagne_id . "
 					order by sperme_date, sperme_mesure_date";
 			return $this->getListeParam ( $this->sql . $this->from . $where );
+			
 		} else
 			return null;
 	}
@@ -240,7 +245,7 @@ class SpermeQualite extends ObjetBDD {
 class SpermeCongelation extends ObjetBDD {
 	private $sql = "select sperme_congelation_id, sperme_id, congelation_date, congelation_volume,
 			sperme_dilueur_id, sperme_dilueur_libelle, nb_paillette, numero_canister, position_canister,
-			sperme_congelation_commentaire 
+			nb_visiotube, sperme_congelation_commentaire 
 			from sperme_congelation 
 			left outer join sperme_dilueur using (sperme_dilueur_id) ";
 	function __construct($bdd, $param = null) {
@@ -303,8 +308,8 @@ class SpermeCongelation extends ObjetBDD {
 			$order = " order by congelation_date";
 			$arg = array (
 					"sperme_id" => $sperme_id 
-			);
-			return $this->getListeParamAsPrepared ( $sql . $where . $order, $arg );
+			);;
+			return $this->getListeParamAsPrepared ( $this->sql . $where . $order, $arg );
 		}
 	}
 }
