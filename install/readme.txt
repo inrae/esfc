@@ -1,5 +1,11 @@
 Nouveautés
 ===========
+Version 1.6.4 du 2 novembre 2016
+--------------------------------
+Corrections :
+- il est maintenant possible de saisir plusieurs congélations de sperme (avec prise en compte dans les croisements)
+- il n'est plus indispensable de renseigner le commentaire de l'échographie si des photos sont sélectionnées lors de la création de l'événement
+
 Version 1.6.3 du 1er aout 2016
 ----------------------------
 Corrections :
