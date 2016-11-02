@@ -237,7 +237,7 @@ switch ($t_module ["param"]) {
 			/*
 			 * Echographie
 			 */
-			if (strlen ( $_REQUEST ["echographie_commentaire"] ) > 0) {
+			if (strlen ( $_REQUEST ["echographie_commentaire"] ) > 0 || isset($_FILES["documentName"])) {
 				$echographie = new Echographie ( $bdd, $ObjetBDDParam );
 				$_REQUEST ["echographie_date"] = $_REQUEST ["evenement_date"];
 				$echographie_id = $echographie->ecrire ( $_REQUEST );

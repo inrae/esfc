@@ -1793,8 +1793,7 @@ class Echographie extends ObjetBDD {
 						"requis" => 1 
 				),
 				"echographie_commentaire" => array (
-						"type" => 0,
-						"requis" => 1 
+						"type" => 0
 				),
 				"cliche_nb" => array (
 						"type" => 1 

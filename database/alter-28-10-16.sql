@@ -67,3 +67,5 @@ REFERENCES "sturio"."public"."sperme_congelation" ("sperme_congelation_id")
 ON DELETE NO ACTION
 ON UPDATE NO ACTION
 NOT DEFERRABLE;
+
+alter table echographie alter column echographie_commentaire drop not null;

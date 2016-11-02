@@ -32,7 +32,7 @@
   </data-source>
  </project-data-sources>
  <source-databases>
-  <database id="DB0" populated="true" UUID="49777f3b-5a87-4534-bd80-54f51002ddf7" dbcs-ref="DS2" name="guzzi-sturio1" physicalName="guzzi-sturio" sql-exception="ca.sqlpower.sqlobject.SQLObjectException: ca.sqlpower.sqlobject.SQLObjectException: ca.sqlpower.sqlobject.SQLObjectException: ca.sqlpower.sqlobject.SQLObjectException: ca.sqlpower.sqlobject.SQLObjectException: ca.sqlpower.sqlobject.SQLObjectException: ca.sqlpower.sqlobject.SQLObjectException: ca.sqlpower.sqlobject.SQLObjectException: ca.sqlpower.sqlobject.SQLObjectException: ca.sqlpower.sqlobject.SQLObjectException: ca.sqlpower.sqlobject.SQLObjectException: ca.sqlpower.sqlobject.SQLObjectException: ca.sqlpower.sqlobject.SQLObjectException: Couldn&apos;t connect to database: FATAL: authentification LDAP ?chou?e pour l&apos;utilisateur &lt;&lt; eric.quinton &gt;&gt;" >
+  <database id="DB0" populated="true" UUID="49777f3b-5a87-4534-bd80-54f51002ddf7" dbcs-ref="DS2" name="guzzi-sturio1" physicalName="guzzi-sturio" sql-exception="ca.sqlpower.sqlobject.SQLObjectException: ca.sqlpower.sqlobject.SQLObjectException: ca.sqlpower.sqlobject.SQLObjectException: ca.sqlpower.sqlobject.SQLObjectException: ca.sqlpower.sqlobject.SQLObjectException: ca.sqlpower.sqlobject.SQLObjectException: ca.sqlpower.sqlobject.SQLObjectException: ca.sqlpower.sqlobject.SQLObjectException: ca.sqlpower.sqlobject.SQLObjectException: ca.sqlpower.sqlobject.SQLObjectException: ca.sqlpower.sqlobject.SQLObjectException: ca.sqlpower.sqlobject.SQLObjectException: ca.sqlpower.sqlobject.SQLObjectException: ca.sqlpower.sqlobject.SQLObjectException: Couldn&apos;t connect to database: FATAL: authentification LDAP ?chou?e pour l&apos;utilisateur &lt;&lt; eric.quinton &gt;&gt;" >
    <catalog id="CAT1" populated="true" UUID="f0a78fbf-3d9d-46e5-bbb7-2bba3fe0c04a" name="sturio" nativeTerm="database" physicalName="sturio" >
     <schema id="SCH2" populated="true" UUID="39326c8c-1017-47e7-b5d7-8f74e618658e" name="gacl" nativeTerm="schema" physicalName="gacl" >
      <table id="TAB3" populated="true" UUID="fe455cec-edbb-498f-ab21-7f53df6952ff" name="gaclacl" objectType="TABLE" physicalName="gaclacl" >
@@ -8497,7 +8497,7 @@ Le premier chiffre correspond au lundi</remarks>
     <column id="COL2656" populated="true" UUID="b4083e21-16ae-4656-867a-75c028e694b3" autoIncrement="false" autoIncrementSequenceName="echographie_echographie_date_seq" defaultValue="" name="echographie_date" nullable="1" physicalName="echographie_date" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="93" userDefinedTypeUUID="6497d8de-0e00-40d6-a42e-e2adca83be64" >
      <remarks>Date de l&apos;échographie</remarks>
     </column>
-    <column id="COL2657" populated="true" UUID="44b0d348-c714-4433-9a74-191094606e67" autoIncrement="false" autoIncrementSequenceName="echographie_echographie_commentaire_seq" defaultValue="" name="echographie_commentaire" nullable="0" physicalName="echographie_commentaire" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+    <column id="COL2657" populated="true" UUID="44b0d348-c714-4433-9a74-191094606e67" autoIncrement="false" autoIncrementSequenceName="echographie_echographie_commentaire_seq" defaultValue="" name="echographie_commentaire" nullable="1" physicalName="echographie_commentaire" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
      <remarks>Commentaires de l&apos;échographie</remarks>
     </column>
     <column id="COL2658" populated="true" UUID="f06ad8f8-e1c3-4a5f-8bcf-dadfc24d8d02" autoIncrement="false" autoIncrementSequenceName="echographie_nb_cliche_seq" defaultValue="" name="cliche_nb" nullable="1" physicalName="cliche_nb" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
@@ -10237,7 +10237,7 @@ Le premier chiffre correspond au lundi</remarks>
   <liquibase-settings useSeparateChangeSets="false" generateId="false" idStart="1"/>
  </compare-dm-settings>
  <create-kettle-job-settings filePath="" jobName="" schemaName="" kettleJoinType="0" savingToFile="true" />
- <play-pen zoom="0.7071067811865475" viewportX="777" viewportY="1927" relationship-style="rectilinear" names-displayLogicalNames="true" showPrimaryTag="true" showForeignTag="true" showAlternateTag="true" columnVisibility="ALL" relationshipLabelVisibility="true">
+ <play-pen zoom="0.7071067811865475" viewportX="0" viewportY="491" relationship-style="rectilinear" names-displayLogicalNames="true" showPrimaryTag="true" showForeignTag="true" showAlternateTag="true" columnVisibility="ALL" relationshipLabelVisibility="true">
   <table-pane table-ref="TAB2133" x="1505" y="958" bgColor="0xbfd6ff" fgColor="0x000000" rounded="false" dashed="false"/>
   <table-pane table-ref="TAB2138" x="1011" y="617" bgColor="0xc7d0df" fgColor="0x000000" rounded="false" dashed="false"/>
   <table-pane table-ref="TAB2154" x="1505" y="806" bgColor="0xbfd6ff" fgColor="0x000000" rounded="false" dashed="false"/>
