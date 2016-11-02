@@ -53,8 +53,17 @@ ON DELETE NO ACTION
 ON UPDATE NO ACTION
 NOT DEFERRABLE;
 
-create view v_sperme_congelation_date as (
-select sperme_id, array_to_string (array_agg(to_char(congelation_date, 'DD/MM/YYYY') order by congelation_date), ',') as congelation_dates
+create or replace view v_sperme_congelation_date as (
+select sperme_id, array_to_string (array_agg(to_char(congelation_date, 'DD/MM/YYYY') order by congelation_date), ', ') as congelation_dates
 from sperme_congelation
 group by sperme_id)
 ;
+
+ALTER TABLE "sturio"."public"."sperme_utilise" ADD COLUMN "sperme_congelation_id" INTEGER;
+
+ALTER TABLE "sturio"."public"."sperme_utilise" ADD CONSTRAINT "sperme_congelation_sperme_utilise_fk"
+FOREIGN KEY ("sperme_congelation_id")
+REFERENCES "sturio"."public"."sperme_congelation" ("sperme_congelation_id")
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE;

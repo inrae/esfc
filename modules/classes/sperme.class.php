@@ -163,7 +163,7 @@ class Sperme extends ObjetBDD {
 	 */
 	function getListPotentielFromCroisement($croisement_id) {
 		if ($croisement_id > 0 && is_numeric ( $croisement_id )) {
-			$sql = $this->sql . " ,congelation_date ";
+			$sql = $this->sql . " ,congelation_date, sperme_congelation_id ";
 			$from = $this->from ." left outer join sperme_congelation using (sperme_id) ";
 			$where = " where poisson_id in (
 					select poisson_id from croisement
@@ -614,13 +614,13 @@ class SpermeUtilise extends ObjetBDD {
 			$sql = "select sperme_utilise_id, matricule, prenom,
 					sperme_date, congelation_date,
 					volume_utilise, nb_paillette_croisement
-					from sperme_utilise
-					join sperme using (sperme_id)
+					from sperme_utilise su
+					join sperme s on  (s.sperme_id = su.sperme_id)
 					join poisson_campagne using (poisson_campagne_id)
 					join poisson using (poisson_id)
-					left outer join sperme_congelation using (sperme_id)";
+					left outer join sperme_congelation sc on (sc.sperme_congelation_id = su.sperme_congelation_id)";
 			$where = " where croisement_id = " . $croisement_id;
-			$order = " order by sperme_id";
+			$order = " order by su.sperme_id";
 			$this->types ["sperme_date"] = 2;
 			$this->types ["congelation_date"] = 2;
 			return $this->getListeParam ( $sql . $where . $order );

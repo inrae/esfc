@@ -1,3 +1,26 @@
+<script>
+/*
+ * mise a jour de sperme_id et sperme_congelation_id en fonction de la saisie effectuee
+ */
+ $(document).ready(function() { 
+	 function setSpermeId() {
+		 var tab = $("#sperme_select").val();
+		 var atab = tab.split(":");
+		 $("#sperme_id").val(atab[0]);
+		 $("#sperme_congelation_id").val(atab[1]);
+		 console.log("sperme_id:"+atab[0]);
+		 console.log("sperme_congelation_id:"+atab[1]);
+	 }
+	 $("#sperme_select").change(function () {
+		 setSpermeId();
+	 });
+	 /*
+	  * lancement a l'ouverture de la page
+	  */
+	  setSpermeId();
+ });
+</script>
+
 <a href="index.php?module=sequenceList">
 Retour à la liste des séquences
 </a>
@@ -14,12 +37,14 @@ Retour à la séquence&nbsp;
 <form id="spermeUtiliseForm" method="post" action="index.php?module=spermeUtiliseWrite">
 <input type="hidden" name="sperme_utilise_id" value="{$data.sperme_utilise_id}">
 <input type="hidden" name="croisement_id" value="{$data.croisement_id}">
+<input type="hidden" id="sperme_id" name="sperme_id" value="{$data.sperme_id}">
+<input type="hidden" id="sperme_congelation_id" name="sperme_congelation_id" value="{$data.sperme_congelation_id}">
 <dl>
 <dt>Sperme<span class="red">*</span> :</dt>
 <dd>
-<select name="sperme_id">
+<select id="sperme_select" name="sperme_select">
 {section name=lst loop=$spermes}
-<option value="{$spermes[lst].sperme_id}" {if $spermes[lst].sperme_id == $data.sperme_id}selected{/if}>
+<option value="{$spermes[lst].sperme_id}:{$spermes[lst].sperme_congelation_id}" {if $spermes[lst].sperme_id == $data.sperme_id}selected{/if}>
 {$spermes[lst].matricule} {$spermes[lst].prenom} - {$spermes[lst].sperme_date}
 {if strlen($spermes[lst].congelation_date) > 0}
 &nbsp;- congelé le {$spermes[lst].congelation_date} ({$spermes[lst].nb_paillette} paillettes)
