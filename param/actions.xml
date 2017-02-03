@@ -205,6 +205,16 @@
 	<spermeCaracteristiqueWrite action="modules/parametre/spermeCaracteristique.php" param="write" droits="paramAdmin,reproAdmin" retourok="spermeCaracteristiqueList" retourko="spermeCaracteristiqueChange" modulebefore="spermeCaracteristiqueChange" />
 	<spermeCaracteristiqueDelete action="modules/parametre/spermeCaracteristique.php" param="delete" droits="paramAdmin,reproAdmin" retoursuppr="spermeCaracteristiqueList" retourko="spermeCaracteristiqueChange"  modulebefore="spermeCaracteristiqueChange"/>
 
+	<stadeOeufList action="modules/parametre/stadeOeuf.php" param="list" droits="consult"  retourlogin="1" />
+	<stadeOeufChange action="modules/parametre/stadeOeuf.php" param="change" droits="paramAdmin" />
+	<stadeOeufWrite action="modules/parametre/stadeOeuf.php" param="write" droits="paramAdmin" retourok="stadeOeufList" retourko="stadeOeufChange" modulebefore="stadeOeufChange" />
+	<stadeOeufDelete action="modules/parametre/stadeOeuf.php" param="delete" droits="paramAdmin" retoursuppr="stadeOeufList" retourko="stadeOeufChange"  modulebefore="stadeOeufChange"/>
+
+	<stadeGonadeList action="modules/parametre/stadeGonade.php" param="list" droits="consult"  retourlogin="1" />
+	<stadeGonadeChange action="modules/parametre/stadeGonade.php" param="change" droits="paramAdmin" />
+	<stadeGonadeWrite action="modules/parametre/stadeGonade.php" param="write" droits="paramAdmin" retourok="stadeGonadeList" retourko="stadeGonadeChange" modulebefore="stadeGonadeChange" />
+	<stadeGonadeDelete action="modules/parametre/stadeGonade.php" param="delete" droits="paramAdmin" retoursuppr="stadeGonadeList" retourko="stadeGonadeChange"  modulebefore="stadeGonadeChange"/>
+
 
 	<alimentation retourlogin="1" />
 

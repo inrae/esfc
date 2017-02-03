@@ -59,6 +59,15 @@ switch ($t_module ["param"]) {
 			$nageoire = new Nageoire($bdd, $ObjetBDDParam);
 			$smarty->assign("nageoire", $nageoire->getListe(1));
 			/*
+			 * Tables des stades de maturation des oeufs ou gonades
+			 */
+			require_once 'modules/classes/stadeGonade.class.php';
+			require_once 'modules/classes/stadeOeuf.class.php';
+			$stadeGonade = new StadeGonade($bdd, $ObjetBDDParam);
+			$stadeOeuf = new StadeOeuf($bdd, $ObjetBDDParam);
+			$smarty->assign("gonades", $stadeGonade->getListe(1));
+			$smarty->assign("oeufs", $stadeOeuf->getListe(1));
+			/*
 			 * Lecture du poisson
 			 */
 			$poisson = new Poisson ( $bdd, $ObjetBDDParam );
@@ -89,6 +98,8 @@ switch ($t_module ["param"]) {
 				$genetique = new Genetique($bdd, $ObjetBDDParam);
 				$smarty->assign("dataGenetique", $genetique->getDataByEvenement($id));
 				$smarty->assign("dataAnesthesie", $dataAnesthesie);
+				
+				
 				/*
 				 * Recherche si le produit est toujours utilise
 				 */
@@ -237,7 +248,7 @@ switch ($t_module ["param"]) {
 			/*
 			 * Echographie
 			 */
-			if (strlen ( $_REQUEST ["echographie_commentaire"] ) > 0 || isset($_FILES["documentName"])) {
+			if (strlen ( $_REQUEST ["echographie_commentaire"] ) > 0 || $_REQUEST["stade_gonade_id"] > 0 || $_REQUEST["stade_oeuf_id"] > 0|| isset($_FILES["documentName"])) {
 				$echographie = new Echographie ( $bdd, $ObjetBDDParam );
 				$_REQUEST ["echographie_date"] = $_REQUEST ["evenement_date"];
 				$echographie_id = $echographie->ecrire ( $_REQUEST );

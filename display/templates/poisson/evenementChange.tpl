@@ -239,6 +239,33 @@ Sélectionnez le bassin de destination...
 <legend>Échographie</legend>
 <div class="masquage">
 <dl>
+<dl>
+<dt>Stade des gonades :</dt>
+<dd>
+<select name="stade_gonade_id">
+<option value="" {if $dataEcho.stade_gonade_id == ""}selected{/if}>Sélectionnez...</option>
+{section name=lst loop=$gonades}
+<option value="{$gonades[lst].stade_gonade_id}" {if $dataEcho.stade_gonade_id == $gonades[lst].stade_gonade_id}selected{/if}>
+{$gonades[lst].stade_gonade_libelle}
+</option>
+{/section}
+</select>
+</dd>
+</dl>
+
+<dl>
+<dt>Stade des œufs :</dt>
+<dd>
+<select name="stade_oeuf_id">
+<option value="" {if $dataEcho.stade_oeuf_id == ""}selected{/if}>Sélectionnez...</option>
+{section name=lst loop=$oeufs}
+<option value="{$oeufs[lst].stade_oeuf_id}" {if $dataEcho.stade_oeuf_id == $oeufs[lst].stade_oeuf_id}selected{/if}>
+{$oeufs[lst].stade_oeuf_libelle}
+</option>
+{/section}
+</select>
+</dd>
+</dl>
 
 <dt>Résultat qualitatif de l'échographie <span class="red">*</span> :</dt>
 <dd>

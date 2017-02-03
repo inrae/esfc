@@ -42,6 +42,8 @@
 	<item module="spermeDilueurList" droits="consult" value="125" title="126" />
 	<item module="spermeCaracteristiqueList" droits="consult" value="127" title="128" />
 	<item module="nageoireList" droits="consult" value="129" title="130" />
+	<item module="stadeOeufList" droits="consult" value="131" title="132" />
+	<item module="stadeGonadeList" droits="consult" value="133" title="134" />
 	
 </item>
 

@@ -135,8 +135,12 @@ $LANG["menu"][127] = "Caractéristiques du sperme";
 $LANG["menu"][128] = "Liste des caractéristiques potentielles du sperme";
 $LANG["menu"][129] = "Nageoires";
 $LANG["menu"][130] = "Liste des nageoires (prélèvements génétiques)";
-
-
+$LANG["menu"][131] = "Stades des œufs";
+$LANG["menu"][132] = "Liste des stades de maturation des œufs";
+$LANG["menu"][133] = "Stades des gonades";
+$LANG["menu"][134] = "Liste des stades de maturation des gonades";
+$LANG["menu"][135] = "";
+$LANG["menu"][136] = "";
 
 $LANG["menu"]["example1"] = "Example";
 $LANG["menu"]["example2"] = "It's an example !";

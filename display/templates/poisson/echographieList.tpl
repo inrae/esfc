@@ -6,6 +6,8 @@ setDataTables("cechographieList");
 <tr>
 <th>Événement associé</th>
 <th>Date</th>
+<th>Stade gonade</th>
+<th>Stade œufs</th>
 <th>Commentaire</th>
 </tr>
 </thead>
@@ -24,6 +26,8 @@ setDataTables("cechographieList");
 <td>
 {$dataEcho[lst].echographie_date}
 </td>
+<td>{$dataEcho[lst].stade_gonade_libelle}</td>
+<td>{$dataEcho[lst].stade_oeuf_libelle}</td>
 <td>{$dataEcho[lst].echographie_commentaire}</td>
 </tr>
 {/section}

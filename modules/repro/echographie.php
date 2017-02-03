@@ -59,7 +59,15 @@ switch ($t_module["param"]) {
 		$poissonCampagne = new PoissonCampagne($bdd, $ObjetBDDParam);	
 		$data = dataRead($dataClass, $id, "repro/echographieChange.tpl", $_REQUEST["poisson_campagne_id"]);
 		$smarty->assign("dataPoisson", $poissonCampagne->lire($data["poisson_campagne_id"]));
-		
+		/*
+		 * Tables des stades
+		 */
+		require_once 'modules/classes/stadeGonade.class.php';
+		require_once 'modules/classes/stadeOeuf.class.php';
+		$stadeGonade = new StadeGonade($bdd, $ObjetBDDParam);
+		$stadeOeuf = new StadeOeuf($bdd, $ObjetBDDParam);
+		$smarty->assign("gonades", $stadeGonade->getListe(1));
+		$smarty->assign("oeufs", $stadeOeuf->getListe(1));
 		/*
 		 * Gestion des documents associes
 		 */

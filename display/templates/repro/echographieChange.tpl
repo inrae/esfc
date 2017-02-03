@@ -1,18 +1,3 @@
-<script>
-$(document).ready(function() {
-	$(".taux").attr("pattern","[0-9]+(\.[0-9]+)?");
-	$(".taux").attr("title","valeur numérique");
-	$(".taux").attr("size", "5");
-	$(".taux").attr("maxlength", "10");
-	$(".nombre").attr("pattern","[0-9]+");
-	$(".nombre").attr("title","valeur numérique");
-	$(".nombre").attr("size", "5");
-	$(".nombre").attr("maxlength", "10");
-	
-	$(".date").datepicker( { dateFormat: "dd/mm/yy" } );
-	$(".commentaire").attr("size","30");
-} );
-</script>
 <a href="index.php?module={$poissonDetailParent}&sequence_id={$sequence_id}">Retour à la liste des poissons</a>&nbsp;
 <a href="index.php?module=poissonCampagneDisplay&poisson_campagne_id={$data.poisson_campagne_id}">
 Retour au reproducteur
@@ -48,6 +33,34 @@ Retour au reproducteur
 <input class="commentaire" name="cliche_ref" value="{$data.cliche_ref}">
 </dd>
 </dl>
+<dl>
+<dt>Stade des gonades :</dt>
+<dd>
+<select name="stade_gonade_id">
+<option value="" {if $data.stade_gonade_id == ""}selected{/if}>Sélectionnez...</option>
+{section name=lst loop=$gonades}
+<option value="{$gonades[lst].stade_gonade_id}" {if $data.stade_gonade_id == $gonades[lst].stade_gonade_id}selected{/if}>
+{$gonades[lst].stade_gonade_id}
+</option>
+{/section}
+</select>
+</dd>
+</dl>
+
+<dl>
+<dt>Stade des œufs :</dt>
+<dd>
+<select name="stade_oeuf_id">
+<option value="" {if $data.stade_oeuf_id == ""}selected{/if}>Sélectionnez...</option>
+{section name=lst loop=$oeufs}
+<option value="{$oeufs[lst].stade_oeuf_id}" {if $data.stade_oeuf_id == $oeufs[lst].stade_oeuf_id}selected{/if}>
+{$oeufs[lst].stade_oeuf_id}
+</option>
+{/section}
+</select>
+</dd>
+</dl>
+
 <div class="formBouton">
 <input class="submit" type="submit" value="Enregistrer">
 </div>
