@@ -47,7 +47,7 @@ suiv&gt;
 <th>Nom du document</th>
 <th>Description</th>
 <th>Taille</th>
-<th>Date de<br>création</th>
+<th>Prise de vue ou création</th>
 <th>Date<br>d'import</th>
 {if $droits["bassinAdmin"] == 1 || $droits["poissonAdmin"] == 1 || $droits["reproAdmin"]}
 <th>Supprimer</th>

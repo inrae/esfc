@@ -35,7 +35,7 @@ Retour au reproducteur
 </dd>
 </dl>
 <dl>
-<dt>Taux E2 (forme textuelle) :</dt>
+<dt>Taux E2 (forme textuelle, pour des fourchettes ou des tendances) :</dt>
 <dd>
 <input name="tx_e2_texte" size="20" value="{$data.tx_e2_texte}">
 </dd>
