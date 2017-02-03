@@ -156,8 +156,8 @@ class Poisson extends ObjetBDD {
 			 * Recherche des temperatures cumulees
 			 */
 			if ($dataSearch ["displayCumulTemp"] == 1) {
-				foreach ($data as $key => $value) {
-					$data[$key]["temperature"] = $this->calcul_temperature($value["poisson_id"], $dataSearch["dateDebutTemp"], $dataSearch["dateFinTemp"]);
+				foreach ( $data as $key => $value ) {
+					$data [$key] ["temperature"] = $this->calcul_temperature ( $value ["poisson_id"], $dataSearch ["dateDebutTemp"], $dataSearch ["dateFinTemp"] );
 				}
 			}
 			return ($data);
@@ -329,7 +329,7 @@ class Poisson extends ObjetBDD {
 	/**
 	 * Fonction permettant de calculer le cumul de temperature recu par un poisson
 	 * entre deux dates, en fonction des bassins frequentes
-	 * 
+	 *
 	 * @param int $poisson_id        	
 	 * @param date $date_debut        	
 	 * @param date $date_fin        	
@@ -368,7 +368,7 @@ class Poisson extends ObjetBDD {
 				select  sum( ae.temperature) as temperature
 				from gs, analyse_eau ae, circuit_eau ce, bassin b
 				where b.circuit_eau_id = ce.circuit_eau_id 
-				and b.bassin_id = ".$bassin["bassin_id"]."
+				and b.bassin_id = " . $bassin ["bassin_id"] . "
 				and ae.circuit_eau_id = ce.circuit_eau_id
 				and ae.analyse_eau_id = 
 				(select a2.analyse_eau_id from analyse_eau a2
@@ -1793,13 +1793,19 @@ class Echographie extends ObjetBDD {
 						"requis" => 1 
 				),
 				"echographie_commentaire" => array (
-						"type" => 0
+						"type" => 0 
 				),
 				"cliche_nb" => array (
 						"type" => 1 
 				),
 				"cliche_ref" => array (
 						"type" => 0 
+				),
+				"stade_gonade_id" => array (
+						"type" => 1 
+				),
+				"stade_oeuf_id" => array (
+						"type" => 1 
 				) 
 		);
 		if (! is_array ( $param ))
@@ -1819,11 +1825,13 @@ class Echographie extends ObjetBDD {
 		if ($poisson_id > 0 && is_numeric ( $poisson_id )) {
 			$sql = "select echographie_id, evenement_id, e.poisson_id, 
 					echographie_date, echographie_commentaire, 
-					cliche_nb, cliche_ref,
+					cliche_nb, cliche_ref, stade_oeuf_libelle, stade_gonade_libelle,
 					evenement_type_libelle
 					from echographie e
 					left outer join evenement using (evenement_id)
 					left outer join evenement_type using (evenement_type_id)
+					left outer join stade_oeuf using (stade_oeuf_id)
+					left outer join stade_gonade using (stade_gonade_id)
 					where e.poisson_id = " . $poisson_id . "
 					order by echographie_date desc";
 			return $this->getListeParam ( $sql );
@@ -1856,11 +1864,13 @@ class Echographie extends ObjetBDD {
 		if ($annee > 0 && is_numeric ( $annee ) && is_numeric ( $poisson_id )) {
 			$sql = "select echographie_id, evenement_id, e.poisson_id, 
 					echographie_date, echographie_commentaire, 
-					cliche_nb, cliche_ref,
+					cliche_nb, cliche_ref, stade_oeuf_libelle, stade_gonade_libelle,
 					evenement_type_libelle
 					from echographie e
 					left outer join evenement using (evenement_id)
 					left outer join evenement_type using (evenement_type_id) 
+					left outer join stade_oeuf using (stade_oeuf_id)
+					left outer join stade_gonade using (stade_gonade_id)
 					where extract(year from echographie_date) = " . $annee . "
 					and e.poisson_id = " . $poisson_id . " 
 					order by echographie_date desc";
