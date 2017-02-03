@@ -18,7 +18,7 @@ Retour au reproducteur
 <dl>
 <dt>Date de l'injection <span class="red">*</span> :</dt>
 <dd>
-<input class="datetimepicker" name="injection_date" required size="10" maxlength="10" value="{$data.injection_date}">
+<input class="datetimepicker" name="injection_date" required value="{$data.injection_date}">
 <!--  input class="timepicker" name="injection_time" required value="{$data.injection_time}"-->
 </dd>
 </dl>

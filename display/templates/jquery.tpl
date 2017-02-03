@@ -29,6 +29,9 @@ $(document).ready(function() {
 	$(".date").datepicker( { 
 		dateFormat: "dd/mm/yy",
 	} );
+	$(".date").attr( { 
+		'maxlength': '10'
+	});
 	$('.taux').attr( {
 		'pattern': '[0-9]+(\.[0-9]+)?',
 		'maxlength' : "10",
@@ -40,11 +43,17 @@ $(document).ready(function() {
 		'title' : 'Nombre entier (sans décimales)'
 	}
 	);
-	$('.timepicker').attr('pattern', '[0-9][0-9]\:[0-9][0-9]\:[0-9][0-9]');
+	$('.timepicker').attr( {
+		'pattern': '[0-9][0-9]\:[0-9][0-9]\:[0-9][0-9]',
+		'maxlength': "8"
+	});
 	$.timepicker.setDefaults($.timepicker.regional['fr']);
 	$('.datetimepicker').datetimepicker({ 
 		dateFormat: "dd/mm/yy",
 		timeFormat: 'HH:mm:ss',
-	})
+	});
+	$('.datetimepicker').attr( {
+		'maxlength': '19'
+	});
 } ) ;
 </script>
