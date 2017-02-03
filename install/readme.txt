@@ -1,5 +1,14 @@
 Nouveautés
 ===========
+Version 1.6.5 du 3 février 2017
+--------------------------------
+Corrections :
+- la saisie de certaines dates fonctionnait mal (nombre de caractères autorisés trop faible)
+- certains libellés n'étaient pas assez explicites
+
+Améliorations :
+- il est maintenant possible de définir des stades de maturation des oeufs ou des gonades, pour les échographies (tables de paramètres)
+
 Version 1.6.4 du 2 novembre 2016
 --------------------------------
 Corrections :
