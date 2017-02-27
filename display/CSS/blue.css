@@ -177,7 +177,6 @@ input.timepicker {
 	background-repeat: no-repeat;
 	background-position: 100% 50%;
 	width: 5em;
-	maxlength: 8;
 }
 input.datetimepicker {
 	background-image: url("images/clock.png");
@@ -185,7 +184,6 @@ input.datetimepicker {
 	background-repeat: no-repeat;
 	background-position: 100% 50%;
 	width: 15em;
-	maxlength: 19;
 }
 input.commentaire {
 	width: 20em;
