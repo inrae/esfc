@@ -31,20 +31,9 @@ function setDataTables(nomTable, bPaginate, bSort, bFilter, iDisplayLength, bLen
 	        "bSort": bSort,
 	        "iDisplayLength": iDisplayLength,
 	        "bLengthChange": bLengthChange,
-			 "oLanguage": {
-		            "sLengthMenu": "Afficher _MENU_ lignes par page",
-		            "sZeroRecords": "Pas de données",
-		            "sInfo": "_START_ - _END_ / _TOTAL_ lignes",
-		            "sInfoEmpty": "0 - 0 / 0 lignes",
-		            "sInfoFiltered": "(Filtré pour _MAX_ total lignes)",
-		            "sSearch": "Chercher...",
-		            "oPaginate": {
-		                "sFirst":      "Premier",
-		                "sPrevious":   "Pr&eacute;c&eacute;dent",
-		                "sNext":       "Suivant",
-		                "sLast":       "Dernier"
-		            }
-			 }
+	        language : {
+				url : 'display/javascript/fr_FR.json'
+			},
 		} );
 	});
 };
@@ -63,20 +52,9 @@ function setDataTablesFull(nomTable, bPaginate, bSort, bFilter, iDisplayLength, 
 	        "bSort": bSort,
 	        "iDisplayLength": iDisplayLength,
 	        "bLengthChange": bLengthChange,
-			 "oLanguage": {
-		            "sLengthMenu": "Afficher _MENU_ lignes par page",
-		            "sZeroRecords": "Pas de données",
-		            "sInfo": "_START_ - _END_ / _TOTAL_ lignes",
-		            "sInfoEmpty": "0 - 0 / 0 lignes",
-		            "sInfoFiltered": "(Filtré pour _MAX_ total lignes)",
-		            "sSearch": "Chercher...",
-		            "oPaginate": {
-		                "sFirst":      "Premier",
-		                "sPrevious":   "Pr&eacute;c&eacute;dent",
-		                "sNext":       "Suivant",
-		                "sLast":       "Dernier"
-		            }
-		        },
+	        language : {
+				url : 'display/javascript/fr_FR.json'
+			},
 		       dom: 'Bftrip',
 		       buttons: [
 		                 /*{ 
