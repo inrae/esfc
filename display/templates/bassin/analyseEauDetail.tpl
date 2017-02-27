@@ -16,8 +16,12 @@ Modifier les résultats de l'analyse...
 <td>{$dataAnalyse.temperature}</td>
 </tr>
 <tr>
-<td>Oxygène : </td>
+<td>Oxygène (mg/l) : </td>
 <td>{$dataAnalyse.oxygene}</td>
+</tr>
+<tr>
+<td>Oxygène (% sat): </td>
+<td>{$dataAnalyse.o2_pc}</td>
 </tr>
 <tr>
 <td>salinité : </td>

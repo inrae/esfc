@@ -75,7 +75,8 @@ suiv&gt;
 <tr>
 <th>Date<br>d'analyse</th>
 <th>T°</th>
-<th>O2</th>
+<th>O2<br>mg/l</th>
+<th>O2<br>% sat</th>
 <th>Salinité</th>
 <th>pH</th>
 <th>Laboratoire</th>
@@ -106,6 +107,7 @@ suiv&gt;
 </td>
 <td class="right">{$dataAnalyse[lst].temperature}</td>
 <td class="right">{$dataAnalyse[lst].oxygene}</td>
+<td class="right">{$dataAnalyse[lst].o2_pc}</td>
 <td class="right">{$dataAnalyse[lst].salinite}</td>
 <td class="right">{$dataAnalyse[lst].ph}</td>
 <td>{$dataAnalyse[lst].laboratoire_analyse_libelle}

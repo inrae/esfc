@@ -218,8 +218,11 @@ class Bassin extends ObjetBDD {
 	}
 	/**
 	 * Fonction calculant la quantite hebdomadaire d'aliments distribues pour les bassins consideres
-	 * @param array $data : $_REQUEST
-	 * @param array $search : parametres de recherche des bassins
+	 * 
+	 * @param array $data
+	 *        	: $_REQUEST
+	 * @param array $search
+	 *        	: parametres de recherche des bassins
 	 * @return tableau
 	 */
 	function getRecapAlim($data, $search) {
@@ -530,6 +533,9 @@ class AnalyseEau extends ObjetBDD {
 				),
 				"observations" => array (
 						"type" => 0 
+				),
+				"o2_pc" => array (
+						"type" => 1 
 				) 
 		);
 		if (! is_array ( $param ))
@@ -590,7 +596,7 @@ class AnalyseEau extends ObjetBDD {
 	
 	/**
 	 * Retourne le numero d'analyse en fonction de la date et du bassin concerne
-	 * 
+	 *
 	 * @param unknown $dateAnalyse        	
 	 * @param unknown $bassin_id        	
 	 * @return int

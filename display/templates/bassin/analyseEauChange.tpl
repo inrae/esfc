@@ -66,9 +66,15 @@ Retour au circuit d'eau {$dataCircuitEau.circuit_eau_libelle}
 <dd><input name="temperature" value="{$data.temperature}" class="taux">
 </dd></dl>
 <dl>
-<dt>Oxygène : </dt>
+<dt>Oxygène (mg/l) : </dt>
 <dd><input name="oxygene" value="{$data.oxygene}" class="taux">
-</dd></dl>
+</dd>
+</dl>
+<dl>
+<dt>Oxygène (% sat) : </dt>
+<dd><input name="o2_pc" value="{$data.o2_pc}" class="taux">
+</dd>
+</dl>
 <dl>
 <dt>salinité : </dt>
 <dd><input name="salinite" value="{$data.salinite}" class="taux">
