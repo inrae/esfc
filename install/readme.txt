@@ -1,5 +1,11 @@
 Nouveautés
 ===========
+Version 1.6.6 du 27 février 2017
+--------------------------------
+Améliorations :
+- ajout de la valeur oxygène dissous en % dans les analyses d'eau
+- mise à jour du composant dataTables, utilisé pour afficher les tableaux et exporter les données
+
 Version 1.6.5 du 3 février 2017
 --------------------------------
 Corrections :
