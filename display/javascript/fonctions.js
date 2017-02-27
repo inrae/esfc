@@ -77,31 +77,18 @@ function setDataTablesFull(nomTable, bPaginate, bSort, bFilter, iDisplayLength, 
 		                "sLast":       "Dernier"
 		            }
 		        },
-		        "sDom": 'T<"clear">lfrtip',
-				"oTableTools": {
-					"sSwfPath": "display/javascript/DataTables-1.9.4/extras/TableTools/media/swf/copy_csv_xls_pdf.swf",
-					"aButtons": [ 
-									{
-									"sExtends":	"print",
-									"sButtonText": "Imprimer",
-									"sToolTip": "Imprimer le tableau"
-									}, 
-									{
-									"sExtends":	"pdf",
-									"sButtonText": "PDF",
-									"sToolTip": "Exporter au format PDF"
-									},
-									{
-									"sExtends":	"csv",
-									"sButtonText": "CSV",
-									"sToolTip": "Exporter au format CSV (séparateur : virgule)"
-									},
-									{
-									"sExtends":	"copy",
-									"sButtonText": "Copier",
-									"sToolTip": "Copier dans le presse-papiers"
-									} ]
-				}		
+		       dom: 'Bftrip',
+		       buttons: [
+		                 /*{ 
+		    	   extend: 'copyHtml5',
+	                exportOptions: {
+	                 columns: ':contains("Office")'
+	                }
+		       },*/
+	            /*'excelHtml5',*/
+	            'csvHtml5',
+	            'pdfHtml5'
+		       ]
 		} );
 	} );
 }
