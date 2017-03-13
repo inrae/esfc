@@ -42,14 +42,15 @@ function dataRead($dataClass, $id, $smartyPage, $idParent = null) {
  */
 function dataWrite($dataClass, $data) {
 	global $message, $LANG, $module_coderetour, $log;
-	$id = $dataClass->write ( $data );
+	try {
+	$id = $dataClass->ecrire ( $data );
 	if (strlen ( $message ) > 0)
 		$message .= '<br>';
-	if ($id > 0) {
+	
 		$message .= $LANG ["message"] [5];
 		$module_coderetour = 1;
 		$log->setLog ( $_SESSION ["login"], get_class ( $dataClass ) . "-write", $id );
-	} else {
+	} catch (Exception $e) {
 		/*
 		 * Mise en forme du message d'erreur
 		 */
@@ -68,23 +69,35 @@ function dataWrite($dataClass, $data) {
  */
 function dataDelete($dataClass, $id) {
 	global $message, $LANG, $module_coderetour, $log;
-	if (is_numeric ( $id ) && $id > 0) {
+	$module_coderetour = - 1;
+	$ok = true;
+	if (is_array($id)) {
+		foreach ($id as $key=>$value) {
+			if (! (is_numeric($value)&&$value > 0))
+				$ok = false;
+		}
+	} else {
+		if (!(is_numeric ( $id ) && $id > 0))
+			$ok = false;
+	}
+	if ($ok == true) {
 		if (strlen ( $message ) > 0)
 			$message .= '<br>';
-		$ret = $dataClass->supprimer ( $id );
-		if ($ret > 0) {
+		try {
+			$ret = $dataClass->supprimer ( $id );
 			$message = $LANG ["message"] [4];
 			$module_coderetour = 2;
 			$log->setLog ( $_SESSION ["login"], get_class ( $dataClass ) . "-delete", $id );
-		} else {
+		} catch (Exception $e) {
 			/*
 			 * Mise en forme du message d'erreur
 			 */
 			$message = formatErrorData ( $dataClass->getErrorData () );
-			$message .= $LANG ["message"] [13];
-			$module_coderetour = - 1;
+			$message .= $LANG ["message"] [13];	
+			$ret = -1;
 		}
-	}
+	} else 
+		$ret = -1;
 	return ($ret);
 }
 /**
