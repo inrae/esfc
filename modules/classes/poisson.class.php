@@ -951,9 +951,9 @@ class Gender_selection extends ObjetBDD {
 		$ret = parent::ecrire ( $data );
 		if ($ret > 0 && $data ["poisson_id"] > 0) {
 			/*
-			 * S'il s'agit d'une determination expert, on force le sexe
+			 * S'il s'agit d'une determination expert ou par échographie, on force le sexe
 			 */
-			if ($data ["gender_methode_id"] == 1) {
+			if ($data ["gender_methode_id"] == 1 || $data ["gender_methode_id"] == 4) {
 				$poisson = new Poisson ( $this->connection, $this->paramori );
 				$dataPoisson = $poisson->lire ( $data ["poisson_id"] );
 				$dataPoisson ["sexe_id"] = $data ["sexe_id"];
