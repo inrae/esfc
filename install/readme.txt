@@ -1,5 +1,12 @@
 Nouveautés
 ===========
+Version 1.6.7 du 21 mars 2017
+--------------------------------
+Améliorations :
+- en saisie d'un transfert (événement), le bassin d'origine est maintenant pré-renseigné
+- il est maintenant possible de créer une morphologie en ne saisissant qu'un commentaire
+- ajout d'une donnée morphologique : la circonférence du poisson
+
 Version 1.6.6 du 27 février 2017
 --------------------------------
 Améliorations :
