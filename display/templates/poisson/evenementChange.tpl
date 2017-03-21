@@ -195,15 +195,21 @@ Sélectionnez la pathologie...
 <fieldset class="fsMasquable">
 <legend>Changement de bassin</legend>
 <div class="masquage">
+{$bselect = 0}
+{if $dataTransfert.bassin_origine > 0}
+{$bselect = $dataTransfert.bassin_origine}
+{elseif $dataTransfert.dernier_bassin_connu > 0}
+{$bselect = $dataTransfert.dernier_bassin_connu}
+{/if}
 <dl>
 <dt>Bassin d'origine <span class="red">*</span> : </dt>
 <dd>
 <select name="bassin_origine" id="bassin_origine">
-<option value="" {if $dataTransfert.bassin_origine == ""} selected {/if}>
+<option value="" {if $bselect == 0} selected {/if}>
 Sélectionnez le bassin d'origine...
 </option>
 {section name=lst loop=$bassinList}
-<option value="{$bassinList[lst].bassin_id}" {if $bassinList[lst].bassin_id == $dataTransfert.bassin_origine} selected {/if}>
+<option value="{$bassinList[lst].bassin_id}" {if $bassinList[lst].bassin_id == $bselect} selected {/if}>
 {$bassinList[lst].bassin_nom}
 </option>
 {/section}

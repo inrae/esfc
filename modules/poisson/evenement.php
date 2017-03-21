@@ -53,26 +53,27 @@ switch ($t_module ["param"]) {
 			$smarty->assign ( "cohorteType", $cohorte_type->getListe ( 2 ) );
 			$sortie_lieu = new SortieLieu ( $bdd, $ObjetBDDParam );
 			$smarty->assign ( "sortieLieu", $sortie_lieu->getListeActif ( 1 ) );
-			$anesthesie_produit = new Anesthesie_produit($bdd, $ObjetBDDParam);
-			$dataProduit = $anesthesie_produit->getListeActif(1);
+			$anesthesie_produit = new Anesthesie_produit ( $bdd, $ObjetBDDParam );
+			$dataProduit = $anesthesie_produit->getListeActif ( 1 );
 			dataRead ( $dataClass, $id, "poisson/evenementChange.tpl", $_REQUEST ["poisson_id"] );
-			$nageoire = new Nageoire($bdd, $ObjetBDDParam);
-			$smarty->assign("nageoire", $nageoire->getListe(1));
+			$nageoire = new Nageoire ( $bdd, $ObjetBDDParam );
+			$smarty->assign ( "nageoire", $nageoire->getListe ( 1 ) );
 			/*
 			 * Tables des stades de maturation des oeufs ou gonades
 			 */
 			require_once 'modules/classes/stadeGonade.class.php';
 			require_once 'modules/classes/stadeOeuf.class.php';
-			$stadeGonade = new StadeGonade($bdd, $ObjetBDDParam);
-			$stadeOeuf = new StadeOeuf($bdd, $ObjetBDDParam);
-			$smarty->assign("gonades", $stadeGonade->getListe(1));
-			$smarty->assign("oeufs", $stadeOeuf->getListe(1));
+			$stadeGonade = new StadeGonade ( $bdd, $ObjetBDDParam );
+			$stadeOeuf = new StadeOeuf ( $bdd, $ObjetBDDParam );
+			$smarty->assign ( "gonades", $stadeGonade->getListe ( 1 ) );
+			$smarty->assign ( "oeufs", $stadeOeuf->getListe ( 1 ) );
 			/*
 			 * Lecture du poisson
 			 */
 			$poisson = new Poisson ( $bdd, $ObjetBDDParam );
 			$dataPoisson = $poisson->getDetail ( $_REQUEST ["poisson_id"] );
 			$smarty->assign ( "dataPoisson", $dataPoisson );
+			$dataTransfert = array ();
 			/*
 			 * Lecture des tables associees
 			 */
@@ -91,44 +92,42 @@ switch ($t_module ["param"]) {
 				$smarty->assign ( "dataSortie", $sortie->getDataByEvenement ( $id ) );
 				$echographie = new Echographie ( $bdd, $ObjetBDDParam );
 				$smarty->assign ( "dataEcho", $echographie->getDataByEvenement ( $id ) );
-				$anesthesie = new Anesthesie($bdd, $ObjetBDDParam);
-				$dataAnesthesie = $anesthesie->getDataByEvenement($id);
-				$dosageSanguin = new DosageSanguin($bdd, $ObjetBDDParam);
-				$smarty->assign("dataDosageSanguin", $dosageSanguin->getDataByEvenement($id));
-				$genetique = new Genetique($bdd, $ObjetBDDParam);
-				$smarty->assign("dataGenetique", $genetique->getDataByEvenement($id));
-				$smarty->assign("dataAnesthesie", $dataAnesthesie);
-				
+				$anesthesie = new Anesthesie ( $bdd, $ObjetBDDParam );
+				$dataAnesthesie = $anesthesie->getDataByEvenement ( $id );
+				$dosageSanguin = new DosageSanguin ( $bdd, $ObjetBDDParam );
+				$smarty->assign ( "dataDosageSanguin", $dosageSanguin->getDataByEvenement ( $id ) );
+				$genetique = new Genetique ( $bdd, $ObjetBDDParam );
+				$smarty->assign ( "dataGenetique", $genetique->getDataByEvenement ( $id ) );
+				$smarty->assign ( "dataAnesthesie", $dataAnesthesie );
 				
 				/*
 				 * Recherche si le produit est toujours utilise
 				 */
-				if (isset($dataAnesthesie["anesthesie_produit_id"])) {
+				if (isset ( $dataAnesthesie ["anesthesie_produit_id"] )) {
 					$is_found = false;
-					foreach ($dataProduit as $key=>$value) {
-						if ($value["anesthesie_produit_id"] == $dataAnesthesie["anesthesie_produit_id"])
+					foreach ( $dataProduit as $key => $value ) {
+						if ($value ["anesthesie_produit_id"] == $dataAnesthesie ["anesthesie_produit_id"])
 							$is_found = true;
 					}
 					if ($is_found == false) {
-						$dataProduit[] = array ($dataAnesthesie["anesthesie_produit_id"], $dataAnesthesie["anesthesie_produit_libelle"]);
+						$dataProduit [] = array (
+								$dataAnesthesie ["anesthesie_produit_id"],
+								$dataAnesthesie ["anesthesie_produit_libelle"] 
+						);
 					}
 				}
-				$smarty->assign("produit", $dataProduit);
+				$smarty->assign ( "produit", $dataProduit );
 				
 				/*
 				 * Traitement particulier du transfert
 				 */
 				$transfert = new Transfert ( $bdd, $ObjetBDDParam );
 				$dataTransfert = $transfert->getDataByEvenement ( $id );
-			} else {
-				/*
-				 * Initialisation des donnees en cas de nouvel evenement
-				 */
-				if ($dataPoisson ["bassin_id"] > 0)
-					$dataTransfert = array (
-							"dernier_bassin_connu" => $dataPoisson ["bassin_id"],
-							"dernier_bassin_connu_libelle" => $dataPoisson ["bassin_nom"] 
-					);
+			}
+			
+			if ($dataPoisson ["bassin_id"] > 0) {
+				$dataTransfert ["dernier_bassin_connu"] = $dataPoisson ["bassin_id"];
+				$dataTransfert ["dernier_bassin_connu_libelle"] = $dataPoisson ["bassin_nom"];
 			}
 			$smarty->assign ( "dataTransfert", $dataTransfert );
 			/*
@@ -139,7 +138,7 @@ switch ($t_module ["param"]) {
 			$smarty->assign ( "parentIdName", "evenement_id" );
 			$smarty->assign ( "parent_id", $id );
 			require_once 'modules/document/documentFunctions.php';
-			$smarty->assign ( "dataDoc", getListeDocument ( "evenement", $id, $_REQUEST["document_limit"], $_REQUEST["document_offset"] ) );
+			$smarty->assign ( "dataDoc", getListeDocument ( "evenement", $id, $_REQUEST ["document_limit"], $_REQUEST ["document_offset"] ) );
 		}
 		break;
 	case "write":
@@ -248,7 +247,7 @@ switch ($t_module ["param"]) {
 			/*
 			 * Echographie
 			 */
-			if (strlen ( $_REQUEST ["echographie_commentaire"] ) > 0 || $_REQUEST["stade_gonade_id"] > 0 || $_REQUEST["stade_oeuf_id"] > 0|| isset($_FILES["documentName"])) {
+			if (strlen ( $_REQUEST ["echographie_commentaire"] ) > 0 || $_REQUEST ["stade_gonade_id"] > 0 || $_REQUEST ["stade_oeuf_id"] > 0 || isset ( $_FILES ["documentName"] )) {
 				$echographie = new Echographie ( $bdd, $ObjetBDDParam );
 				$_REQUEST ["echographie_date"] = $_REQUEST ["evenement_date"];
 				$echographie_id = $echographie->ecrire ( $_REQUEST );
@@ -260,12 +259,12 @@ switch ($t_module ["param"]) {
 				/*
 				 * Traitement des photos a importer
 				 */
-				if ($echographie_id > 0 && isset($_FILES["documentName"])) {
-					require_once 'modules/document/documentFunctions.php'; 
+				if ($echographie_id > 0 && isset ( $_FILES ["documentName"] )) {
+					require_once 'modules/document/documentFunctions.php';
 					/*
 					 * Preparation de files
 					 */
-					$files = formatFiles();
+					$files = formatFiles ();
 					$documentSturio = new DocumentSturio ( $bdd, $ObjetBDDParam );
 					foreach ( $files as $file ) {
 						$document_id = $documentSturio->ecrire ( $file, $_REQUEST ["document_description"] );
@@ -299,30 +298,36 @@ switch ($t_module ["param"]) {
 			/*
 			 * Dosage sanguin
 			 */
-			$fields = array ("tx_e2", "tx_e2_texte", "tx_calcium", "tx_hematocrite", "dosage_sanguin_commentaire");
+			$fields = array (
+					"tx_e2",
+					"tx_e2_texte",
+					"tx_calcium",
+					"tx_hematocrite",
+					"dosage_sanguin_commentaire" 
+			);
 			$flag = false;
-			foreach ($fields as $field) {
-				if (strlen($_REQUEST[$field]) > 0)
-						$flag = true;
+			foreach ( $fields as $field ) {
+				if (strlen ( $_REQUEST [$field] ) > 0)
+					$flag = true;
 			}
 			if ($flag == true) {
 				require_once 'modules/classes/dosageSanguin.class.php';
-				$_REQUEST["dosage_sanguin_date"] = $_REQUEST["evenement_date"];
-				$dosageSanguin = new DosageSanguin($bdd, $ObjetBDDParam);
-				$dosage_sanguin_id = $dosageSanguin->ecrire($_REQUEST);
+				$_REQUEST ["dosage_sanguin_date"] = $_REQUEST ["evenement_date"];
+				$dosageSanguin = new DosageSanguin ( $bdd, $ObjetBDDParam );
+				$dosage_sanguin_id = $dosageSanguin->ecrire ( $_REQUEST );
 				if (! $dosage_sanguin_id > 0) {
 					$message .= formatErrorData ( $dosageSanguin->getErrorData () );
 					$message .= $LANG ["message"] [12];
 					$module_coderetour = - 1;
-				}	
+				}
 			}
 			/*
 			 * Prelevement genetique
 			 */
-			if (strlen($_REQUEST["genetique_reference"]) > 0) {
-				$_REQUEST["genetique_date"] = $_REQUEST["evenement_date"];
-				$genetique = new Genetique($bdd, $ObjetBDDParam);
-				$genetique_id = $genetique->ecrire($_REQUEST);
+			if (strlen ( $_REQUEST ["genetique_reference"] ) > 0) {
+				$_REQUEST ["genetique_date"] = $_REQUEST ["evenement_date"];
+				$genetique = new Genetique ( $bdd, $ObjetBDDParam );
+				$genetique_id = $genetique->ecrire ( $_REQUEST );
 				if (! $genetique_id > 0) {
 					$message .= formatErrorData ( $genetique->getErrorData () );
 					$message .= $LANG ["message"] [12];
@@ -363,28 +368,28 @@ switch ($t_module ["param"]) {
 		 * au format CSV
 		 */	
 		require_once 'modules/classes/export.class.php';
-		$export = new Export();
-		$data = $dataClass->getAllEvenements($searchPoisson->getParam());
-		if (is_array($data)) {
-			$export->exportCSVinit("sturio-evenements", "tab");
+		$export = new Export ();
+		$data = $dataClass->getAllEvenements ( $searchPoisson->getParam () );
+		if (is_array ( $data )) {
+			$export->exportCSVinit ( "sturio-evenements", "tab" );
 			/*
 			 * Preparation de la ligne d'entete
 			 */
-			$entete=array();
-			foreach ($data[0] as $key => $value) {
-				$entete[] = $key;
+			$entete = array ();
+			foreach ( $data [0] as $key => $value ) {
+				$entete [] = $key;
 			}
-			$export->setLigneCSV($entete);
+			$export->setLigneCSV ( $entete );
 			/*
 			 * Envoi de toutes les lignes
 			 */
-			foreach ($data as $key => $value) {
-				$export->setLigneCSV($value);
+			foreach ( $data as $key => $value ) {
+				$export->setLigneCSV ( $value );
 			}
 			/*
 			 * Envoi au navigateur
 			 */
-			$export->exportCSV();
+			$export->exportCSV ();
 		}
 		break;
 }
