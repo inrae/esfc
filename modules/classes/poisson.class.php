@@ -578,6 +578,9 @@ class Morphologie extends ObjetBDD {
 				),
 				"morphologie_commentaire" => array (
 						"type" => 0 
+				),
+				"circonference" => array (
+						"type" => 1 
 				) 
 		);
 		if (! is_array ( $param ))
@@ -593,7 +596,7 @@ class Morphologie extends ObjetBDD {
 	 */
 	function getListeByPoisson($poisson_id) {
 		if ($poisson_id > 0 && is_numeric ( $poisson_id )) {
-			$sql = "select morphologie_id, m.poisson_id, longueur_fourche, longueur_totale, masse, morphologie_date, morphologie_commentaire, 
+			$sql = "select morphologie_id, m.poisson_id, longueur_fourche, longueur_totale, masse, circonference, morphologie_date, morphologie_commentaire, 
 					m.evenement_id, evenement_type_libelle
 					from morphologie m
 					left outer join evenement using (evenement_id)

@@ -9,10 +9,11 @@ setDataTablesFull("cmorphologieList");
 <th>Longueur<br>à la fourche (cm)</th>
 <th>Longueur<br>totale (cm)</th>
 <th>Masse (g)</th>
+<th>Circon<br>férence (cm)</th>
 <th>Commentaire</th>
 </tr>
 </thead>
-<tdata>
+<tbody>
 {section name=lst loop=$dataMorpho}
 <tr>
 <td>
@@ -30,8 +31,9 @@ setDataTablesFull("cmorphologieList");
 <td class="right">{$dataMorpho[lst].longueur_fourche}</td>
 <td class="right">{$dataMorpho[lst].longueur_totale}</td>
 <td class="right">{$dataMorpho[lst].masse}</td>
+<td class="right">{$dataMorpho[lst].circonference}</td>
 <td>{$dataMorpho[lst].morphologie_commentaire}</td>
 </tr>
 {/section}
-</tdata>
+</tbody>
 </table>

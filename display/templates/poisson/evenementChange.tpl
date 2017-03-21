@@ -152,6 +152,12 @@ Type d'événement <span class="red">*</span> :</dt>
 </dd>
 </dl>
 <dl>
+<dt>Circonférence (cm) :</dt>
+<dd>
+<input name="circonference" id="circonference" value="{$dataMorpho.circonference}" size="10" maxlength="10" title="Valeur numérique" pattern="[0-9]+(\.[0-9]+)?">
+</dd>
+</dl>
+<dl>
 <dt>Commentaire :</dt>
 <dd>
 <input name="morphologie_commentaire" id="cmorphologie_commentaire" value="{$dataMorpho.morphologie_commentaire}" size="40">

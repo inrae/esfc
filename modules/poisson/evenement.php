@@ -156,7 +156,7 @@ switch ($t_module ["param"]) {
 			/*
 			 * Morphologie
 			 */
-			if ($_REQUEST ["longueur_fourche"] > 0 || $_REQUEST ["longueur"] > 0 || $_REQUEST ["masse"] > 0 || strlen($_REQUEST["morphologie_commentaire"]) > 0) {
+			if ($_REQUEST ["longueur_fourche"] > 0 || $_REQUEST ["longueur"] > 0 || $_REQUEST ["masse"] > 0 || $_REQUEST ["circonference"] > 0 || strlen($_REQUEST["morphologie_commentaire"]) > 0) {
 				$morphologie = new Morphologie ( $bdd, $ObjetBDDParam );
 				$_REQUEST ["morphologie_date"] = $_REQUEST ["evenement_date"];
 				$morpho_id = $morphologie->ecrire ( $_REQUEST );

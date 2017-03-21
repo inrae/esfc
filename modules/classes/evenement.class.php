@@ -83,7 +83,7 @@ class Evenement extends ObjetBDD {
  					mortalite_date, mortalite_commentaire, mortalite_type_id, mortalite_type_libelle,
  					sortie_date, sortie_commentaire, sevre, sortie_lieu_id, localisation,
  					pathologie_valeur, pathologie_type_id, pathologie_type_libelle, pathologie_commentaire,
- 					longueur_fourche, longueur_totale, masse, morphologie_commentaire,
+ 					longueur_fourche, longueur_totale, masse, circonference, morphologie_commentaire,
  					bassin_origine, bassin_destination, transfert_commentaire,
  					b1.bassin_nom as bassin_origine_nom, b2.bassin_nom as bassin_destination_nom,
  					echographie_commentaire, cliche_nb, cliche_ref,
