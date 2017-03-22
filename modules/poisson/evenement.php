@@ -247,7 +247,7 @@ switch ($t_module ["param"]) {
 			/*
 			 * Echographie
 			 */
-			if (strlen ( $_REQUEST ["echographie_commentaire"] ) > 0 || $_REQUEST ["stade_gonade_id"] > 0 || $_REQUEST ["stade_oeuf_id"] > 0 ||  $_FILES ["documentName"]['error'] == 0 ) {
+			if (strlen ( $_REQUEST ["echographie_commentaire"] ) > 0 || $_REQUEST ["stade_gonade_id"] > 0 || $_REQUEST ["stade_oeuf_id"] > 0 ||  $_FILES ["documentName"]['error'] == 0 || $_FILES["documentName"] ['error'] [0] == 0 ) {
 				$echographie = new Echographie ( $bdd, $ObjetBDDParam );
 				$_REQUEST ["echographie_date"] = $_REQUEST ["evenement_date"];
 				$echographie_id = $echographie->ecrire ( $_REQUEST );
