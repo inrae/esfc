@@ -204,8 +204,6 @@ Sélectionnez la pathologie...
 {$bselect = 0}
 {if $dataTransfert.bassin_origine > 0}
 {$bselect = $dataTransfert.bassin_origine}
-{elseif $dataTransfert.dernier_bassin_connu > 0}
-{$bselect = $dataTransfert.dernier_bassin_connu}
 {/if}
 <dl>
 <dt>Bassin d'origine <span class="red">*</span> : </dt>
