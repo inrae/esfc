@@ -613,11 +613,8 @@ class Morphologie extends ObjetBDD {
 	 */
 	function getMasseLast($poisson_id) {
 		if ($poisson_id > 0 && is_numeric ( $poisson_id )) {
-			$sql = "select masse from " . $this->table . "
-					where morphologie_date is not null 
-					and poisson_id = " . $poisson_id . "
-					order by morphologie_date desc
-					limit 1";
+			$sql = "select masse from v_poisson_last_masse
+					where  poisson_id = " . $poisson_id ;
 			return $this->lireParam ( $sql );
 		}
 	}
