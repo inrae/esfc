@@ -19,6 +19,8 @@ if (!isset($LANG)) {
 /**
  * Preparation des parametres pour les classes heritees de ObjetBDD
  */
+if (!isset($FORMATDATE))
+	$FORMATDATE = $DEFAULT_formatdate;
 if (!isset($ObjetBDDParam)) $ObjetBDDParam = array ();
 if (is_array($ObjetBDDParam)==false) $ObjetBDDParam = array ();
 if (strlen($FORMATDATE) > 0) {
