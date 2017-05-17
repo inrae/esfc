@@ -30,6 +30,25 @@ switch ($t_module ["param"]) {
 		$smarty->assign("document_limit", $_REQUEST["document_limit"]);
 		$smarty->assign( "document_offset", $_REQUEST["document_offset"]);
 		break;
+	case "changeData":
+		dataRead ( $dataClass, $id, "document/documentChangeData.tpl" );
+		$smarty->assign ( "moduleParent", $_REQUEST ["moduleParent"] );
+		$smarty->assign ( "parentType", $_REQUEST ["parentType"] );
+		$smarty->assign ( "parentIdName", $_REQUEST ["parentIdName"] );
+		$smarty->assign ( "parent_id", $_REQUEST ["parent_id"] );
+		$smarty->assign("document_limit", $_REQUEST["document_limit"]);
+		$smarty->assign( "document_offset", $_REQUEST["document_offset"]);
+		$smarty->assign($_REQUEST["parentIdName"], $_REQUEST["parent_id"]);
+		break;
+	case "writeData":
+		/*
+		 * Retour au module initial
+		 */
+		$dataClass->writeData($_REQUEST);
+		$module_coderetour = 1;
+		$t_module ["retourok"] = $_REQUEST['moduleParent'];
+		$_REQUEST[$_REQUEST["parentIdName"]] = $_REQUEST["parent_id"];
+		break;
 	case "write":
 		/*
 		 * write record in database

@@ -49,8 +49,9 @@ suiv&gt;
 <th>Taille</th>
 <th>Prise de vue ou création</th>
 <th>Date<br>d'import</th>
-{if $droits["bassinAdmin"] == 1 || $droits["poissonAdmin"] == 1 || $droits["reproAdmin"]}
-<th>Supprimer</th>
+{if $droits["bassinGestion"] == 1 || $droits["poissonGestion"] == 1 || $droits["reproGestion"]}
+<th>Modif.</th>
+<th>Suppr.</th>
 {/if}
 </tr>
 </thead>
@@ -77,6 +78,13 @@ suiv&gt;
 <td>{$dataDoc[lst].document_date_creation}</td>
 <td>{$dataDoc[lst].document_date_import}</td>
 {if $droits["bassinAdmin"] == 1 || $droits["poissonAdmin"] == 1}
+<td>
+<div class="center">
+<a href="index.php?module=documentChangeData&document_id={$dataDoc[lst].document_id}&moduleParent={$moduleParent}&parentIdName={$parentIdName}&parent_id={$parent_id}&parentType={$parentType}{if $parentIdName != 'poisson_id'}&poisson_id={$data.poisson_id}{/if}">
+<img src="display/images/edit.gif" height="20">
+</a>
+</div>
+</td>
 <td>
 <div class="center">
 <a href="index.php?module=documentDelete&document_id={$dataDoc[lst].document_id}&moduleParent={$moduleParent}&parentIdName={$parentIdName}&parent_id={$parent_id}&parentType={$parentType}{if $parentIdName != 'poisson_id'}&poisson_id={$data.poisson_id}{/if}" onclick="return confirm('Confirmez-vous la suppression ?');">

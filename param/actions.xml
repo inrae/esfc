@@ -243,10 +243,13 @@
 	<repartitionResteChange action="modules/aliment/repartition.php" param="resteChange" droits="bassinGestion" />
 	<repartitionResteWrite action="modules/aliment/repartition.php" param="resteWrite" droits="bassinGestion" modulebefore="repartitionResteChange" retourok="repartitionList" retourko="repartitionResteChange"/>
 
-	<documentChange action="modules/document/document.php" param="change" droits="bassinGestion,poissonGestion" />
-	<documentWrite action="modules/document/document.php" param="write" droits="bassinGestion,poissonGestion" retourok="documentList" retourko="documentChange"  />
-	<documentDelete action="modules/document/document.php" param="delete" droits="bassinAdmin,poissonAdmin" retoursuppr="documentList" retourko="documentChange" />
+	<documentChange action="modules/document/document.php" param="change" droits="bassinGestion,poissonGestion,reproGestion" />
+	<documentWrite action="modules/document/document.php" param="write" droits="bassinGestion,poissonGestion,reproGestion" retourok="documentList" retourko="documentChange"  />
+	<documentDelete action="modules/document/document.php" param="delete" droits="bassinGestion,poissonGestion,reproGestion" retoursuppr="documentList" retourko="documentChange" />
 	<documentGet action="modules/document/document.php" param="get" droits="consult" ajax="1"/>
+	<documentChangeData action="modules/document/document.php" param="changeData" droits="bassinGestion,poissonGestion,reproGestion" />
+	<documentWriteData action="modules/document/document.php" param="writeData" droits="bassinGestion,poissonGestion,reproGestion" retourok="documentList" retourko="documentChange"  />
+	
 	
 	<repro action="modules/repro/poissonCampagne.php" param="list" droits="reproConsult" />
 

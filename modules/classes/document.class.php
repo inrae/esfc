@@ -301,6 +301,14 @@ class DocumentAttach extends ObjetBDD {
 			}
 		}
 	}
+	/**
+	 * Appel de la fonction ecrire native
+	 * @param array $data
+	 * @return Identifier
+	 */
+	function writeData($data) {
+		return parent::ecrire($data);
+	}
 	
 	/**
 	 * Recupere les informations d'un document
