@@ -62,7 +62,10 @@ class DocumentSturio extends DocumentAttach {
 				$ok = false;
 		}
 		if (in_array ( $type, $this->modules ) && $ok == true) {
-			$order = " order by document_date_creation desc, document_date_import desc";
+			$order = " order by case 
+when document_date_creation  is null then '1970-01-01'
+else document_date_creation
+end desc, document_date_import desc";
 			if ($type == "poisson") {
 				$sql = "select document_id, document_date_import, document_nom,
  						document_description, size, mime_type_id,
@@ -103,7 +106,8 @@ class DocumentSturio extends DocumentAttach {
 				$offset = 0;
 			$limit = " limit ".$limit;
 			$offset = " offset ".$offset;
-			$liste = $this->getListeParam ( $sql . $where . $order . $limit . $offset);
+			$commande = "select * from ($sql $where) as a  $order $limit $offset";
+			$liste = $this->getListeParam ( $commande);
 			/*
 			 * Stockage des photos dans le dossier temporaire
 			 */
