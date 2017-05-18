@@ -1,8 +1,22 @@
 <script>
 $(document).ready(function() { 
-	$("select").change(function () {
+/*	$("select").change(function () {
 		$("#search").submit();
 	} );
+*/
+	$("#search").submit(function( event ) { 
+		var retour = false;
+		if ($("#texte").val().length > 1)
+			retour = true;
+		if ($("#categorie").val() > 0)
+			retour = true;
+		if ($("#statut").val() > 0)
+			retour = true;
+		if ($("#sexe").val() > 0 )
+			retour = true;
+		if (retour === false)
+			event.preventDefault();
+	});
 } ) ;
 </script>
 <form method="get" action="index.php" id="search">
@@ -12,10 +26,11 @@ $(document).ready(function() {
 <tr>
 <td colspan='2'>
 Libellé à rechercher (id, tag, prenom, matricule, cohorte) : 
-<input name="texte" value="{$poissonSearch.texte}" size="40" maxlength="40">
+<input id="texte" name="texte" value="{$poissonSearch.texte}" size="40" maxlength="40">
 <br>
 Catégorie :
-<select name="categorie" id="categorie">
+<select id="categorie" name="categorie" id="categorie">
+<option value="" {if $categorie[lst].categorie_id == ""}selected{/if}>Sélectionnez la catégorie...</option>
 {section name=lst loop=$categorie}
 <option value="{$categorie[lst].categorie_id}" {if $poissonSearch.categorie == $categorie[lst].categorie_id}selected{/if}>
 {$categorie[lst].categorie_libelle}
@@ -23,7 +38,7 @@ Catégorie :
 {/section}
 </select>
  Statut de l'animal : 
-<select name="statut" id="statut">
+<select id="statut" name="statut" id="statut">
 <option value="" {if $poissonSearch.statut==""}selected{/if}>Sélectionnez le statut...</option>
 {section name=lst loop=$statut}
 <option value="{$statut[lst].poisson_statut_id}" {if $poissonSearch.statut == $statut[lst].poisson_statut_id}selected{/if}>
@@ -32,7 +47,7 @@ Catégorie :
 {/section}
 </select>
  Sexe : 
- <select name="sexe">
+ <select id="sexe" name="sexe">
  <option value="" {if $poissonSearch.sexe == ""}selected{/if}>Sélectionnez le sexe...</option>
 {section name=lst loop=$sexe}
 <option value="{$sexe[lst].sexe_id}" {if $poissonSearch.sexe == $sexe[lst].sexe_id}selected{/if}>
