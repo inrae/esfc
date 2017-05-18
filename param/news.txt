@@ -1,5 +1,19 @@
 Nouveautés
 ===========
+Version 1.6.8 du 18 mai 2017
+--------------------------------
+Corrections :
+- en création d'événement, une ligne était créée systématiquement dans la table échographie
+- lors de la création d'une échographie/événement, l'import ne fonctionnait pas si 2 photos étaient téléchargées en même temps
+- le calcul de la masse des poissons dans un bassin présentait un bug
+- lors de la modification du statut d'activité du bassin, un message d'erreur était affiché
+
+Améliorations :
+- les documents, photos... sont maintenant triées d'abord par date de création/prise de vue (les plus récentes en premier)
+- il est maintenant possible de modifier les informations générales d'une photo (nom, commentaire, date de prise de vue)
+- le statut d'activité des circuits d'eau est maintenant affiché dans la liste et dans le détail
+- lors de la recherche des poissons, la catégorie n'est plus obligatoire. La recherche n'est plus déclenchée automatiquement après changement dans une boite de sélection, et un contrôle a été rajouté pour ne déclencher la recherche que si un critère a été renseigné
+
 Version 1.6.7 du 21 mars 2017
 --------------------------------
 Améliorations :
