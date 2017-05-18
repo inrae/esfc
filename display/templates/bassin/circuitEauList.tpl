@@ -16,19 +16,23 @@ setDataTables("ccircuitEauList");
 <thead>
 <tr>
 <th>libellé</th>
+<th>En service</th>
 {if $droits["bassinGestion"] == 1}
 <th>Nouvelles<br>Données</th>
 {/if}
 <th>Dernière<br>analyse</th>
 </tr>
 </thead>
-<tdata>
+<tbody>
 {section name=lst loop=$data}
 <tr>
 <td>
 <a href="index.php?module=circuitEauDisplay&circuit_eau_id={$data[lst].circuit_eau_id}">
 {$data[lst].circuit_eau_libelle}
 </a>
+</td>
+<td class="center">
+{if $data[lst].circuit_eau_actif == 1}oui{else}non{/if}
 </td>
 {if $droits["bassinGestion"] == 1}
 <td>
@@ -48,7 +52,7 @@ setDataTables("ccircuitEauList");
 </td>
 </tr>
 {/section}
-</tdata>
+</tbody>
 </table>
 </td>
 <td>
