@@ -1,9 +1,3 @@
-<script>
-$(document).ready(function() {
-	$(".taux").attr("pattern","[0-9]+(\.[0-9]+)?");
-	$(".taux").attr("title","valeur numérique");
-});
-</script>
 <a href="index.php?module={$poissonDetailParent}">Retour à la liste des poissons</a>
 &nbsp;
 <a href="index.php?module={$poissonParent}&poisson_campagne_id={$data.poisson_campagne_id}&poisson_id={$data.poisson_id}">

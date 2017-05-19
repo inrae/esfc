@@ -38,12 +38,12 @@ $(document).ready(function() {
 		'maxlength': '10'
 	});
 	$('.taux').attr( {
-		'pattern': '[0-9]+(\.[0-9]+)?',
+		'pattern': '^-?[0-9]+(\.[0-9]+)?',
 		'maxlength' : "10",
 		'title' : "Nombre avec ou sans décimales (séparateur : point)"
 	} );
 	$('.nombre').attr( {
-		'pattern': '[0-9]+',
+		'pattern': '^-?[0-9]+',
 		'maxlength' : "10",
 		'title' : 'Nombre entier (sans décimales)'
 	}
