@@ -50,6 +50,9 @@ p {
 input {
 	/*border-radius: 1em;*/
 }
+/*label {
+	display:inline-block;
+}*/
 dl input:hover, input:focus {
 	border-color: #a66d1a;
 	

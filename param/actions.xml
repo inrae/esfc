@@ -260,6 +260,7 @@
 	<poissonCampagneDelete action="modules/repro/poissonCampagne.php" param="delete" droits="reproAdmin" modulebefore="poissonCampagneChange,poissonCampagneList" retoursuppr="poissonCampagneList" retourko="poissonCampagneChange"/>
 	<poissonCampagneChangeStatut action="modules/repro/poissonCampagne.php" param="changeStatut" droits="reproGestion" modulebefore="poissonCampagneList,poissonCampagneChangeStatut,repro" retourok="poissonCampagneList" />
 	<poissonCampagneInit action="modules/repro/poissonCampagne.php" param="init" droits="reproAdmin" modulebefore="poissonCampagneList,poissonCampagneInit,repro" retourok="poissonCampagneList" />
+	<poissonCampagneRecalcul action="modules/repro/poissonCampagne.php" param="recalcul" droits="reproGestion" modulebefore="poissonCampagneDisplay" retourok="poissonCampagneDisplay" retourko="poissonCampagneDisplay"/>
 	
 	<sequenceList action="modules/repro/sequence.php" param="list" retourlogin="1" droits="reproConsult" />
 	<sequenceDisplay action="modules/repro/sequence.php" param="display" droits="reproConsult" />

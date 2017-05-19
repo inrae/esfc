@@ -428,6 +428,13 @@ switch ($t_module ["param"]) {
 		}
 		$module_coderetour = 1;
 		break;
+	case "recalcul" :
+		/*
+		 * Recalcul des taux de croissance
+		 */
+		$dataClass->initCampagnePoisson($_REQUEST["poisson_id"], $_REQUEST["annee"]);
+		$module_coderetour = 1;
+		break;
 }
 
 ?>
