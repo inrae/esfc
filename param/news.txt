@@ -1,5 +1,10 @@
 Nouveautés
 ===========
+Version 1.6.10 du 23 mai 2017
+--------------------------------
+Modifications dans la gestion des analyses d'eau :
+- les données réelles d'analyse d'eau sont maintenant saisies une seule fois et sont visibles dans le module repro
+
 Version 1.6.9 du 19 mai 2017
 --------------------------------
 Correction : 
