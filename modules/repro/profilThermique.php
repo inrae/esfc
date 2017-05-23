@@ -15,28 +15,6 @@ switch ($t_module["param"]) {
 		/*
 		 * Display the list of all records of the table
 		 */
-		/*
-		 * $searchExample must be defined into modules/beforesession.inc.php :
-		 * include_once 'modules/classes/searchParam.class.php';
-		 * and into modules/common.inc.php :
-		 * if (!isset($_SESSION["searchExample"])) {
-		 * $searchExample = new SearchExample();
-		 *	$_SESSION["searchExample"] = $searchExample;
-		 *	} else {
-		 *	$searchExample = $_SESSION["searchExample"];
-		 *	}
-		 * and, also, into modules/classes/searchParam.class.php...
-		 */
-		$searchExample->setParam ( $_REQUEST );
-		$dataSearch = $searchExample->getParam ();
-		if ($searchExample->isSearch () == 1) {
-			$data = $dataClass->getListeSearch ( $dataExample );
-			$smarty->assign ( "data", $data );
-			$smarty->assign ("isSearch", 1);
-		}
-		$smarty->assign ("exampleSearch", $dataSearch);
-		$smarty->assign("data", $dataClass->getListe());
-		$smarty->assign("corps", "example/exampleList.tpl");
 		break;
 	case "display":
 		/*
@@ -74,10 +52,8 @@ switch ($t_module["param"]) {
 		 */
 		$nbProfil = count($profilThermiques);
 		if ($nbProfil > 0 && $id == 0) {
-			$datetime = explode(" ", $profilThermiques[$nbProfil - 1]["pf_datetime"]);
-			$data["pf_date"] = $datetime[0];
-			$data["pf_time"] = $datetime[1];
-			$data["profil_thermique_type_id"] = $profilThermiques[$nbProfil - 1]["profil_thermique_type_id"];
+			$data["pf_datetime"] =  $profilThermiques[$nbProfil - 1]["pf_datetime"];
+			//$data["profil_thermique_type_id"] = $profilThermiques[$nbProfil - 1]["profil_thermique_type_id"];
 			$smarty->assign("data", $data);			
 		}
 		$smarty->assign("bassinParentModule", $_SESSION["bassinParentModule"]);

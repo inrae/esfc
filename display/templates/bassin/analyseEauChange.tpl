@@ -59,7 +59,7 @@ Retour au circuit d'eau {$dataCircuitEau.circuit_eau_libelle}
 <input type="hidden" name="circuit_eau_id" value="{$data.circuit_eau_id}">
 <dl>
 <dt>Date d'analyse <span class="red">*</span> : </dt>
-<dd><input class="date" id="canalyse_eau_date" name="analyse_eau_date" value="{$data.analyse_eau_date}" required size="10">
+<dd><input class="datetimepicker" id="canalyse_eau_date" name="analyse_eau_date" value="{$data.analyse_eau_date}" required size="10">
 </dd></dl>
 <dl>
 <dt>Température : </dt>

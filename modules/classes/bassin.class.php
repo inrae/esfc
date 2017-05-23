@@ -470,7 +470,7 @@ class AnalyseEau extends ObjetBDD {
 						"type" => 1 
 				),
 				"analyse_eau_date" => array (
-						"type" => 2 
+						"type" => 3 
 				),
 				"temperature" => array (
 						"type" => 1 

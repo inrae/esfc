@@ -117,7 +117,8 @@ class ProfilThermique extends ObjetBDD {
 				),
 				"profil_thermique_type_id" => array (
 						"type" => 1,
-						"requis" => 1 
+						"requis" => 1,
+						"defaultValue" => 2 
 				),
 				"pf_datetime" => array (
 						"type" => 3,
@@ -141,7 +142,7 @@ class ProfilThermique extends ObjetBDD {
 	 * @param int $bassin_campagne_id        	
 	 * @return tableau|NULL
 	 */
-	function getListFromBassinCampagne($bassin_campagne_id, $type_id = 0) {
+	function getListFromBassinCampagne($bassin_campagne_id) {
 		if ($bassin_campagne_id > 0 && is_numeric ( $bassin_campagne_id )) {
 			$sql = "select profil_thermique_id, bassin_campagne_id, profil_thermique_type_id,
 					pf_datetime, pf_temperature, 
@@ -149,27 +150,44 @@ class ProfilThermique extends ObjetBDD {
 					from profil_thermique
 					join profil_thermique_type using (profil_thermique_type_id)";
 			$where = " where bassin_campagne_id = " . $bassin_campagne_id;
-			if ($type_id > 0 && is_numeric ( $type_id )) {
-				$where .= " and profil_thermique_type_id = " . $type_id;
-			}
+			
 			$order = " order by pf_datetime";
 			return $this->getListeParam ( $sql . $where . $order );
 		} else
 			return null;
 	}
-	
 	/**
-	 * Surcharge de la fonction lire pour eclater la zone datetime en deux champs
-	 * (non-PHPdoc)
-	 *
-	 * @see ObjetBDD::lire()
+	 * Recherche les differentes donnees de temperature (prevues ou relevees)
+	 * pour affichage dans le graphique
+	 * 
+	 * @param int $bassin_campagne_id        	
+	 * @param number $type_id        	
+	 * @return tableau
 	 */
-	function lire($id, $getDefault = false, $parentValue = 0) {
-		$data = parent::lire ( $id, $getDefault, $parentValue );
-		$dateTime = explode ( " ", $data ["pf_datetime"] );
-		$data ["pf_date"] = $dateTime [0];
-		$data ["pf_time"] = $dateTime [1];
-		return $data;
+	function getValuesFromBassinCampagne($bassin_campagne_id, $annee, $type_id = 1) {
+		if ($bassin_campagne_id > 0 && is_numeric ( $bassin_campagne_id )) {
+			if ($type_id == 1) {
+				$sql = "select distinct analyse_eau_date as pf_datetime,
+						temperature as pf_temperature
+						from analyse_eau
+						join circuit_eau using (circuit_eau_id)
+						join bassin using (circuit_eau_id)
+						join bassin_campagne using (bassin_id)
+						where bassin_campagne_id = $bassin_campagne_id
+						and extract(year from analyse_eau_date) = $annee
+						and temperature is not null
+						order by analyse_eau_date
+						";
+			} elseif ($type_id == 2) {
+				$sql = "select  pf_datetime, pf_temperature
+						from profil_thermique
+						where bassin_campagne_id = $bassin_campagne_id
+						and profil_thermique_type_id = 2
+						order by pf_datetime
+						";
+			}
+			return $this->getListeParam ( $sql );
+		}
 	}
 	
 	/**
@@ -179,7 +197,6 @@ class ProfilThermique extends ObjetBDD {
 	 * @see ObjetBDD::ecrire()
 	 */
 	function ecrire($data) {
-		$data ["pf_datetime"] = $data ["pf_date"] . " " . $data ["pf_time"];
 		$id = parent::ecrire ( $data );
 		if ($data ["profil_thermique_type_id"] == 1 && $id > 0 && $data ["bassin_id"] > 0 && is_numeric ( $data ["bassin_id"] )) {
 			/*
@@ -237,7 +254,8 @@ class Salinite extends ObjetBDD {
 				),
 				"profil_thermique_type_id" => array (
 						"type" => 1,
-						"requis" => 1 
+						"requis" => 1,
+						"defaultValue" => 2
 				),
 				"salinite_datetime" => array (
 						"type" => 3,
@@ -279,17 +297,37 @@ class Salinite extends ObjetBDD {
 	}
 	
 	/**
-	 * Surcharge de la fonction lire pour eclater la zone datetime en deux champs
-	 * (non-PHPdoc)
+	 * Recherche les differentes donnees de salinite (prevues ou relevees)
+	 * pour affichage dans le graphique
 	 *
-	 * @see ObjetBDD::lire()
+	 * @param int $bassin_campagne_id
+	 * @param number $type_id
+	 * @return tableau
 	 */
-	function lire($id, $getDefault = false, $parentValue = 0) {
-		$data = parent::lire ( $id, $getDefault, $parentValue );
-		$dateTime = explode ( " ", $data ["salinite_datetime"] );
-		$data ["salinite_date"] = $dateTime [0];
-		$data ["salinite_time"] = $dateTime [1];
-		return $data;
+	function getValuesFromBassinCampagne($bassin_campagne_id, $annee, $type_id = 1) {
+		if ($bassin_campagne_id > 0 && is_numeric ( $bassin_campagne_id )) {
+			if ($type_id == 1) {
+				$sql = "select distinct analyse_eau_date as salinite_datetime,
+				salinite as salinite_tx
+				from analyse_eau
+				join circuit_eau using (circuit_eau_id)
+				join bassin using (circuit_eau_id)
+				join bassin_campagne using (bassin_id)
+				where bassin_campagne_id = $bassin_campagne_id
+				and extract(year from analyse_eau_date) = $annee
+				and salinite is not null
+				order by analyse_eau_date
+				";
+			} elseif ($type_id == 2) {
+				$sql = "select  salinite_datetime, salinite_tx
+				from salinite
+				where bassin_campagne_id = $bassin_campagne_id
+				and profil_thermique_type_id = 2
+				order by salinite_datetime
+				";
+			}
+			return $this->getListeParam ( $sql );
+		}
 	}
 	
 	/**
@@ -299,7 +337,6 @@ class Salinite extends ObjetBDD {
 	 * @see ObjetBDD::ecrire()
 	 */
 	function ecrire($data) {
-		$data ["salinite_datetime"] = $data ["salinite_date"] . " " . $data ["salinite_time"];
 		$id = parent::ecrire ( $data );
 		if ($data ["profil_thermique_type_id"] == 1 && $id > 0 && $data ["bassin_id"] > 0 && is_numeric ( $data ["bassin_id"] )) {
 			/*

@@ -296,7 +296,7 @@
 	<profilThermiqueChange action="modules/repro/profilThermique.php" param="change" droits="reproGestion"/>
 	<profilThermiqueNew action="modules/repro/profilThermique.php" param="new" droits="reproGestion"/>
 	<profilThermiqueWrite action="modules/repro/profilThermique.php" param="write" droits="reproGestion" modulebefore="profilThermiqueChange,profilThermiqueNew" retourok="profilThermiqueNew"/>
-	<profilThermiqueDelete action="modules/repro/profilThermique.php" param="delete" droits="reproGestion" modulebefore="profilThermiqueChange" retoursuppr="profilThermiqueChange" retourko="profilThermiqueChange"/>
+	<profilThermiqueDelete action="modules/repro/profilThermique.php" param="delete" droits="reproGestion" modulebefore="profilThermiqueChange" retoursuppr="profilThermiqueNew" retourko="profilThermiqueChange"/>
 
 	<croisementChange action="modules/repro/croisement.php" param="change" droits="reproGestion" />
 	<croisementDisplay action="modules/repro/croisement.php" param="display" droits="reproGestion" />
@@ -320,7 +320,7 @@
 	<saliniteChange action="modules/repro/salinite.php" param="change" droits="reproGestion"/>
 	<saliniteNew action="modules/repro/salinite.php" param="new" droits="reproGestion"/>
 	<saliniteWrite action="modules/repro/salinite.php" param="write" droits="reproGestion" modulebefore="saliniteChange,saliniteNew" retourok="saliniteNew"/>
-	<saliniteDelete action="modules/repro/salinite.php" param="delete" droits="reproGestion" modulebefore="saliniteChange" retoursuppr="saliniteChange" retourko="saliniteChange"/>
+	<saliniteDelete action="modules/repro/salinite.php" param="delete" droits="reproGestion" modulebefore="saliniteChange" retoursuppr="saliniteNew" retourko="saliniteChange"/>
 
 	<spermeDisplay action="modules/repro/sperme.php" param="display" droits="reproConsult" />
 	<spermeChange action="modules/repro/sperme.php" param="change" droits="reproGestion" />

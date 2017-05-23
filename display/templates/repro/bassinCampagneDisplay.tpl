@@ -26,10 +26,10 @@ $(document).ready(function() {
                 format: '%d/%m %H:%M'
            	 	}
         	}
-    	},
+    	}/*,
     size: { 
-    	width: "400"
-    }
+    	width: "600"
+    }*/
     	
 	} );
 	var chartSalinite = c3.generate( {
@@ -55,10 +55,10 @@ $(document).ready(function() {
                 format: '%d/%m %H:%M'
            	 	}
         	}
-    	} ,
+    	} /*,
     size: { 
     	width: "400"
-    }
+    }*/
 
 	} );
 
@@ -105,10 +105,10 @@ $(document).ready(function() {
 <tr>
 <td>
 <fieldset>
-<legend>Profil thermique</legend>
+<legend>Profil thermique - températures prévues et relevés des analyses d'eau</legend>
 {if $droits.reproGestion == 1}
 <a href="index.php?module=profilThermiqueChange&profil_thermique_id=0&bassin_campagne_id={$dataBassinCampagne.bassin_campagne_id}">
-Nouvelle température prévue/relevée...
+Nouvelle température prévue...
 </a>
 {/if}
 {include file="repro/profilThermiqueList.tpl"}
@@ -118,10 +118,10 @@ Nouvelle température prévue/relevée...
 </td>
 <td>
 <fieldset>
-<legend>Évolution de la salinité</legend>
+<legend>Évolution de la salinité - salinités prévues et relevés des analyses d'eau</legend>
 {if $droits.reproGestion == 1}
 <a href="index.php?module=saliniteChange&salinite_id=0&bassin_campagne_id={$dataBassinCampagne.bassin_campagne_id}">
-Nouvelle salinité prévue/relevée...
+Nouvelle salinité prévue...
 </a>
 {/if}
 {include file="repro/saliniteList.tpl"}

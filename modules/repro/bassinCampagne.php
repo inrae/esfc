@@ -16,28 +16,6 @@ switch ($t_module["param"]) {
 		/*
 		 * Display the list of all records of the table
 		 */
-		/*
-		 * $searchExample must be defined into modules/beforesession.inc.php :
-		 * include_once 'modules/classes/searchParam.class.php';
-		 * and into modules/common.inc.php :
-		 * if (!isset($_SESSION["searchExample"])) {
-		 * $searchExample = new SearchExample();
-		 *	$_SESSION["searchExample"] = $searchExample;
-		 *	} else {
-		 *	$searchExample = $_SESSION["searchExample"];
-		 *	}
-		 * and, also, into modules/classes/searchParam.class.php...
-		 */
-		$searchExample->setParam ( $_REQUEST );
-		$dataSearch = $searchExample->getParam ();
-		if ($searchExample->isSearch () == 1) {
-			$data = $dataClass->getListeSearch ( $dataExample );
-			$smarty->assign ( "data", $data );
-			$smarty->assign ("isSearch", 1);
-		}
-		$smarty->assign ("exampleSearch", $dataSearch);
-		$smarty->assign("data", $dataClass->getListe());
-		$smarty->assign("corps", "example/exampleList.tpl");
 		break;
 	case "display":
 		/*
@@ -54,8 +32,9 @@ switch ($t_module["param"]) {
 		/*
 		 * Calcul des donnees pour le graphique
 		 */
+		
 		for ($i=1;$i<3;$i++){
-			$datapf = $profilThermique->getListFromBassinCampagne($id, $i);
+			$datapf = $profilThermique->getValuesFromBassinCampagne($id, $_SESSION["annee"], $i);
 			$x = "'x".$i."'";
 			if ($i == 1) {
 				$y = "'constaté'";
@@ -76,7 +55,8 @@ switch ($t_module["param"]) {
 		 * Calcul des donnees pour le graphique
 		 */
 		for ($i=1;$i<3;$i++){
-			$datapf = $salinite->getListFromBassinCampagne($id, $i);
+			$datapf = $salinite->getValuesFromBassinCampagne($id, $_SESSION["annee"], $i);
+			
 			$x = "'x".$i."'";
 			if ($i == 1) {
 				$y = "'constaté'";

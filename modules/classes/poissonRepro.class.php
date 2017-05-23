@@ -407,6 +407,32 @@ class PoissonCampagne extends ObjetBDD {
 	 */
 	function getTemperatures($poisson_id, $annee, $profil_thermique_type_id = 1) {
 		if ($poisson_id > 0 && is_numeric ( $poisson_id ) && $annee > 0 && is_numeric ( $annee )) {
+			
+			if ($profil_thermique_type_id == 1) {
+				/*
+				 * Traitement des valeurs constatees, lues dans les analyses d'eau
+				 */
+				
+				$sql = "SELECT distinct b.poisson_id,b.bassin_id,b.bassin_nom,b.date_debut,b.date_fin,
+    				analyse_eau_date as pf_datetime,
+    				temperature as pf_temperature
+				   FROM v_poisson_bassins b
+					 join bassin using (bassin_id)
+					 join circuit_eau ce using (circuit_eau_id)
+					 join bassin_campagne bc on bc.bassin_id = b.bassin_id
+				     JOIN analyse_eau ae ON (ae.circuit_eau_id = ce.circuit_eau_id
+						and extract (year from analyse_eau_date) = ".$annee."
+						AND ae.analyse_eau_date between b.date_debut
+						AND CASE WHEN b.date_fin IS NULL THEN 'now'::text::date ELSE b.date_fin END
+						)
+					where poisson_id = " . $poisson_id . "
+					and temperature is not null
+					order by analyse_eau_date";
+				
+			} else {
+				/*
+				 * Traitement des valeurs prevues
+				 */
 			$sql = "SELECT b.poisson_id,b.bassin_id,b.bassin_nom,b.date_debut,b.date_fin,
     				bc.bassin_campagne_id,pt.profil_thermique_id,bc.annee,pt.pf_datetime,
     				pt.pf_temperature,pt.profil_thermique_type_id
@@ -420,7 +446,9 @@ class PoissonCampagne extends ObjetBDD {
 					and annee = " . $annee . "
 					and profil_thermique_type_id = " . $profil_thermique_type_id . "
 					order by pf_datetime";
+			}
 			$data = $this->getListeParam ( $sql );
+			
 			/*
 			 * Remise en forme des dates
 			 */
