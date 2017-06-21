@@ -69,7 +69,7 @@ class Croisement extends ObjetBDD {
 	 *
 	 * @see ObjetBDD::ecrire()
 	 */
-	function write($data) {
+	function ecrire($data) {
 		$id = parent::ecrire ( $data );
 		if ($id > 0) {
 			/*
@@ -78,6 +78,15 @@ class Croisement extends ObjetBDD {
 			$this->ecrireTableNN ( "poisson_croisement", "croisement_id", "poisson_campagne_id", $id, $data ["poisson_campagne_id"] );
 		}
 		return $id;
+	}
+	/**
+	 * Ajout de la suppression des poissons rattaches avant suppression du croisement
+	 * {@inheritDoc}
+	 * @see ObjetBDD::supprimer()
+	 */
+	function supprimer($id) {
+		$this->ecrireTableNN("poisson_croisement", "croisement_id", "poisson_campagne_id", $id, array());
+		return parent::supprimer($id);
 	}
 	
 	/**

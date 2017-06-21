@@ -80,11 +80,11 @@ Retour à la séquence
 <input class="submit" type="submit" value="Enregistrer">
 </div>
 </form>
-{if $data.controle_id > 0 &&$droits["reproAdmin"] == 1}
+{if $data.croisement_id > 0 &&$droits["reproAdmin"] == 1}
 <div class="formBouton">
 <form action="index.php" method="post" onSubmit='return confirmSuppression("Confirmez-vous la suppression ?")'>
-<input type="hidden" name="module" value="controleDelete">
-<input type="hidden" name="controle_id" value="{$data.controle_id}">
+<input type="hidden" name="module" value="croisementDelete">
+<input type="hidden" name="croisement_id" value="{$data.croisement_id}">
 <input type="hidden" name="sequence_id" value="{$data.sequence_id}">
 <input class="submit" type="submit" value="Supprimer">
 </form>
