@@ -9,7 +9,7 @@
 <th>Commentaire</th>
 </tr>
 </thead>
-<tdata>
+<tbody>
 {section name=lst loop=$dataDosageSanguin}
 <tr>
 <td>
@@ -30,5 +30,5 @@
 <td>{$dataDosageSanguin[lst].dosage_sanguin_commentaire}</td>
 </tr>
 {/section}
-</tdata>
+</tbody>
 </table>

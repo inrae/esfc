@@ -10,7 +10,7 @@ setDataTables("cmortaliteList");
 <th>Commentaire</th>
 </tr>
 </thead>
-<tdata>
+<tbody>
 {section name=lst loop=$dataMortalite}
 <tr>
 <td>
@@ -27,5 +27,5 @@ setDataTables("cmortaliteList");
 <td>{$dataMortalite[lst].mortalite_commentaire}</td>
 </tr>
 {/section}
-</tdata>
+</tbody>
 </table>

@@ -499,6 +499,33 @@ Sélectionnez le lieu de lâcher/destination...
 </fieldset>
 
 <fieldset class="fsMasquable">
+<legend>Détermination de la parenté</legend>
+<div class="masquage">
+<dl>
+<dt>Type de détermination <span class="red">*</span> : </dt>
+<dd>
+<select name="determination_parente_id" id="determination_parente_id">
+<option value="" {if $dataParente.determination_parente_id == ""} selected {/if}>
+Sélectionnez le type de détermination...
+</option>
+{section name=lst loop=$determinationParente}
+<option value="{$determinationParente[lst].determination_parente_id}" {if $determinationParente[lst].determination_parente_id == $dataParente.determination_parente_id} selected {/if}>
+{$determinationParente[lst].determination_parente_libelle}
+</option>
+{/section}
+</select>
+</dd>
+</dl>
+<dl>
+<dt>Commentaire : </dt>
+<dd>
+<input name="parente_commentaire" value="{$dataParente.parente_commentaire}" size="40">
+</dd>
+</dl>
+</div>
+</fieldset>
+
+<fieldset class="fsMasquable">
 <legend>Mortalité</legend>
 <div class="masquage">
 <dl>

@@ -135,6 +135,13 @@ switch ($t_module["param"]) {
 		 */
 		$genetique = new Genetique($bdd, $ObjetBDDParam);
 		$smarty->assign("dataGenetique", $genetique->getListByPoisson($id));
+		
+		/*
+		 * Recuperation des determinations de parente
+		 */
+		$parente = new Parente($bdd, $ObjetBDDParam);
+		$smarty->assign("dataParente", $parente->getListByPoisson($id));
+		
 		/*
 		 * Gestion des documents associes
 		*/

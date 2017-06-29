@@ -179,6 +179,12 @@ Nouveau parent...
 </div>
 </fieldset>
 <fieldset class="fsMasquable">
+<legend>Détermination de la parenté</legend>
+<div class="masquage">
+{include file="poisson/parenteList.tpl"}
+</div>
+</fieldset>
+<fieldset class="fsMasquable">
 <legend>Détermination de la cohorte</legend>
 <div class="masquage">
 {include file="poisson/cohorteList.tpl"}
