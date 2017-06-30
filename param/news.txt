@@ -1,5 +1,12 @@
 Nouveautés
 ===========
+Version 1.6.11 du 30 juin 2017
+-------------------------------
+Ajout de la détermination de la parenté d'un poisson
+Corrections de bugs :
+- il n'était pas possible de supprimer un croisement
+- il n'était pas possible de rajouter des adultes à un croisement
+
 Version 1.6.10 du 23 mai 2017
 --------------------------------
 Modifications dans la gestion des analyses d'eau :
