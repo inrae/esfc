@@ -99,7 +99,8 @@ class Evenement extends ObjetBDD
  					cohorte_determination, cohorte_commentaire, cohorte_type_id, cohorte_type_libelle,
  					gender_methode_id, gender_methode_libelle, gs.sexe_id, sexe_libelle, gender_selection_commentaire,
 					anesthesie_produit_libelle, anesthesie_dosage, anesthesie_commentaire,
-					tx_e2, tx_e2_texte, tx_calcium, tx_hematocrite, dosage_sanguin_commentaire			
+					tx_e2, tx_e2_texte, tx_calcium, tx_hematocrite, dosage_sanguin_commentaire,
+                    parente_id, parente_commentaire, determination_parente_libelle
  					";
             $from = " from evenement e 
  					join poisson p using (poisson_id)
@@ -123,7 +124,9 @@ class Evenement extends ObjetBDD
 					left outer join anesthesie on (e.evenement_id = anesthesie.evenement_id)
 					left outer join anesthesie_produit using (anesthesie_produit_id)
 					left outer join sexe on (gs.sexe_id = sexe.sexe_id)
-					left outer join dosage_sanguin ds on (e.evenement_id = ds.evenement_id)";
+					left outer join dosage_sanguin ds on (e.evenement_id = ds.evenement_id)
+                    left outer join parente pt on (e.evenement_id = pt.evenement_id)
+                    left outer join determination_parente using (determination_parente_id)";
             $order = " order by matricule, evenement_date";
             $where = " where ";
             $and = "";
