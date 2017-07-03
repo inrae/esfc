@@ -721,7 +721,9 @@ class SpermeConservateur extends ObjetBDD
     }
 }
 
-class SpermeFreezingPlace extends ObjetBDD {
+class SpermeFreezingPlace extends ObjetBDD
+{
+
     function __construct($bdd, $param = NULL)
     {
         $this->table = "sperme_freezing_place";
@@ -734,16 +736,23 @@ class SpermeFreezingPlace extends ObjetBDD {
                 "defaultValue" => 0
             ),
             "sperme_congelation_id" => array(
-                "type"=>1,
-                "requis"=>1,
-                "parentAttrib"=>1
+                "type" => 1,
+                "requis" => 1,
+                "parentAttrib" => 1
             ),
             "cuve_libelle" => array(
                 "type" => 0
             ),
-            "canister_numero"=>array("type"=>0),
-            "position_canister"=>array("type"=>1, "defaultValue"=>1),
-            "nb_visiotube"=>array("type"=>1)
+            "canister_numero" => array(
+                "type" => 0
+            ),
+            "position_canister" => array(
+                "type" => 1,
+                "defaultValue" => 1
+            ),
+            "nb_visiotube" => array(
+                "type" => 1
+            )
         );
         // Si toutes les colonnes de la table sont decrites :
         $this->fullDescription = 1;
@@ -751,6 +760,42 @@ class SpermeFreezingPlace extends ObjetBDD {
         
         parent::__construct($bdd, $param);
     }
-
 }
+
+class SpermeFreezingMeasure extends ObjetBDD
+{
+
+    function __construct($bdd, $param = NULL)
+    {
+        $this->table = "sperme_freezing_measure";
+        // Definition des formats des colonnes, et des controles a leur appliquer
+        $this->colonnes = array(
+            "sperme_freezing_measure_id" => array(
+                "type" => 1,
+                "requis" => 1,
+                "key" => 1,
+                "defaultValue" => 0
+            ),
+            "sperme_congelation_id" => array(
+                "type" => 1,
+                "requis" => 1,
+                "parentAttrib" => 1
+            ),
+            "measure_date" => array(
+                "type" => 3,
+                "requis" => 1
+            ),
+            "measure_temp" => array(
+                "type" => 0,
+                "requis" => 1
+            )
+        );
+        // Si toutes les colonnes de la table sont decrites :
+        $this->fullDescription = 1;
+        // Appel du constructeur de la classe ObjetBDD
+        
+        parent::__construct($bdd, $param);
+    }
+}
+
 ?>

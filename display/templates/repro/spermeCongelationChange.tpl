@@ -1,3 +1,39 @@
+<link href="display/javascript/c3/c3.css" rel="stylesheet" type="text/css">
+<script src="display/javascript/c3/d3.min.js" charset="utf-8"></script>
+<script src="display/javascript/c3/c3.min.js"></script>
+
+<script>
+$(document).ready(function() {
+	var chart = c3.generate( {
+		bindto: '#freeze',
+		data: {
+			xs: {
+				'Température relevée': 'mx'
+			} ,
+	    x: 'x',
+      xFormat: '%d/%m/%Y %H:%M:%S', // 'xFormat' can be used as custom format of 'x'
+      columns: [
+          [{$mx}],
+          [{$my}]
+          ]
+	} ,
+    axis: {
+        x: {
+            type: 'timeseries',
+            tick: {
+                format: '%d/%m %H:%M'
+           	 	}
+        },
+        y: {
+        	label: '°C'
+        }
+    	}
+ 
+	} );
+});
+	
+</script>
+
 <a href="index.php?module={$poissonDetailParent}">Retour à la liste des poissons</a>&nbsp;
 <a href="index.php?module=poissonCampagneDisplay&poisson_campagne_id={$dataPoisson.poisson_campagne_id}">
 Retour au reproducteur
@@ -107,7 +143,9 @@ Retour au sperme
 </td>
 <td>
 <fieldset><legend>Vitesse de congélation</legend>
-
+{include file="repro/spermeFreezingMeasureList.tpl"}
+<br>
+<div id="freeze"></div>
 </fieldset>
 </td>
 </tr>

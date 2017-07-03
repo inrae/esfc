@@ -349,6 +349,11 @@
 	<spermeFreezingPlaceWrite action="modules/repro/spermeFreezingPlace.php" param="write" droits="reproGestion" modulebefore="spermeFreezingPlaceChange" retourok="spermeCongelationChange" retourko="spermeFreezingPlaceChange"/>
 	<spermeFreezingPlaceDelete action="modules/repro/spermeFreezingPlace.php" param="delete" droits="reproGestion" modulebefore="spermeFreezingPlaceChange" retoursuppr="spermeCongelationChange" retourko="spermeFreezingPlaceChange"/>
 
+	<spermeFreezingMeasureChange action="modules/repro/spermeFreezingMeasure.php" param="change" droits="reproGestion" />
+	<spermeFreezingMeasureWrite action="modules/repro/spermeFreezingMeasure.php" param="write" droits="reproGestion" modulebefore="spermeFreezingMeasureChange" retourok="spermeCongelationChange" retourko="spermeFreezingMeasureChange"/>
+	<spermeFreezingMeasureDelete action="modules/repro/spermeFreezingMeasure.php" param="delete" droits="reproGestion" modulebefore="spermeFreezingMeasureChange" retoursuppr="spermeCongelationChange" retourko="spermeFreezingMeasureChange"/>
+
+
 	<vieModeleList action="modules/repro/vieModele.php" param="list" retourlogin="1" droits="reproConsult" />
 	<vieModeleChange action="modules/repro/vieModele.php" param="change" droits="reproGestion" />
 	<vieModeleWrite action="modules/repro/vieModele.php" param="write" droits="reproGestion" modulebefore="vieModeleChange" retourok="vieModeleList" retourko="vieModeleChange"/>

@@ -9,6 +9,10 @@ include_once 'modules/classes/poisson.class.php';
 $dataClass = new Ventilation($bdd,$ObjetBDDParam);
 $keyName = "ventilation_id";
 $id = $_REQUEST[$keyName];
+/*
+ * Passage en parametre de la liste parente
+ */
+$smarty->assign ( "poissonDetailParent", $_SESSION ["poissonDetailParent"] );
 
 switch ($t_module["param"]) {
 	case "list":

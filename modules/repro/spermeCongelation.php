@@ -38,6 +38,25 @@ switch ($t_module["param"]) {
          */
         $freezingPlace = new SpermeFreezingPlace($bdd, $ObjetBDDParam);
         $smarty->assign("place", $freezingPlace->getListFromParent($id, 1));
+        
+        /*
+         * Recherche des mesures de temperature
+         */
+        $freezingMeasure = new SpermeFreezingMeasure($bdd, $ObjetBDDParam);
+        $dataMeasure = $freezingMeasure->getListFromParent($id, 1);
+        $smarty->assign("freezingMeasure", $dataMeasure );
+        /*
+         * Preparation des donnees pour le graphique
+         */
+        
+        $x = "'x'";
+        $y = "'Température'";
+        foreach ( $dataMeasure as $key => $value ) {
+            $x .= ",'" . $value ["measure_date"] . "'";
+            $y .= "," . $value ["measure_temp"];
+        }
+        $smarty->assign("mx", $x);
+        $smarty->assign("my", $y);
         /*
          * Donnees du poisson
          */
