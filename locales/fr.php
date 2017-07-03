@@ -139,8 +139,13 @@ $LANG["menu"][131] = "Stades des œufs";
 $LANG["menu"][132] = "Liste des stades de maturation des œufs";
 $LANG["menu"][133] = "Stades des gonades";
 $LANG["menu"][134] = "Liste des stades de maturation des gonades";
-$LANG["menu"][135] = "";
-$LANG["menu"][136] = "";
+$LANG["menu"][135] = "Conservateurs de sperme";
+$LANG["menu"][136] = "Liste des conservateurs utilisés lors de la congélation du sperme";
+$LANG["menu"][137] = "";
+$LANG["menu"][138] = "";
+$LANG["menu"][139] = "";
+$LANG["menu"][140] = "";
+
 
 $LANG["menu"]["example1"] = "Example";
 $LANG["menu"]["example2"] = "It's an example !";

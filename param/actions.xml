@@ -215,6 +215,11 @@
 	<stadeGonadeWrite action="modules/parametre/stadeGonade.php" param="write" droits="paramAdmin" retourok="stadeGonadeList" retourko="stadeGonadeChange" modulebefore="stadeGonadeChange" />
 	<stadeGonadeDelete action="modules/parametre/stadeGonade.php" param="delete" droits="paramAdmin" retoursuppr="stadeGonadeList" retourko="stadeGonadeChange"  modulebefore="stadeGonadeChange"/>
 
+	<spermeConservateurList action="modules/parametre/spermeConservateur.php" param="list" droits="consult"  retourlogin="1"  />
+	<spermeConservateurChange action="modules/parametre/spermeConservateur.php" param="change" droits="paramAdmin,reproAdmin" />
+	<spermeConservateurWrite action="modules/parametre/spermeConservateur.php" param="write" droits="paramAdmin,reproAdmin" retourok="spermeConservateurList" retourko="spermeConservateurChange" modulebefore="spermeConservateurChange" />
+	<spermeConservateurDelete action="modules/parametre/spermeConservateur.php" param="delete" droits="paramAdmin,reproAdmin" retoursuppr="spermeConservateurList" retourko="spermeConservateurChange"  modulebefore="spermeConservateurChange"/>
+
 
 	<alimentation retourlogin="1" />
 
