@@ -7,7 +7,10 @@ Retour au sperme
 </a>
 {include file="repro/poissonCampagneDetail.tpl"}
 
-<h2>Modification d'une congélation de sperme</h2>
+<table class="tablemulticolonne">
+<tr>
+<td>
+<fieldset><legend>Modification d'une congélation de sperme</legend>
 <div class="formSaisie">
 <div>
 <form id="spermeForm" method="post" action="index.php?module=spermeCongelationWrite">
@@ -21,9 +24,22 @@ Retour au sperme
 <dd><input class="date" name="congelation_date" value="{$data.congelation_date}" required ></dd>
 </dl>
 <dl>
-<dt>Volume congelé (ml) :</dt>
+<dt>Volume total congelé (ml) :</dt>
 <dd><input class="taux" name="congelation_volume" value="{$data.congelation_volume}">
 </dd>
+</dl>
+<dl>
+<dt>Volume de sperme (ml) :</dt>
+<dd><input class="taux" name="volume_sperme" value="{$data.volume_sperme}">
+</dd>
+</dl>
+<dl>
+<dt>Nombre total de paillettes :</dt>
+<dd><input class="nombre" name="nb_paillette" value="{$data.nb_paillette}"></dd>
+</dl>
+<dl>
+<dt>Nombre total de visiotubes :</dt>
+<dd><input class="nombre" name="nb_visiotube" value="{$data.nb_visiotube}"></dd>
 </dl>
 <dl>
 <dt>Dilueur utilisé : </dt>
@@ -39,28 +55,30 @@ Retour au sperme
 </dd>
 </dl>
 <dl>
-<dt>Nombre de paillettes :</dt>
-<dd><input class="nombre" name="nb_paillette" value="{$data.nb_paillette}"></dd>
-</dl>
-<dl>
-<dt>Nombre de visiotubes :</dt>
-<dd><input class="nombre" name="nb_visiotube" value="{$data.nb_visiotube}"></dd>
-</dl>
-<dl>
-<dt>Numéro de canister :</dt>
-<dd><input name="numero_canister" value="{$data.numero_canister}">
+<dt>Volume de dilueur utilisé (ml) :</dt>
+<dd><input class="taux" name="volume_dilueur" value="{$data.volume_dilueur}">
 </dd>
 </dl>
+
 <dl>
-<dt>Position du canister :</dt>
+<dt>Conservateur utilisé : </dt>
 <dd>
-<select name="position_canister">
-<option value="" {if $data.position_canister == ""}selected{/if}>Sélectionnez...</option>
-<option value="1" {if $data.position_canister == "1"}selected{/if}>Bas</option>
-<option value="2" {if $data.position_canister == "2"}selected{/if}>Haut</option>
+<select name="sperme_conservateur_id">
+<option value="" {if $data.sperme_conservateur_id == ""}selected{/if}>Choisissez...</option>
+{section name=lst loop=$spermeConservateur}
+<option value="{$spermeConservateur[lst].sperme_conservateur_id}" {if $data.sperme_conservateur_id == $spermeConservateur[lst].sperme_conservateur_id}selected{/if}>
+{$spermeConservateur[lst].sperme_conservateur_libelle}
+</option>
+{/section}
 </select>
 </dd>
 </dl>
+<dl>
+<dt>Volume de conservateur utilisé (ml) :</dt>
+<dd><input class="taux" name="volume_conservateur" value="{$data.volume_conservateur}">
+</dd>
+</dl>
+
 <dl>
 <dt>Commentaire :</dt>
 <dd>
@@ -85,3 +103,23 @@ Retour au sperme
 </div>
 </div>
 <span class="red">*</span><span class="messagebas">Champ obligatoire</span>
+</fieldset>
+</td>
+<td>
+<fieldset><legend>Vitesse de congélation</legend>
+
+</fieldset>
+</td>
+</tr>
+<tr>
+<td>
+<fieldset>
+<legend>Liste des emplacements de congélation</legend>
+{include file='repro/spermeFreezingPlaceList.tpl'}
+</fieldset>
+</td>
+<td>
+</td>
+</tr>
+</table>
+

@@ -28,3 +28,4 @@ setDataTables("cconservateurList");
 </tr>
 {/section}
 </tbody>
+</table>

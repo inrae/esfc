@@ -7,12 +7,12 @@ Nouvelle congélation de sperme...
 <thead>
 <tr>
 <th>Date<br>de congélation</th>
-<th>Dilueur</th>
-<th>Volume<br>ml</th>
+<th>Volume<br>total (ml)</th>
+<th>Volume<br>sperme (ml)</th>
 <th>Nb<br>paillettes</th>
-<th>N°<br>canister</th>
-<th>Position<br>canister</th>
 <th>Nb<br>visiotubes</th>
+<th>Dilueur</th>
+<th>Conservateur</th>
 <th>Remarque</th>
 </tr>
 </thead>
@@ -28,15 +28,13 @@ Nouvelle congélation de sperme...
 {$congelation[lst].congelation_date}
 {/if}
 </td>
-<td>{$congelation[lst].sperme_dilueur_libelle}</td>
 <td class="center">
 {$congelation[lst].congelation_volume}</td>
+<td class="center">{$congelation[lst].volume_sperme}</td>
 <td class="center">{$congelation[lst].nb_paillette}</td>
-<td class="center">{$congelation[lst].numero_canister}</td>
-<td class="center">{if $congelation[lst].position_canister == 1}bas{/if}
-{if $congelation[lst].position_canister == 2}haut{/if}
-</td>
 <td class="center">{$congelation[lst].nb_visiotube}</td>
+<td>{$congelation[lst].sperme_dilueur_libelle} : {$congelation[lst].volume_dilueur} ml</td>
+<td>{$congelation[lst].sperme_conservateur_libelle} : {$congelation[lst].volume_conservateur} ml</td>
 <td >{$congelation[lst].sperme_congelation_commentaire}</td>
 </tr>
 {/section}

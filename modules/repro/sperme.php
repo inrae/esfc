@@ -10,6 +10,10 @@ include_once 'modules/classes/sperme.class.php';
 $dataClass = new Sperme($bdd,$ObjetBDDParam);
 $keyName = "sperme_id";
 $id = $_REQUEST[$keyName];
+/*
+ * Passage en parametre de la liste parente
+ */
+$smarty->assign ( "poissonDetailParent", $_SESSION ["poissonDetailParent"] );
 
 switch ($t_module["param"]) {
 	case "display":

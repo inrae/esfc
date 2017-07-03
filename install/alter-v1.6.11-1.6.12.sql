@@ -97,7 +97,8 @@ ON DELETE NO ACTION
 ON UPDATE NO ACTION
 NOT DEFERRABLE;
 
-/*alter table sperme_freezing_place alter column cuve_libelle drop not null;*/
+/*alter table sperme_freezing_place alter column cuve_libelle drop not null;
+alter table sperme_freezing_place alter column canister_numero drop not null;*/
 
 insert into sperme_freezing_place (sperme_congelation_id, cuve_libelle, canister_numero, position_canister, nb_visiotube)
 (
