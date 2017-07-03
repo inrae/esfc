@@ -50,8 +50,10 @@ Retour au reproducteur
 </dl>
 {/if}
 {if $dataPoisson.sexe_id == 1}
-<fieldset><legend>Sperme récupéré</legend>
-{include file="repro/spermeChangeCorps.tpl"}
+<fieldset><legend>Prélèvements de sperme</legend>
+<a href="index.php?module=poissonCampagneDisplay&poisson_campagne_id={$data.poisson_campagne_id}">
+Accédez à la fiche du poisson pour réaliser la saisie
+</a>
 </fieldset>
 {/if}
 
