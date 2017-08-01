@@ -24,7 +24,7 @@ COMMENT ON TABLE "sturio"."public"."sperme_conservateur" IS 'Table des produits 
 ALTER SEQUENCE "sturio"."public"."sperme_conservateur_sperme_conservateur_id_seq" OWNED BY "sturio"."public"."sperme_conservateur"."sperme_conservateur_id";
 
 insert into sperme_conservateur (sperme_conservateur_id, sperme_conservateur_libelle) values 
-(1, 'Ethanol');
+(1, 'Methanol');
 
 select setval('sperme_conservateur_sperme_conservateur_id_seq', 1);
 

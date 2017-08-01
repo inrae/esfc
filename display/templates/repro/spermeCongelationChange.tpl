@@ -114,6 +114,12 @@ Retour au sperme
 <dd><input class="taux" name="volume_conservateur" value="{$data.volume_conservateur}">
 </dd>
 </dl>
+<dl>
+<dt>Nb de paillettes utilisées :</dt>
+<dd>
+<input class="nombre" name="nb_paillettes_utilisees" value="{$data.nb_paillettes_utilisees}" readonly>
+</dd>
+</dl>
 
 <dl>
 <dt>Commentaire :</dt>

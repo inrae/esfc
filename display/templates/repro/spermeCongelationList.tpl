@@ -13,6 +13,7 @@ Nouvelle congélation de sperme...
 <th>Nb<br>visiotubes</th>
 <th>Dilueur</th>
 <th>Conservateur</th>
+<th>Nb<br>paillettes<br>utilisées</th>
 <th>Remarque</th>
 </tr>
 </thead>
@@ -35,6 +36,7 @@ Nouvelle congélation de sperme...
 <td class="center">{$congelation[lst].nb_visiotube}</td>
 <td>{$congelation[lst].sperme_dilueur_libelle} : {$congelation[lst].volume_dilueur} ml</td>
 <td>{$congelation[lst].sperme_conservateur_libelle} : {$congelation[lst].volume_conservateur} ml</td>
+<td>{$congelation[lst].nb_paillettes_utilisees}</td>
 <td >{$congelation[lst].sperme_congelation_commentaire}</td>
 </tr>
 {/section}

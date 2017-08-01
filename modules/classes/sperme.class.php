@@ -453,7 +453,7 @@ class SpermeMesure extends ObjetBDD
      * Recherche la liste des analyses effectuees
      *
      * @param int $sperme_id
-     * @return tableau
+     * @return array
      */
     function getListFromSperme($sperme_id)
     {
@@ -551,7 +551,7 @@ class SpermeCaracteristique extends ObjetBDD
      * Retourne la liste des caracteristiques, attachees ou non au sperme_id fourni
      *
      * @param number $sperme_id
-     * @return tableau
+     * @return array
      */
     function getFromSperme($sperme_id = 0)
     {
@@ -670,10 +670,36 @@ class SpermeUtilise extends ObjetBDD
     }
 
     /**
+     * Surcharge de la fonction ecrire
+     * pour mettre a jour le nombre de paillettes utilisees
+     * 
+     * {@inheritdoc}
+     * @see ObjetBDD::ecrire()
+     */
+    function ecrire($data)
+    {
+        /*
+         * Recuperation des donnees anciennes pour lire le nombre de paillettes precedemment utilisees
+         */
+        $dataold = $this->lire($data["sperme_utilise_id"]);
+        $retour = parent::ecrire($data);
+        
+        if ($retour > 0) {
+            if (($dataold["nb_paillette_croisement"] > 0 || $data["nb_paillette_croisement"] > 0) && $data["sperme_congelation_id"] > 0) {
+                $sc = new SpermeCongelation($this->connection, $this->paramori);
+                $dsc = $sc->lire($data["sperme_congelation_id"]);
+                $dsc["nb_paillettes_utilisees"] = $dsc["nb_paillettes_utilisees"] - $dataold["nb_paillette_croisement"] + $data["nb_paillette_croisement"];
+                $sc->ecrire($dsc);
+            }
+        }
+        return $retour;
+    }
+
+    /**
      * Fonction recuperant la liste des spermes utilises dans un croisement
      *
-     * @param unknown $croisement_id
-     * @return tableau
+     * @param int $croisement_id
+     * @return array
      */
     function getListFromCroisement($croisement_id)
     {
