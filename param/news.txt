@@ -1,5 +1,15 @@
 Nouveautés
 ===========
+Version 1.6.12 du 1er aout 2017
+-------------------------------
+Modifications substancielles dans la gestion du sperme :
+- la saisie des prélèvements n'est plus possible depuis une séquence, il faut la faire depuis la fiche détail d'un poisson en repro
+- il est possible d'indiquer le conservateur utilisé
+- lors de la congélation, il est possible maintenant d'indiquer plusieurs emplacements de stockage des paillettes
+- pour suivre l'étape de congélation, il est possible de saisir des relevés de température, et le programme affiche la courbe correspondante
+- lors de l'utilisation de paillettes (soit pour la repro, soit pour l'analyse), le nombre total de paillettes utilisées est calculé et mis à jour
+- il est maintenant possible de saisir plusieurs mesures différentes, soit à partir de paillettes congelées, soit à partir du prélèvement initial.
+
 Version 1.6.11 du 30 juin 2017
 -------------------------------
 Ajout de la détermination de la parenté d'un poisson
