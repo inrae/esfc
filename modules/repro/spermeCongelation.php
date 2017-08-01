@@ -64,6 +64,12 @@ switch ($t_module["param"]) {
         $poissonCampagne = new PoissonCampagne($bdd, $ObjetBDDParam);
         $smarty->assign("dataPoisson", $poissonCampagne->lire($_REQUEST["poisson_campagne_id"]));
         
+        /*
+         * Recherche des mesures de qualite rattachees
+         */
+        $sm = new SpermeMesure($bdd, $ObjetBDDParam);
+        $smarty->assign("dataMesure", $sm->getListFromCongelation($id));
+        
         break;
     case "write":
 		/*

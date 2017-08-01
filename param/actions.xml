@@ -338,8 +338,8 @@
 
 
 	<spermeMesureChange action="modules/repro/spermeMesure.php" param="change" droits="reproGestion" />
-	<spermeMesureWrite action="modules/repro/spermeMesure.php" param="write" droits="reproGestion" modulebefore="spermeMesureChange" retourok="spermeDisplay" retourko="spermeMesureChange"/>
-	<spermeMesureDelete action="modules/repro/spermeMesure.php" param="delete" droits="reproGestion" modulebefore="spermeMesureChange" retoursuppr="spermeDisplay" retourko="spermeMesureChange"/>
+	<spermeMesureWrite action="modules/repro/spermeMesure.php" param="write" droits="reproGestion" modulebefore="spermeMesureChange" retourok="spermeChange" retourko="spermeMesureChange"/>
+	<spermeMesureDelete action="modules/repro/spermeMesure.php" param="delete" droits="reproGestion" modulebefore="spermeMesureChange" retoursuppr="spermeChange" retourko="spermeMesureChange"/>
 
 	<spermeCongelationChange action="modules/repro/spermeCongelation.php" param="change" droits="reproGestion" />
 	<spermeCongelationWrite action="modules/repro/spermeCongelation.php" param="write" droits="reproGestion" modulebefore="spermeCongelationChange" retourok="spermeCongelationChange" retourko="spermeCongelationChange"/>

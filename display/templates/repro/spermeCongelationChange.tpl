@@ -157,6 +157,9 @@ Retour au sperme
 </tr>
 <tr>
 <td>
+{include file='repro/spermeMesureList.tpl'}
+</td>
+<td>
 <fieldset>
 <legend>Liste des emplacements de congélation</legend>
 {include file='repro/spermeFreezingPlaceList.tpl'}

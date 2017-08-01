@@ -17,4 +17,8 @@ function printr($tableau, $mode_dump = 0) {
 		echo "<br>";
 	}
 }
+
+function ok($var) {
+    echo("ok $var<br>");
+}
 ?>

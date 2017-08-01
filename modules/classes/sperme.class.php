@@ -9,7 +9,7 @@
 class Sperme extends ObjetBDD
 {
 
-    private $sql = "select sperme_id, poisson_campagne_id, sperme_date,
+    private $sql = "select distinct on (sperme_date, sperme_id) sperme_id, poisson_campagne_id, sperme_date,
 					sequence_id, sequence_nom,
 					 sperme_commentaire, 
 					sperme_qualite_libelle,
@@ -86,8 +86,16 @@ class Sperme extends ObjetBDD
     {
         $id = parent::ecrire($data);
         if ($id > 0 && strlen($_REQUEST["sperme_mesure_date"]) > 0) {
-            $spermeMesure = new SpermeMesure($this->connection, $this->paramori);
+            
             $data["sperme_id"] = $id;
+            /*
+             * Ecriture des caracteristiques
+             */
+            $this->ecrireTableNN("sperme_caract", "sperme_id", "sperme_caracteristique_id", $data["sperme_id"], $data["sperme_caracteristique_id"]);
+            /*
+             * Ecriture des mesures realisees lors du prelevement
+             */
+            $spermeMesure = new SpermeMesure($this->connection, $this->paramori);
             $spermeMesure->ecrire($data);
         }
         return $id;
@@ -129,7 +137,7 @@ class Sperme extends ObjetBDD
             );
             // printr($this->colonnes);
             $where = " where poisson_campagne_id = " . $poisson_campagne_id . "
-					order by sperme_date, sperme_mesure_date";
+					order by sperme_date, sperme_id";
             return $this->getListeParam($this->sql . $this->from . $where);
         } else
             return null;
@@ -175,8 +183,8 @@ class Sperme extends ObjetBDD
     function getListPotentielFromCroisement($croisement_id)
     {
         if ($croisement_id > 0 && is_numeric($croisement_id)) {
-            $sql = $this->sql . " ,congelation_date, sperme_congelation_id ";
-            $from = $this->from . " left outer join sperme_congelation using (sperme_id) ";
+            $sql = $this->sql . " ,congelation_date, sg.sperme_congelation_id, sg.nb_paillette, sg.nb_paillettes_utilisees ";
+            $from = $this->from . " left outer join sperme_congelation sg using (sperme_id) ";
             $where = " where poisson_id in (
 					select poisson_id from croisement
 					join poisson_croisement using (croisement_id)
@@ -438,14 +446,21 @@ class SpermeMesure extends ObjetBDD
      *
      * @see ObjetBDD::ecrire()
      */
-    function ecrire($data){
-         $id = parent::ecrire($data);
-        if ($id > 0) {
-            $data["sperme_mesure_id"] = $id;
+    function ecrire($data)
+    {
+        if ($data["sperme_mesure_id"] > 0) {
+            $dataold = $this->lire($data["sperme_mesure_id"]);
+        }
+        $id = parent::ecrire($data);
+        if ($id > 0 && $data["sperme_congelation_id"] > 0) {
             /*
-             * Ecriture des caracteristiques
-             */          
-            $this->ecrireTableNN("sperme_caract", "sperme_id", "sperme_caracteristique_id", $data["sperme_id"], $data["sperme_caracteristique_id"]);
+             * Modification du nombre de paillettes utilisees
+             */
+            $data["sperme_mesure_id"] = $id;
+            $sc = new SpermeCongelation($this->connection, $this->paramori);
+            $dsc = $sc->lire($data["sperme_congelation_id"]);
+            $dsc["nb_paillettes_utilisees"] = $dsc["nb_paillettes_utilisees"] - $dataold["nb_paillette_utilise"] + $data["nb_paillette_utilise"];
+            $sc->ecrire($dsc);
         }
         return $id;
     }
@@ -463,15 +478,18 @@ class SpermeMesure extends ObjetBDD
             return $this->getListeParam($this->sql . $where . $this->order);
         }
     }
+
     /**
      * Retourne la liste des analyses effectuees a partir d'une congelation
+     *
      * @param int $sperme_congelation_id
      * @return array
      */
-    function getListFromCongelation($sperme_congelation_id) {
+    function getListFromCongelation($sperme_congelation_id)
+    {
         if (is_numeric($sperme_congelation_id) && $sperme_congelation_id > 0) {
-            $where = " where sperme_congelation_id = $sperme_congelation_id";
-            return $this->getListeParam($this->sql.$where.$this->order);
+            $where = " where sperme_congelation_id = $sperme_congelation_id ";
+            return $this->getListeParam($this->sql . $where . $this->order);
         }
     }
 

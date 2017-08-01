@@ -1,5 +1,5 @@
 {if $droits.reproGestion == 1}
-<a href="index.php?module=spermeMesureChange&sperme_mesure_id=0&sperme_id={$data.sperme_id}">Nouvelle analyse...</a>
+<a href="index.php?module=spermeMesureChange&sperme_mesure_id=0&sperme_id={$data.sperme_id}&sperme_congelation_id={$data.sperme_congelation_id}">Nouvelle analyse...</a>
 {/if}
 <table class="tableaffichage">
 <thead>
@@ -20,7 +20,7 @@
 <tr>
 <td>
 {if $droits.reproGestion == 1}
-<a href="index.php?module=spermeMesureChange&sperme_mesure_id={$dataMesure[lst].sperme_mesure_id}&sperme_id={$data.sperme_id}">
+<a href="index.php?module=spermeMesureChange&sperme_mesure_id={$dataMesure[lst].sperme_mesure_id}&sperme_id={$data.sperme_id}&sperme_congelation_id={$dataMesure[lst].sperme_congelation_id}">
 {$dataMesure[lst].sperme_mesure_date}
 </a>
 {else}
@@ -34,7 +34,7 @@
 <td class="center">{$dataMesure[lst].tx_survie_60}</td>
 <td class="center">{$dataMesure[lst].temps_survie}</td>
 <td class="center">{$dataMesure[lst].sperme_ph}</td>
-<td class="center">{$dataMesure[lst].nb_paillette}</td>
+<td class="center">{$dataMesure[lst].nb_paillette_utilise}</td>
 </tr>
 {/section}
 </tbody>

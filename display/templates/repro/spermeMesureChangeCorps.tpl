@@ -1,5 +1,6 @@
 <input type="hidden" name="sperme_mesure_id" value="{$data.sperme_mesure_id}">
 <input type="hidden" name="sperme_id" value="{$data.sperme_id}">
+<input type="hidden" name="sperme_congelation_id" value="{$data.sperme_congelation_id}">
 <dl>
 <dt>Date/heure de la mesure<span class="red">*</span> :</dt>
 <dd><input id="sperme_mesure_date" class="" name="sperme_mesure_date" value="{$data.sperme_mesure_date}" placeholder="1/6/16 14:15"></dd>

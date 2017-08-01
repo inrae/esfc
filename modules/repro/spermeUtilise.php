@@ -9,6 +9,7 @@ include_once 'modules/classes/sperme.class.php';
 $dataClass = new SpermeUtilise($bdd,$ObjetBDDParam);
 $keyName = "sperme_utilise_id";
 $id = $_REQUEST[$keyName];
+$smarty->assign ( "poissonDetailParent", $_SESSION ["poissonDetailParent"] );
 
 switch ($t_module["param"]) {
 	case "change":
@@ -34,14 +35,6 @@ switch ($t_module["param"]) {
 		 * Recuperation de la liste des spermes potentiels
 		 */
 		$sperme = new Sperme($bdd, $ObjetBDDParam);
-// 		$dataPoisson = $croisement->getPoissonIdFromCroisement($_REQUEST["croisement_id"]);
-// 		$poissons = array();
-// 		/*
-// 		 * Mise en forme du tableau en tableau simple
-// 		 */
-// 		foreach ($dataPoisson as $value) 
-// 			$poissons[] = $value["poisson_id"];
-// 		$spermes = $sperme->getListPotentielFromPoissons($poissons);
 		$spermes = $sperme->getListPotentielFromCroisement($_REQUEST["croisement_id"]);
 		$smarty->assign( "spermes", $spermes);
 		break;

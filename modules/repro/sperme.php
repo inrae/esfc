@@ -40,12 +40,14 @@ switch ($t_module["param"]) {
 		 * If is a new record, generate a new record with default value :
 		 * $_REQUEST["idParent"] contains the identifiant of the parent record
 		 */
-		dataRead($dataClass, $id, "repro/spermeChange.tpl", $_REQUEST["poisson_campagne_id"]);
+		$data = dataRead($dataClass, $id, "repro/spermeChange.tpl", $_REQUEST["poisson_campagne_id"]);
 		require_once 'modules/repro/spermeFunction.php';
 		initSpermeChange($id);
 		/*
 		 * Donnees du poisson
 		 */
+		if (!isset($_REQUEST["poisson_campagne_id"]))
+		    $_REQUEST["poisson_campagne_id"] = $data["poisson_campagne_id"];
 		require_once 'modules/classes/poissonRepro.class.php';
 		$poissonCampagne = new PoissonCampagne($bdd, $ObjetBDDParam);
 		$smarty->assign("dataPoisson", $poissonCampagne->lire($_REQUEST["poisson_campagne_id"]));

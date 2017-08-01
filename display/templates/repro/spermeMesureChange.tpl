@@ -1,15 +1,17 @@
+{if strlen($poissonDetailParent) > 0}
 <a href="index.php?module={$poissonDetailParent}">Retour à la liste des poissons</a>&nbsp;
+{/if}
 <a href="index.php?module=poissonCampagneDisplay&poisson_campagne_id={$dataSperme.poisson_campagne_id}">
 Retour au reproducteur
 </a>
 &nbsp;
-<a href="index.php?module=spermeDetail&sperme_id={$data.sperme_id}">Retour au prélèvement du {$dataSperme.sperme_date}</a>
+<a href="index.php?module=spermeChange&sperme_id={$data.sperme_id}">Retour au prélèvement</a>
 {include file="repro/poissonCampagneDetail.tpl"}
 
 <h2>Modification de l'analyse du prélèvement</h2>
 <div class="formSaisie">
 <div>
-<form id="spermeMesureForm" method="post" action="index.php?module=spermeWrite">
+<form id="spermeMesureForm" method="post" action="index.php?module=spermeMesureWrite">
 {include file="repro/spermeMesureChangeCorps.tpl"}
 <div class="formBouton">
 <input class="submit" type="submit" value="Enregistrer">
