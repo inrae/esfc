@@ -34,5 +34,10 @@ function initSpermeChange($sperme_id) {
 	 */
 	$congelation = new SpermeCongelation($bdd, $ObjetBDDParam);
 	$smarty->assign("congelation", $congelation->getListFromSperme($sperme_id));
+	/*
+	 * Recherche des analyses realisees
+	 */
+	$mesure = new SpermeMesure($bdd, $ObjetBDDParam);
+	$smarty->assign("dataMesure", $mesure->getListFromSperme($sperme_id));
 }
 ?>

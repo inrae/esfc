@@ -112,3 +112,9 @@ update sperme_congelation set sperme_congelation_commentaire = null;
 
 select * from sperme_congelation;
 select * from sperme_freezing_place;
+
+alter table sperme_mesure add column sperme_congelation_id int;
+
+alter table sperme_mesure add constraint "sperme_mesure_sperme_congelation_fk" foreign key ("sperme_congelation_id")
+references sperme_congelation ("sperme_congelation_id")
+on delete no action on update no action not deferrable;

@@ -4,7 +4,12 @@
 Retour au reproducteur
 </a>
 {include file="repro/poissonCampagneDetail.tpl"}
-<h2>Modification d'un prélèvement de sperme</h2>
+<table class="tablemulticolonne">
+<tr>
+<td>
+<fieldset>
+<legend>Modification d'un prélèvement de sperme</legend>
+
 <div class="formSaisie">
 <div>
 <form id="spermeForm" method="post" action="index.php?module=spermeWrite">
@@ -38,7 +43,17 @@ Retour au reproducteur
 </div>
 </div>
 <span class="red">*</span><span class="messagebas">Champ obligatoire</span>
-
+</fieldset>
+</td>
+<td>
+<fieldset>
+<legend>Analyses réalisées</legend>
+{include file="repro/spermeMesureList.tpl"}
+</fieldset>
+</td>
+</tr>
+<tr>
+<td colspan="2">
 <!-- Ajout de l'affichage des congelations -->
 {if $data.sperme_id > 0}
 <fieldset>
@@ -46,3 +61,6 @@ Retour au reproducteur
 {include file="repro/spermeCongelationList.tpl"}
 </fieldset>
 {/if}
+</td>
+</tr>
+</table>

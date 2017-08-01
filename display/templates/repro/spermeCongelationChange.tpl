@@ -115,7 +115,7 @@ Retour au sperme
 </dd>
 </dl>
 <dl>
-<dt>Nb de paillettes utilisées :</dt>
+<dt>Nb de paillettes utilisées en repro :</dt>
 <dd>
 <input class="nombre" name="nb_paillettes_utilisees" value="{$data.nb_paillettes_utilisees}" readonly>
 </dd>

@@ -368,7 +368,8 @@ class SpermeMesure extends ObjetBDD
 
     private $sql = "select sperme_mesure_id, sperme_id, sperme_mesure_date,
 			motilite_initiale, tx_survie_initial, motilite_60, tx_survie_60, temps_survie,
-			sperme_ph, nb_paillette_utilise, sperme_qualite_id, sperme_qualite_libelle
+			sperme_ph, nb_paillette_utilise, sperme_qualite_id, sperme_qualite_libelle,
+            sperme_congelation_id
 			from sperme_mesure
 			join sperme using (sperme_id)
 			left outer join sperme_qualite using (sperme_qualite_id)";
@@ -380,7 +381,7 @@ class SpermeMesure extends ObjetBDD
         $this->param = $param;
         $this->paramori = $param;
         $this->table = "sperme_mesure";
-        $this->id_auto = "1";
+        $this->id_auto = 1;
         $this->colonnes = array(
             "sperme_mesure_id" => array(
                 "type" => 1,
@@ -421,6 +422,9 @@ class SpermeMesure extends ObjetBDD
             ),
             "nb_paillette_utilise" => array(
                 "type" => 1
+            ),
+            "sperme_congelation_id" => array(
+                "type" => 1
             )
         );
         if (! is_array($param))
@@ -434,17 +438,14 @@ class SpermeMesure extends ObjetBDD
      *
      * @see ObjetBDD::ecrire()
      */
-    function ecrire($data)
-    {
-        $id = parent::ecrire($data);
+    function ecrire($data){
+         $id = parent::ecrire($data);
         if ($id > 0) {
+            $data["sperme_mesure_id"] = $id;
             /*
              * Ecriture des caracteristiques
-             */
+             */          
             $this->ecrireTableNN("sperme_caract", "sperme_id", "sperme_caracteristique_id", $data["sperme_id"], $data["sperme_caracteristique_id"]);
-            /*
-             * Ecriture des mesures realisees
-             */
         }
         return $id;
     }
@@ -460,6 +461,17 @@ class SpermeMesure extends ObjetBDD
         if (is_numeric($sperme_id) && $sperme_id > 0) {
             $where = " where sperme_id = " . $sperme_id;
             return $this->getListeParam($this->sql . $where . $this->order);
+        }
+    }
+    /**
+     * Retourne la liste des analyses effectuees a partir d'une congelation
+     * @param int $sperme_congelation_id
+     * @return array
+     */
+    function getListFromCongelation($sperme_congelation_id) {
+        if (is_numeric($sperme_congelation_id) && $sperme_congelation_id > 0) {
+            $where = " where sperme_congelation_id = $sperme_congelation_id";
+            return $this->getListeParam($this->sql.$where.$this->order);
         }
     }
 
@@ -672,7 +684,7 @@ class SpermeUtilise extends ObjetBDD
     /**
      * Surcharge de la fonction ecrire
      * pour mettre a jour le nombre de paillettes utilisees
-     * 
+     *
      * {@inheritdoc}
      * @see ObjetBDD::ecrire()
      */
