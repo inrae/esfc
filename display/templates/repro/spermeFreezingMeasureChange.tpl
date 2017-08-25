@@ -25,7 +25,7 @@ Retour à la congélation
 </dl>
 <dl>
 <dt>Temperature relevée<span class="red">*</span> :</dt>
-<dd><input name="measure_temp" class="taux" value="{$data.measure_temp}"></dd>
+<dd><input name="measure_temp" class="taux" value="{$data.measure_temp}" autofocus></dd>
 </dl>
 
 

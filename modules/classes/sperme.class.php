@@ -846,11 +846,35 @@ class SpermeFreezingMeasure extends ObjetBDD
                 "requis" => 1
             )
         );
-        // Si toutes les colonnes de la table sont decrites :
-        $this->fullDescription = 1;
+
         // Appel du constructeur de la classe ObjetBDD
         
         parent::__construct($bdd, $param);
+    }
+    /**
+     * Modification de la fonction de definition des colonnes par defaut,
+     * pour recuperer le cas echeant l'heure de derniere mesure, augmentee
+     * d'une minute
+     * {@inheritDoc}
+     * @see ObjetBDD::getDefaultValue()
+     */
+    function getDefaultValue($parentValue = 0) {
+        $data = parent::getDefaultValue($parentValue);
+        /*
+         * Recherche de la derniere date enregistree
+         */
+        if ($parentValue > 0) {
+            $sql = "select measure_date as mt from sperme_freezing_measure".
+                " where sperme_congelation_id = :id".
+                " order by measure_date desc limit 1";
+            $last = $this->lireParamAsPrepared($sql, array("id"=>$parentValue));
+            if (strlen($last["mt"]) > 0) {
+               $time = new DateTime ($last["mt"]);
+               date_add($time, new DateInterval("PT1M"));
+               $data["measure_date"]= $this->formatDateDBversLocal(date_format($time,"Y-m-d H:i:s"),3);
+            }
+        }
+        return $data;
     }
 }
 

@@ -37,9 +37,9 @@ switch ($t_module["param"]) {
          * write record in database
          */
         $id = dataWrite($dataClass, $_REQUEST);
-        if ($id > 0) {
+        /*if ($id > 0) {
             $_REQUEST[$keyName] = $id;
-        }
+        }*/
         break;
     case "delete":
         /*

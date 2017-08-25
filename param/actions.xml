@@ -350,7 +350,7 @@
 	<spermeFreezingPlaceDelete action="modules/repro/spermeFreezingPlace.php" param="delete" droits="reproGestion" modulebefore="spermeFreezingPlaceChange" retoursuppr="spermeCongelationChange" retourko="spermeFreezingPlaceChange"/>
 
 	<spermeFreezingMeasureChange action="modules/repro/spermeFreezingMeasure.php" param="change" droits="reproGestion" />
-	<spermeFreezingMeasureWrite action="modules/repro/spermeFreezingMeasure.php" param="write" droits="reproGestion" modulebefore="spermeFreezingMeasureChange" retourok="spermeCongelationChange" retourko="spermeFreezingMeasureChange"/>
+	<spermeFreezingMeasureWrite action="modules/repro/spermeFreezingMeasure.php" param="write" droits="reproGestion" modulebefore="spermeFreezingMeasureChange" retourok="spermeFreezingMeasureChange" retourko="spermeFreezingMeasureChange"/>
 	<spermeFreezingMeasureDelete action="modules/repro/spermeFreezingMeasure.php" param="delete" droits="reproGestion" modulebefore="spermeFreezingMeasureChange" retoursuppr="spermeCongelationChange" retourko="spermeFreezingMeasureChange"/>
 
 
