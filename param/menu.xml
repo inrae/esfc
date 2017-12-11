@@ -3,6 +3,7 @@
 <item module="poissonList" title="56" value="55">
 	<item module="poissonList" title="56" value="55" droits="consult"/>
 	<item module="anomalieList" title="74" value="73" droits="consult"/>
+	<item module="requeteList" title="138" value="137" droits="requete"/>
 </item>
 
 <item module="bassinList" value="63" title="64">

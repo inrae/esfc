@@ -141,8 +141,8 @@ $LANG["menu"][133] = "Stades des gonades";
 $LANG["menu"][134] = "Liste des stades de maturation des gonades";
 $LANG["menu"][135] = "Conservateurs de sperme";
 $LANG["menu"][136] = "Liste des conservateurs utilisés lors de la congélation du sperme";
-$LANG["menu"][137] = "";
-$LANG["menu"][138] = "";
+$LANG["menu"][137] = "Requêtes";
+$LANG["menu"][138] = "Liste des requêtes exécutables sur la base de données";
 $LANG["menu"][139] = "";
 $LANG["menu"][140] = "";
 
