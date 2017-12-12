@@ -72,7 +72,7 @@ class Requete extends ObjetBDD
         if ($requete_id > 0 && is_numeric($requete_id)) {
             $req = $this->lire($requete_id);
             if (strlen($req["body"]) > 0) {
-                $sql = "SELECT " + $req["body"];
+                $sql = "SELECT " . $req["body"];
                 /*
                  * Preparation des dates pour encodage
                  */

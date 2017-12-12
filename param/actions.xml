@@ -380,10 +380,15 @@
 	<ventilationCampagneWrite action="modules/poisson/ventilation.php" param="write" droits="reproGestion,poissonGestion" modulebefore="ventilationChange" retourok="poissonCampagneDisplay" retourko="ventilationChange"/>
 	<ventilationCampagneDelete action="modules/poisson/ventilation.php" param="delete" droits="reproGestion,poissonGestion" modulebefore="ventilationChange" retoursuppr="poissonCampagneDisplay" retourko="ventilationChange"/>
 
-	<requeteList action="modules/param/requete.php" param="list" retourlogin="1" droits="requete" />
-	<requeteChange action="modules/param/requete.php" param="change" droits="paramAdmin" />
-	<requeteWrite action="modules/param/requete.php" param="write" droits="paramAdmin" modulebefore="requeteChange" retourok="requeteList" retourko="requeteChange"/>
-	<requeteDelete action="modules/param/requete.php" param="delete" droits="paramAdmin" modulebefore="requeteChange" retoursuppr="requeteList" retourko="requeteChange"/>
+	<requeteList action="modules/parametre/requete.php" param="list" retourlogin="1" droits="requete" />
+	<requeteChange action="modules/parametre/requete.php" param="change" droits="requeteAdmin" />
+	<requeteWrite action="modules/parametre/requete.php" param="write" droits="requeteAdmin" modulebefore="requeteChange,requeteCopy" retourok="requeteChange" retourko="requeteChange"/>
+	<requeteDelete action="modules/parametre/requete.php" param="delete" droits="requeteAdmin" modulebefore="requeteChange,requeteExec,requeteWriteExec,requeteExecList" retoursuppr="requeteList" retourko="requeteChange"/>
+	<requeteExec action="modules/parametre/requete.php" param="exec" droits="requete" />
+	<requeteExecList action="modules/parametre/requete.php" param="execListe" droits="requete" />
+	<requeteWriteExec action="modules/parametre/requete.php" param="write" droits="requeteAdmin" modulebefore="requeteChange,requeteExec,requeteWriteExec" retourok="requeteExec" retourko="requeteChange"/>
+	<requeteCopy action="modules/parametre/requete.php" param="copy" droits="requeteAdmin" />
+	
 	
 
 <!-- Gestion des droits -->

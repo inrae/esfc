@@ -27,8 +27,15 @@ switch ($t_module["param"]) {
         break;
     case "execListe":
     case "exec":
+        $smarty->assign("corps", "parametre/requeteChange.tpl");
+        $smarty->assign("data", $dataClass->lire($id));
+        try{
         $smarty->assign("result", $dataClass->exec($id));
         $module_coderetour = 1;
+        }catch (Exception $e){
+            $message = $e->getMessage();
+            $module_coderetour = -1;
+        }
         break;
     case "write":
         /*
@@ -47,11 +54,12 @@ switch ($t_module["param"]) {
         dataDelete($dataClass, $id);
         break;
     case "copy":
-        $data = $dataRead($dataClass, $id, "parametre/requeteChange.tpl");
+        $data = dataRead($dataClass, 0, "parametre/requeteChange.tpl");
         if ($id > 0) {
             $dinit = $dataClass->lire($id);
             if ($dinit["requete_id"] > 0){
                 $data ["body"] = $dinit["body"];
+                $data["datefields"] = $dinit["datefields"];
                 $smarty->assign("data", $data);
             }
         }
