@@ -22,6 +22,8 @@ $(document).ready(function() {
 </script>
 
 <a href="index.php?module=requeteList">Retour à la liste</a>
+&nbsp;
+<a href="index.php?module=getStructureDatabase" target="_blank">Structure de la base de données (fichier PDF)</a>
 <div class="formSaisie">
 <div>
 

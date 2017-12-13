@@ -3,7 +3,9 @@
 <a href="index.php?module=requeteChange&requete_id=0">
 Nouvelle requête...
 </a>
+&nbsp;
 {/if}
+<a href="index.php?module=getStructureDatabase" target="_blank">Structure de la base de données (fichier PDF)</a>
 <script>
 setDataTables("crequeteList", true, true, true, 50);
 </script>

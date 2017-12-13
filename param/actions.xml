@@ -388,7 +388,7 @@
 	<requeteExecList action="modules/parametre/requete.php" param="execListe" droits="requete" />
 	<requeteWriteExec action="modules/parametre/requete.php" param="write" droits="requeteAdmin" modulebefore="requeteChange,requeteExec,requeteWriteExec" retourok="requeteExec" retourko="requeteChange"/>
 	<requeteCopy action="modules/parametre/requete.php" param="copy" droits="requeteAdmin" />
-	
+	<getStructureDatabase action="doc/getFilePdf.php" param="sturio.pdf" droits="requete" ajax="1"/>
 	
 
 <!-- Gestion des droits -->
