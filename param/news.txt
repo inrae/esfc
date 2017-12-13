@@ -1,5 +1,9 @@
 Nouveautés
 ===========
+Version 1.7 du 13 décembre 2017
+-------------------------------
+Ajout d'un module permettant d'exécuter des requêtes directement dans la base de données
+
 Version 1.6.12 du 1er aout 2017
 -------------------------------
 Modifications substancielles dans la gestion du sperme :
