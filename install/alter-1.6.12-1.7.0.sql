@@ -94,3 +94,6 @@ AS
            FROM transfert t1
           WHERE t.poisson_id = t1.poisson_id AND t1.bassin_destination > 0));
 
+alter table repartition add column site_id integer,
+add constraint site_site_id_fk foreign key (site_id) references site (site_id)
+match full on delete no action on update no action;

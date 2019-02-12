@@ -3,7 +3,7 @@
 CAUTION: Do not modify this file unless you know what you are doing.
          Unexpected results may occur if the code is changed deliberately.
 -->
-<dbmodel pgmodeler-ver="0.9.2-beta" last-position="973,0" last-zoom="1" max-obj-count="169"
+<dbmodel pgmodeler-ver="0.9.2-beta" last-position="670,0" last-zoom="1" max-obj-count="169"
 	 default-owner="postgres">
 <role name="quinton"
       superuser="true"
@@ -920,7 +920,7 @@ where longitude_start is not null and latitude_start is not null and geom_point 
 	<schema name="public"/>
 	<role name="quinton"/>
 	<comment><![CDATA[Type de bassin]]></comment>
-	<position x="1720" y="20"/>
+	<position x="1700" y="20"/>
 	<column name="bassin_type_id" not-null="true" sequence="public.bassin_type_bassin_type_id_seq">
 		<type name="integer" length="0"/>
 	</column>

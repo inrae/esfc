@@ -194,7 +194,10 @@ class TableauRepartition extends TCPDF {
 	/**
 	 * Envoie le document au navigateur
 	 */
-	function sent($dateDebut) {
+	function sent($dateDebut="") {
+		if ($dateDebut == "") {
+			$dateDebut = date();
+		}
 		$nomFichier = $this->param ["nomFichier"] . "_" . $this->dateDebut->format ( "d-m-Y" ) . ".pdf";
 		$this->Output ( $nomFichier, "I" );
 	}
@@ -307,7 +310,7 @@ class RepartitionAdulte extends TableauRepartition {
 			 * Ecriture de la fin de ligne
 			 */
 			$this->SetFillColor ( 255, 255, 255 );
-			$this->SetFont ();
+			$this->SetFont ("");
 			$this->Cell ( 40, 4, "", 1, 0, 'C', true );
 			$this->Ln ();
 			/*
@@ -350,7 +353,7 @@ class RepartitionAdulte extends TableauRepartition {
 		 */
 		$this->SetFont ( "", "B" );
 		$this->Cell ( 20, 6, "Total/jour", 1, 0, 'C', true );
-		$this->SetFont ();
+		$this->SetFont ("");
 		/*
 		 * Recuperation des totaux pour chaque aliment
 		 */
@@ -365,7 +368,7 @@ class RepartitionAdulte extends TableauRepartition {
 		 */
 		$this->SetFont ( "", "B" );
 		$this->Cell ( 20, 6, "Total/sem", 1, 0, 'C', true );
-		$this->SetFont ();
+		$this->SetFont ("");
 		/*
 		 * Recuperation des totaux pour chaque aliment
 		 */
@@ -637,7 +640,7 @@ class RepartitionJuvenileLot extends TableauRepartition {
 		 * Affichage de la densité d'artemia
 		 */
 		$this->SetFillColor ( 255, 255, 255 );
-		$this->SetFont();
+		$this->SetFont("");
 		$this->Cell ( 50, $this->param ["hl"], "Nb artémies/ml : ", 0, 0, 'R', true );
 		$this->SetFont ( "", "B" );
 		$this->Cell(50, $this->param ["hl"], $this->dataRepartition["densite_artemia"], 0, 0, 'L', true );

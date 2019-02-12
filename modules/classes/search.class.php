@@ -255,12 +255,14 @@ class SearchRepartition extends SearchParam {
 				"categorie_id" => 0,
 				"date_reference" => date ( 'd/m/' ) . $annee_prec,
 				"offset" => 0,
-				"limit" => 10 
+				"limit" => 10,
+				"site_id"=> 0
 		);
 		$this->paramNum = array (
 				"categorie_id",
 				"offset",
-				"limit" 
+				"limit",
+				"site_id"
 		);
 		parent::__construct ();
 		

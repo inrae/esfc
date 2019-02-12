@@ -21,6 +21,15 @@ Catégorie d'alimentation :
 </option>
 {/section}
 </select>
+Site : 
+<select class="search" name="site_id">
+<option value="0" {if $repartitionSearch.site_id == ""}selected{/if}>Sélectionnez le site...</option>
+{section name=lst loop=$site}
+<option value="{$site[lst].site_id}" {if $repartitionSearch.site_id == $site[lst].site_id}selected{/if}>
+{$site[lst].site_name}
+</option>
+{/section}
+</select>
 <br>
 Date à partir de laquelle sont affichées les répartitions : 
 <input class="date search" name="date_reference" value="{$repartitionSearch.date_reference}">

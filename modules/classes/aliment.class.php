@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @author Eric Quinton
  * @copyright Copyright (c) 2014, IRSTEA / Eric Quinton
@@ -12,7 +13,8 @@ include_once 'modules/classes/categorie.class.php';
  * @author quinton
  *        
  */
-class AlimentType extends ObjetBDD {
+class AlimentType extends ObjetBDD
+{
 	/**
 	 * Constructeur de la classe
 	 *
@@ -20,26 +22,27 @@ class AlimentType extends ObjetBDD {
 	 *        	instance ADODB $bdd
 	 * @param array $param        	
 	 */
-	function __construct($bdd, $param = null) {
+	function __construct($bdd, $param = null)
+	{
 		$this->param = $param;
 		$this->table = "aliment_type";
 		$this->id_auto = 1;
-		$this->colonnes = array (
-				"aliment_type_id" => array (
-						"type" => 1,
-						"key" => 1,
-						"requis" => 1,
-						"defaultValue" => 0 
-				),
-				"aliment_type_libelle" => array (
-						"type" => 0,
-						"requis" => 1 
-				) 
+		$this->colonnes = array(
+			"aliment_type_id" => array(
+				"type" => 1,
+				"key" => 1,
+				"requis" => 1,
+				"defaultValue" => 0
+			),
+			"aliment_type_libelle" => array(
+				"type" => 0,
+				"requis" => 1
+			)
 		);
-		if (! is_array ( $param ))
-			$param == array ();
-		$param ["fullDescription"] = 1;
-		parent::__construct ( $bdd, $param );
+		if (!is_array($param))
+			$param == array();
+		$param["fullDescription"] = 1;
+		parent::__construct($bdd, $param);
 	}
 }
 /**
@@ -48,7 +51,8 @@ class AlimentType extends ObjetBDD {
  * @author quinton
  *        
  */
-class Aliment extends ObjetBDD {
+class Aliment extends ObjetBDD
+{
 	/**
 	 * Constructeur de la classe
 	 *
@@ -56,48 +60,50 @@ class Aliment extends ObjetBDD {
 	 *        	instance ADODB $bdd
 	 * @param array $param        	
 	 */
-	function __construct($bdd, $param = null) {
+	function __construct($bdd, $param = null)
+	{
 		$this->param = $param;
 		$this->paramori = $param;
 		$this->table = "aliment";
 		$this->id_auto = 1;
-		$this->colonnes = array (
-				"aliment_id" => array (
-						"type" => 1,
-						"key" => 1,
-						"requis" => 1,
-						"defaultValue" => 0 
-				),
-				"aliment_libelle" => array (
-						"type" => 0,
-						"requis" => 1 
-				),
-				"aliment_libelle_court" => array (
-						"type" => 0,
-						"requis" => 1 
-				),
-				"aliment_type_id" => array (
-						"type" => 1,
-						"requis" => 1 
-				),
-				"actif" => array (
-						"type" => 1,
-						"defaultValue" => 1,
-						"requis" => 1 
-				) 
+		$this->colonnes = array(
+			"aliment_id" => array(
+				"type" => 1,
+				"key" => 1,
+				"requis" => 1,
+				"defaultValue" => 0
+			),
+			"aliment_libelle" => array(
+				"type" => 0,
+				"requis" => 1
+			),
+			"aliment_libelle_court" => array(
+				"type" => 0,
+				"requis" => 1
+			),
+			"aliment_type_id" => array(
+				"type" => 1,
+				"requis" => 1
+			),
+			"actif" => array(
+				"type" => 1,
+				"defaultValue" => 1,
+				"requis" => 1
+			)
 		);
-		if (! is_array ( $param ))
-			$param == array ();
-		$param ["fullDescription"] = 1;
-		parent::__construct ( $bdd, $param );
+		if (!is_array($param))
+			$param == array();
+		$param["fullDescription"] = 1;
+		parent::__construct($bdd, $param);
 	}
-	function ecrire($data) {
-		$id = parent::ecrire ( $data );
+	function ecrire($data)
+	{
+		$id = parent::ecrire($data);
 		if ($id > 0 && is_numeric($id)) {
 			/*
 			 * Traitement des categories rattachees
 			 */
-			$this->ecrireTableNN ( "aliment_categorie", "aliment_id", "categorie_id", $id, $data ["categorie"] );
+			$this->ecrireTableNN("aliment_categorie", "aliment_id", "categorie_id", $id, $data["categorie"]);
 		}
 		return $id;
 	}
@@ -107,14 +113,15 @@ class Aliment extends ObjetBDD {
 	 *
 	 * @see ObjetBDD::supprimer()
 	 */
-	function supprimer($id) {
+	function supprimer($id)
+	{
 		if ($id > 0 && is_numeric($id)) {
 			/*
 			 * Suppression des rattachements aux catégories
 			 */
-			$alimentCategorie = new AlimentCategorie ( $this->connection, $this->paramori );
-			$alimentCategorie->supprimerChamp ( $id, "aliment_id" );
-			return parent::supprimer ( $id );
+			$alimentCategorie = new AlimentCategorie($this->connection, $this->paramori);
+			$alimentCategorie->supprimerChamp($id, "aliment_id");
+			return parent::supprimer($id);
 		}
 	}
 	/**
@@ -122,9 +129,10 @@ class Aliment extends ObjetBDD {
 	 *
 	 * @return array
 	 */
-	function getListeActif() {
+	function getListeActif()
+	{
 		$sql = "select * from " . $this->table . " where actif = 1 order by aliment_libelle";
-		return $this->getListeParam ( $sql );
+		return $this->getListeParam($sql);
 	}
 	/**
 	 * Reecriture de la recuperation de la liste
@@ -132,14 +140,16 @@ class Aliment extends ObjetBDD {
 	 *
 	 * @see ObjetBDD::getListe()
 	 */
-	function getListe() {
+	function getListe()
+	{
 		$sql = "select * from " . $this->table . " 
 				natural join aliment_type
 				order by aliment_libelle";
-		return $this->getListeParam ( $sql );
+		return $this->getListeParam($sql);
 	}
 }
-class AlimentCategorie extends ObjetBDD {
+class AlimentCategorie extends ObjetBDD
+{
 	/**
 	 * Constructeur de la classe
 	 *
@@ -147,26 +157,27 @@ class AlimentCategorie extends ObjetBDD {
 	 *        	instance ADODB $bdd
 	 * @param array $param        	
 	 */
-	function __construct($bdd, $param = null) {
+	function __construct($bdd, $param = null)
+	{
 		$this->param = $param;
 		$this->table = "aliment_categorie";
 		$this->id_auto = 1;
-		$this->colonnes = array (
-				"aliment_id" => array (
-						"type" => 1,
-						"key" => 1,
-						"requis" => 1 
-				),
-				"categorie_id" => array (
-						"type" => 1,
-						"key" => 1,
-						"requis" => 1 
-				) 
+		$this->colonnes = array(
+			"aliment_id" => array(
+				"type" => 1,
+				"key" => 1,
+				"requis" => 1
+			),
+			"categorie_id" => array(
+				"type" => 1,
+				"key" => 1,
+				"requis" => 1
+			)
 		);
-		if (! is_array ( $param ))
-			$param == array ();
-		$param ["fullDescription"] = 1;
-		parent::__construct ( $bdd, $param );
+		if (!is_array($param))
+			$param == array();
+		$param["fullDescription"] = 1;
+		parent::__construct($bdd, $param);
 	}
 	/**
 	 * Retourne la liste des categories pour un aliment
@@ -174,15 +185,17 @@ class AlimentCategorie extends ObjetBDD {
 	 * @param int $aliment_id        	
 	 * @return array
 	 */
-	function getListeFromAliment($aliment_id) {
+	function getListeFromAliment($aliment_id)
+	{
 		if ($aliment_id > 0 && is_numeric($aliment_id)) {
 			$sql = "select * from " . $this->table . "
 				where aliment_id = " . $aliment_id;
-			return $this->getListeParam ( $sql );
+			return $this->getListeParam($sql);
 		}
 	}
 }
-class RepartTemplate extends ObjetBDD {
+class RepartTemplate extends ObjetBDD
+{
 	/**
 	 * Constructeur de la classe
 	 *
@@ -190,40 +203,41 @@ class RepartTemplate extends ObjetBDD {
 	 *        	instance ADODB $bdd
 	 * @param array $param        	
 	 */
-	function __construct($bdd, $param = null) {
+	function __construct($bdd, $param = null)
+	{
 		$this->param = $param;
 		$this->paramori = $param;
 		$this->table = "repart_template";
 		$this->id_auto = 1;
-		$this->colonnes = array (
-				"repart_template_id" => array (
-						"type" => 1,
-						"key" => 1,
-						"requis" => 1,
-						"defaultValue" => 0 
-				),
-				"categorie_id" => array (
-						"type" => 1,
-						"requis" => 1 
-				),
-				"repart_template_libelle" => array (
-						"type" => 0 
-				),
-				"repart_template_date" => array (
-						"type" => 2,
-						"requis" => 1,
-						"defaultValue" => "getDateJour" 
-				),
-				"actif" => array (
-						"type" => 1,
-						"defaultValue" => 1,
-						"requis" => 1 
-				) 
+		$this->colonnes = array(
+			"repart_template_id" => array(
+				"type" => 1,
+				"key" => 1,
+				"requis" => 1,
+				"defaultValue" => 0
+			),
+			"categorie_id" => array(
+				"type" => 1,
+				"requis" => 1
+			),
+			"repart_template_libelle" => array(
+				"type" => 0
+			),
+			"repart_template_date" => array(
+				"type" => 2,
+				"requis" => 1,
+				"defaultValue" => "getDateJour"
+			),
+			"actif" => array(
+				"type" => 1,
+				"defaultValue" => 1,
+				"requis" => 1
+			)
 		);
-		if (! is_array ( $param ))
-			$param == array ();
-		$param ["fullDescription"] = 1;
-		parent::__construct ( $bdd, $param );
+		if (!is_array($param))
+			$param == array();
+		$param["fullDescription"] = 1;
+		parent::__construct($bdd, $param);
 	}
 	/**
 	 * Recherche des modèles selon les parametres fournis
@@ -231,24 +245,25 @@ class RepartTemplate extends ObjetBDD {
 	 * @param array $param        	
 	 * @return array
 	 */
-	function getListSearch($param) {
-		$param = $this->encodeData ( $param );
+	function getListSearch($param)
+	{
+		$param = $this->encodeData($param);
 		$sql = "select * from " . $this->table . "
 				left outer join categorie using (categorie_id)";
 		$order = " order by repart_template_date desc";
 		$and = "";
 		$where = "";
-		if ($param ["categorie_id"] > 0) {
-			$where .= $and . $this->table . ".categorie_id = " . $param ["categorie_id"];
+		if ($param["categorie_id"] > 0) {
+			$where .= $and . $this->table . ".categorie_id = " . $param["categorie_id"];
 			$and = " and ";
 		}
-		if ($param ["actif"] > - 1) {
-			$where .= $and . " actif = " . $param ["actif"];
+		if ($param["actif"] > -1) {
+			$where .= $and . " actif = " . $param["actif"];
 			$and = " and ";
 		}
 		if ($and == " and ")
 			$where = " where " . $where;
-		return ($this->getListeParam ( $sql . $where . $order ));
+		return ($this->getListeParam($sql . $where . $order));
 	}
 	/**
 	 * Surcharge de la fonction supprimer pour effacer les répartitions d'aliment
@@ -256,24 +271,25 @@ class RepartTemplate extends ObjetBDD {
 	 *
 	 * @see ObjetBDD::supprimer()
 	 */
-	function supprimer($id) {
+	function supprimer($id)
+	{
 		if ($id > 0 && is_numeric($id)) {
 			/*
 			 * Verification que le modele n'a pas été utilisé
 			 */
 			$sql = "select count(*) as nb from distribution where repart_template_id = " . $id;
-			$rs = $this->getListeParam ( $sql );
-			if ($rs [0] ["nb"] == 0) {
+			$rs = $this->getListeParam($sql);
+			if ($rs[0]["nb"] == 0) {
 				/*
 				 * Suppression des répartitions d'aliments attachées
 				 */
-				$repartAliment = new RepartAliment ( $this->connection, $this->paramori );
-				$repartAliment->deleteFromField ( $id, "repart_template_id" );
-				return parent::supprimer ( $id );
+				$repartAliment = new RepartAliment($this->connection, $this->paramori);
+				$repartAliment->deleteFromField($id, "repart_template_id");
+				return parent::supprimer($id);
 			} else
-				return - 1;
+				return -1;
 		} else
-			return - 1;
+			return -1;
 	}
 	/**
 	 * Retourne les modèles actifs pour la catégorie considérée
@@ -281,13 +297,14 @@ class RepartTemplate extends ObjetBDD {
 	 * @param int $categorie_id        	
 	 * @return array
 	 */
-	function getListActifFromCategorie($categorie_id) {
+	function getListActifFromCategorie($categorie_id)
+	{
 		if ($categorie_id > 0 && is_numeric($categorie_id)) {
 			$sql = "select * from " . $this->table . "
 					where actif = 1 
 					and categorie_id = " . $categorie_id . "
 					order by repart_template_libelle";
-			return $this->getListeParam ( $sql );
+			return $this->getListeParam($sql);
 		}
 	}
 }
@@ -297,58 +314,60 @@ class RepartTemplate extends ObjetBDD {
  * @author quinton
  *        
  */
-class RepartAliment extends ObjetBDD {
+class RepartAliment extends ObjetBDD
+{
 	/**
 	 * Constructeur de la classe
 	 *
 	 * @param adobb $bdd        	
 	 * @param array $param        	
 	 */
-	function __construct($bdd, $param = null) {
+	function __construct($bdd, $param = null)
+	{
 		$this->param = $param;
 		$this->paramori = $param;
 		$this->table = "repart_aliment";
 		$this->id_auto = 1;
-		$this->colonnes = array (
-				"repart_aliment_id" => array (
-						"type" => 1,
-						"key" => 1,
-						"requis" => 1,
-						"defaultValue" => 0 
-				),
-				"repart_template_id" => array (
-						"type" => 1,
-						"requis" => 1,
-						"parentAttrib" => 1 
-				),
-				"aliment_id" => array (
-						"type" => 1,
-						"requis" => 1 
-				),
-				"consigne" => array (
-						"type" => 0 
-				),
-				"repart_alim_taux" => array (
-						"type" => 1 
-				),
-				"matin" => array (
-						"type" => 1,
-						"defaultValue" => 100 
-				),
-				"midi" => array (
-						"type" => 1 
-				),
-				"soir" => array (
-						"type" => 1 
-				),
-				"nuit" => array (
-						"type" => 1 
-				) 
+		$this->colonnes = array(
+			"repart_aliment_id" => array(
+				"type" => 1,
+				"key" => 1,
+				"requis" => 1,
+				"defaultValue" => 0
+			),
+			"repart_template_id" => array(
+				"type" => 1,
+				"requis" => 1,
+				"parentAttrib" => 1
+			),
+			"aliment_id" => array(
+				"type" => 1,
+				"requis" => 1
+			),
+			"consigne" => array(
+				"type" => 0
+			),
+			"repart_alim_taux" => array(
+				"type" => 1
+			),
+			"matin" => array(
+				"type" => 1,
+				"defaultValue" => 100
+			),
+			"midi" => array(
+				"type" => 1
+			),
+			"soir" => array(
+				"type" => 1
+			),
+			"nuit" => array(
+				"type" => 1
+			)
 		);
-		if (! is_array ( $param ))
-			$param == array ();
-		$param ["fullDescription"] = 1;
-		parent::__construct ( $bdd, $param );
+		if (!is_array($param))
+			$param == array();
+		$param["fullDescription"] = 1;
+		parent::__construct($bdd, $param);
 	}
 	/**
 	 * Retourne les aliments associes a un template
@@ -356,14 +375,15 @@ class RepartAliment extends ObjetBDD {
 	 * @param int $templateId        	
 	 * @return array
 	 */
-	function getFromTemplate($templateId) {
+	function getFromTemplate($templateId)
+	{
 		if ($templateId > 0 && is_numeric($templateId)) {
 			$sql = "select * from " . $this->table . "
 				join aliment using (aliment_id)
 				where repart_template_id = " . $templateId . " 
 				order by repart_alim_taux desc, aliment_libelle
 				";
-			return $this->getListeParam ( $sql );
+			return $this->getListeParam($sql);
 		}
 	}
 	/**
@@ -374,9 +394,10 @@ class RepartAliment extends ObjetBDD {
 	 * @param int $categorieId        	
 	 * @return array
 	 */
-	function getFromTemplateWithAliment($templateId, $categorieId) {
+	function getFromTemplateWithAliment($templateId, $categorieId)
+	{
 		if ($templateId > 0 && is_numeric($templateId)) {
-			$data = $this->getFromTemplate ( $templateId );
+			$data = $this->getFromTemplate($templateId);
 			/*
 			 * Recuperation des aliments du même type
 			 */
@@ -389,58 +410,61 @@ class RepartAliment extends ObjetBDD {
 						and aliment_id not in 
 						(select aliment_id from repart_aliment where repart_template_id = " . $templateId . ")
 						order by aliment_libelle";
-				$dataAliment = $this->getListeParam ( $sql );
+				$dataAliment = $this->getListeParam($sql);
 				/*
 				 * Rajout des aliments à la liste
 				 */
-				foreach ( $dataAliment as $key => $value ) {
-					$value ["repart_aliment_id"] = 0;
-					$data [] = $value;
+				foreach ($dataAliment as $key => $value) {
+					$value["repart_aliment_id"] = 0;
+					$data[] = $value;
 				}
 				return $data;
 			}
 		}
 	}
 }
-class Repartition extends ObjetBDD {
+class Repartition extends ObjetBDD
+{
 	/**
 	 * Constructeur de la classe
 	 *
 	 * @param adobb $bdd        	
 	 * @param array $param        	
 	 */
-	function __construct($bdd, $param = null) {
+	function __construct($bdd, $param = null)
+	{
 		$this->param = $param;
 		$this->paramori = $param;
 		$this->table = "repartition";
 		$this->id_auto = 1;
-		$this->colonnes = array (
-				"repartition_id" => array (
-						"type" => 1,
-						"key" => 1,
-						"requis" => 1,
-						"defaultValue" => 0 
-				),
-				"categorie_id" => array (
-						"type" => 1,
-						"requis" => 1 
-				),
-				"date_debut_periode" => array (
-						"type" => 2,
-						"requis" => 1 
-				),
-				"date_fin_periode" => array (
-						"type" => 2,
-						"requis" => 1 
-				),
-				"repartition_name" => array (
-						"type"=>0
-				)
+		$this->colonnes = array(
+			"repartition_id" => array(
+				"type" => 1,
+				"key" => 1,
+				"requis" => 1,
+				"defaultValue" => 0
+			),
+			"categorie_id" => array(
+				"type" => 1,
+				"requis" => 1
+			),
+			"date_debut_periode" => array(
+				"type" => 2,
+				"requis" => 1
+			),
+			"date_fin_periode" => array(
+				"type" => 2,
+				"requis" => 1
+			),
+			"repartition_name" => array(
+				"type" => 0
+			),
+			"site_id" => array("type" => 1)
 		);
-		if (! is_array ( $param ))
-			$param == array ();
-		$param ["fullDescription"] = 1;
-		parent::__construct ( $bdd, $param );
+		if (!is_array($param))
+			$param == array();
+		$param["fullDescription"] = 1;
+		parent::__construct($bdd, $param);
 	}
 	/**
 	 * Lit un enregistrement avec les tables de parametres liees
@@ -448,38 +472,44 @@ class Repartition extends ObjetBDD {
 	 * @param int $id        	
 	 * @return array
 	 */
-	function lireWithCategorie($id) {
+	function lireWithCategorie($id)
+	{
 		if ($id > 0 && is_numeric($id))
 			$sql = "select * from " . $this->table . " left outer join categorie using (categorie_id)
 					 where repartition_id = " . $id;
-		return $this->lireParam ( $sql );
+		return $this->lireParam($sql);
 	}
-	
+
 	/**
 	 * Recherche des repartions d'aliments à partir des paramètres fournis
 	 *
 	 * @param array $param        	
 	 * @return array
 	 */
-	function getListSearch($param) {
-		$param = $this->encodeData ( $param );
+	function getListSearch($param)
+	{
+		$param = $this->encodeData($param);
 		$sql = "select * from " . $this->table . "
 				join categorie using (categorie_id)";
 		$where = "";
 		$and = "";
-		if ($param ["categorie_id"] > 0  && is_numeric($param["categorie_id"])) {
-			$where .= $and . "categorie_id = " . $param ["categorie_id"];
+		if ($param["categorie_id"] > 0 && is_numeric($param["categorie_id"])) {
+			$where .= $and . "categorie_id = " . $param["categorie_id"];
 			$and = " and ";
 		}
-		if (strlen ( $param ["date_reference"] ) > 0) {
-			$date_reference = $this->formatDateLocaleVersDB ( $param ["date_reference"], 2 );
+		if (strlen($param["date_reference"]) > 0) {
+			$date_reference = $this->formatDateLocaleVersDB($param["date_reference"], 2);
 			$where .= $and . "date_fin_periode >= '" . $date_reference . "'";
+			$and = " and ";
+		}
+		if ($param["site_id"] > 0) {
+			$where .= $and . "site_id = " . $param["site_id"] ;
 			$and = " and ";
 		}
 		if ($and = " and ")
 			$where = "where " . $where;
-		$order = " order by date_debut_periode desc LIMIT " . $param ["limit"] . " OFFSET " . $param ["offset"];
-		return $this->getListeParam ( $sql . $where . $order );
+		$order = " order by date_debut_periode desc LIMIT " . $param["limit"] . " OFFSET " . $param["offset"];
+		return $this->getListeParam($sql . $where . $order);
 	}
 	/**
 	 * Recopie les donnees dans une nouvelle repartition
@@ -487,100 +517,103 @@ class Repartition extends ObjetBDD {
 	 * @param int $id        	
 	 * @return int
 	 */
-	function duplicate($id) {
+	function duplicate($id)
+	{
 		if ($id > 0 && is_numeric($id)) {
 			/*
 			 * Lecture des infos précédentes
 			 */
-			$dataPrec = $this->lire ( $id );
-			if ($dataPrec ["repartition_id"] > 0) {
+			$dataPrec = $this->lire($id);
+			if ($dataPrec["repartition_id"] > 0) {
 				$err = 0;
 				$data = $dataPrec;
-				$data ["repartition_id"] = 0;
+				$data["repartition_id"] = 0;
 				/*
 				 * Calcul des dates
 				 */
-				$datePrec = DateTime::createFromFormat ( "d/m/Y", $data ["date_fin_periode"] );
-				$datePrec->add ( new DateInterval ( "P1D" ) );
-				$data ["date_debut_periode"] = $datePrec->format ( "d/m/Y" );
-				$datePrec->add ( new DateInterval ( "P6D" ) );
-				$data ["date_fin_periode"] = $datePrec->format ( "d/m/Y" );
+				$datePrec = DateTime::createFromFormat("d/m/Y", $data["date_fin_periode"]);
+				$datePrec->add(new DateInterval("P1D"));
+				$data["date_debut_periode"] = $datePrec->format("d/m/Y");
+				$datePrec->add(new DateInterval("P6D"));
+				$data["date_fin_periode"] = $datePrec->format("d/m/Y");
 				/*
 				 * Ecriture de la nouvelle repartition
 				 */
-				$newId = parent::ecrire ( $data );
+				$newId = parent::ecrire($data);
 				if ($newId > 0) {
 					/*
 					 * Gestion des bassins rattaches
 					 */
-					$distribution = new Distribution ( $this->connection, $this->paramori );
+					$distribution = new Distribution($this->connection, $this->paramori);
 					/*
 					 * Recuperation de la liste des bassins rattaches a l'ancienne répartition
 					 */
-					$dataDist = $distribution->getFromRepartition ( $id );
-					foreach ( $dataDist as $key => $value ) {
+					$dataDist = $distribution->getFromRepartition($id);
+					foreach ($dataDist as $key => $value) {
 						/*
 						 * On ne traite que les bassins actifs et ceux de la même catégorie
 						 * que le modèle de répartition
 						 */
-						if ($value ["actif"] == 1 && $value ["repart_template_categorie_id"] == $value ["bassin_usage_categorie_id"]) {
+						if ($value["actif"] == 1 && $value["repart_template_categorie_id"] == $value["bassin_usage_categorie_id"]) {
 							$data = $value;
-							$data ["distribution_id"] = 0;
-							$data ["repartition_id"] = $newId;
-							$data ["evol_taux_nourrissage"] = null;
-							$data ["ration_commentaire"] = null;
-							$data ["reste_zone_calcul"] = null;
-							$data ["distribution_id_prec"] = $value ["distribution_id"];
-							$data ["reste_total"] = 0;
-							$data ["taux_reste"] = 0;
+							$data["distribution_id"] = 0;
+							$data["repartition_id"] = $newId;
+							$data["evol_taux_nourrissage"] = null;
+							$data["ration_commentaire"] = null;
+							$data["reste_zone_calcul"] = null;
+							$data["distribution_id_prec"] = $value["distribution_id"];
+							$data["reste_total"] = 0;
+							$data["taux_reste"] = 0;
 							/*
 							 * Ecriture des nouvelles distributions
 							 */
-							$idDistribution = $distribution->ecrire ( $data );
-							if (! $idDistribution > 0) {
-								$this->errorData [] = array (
-										"code" => 0,
-										"valeur" => $distribution->getErrorData ( 0 ) 
+							$idDistribution = $distribution->ecrire($data);
+							if (!$idDistribution > 0) {
+								$this->errorData[] = array(
+									"code" => 0,
+									"valeur" => $distribution->getErrorData(0)
 								);
-								$err = - 1;
+								$err = -1;
 							}
 						}
 					}
 				} else {
-					$err = - 1;
+					$err = -1;
 				}
-				if ($err == - 1)
-					return - 1;
+				if ($err == -1)
+					return -1;
 				else
 					return $newId;
 			}
 		}
 	}
-	
+
 	/**
 	 * Surcharge de supprimer() pour supprimer les enregistrements fils dans distribution
 	 * (non-PHPdoc)
 	 *
 	 * @see ObjetBDD::supprimer()
 	 */
-	function supprimer($id) {
+	function supprimer($id)
+	{
 		if ($id > 0 && is_numeric($id)) {
 			/*
 			 * Suppression des enregistrements lies dans distribution
 			 */
-			$distribution = new Distribution ( $this->connection, $this->paramori );
-			$distribution->supprimerChamp ( $id, "repartition_id" );
-			return (parent::supprimer ( $id ));
+			$distribution = new Distribution($this->connection, $this->paramori);
+			$distribution->supprimerChamp($id, "repartition_id");
+			return (parent::supprimer($id));
 		}
 	}
-	
-	function ecrireFromDateCategorie($data) {
+
+	function ecrireFromDateCategorie($data)
+	{
 		/*
 		 * Recuperation de la cle, si existante
 		 */
-		$data = $this->encodeData ( $data );
-		if ($data ["categorie_id"] > 0 && strlen ( $data ["date_debut_periode"] ) > 0) {
-			$date = $this->formatDateLocaleVersDB ( $data ["date_debut_periode"] );
+		$data = $this->encodeData($data);
+		if ($data["categorie_id"] > 0 && strlen($data["date_debut_periode"]) > 0) {
+			$date = $this->formatDateLocaleVersDB($data["date_debut_periode"]);
 			$sql = "select repartition_id from repartition
 				where categorie_id = " . $data["categorie_id"] . "
 					and date_debut_periode = '" . $date . "'";
@@ -600,81 +633,83 @@ class Repartition extends ObjetBDD {
  * @author quinton
  *        
  */
-class Distribution extends ObjetBDD {
+class Distribution extends ObjetBDD
+{
 	/**
 	 * Constructeur de la classe
 	 *
 	 * @param adobb $bdd        	
 	 * @param array $param        	
 	 */
-	function __construct($bdd, $param = null) {
+	function __construct($bdd, $param = null)
+	{
 		$this->param = $param;
 		$this->paramori = $param;
 		$this->table = "distribution";
 		$this->id_auto = 1;
-		$this->colonnes = array (
-				"distribution_id" => array (
-						"type" => 1,
-						"key" => 1,
-						"requis" => 1,
-						"defaultValue" => 0 
-				),
-				"repartition_id" => array (
-						"type" => 1,
-						"requis" => 1,
-						"parentAttrib" => 1 
-				),
-				"bassin_id" => array (
-						"type" => 1,
-						"requis" => 1 
-				),
-				"repart_template_id" => array (
-						"type" => 1,
-						"requis" => 1 
-				),
-				"reste_zone_calcul" => array (
-						"type" => 0 
-				),
-				"reste_total" => array (
-						"type" => 0 
-				),
-				"evol_taux_nourrissage" => array (
-						"type" => 1 
-				),
-				"taux_nourrissage" => array (
-						"type" => 1 
-				),
-				"total_distribue" => array (
-						"type" => 1 
-				),
-				"distribution_masse" => array (
-						"type" => 1 
-				),
-				"distribution_consigne" => array (
-						"type" => 0 
-				),
-				"ration_commentaire" => array (
-						"type" => 0 
-				),
-				"taux_reste" => array (
-						"type" => 0 
-				),
-				"distribution_id_prec" => array (
-						"type" => 0 
-				),
-				"distribution_jour" => array (
-						"type" => 0,
-						"defaultValue" => "1,1,1,1,1,1,1" 
-				),
-				"distribution_jour_soir" => array (
-						"type" => 0,
-						"defaultValue" => "0,0,0,0,0,0,0" 
-				) 
+		$this->colonnes = array(
+			"distribution_id" => array(
+				"type" => 1,
+				"key" => 1,
+				"requis" => 1,
+				"defaultValue" => 0
+			),
+			"repartition_id" => array(
+				"type" => 1,
+				"requis" => 1,
+				"parentAttrib" => 1
+			),
+			"bassin_id" => array(
+				"type" => 1,
+				"requis" => 1
+			),
+			"repart_template_id" => array(
+				"type" => 1,
+				"requis" => 1
+			),
+			"reste_zone_calcul" => array(
+				"type" => 0
+			),
+			"reste_total" => array(
+				"type" => 0
+			),
+			"evol_taux_nourrissage" => array(
+				"type" => 1
+			),
+			"taux_nourrissage" => array(
+				"type" => 1
+			),
+			"total_distribue" => array(
+				"type" => 1
+			),
+			"distribution_masse" => array(
+				"type" => 1
+			),
+			"distribution_consigne" => array(
+				"type" => 0
+			),
+			"ration_commentaire" => array(
+				"type" => 0
+			),
+			"taux_reste" => array(
+				"type" => 0
+			),
+			"distribution_id_prec" => array(
+				"type" => 0
+			),
+			"distribution_jour" => array(
+				"type" => 0,
+				"defaultValue" => "1,1,1,1,1,1,1"
+			),
+			"distribution_jour_soir" => array(
+				"type" => 0,
+				"defaultValue" => "0,0,0,0,0,0,0"
+			)
 		);
-		if (! is_array ( $param ))
-			$param == array ();
-		$param ["fullDescription"] = 1;
-		parent::__construct ( $bdd, $param );
+		if (!is_array($param))
+			$param == array();
+		$param["fullDescription"] = 1;
+		parent::__construct($bdd, $param);
 	}
 	/**
 	 * Surcharge de la fonction lire pour preparer les champs concernant les jours de distribution
@@ -682,18 +717,19 @@ class Distribution extends ObjetBDD {
 	 *
 	 * @see ObjetBDD::lire()
 	 */
-	function lire($id, $getDefault = false, $parentValue = 0) {
-		$data = parent::lire ( $id, $getDefault, $parentValue );
+	function lire($id, $getDefault = false, $parentValue = 0)
+	{
+		$data = parent::lire($id, $getDefault, $parentValue);
 		/*
 		 * Traitement des jours
 		 */
-		$distribJour = explode ( ",", $data ["distribution_jour"] );
-		for($i = 0; $i < 7; $i ++) {
-			$data ["distribution_jour_" . ($i + 1)] = $distribJour [$i];
+		$distribJour = explode(",", $data["distribution_jour"]);
+		for ($i = 0; $i < 7; $i++) {
+			$data["distribution_jour_" . ($i + 1)] = $distribJour[$i];
 		}
-		$distribJourSoir = explode ( ",", $data ["distribution_jour_soir"] );
-		for($i = 0; $i < 7; $i ++) {
-			$data ["distribution_jour_soir_" . ($i + 1)] = $distribJourSoir [$i];
+		$distribJourSoir = explode(",", $data["distribution_jour_soir"]);
+		for ($i = 0; $i < 7; $i++) {
+			$data["distribution_jour_soir_" . ($i + 1)] = $distribJourSoir[$i];
 		}
 		return ($data);
 	}
@@ -704,119 +740,120 @@ class Distribution extends ObjetBDD {
 	 *
 	 * @see ObjetBDD::ecrire()
 	 */
-	function ecrire($data) {
+	function ecrire($data)
+	{
 		/*
 		 * Remise en forme du champ distribution_jour
 		 */
-		$data ["distribution_jour"] = $data ["distribution_jour_1"];
-		for($i = 2; $i <= 7; $i ++) {
-			$data ["distribution_jour"] .= "," . $data ["distribution_jour_" . $i];
+		$data["distribution_jour"] = $data["distribution_jour_1"];
+		for ($i = 2; $i <= 7; $i++) {
+			$data["distribution_jour"] .= "," . $data["distribution_jour_" . $i];
 		}
 		/*
 		 * Remise en forme du champ distribution_jour_taux
 		 */
-		$data ["distribution_jour_soir"] = $data ["distribution_jour_soir_1"];
-		for($i = 2; $i <= 7; $i ++) {
-			$data ["distribution_jour_soir"] .= "," . $data ["distribution_jour_soir_" . $i];
+		$data["distribution_jour_soir"] = $data["distribution_jour_soir_1"];
+		for ($i = 2; $i <= 7; $i++) {
+			$data["distribution_jour_soir"] .= "," . $data["distribution_jour_soir_" . $i];
 		}
-		$id = parent::ecrire ( $data );
+		$id = parent::ecrire($data);
 		if ($id > 0) {
 			/*
 			 * Relecture, pour récupérer les données de restes
 			 */
-			$data = $this->lire ( $id );
+			$data = $this->lire($id);
 			/*
 			 * Ecriture de la repartition quotidienne des aliments
 			 */
-			$repartition = new Repartition ( $this->connection, $this->paramori );
-			$dataRepartition = $repartition->lire ( $data ["repartition_id"] );
-			$dateDebut = DateTime::createFromFormat ( 'd/m/Y', $dataRepartition ['date_debut_periode'] );
-			$dateFin = DateTime::createFromFormat ( 'd/m/Y', $dataRepartition ["date_fin_periode"] );
-			$dateDiff = date_diff ( $dateDebut, $dateFin, true );
-			$nbJour = $dateDiff->format ( "%a" );
+			$repartition = new Repartition($this->connection, $this->paramori);
+			$dataRepartition = $repartition->lire($data["repartition_id"]);
+			$dateDebut = DateTime::createFromFormat('d/m/Y', $dataRepartition['date_debut_periode']);
+			$dateFin = DateTime::createFromFormat('d/m/Y', $dataRepartition["date_fin_periode"]);
+			$dateDiff = date_diff($dateDebut, $dateFin, true);
+			$nbJour = $dateDiff->format("%a");
 			/*
 			 * Lecture des donnees de la repartition
 			 */
-			$repartAliment = new RepartAliment ( $this->connection, $this->paramori );
-			$dataRepartAliment = $repartAliment->getFromTemplate ( $data ["repart_template_id"] );
+			$repartAliment = new RepartAliment($this->connection, $this->paramori);
+			$dataRepartAliment = $repartAliment->getFromTemplate($data["repart_template_id"]);
 			/*
 			 * Instanciation des tables a mettre a jour
 			 */
-			$distribQuotidien = new DistribQuotidien ( $this->connection, $this->paramori );
-			$alimentQuotidien = new AlimentQuotidien ( $this->connection, $this->paramori );
+			$distribQuotidien = new DistribQuotidien($this->connection, $this->paramori);
+			$alimentQuotidien = new AlimentQuotidien($this->connection, $this->paramori);
 			/*
 			 * Mise en forme facile a utiliser
 			 */
-			foreach ( $dataRepartAliment as $key => $value ) {
-				$aliment [$value ["aliment_id"]] = $value ["repart_alim_taux"];
+			foreach ($dataRepartAliment as $key => $value) {
+				$aliment[$value["aliment_id"]] = $value["repart_alim_taux"];
 			}
 			/*
 			 * Preparation du reste
 			 */
-			if (strlen ( $data ["reste_zone_calcul"] ) > 0) {
-				$reste = explode ( "+", $data ["reste_zone_calcul"] );
+			if (strlen($data["reste_zone_calcul"]) > 0) {
+				$reste = explode("+", $data["reste_zone_calcul"]);
 			}
 			/*
 			 * Mise en forme du tableau de jour de distribution
 			 */
-			$distribJour = explode ( ",", $data ["distribution_jour"] );
-			$distribJourSoir = explode ( ",", $data ["distribution_jour_soir"] );
+			$distribJour = explode(",", $data["distribution_jour"]);
+			$distribJourSoir = explode(",", $data["distribution_jour_soir"]);
 			$i = 0;
-			while ( $dateDebut <= $dateFin ) {
+			while ($dateDebut <= $dateFin) {
 				/*
 				 * Suppression des enregistrements precedents
 				 */
-				$alimentQuotidien->deleteFromDateBassin ( date_format ( $dateDebut, "Y-m-d" ), $data ["bassin_id"] );
-				$distribQuotidien->deleteFromDateBassin ( date_format ( $dateDebut, "Y-m-d" ), $data ["bassin_id"] );
+				$alimentQuotidien->deleteFromDateBassin(date_format($dateDebut, "Y-m-d"), $data["bassin_id"]);
+				$distribQuotidien->deleteFromDateBassin(date_format($dateDebut, "Y-m-d"), $data["bassin_id"]);
 				/*
 				 * Recuperation du numero de jour
 				 */
-				$numJour = date_format ( $dateDebut, "w" );
+				$numJour = date_format($dateDebut, "w");
 				if ($numJour == 0)
 					$numJour = 7;
 					
 					/*
 				 * Ecriture de l'enregistrement distrib_quotidien
 				 */
-				$dataDistrib = array (
-						"distrib_quotidien_id" => 0,
-						"bassin_id" => $data ["bassin_id"],
-						"distrib_quotidien_date" => date_format ( $dateDebut, "d/m/Y" ),
-						"total_distribue" => $data ["total_distribue"],
-						"reste" => $reste [$i] 
+				$dataDistrib = array(
+					"distrib_quotidien_id" => 0,
+					"bassin_id" => $data["bassin_id"],
+					"distrib_quotidien_date" => date_format($dateDebut, "d/m/Y"),
+					"total_distribue" => $data["total_distribue"],
+					"reste" => $reste[$i]
 				);
 				/*
 				 * On vérifie que l'aliment a été distribué ce jour-là
 				 */
-				if ($distribJour [$numJour - 1] != 1) {
-					$dataDistrib ["total_distribue"] = 0;
+				if ($distribJour[$numJour - 1] != 1) {
+					$dataDistrib["total_distribue"] = 0;
 				}
 				/*
 				 * Recalcul de la quantité si distribution uniquement le soir à 50 %
 				 */
-				if ($distribJourSoir [$numJour - 1] == 1) {
-					$dataDistrib ["total_distribue"] = $dataDistrib ["total_distribue"] * 0.5;
+				if ($distribJourSoir[$numJour - 1] == 1) {
+					$dataDistrib["total_distribue"] = $dataDistrib["total_distribue"] * 0.5;
 				}
-				$idDataDistrib = $distribQuotidien->ecrire ( $dataDistrib );
-				if ($idDataDistrib > 0 && $distribJour [$numJour - 1] == 1) {
+				$idDataDistrib = $distribQuotidien->ecrire($dataDistrib);
+				if ($idDataDistrib > 0 && $distribJour[$numJour - 1] == 1) {
 					/*
 					 * Ecriture des donnees quotidiennes des aliments
 					 */
-					foreach ( $aliment as $cle => $taux ) {
-						$dataAlimQuot = array (
-								"aliment_quotidien_id" => 0,
-								"aliment_id" => $cle,
-								"distrib_quotidien_id" => $idDataDistrib,
-								"quantite" => intval ( $dataDistrib ["total_distribue"] * $taux / 100 ) 
+					foreach ($aliment as $cle => $taux) {
+						$dataAlimQuot = array(
+							"aliment_quotidien_id" => 0,
+							"aliment_id" => $cle,
+							"distrib_quotidien_id" => $idDataDistrib,
+							"quantite" => intval($dataDistrib["total_distribue"] * $taux / 100)
 						);
-						$alimentQuotidien->ecrire ( $dataAlimQuot );
+						$alimentQuotidien->ecrire($dataAlimQuot);
 					}
 				}
-				$i ++;
+				$i++;
 				/*
 				 * Incrementation de la date
 				 */
-				$dateDebut->add ( new DateInterval ( "P1D" ) );
+				$dateDebut->add(new DateInterval("P1D"));
 			}
 		}
 		return ($id);
@@ -827,47 +864,48 @@ class Distribution extends ObjetBDD {
 	 * @param array $data        	
 	 * @return integer
 	 */
-	function ecrireReste($data) {
+	function ecrireReste($data)
+	{
 		$erreur = 0;
-		if (strlen ( $data ["date_debut_periode"] ) > 0 && strlen ( $data ["date_fin_periode"] ) > 0 && $data ["distribution_id"] > 0) {
+		if (strlen($data["date_debut_periode"]) > 0 && strlen($data["date_fin_periode"]) > 0 && $data["distribution_id"] > 0) {
 			/*
 			 * Ecriture de la zone contenant l'ensemble des restes quotidiens
 			 */
-			$dateDebut = DateTime::createFromFormat ( 'd/m/Y', $data ['date_debut_periode'] );
-			$dateFin = DateTime::createFromFormat ( 'd/m/Y', $data ["date_fin_periode"] );
-			$dateDiff = date_diff ( $dateDebut, $dateFin, true );
-			$nbJour = $dateDiff->format ( "%a" );
-			$data ["reste_zone_calcul"] = "";
-			for($i = 0; $i <= $nbJour; $i ++) {
+			$dateDebut = DateTime::createFromFormat('d/m/Y', $data['date_debut_periode']);
+			$dateFin = DateTime::createFromFormat('d/m/Y', $data["date_fin_periode"]);
+			$dateDiff = date_diff($dateDebut, $dateFin, true);
+			$nbJour = $dateDiff->format("%a");
+			$data["reste_zone_calcul"] = "";
+			for ($i = 0; $i <= $nbJour; $i++) {
 				if ($i > 0)
-					$data ["reste_zone_calcul"] .= "+";
-				$data ["reste_zone_calcul"] .= $data ["reste_" . $i];
+					$data["reste_zone_calcul"] .= "+";
+				$data["reste_zone_calcul"] .= $data["reste_" . $i];
 			}
-			$ret = parent::ecrire ( $data );
+			$ret = parent::ecrire($data);
 			if ($ret > 0) {
 				/*
 				 * Ecriture des données quotidiennes
 				 */
-				$di = new DateInterval ( "P1D" );
-				$distribQuotidien = new DistribQuotidien ( $this->connection, $this->paramori );
-				for($i = 0; $i <= $nbJour; $i ++) {
+				$di = new DateInterval("P1D");
+				$distribQuotidien = new DistribQuotidien($this->connection, $this->paramori);
+				for ($i = 0; $i <= $nbJour; $i++) {
 					/*
 					 * Lecture de l'enregistrement précédent, qui doit exister
 					 */
-					$dataDistrib = $distribQuotidien->lireFromDate ( $data ["bassin_id"], $dateDebut->format ( "d/m/Y" ) );
-					if ($dataDistrib ["distrib_quotidien_id"] > 0) {
-						$dataDistrib ["reste"] = $data ["reste_" . $i];
-						$ret1 = $distribQuotidien->ecrire ( $dataDistrib );
-						if (! $ret1 > 0) {
+					$dataDistrib = $distribQuotidien->lireFromDate($data["bassin_id"], $dateDebut->format("d/m/Y"));
+					if ($dataDistrib["distrib_quotidien_id"] > 0) {
+						$dataDistrib["reste"] = $data["reste_" . $i];
+						$ret1 = $distribQuotidien->ecrire($dataDistrib);
+						if (!$ret1 > 0) {
 							$erreur = 1;
-							$this->errorData [] = $distribQuotidien->getErrorData ( 0 );
+							$this->errorData[] = $distribQuotidien->getErrorData(0);
 						}
 					}
-					date_add ( $dateDebut, $di );
+					date_add($dateDebut, $di);
 				}
 			}
 			if ($erreur != 0)
-				return - 1;
+				return -1;
 			else
 				return $ret;
 		}
@@ -878,7 +916,8 @@ class Distribution extends ObjetBDD {
 	 * @param int $repartition_id        	
 	 * @return array
 	 */
-	function getFromRepartition($repartition_id) {
+	function getFromRepartition($repartition_id)
+	{
 		if ($repartition_id > 0 && is_numeric($repartition_id)) {
 			$sql = "select t1.distribution_id, t1.repartition_id, t1.bassin_id,
 				t1.repart_template_id, t1.reste_zone_calcul, t1.evol_taux_nourrissage,
@@ -886,9 +925,9 @@ class Distribution extends ObjetBDD {
 				t1.ration_commentaire, t1.distribution_masse, t1.distribution_jour,
 				t1.distribution_jour_soir,
 				t1.reste_total, t1.taux_reste, t1.distribution_id_prec,
-				bassin_nom, bassin.actif,".
+				bassin_nom, bassin.actif," .
 				/*t2.reste_total as reste_precedent,
-				t2.taux_reste as taux_reste_precedent,*/"
+				t2.taux_reste as taux_reste_precedent,*/ "
 				t2.total_distribue as total_distrib_precedent,
 				t2.ration_commentaire as ration_commentaire_precedent,
 				t2.taux_nourrissage as taux_nourrissage_precedent,
@@ -901,64 +940,64 @@ class Distribution extends ObjetBDD {
 				left outer join distribution t2 on (t2.distribution_id = t1.distribution_id_prec)
 				where t1.repartition_id = " . $repartition_id . "
 				order by bassin_nom";
-			$data = $this->getListeParam ( $sql );
+			$data = $this->getListeParam($sql);
 			/*
 			 * Recuperation des dates de la repartition
 			 */
-			$repartition = new Repartition ( $this->connection, $this->paramori );
-			$dataRepart = $repartition->lire ( $repartition_id );
-			$date_debut = date_create_from_format ( "d/m/Y", $dataRepart ["date_debut_periode"] );
-			$date_fin = date_create_from_format ( "d/m/Y", $dataRepart ["date_fin_periode"] );
-			$intervalle = $date_debut->diff ( $date_fin );
-			$nbJour = $intervalle->format ( '%a' ) + 1;
-			$di_intervalle = new DateInterval ( "P" . ($nbJour) . "D" );
+			$repartition = new Repartition($this->connection, $this->paramori);
+			$dataRepart = $repartition->lire($repartition_id);
+			$date_debut = date_create_from_format("d/m/Y", $dataRepart["date_debut_periode"]);
+			$date_fin = date_create_from_format("d/m/Y", $dataRepart["date_fin_periode"]);
+			$intervalle = $date_debut->diff($date_fin);
+			$nbJour = $intervalle->format('%a') + 1;
+			$di_intervalle = new DateInterval("P" . ($nbJour) . "D");
 			// $date_debut->sub($di_intervalle);
-			
-			$distriQuotidien = new DistribQuotidien ( $this->connection, $this->paramori );
-			$p1d = new DateInterval ( "P1D" );
+
+			$distriQuotidien = new DistribQuotidien($this->connection, $this->paramori);
+			$p1d = new DateInterval("P1D");
 			/*
 			 * Mise en forme des jours de distribution
 			 */
-			foreach ( $data as $key => $value ) {
-				$distribJour = explode ( ",", $value ["distribution_jour"] );
-				$distribJourSoir = explode ( ",", $value ["distribution_jour_soir"] );
-				for($i = 0; $i < 7; $i ++) {
-					$data [$key] ["distribution_jour_" . ($i + 1)] = $distribJour [$i];
-					$data [$key] ["distribution_jour_soir_" . ($i + 1)] = $distribJourSoir [$i];
+			foreach ($data as $key => $value) {
+				$distribJour = explode(",", $value["distribution_jour"]);
+				$distribJourSoir = explode(",", $value["distribution_jour_soir"]);
+				for ($i = 0; $i < 7; $i++) {
+					$data[$key]["distribution_jour_" . ($i + 1)] = $distribJour[$i];
+					$data[$key]["distribution_jour_soir_" . ($i + 1)] = $distribJourSoir[$i];
 				}
 				/*
 				 * Calcul de la distribution globale
 				 */
-				$data [$key] ["total_periode_distribue"] = 0;
-				$date_debut = date_create_from_format ( "d/m/Y", $dataRepart ["date_debut_periode"] );
-				for($i = 1; $i <= $nbJour; $i ++) {
-					$dataDistrib = $distriQuotidien->lireFromDate ( $value ["bassin_id"], $date_debut->format ( "d/m/Y" ) );
-					$data [$key] ["total_periode_distribue"] += $dataDistrib ["total_distribue"];
-					$date_debut->add ( $p1d );
+				$data[$key]["total_periode_distribue"] = 0;
+				$date_debut = date_create_from_format("d/m/Y", $dataRepart["date_debut_periode"]);
+				for ($i = 1; $i <= $nbJour; $i++) {
+					$dataDistrib = $distriQuotidien->lireFromDate($value["bassin_id"], $date_debut->format("d/m/Y"));
+					$data[$key]["total_periode_distribue"] += $dataDistrib["total_distribue"];
+					$date_debut->add($p1d);
 				}
 				/*
 				 * Calcul des distributions et restes précédents
 				 */
-				$dateDeb = date_create_from_format ( "d/m/Y", $dataRepart ["date_debut_periode"] );
-				$dateDeb->sub ( $di_intervalle );
-				$data [$key] ["total_periode_distrib_precedent"] = 0;
-				$data [$key] ["total_reste_precedent"] = 0;
+				$dateDeb = date_create_from_format("d/m/Y", $dataRepart["date_debut_periode"]);
+				$dateDeb->sub($di_intervalle);
+				$data[$key]["total_periode_distrib_precedent"] = 0;
+				$data[$key]["total_reste_precedent"] = 0;
 				/*
 				 * Lecture des consommations et restes quotidiens
 				 */
-				for($i = 1; $i <= $nbJour; $i ++) {
-					$dataDistrib = $distriQuotidien->lireFromDate ( $value ["bassin_id"], $dateDeb->format ( "d/m/Y" ) );
-					$data [$key] ["total_periode_distrib_precedent"] += $dataDistrib ["total_distribue"];
-					$data [$key] ["reste_precedent"] += $dataDistrib ["reste"];
-					$dateDeb->add ( $p1d );
+				for ($i = 1; $i <= $nbJour; $i++) {
+					$dataDistrib = $distriQuotidien->lireFromDate($value["bassin_id"], $dateDeb->format("d/m/Y"));
+					$data[$key]["total_periode_distrib_precedent"] += $dataDistrib["total_distribue"];
+					$data[$key]["reste_precedent"] += $dataDistrib["reste"];
+					$dateDeb->add($p1d);
 				}
 				/*
 				 * Calcul du taux de reste
 				 */
-				if ($data [$key] ["total_periode_distrib_precedent"] > 0) {
-					$data [$key] ["taux_reste_precedent"] = round ( ($data [$key] ["reste_precedent"] / $data [$key] ["total_periode_distrib_precedent"] * 100), 2 );
+				if ($data[$key]["total_periode_distrib_precedent"] > 0) {
+					$data[$key]["taux_reste_precedent"] = round(($data[$key]["reste_precedent"] / $data[$key]["total_periode_distrib_precedent"] * 100), 2);
 				} else {
-					$data [$key] ["taux_reste_precedent"] = 0;
+					$data[$key]["taux_reste_precedent"] = 0;
 				}
 			}
 			return ($data);
@@ -972,9 +1011,10 @@ class Distribution extends ObjetBDD {
 	 * @param int $categorie_id        	
 	 * @return array
 	 */
-	function getFromRepartitionWithBassin($repartition_id, $categorie_id) {
+	function getFromRepartitionWithBassin($repartition_id, $categorie_id, $site_id = 0)
+	{
 		if ($repartition_id > 0 && is_numeric($repartition_id)) {
-			$data = $this->getFromRepartition ( $repartition_id );
+			$data = $this->getFromRepartition($repartition_id);
 			/*
 			 * Recuperation des bassins du même type
 			 */
@@ -983,24 +1023,29 @@ class Distribution extends ObjetBDD {
 						from bassin
 						join bassin_usage using (bassin_usage_id)
 						where actif = 1
-						and categorie_id = " . $categorie_id . "
-						and bassin_id not in
-						(select bassin_id from " . $this->table . " where repartition_id = " . $repartition_id . ")
+						and categorie_id = :categorie_id";
+				$param = array("categorie_id" => $categorie_id, "repartition_id" => $repartition_id);
+				if ($site_id > 0) {
+					$sql .= " and site_id = :site_id";
+					$param["site_id"] = $site_id;
+				}
+				$sql .= " and bassin_id not in
+						(select bassin_id from distribution where repartition_id = :repartition_id)
 						order by bassin_nom";
-				$dataBassin = $this->getListeParam ( $sql );
+				$dataBassin = $this->getListeParamAsPrepared($sql, $param);
 				/*
 				 * Rajout des bassins à la liste
 				 */
-				foreach ( $dataBassin as $key => $value ) {
-					$value ["distribution_id"] = 0;
+				foreach ($dataBassin as $key => $value) {
+					$value["distribution_id"] = 0;
 					/*
 					 * Rajout des distributions quotidiennes par defaut
 					 */
-					for($i = 1; $i <= 7; $i ++) {
-						$value ["distribution_jour_" . $i] = 1;
-						$value ["distribution_jour_soir_" . $i] = 0;
+					for ($i = 1; $i <= 7; $i++) {
+						$value["distribution_jour_" . $i] = 1;
+						$value["distribution_jour_soir_" . $i] = 0;
 					}
-					$data [] = $value;
+					$data[] = $value;
 				}
 				return $data;
 			}
@@ -1012,7 +1057,8 @@ class Distribution extends ObjetBDD {
 	 * @param int $repartition_id        	
 	 * @return array
 	 */
-	function calculDistribution($repartition_id) {
+	function calculDistribution($repartition_id)
+	{
 		if ($repartition_id > 0 && is_numeric($repartition_id)) {
 			$sql = 'select bassin_nom, aliment_id, taux_nourrissage, evol_taux_nourrissage, total_distribue, repart_alim_taux, 
 					round (total_distribue * repart_alim_taux / 100) as "quantite",
@@ -1028,7 +1074,7 @@ class Distribution extends ObjetBDD {
 					join bassin using (bassin_id)
 					where repartition_id = ' . $repartition_id . "
 					order by bassin_nom";
-			return ($this->getListeParam ( $sql ));
+			return ($this->getListeParam($sql));
 		}
 	}
 	/**
@@ -1037,7 +1083,8 @@ class Distribution extends ObjetBDD {
 	 * @param int $repartition_id        	
 	 * @return array
 	 */
-	function getListeAlimentFromRepartition($repartition_id, $order = "adulte") {
+	function getListeAlimentFromRepartition($repartition_id, $order = "adulte")
+	{
 		if ($repartition_id > 0 && is_numeric($repartition_id)) {
 			$sql = "select distinct aliment_id, aliment_libelle_court, aliment_type_id
 					from distribution
@@ -1051,8 +1098,8 @@ class Distribution extends ObjetBDD {
 			if ($order == "juvenile") {
 				$order = " order by aliment_type_id desc, aliment_libelle_court";
 			}
-			
-			return ($this->getListeParam ( $sql . $order ));
+
+			return ($this->getListeParam($sql . $order));
 		}
 	}
 }
@@ -1062,7 +1109,8 @@ class Distribution extends ObjetBDD {
  * @author quinton
  *        
  */
-class DistribQuotidien extends ObjetBDD {
+class DistribQuotidien extends ObjetBDD
+{
 	/**
 	 * Liste des aliments uniques d'un intervalle de distribution
 	 *
@@ -1075,37 +1123,38 @@ class DistribQuotidien extends ObjetBDD {
 	 * @param connexion $bdd        	
 	 * @param array $param        	
 	 */
-	function __construct($bdd, $param = null) {
+	function __construct($bdd, $param = null)
+	{
 		$this->param = $param;
 		$this->table = "distrib_quotidien";
 		$this->id_auto = 1;
-		$this->colonnes = array (
-				"distrib_quotidien_id" => array (
-						"type" => 1,
-						"key" => 1,
-						"requis" => 1,
-						"defaultValue" => 0 
-				),
-				"bassin_id" => array (
-						"type" => 1,
-						"requis" => 1,
-						"parentAttrib" => 1 
-				),
-				"distrib_quotidien_date" => array (
-						"type" => 2,
-						"requis" => 1 
-				),
-				"total_distribue" => array (
-						"type" => 1 
-				),
-				"reste" => array (
-						"type" => 1 
-				) 
+		$this->colonnes = array(
+			"distrib_quotidien_id" => array(
+				"type" => 1,
+				"key" => 1,
+				"requis" => 1,
+				"defaultValue" => 0
+			),
+			"bassin_id" => array(
+				"type" => 1,
+				"requis" => 1,
+				"parentAttrib" => 1
+			),
+			"distrib_quotidien_date" => array(
+				"type" => 2,
+				"requis" => 1
+			),
+			"total_distribue" => array(
+				"type" => 1
+			),
+			"reste" => array(
+				"type" => 1
+			)
 		);
-		if (! is_array ( $param ))
-			$param == array ();
-		$param ["fullDescription"] = 1;
-		parent::__construct ( $bdd, $param );
+		if (!is_array($param))
+			$param == array();
+		$param["fullDescription"] = 1;
+		parent::__construct($bdd, $param);
 	}
 	/**
 	 * Supprime un enregistrement attache a un bassin et a une date
@@ -1114,12 +1163,13 @@ class DistribQuotidien extends ObjetBDD {
 	 * @param int $bassin_id        	
 	 * @return code
 	 */
-	function deleteFromDateBassin($date, $bassin_id) {
-		if (strlen ( $date ) > 0 && $bassin_id > 0 && is_numeric($bassin_id)) {
+	function deleteFromDateBassin($date, $bassin_id)
+	{
+		if (strlen($date) > 0 && $bassin_id > 0 && is_numeric($bassin_id)) {
 			$sql = "delete from " . $this->table . "
 					where distrib_quotidien_date = '" . $date . "'
 					and bassin_id = " . $bassin_id;
-			return $this->executeSQL ( $sql );
+			return $this->executeSQL($sql);
 		}
 	}
 	/**
@@ -1129,13 +1179,14 @@ class DistribQuotidien extends ObjetBDD {
 	 * @param date $distrib_date        	
 	 * @return array
 	 */
-	function lireFromDate($bassin_id, $distrib_date) {
-		$distribDate = $this->formatDateLocaleVersDB ( $this->encodeData ( $distrib_date ) );
+	function lireFromDate($bassin_id, $distrib_date)
+	{
+		$distribDate = $this->formatDateLocaleVersDB($this->encodeData($distrib_date));
 		if ($bassin_id > 0 && is_numeric($bassin_id)) {
 			$sql = "select * from " . $this->table . " 
 					where bassin_id = " . $bassin_id . "
 						and distrib_quotidien_date = '" . $distribDate . "'";
-			return ($this->lireParam ( $sql ));
+			return ($this->lireParam($sql));
 		}
 	}
 	/**
@@ -1146,10 +1197,11 @@ class DistribQuotidien extends ObjetBDD {
 	 * @param string $date_fin        	
 	 * @return array
 	 */
-	function getListAliment($bassin_id, $date_debut, $date_fin) {
-		if ($bassin_id > 0 && is_numeric($bassin_id) && strlen ( $date_debut ) > 2 && strlen ( $date_fin ) > 2) {
-			$date_debut = $this->formatDateLocaleVersDB ( $this->encodeData ( $date_debut ) );
-			$date_fin = $this->formatDateLocaleVersDB ( $this->encodeData ( $date_fin ) );
+	function getListAliment($bassin_id, $date_debut, $date_fin)
+	{
+		if ($bassin_id > 0 && is_numeric($bassin_id) && strlen($date_debut) > 2 && strlen($date_fin) > 2) {
+			$date_debut = $this->formatDateLocaleVersDB($this->encodeData($date_debut));
+			$date_fin = $this->formatDateLocaleVersDB($this->encodeData($date_fin));
 			$sql = "select distinct aliment_id, aliment_libelle_court
 					from distrib_quotidien
 					natural join aliment_quotidien
@@ -1158,13 +1210,14 @@ class DistribQuotidien extends ObjetBDD {
 						and distrib_quotidien_date <= '" . $date_fin . "
 						and bassin_id = " . $bassin_id . "
 					order by aliment_id";
-			return $this->getListeParam ( $sql );
+			return $this->getListeParam($sql);
 		}
 	}
-	function getListeConsommation($bassin_id, $date_debut, $date_fin) {
-		if ($bassin_id > 0 && is_numeric($bassin_id) && strlen ( $date_debut ) > 2 && strlen ( $date_fin ) > 2) {
-			$date_debut = $this->formatDateLocaleVersDB ( $this->encodeData ( $date_debut ) );
-			$date_fin = $this->formatDateLocaleVersDB ( $this->encodeData ( $date_fin ) );
+	function getListeConsommation($bassin_id, $date_debut, $date_fin)
+	{
+		if ($bassin_id > 0 && is_numeric($bassin_id) && strlen($date_debut) > 2 && strlen($date_fin) > 2) {
+			$date_debut = $this->formatDateLocaleVersDB($this->encodeData($date_debut));
+			$date_fin = $this->formatDateLocaleVersDB($this->encodeData($date_fin));
 			/*
 			 * Preparation de la premiere commande de selection du crosstab
 			 */
@@ -1198,7 +1251,7 @@ class DistribQuotidien extends ObjetBDD {
 						and distrib_quotidien_date <= ''" . $date_fin . "''
 						and bassin_id = " . $bassin_id . "
 					order by 1";
-			$this->alimentListe = $this->getListeParam ( $sql2 );
+			$this->alimentListe = $this->getListeParam($sql2);
 			/*
 			 * Preparation de la clause AS
 			 */
@@ -1208,8 +1261,8 @@ class DistribQuotidien extends ObjetBDD {
 				total_distribue float4,
 				reste float4
 			";
-			foreach ( $this->alimentListe as $key => $value ) {
-				$as .= ', "' . $value ["aliment_libelle_court"] . '" float4';
+			foreach ($this->alimentListe as $key => $value) {
+				$as .= ', "' . $value["aliment_libelle_court"] . '" float4';
 			}
 			/*
 			 * Preparation de la requete
@@ -1217,7 +1270,7 @@ class DistribQuotidien extends ObjetBDD {
 			$sql = "select * from crosstab ('" . $sql1 . "', '" . $sql3 . "')
 				AS ( " . $as . " )";
 			// printr($sql);
-			return $this->getListeParam ( $sql );
+			return $this->getListeParam($sql);
 		}
 	}
 	/**
@@ -1225,24 +1278,25 @@ class DistribQuotidien extends ObjetBDD {
 	 * @param array $data
 	 * @return int
 	 */
-	function ecrireFromBassinDate($data) {
+	function ecrireFromBassinDate($data)
+	{
 		/*
 		 * Recuperation de la cle, si existante
 		 */
-		$data = $this->encodeData ( $data );
-		if ($data ["bassin_id"] > 0  && is_numeric($data["bassin_id"]) && strlen ( $data ["distrib_quotidien_date"] ) > 0) {
-			$date = $this->formatDateLocaleVersDB ( $data ["distrib_quotidien_date"] );			
+		$data = $this->encodeData($data);
+		if ($data["bassin_id"] > 0 && is_numeric($data["bassin_id"]) && strlen($data["distrib_quotidien_date"]) > 0) {
+			$date = $this->formatDateLocaleVersDB($data["distrib_quotidien_date"]);
 			$sql = "select distrib_quotidien_id from distrib_quotidien
 				where bassin_id = " . $data["bassin_id"] . " 
 					and distrib_quotidien_date = '" . $date . "'";
 			$dataCle = $this->lireParam($sql);
 			if ($dataCle["distrib_quotidien_id"] > 0) {
 				$data["distrib_quotidien_id"] = $dataCle["distrib_quotidien_id"];
-			} else 
+			} else
 				$data["distrib_quotidien_id"] = 0;
 			return $this->ecrire($data);
-		} else 
-			return -1;		
+		} else
+			return -1;
 	}
 }
 /**
@@ -1251,41 +1305,43 @@ class DistribQuotidien extends ObjetBDD {
  * @author quinton
  *        
  */
-class AlimentQuotidien extends ObjetBDD {
+class AlimentQuotidien extends ObjetBDD
+{
 	/**
 	 * Constructeur de la classe
 	 *
 	 * @param connexion $bdd        	
 	 * @param array $param        	
 	 */
-	function __construct($bdd, $param = null) {
+	function __construct($bdd, $param = null)
+	{
 		$this->param = $param;
 		$this->table = "aliment_quotidien";
 		$this->id_auto = 1;
-		$this->colonnes = array (
-				"aliment_quotidien_id" => array (
-						"type" => 1,
-						"key" => 1,
-						"requis" => 1,
-						"defaultValue" => 0 
-				),
-				"distrib_quotidien_id" => array (
-						"type" => 1,
-						"requis" => 1,
-						"parentAttrib" => 1 
-				),
-				"aliment_id" => array (
-						"type" => 1,
-						"requis" => 1 
-				),
-				"quantite" => array (
-						"type" => 1 
-				) 
+		$this->colonnes = array(
+			"aliment_quotidien_id" => array(
+				"type" => 1,
+				"key" => 1,
+				"requis" => 1,
+				"defaultValue" => 0
+			),
+			"distrib_quotidien_id" => array(
+				"type" => 1,
+				"requis" => 1,
+				"parentAttrib" => 1
+			),
+			"aliment_id" => array(
+				"type" => 1,
+				"requis" => 1
+			),
+			"quantite" => array(
+				"type" => 1
+			)
 		);
-		if (! is_array ( $param ))
-			$param == array ();
-		$param ["fullDescription"] = 1;
-		parent::__construct ( $bdd, $param );
+		if (!is_array($param))
+			$param == array();
+		$param["fullDescription"] = 1;
+		parent::__construct($bdd, $param);
 	}
 	/**
 	 * Supprime les enregistrements liés à un bassin, à une date donnée
@@ -1294,51 +1350,54 @@ class AlimentQuotidien extends ObjetBDD {
 	 * @param int $bassin        	
 	 * @return code
 	 */
-	function deleteFromDateBassin($date, $bassin_id) {
-		if (strlen ( $date ) > 0 && $bassin_id > 0 && is_numeric($bassin_id)) {
-			$date = $this->encodeData ( $date );
+	function deleteFromDateBassin($date, $bassin_id)
+	{
+		if (strlen($date) > 0 && $bassin_id > 0 && is_numeric($bassin_id)) {
+			$date = $this->encodeData($date);
 			$sql = "delete from " . $this->table . "
 					using distrib_quotidien
 					where distrib_quotidien.distrib_quotidien_id = aliment_quotidien.distrib_quotidien_id
 					and distrib_quotidien_date = '" . $date . "'
 					and bassin_id = " . $bassin_id;
-			return $this->executeSQL ( $sql );
+			return $this->executeSQL($sql);
 		}
 	}
 }
-class LotRepartTemplate extends ObjetBDD {
+class LotRepartTemplate extends ObjetBDD
+{
 	/**
 	 * Constructeur de la classe
 	 *
 	 * @param connexion $bdd        	
 	 * @param array $param        	
 	 */
-	function __construct($bdd, $param = null) {
+	function __construct($bdd, $param = null)
+	{
 		$this->param = $param;
 		$this->table = "lot_repart_template";
 		$this->id_auto = 1;
-		$this->colonnes = array (
-				"lot_repart_template_id" => array (
-						"type" => 1,
-						"key" => 1,
-						"requis" => 1,
-						"defaultValue" => 0 
-				),
-				"age" => array (
-						"type" => 1,
-						"requis" => 1 
-				),
-				"artemia" => array (
-						"type" => 1 
-				),
-				"chironome" => array (
-						"type" => 1 
-				) 
+		$this->colonnes = array(
+			"lot_repart_template_id" => array(
+				"type" => 1,
+				"key" => 1,
+				"requis" => 1,
+				"defaultValue" => 0
+			),
+			"age" => array(
+				"type" => 1,
+				"requis" => 1
+			),
+			"artemia" => array(
+				"type" => 1
+			),
+			"chironome" => array(
+				"type" => 1
+			)
 		);
-		if (! is_array ( $param ))
-			$param == array ();
-		$param ["fullDescription"] = 1;
-		parent::__construct ( $bdd, $param );
+		if (!is_array($param))
+			$param == array();
+		$param["fullDescription"] = 1;
+		parent::__construct($bdd, $param);
 	}
 	/**
 	 * Retourne la quantite a distribuer en fonction de l'age (en jours)
@@ -1346,11 +1405,12 @@ class LotRepartTemplate extends ObjetBDD {
 	 * @param int $age        	
 	 * @return array|NULL
 	 */
-	function getFromAge($age) {
+	function getFromAge($age)
+	{
 		if ($age > 0 && is_numeric($age)) {
 			$sql = "select * from lot_repart_template
 				where age = " . $age;
-			return $this->lireParam ( $sql );
+			return $this->lireParam($sql);
 		} else
 			return null;
 	}

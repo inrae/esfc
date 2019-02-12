@@ -63,20 +63,16 @@ switch ($t_module ["param"]) {
 		}
 		$smarty->assign ( "repartitionSearch", $dataSearch );
 		$smarty->assign ( "dataList", $dataList );
+		require_once 'modules/classes/site.class.php';
+		$site = new Site($bdd, $ObjetBDDParam);
+		$smarty->assign("site", $site->getListe(2));
+
 		$smarty->assign ( "corps", "aliment/repartitionList.tpl" );
 		/*
 		 * Recherche de la categorie
 		 */
 		$categorie = new Categorie ( $bdd, $ObjetBDDParam );
 		$smarty->assign ( "categorie", $categorie->getListeSansLot ( ) );
-		break;
-	case "display":
-		/*
-		 * Display the detail of the record
-		 */
-		$data = $dataClass->lire ( $id );
-		$smarty->assign ( "data", $data );
-		$smarty->assign ( "corps", "example/exampleDisplay.tpl" );
 		break;
 	case "change":
 		/*
@@ -90,12 +86,16 @@ switch ($t_module ["param"]) {
 		 */
 		$categorie = new Categorie ( $bdd, $ObjetBDDParam );
 		$smarty->assign ( "categorie", $categorie->getListe ( 2 ) );
+
+		require_once 'modules/classes/site.class.php';
+		$site = new Site($bdd, $ObjetBDDParam);
+		$smarty->assign("site", $site->getListe(2));
 		/*
 		 * Recuperation des bassins associes et des distributions
 		 */
 		if ($data ["categorie_id"] > 0) {
 			$distribution = new Distribution ( $bdd, $ObjetBDDParam );
-			$dataBassin = $distribution->getFromRepartitionWithBassin ( $id, $data ["categorie_id"] );
+			$dataBassin = $distribution->getFromRepartitionWithBassin ( $id, $data ["categorie_id"], $data["site_id"] );
 			$smarty->assign ( "dataBassin", $dataBassin );
 			/*
 			 * Recuperation des modèles de distribution actifs

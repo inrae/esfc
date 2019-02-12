@@ -19,6 +19,16 @@ $(document).ready(function() {
 </select>
 </dd>
 </dl>
+<dl><dt>Site :</dt>
+<dd>
+<select id="site_id" name="site_id">
+{foreach $site as $s}
+<option value="{$s.site_id}" {if $s.site_id == $data.site_id}selected{/if}>
+{$s.site_name}
+</option>
+{/foreach}
+</dd>
+</dl>
 <dl><dt>Nom :</dt>
 <dd><input class="commentaireCourt" name="repartition_name" value="{$data.repartition_name}" placeholder="Élevage, repro..."></dd>
 </dl>
