@@ -186,15 +186,17 @@ class Poisson extends ObjetBDD
         if ($poisson_id > 0 && is_numeric($poisson_id)) {
             $sql = "select p.poisson_id, sexe_id, matricule, prenom, cohorte, capture_date, sexe_libelle, sexe_libelle_court, poisson_statut_libelle,
 					pittag_valeur, p.poisson_statut_id, date_naissance,
-					bassin_nom, b.bassin_id, b.site_id, site_name
+					bassin_nom, b.bassin_id, b.site_id, site_name, 
 					categorie_id, categorie_libelle, commentaire
-					from " . $this->table . " p natural join sexe
-					  natural join poisson_statut
-					  natural join categorie
+                    from poisson p 
+                     join sexe using (sexe_id)
+					  join poisson_statut using (poisson_statut_id)
+					  join categorie using (categorie_id)
 					  left outer join v_pittag_by_poisson using (poisson_id)
-					  left outer join v_transfert_last_bassin_for_poisson vlast on (vlast.poisson_id = p.poisson_id)
+					  /*left outer join v_transfert_last_bassin_for_poisson vlast on (vlast.poisson_id = p.poisson_id)
 					  left outer join transfert t on (vlast.poisson_id = t.poisson_id and transfert_date_last = transfert_date)
-                      left outer join bassin b on (b.bassin_id = (case when t.bassin_destination is not null then t.bassin_destination else t.bassin_origine end))
+                      left outer join bassin b on (b.bassin_id = (case when t.bassin_destination is not null then t.bassin_destination else t.bassin_origine end))*/
+                      left outer join v_poisson_last_bassin b using (poisson_id)
                       left outer join site on (b.site_id = site.site_id)
 							";
             $where = " where p.poisson_id = " . $poisson_id;
