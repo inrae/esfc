@@ -102,10 +102,12 @@ class Lot extends ObjetBDD {
 					croisement_date,
 					sequence_id, s.annee, sequence_nom, croisement_nom, eclosion_date, vie_date_marquage,
 					vie_modele_id, couleur, vie_implantation_libelle, vie_implantation_libelle2,
-					 extract(epoch from age(eclosion_date))/86400 as age
+					 extract(epoch from age(eclosion_date))/86400 as age,
+					 site_id, site_name
 					from lot
 					join croisement using (croisement_id)
 					join sequence s using (sequence_id)
+					left outer join site using (site_id)
 					left outer join v_vie_modele vm using (vie_modele_id) ";
 			$order = " order by sequence_nom, lot_nom";
 			$data = $this->getListeParam ( $sql . $where . $order );

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @author Eric Quinton
  * @copyright Copyright (c) 2015, IRSTEA / Eric Quinton
@@ -6,7 +7,7 @@
  *  Creation 13 mars 2015
  */
 include_once 'modules/classes/lot.class.php';
-$dataClass = new Lot($bdd,$ObjetBDDParam);
+$dataClass = new Lot($bdd, $ObjetBDDParam);
 $keyName = "lot_id";
 $id = $_REQUEST[$keyName];
 
@@ -20,10 +21,16 @@ switch ($t_module["param"]) {
 
 		require_once 'modules/classes/poissonRepro.class.php';
 		$poissonCampagne = new PoissonCampagne($bdd, $ObjetBDDParam);
-		$smarty->assign ( "annees", $poissonCampagne->getAnnees () );
+		$smarty->assign("annees", $poissonCampagne->getAnnees());
 		$smarty->assign("lots", $dataClass->getLotByAnnee($_SESSION["annee"]));
 		$smarty->assign("corps", "repro/lotSearch.tpl");
 		$smarty->assign("dataAlim", $alimJuv->getParam());
+		/**
+		 * Site
+		 */
+		require_once 'modules/classes/site.class.php';
+		$site = new Site($bdd, $ObjetBDDParam);
+		$smarty->assign("site", $site->getListe(2));
 		break;
 	case "display":
 		/*
@@ -42,7 +49,7 @@ switch ($t_module["param"]) {
 		 */
 		require_once 'modules/classes/bassin.class.php';
 		$bassinLot = new BassinLot($bdd, $ObjetBDDParam);
-		$smarty->assign ("bassinLot", $bassinLot->getListeFromLot($id));
+		$smarty->assign("bassinLot", $bassinLot->getListeFromLot($id));
 		/*
 		 * Lecture des devenirs d'un lot
 		 */
@@ -50,6 +57,7 @@ switch ($t_module["param"]) {
 		$devenir = new Devenir($bdd, $ObjetBDDParam);
 		$smarty->assign("dataDevenir", $devenir->getListFromLot($id));
 		$smarty->assign("devenirOrigine", "lot");
+
 		break;
 	case "change":
 		/*

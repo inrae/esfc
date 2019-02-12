@@ -15,7 +15,7 @@ Retour au reproducteur
 <select name="sequence_id" >
 {section name=lst loop=$sequences}
 <option value="{$sequences[lst].sequence_id}" {if $sequences[lst].sequence_id == $data.sequence_id}selected{/if}>
-{$sequences[lst].sequence_nom} ({$sequences[lst].sequence_date_debut})
+{$sequences[lst].site_name} - {$sequences[lst].sequence_nom} ({$sequences[lst].sequence_date_debut})
 </option>
 {/section}
 </select>

@@ -19,6 +19,16 @@ Année :
 </option>
 {/section}
 </select>
+Site : 
+<select id="site" name="site_id">
+<option value="" {if $site_id == ""}selected{/if}>Sélectionnez le site...</option>
+{section name=lst loop=$site}
+<option value="{$site[lst].site_id}"} {if $site[lst].site_id == $site_id}selected{/if}>
+{$site[lst].site_name}
+</option>
+{/section}
+</select>
+
 <input type="submit" value="Rechercher">
 
 </form>

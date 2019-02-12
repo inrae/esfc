@@ -10,6 +10,7 @@ $(document).ready(function() {
 <thead>
 <tr>
 <th>Données<br>générales</th>
+<th>Site</th>
 <th>Nom</th>
 <th>Utilisation</th>
 <th>Suppr.</th>
@@ -23,6 +24,7 @@ $(document).ready(function() {
 <img src="display/images/bassin.jpg" height="25" title="Données générales du bassin">
 </a>
 </td>
+<td>{$bassins[lst].site_name}</td>
 <td>
 <a href="index.php?module=bassinCampagneDisplay&bassin_campagne_id={$bassins[lst].bassin_campagne_id}">
 {$bassins[lst].bassin_nom}

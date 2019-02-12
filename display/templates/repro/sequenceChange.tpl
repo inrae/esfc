@@ -21,6 +21,18 @@ Retour à la liste des séquences
 </dd>
 </dl>
 <dl>
+<dt>Site <span class="red">*</span> :</dt>
+<dd>
+<select id="site_id" name="site_id">
+{section name=lst loop=$site}
+<option value="{$site[lst].site_id}"} {if $site[lst].site_id == $data.site_id}selected{/if}>
+{$site[lst].site_name}
+</option>
+{/section}
+</select>
+</dd>
+</dl>
+<dl>
 <dt>Nom de la séquence <span class="red">*</span> :</dt>
 <dd>
 <input name="sequence_nom" required size="20" maxlength="30" value="{$data.sequence_nom}">

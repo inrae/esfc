@@ -18,15 +18,20 @@ include "modules/repro/setAnnee.php";
 
 switch ($t_module["param"]) {
 	case "list":
-		$smarty->assign("data", $dataClass->getListeByYear($_SESSION["annee"]));
+		$smarty->assign("data", $dataClass->getListeByYear($_SESSION["annee"], $_REQUEST["site_id"]));
 		$smarty->assign("corps", "repro/sequenceList.tpl");
+		$smarty->assign("site_id", $_REQUEST["site_id"]);
 		/*
 		 * Recuperation des donnees concernant les bassins
 		 */
 		require_once 'modules/classes/bassinCampagne.class.php';
 		$bassinCampagne = new BassinCampagne($bdd, $ObjetBDDParam);
-		$smarty->assign("bassins", $bassinCampagne->getListFromAnnee($_SESSION['annee']));
+		$smarty->assign("bassins", $bassinCampagne->getListFromAnnee($_SESSION['annee'], $_REQUEST["site_id"]));
 		$_SESSION["bassinParentModule"] = "sequenceList";
+		require_once 'modules/classes/site.class.php';
+		$site = new Site($bdd, $ObjetBDDParam);
+		$smarty->assign("site", $site->getListe(2));
+		
 		break;
 	case "display":
 		/*
@@ -74,6 +79,9 @@ switch ($t_module["param"]) {
 			$data["annee"] = $_SESSION["annee"];
 			$smarty->assign("data", $data);
 		}
+		require_once 'modules/classes/site.class.php';
+		$site = new Site($bdd, $ObjetBDDParam);
+		$smarty->assign("site", $site->getListe(2));
 		break;
 	case "write":
 		/*

@@ -62,7 +62,7 @@ $('document').ready(function() {
 <td>{$lots[lst].parents}</td>
 <td class="center">
 <a href="index.php?module=sequenceDisplay&sequence_id={$lots[lst].sequence_id}">
-{$lots[lst].sequence_nom}
+{$lots[lst].site_name} - {$lots[lst].sequence_nom}
 &nbsp;
 {$lots[lst].croisement_nom}
 </a>
