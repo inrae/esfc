@@ -21,4 +21,7 @@ $smarty->assign ("bassinSearch", $dataSearch);
 */
 include 'modules/bassin/bassinParamAssocie.php';
 $_SESSION["bassinParentModule"] = "bassinListniv2";
+require_once 'modules/classes/site.class.php';
+$site = new Site($bdd, $ObjetBDDParam);
+$smarty->assign("site", $site->getListe(2));
 ?>

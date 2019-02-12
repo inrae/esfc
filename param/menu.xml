@@ -24,6 +24,7 @@
 	<item module="genderMethodeList" droits="consult" value="49" title="50" />
 	<item module="evenementTypeList" droits="consult" value="51" title="52" />
 	<item module="pathologieTypeList" droits="consult" value="53" title="54" />
+	<item module="siteList" droits="consult" value="139" title="140"/>
 	<item module="bassinTypeList" droits="consult" value="57" title="58" />
 	<item module="bassinUsageList" droits="consult" value="59" title="60" />
 	<item module="bassinZoneList" droits="consult" value="61" title="62" />

@@ -389,6 +389,11 @@
 	<requeteWriteExec action="modules/parametre/requete.php" param="write" droits="requeteAdmin" modulebefore="requeteChange,requeteExec,requeteWriteExec" retourok="requeteExec" retourko="requeteChange"/>
 	<requeteCopy action="modules/parametre/requete.php" param="copy" droits="requeteAdmin" />
 	<getStructureDatabase action="doc/getFilePdf.php" param="sturio.pdf" droits="requete" ajax="1"/>
+
+	<siteList action="modules/parametre/site.php" param="list" retourlogin="1" droits="consult" />
+	<siteChange action="modules/parametre/site.php" param="change" droits="paramAdmin" />
+	<siteWrite action="modules/parametre/site.php" param="write" droits="paramAdmin" modulebefore="siteChange" retourok="siteList" retourko="siteChange"/>
+	<siteDelete action="modules/parametre/site.php" param="delete" droits="paramAdmin" modulebefore="siteChange" retoursuppr="siteList" retourko="siteChange"/>
 	
 
 <!-- Gestion des droits -->

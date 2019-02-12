@@ -69,10 +69,21 @@ Circuit d'eau : </td><td>
 </td>
 </tr>
 <tr>
-<td colspan="4">
-<div class="center">
+<td>Site :</td>
+<td>
+<select name="site_id">
+<option value="" {if $bassinSearch.site_id == ""}selected{/if}>Sélectionnez le site...</option>
+{section name=lst loop=$site}
+<option value="{$site[lst].site_id}" {if $bassinSearch.site_id == $site[lst].site_id}selected{/if}>
+{$site[lst].site_name}
+</option>
+{/section}
+</select>
+</td>
+<td colspan="2">
+
 <input type="submit" value="Rechercher">
-</div>
+
 </td>
 </tr>
 </table>

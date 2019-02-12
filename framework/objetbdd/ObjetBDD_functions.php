@@ -66,5 +66,35 @@ function _ecrire($instance, $data)
     //$instance->getErrorData(1);
     return $rep;
 }
+/**
+ * function formatErrorData
+ * Formate les erreurs d'analyse des donnees avant mise en fichier,
+ * en tenant compte des parametres de langue
+ * @param $data
+ * @return unknown_type
+ */
+function formatErrorData($data) {
+	$LANG = & $GLOBALS['LANG'];
+	$res = "";
+	foreach ($data as $key => $value) {
+		$data[$key]["valeur"] = htmlentities($data[$key]["valeur"]);
+		if ($data[$key]["code"]==0) {
+			$res .= $data[$key]["message"]."<br>";
+		}elseif ($data[$key]["code"]==1) {
+			$res .= $LANG["ObjetBDDError"][0].$data[$key]["colonne"].$LANG["ObjetBDDError"][1].$LANG["ObjetBDDError"][3].
+			$data[$key]["valeur"]."<br>";
+		}elseif ($data[$key]["code"]==2) {
+			$res .= $LANG["ObjetBDDError"][0].$data[$key]["colonne"].$LANG["ObjetBDDError"][2].
+			$data[$key]["demande"].$LANG["ObjetBDDError"][3].$data[$key]["valeur"].
+					" (".strlen($data[$key]["valeur"]).$LANG["ObjetBDDError"][4].")<br>";
+		}elseif ($data[$key]["code"]==3) {
+			$res .= $LANG["ObjetBDDError"][5].$data[$key]["colonne"].$LANG["ObjetBDDError"][6].
+			$data[$key]["demande"].$LANG["ObjetBDDError"][3].$data[$key]["valeur"]."<br>";
+		}elseif ($data[$key]["code"]==4) {
+			$res .= "Le champ ".$data[$key]["colonne"].$LANG["ObjetBDDError"][7]."<br>";
+		}
+	}
+	return $res;
+}
 
 ?>

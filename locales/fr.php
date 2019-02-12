@@ -143,9 +143,10 @@ $LANG["menu"][135] = "Conservateurs de sperme";
 $LANG["menu"][136] = "Liste des conservateurs utilisés lors de la congélation du sperme";
 $LANG["menu"][137] = "Requêtes";
 $LANG["menu"][138] = "Liste des requêtes exécutables sur la base de données";
-$LANG["menu"][139] = "";
-$LANG["menu"][140] = "";
-
+$LANG["menu"][139] = "Sites";
+$LANG["menu"][140] = "Liste des sites";
+$LANG["menu"][141] = "";
+$LANG["menu"][142] = "";
 
 $LANG["menu"]["example1"] = "Example";
 $LANG["menu"]["example2"] = "It's an example !";

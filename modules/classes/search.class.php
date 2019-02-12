@@ -134,7 +134,8 @@ class SearchPoisson extends SearchParam {
 				"displayBassin" => 0,
 				"displayCumulTemp" => 0,
 				"dateDebutTemp" => date("d/m/").(date("Y")-1),
-				"dateFinTemp" => date("d/m/Y")
+				"dateFinTemp" => date("d/m/Y"),
+				"site_id" => ""
 		);
 		$this->paramNum = array (
 				"statut",
@@ -142,7 +143,8 @@ class SearchPoisson extends SearchParam {
 				"displayBassin",
 				"categorie",
 				"sexe",
-				"displayCumulTemp"
+				"displayCumulTemp",
+				"site_id"
 		);
 		parent::__construct ();
 	}
@@ -161,14 +163,16 @@ class SearchBassin extends SearchParam {
 				"bassin_zone" => "",
 				"circuit_eau" => "",
 				"bassin_actif" => "",
-				"bassin_nom" =>"" 
+				"bassin_nom" =>"",
+				"site_id"=> ""
 		);
 		$this->paramNum = array (
 				"bassin_type",
 				"bassin_usage",
 				"bassin_zone",
 				"circuit_eau",
-				"bassin_actif" 
+				"bassin_actif",
+				"site_id" 
 		);
 		parent::__construct ();
 	}
@@ -186,12 +190,14 @@ class SearchCircuitEau extends SearchParam {
 				"circuit_eau_actif" => 1,
 				"analyse_date" => date ( 'd/m/Y' ),
 				"offset" => 0,
-				"limit" => 100 
+				"limit" => 100,
+				"site_id" => ""
 		);
 		$this->paramNum = array (
 				"circuit_eau_actif",
 				"offset",
-				"limit" 
+				"limit",
+				"site_id"
 		);
 		parent::__construct ();
 	}
