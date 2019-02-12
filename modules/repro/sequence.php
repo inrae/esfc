@@ -15,12 +15,10 @@ $id = $_REQUEST[$keyName];
  * Prepositionnement de l'annee
 */
 include "modules/repro/setAnnee.php";
-
 switch ($t_module["param"]) {
 	case "list":
 		$smarty->assign("data", $dataClass->getListeByYear($_SESSION["annee"], $_REQUEST["site_id"]));
 		$smarty->assign("corps", "repro/sequenceList.tpl");
-		$smarty->assign("site_id", $_REQUEST["site_id"]);
 		/*
 		 * Recuperation des donnees concernant les bassins
 		 */

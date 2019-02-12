@@ -28,7 +28,7 @@ Nouvelle destination (lâcher, entrée dans le stock captif, etc.)
 </a>
 </td>
 {/if}
-<td>{$dataDevenir[lst].lot_nom}</td>
+<td>{$dataDevenir[lst].site_name} - {$dataDevenir[lst].lot_nom}</td>
 <td>{$dataDevenir[lst].devenir_date}</td>
 <td>{$dataDevenir[lst].devenir_type_libelle}&nbsp;
 {$dataDevenir[lst].categorie_libelle}&nbsp;

@@ -3,7 +3,7 @@
 <td>
 <label>Lot :</label> {$dataLot.lot_nom}
 &nbsp;-&nbsp;
-<label>Séquence de reproduction :</label> {$dataLot.annee}/
+<label>Séquence de reproduction :</label> {$dataLot.annee}/{$dataLot.site_name} 
 {$dataLot.sequence_nom} {$dataLot.croisement_nom}
 {if $dataLot.vie_modele_id > 0}
 <br><label>Marquage VIE le </label>{$dataLot.vie_date_marquage},

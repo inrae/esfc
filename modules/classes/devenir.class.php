@@ -16,12 +16,16 @@ class Devenir extends ObjetBDD {
 			c.categorie_libelle, lot_nom,
 			d2.devenir_date as devenir_date_parent, dt2.devenir_type_libelle as devenir_type_libelle_parent,
 			c2.categorie_libelle as categorie_libelle_parent,
-			sl2.localisation as localisation_parent, d2.poisson_nombre as poisson_nombre_parent
+			sl2.localisation as localisation_parent, d2.poisson_nombre as poisson_nombre_parent,
+			site_name
 			from devenir d1
 			join devenir_type dt1 on (d1.devenir_type_id = dt1.devenir_type_id)
 			join categorie c on (c.categorie_id = d1.categorie_id) 
 			left outer join sortie_lieu sl1 on  (sl1.sortie_lieu_id = d1.sortie_lieu_id)
 			left outer join lot on (lot.lot_id = d1.lot_id)
+			left outer join croisement using (croisement_id)
+			left outer join sequence using (sequence_id)
+			left outer join site using (site_id)
 			left outer join devenir d2 on (d2.devenir_id = d1.parent_devenir_id)
 			left outer join devenir_type dt2 on (d2.devenir_type_id = dt2.devenir_type_id)
 			left outer join categorie c2 on (c2.categorie_id = d2.categorie_id)

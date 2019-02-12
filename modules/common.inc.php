@@ -91,7 +91,7 @@ if (!isset($_SESSION["alimJuv"])) {
 if (isset($_REQUEST["site_id"])) {
 	if (is_numeric($_REQUEST["site_id"])) {
 		$_SESSION["site_id"] = $_REQUEST["site_id"];
-		$smarty->assign("site_id", $_REQUEST["site_id"]);
 	}
 }
+$smarty->assign("site_id", $_SESSION["site_id"]);
 ?>
