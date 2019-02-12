@@ -43,6 +43,20 @@ Sélectionnez le type de bassin...
 </tr>
 
 <tr>
+<td class="libelleSaisie">Site d'implantation :</td>
+<td class="datamodif">
+<select name="site_id">
+<option value="" {if $data.site_id == ""}selected{/if}>Sélectionnez le site...</option>
+{section name=lst loop=$site}
+<option value="{$site[lst].site_id}" {if $data.site_id == $site[lst].site_id}selected{/if}>
+{$site[lst].site_name}
+</option>
+{/section}
+</select>
+</td>
+</tr>
+
+<tr>
 <td class="libelleSaisie">
 Utilisation du bassin :</td>
 <td class="datamodif">

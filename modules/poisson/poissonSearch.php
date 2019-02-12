@@ -26,4 +26,7 @@ $poisson_statut = new Poisson_statut($bdd, $ObjetBDDParam);
 $smarty->assign("statut", $poisson_statut->getListe(1));
 $categorie = new Categorie($bdd, $ObjetBDDParam);
 $smarty->assign("categorie", $categorie->getListe(1));
+include_once 'modules/classes/site.class.php';
+$site = new Site($bdd, $ObjetBDDParam);
+$smarty->assign("site", $site->getListe(2));
 ?>

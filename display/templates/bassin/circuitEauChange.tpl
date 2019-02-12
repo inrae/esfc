@@ -14,6 +14,21 @@ Nom du circuit d'eau <span class="red">*</span> :</td>
 <input id="ccircuit_eau_libelle" name="circuit_eau_libelle" type="text" value="{$data.circuit_eau_libelle}" required autofocus/>
 </td>
 </tr>
+
+<tr>
+<td class="libelleSaisie">Site d'implantation :</td>
+<td class="datamodif">
+<select name="site_id">
+<option value="" {if $data.site_id == ""}selected{/if}>Sélectionnez le site...</option>
+{section name=lst loop=$site}
+<option value="{$site[lst].site_id}" {if $data.site_id == $site[lst].site_id}selected{/if}>
+{$site[lst].site_name}
+</option>
+{/section}
+</select>
+</td>
+</tr>
+
 <tr>
 <td class="libelleSaisie">
 Circuit d'eau en service ? 

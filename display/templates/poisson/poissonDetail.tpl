@@ -17,6 +17,7 @@
 <a href="index.php?module=bassinDisplay&bassin_id={$dataPoisson.bassin_id}" style="display:inline;">
 {$dataPoisson.bassin_nom}
 </a>
+<label>Site : </label>{$dataPoisson.site_name}
 {/if}
 {if strlen($dataPoisson.commentaire) > 0 }
 <br>

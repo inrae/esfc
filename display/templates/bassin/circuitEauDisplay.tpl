@@ -23,11 +23,28 @@ Modifier le nom ou l'activité du circuit d'eau...
 <td>
 <label for "analyse_date">Date de référence pour les analyses d'eau : </label>
 <input id="analyse_date" class="date" name="analyse_date" value="{$dataSearch.analyse_date}" size="10">
-<br>
+</td>
+<td>
+{if $data.site_id > 0}
+<label>Site : </label>{$data.site_name}
+{/if}
+
+</td>
+</tr>
+
+<tr>
+<td>
 <label for "limit">Nombre d'analyses à afficher : </label>
 <input id="limit" name="limit" value="{$dataSearch.limit}" pattern="[0-9]+" required size="5">
+</td>
+<td>
 <label for "offset">Affichage à partir de l'enregistrement n° : </label> 
 <input id="offset" name="offset" value="{$dataSearch.offset}" pattern="[0-9]+" required size="5">
+
+</td>
+</tr>
+<tr>
+<td colspan="2">
 <div class="center">
 <input type="submit" value="Rechercher">
 </div>

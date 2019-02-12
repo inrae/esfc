@@ -158,12 +158,14 @@ class Bassin extends ObjetBDD
 		if ($bassinId > 0 && is_numeric($bassinId)) {
 			$sql = "select bassin_id, bassin_nom, bassin_description, actif,
 					bassin_type_libelle, bassin_usage_libelle, bassin_zone_libelle, 
-					bassin.circuit_eau_id, circuit_eau_libelle
+					bassin.circuit_eau_id, circuit_eau_libelle,
+					bassin.site_id, site_name
 					from bassin
 					left outer join bassin_type using (bassin_type_id)
 					left outer join bassin_usage using (bassin_usage_id)
 					left outer join bassin_zone using (bassin_zone_id)
 					left outer join circuit_eau using (circuit_eau_id)
+					left outer join site on (bassin.site_id = site.site_id)
 					where bassin_id = " . $bassinId;
 			return $this->lireParam($sql);
 		}
@@ -438,6 +440,27 @@ class Circuit_eau extends ObjetBDD
 		parent::__construct($bdd, $param);
 	}
 	/**
+	 * Réécriture de la fonction lire pour récupérer le nom du site
+	 *
+	 * @param int $id
+	 * @return array
+	 */
+	function lire($id)
+	{
+		if (is_numeric($id) && $id > 0) {
+			$sql = "select circuit_eau_id, circuit_eau_libelle, circuit_eau_actif,
+					site_id, site_name
+					from circuit_eau
+					left outer join site using (site_id)
+					where circuit_eau_id = :cei";
+			$data = $this->lireParamAsPrepared($sql, array("cei" => $id));
+		} else {
+			$data = $this->getDefaultValue();
+		}
+		return $data;
+	}
+
+	/**
 	 * Retourne la liste des circuits d'eau en fonction des parametres de recherche
 	 *
 	 * @param array $data        	
@@ -448,7 +471,7 @@ class Circuit_eau extends ObjetBDD
 		$data = $this->encodeData($data);
 		$sql = "select * 
 				from circuit_eau
-				left outer join site using (site_id)" ;
+				left outer join site using (site_id)";
 		$order = ' order by circuit_eau_libelle';
 		$where = '';
 		$and = '';

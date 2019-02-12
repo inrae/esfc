@@ -87,6 +87,9 @@ switch ($t_module["param"]) {
 		 * $_REQUEST["idParent"] contains the identifiant of the parent record
 		 */
 		dataRead($dataClass, $id, "bassin/circuitEauChange.tpl");
+		require_once 'modules/classes/site.class.php';
+		$site = new Site($bdd, $ObjetBDDParam);
+		$smarty->assign("site", $site->getListe(2));
 		break;
 	case "write":
 		/*

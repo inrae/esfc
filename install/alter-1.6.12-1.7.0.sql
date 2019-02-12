@@ -68,5 +68,29 @@ REFERENCES public.site (site_id) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 
+DROP VIEW IF EXISTS v_poisson_last_bassin CASCADE;
 
+CREATE OR REPLACE VIEW v_poisson_last_bassin
+(
+  poisson_id,
+  bassin_id,
+  bassin_nom,
+  site_id,
+  transfert_date,
+  transfert_id,
+  evenement_id
+)
+AS 
+ SELECT t.poisson_id,
+    bassin.bassin_id,
+    bassin.bassin_nom,
+    bassin.site_id,
+    t.transfert_date,
+    t.transfert_id,
+    t.evenement_id
+   FROM transfert t
+     JOIN bassin ON t.bassin_destination = bassin.bassin_id
+  WHERE t.transfert_date = (( SELECT max(t1.transfert_date) AS max
+           FROM transfert t1
+          WHERE t.poisson_id = t1.poisson_id AND t1.bassin_destination > 0));
 

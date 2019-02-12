@@ -24,10 +24,24 @@ $(document).ready(function() {
 <input type="hidden" name="module" value="poissonList">
 <table class="tableaffichage">
 <tr>
-<td colspan='2'>
+<td>
 Libellé à rechercher (id, tag, prenom, matricule, cohorte) : 
 <input id="texte" name="texte" value="{$poissonSearch.texte}" size="40" maxlength="40">
-<br>
+</td>
+<td>
+Site :
+<select name="site_id">
+<option value="" {if $poissonSearch.site_id == ""}selected{/if}>Sélectionnez le site...</option>
+{section name=lst loop=$site}
+<option value="{$site[lst].site_id}" {if $poissonSearch.site_id == $site[lst].site_id}selected{/if}>
+{$site[lst].site_name}
+</option>
+{/section}
+</select>
+</td>
+</tr>
+<tr>
+<td>
 Catégorie :
 <select id="categorie" name="categorie" id="categorie">
 <option value="" {if $categorie[lst].categorie_id == ""}selected{/if}>Sélectionnez la catégorie...</option>
@@ -46,6 +60,8 @@ Catégorie :
 </option>
 {/section}
 </select>
+</td>
+<td>
  Sexe : 
  <select id="sexe" name="sexe">
  <option value="" {if $poissonSearch.sexe == ""}selected{/if}>Sélectionnez le sexe...</option>

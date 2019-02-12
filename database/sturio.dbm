@@ -3,7 +3,7 @@
 CAUTION: Do not modify this file unless you know what you are doing.
          Unexpected results may occur if the code is changed deliberately.
 -->
-<dbmodel pgmodeler-ver="0.9.2-alpha1" last-position="0,0" last-zoom="1" max-obj-count="168"
+<dbmodel pgmodeler-ver="0.9.2-beta" last-position="973,0" last-zoom="1" max-obj-count="169"
 	 default-owner="postgres">
 <role name="quinton"
       superuser="true"
@@ -941,7 +941,7 @@ where longitude_start is not null and latitude_start is not null and geom_point 
 	<schema name="public"/>
 	<role name="quinton"/>
 	<comment><![CDATA[Élevage des adultes, des juvéniles, infirmerie, etc.]]></comment>
-	<position x="1440" y="180"/>
+	<position x="860" y="180"/>
 	<column name="bassin_usage_id" not-null="true" sequence="public.bassin_usage_bassin_usage_id_seq">
 		<type name="integer" length="0"/>
 	</column>
@@ -965,7 +965,7 @@ where longitude_start is not null and latitude_start is not null and geom_point 
 	<schema name="public"/>
 	<role name="quinton"/>
 	<comment><![CDATA[Zones d'implantation des bassins]]></comment>
-	<position x="1720" y="180"/>
+	<position x="1960" y="20"/>
 	<column name="bassin_zone_id" not-null="true" sequence="public.bassin_zone_bassin_zone_id_seq">
 		<type name="integer" length="0"/>
 	</column>
@@ -2802,11 +2802,11 @@ Le premier chiffre correspond au lundi]]></comment>
 	<role name="quinton"/>
 </sequence>
 
-<table name="repartition" layer="0" collapse-mode="2" max-obj-count="7">
+<table name="repartition" layer="0" collapse-mode="2" max-obj-count="8">
 	<schema name="public"/>
 	<role name="quinton"/>
 	<comment><![CDATA[Tableau hebdomadaire (ou autre) de répartition des aliments]]></comment>
-	<position x="880" y="180"/>
+	<position x="1440" y="180"/>
 	<column name="repartition_id" not-null="true" sequence="public.repartition_repartition_id_seq">
 		<type name="integer" length="0"/>
 	</column>
@@ -2828,6 +2828,9 @@ Le premier chiffre correspond au lundi]]></comment>
 	<column name="repartition_name">
 		<type name="character varying" length="0"/>
 		<comment><![CDATA[Libellé permettant de nommer la répartition]]></comment>
+	</column>
+	<column name="site_id">
+		<type name="integer" length="0"/>
 	</column>
 	<constraint name="repartition_pk" type="pk-constr" table="public.repartition">
 		<columns names="repartition_id" ref-type="src-columns"/>
@@ -5124,6 +5127,12 @@ Le premier chiffre correspond au lundi]]></comment>
 	<columns names="categorie_id" ref-type="dst-columns"/>
 </constraint>
 
+<constraint name="site_site_id_fk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.site" table="public.repartition">
+	<columns names="site_id" ref-type="src-columns"/>
+	<columns names="site_id" ref-type="dst-columns"/>
+</constraint>
+
 <constraint name="bassin_campagne_salinite_fk" type="fk-constr" comparison-type="MATCH SIMPLE"
 	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.bassin_campagne" table="public.salinite">
 	<columns names="bassin_campagne_id" ref-type="src-columns"/>
@@ -6014,6 +6023,11 @@ Le premier chiffre correspond au lundi]]></comment>
 <relationship name="rel_vie_modele_vie_implantation1" type="relfk" layer="0"
 	 src-table="public.vie_modele"
 	 dst-table="public.vie_implantation" reference-fk="vie_implantation_vie_modele_fk1"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_repartition_site" type="relfk" layer="0"
+	 src-table="public.repartition"
+	 dst-table="public.site" reference-fk="site_site_id_fk"
 	 src-required="false" dst-required="false"/>
 
 <permission>

@@ -104,9 +104,10 @@ class Poisson extends ObjetBDD
 					  left outer join v_poisson_last_lt using (poisson_id)
 					  left outer join v_poisson_last_masse using (poisson_id) ";
             }
-            if ($dataSearch["displayBassin"] == 1) {
-                $sql .= ", bassin_id, bassin_nom";
-                $from .= " left outer join v_poisson_last_bassin using (poisson_id)";
+            if ($dataSearch["displayBassin"] == 1 || $dataSearch["site_id"]> 0) {
+                $sql .= ", bassin_id, bassin_nom, site_id, site_name";
+                $from .= " left outer join v_poisson_last_bassin using (poisson_id)
+                            left outer join site using (site_id)";
             }
             /*
              * Preparation de la clause group by
@@ -149,6 +150,10 @@ class Poisson extends ObjetBDD
                 $where .= ")";
                 $and = " and ";
             }
+            if ($dataSearch["site_id"] > 0 && is_numeric($dataSearch["site_id"])) {
+                $where .= $and . " site_id = " . $dataSearch["site_id"];
+                $and = " and ";
+            }
             if (strlen($where) > 7)
                 $data = $this->getListeParam($sql . $from . $where . /*$group .*/ $order);
             /*
@@ -181,7 +186,7 @@ class Poisson extends ObjetBDD
         if ($poisson_id > 0 && is_numeric($poisson_id)) {
             $sql = "select p.poisson_id, sexe_id, matricule, prenom, cohorte, capture_date, sexe_libelle, sexe_libelle_court, poisson_statut_libelle,
 					pittag_valeur, p.poisson_statut_id, date_naissance,
-					bassin_nom, b.bassin_id,
+					bassin_nom, b.bassin_id, b.site_id, site_name
 					categorie_id, categorie_libelle, commentaire
 					from " . $this->table . " p natural join sexe
 					  natural join poisson_statut
@@ -189,7 +194,8 @@ class Poisson extends ObjetBDD
 					  left outer join v_pittag_by_poisson using (poisson_id)
 					  left outer join v_transfert_last_bassin_for_poisson vlast on (vlast.poisson_id = p.poisson_id)
 					  left outer join transfert t on (vlast.poisson_id = t.poisson_id and transfert_date_last = transfert_date)
-					  left outer join bassin b on (b.bassin_id = (case when t.bassin_destination is not null then t.bassin_destination else t.bassin_origine end))
+                      left outer join bassin b on (b.bassin_id = (case when t.bassin_destination is not null then t.bassin_destination else t.bassin_origine end))
+                      left outer join site on (b.site_id = site.site_id)
 							";
             $where = " where p.poisson_id = " . $poisson_id;
             return $this->lireParam($sql . $where);
