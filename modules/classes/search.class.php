@@ -135,7 +135,7 @@ class SearchPoisson extends SearchParam {
 				"displayCumulTemp" => 0,
 				"dateDebutTemp" => date("d/m/").(date("Y")-1),
 				"dateFinTemp" => date("d/m/Y"),
-				"site_id" => ""
+				"site_id" => $_SESSION["site_id"]
 		);
 		$this->paramNum = array (
 				"statut",
@@ -164,7 +164,7 @@ class SearchBassin extends SearchParam {
 				"circuit_eau" => "",
 				"bassin_actif" => "",
 				"bassin_nom" =>"",
-				"site_id"=> ""
+				"site_id"=> $_SESSION["site_id"]
 		);
 		$this->paramNum = array (
 				"bassin_type",
@@ -191,7 +191,7 @@ class SearchCircuitEau extends SearchParam {
 				"analyse_date" => date ( 'd/m/Y' ),
 				"offset" => 0,
 				"limit" => 100,
-				"site_id" => ""
+				"site_id" => $_SESSION["site_id"]
 		);
 		$this->paramNum = array (
 				"circuit_eau_actif",
@@ -256,7 +256,7 @@ class SearchRepartition extends SearchParam {
 				"date_reference" => date ( 'd/m/' ) . $annee_prec,
 				"offset" => 0,
 				"limit" => 10,
-				"site_id"=> 0
+				"site_id"=> $_SESSION["site_id"]
 		);
 		$this->paramNum = array (
 				"categorie_id",

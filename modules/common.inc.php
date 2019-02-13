@@ -4,6 +4,7 @@
  * Utilise notamment pour recuperer les instances de classes stockees en 
  * variables de session
  */
+
 /*
  * Declaration de la classe de recherche des poissons
  */
@@ -88,9 +89,17 @@ if (!isset($_SESSION["alimJuv"])) {
 /**
  * Gestion du site
  */
-if (isset($_REQUEST["site_id"])) {
+if (isset($_REQUEST["site_id"]) && $_REQUEST["site_id"] != $_SESSION["site_id"]) {
 	if (is_numeric($_REQUEST["site_id"])) {
 		$_SESSION["site_id"] = $_REQUEST["site_id"];
+		setcookie( "site_id", $_REQUEST["site_id"], strtotime( '+30 days' ), "", "", true, true );
+		/**
+		 * Affectation de site_id dans les modules de recherche
+		 */
+		$search = array("searchPoisson", "searchBassin", "searchCircuitEau", "searchRepartition", "searchRepro");
+		foreach ($search as $s) {
+			$$s->param["site_id"] = $_SESSION["site_id"];
+		}
 	}
 }
 $smarty->assign("site_id", $_SESSION["site_id"]);
