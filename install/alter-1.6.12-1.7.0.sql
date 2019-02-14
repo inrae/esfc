@@ -102,6 +102,32 @@ alter table sequence add column site_id integer,
 add constraint site_site_id_fk foreign key (site_id) references site (site_id)
 match full on delete no action on update no action;
 
+CREATE SEQUENCE public.sonde_sonde_id_seq
+	INCREMENT BY 1
+	MINVALUE 0
+	MAXVALUE 2147483647
+	START WITH 1
+	CACHE 1
+	NO CYCLE
+	OWNED BY NONE;
+	
+	
+CREATE TABLE public.sonde (
+	sonde_id integer NOT NULL DEFAULT nextval('public.sonde_sonde_id_seq'::regclass),
+	sonde_name varchar NOT NULL,
+	sonde_param json,
+	CONSTRAINT sonde_id_pk PRIMARY KEY (sonde_id)
+
+);
+-- ddl-end --
+COMMENT ON TABLE public.sonde IS 'Table décrivant les procédures d''importation des données de sonde';
+-- ddl-end --
+COMMENT ON COLUMN public.sonde.sonde_name IS 'Nom du modèle d''intégration des données de la sonde';
+-- ddl-end --
+COMMENT ON COLUMN public.sonde.sonde_param IS 'Paramètres nécessaires pour gérer l''importation';
+-- ddl-end --
+
+insert into sonde (sonde_name) values ('pcwin');
 
 
 

@@ -3,7 +3,7 @@
 CAUTION: Do not modify this file unless you know what you are doing.
          Unexpected results may occur if the code is changed deliberately.
 -->
-<dbmodel pgmodeler-ver="0.9.2-beta" last-position="0,2710" last-zoom="1" max-obj-count="170"
+<dbmodel pgmodeler-ver="0.9.2-beta" last-position="1024,0" last-zoom="1" max-obj-count="170"
 	 default-owner="postgres">
 <role name="quinton"
       superuser="true"
@@ -4473,6 +4473,26 @@ Le premier chiffre correspond au lundi]]></comment>
 	</column>
 	<constraint name="site_id_pk" type="pk-constr" table="public.site">
 		<columns names="site_id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="sonde" layer="0" collapse-mode="2" max-obj-count="3">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="2700" y="180"/>
+	<column name="sonde_id" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="sonde_name" not-null="true">
+		<type name="varchar" length="0"/>
+		<comment><![CDATA[Nom du modèle d'intégration de données de la sonde]]></comment>
+	</column>
+	<column name="sonde_param">
+		<type name="json" length="0"/>
+		<comment><![CDATA[Paramètres nécessaires pour gérer l'importation données]]></comment>
+	</column>
+	<constraint name="sonde_id_pk" type="pk-constr" table="public.sonde">
+		<columns names="sonde_id" ref-type="src-columns"/>
 	</constraint>
 </table>
 
