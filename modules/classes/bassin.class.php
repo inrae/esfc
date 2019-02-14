@@ -491,6 +491,18 @@ class Circuit_eau extends ObjetBDD
 			$where = " where " . $where;
 		return $this->getListeParam($sql . $where . $order);
 	}
+
+	/**
+	 * Retourne l'identifiant du circuit d'eau à partir de son nom
+	 *
+	 * @param int $name
+	 * @return array
+	 */
+	function getIdFromName($name)
+	{
+		$sql = "select circuit_eau_id from circuit_eau where circuit_eau_libelle = :name";
+		return $this->lireParamAsPrepared($ql, array("name" => $name));
+	}
 }
 /**
  * ORM de gestion de la table analyse_eau
@@ -676,6 +688,21 @@ class AnalyseEau extends ObjetBDD
 			$data = $this->lireParam($sql);
 			return ($data["analyse_eau_id"]);
 		}
+	}
+	/**
+	 * Retourne l'id de l'analyse à partir de la date et du circuit d'eau
+	 *
+	 * @param [string] $dateAnalyse
+	 * @param [int] $circuit_id
+	 * @return int
+	 */
+	function getIdFromDateCircuit($dateAnalyse, $circuit_id)
+	{
+		$dateAnalyse = $this->formatDateLocaleVersDB($dateAnalyse, 3);
+		$sql = "select circuit_eau_id from circuit_eau 
+				where circuit_eau_id = :circuit_id
+				and analyse_eau_date = :date_analyse";
+		return ($this->lireParamAsPrepared($sql, array("circuit_id" => $circuitId, "date_analyse" => $dateAnalyse)));
 	}
 }
 /**
