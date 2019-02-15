@@ -38,8 +38,8 @@ $(document).ready(function() {
  
 	} );
 	var chart1 = c3.generate( { 
-		bindto:'#tauxSanguin',
-		data: { 
+		"bindto":'#tauxSanguin',
+		"data": { 
 			xs: { 
 				'E2': 'x1',
 				'Ca': 'x2',

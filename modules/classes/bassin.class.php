@@ -704,6 +704,35 @@ class AnalyseEau extends ObjetBDD
 				and analyse_eau_date = :date_analyse";
 		return ($this->lireParamAsPrepared($sql, array("circuit_id" => $circuit_id, "date_analyse" => $dateAnalyse)));
 	}
+
+	/**
+	 * Liste des valeurs enregistrees pour un type d'analyse
+	 * pour un circuit d'eau et pour une periode
+	 *
+	 * @param [int] $circuit_id
+	 * @param [string] $date_from
+	 * @param [string] $date_to
+	 * @param [string] $attribut
+	 * @return array
+	 */
+	function getValFromDatesCircuit($circuit_id, $date_from, $date_to, $attribut)
+	{
+		if (in_array($attribut, array("temperature", "o2_pc", "salinite", "ph"))) {
+			$date_from = $this->formatDateLocaleVersDB($date_from);
+			$date_to = $this->formatDateLocaleVersDB($date_to);
+			$sql = "select circuit_eau_id, analyse_eau_date, " . $attribut . "
+			from analyse_eau 
+			where circuit_eau_id = :circuit_id and analyse_eau_date::date between :date_from and :date_to 
+			order by analyse_eau_date";
+			return ($this->getListeParamAsPrepared(
+				$sql,
+				array(
+					"circuit_id" => $circuit_id, "date_from" => $date_from, "date_to" => $date_to
+				)
+			));
+
+		}
+	}
 }
 /**
  * ORM de gestion de la table laboratoire_analyse
