@@ -132,7 +132,7 @@ insert into sonde (sonde_id, sonde_name, sonde_param) values (1, 'pcwin (xlsx)',
 "abnormalvalues":[200,14,70,60,0],
 "fieldSeparator":" - ",
 "circuits":{"BC 1":"BC1", "BC 2":"BC2", "BC 3":"BC3", "BC 4":"BC4", "BR1":"BR1", "BR2":"BR2","BR3":"BR3", "BR4":"BR4", "BR5":"BR5","BS 1":"BS1", "BS 2":"BS2"},
-"attributs":{"O":"oxygene","p":"ph", "S":"salinite", "T":"temperature", "C":"salinite"}
+"attributs":{"O":"o2_pc","p":"ph", "S":"salinite", "T":"temperature", "C":"salinite"}
 }'
 );
 select setval('sonde_sonde_id_seq', 1);
