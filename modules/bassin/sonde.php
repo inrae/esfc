@@ -69,22 +69,28 @@ switch ($t_module["param"]) {
         break;
     case "import":
         $smarty->assign('corps', 'bassin/sondeImport.tpl');
-        $smarty->assign("sondes", $sonde->getListe(2));
+        $smarty->assign("sondes", $dataClass->getListe(2));
         /**
          * Site
          */
-        require_once 'modules/classes/site.class.php';
+       /* require_once 'modules/classes/site.class.php';
         $site = new Site($bdd, $ObjetBDDParam);
         $smarty->assign("site", $site->getListe(2));
+        */
         break;
     case "importExec":
         require_once 'modules/document/documentFunctions.php';
-        $files = formatFiles();
+        $files = formatFiles("sondeFileName");
         try {
             $result = $dataClass->importData($_REQUEST["sonde_id"], $files);
+            if (is_numeric($_REQUEST["sonde_id"])) {
+                $smarty->assign("sonde_id", $_REQUEST["sonde_id"]);
+            }
             $message = $result . " analyses d'eau créées";
-        } catch (SondeException $se) {
-            $message = "Echec d'importation des données : " . $se->getMessage();
+            $module_coderetour = 1;
+        } catch (Exception $e) {
+            $message = "Echec d'importation des données :<br>" . $e->getMessage();
+            $module_coderetour = -1;
         }
         break;
 }

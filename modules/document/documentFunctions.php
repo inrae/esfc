@@ -10,10 +10,10 @@
  * pour une utilisation directe en tableau
  * @return multitype:multitype:NULL  unknown
  */
-function formatFiles() {
+function formatFiles($attributName = "documentName") {
 	global $_FILES;
 	$files=array();
-	$fdata=$_FILES['documentName'];
+	$fdata=$_FILES[$attributName];
 	if(is_array($fdata['name'])){
 		for($i=0;$i<count($fdata['name']);++$i){
 			$files[]=array(

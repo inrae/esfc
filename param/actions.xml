@@ -114,6 +114,8 @@
 	<analyseEauDeleteList action="modules/bassin/analyseEau.php" param="delete" droits="bassinGestion" retoursuppr="circuitEauList" retourko="analyseEauChange"  modulebefore="analyseEauChange"/>
 	<analyseEauWrite action="modules/bassin/analyseEau.php" param="write" droits="bassinGestion" retourok="circuitEauDisplay" retourko="analyseEauChange" modulebefore="analyseEauChange" />
 	<analyseEauDelete action="modules/bassin/analyseEau.php" param="delete" droits="bassinAdmin" retoursuppr="circuitEauDisplay" retourko="analyseEauChange"  modulebefore="analyseEauChange"/>
+	<sondeImport action="modules/bassin/sonde.php" param="import" droits="bassinGestion" retourlogin="1"/>
+	<sondeExec action="modules/bassin/sonde.php" param="importExec" droits="bassinGestion" retourok="sondeImport" retourko="sondeImport"/>
 
 	<mimeTypeList action="modules/parametre/mimeType.php" param="list" droits="consult" retourlogin="1"  />
 	<mimeTypeChange action="modules/parametre/mimeType.php" param="change" droits="paramAdmin" />

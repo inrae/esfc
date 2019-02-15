@@ -145,8 +145,10 @@ $LANG["menu"][137] = "Requêtes";
 $LANG["menu"][138] = "Liste des requêtes exécutables sur la base de données";
 $LANG["menu"][139] = "Sites";
 $LANG["menu"][140] = "Liste des sites";
-$LANG["menu"][141] = "";
-$LANG["menu"][142] = "";
+$LANG["menu"][141] = "Import sondes";
+$LANG["menu"][142] = "Importation des résultats d'analyse effectués par les sondes";
+$LANG["menu"][143] = "";
+$LANG["menu"][144] = "";
 
 $LANG["menu"]["example1"] = "Example";
 $LANG["menu"]["example2"] = "It's an example !";

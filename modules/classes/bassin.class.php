@@ -501,7 +501,7 @@ class Circuit_eau extends ObjetBDD
 	function getIdFromName($name)
 	{
 		$sql = "select circuit_eau_id from circuit_eau where circuit_eau_libelle = :name";
-		return $this->lireParamAsPrepared($ql, array("name" => $name));
+		return $this->lireParamAsPrepared($sql, array("name" => $name));
 	}
 }
 /**
@@ -699,10 +699,10 @@ class AnalyseEau extends ObjetBDD
 	function getIdFromDateCircuit($dateAnalyse, $circuit_id)
 	{
 		$dateAnalyse = $this->formatDateLocaleVersDB($dateAnalyse, 3);
-		$sql = "select circuit_eau_id from circuit_eau 
+		$sql = "select analyse_eau_id from analyse_eau 
 				where circuit_eau_id = :circuit_id
 				and analyse_eau_date = :date_analyse";
-		return ($this->lireParamAsPrepared($sql, array("circuit_id" => $circuitId, "date_analyse" => $dateAnalyse)));
+		return ($this->lireParamAsPrepared($sql, array("circuit_id" => $circuit_id, "date_analyse" => $dateAnalyse)));
 	}
 }
 /**

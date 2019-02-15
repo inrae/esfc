@@ -1,5 +1,7 @@
 <?php
-
+//use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 class SondeException extends Exception
 {
 };
@@ -45,8 +47,8 @@ class Sonde extends ObjetBDD
         if (!$dsonde["sonde_id"] > 0) {
             throw new SondeException("Le modèle de sonde n'est pas décrit dans la base de données");
         }
-        $param = json_decode(($dsonde["sonde_param"]));
-        if (param["filetype"] == "xslx") {
+        $param = json_decode($dsonde["sonde_param"], true);
+        if ($param["filetype"] == "xslx") {
             /**
              * Initialisation Excel
              */
@@ -75,8 +77,8 @@ class Sonde extends ObjetBDD
                 $highestColumn = $sheet->getHighestColumn(1);
                 $header = array();
                 $i = 1;
-                for ($col = 'A'; $col != $highestColumn; ++$col) {
-                    $header[$i] = $sheet->getCell($col . "1");
+                for ($col = 'A'; $col != $highestColumn; $col++) {
+                    $header[$i] = $sheet->getCell($col . "1")->getValue();
                     $i++;
                 }
                 /**
@@ -86,7 +88,7 @@ class Sonde extends ObjetBDD
                     $i = 1;
                     $drow = array();
                     for ($col = 'A'; $col != $highestColumn; ++$col) {
-                        $drow[$header[$i]] = $sheet->getCell($col . $row);
+                        $drow[$header[$i]] = $sheet->getCell($col . $row)->getFormattedValue();
                         $i++;
                     }
                     $data[] = $drow;
@@ -96,7 +98,7 @@ class Sonde extends ObjetBDD
         /**
          * Traitement de l'import
          */
-        if ($dsonde["sonde_name"] == "pcwin") {
+        if ($dsonde["sonde_id"] == 1) {
             $result = $this->importPcwin($param, $data);
         }
         return $result;
@@ -125,9 +127,13 @@ class Sonde extends ObjetBDD
                 /**
                  * Extraction du nom du circuit d'eau
                  */
-                $drank = explode (" - ", $row["rank"]);
+                $drank = explode ($param["fieldSeparator"], $row["rank"]);
                 $circuitName = substr($drank[0], 3);
+                if (isset ($param["circuits"][$circuitName])) {
                 $realCircuitName = $param["circuits"][$circuitName];
+                } else {
+                    $realCircuitName = $circuitName;
+                }
                 /**
                  * Recuperation du circuit_eau_id
                  */
@@ -150,7 +156,7 @@ class Sonde extends ObjetBDD
                     /**
                      * Recherche de l'attribut correspondant au critère analysé
                      */
-                    $attribut = $param["attributs"][substring($drank[1],0, 1)];
+                    $attribut = $param["attributs"][substr($drank[1],0, 1)];
                     if (strlen($attribut)>0) {
                     $listeAnalyse[$circuit_id] [$row["date"]] [$attribut] = $row["value"];
                     } else {
@@ -169,12 +175,12 @@ class Sonde extends ObjetBDD
                 $danalyse = array("circuit_eau_id"=>$circuitId, "analyse_eau_date"=>$analyseDate);
                 foreach ($analyse as $row => $value) {
                     $danalyse[$row] = $value;
-                    try {
-                        $analyseEau->ecrire($danalyse);
-                        $nb ++;
-                    } catch (Exception $e) {
-                        throw new SondeException("Erreur lors de l'écriture dans la table analyse_eau : ".implode(",",$danalyse));
-                    }
+                }
+                try {
+                    $analyseEau->ecrire($danalyse);
+                    $nb ++;
+                } catch (Exception $e) {
+                    throw new SondeException("Erreur lors de l'écriture dans la table analyse_eau : ".implode(",",$danalyse));
                 }
             }
         }

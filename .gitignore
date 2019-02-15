@@ -122,3 +122,5 @@ _minted*
 # WinEdt
 *.bak
 *.sav
+/database/sturio_fixed.dbm
+/composer.lock

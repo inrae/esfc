@@ -9,6 +9,7 @@
 <item module="bassinList" value="63" title="64">
 	<item module="bassinList" value="63" title="64" droits="consult"/>
 	<item module="circuitEauList" value="65" title="66" droits="consult"/>
+	<item module="sondeImport" value="141" title="142" droits="bassinGestion"/>
 </item>
 
 <item module="alimentation" value="77" title="78">
