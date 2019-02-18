@@ -18,14 +18,23 @@ var chart = c3.generate(JSON.parse(chartcontent));
             <td>Site :</td>
             <td>
                 <select name="site_id">
-                    <option value="" {if $bassinSearch.site_id == ""}selected{/if}>Sélectionnez le site...</option>
+                    <option value="" {if $site_id == ""}selected{/if}>Sélectionnez le site...</option>
                     {section name=lst loop=$site}
-                        <option value="{$site[lst].site_id}" {if $bassinSearch.site_id == $site[lst].site_id}selected{/if}>
+                        <option value="{$site[lst].site_id}" {if $site_id == $site[lst].site_id}selected{/if}>
                         {$site[lst].site_name}
                         </option>
                     {/section}
                 </select>
             </td>
+            <td>Circuit d'eau :</td>
+            <td>
+                <select name="circuit_eau_id">
+                    <option value="0" {if $circuit_eau_id == 0}selected{/if}>Tous circuits d'eau actifs</option>
+                    {foreach $circuits as $circuit}
+                        <option value="{$circuit.circuit_eau_id}" {if $circuit.circuit_eau_id == $circuit_eau_id}selected{/if}>
+                        {$circuit.circuit_eau_libelle}
+                        </option>
+                    {/foreach}
             <td>Mesure à afficher :</td>
             <td>
                 <select name="attribut">
@@ -41,7 +50,7 @@ var chart = c3.generate(JSON.parse(chartcontent));
             <td>au :</td>
             <td><input name="date_to" class="date" value="{$date_to}"></td>
         <tr>
-            <td colspan="4" class="center">
+            <td colspan="6" class="center">
             <input type="submit" value="Générer le graphique">
             </td>
         </tr>

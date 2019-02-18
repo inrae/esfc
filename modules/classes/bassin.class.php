@@ -717,7 +717,7 @@ class AnalyseEau extends ObjetBDD
 	 */
 	function getValFromDatesCircuit($circuit_id, $date_from, $date_to, $attribut)
 	{
-		if (in_array($attribut, array("temperature", "o2_pc", "salinite", "ph"))) {
+		if (in_array($attribut, array("temperature", "o2_pc", "salinite", "ph", "nh4", "n_nh4", "no2", "n_no2", "no3", "n_no3"))) {
 			$date_from = $this->formatDateLocaleVersDB($date_from);
 			$date_to = $this->formatDateLocaleVersDB($date_to);
 			$sql = "select circuit_eau_id, analyse_eau_date, " . $attribut . "
