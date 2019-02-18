@@ -124,3 +124,4 @@ _minted*
 *.sav
 /database/sturio_fixed.dbm
 /composer.lock
+/.scannerwork/*
