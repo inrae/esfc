@@ -177,8 +177,7 @@ class Identification {
 	 * @return 0:1
 	 */
 	function disconnect($adresse_retour) {
-		global $message;
-		$LANG;
+		global $message, $LANG;
 		if (! isset ( $this->ident_type )) {
 			return 0;
 		}
@@ -239,7 +238,7 @@ class LoginGestion extends ObjetBDD {
 		$this->paramori = $param;
 		$this->param = $param;
 		if (is_array ( $param ) == false)
-			$param = array ();
+			$param = array();
 		$this->table = "LoginGestion";
 		$this->id_auto = 1;
 		$this->colonnes = array (
@@ -491,7 +490,7 @@ class Log extends ObjetBDD {
 				) 
 		);
 		if (! is_array ( $param ))
-			$param == array ();
+			$param = array();
 		$param ["fullDescription"] = 1;
 		parent::__construct ( $bdd, $param );
 	}
@@ -571,7 +570,7 @@ class LoginOldPassword extends ObjetBDD {
 		);
 		
 		if (! is_array ( $param ))
-			$param == array ();
+			$param = array();
 		$param ["fullDescription"] = 1;
 		parent::__construct ( $bdd, $param );
 	}

@@ -143,7 +143,7 @@ class MimeType extends ObjetBDD {
 				) 
 		);
 		if (! is_array ( $param ))
-			$param == array ();
+			$param = array();
 		$param ["fullDescription"] = 1;
 		parent::__construct ( $bdd, $param );
 	}
@@ -220,7 +220,7 @@ class DocumentAttach extends ObjetBDD {
 				)
 		);
 		if (! is_array ( $param ))
-			$param == array ();
+			$param = array();
 		$param ["fullDescription"] = 1;
 		parent::__construct ( $bdd, $param );
 	}
@@ -235,6 +235,7 @@ class DocumentAttach extends ObjetBDD {
 	 * @return int
 	 */
 	function ecrire($file, $description = NULL, $document_date_creation = NULL) {
+		global $log;
 		if ($file ["error"] == 0 && $file ["size"] > 0) {
 			/*
 			 * Recuperation de l'extension
@@ -260,7 +261,6 @@ class DocumentAttach extends ObjetBDD {
 					if ($retcode == CL_VIRUS) {
 						$virus = true;
 						$texte_erreur = $file ["name"] . " : " . cl_pretcode ( $retcode ) . ". Virus found name : " . $virusname;
-						$message .= "<br>" . $texte_erreur;
 						$log->setLog ( $_SESSION ["login"], "Document-ecrire", $texte_erreur );
 					}
 				}

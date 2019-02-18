@@ -46,7 +46,7 @@ class Requete extends ObjetBDD
             )
         );
         if (! is_array($param)) {
-            $param == array();
+            $param = array();
         }
         parent::__construct($bdd, $param);
     }

@@ -63,7 +63,7 @@ class DosageSanguin extends \ObjetBDD {
 				"evenement_id" => array ("type"=>1)
 		);
 		if (! is_array ( $param ))
-			$param == array ();
+			$param = array();
 		$param ["fullDescription"] = 1;
 		
 		parent::__construct ( $p_connection, $param );

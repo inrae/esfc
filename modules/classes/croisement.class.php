@@ -57,7 +57,7 @@ class Croisement extends ObjetBDD {
 				)
 		);
 		if (! is_array ( $param ))
-			$param == array ();
+			$param = array();
 		$param ["fullDescription"] = 1;
 		parent::__construct ( $bdd, $param );
 	}
@@ -290,7 +290,7 @@ class CroisementQualite extends ObjetBDD {
 		);
 		
 		if (! is_array ( $param ))
-			$param == array ();
+			$param = array();
 		$param ["fullDescription"] = 1;
 		$param ["transformComma"] = 1;
 		parent::__construct ( $bdd, $param );

@@ -43,7 +43,7 @@ class BassinCampagne extends ObjetBDD
 			)
 		);
 		if (!is_array($param))
-			$param == array();
+			$param = array();
 		$param["fullDescription"] = 1;
 
 		parent::__construct($p_connection, $param);
@@ -143,7 +143,7 @@ class ProfilThermique extends ObjetBDD
 			)
 		);
 		if (!is_array($param))
-			$param == array();
+			$param = array();
 		$param["fullDescription"] = 1;
 
 		parent::__construct($p_connection, $param);
@@ -285,7 +285,7 @@ class Salinite extends ObjetBDD
 			)
 		);
 		if (!is_array($param))
-			$param == array();
+			$param = array();
 		$param["fullDescription"] = 1;
 
 		parent::__construct($p_connection, $param);

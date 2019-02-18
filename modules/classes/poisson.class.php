@@ -74,7 +74,7 @@ class Poisson extends ObjetBDD
             )
         );
         if (! is_array($param))
-            $param == array();
+            $param = array();
         $param["fullDescription"] = 1;
         parent::__construct($bdd, $param);
     }
@@ -443,7 +443,7 @@ class Poisson_statut extends ObjetBDD
             )
         );
         if (! is_array($param))
-            $param == array();
+            $param = array();
         $param["fullDescription"] = 1;
         parent::__construct($bdd, $param);
     }
@@ -483,7 +483,7 @@ class Pittag_type extends ObjetBDD
             )
         );
         if (! is_array($param))
-            $param == array();
+            $param = array();
         $param["fullDescription"] = 1;
         parent::__construct($bdd, $param);
     }
@@ -536,7 +536,7 @@ class Pittag extends ObjetBDD
             )
         );
         if (! is_array($param))
-            $param == array();
+            $param = array();
         $param["fullDescription"] = 1;
         parent::__construct($bdd, $param);
     }
@@ -624,7 +624,7 @@ class Morphologie extends ObjetBDD
             )
         );
         if (! is_array($param))
-            $param == array();
+            $param = array();
         $param["fullDescription"] = 1;
         parent::__construct($bdd, $param);
     }
@@ -793,7 +793,7 @@ class Pathologie extends ObjetBDD
             )
         );
         if (! is_array($param))
-            $param == array();
+            $param = array();
         $param["fullDescription"] = 1;
         parent::__construct($bdd, $param);
     }
@@ -870,7 +870,7 @@ class Pathologie_type extends ObjetBDD
             )
         );
         if (! is_array($param))
-            $param == array();
+            $param = array();
         $param["fullDescription"] = 1;
         parent::__construct($bdd, $param);
     }
@@ -913,7 +913,7 @@ class Sexe extends ObjetBDD
             )
         );
         if (! is_array($param))
-            $param == array();
+            $param = array();
         $param["fullDescription"] = 1;
         parent::__construct($bdd, $param);
     }
@@ -953,7 +953,7 @@ class Gender_methode extends ObjetBDD
             )
         );
         if (! is_array($param))
-            $param == array();
+            $param = array();
         $param["fullDescription"] = 1;
         parent::__construct($bdd, $param);
     }
@@ -1010,7 +1010,7 @@ class Gender_selection extends ObjetBDD
             )
         );
         if (! is_array($param))
-            $param == array();
+            $param = array();
         $param["fullDescription"] = 1;
         parent::__construct($bdd, $param);
     }
@@ -1127,7 +1127,7 @@ class Transfert extends ObjetBDD
             )
         );
         if (! is_array($param))
-            $param == array();
+            $param = array();
         $param["fullDescription"] = 1;
         parent::__construct($bdd, $param);
     }
@@ -1268,7 +1268,7 @@ class Mime_type extends ObjetBDD
             )
         );
         if (! is_array($param))
-            $param == array();
+            $param = array();
         $param["fullDescription"] = 1;
         parent::__construct($bdd, $param);
     }
@@ -1295,7 +1295,7 @@ class Mime_type extends ObjetBDD
  * @param array $param
  */
 /*
- * function __construct($bdd, $param = null) { $this->param = $param; $this->table = "document"; $this->id_auto = "1"; $this->colonnes = array ( "document_id" => array ( "type" => 1, "key" => 1, "requis" => 1, "defaultValue" => 0 ), "mime_type_id" => array ( "type" => 1, "requis" => 1 ), "poisson_id" => array ( "type" => 1 ), "evenement_id" => array ( "type" => 1 ), "document_date_import" => array ( "type" => 2, "requis" => 1, "defaultValue" => "dateJour" ), "document_nom" => array ( "requis" => 1 ), "document_description" => array ( "type" => 0 ) ); if (! is_array ( $param )) $param == array (); $param ["fullDescription"] = 1; parent::__construct ( $bdd, $param ); } }
+ * function __construct($bdd, $param = null) { $this->param = $param; $this->table = "document"; $this->id_auto = "1"; $this->colonnes = array ( "document_id" => array ( "type" => 1, "key" => 1, "requis" => 1, "defaultValue" => 0 ), "mime_type_id" => array ( "type" => 1, "requis" => 1 ), "poisson_id" => array ( "type" => 1 ), "evenement_id" => array ( "type" => 1 ), "document_date_import" => array ( "type" => 2, "requis" => 1, "defaultValue" => "dateJour" ), "document_nom" => array ( "requis" => 1 ), "document_description" => array ( "type" => 0 ) ); if (! is_array ( $param )) $param = array(); $param ["fullDescription"] = 1; parent::__construct ( $bdd, $param ); } }
  */
 class Cohorte extends ObjetBDD
 {
@@ -1342,7 +1342,7 @@ class Cohorte extends ObjetBDD
             )
         );
         if (! is_array($param))
-            $param == array();
+            $param = array();
         $param["fullDescription"] = 1;
         parent::__construct($bdd, $param);
     }
@@ -1438,7 +1438,7 @@ class Cohorte_type extends ObjetBDD
             )
         );
         if (! is_array($param))
-            $param == array();
+            $param = array();
         $param["fullDescription"] = 1;
         parent::__construct($bdd, $param);
     }
@@ -1478,7 +1478,7 @@ class Mortalite_type extends ObjetBDD
             )
         );
         if (! is_array($param))
-            $param == array();
+            $param = array();
         $param["fullDescription"] = 1;
         parent::__construct($bdd, $param);
     }
@@ -1533,7 +1533,7 @@ class Mortalite extends ObjetBDD
             )
         );
         if (! is_array($param))
-            $param == array();
+            $param = array();
         $param["fullDescription"] = 1;
         parent::__construct($bdd, $param);
     }
@@ -1639,7 +1639,7 @@ class Parent_poisson extends ObjetBDD
             )
         );
         if (! is_array($param))
-            $param == array();
+            $param = array();
         $param["fullDescription"] = 1;
         parent::__construct($bdd, $param);
     }
@@ -1747,7 +1747,7 @@ class Sortie extends ObjetBDD
             )
         );
         if (! is_array($param))
-            $param == array();
+            $param = array();
         $param["fullDescription"] = 1;
         parent::__construct($bdd, $param);
     }
@@ -1863,7 +1863,7 @@ class SortieLieu extends ObjetBDD
             )
         );
         if (! is_array($param))
-            $param == array();
+            $param = array();
         $param["fullDescription"] = 1;
         $param["srid"] = 4326;
         parent::__construct($bdd, $param);
@@ -1962,7 +1962,7 @@ class Echographie extends ObjetBDD
             )
         );
         if (! is_array($param))
-            $param == array();
+            $param = array();
         $param["fullDescription"] = 1;
         
         parent::__construct($p_connection, $param);
@@ -2085,7 +2085,7 @@ class Anesthesie extends ObjetBDD
             )
         );
         if (! is_array($param))
-            $param == array();
+            $param = array();
         $param["fullDescription"] = 1;
         
         parent::__construct($p_connection, $param);
@@ -2173,7 +2173,7 @@ class Anesthesie_produit extends ObjetBDD
             )
         );
         if (! is_array($param))
-            $param == array();
+            $param = array();
         $param["fullDescription"] = 1;
         parent::__construct($bdd, $param);
     }
@@ -2243,7 +2243,7 @@ class Ventilation extends ObjetBDD
             )
         );
         if (! is_array($param))
-            $param == array();
+            $param = array();
         $param["fullDescription"] = 1;
         parent::__construct($bdd, $param);
     }
@@ -2329,7 +2329,7 @@ class Genetique extends ObjetBDD
             )
         );
         if (! is_array($param))
-            $param == array();
+            $param = array();
         $param["fullDescription"] = 1;
         parent::__construct($bdd, $param);
     }
@@ -2403,7 +2403,7 @@ class Nageoire extends ObjetBDD
             )
         );
         if (! is_array($param))
-            $param == array();
+            $param = array();
         $param["fullDescription"] = 1;
         parent::__construct($bdd, $param);
     }
@@ -2449,7 +2449,7 @@ class Parente extends ObjetBDD
             )
         );
         if (! is_array($param))
-            $param == array();
+            $param = array();
         $param["fullDescription"] = 1;
         parent::__construct($bdd, $param);
     }
@@ -2517,7 +2517,7 @@ class DeterminationParente extends ObjetBDD
             )
         );
         if (! is_array($param))
-            $param == array();
+            $param = array();
             $param["fullDescription"] = 1;
             parent::__construct($bdd, $param);
     }

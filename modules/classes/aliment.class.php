@@ -40,7 +40,7 @@ class AlimentType extends ObjetBDD
 			)
 		);
 		if (!is_array($param))
-			$param == array();
+			$param = array();
 		$param["fullDescription"] = 1;
 		parent::__construct($bdd, $param);
 	}
@@ -92,7 +92,7 @@ class Aliment extends ObjetBDD
 			)
 		);
 		if (!is_array($param))
-			$param == array();
+			$param = array();
 		$param["fullDescription"] = 1;
 		parent::__construct($bdd, $param);
 	}
@@ -175,7 +175,7 @@ class AlimentCategorie extends ObjetBDD
 			)
 		);
 		if (!is_array($param))
-			$param == array();
+			$param = array();
 		$param["fullDescription"] = 1;
 		parent::__construct($bdd, $param);
 	}
@@ -235,7 +235,7 @@ class RepartTemplate extends ObjetBDD
 			)
 		);
 		if (!is_array($param))
-			$param == array();
+			$param = array();
 		$param["fullDescription"] = 1;
 		parent::__construct($bdd, $param);
 	}
@@ -365,7 +365,7 @@ class RepartAliment extends ObjetBDD
 			)
 		);
 		if (!is_array($param))
-			$param == array();
+			$param = array();
 		$param["fullDescription"] = 1;
 		parent::__construct($bdd, $param);
 	}
@@ -462,7 +462,7 @@ class Repartition extends ObjetBDD
 			"site_id" => array("type" => 1)
 		);
 		if (!is_array($param))
-			$param == array();
+			$param = array();
 		$param["fullDescription"] = 1;
 		parent::__construct($bdd, $param);
 	}
@@ -707,7 +707,7 @@ class Distribution extends ObjetBDD
 			)
 		);
 		if (!is_array($param))
-			$param == array();
+		$param = array();
 		$param["fullDescription"] = 1;
 		parent::__construct($bdd, $param);
 	}
@@ -1152,7 +1152,7 @@ class DistribQuotidien extends ObjetBDD
 			)
 		);
 		if (!is_array($param))
-			$param == array();
+			$param = array();
 		$param["fullDescription"] = 1;
 		parent::__construct($bdd, $param);
 	}
@@ -1339,7 +1339,7 @@ class AlimentQuotidien extends ObjetBDD
 			)
 		);
 		if (!is_array($param))
-			$param == array();
+			$param = array();
 		$param["fullDescription"] = 1;
 		parent::__construct($bdd, $param);
 	}
@@ -1395,7 +1395,7 @@ class LotRepartTemplate extends ObjetBDD
 			)
 		);
 		if (!is_array($param))
-			$param == array();
+			$param = array();
 		$param["fullDescription"] = 1;
 		parent::__construct($bdd, $param);
 	}

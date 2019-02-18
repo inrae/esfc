@@ -265,7 +265,7 @@ class SpermeQualite extends ObjetBDD
             )
         );
         if (! is_array($param))
-            $param == array();
+            $param = array();
         $param["fullDescription"] = 1;
         parent::__construct($bdd, $param);
     }
@@ -341,7 +341,7 @@ class SpermeCongelation extends ObjetBDD
             )
         );
         if (! is_array($param))
-            $param == array();
+            $param = array();
         $param["fullDescription"] = 1;
         parent::__construct($bdd, $param);
     }
@@ -436,7 +436,7 @@ class SpermeMesure extends ObjetBDD
             )
         );
         if (! is_array($param))
-            $param == array();
+            $param = array();
         $param["fullDescription"] = 1;
         parent::__construct($bdd, $param);
     }
@@ -538,7 +538,7 @@ class SpermeDilueur extends ObjetBDD
             )
         );
         if (! is_array($param))
-            $param == array();
+            $param = array();
         $param["fullDescription"] = 1;
         parent::__construct($bdd, $param);
     }
@@ -572,7 +572,7 @@ class SpermeCaracteristique extends ObjetBDD
             )
         );
         if (! is_array($param))
-            $param == array();
+            $param = array();
         $param["fullDescription"] = 1;
         parent::__construct($bdd, $param);
     }
@@ -615,7 +615,7 @@ class SpermeCaract extends ObjetBDD
             )
         );
         if (! is_array($param))
-            $param == array();
+            $param = array();
         $param["fullDescription"] = 1;
         parent::__construct($bdd, $param);
     }
@@ -649,7 +649,7 @@ class SpermeAspect extends ObjetBDD
             )
         );
         if (! is_array($param))
-            $param == array();
+            $param = array();
         $param["fullDescription"] = 1;
         parent::__construct($bdd, $param);
     }
@@ -694,7 +694,7 @@ class SpermeUtilise extends ObjetBDD
             )
         );
         if (! is_array($param))
-            $param == array();
+            $param = array();
         $param["fullDescription"] = 1;
         parent::__construct($bdd, $param);
     }

@@ -53,7 +53,7 @@ class PoissonCampagne extends ObjetBDD
 			)
 		);
 		if (!is_array($param))
-			$param == array();
+			$param = array();
 		$param["fullDescription"] = 1;
 
 		parent::__construct($p_connection, $param);
@@ -513,7 +513,7 @@ class ReproStatut extends ObjetBDD
 			)
 		);
 		if (!is_array($param))
-			$param == array();
+			$param = array();
 		$param["fullDescription"] = 1;
 
 		parent::__construct($p_connection, $param);

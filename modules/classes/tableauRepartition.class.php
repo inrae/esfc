@@ -237,6 +237,7 @@ class RepartitionAdulte extends TableauRepartition {
 		 * En ordonnee : le numéro de colonne
 		 */
 		$aliment = array ();
+		$alimentTotal = array();
 		$i = 0;
 		// printr($this->dataAliment);
 		foreach ( $this->dataAliment as $key => $value ) {
@@ -438,6 +439,7 @@ class RepartitionJuvenile extends TableauRepartition {
 		 * Preparation du tableau general des aliments En absisse : le numero d'aliment En ordonnee : le numéro de colonne
 		 */
 		$aliment = array ();
+		$alimentTotal = array();
 		$i = 0;
 		// printr($this->dataAliment,1);
 		foreach ( $this->dataAliment as $key => $value ) {
@@ -646,6 +648,7 @@ class RepartitionJuvenileLot extends TableauRepartition {
 		$this->Cell(50, $this->param ["hl"], $this->dataRepartition["densite_artemia"], 0, 0, 'L', true );
 		$this->Ln();
 		$this->nbLigne ++;
+		$total = array();
 		/*
 		 * Appel de l'entete
 		 */

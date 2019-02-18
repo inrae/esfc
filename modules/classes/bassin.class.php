@@ -74,7 +74,7 @@ class Bassin extends ObjetBDD
 			"site_id" => array("type" => 1)
 		);
 		if (!is_array($param))
-			$param == array();
+			$param = array();
 		$param["fullDescription"] = 1;
 		parent::__construct($bdd, $param);
 	}
@@ -299,7 +299,7 @@ class Bassin_type extends ObjetBDD
 			)
 		);
 		if (!is_array($param))
-			$param == array();
+			$param = array();
 		$param["fullDescription"] = 1;
 		parent::__construct($bdd, $param);
 	}
@@ -340,7 +340,7 @@ class Bassin_usage extends ObjetBDD
 			)
 		);
 		if (!is_array($param))
-			$param == array();
+			$param = array();
 		$param["fullDescription"] = 1;
 		parent::__construct($bdd, $param);
 	}
@@ -392,7 +392,7 @@ class Bassin_zone extends ObjetBDD
 			)
 		);
 		if (!is_array($param))
-			$param == array();
+			$param = array();
 		$param["fullDescription"] = 1;
 		parent::__construct($bdd, $param);
 	}
@@ -435,7 +435,7 @@ class Circuit_eau extends ObjetBDD
 			"site_id" => array("type" => 1)
 		);
 		if (!is_array($param))
-			$param == array();
+			$param = array();
 		$param["fullDescription"] = 1;
 		parent::__construct($bdd, $param);
 	}
@@ -610,7 +610,7 @@ class AnalyseEau extends ObjetBDD
 			)
 		);
 		if (!is_array($param))
-			$param == array();
+			$param = array();
 		$param["fullDescription"] = 1;
 		parent::__construct($bdd, $param);
 	}
@@ -770,7 +770,7 @@ class LaboratoireAnalyse extends ObjetBDD
 			)
 		);
 		if (!is_array($param))
-			$param == array();
+			$param = array();
 		$param["fullDescription"] = 1;
 		parent::__construct($bdd, $param);
 	}
@@ -817,7 +817,7 @@ class BassinEvenementType extends ObjetBDD
 			)
 		);
 		if (!is_array($param))
-			$param == array();
+			$param = array();
 		$param["fullDescription"] = 1;
 		parent::__construct($bdd, $param);
 	}
@@ -866,7 +866,7 @@ class BassinEvenement extends ObjetBDD
 			)
 		);
 		if (!is_array($param))
-			$param == array();
+			$param = array();
 		$param["fullDescription"] = 1;
 		parent::__construct($bdd, $param);
 	}
@@ -927,7 +927,7 @@ class Metal extends ObjetBDD
 			)
 		);
 		if (!is_array($param))
-			$param == array();
+			$param = array();
 		$param["fullDescription"] = 1;
 		parent::__construct($bdd, $param);
 	}
@@ -1020,7 +1020,7 @@ class AnalyseMetal extends ObjetBDD
 			)
 		);
 		if (!is_array($param))
-			$param == array();
+			$param = array();
 		$param["fullDescription"] = 1;
 		parent::__construct($bdd, $param);
 	}
@@ -1157,7 +1157,7 @@ class BassinLot extends ObjetBDD
 			)
 		);
 		if (!is_array($param))
-			$param == array();
+			$param = array();
 		$param["fullDescription"] = 1;
 		parent::__construct($bdd, $param);
 	}
@@ -1290,7 +1290,7 @@ class CircuitEvenementType extends ObjetBDD
 			)
 		);
 		if (!is_array($param))
-			$param == array();
+			$param = array();
 		$param["fullDescription"] = 1;
 		parent::__construct($bdd, $param);
 	}
@@ -1340,7 +1340,7 @@ class CircuitEvenement extends ObjetBDD
 			"site_id" => array("type" => 1)
 		);
 		if (!is_array($param))
-			$param == array();
+			$param = array();
 		$param["fullDescription"] = 1;
 		parent::__construct($bdd, $param);
 	}
