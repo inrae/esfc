@@ -4,35 +4,33 @@
 *UTF-8
 */
 
-$APPLI_modeDeveloppement = true;
+$APPLI_modeDeveloppement = false;
 $ERROR_display=1;
 $ERROR_level = E_ERROR ;
-$ADODB_debugmode = 0;
 $OBJETBDD_debugmode = 1;
 $APPLI_utf8 = true;
-
-$GACL_aco = $APPLI_code;
 $GACL_aro = "login";
-$GACL_aco = "appli";
 
 $ident_type = "BDD";
 
-$BDD_type = "mysql|postgres7";
-$BDD_server = "localhost";
-$BDD_login = "proto";
-$BDD_passwd = "proto";
-$BDD_database = "proto";
+/*
+ * Rights management, logins and logs records database
+ */
+$GACL_dblogin = "esfc";
+$GACL_dbpasswd = "esfcPassword";
+$GACL_aco = "esfc";
+$GACL_dsn = "pgsql:host=localhost;dbname=esfc";
+$GACL_schema = "gacl";
 
-$GACL_dbtype = "mysql|postgres7";
-$GACL_dbserver = "localhost";
-$GACL_dblogin = "proto_gacl";
-$GACL_dbpasswd = "proto";
-$GACL_database = "proto";
+$BDD_login = "esfc";
+$BDD_passwd = "esfcPassword";
+$BDD_dsn = "pgsql:host=localhost;dbname=esfc";
+$BDD_schema = "public";
 
-$APPLI_address = "http://localhost/proto";
-$APPLI_mail = "proto@domain.fr";
-$APPLI_nom = "PROTOTYPEPHP";
-$APPLI_code = 'proto';
+$APPLI_address = "http://localhost/esfc";
+$APPLI_mail = "esfc@societe.com";
+$APPLI_nom = "ESFC";
+$APPLI_code = 'ESFC';
 
 $LDAPGROUP_address = "localhost";
 $LDAPGROUP_attributnomgroupe = "cn";

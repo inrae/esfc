@@ -1,5 +1,12 @@
 Nouveautés
 ===========
+Version 1.8 du 18 février 2018
+-------------------------------
+Nouveautés :
+- ajout de la gestion des sites : il est maintenant possible de gérer un élevage réparti sur plusieurs sites
+- ajout d'un module d'importation des relevés de sonde d'analyse d'eau
+- génération d'un graphique permettant de visualiser les paramètres physico-chimiques d'un ou plusieurs circuits d'eau
+
 Version 1.7 du 13 décembre 2017
 -------------------------------
 Ajout d'un module permettant d'exécuter des requêtes directement dans la base de données
