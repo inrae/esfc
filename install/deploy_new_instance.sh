@@ -3,7 +3,7 @@
 # must be executed with login root
 # creation : Eric Quinton - 2017-05-04
 
-echo "this script will install apache server and php, postgresql and deploy the current version of esfc-science."
+echo "this script will install apache server and php, postgresql and deploy the current version of esfc."
 read -p "Do you want to continue [y/n]?" response
 if [ "$response" = "y" ] 
 then
@@ -26,8 +26,8 @@ cd esfc
 echo "download software"
 wget https://github.com/Irstea/esfc/archive/master.zip
 unzip esfc.zip
-mv esfc-master esfc-1.7
-ln -s esfc-1.7 esfc
+mv esfc-master esfc-1.8
+ln -s esfc-1.8 esfc
 
 # update rights on files
 chmod -R 755 .
@@ -64,7 +64,7 @@ chmod -R 750 .
 mkdir esfc/display/templates_c
 chgrp -R www-data .
 chmod -R 770 esfc/display/templates_c
-chmod -R 770 esfc/temp
+chmod -R 770 esfc/tmp
 
 # generate rsa key for encrypted tokens
 echo "generate encryption keys for identification tokens"

@@ -54,10 +54,10 @@ create extension pg_trgm schema pg_catalog;
  * Creation des tables dans le schema gacl
  * Tables creation in schema gacl
  */
-\ir pgsql/gacl_create-2.1.sql
+\ir pgsql/gacl_create.sql
 
 /*
  * Creation des tables dans le schema col
  * Tables creation in schema col
  */
-\ir pgsql/public_create_1.7.sql
+\ir pgsql/public_create.sql

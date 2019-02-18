@@ -1,5 +1,5 @@
 /*
- * Collec-Science - 4 mai 2018
+ * Ex Situ Fish Conservation (ESFC) software © Irstea
  * Script de creation des tables necessaires a la gestion des droits
  * deux schemas sont necessaires, l'un pour les donnees proprement dites, 
  * l'autre pour la gestion des droits (habilitations et des traces)
@@ -233,32 +233,60 @@ insert into acllogin (acllogin_id, login, logindetail) values (1, 'admin', 'admi
 /*
  * Ajout des droits necessaires
  */
-insert into aclappli (aclappli_id, appli) values (1, 'col');
+insert into aclappli (aclappli_id, appli) values (1, 'esfc');
 insert into aclaco (aclaco_id, aclappli_id, aco) 
 values 
 (1, 1, 'admin'),
 (2, 1, 'param'),
 (3, 1, 'collection'),
 (4, 1, 'gestion'),
-(5, 1, 'consult'),
+(5, 1, 'bassinGestion'),
 (6, 1, 'import');
+
+INSERT INTO gacl.aclaco (aclaco_id, aclappli_id,aco) 
+VALUES
+  (1, 1,'admin'),
+  (2, 1,'bassinGestion'),
+  (3, 1,'gestion'),
+  (4, 1,'paramAdmin'),
+  (5, 1,'poissonAdmin'),
+  (6, 1,'poissonGestion'),
+  (7, 1,'reproAdmin'),
+  (8, 1,'reproGestion'),
+  (9, 1,'bassinAdmin'),
+  (10, 1,'consult'),
+  (11, 1,'reproConsult'),
+  (12, 1,'requete'),
+  (13, 1,'requeteAdmin');
+
+
 insert into aclgroup (aclgroup_id, groupe, aclgroup_id_parent) 
 values 
 (1, 'admin', null),
 (2, 'consult', null),
 (3, 'gestion', 2),
-(4, 'collection', 3),
-(5, 'param', 4),
-(6, 'import', 3);
+(4, 'gestion admin', 3),
+(5, 'gestion repro', null),
+(6, 'admin repro', 5);
 
 insert into aclacl (aclaco_id, aclgroup_id)
 values
 (1, 1),
-(2, 5),
-(3, 4),
-(4, 3),
-(5, 2),
-(6, 6);
+(2, 3),
+(3, 3),
+(4, 4),
+(5, 4),
+(6, 3),
+(7, 6),
+(8, 5),
+(9, 4),
+(10, 2),
+(11, 2),
+(12, 3),
+(12, 5),
+(13, 4),
+(13, 6)
+;
 
 insert into acllogingroup (acllogin_id, aclgroup_id)
 values
