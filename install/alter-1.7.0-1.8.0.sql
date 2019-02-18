@@ -144,7 +144,7 @@ select setval('sonde_sonde_id_seq', 1);
  insert into site(site_id, site_name) values (1, 'Saint-Seurin');
  select setval('site_site_id_seq', 1);
  update repartition set site_id = 1;
- update circuit_eau = 1;
+ update circuit_eau set site_id = 1;
  update bassin set site_id = 1;
  update sequence set site_id = 1;
  
