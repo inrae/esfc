@@ -5,7 +5,8 @@ Nouvelle requête...
 </a>
 &nbsp;
 {/if}
-<a href="index.php?module=getStructureDatabase" target="_blank">Structure de la base de données (fichier PDF)</a>
+<a href="index.php?module=getStructureDatabase" target="_blank">Description des tables de la base de données</a>
+<a href="index.php?module=getSchemaDatabase" target="_blank">Schéma d'organisation des tables</a>
 <script>
 setDataTables("crequeteList", true, true, true, 50);
 </script>

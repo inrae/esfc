@@ -8,8 +8,6 @@ SET check_function_bodies = false;
 -- ddl-end --
 
 
-
-
 -- Database creation must be done outside a multicommand file.
 -- These commands were put in this file only as a convenience.
 -- -- object: sturio | type: DATABASE --

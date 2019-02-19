@@ -42,6 +42,7 @@ CREATE USER esfc WITH
 create database esfc owner esfc;
 \c "dbname=esfc"
 create extension pg_trgm schema pg_catalog;
+create extension tablefunc schema pg_catalog;
 
 /*
  * connexion a la base esfc, avec l'utilisateur esfc, en localhost,

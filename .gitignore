@@ -125,3 +125,4 @@ _minted*
 /database/sturio_fixed.dbm
 /composer.lock
 /.scannerwork/*
+/test/*
