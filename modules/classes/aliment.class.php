@@ -706,8 +706,9 @@ class Distribution extends ObjetBDD
 				"defaultValue" => "0,0,0,0,0,0,0"
 			)
 		);
-		if (!is_array($param))
-		$param = array();
+		if (!is_array($param)) {
+			$param = array();
+		}
 		$param["fullDescription"] = 1;
 		parent::__construct($bdd, $param);
 	}
