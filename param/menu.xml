@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<menu>
+<item module="poissonList" title="56" value="55">
+	<item module="poissonList" title="56" value="55" droits="consult"/>
+	<item module="anomalieList" title="74" value="73" droits="consult"/>
+	<item module="requeteList" title="138" value="137" droits="requete"/>
+</item>
+
+<item module="bassinList" value="63" title="64">
+	<item module="bassinList" value="63" title="64" droits="consult"/>
+	<item module="circuitEauList" value="65" title="66" droits="consult"/>
+	<item module="sondeImport" value="141" title="142" droits="bassinGestion"/>
+	<item module="analyseGraph" value="143" title="144" droits="bassinGestion"/>
+</item>
+
+<item module="alimentation" value="77" title="78">
+	<item module="repartitionList" droits="consult" value="83" title="84" />
+	<item module="alimentList" droits="consult" value="75" title="76" />
+	<item module="categorieList" droits="consult" value="79" title="80" />
+	<item module="repartTemplateList" droits="consult" value="81" title="82" />	
+</item>
+
+<item value="4" title="5" droits="consult">
+	<item module="pittagTypeList" droits="consult" value="45" title="46" />
+	<item module="poissonStatutList" droits="consult" value="47" title="48" />
+	<item module="genderMethodeList" droits="consult" value="49" title="50" />
+	<item module="evenementTypeList" droits="consult" value="51" title="52" />
+	<item module="pathologieTypeList" droits="consult" value="53" title="54" />
+	<item module="siteList" droits="consult" value="139" title="140"/>
+	<item module="bassinTypeList" droits="consult" value="57" title="58" />
+	<item module="bassinUsageList" droits="consult" value="59" title="60" />
+	<item module="bassinZoneList" droits="consult" value="61" title="62" />
+	<item module="mimeTypeList" droits="consult" value="67" title="68" />
+	<item module="mortaliteTypeList" droits="consult" value="69" title="70" />
+	<item module="cohorteTypeList" droits="consult" value="71" title="72" />
+	<item module="alimentTypeList" droits="consult" value="75" title="76" />
+	<item module="anomalieDbTypeList" droits="consult" value="85" title="86" />
+	<item module="laboratoireAnalyseList" droits="consult" value="87" title="88" />
+	<item module="bassinEvenementTypeList" droits="consult" value="89" title="90" />
+	<item module="circuitEvenementTypeList" droits="consult" value="123" title="124" />	
+	<item module="sortieLieuList" droits="consult" value="91" title="92" />
+	<item module="hormoneList" droits="consult" value="93" title="94" />
+	<item module="anesthesieProduitList" droits="consult" value="121" title="122"/>
+	<item module="vieImplantationList" droits="consult" value="95" title="96" />
+	<item module="metalList" droits="consult" value="97" title="98" />	
+	<item module="spermeDilueurList" droits="consult" value="125" title="126" />
+	<item module="spermeCaracteristiqueList" droits="consult" value="127" title="128" />
+	<item module="nageoireList" droits="consult" value="129" title="130" />
+	<item module="stadeOeufList" droits="consult" value="131" title="132" />
+	<item module="stadeGonadeList" droits="consult" value="133" title="134" />
+	<item module="spermeConservateurList" droits="consult" value="135" title="136" />
+	
+</item>
+
+<item module="repro" value="100" title="101" droits="reproConsult" >
+	<item module="poissonCampagneList" value="104" title="105" droits="reproConsult" />
+	<item module="sequenceList" value="106" title="107" droits="reproConsult" />
+	<item module="lotList" droits="reproConsult" value="108" title="109" />
+	<item module="devenirList" droits="reproConsult" value="112" title="113" />
+	<item module="vieModeleList" droits="reproConsult" value="110" title="111" />
+</item>
+
+<item module="administration" value="12" title="13" droits="admin">
+	<item module="loginliste" menulevel="1" menuorder="9" droits="admin" title="3" value="2"/>
+	<item module="appliList" droits="admin" value="appliliste" title="applilistetitle"/>
+	<item module="aclloginList" droits="admin" value="aclloginliste" title="aclloginlistetitle"/>
+	<item module="groupList" droits="admin" value="groupliste" title="grouplistetitle"/>
+	<item module="phpinfo" droits="admin" value="phpinfo" title="phpinfotitle"/>
+</item>
+
+<item module="connexion" title="connexiontitle" value="connexionvalue" onlynoconnect="1"/>
+<item module="disconnect" title="7" value="6" loginrequis="1"/>
+<item module="docindex" title="21" value="20">
+	<item module="apropos" title="9" value="8"/>
+	<item module="quoideneuf" title="41" value="40"/>
+</item>
+</menu>

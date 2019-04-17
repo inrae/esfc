@@ -1,0 +1,43 @@
+<?php
+/** Fichier cree le 4 mai 07 par quinton
+*
+*UTF-8
+*/
+
+$APPLI_modeDeveloppement = false;
+$ERROR_display=1;
+$ERROR_level = E_ERROR ;
+$OBJETBDD_debugmode = 1;
+$APPLI_utf8 = true;
+$GACL_aro = "login";
+
+$ident_type = "BDD";
+
+/*
+ * Rights management, logins and logs records database
+ */
+$GACL_dblogin = "esfc";
+$GACL_dbpasswd = "esfcPassword";
+$GACL_aco = "esfc";
+$GACL_dsn = "pgsql:host=localhost;dbname=esfc";
+$GACL_schema = "gacl";
+
+$BDD_login = "esfc";
+$BDD_passwd = "esfcPassword";
+$BDD_dsn = "pgsql:host=localhost;dbname=esfc";
+$BDD_schema = "public";
+
+$APPLI_address = "http://localhost/esfc";
+$APPLI_mail = "esfc@societe.com";
+$APPLI_nom = "ESFC";
+$APPLI_code = 'ESFC';
+
+$LDAPGROUP_address = "localhost";
+$LDAPGROUP_attributnomgroupe = "cn";
+$LDAPGROUP_attributnomlogin = "memberuid";
+$LDAPGROUP_basedngroup = "ou=Group,ou=example,o=societe,c=fr";
+$LDAP_address = "localhost";
+$LDAP_port = 389;
+$LDAP_basedn = "ou=people,ou=example,o=societe,c=fr";
+
+?>
