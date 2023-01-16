@@ -143,7 +143,7 @@ class MimeType extends ObjetBDD {
 				) 
 		);
 		if (! is_array ( $param ))
-			$param == array ();
+			$param = array();
 		$param ["fullDescription"] = 1;
 		parent::__construct ( $bdd, $param );
 	}
@@ -169,7 +169,7 @@ class MimeType extends ObjetBDD {
  * @author quinton
  *        
  */
-class Document extends ObjetBDD {
+class DocumentAttach extends ObjetBDD {
 	public $temp = "tmp"; // Chemin de stockage des images générées à la volée
 	/**
 	 * Constructeur de la classe
@@ -180,10 +180,6 @@ class Document extends ObjetBDD {
 	function __construct($bdd, $param = null) {
 		$this->paramori = $param;
 		$this->param = $param;
-		global $APPLI_temp;
-		if (strlen ( $APPLI_temp ) > 0)
-			$this->temp = $APPLI_temp;
-		
 		$this->table = "document";
 		$this->id_auto = 1;
 		$this->colonnes = array (
@@ -199,7 +195,7 @@ class Document extends ObjetBDD {
 				),
 				"document_date_import" => array (
 						"type" => 2,
-						"requis" => 1 
+						"requis" => 1
 				),
 				"document_nom" => array (
 						"type" => 0,
@@ -217,10 +213,14 @@ class Document extends ObjetBDD {
 				"size" => array (
 						"type" => 1,
 						"defaultValue" => 0 
-				) 
+				),
+				"document_date_creation" => array (
+						"type"=>2,
+						"defaultValue" => "getDateJour"
+				)
 		);
 		if (! is_array ( $param ))
-			$param == array ();
+			$param = array();
 		$param ["fullDescription"] = 1;
 		parent::__construct ( $bdd, $param );
 	}
@@ -234,7 +234,8 @@ class Document extends ObjetBDD {
 	 *        	string description : description du contenu du document
 	 * @return int
 	 */
-	function ecrire($file, $description = NULL) {
+	function ecrire($file, $description = NULL, $document_date_creation = NULL) {
+		global $log;
 		if ($file ["error"] == 0 && $file ["size"] > 0) {
 			/*
 			 * Recuperation de l'extension
@@ -249,6 +250,7 @@ class Document extends ObjetBDD {
 				$data ["mime_type_id"] = $mime_type_id;
 				$data ["document_description"] = $description;
 				$data ["document_date_import"] = date ( "d/m/Y" );
+				$data["document_date_creation"] = $document_date_creation;
 				$dataDoc = array ();
 				/*
 				 * Recherche antivirale
@@ -259,7 +261,6 @@ class Document extends ObjetBDD {
 					if ($retcode == CL_VIRUS) {
 						$virus = true;
 						$texte_erreur = $file ["name"] . " : " . cl_pretcode ( $retcode ) . ". Virus found name : " . $virusname;
-						$message .= "<br>" . $texte_erreur;
 						$log->setLog ( $_SESSION ["login"], "Document-ecrire", $texte_erreur );
 					}
 				}
@@ -300,6 +301,14 @@ class Document extends ObjetBDD {
 			}
 		}
 	}
+	/**
+	 * Appel de la fonction ecrire native
+	 * @param array $data
+	 * @return Identifier
+	 */
+	function writeData($data) {
+		return parent::ecrire($data);
+	}
 	
 	/**
 	 * Recupere les informations d'un document
@@ -311,7 +320,7 @@ class Document extends ObjetBDD {
 		if ($id > 0 && is_numeric ( $id )) {
 			$this->UTF8 = false;
 			$this->codageHtml = false;
-			$sql = "select document_id, document_nom, content_type, mime_type_id, extension
+			$sql = "select document_id, document_nom, content_type, mime_type_id, extension, document_date_creation
 				from " . $this->table . "
 				join mime_type using (mime_type_id)
 				where document_id = " . $id;
@@ -517,89 +526,4 @@ class Document extends ObjetBDD {
 	}
 }
 
-/**
- * ORM permettant de gérer toutes les tables de liaison avec la table Document
- *
- * @author quinton
- *        
- */
-class DocumentLie extends ObjetBDD {
-	public $tableOrigine;
-	/**
-	 * Constructeur de la classe
-	 *
-	 * @param Adodb_instance $bdd        	
-	 * @param array $param        	
-	 */
-	function __construct($bdd, $param = null, $nomTable = "") {
-		$this->param = $param;
-		$this->paramori = $this->param;
-		$this->tableOrigine = $nomTable;
-		$this->table = $nomTable . "_document";
-		$this->id_auto = 0;
-		$this->colonnes = array (
-				$nomTable . "_id" => array (
-						"type" => 1,
-						"requis" => 1,
-						"key" => 1 
-				),
-				"document_id" => array (
-						"type" => 1,
-						"requis" => 1,
-						"key" => 1 
-				) 
-		);
-		if (! is_array ( $param ))
-			$param == array ();
-		$param ["fullDescription"] = 1;
-		parent::__construct ( $bdd, $param );
-	}
-	/**
-	 * Reecriture de la fonction ecrire($data)
-	 * (non-PHPdoc)
-	 *
-	 * @see ObjetBDD::ecrire()
-	 */
-	function ecrire($data) {
-		$nomChamp = $this->tableOrigine . "_id";
-		if ($data ["document_id"] > 0 && $data [$nomChamp] > 0) {
-			$sql = "insert into " . $this->table . "
- 					(document_id, " . $nomChamp . ")
- 					values
- 					(" . $data ["document_id"] . "," . $data [$nomChamp] . ")";
-			$rs = $this->executeSQL ( $sql );
-			
-			if (count ( $rs ) > 0) {
-				return 1;
-			} else {
-				return - 1;
-			}
-		}
-	}
-	
-	/**
-	 * Supprime la reference au document dans la table liee
-	 * (non-PHPdoc)
-	 *
-	 * @see ObjetBDD::supprimer()
-	 */
-	function supprimer($id) {
-		if (is_numeric ( $id ) && $id > 0) {
-			$this->supprimerChamp ( $id, "document_id" );
-		}
-	}
-	
-	/**
-	 * Retourne la liste des documents associes
-	 *
-	 * @param int $id        	
-	 * @return array
-	 */
-	function getListeDocument($id) {
-		$documentUsact = new DocumentUsact ( $this->connection, $this->paramori );
-		return $documentUsact->getListeDocument ( $this->tableOrigine, $id );
-	}
-}
-
 ?>
-

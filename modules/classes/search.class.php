@@ -119,24 +119,214 @@ class SearchParam {
 }
 /**
  * Exemple d'instanciation
- * 
+ *
  * @author Eric Quinton
  *        
  */
-class SearchExample extends SearchParam {
+class SearchPoisson extends SearchParam {
 	function __construct() {
 		$this->param = array (
-				"comment" => "",
-				"numero" => 0,
-				"numero1" => "",
-				"dateExample" => date ( 'd/m/Y' ) 
+				"statut" => 1,
+				"sexe" => "",
+				"texte" => "",
+				"categorie" => 1,
+				"displayMorpho" => 0,
+				"displayBassin" => 0,
+				"displayCumulTemp" => 0,
+				"dateDebutTemp" => date("d/m/").(date("Y")-1),
+				"dateFinTemp" => date("d/m/Y"),
+				"site_id" => $_SESSION["site_id"]
 		);
 		$this->paramNum = array (
-				"numero",
-				"numero1" 
+				"statut",
+				"displayMorpho",
+				"displayBassin",
+				"categorie",
+				"sexe",
+				"displayCumulTemp",
+				"site_id"
+		);
+		parent::__construct ();
+	}
+}
+/**
+ * Classe de recherche des bassins
+ *
+ * @author quinton
+ *        
+ */
+class SearchBassin extends SearchParam {
+	function __construct() {
+		$this->param = array (
+				"bassin_type" => "",
+				"bassin_usage" => "",
+				"bassin_zone" => "",
+				"circuit_eau" => "",
+				"bassin_actif" => "",
+				"bassin_nom" =>"",
+				"site_id"=> $_SESSION["site_id"]
+		);
+		$this->paramNum = array (
+				"bassin_type",
+				"bassin_usage",
+				"bassin_zone",
+				"circuit_eau",
+				"bassin_actif",
+				"site_id" 
+		);
+		parent::__construct ();
+	}
+}
+/**
+ * Classe de recherche des circuits d'eau
+ *
+ * @author quinton
+ *        
+ */
+class SearchCircuitEau extends SearchParam {
+	function __construct() {
+		$this->param = array (
+				"circuit_eau_libelle" => "",
+				"circuit_eau_actif" => 1,
+				"analyse_date" => date ( 'd/m/Y' ),
+				"offset" => 0,
+				"limit" => 100,
+				"site_id" => $_SESSION["site_id"]
+		);
+		$this->paramNum = array (
+				"circuit_eau_actif",
+				"offset",
+				"limit",
+				"site_id"
+		);
+		parent::__construct ();
+	}
+}
+/**
+ * Classe de recherche des anomalies détectées dans la base de données
+ *
+ * @author quinton
+ *        
+ */
+class SearchAnomalie extends SearchParam {
+	function __construct() {
+		$this->param = array (
+				"statut" => 0,
+				"type" => 0 
+		);
+		$this->paramNum = array (
+				"statut",
+				"type" 
+		);
+		parent::__construct ();
+		
+	}
+}
+/**
+ * Classe de recherche des modèles de répartition des aliments
+ *
+ * @author quinton
+ *        
+ */
+class SearchRepartTemplate extends SearchParam {
+	function __construct() {
+		$this->param = array (
+				"categorie_id" => 0,
+				"actif" => - 1 
+		);
+		$this->paramNum = array (
+				"categorie_id",
+				"actif" 
+		);
+		parent::__construct ();
+		
+	}
+}
+/**
+ * Classe de recherche des répartions d'aliments dans les bassins
+ *
+ * @author quinton
+ *        
+ */
+class SearchRepartition extends SearchParam {
+	function __construct() {
+		$annee_prec = date ( 'Y' ) - 1;
+		$this->param = array (
+				"categorie_id" => 0,
+				"date_reference" => date ( 'd/m/' ) . $annee_prec,
+				"offset" => 0,
+				"limit" => 10,
+				"site_id"=> $_SESSION["site_id"]
+		);
+		$this->paramNum = array (
+				"categorie_id",
+				"offset",
+				"limit",
+				"site_id"
+		);
+		parent::__construct ();
+		
+	}
+}
+/**
+ * Classe de recherche des aliments
+ *
+ * @author quinton
+ *        
+ */
+class SearchAlimentation extends SearchParam {
+	function __construct() {
+		$date_debut = new DateTime ();
+		date_sub ( $date_debut, new DateInterval ( "P30D" ) );
+		$this->param = array (
+				"date_debut" => date_format ( $date_debut, "d/m/Y" ),
+				"date_fin" => date ( "d/m/Y" ) 
+		);
+		parent::__construct ();
+		
+	}
+}
+
+/**
+ * Classe de recherche des poissons sélectionnés pour une repro
+ *
+ * @author quinton
+ *        
+ */
+class SearchRepro extends SearchParam {
+	function __construct() {
+		$this->param = array (
+				"annee" => date ( 'Y' ),
+				"repro_statut_id" => 2,
+				"site_id"=>$_SESSION["site_id"]
+		);
+		$this->paramNum = array (
+				"annee",
+				"repro_statut_id",
+				"site_id"
 		);
 		parent::__construct ();
 	}
 }
 
+/**
+ * Parametres utilises pour generer l'alimentation des juveniles
+ *
+ * @author quinton
+ *        
+ */
+class AlimJuv extends SearchParam {
+	function __construct() {
+		$this->param = array (
+				"date_debut_alim" => date ( "d/m/Y" ),
+				"duree" => 1,
+				"densite" => 1500 
+		);
+		$this->paramNum = array (
+				"duree",
+				"densite" 
+		);
+		parent::__construct ();
+	}
+}
 ?>
