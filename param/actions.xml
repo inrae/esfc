@@ -1,0 +1,8 @@
+<navigation>
+	<dbstructureHtml action="framework/utils/structure.php" param="html" retourlogin="1" type="smarty" schemas="prototypephp,gacl" droits="admin" maxCountByHour="60" maxCountByDay="600" />
+	<dbstructureGacl action="framework/utils/structure.php" param="gacl" retourlogin="1" type="smarty" droits="admin" schemas="gacl" maxCountByHour="60" maxCountByDay="600" />
+	<dbstructureLatex action="framework/utils/structure.php" param="latex" retourlogin="1" type="file" droits="admin" schemas="prototypephp,gacl" maxCountByHour="60" maxCountByDay="600" />
+	<dbstructureSchema action="framework/utils/structure.php" param="schema" realfilename="documentation/database.png" generatedfilename="database.png" retourlogin="1" type="binaire" droits="admin" maxCountByHour="60" maxCountByDay="600" />
+	<!-- modules of the software-->
+</navigation>
+

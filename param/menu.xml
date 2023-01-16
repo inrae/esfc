@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<menu xmlns:its="http://www.w3.org/2005/11/its" its:version="2.0">
+	<its:rules version="2.0">
+		<its:translateRule selector="//item/@label" translate="yes"/>
+		<its:translateRule selector="//item/@tooltip" translate="yes"/>
+	</its:rules>
+
+	<item module="gestion" label="Gestion" tooltip="Modules de l'application">
+		<item module="gestion" label="Gestion" tooltip="Modules de l'application"/>
+		<item module="exampleList" droits="consult" label="Exemple" tooltip="Exemple de module" />
+        <item divider="1"/>
+        <item module="requestList" label="Requêtes SQL" tooltip="Exécution de requêtes SQL dans la base de données" droits="param"/>
+	</item>
+
+	<item module="administration" label="Administration" tooltip="Administration de l'application" droits="admin">
+		<item module="loginList" droits="admin" label="Liste des comptes locaux" tooltip="Liste des logins - identification via la base de données"/>
+		<item module="appliList" droits="admin" label="ACL - droits" tooltip="applications et droits gérés"/>
+		<item module="aclloginList" droits="admin" label="ACL - logins" tooltip="Logins déclarés dans le module de gestion des droits"/>
+		<item module="groupList" droits="admin" label="ACL - groupes de logins" tooltip="Groupes de logins et logins rattachés aux groupes"/>
+		<item module="dbparamList" droits="admin" label="Paramètres de l'application" tooltip="Liste des paramètres pérennes de l'application" />
+		<item divider='1'/>
+		<item module="dbstructureSchema" droits="admin" label="Schéma de la base de données" tooltip="Schéma de la base de données"/>
+		<item module="dbstructureHtml" droits='admin' label="Structure de la base de données (HTML)" tooltip="Liste des tables et des colonnes"/>
+		<item module="dbstructureLatex" droits='admin' label="Structure de la base de données (Latex)" tooltip="Liste des tables et des colonnes sous forme de tableaux Latex"/>
+		<item module="dbstructureGacl" droits="admin" label="Structure de la base de données des droits (HTML)" tooltip="Liste des tables et des colonnes de la base de données de gestion des droits"/>
+		<item module="phpinfo" droits="admin" label="PHP info" tooltip="configuration générale du serveur PHP"/>
+        <item divider="1"/>
+        <item module="logList" droits="admin" label="Logs" tooltip="Consultation des logs enregistrées"/>
+        <item module="backupDisplay" droits="admin" label="Backup" tooltip="Sauvegarde de la base de données"/>
+	</item>
+    <item module="documentation_fr" label="documentation" tooltip="Documentations en ligne en français" language="fr">
+        <item module="doctotp_fr" label="Comprendre la double authentification" tooltip="Comprendre le mécanisme de double authentification" language="fr"/>
+    </item>
+    <item module="documentation_en" label="documentation" tooltip="Documentations en ligne en anglais" language="en">
+        <item module="doctotp_en" label="Comprendre la double authentification" tooltip="Comprendre le mécanisme de double authentification" language="en"/>
+    </item>
+	<item module="connexion" label="Connexion" tooltip="S'identifier dans l'application" onlynoconnect="1"/>
+	<item module="disconnect" label="Déconnexion" tooltip="Déconnexion de l'application" loginrequis="1">
+		<item module="getLastConnections" label="Dernières connexions" tooltip="Liste des dernières connexions réalisées" loginrequis="1"/>
+		<item module="loginChangePassword" loginrequis="1" label="Modifier le mot de passe" tooltip="Modifiez votre mot de passe (identification locale uniquement)" />
+	</item>
+	<item module="aide" label="?" tooltip="Aide">
+		<item module="apropos" label="A propos" tooltip="A propos de Collec-Science"/>
+		<item module="quoideneuf" label="Nouveautés" tooltip="Quoi de neuf dans l'application ?"/>
+		<item module="lexique" label="Lexique" tooltip="Lexique des termes utilisés dans le logiciel" />
+		<item module="setlanguagefr" label="Français" tooltip="Libellés en français"/>
+		<item module="setlanguageen" label="English" tooltip="Labels in English"/>
+	</item>
+</menu>

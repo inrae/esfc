@@ -1,0 +1,448 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+CAUTION: Do not modify this file unless you know what you are doing.
+         Unexpected results may occur if the code is changed deliberately.
+-->
+<dbmodel pgmodeler-ver="0.9.2-beta" author="Eric Quinton" last-position="0,0" last-zoom="1" max-obj-count="13"
+	 default-schema="public" default-owner="postgres"
+	 layers="data" active-layers="0;1">
+<role name="prototypephp"
+      inherit="true"
+      login="true"
+      encrypted="true"
+      password="********">
+</role>
+
+<database name="prototypephp" encoding="UTF8" lc-collate="fr_FR.UTF-8" lc-ctype="fr_FR.UTF-8" is-template="false" allow-conns="true">
+	<role name="prototypephp"/>
+	<tablespace name="pg_default"/>
+</database>
+
+<schema name="public" layer="0" rect-visible="true" fill-color="#e1e1e1" sql-disabled="true">
+</schema>
+
+<schema name="gacl" layer="0" rect-visible="true" fill-color="#c8f2a0">
+	<role name="prototypephp"/>
+	<comment><![CDATA[Rights management]]></comment>
+</schema>
+
+<sequence name="aclgroup_aclgroup_id_seq" cycle="false" start="7" increment="1" min-value="1" max-value="9223372036854775807" cache="1">
+	<schema name="gacl"/>
+	<role name="prototypephp"/>
+</sequence>
+
+<table name="aclacl" layer="0" collapse-mode="2" max-obj-count="3">
+	<schema name="gacl"/>
+	<role name="prototypephp"/>
+	<comment><![CDATA[Table des droits attribués]]></comment>
+	<position x="60" y="60"/>
+	<column name="aclaco_id" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="aclgroup_id" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<constraint name="aclacl_pk" type="pk-constr" table="gacl.aclacl">
+		<columns names="aclaco_id,aclgroup_id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<sequence name="aclaco_aclaco_id_seq" cycle="false" start="7" increment="1" min-value="1" max-value="9223372036854775807" cache="1">
+	<schema name="gacl"/>
+	<role name="prototypephp"/>
+</sequence>
+
+<table name="aclaco" layer="0" collapse-mode="2" max-obj-count="3">
+	<schema name="gacl"/>
+	<role name="prototypephp"/>
+	<comment><![CDATA[Table des droits gérés]]></comment>
+	<position x="260" y="60"/>
+	<column name="aclaco_id" not-null="true" sequence="gacl.aclaco_aclaco_id_seq">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="aclappli_id" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="aco" not-null="true">
+		<type name="character varying" length="0"/>
+	</column>
+	<constraint name="aclaco_pk" type="pk-constr" table="gacl.aclaco">
+		<columns names="aclaco_id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<sequence name="aclappli_aclappli_id_seq" cycle="false" start="2" increment="1" min-value="1" max-value="9223372036854775807" cache="1">
+	<schema name="gacl"/>
+	<role name="prototypephp"/>
+</sequence>
+
+<table name="aclappli" layer="0" collapse-mode="2" max-obj-count="3">
+	<schema name="gacl"/>
+	<role name="prototypephp"/>
+	<comment><![CDATA[Table des applications gérées]]></comment>
+	<position x="400" y="60"/>
+	<column name="aclappli_id" not-null="true" sequence="gacl.aclappli_aclappli_id_seq">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="appli" not-null="true">
+		<type name="character varying" length="0"/>
+		<comment><![CDATA[Nom de l'application pour la gestion des droits]]></comment>
+	</column>
+	<column name="applidetail">
+		<type name="character varying" length="0"/>
+		<comment><![CDATA[Description de l'application]]></comment>
+	</column>
+	<constraint name="aclappli_pk" type="pk-constr" table="gacl.aclappli">
+		<columns names="aclappli_id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="aclgroup" layer="0" collapse-mode="2" max-obj-count="3">
+	<schema name="gacl"/>
+	<role name="prototypephp"/>
+	<comment><![CDATA[Groupes des logins]]></comment>
+	<position x="60" y="200"/>
+	<column name="aclgroup_id" not-null="true" sequence="gacl.aclgroup_aclgroup_id_seq">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="groupe" not-null="true">
+		<type name="character varying" length="0"/>
+	</column>
+	<column name="aclgroup_id_parent">
+		<type name="integer" length="0"/>
+	</column>
+	<constraint name="aclgroup_pk" type="pk-constr" table="gacl.aclgroup">
+		<columns names="aclgroup_id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<sequence name="acllogin_acllogin_id_seq" cycle="false" start="2" increment="1" min-value="1" max-value="9223372036854775807" cache="1">
+	<schema name="gacl"/>
+	<role name="prototypephp"/>
+</sequence>
+
+<table name="acllogin" layer="0" collapse-mode="2" max-obj-count="3">
+	<schema name="gacl"/>
+	<role name="prototypephp"/>
+	<comment><![CDATA[Table des logins des utilisateurs autorisés]]></comment>
+	<position x="260" y="320"/>
+	<column name="acllogin_id" not-null="true" sequence="gacl.acllogin_acllogin_id_seq">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="login" not-null="true">
+		<type name="character varying" length="0"/>
+	</column>
+	<column name="logindetail" not-null="true">
+		<type name="character varying" length="0"/>
+		<comment><![CDATA[Nom affiché]]></comment>
+	</column>
+	<constraint name="acllogin_pk" type="pk-constr" table="gacl.acllogin">
+		<columns names="acllogin_id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="acllogingroup" layer="0" collapse-mode="2" max-obj-count="3">
+	<schema name="gacl"/>
+	<role name="prototypephp"/>
+	<comment><![CDATA[Table des relations entre les logins et les groupes]]></comment>
+	<position x="260" y="200"/>
+	<column name="acllogin_id" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="aclgroup_id" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<constraint name="acllogingroup_pk" type="pk-constr" table="gacl.acllogingroup">
+		<columns names="acllogin_id,aclgroup_id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<sequence name="log_log_id_seq" cycle="false" start="1" increment="1" min-value="1" max-value="9223372036854775807" cache="1">
+	<schema name="gacl"/>
+	<role name="prototypephp"/>
+</sequence>
+
+<table name="log" layer="0" collapse-mode="2" max-obj-count="7">
+	<schema name="gacl"/>
+	<role name="prototypephp"/>
+	<comment><![CDATA[Liste des connexions ou des actions enregistrées]]></comment>
+	<position x="60" y="320"/>
+	<column name="log_id" not-null="true" sequence="gacl.log_log_id_seq">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="login" not-null="true">
+		<type name="character varying" length="32"/>
+	</column>
+	<column name="nom_module">
+		<type name="character varying" length="0"/>
+	</column>
+	<column name="log_date" not-null="true">
+		<type name="timestamp" length="0"/>
+		<comment><![CDATA[Heure de connexion]]></comment>
+	</column>
+	<column name="commentaire">
+		<type name="character varying" length="0"/>
+		<comment><![CDATA[Donnees complementaires enregistrees]]></comment>
+	</column>
+	<column name="ipaddress">
+		<type name="character varying" length="0"/>
+		<comment><![CDATA[Adresse IP du client]]></comment>
+	</column>
+	<constraint name="log_pk" type="pk-constr" table="gacl.log">
+		<columns names="log_id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<sequence name="seq_logingestion_id" cycle="false" start="2" increment="1" min-value="1" max-value="999999" cache="1">
+	<schema name="gacl"/>
+	<role name="prototypephp"/>
+</sequence>
+
+<table name="logingestion" layer="0" collapse-mode="2" max-obj-count="13">
+	<schema name="gacl"/>
+	<role name="prototypephp"/>
+	<position x="400" y="200"/>
+	<column name="id" not-null="true" sequence="gacl.seq_logingestion_id">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="login" not-null="true">
+		<type name="character varying" length="32"/>
+	</column>
+	<column name="password">
+		<type name="character varying" length="255"/>
+	</column>
+	<column name="nom">
+		<type name="character varying" length="32"/>
+	</column>
+	<column name="prenom">
+		<type name="character varying" length="32"/>
+	</column>
+	<column name="mail">
+		<type name="character varying" length="255"/>
+	</column>
+	<column name="datemodif">
+		<type name="timestamp" length="0"/>
+	</column>
+	<column name="actif" default-value="1">
+		<type name="smallint" length="0"/>
+	</column>
+	<column name="is_clientws" default-value="false">
+		<type name="boolean" length="0"/>
+	</column>
+	<column name="tokenws">
+		<type name="character varying" length="0"/>
+	</column>
+	<column name="is_expired" default-value="false">
+		<type name="boolean" length="0"/>
+	</column>
+	<constraint name="pk_logingestion" type="pk-constr" table="gacl.logingestion">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<sequence name="passwordlost_passwordlost_id_seq" cycle="false" start="1" increment="1" min-value="1" max-value="9223372036854775807" cache="1">
+	<schema name="gacl"/>
+	<role name="prototypephp"/>
+</sequence>
+
+<table name="passwordlost" layer="0" collapse-mode="2" max-obj-count="6">
+	<schema name="gacl"/>
+	<role name="prototypephp"/>
+	<comment><![CDATA[Table de suivi des pertes de mots de passe]]></comment>
+	<position x="540" y="200"/>
+	<column name="passwordlost_id" not-null="true" sequence="gacl.passwordlost_passwordlost_id_seq">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="id" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="token" not-null="true">
+		<type name="character varying" length="0"/>
+		<comment><![CDATA[Jeton utilise pour le renouvellement]]></comment>
+	</column>
+	<column name="expiration" not-null="true">
+		<type name="timestamp" length="0"/>
+		<comment><![CDATA[Date d'expiration du jeton]]></comment>
+	</column>
+	<column name="usedate">
+		<type name="timestamp" length="0"/>
+	</column>
+	<constraint name="passwordlost_pk" type="pk-constr" table="gacl.passwordlost">
+		<columns names="passwordlost_id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<index name="log_date_idx" table="gacl.log"
+	 concurrent="false" unique="false" fast-update="false" buffering="false"
+	 index-type="btree" factor="90">
+		<idxelement use-sorting="false">
+			<column name="log_date"/>
+		</idxelement>
+</index>
+
+<index name="log_login_idx" table="gacl.log"
+	 concurrent="false" unique="false" fast-update="false" buffering="false"
+	 index-type="btree" factor="90">
+		<idxelement use-sorting="false">
+			<column name="login"/>
+		</idxelement>
+</index>
+
+<index name="log_commentaire_idx" table="gacl.log"
+	 concurrent="false" unique="false" fast-update="false" buffering="false"
+	 index-type="btree" factor="90">
+		<idxelement use-sorting="false">
+			<column name="commentaire"/>
+		</idxelement>
+</index>
+
+<index name="logingestion_login_idx" table="gacl.logingestion"
+	 concurrent="false" unique="true" fast-update="false" buffering="false"
+	 index-type="btree" factor="90">
+		<idxelement use-sorting="false">
+			<column name="login"/>
+		</idxelement>
+</index>
+
+<schema name="data" layer="1" rect-visible="true" fill-color="#ca43d3">
+	<role name="prototypephp"/>
+</schema>
+
+<sequence name="dbversion_dbversion_id_seq" cycle="false" start="1" increment="1" min-value="1" max-value="9223372036854775807" cache="1">
+	<schema name="data"/>
+	<role name="prototypephp"/>
+</sequence>
+
+<table name="dbversion" layer="1" collapse-mode="2" max-obj-count="3">
+	<schema name="data"/>
+	<role name="prototypephp"/>
+	<comment><![CDATA[Table des versions de la base de donnees]]></comment>
+	<position x="60" y="500"/>
+	<column name="dbversion_id" not-null="true" sequence="data.dbversion_dbversion_id_seq">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="dbversion_number" not-null="true">
+		<type name="character varying" length="0"/>
+		<comment><![CDATA[Numero de la version]]></comment>
+	</column>
+	<column name="dbversion_date" not-null="true">
+		<type name="timestamp" length="0"/>
+		<comment><![CDATA[Date de la version]]></comment>
+	</column>
+	<constraint name="dbversion_pk" type="pk-constr" table="data.dbversion">
+		<columns names="dbversion_id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="dbparam" layer="1" collapse-mode="2" max-obj-count="3">
+	<schema name="data"/>
+	<role name="prototypephp"/>
+	<comment><![CDATA[Table des parametres associes de maniere intrinseque a l'instance]]></comment>
+	<position x="240" y="500"/>
+	<column name="dbparam_id" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="dbparam_name" not-null="true">
+		<type name="character varying" length="0"/>
+		<comment><![CDATA[Nom du parametre]]></comment>
+	</column>
+	<column name="dbparam_value">
+		<type name="character varying" length="0"/>
+		<comment><![CDATA[Valeur du paramètre]]></comment>
+	</column>
+	<constraint name="dbparam_pk" type="pk-constr" table="data.dbparam">
+		<columns names="dbparam_id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<constraint name="aclaco_aclacl_fk" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="gacl.aclaco" table="gacl.aclacl">
+	<columns names="aclaco_id" ref-type="src-columns"/>
+	<columns names="aclaco_id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="aclgroup_aclacl_fk" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="gacl.aclgroup" table="gacl.aclacl">
+	<columns names="aclgroup_id" ref-type="src-columns"/>
+	<columns names="aclgroup_id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="aclappli_aclaco_fk" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="gacl.aclappli" table="gacl.aclaco">
+	<columns names="aclappli_id" ref-type="src-columns"/>
+	<columns names="aclappli_id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="aclgroup_aclgroup_fk" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="gacl.aclgroup" table="gacl.aclgroup">
+	<columns names="aclgroup_id_parent" ref-type="src-columns"/>
+	<columns names="aclgroup_id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="aclgroup_acllogingroup_fk" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="gacl.aclgroup" table="gacl.acllogingroup">
+	<columns names="aclgroup_id" ref-type="src-columns"/>
+	<columns names="aclgroup_id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="acllogin_acllogingroup_fk" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="gacl.acllogin" table="gacl.acllogingroup">
+	<columns names="acllogin_id" ref-type="src-columns"/>
+	<columns names="acllogin_id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="logingestion_passwordlost_fk" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="gacl.logingestion" table="gacl.passwordlost">
+	<columns names="id" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<relationship name="rel_aclacl_aclaco" type="relfk" layer="0"
+	 custom-color="#6271e5"
+	 src-table="gacl.aclacl"
+	 dst-table="gacl.aclaco" reference-fk="aclaco_aclacl_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_aclacl_aclgroup" type="relfk" layer="0"
+	 custom-color="#0d406e"
+	 src-table="gacl.aclacl"
+	 dst-table="gacl.aclgroup" reference-fk="aclgroup_aclacl_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_aclaco_aclappli" type="relfk" layer="0"
+	 custom-color="#359203"
+	 src-table="gacl.aclaco"
+	 dst-table="gacl.aclappli" reference-fk="aclappli_aclaco_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_aclgroup_aclgroup" type="relfk" layer="0"
+	 custom-color="#1ad757"
+	 src-table="gacl.aclgroup"
+	 dst-table="gacl.aclgroup" reference-fk="aclgroup_aclgroup_fk"
+	 src-required="false" dst-required="false">
+	<line>
+		<position x="227.64" y="230.733"/>
+	<position x="227.64" y="177"/>
+	<position x="156.427" y="177"/>
+	</line>
+</relationship>
+
+<relationship name="rel_acllogingroup_aclgroup" type="relfk" layer="0"
+	 custom-color="#6ff837"
+	 src-table="gacl.acllogingroup"
+	 dst-table="gacl.aclgroup" reference-fk="aclgroup_acllogingroup_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_acllogingroup_acllogin" type="relfk" layer="0"
+	 custom-color="#01f22f"
+	 src-table="gacl.acllogingroup"
+	 dst-table="gacl.acllogin" reference-fk="acllogin_acllogingroup_fk"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_passwordlost_logingestion" type="relfk" layer="0"
+	 custom-color="#fbc404"
+	 src-table="gacl.passwordlost"
+	 dst-table="gacl.logingestion" reference-fk="logingestion_passwordlost_fk"
+	 src-required="false" dst-required="false"/>
+
+</dbmodel>
