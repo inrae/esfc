@@ -14,12 +14,9 @@ class PoissonCampagne extends ObjetBDD
 	 *        	instance ADODB
 	 *
 	 */
-	public function __construct($p_connection, $param = null)
+	public function __construct($p_connection, $param = array())
 	{
-		$this->param = $param;
-		$this->paramori = $param;
 		$this->table = "poisson_campagne";
-		$this->id_auto = "1";
 		$this->colonnes = array(
 			"poisson_campagne_id" => array(
 				"type" => 1,
@@ -82,7 +79,7 @@ class PoissonCampagne extends ObjetBDD
 		if ($poisson_id > 0 && is_numeric($poisson_id)) {
 			$morphologie = new Morphologie($this->connection, $this->paramori);
 			if (is_null($annee))
-				$annee = getYear();
+				$annee = $this->getYear();
 			$masse_actuelle = $morphologie->getMasseBeforeRepro($poisson_id, $annee);
 			$result["masse_actuelle"] = $masse_actuelle["masse"];
 			$masse_anterieure = $morphologie->getMasseBeforeDate($poisson_id, $masse_actuelle["morphologie_date"]);
@@ -354,7 +351,7 @@ class PoissonCampagne extends ObjetBDD
 	 *
 	 * @see ObjetBDD::lire()
 	 */
-	function lire($id)
+	function lire($id, $getDefault = false, $parentValue = 0)
 	{
 		if ($id > 0 && is_numeric($id)) {
 			$sql = "select poisson_campagne_id, poisson_id, matricule, prenom, pittag_valeur, cohorte,
@@ -507,36 +504,3 @@ class PoissonCampagne extends ObjetBDD
 	}
 }
 
-/**
- * ORM de gestion de la table repro_statut
- *
- * @author quinton
- *
- */
-class ReproStatut extends ObjetBDD
-{
-	public function __construct($p_connection, $param = null)
-	{
-		$this->param = $param;
-		$this->paramori = $param;
-		$this->table = "repro_statut";
-		$this->id_auto = "1";
-		$this->colonnes = array(
-			"repro_statut_id" => array(
-				"type" => 1,
-				"key" => 1,
-				"requis" => 1,
-				"defaultValue" => 0
-			),
-			"repro_statut_libelle" => array(
-				"type" => 0,
-				"requis" => 1
-			)
-		);
-		if (!is_array($param))
-			$param = array();
-		$param["fullDescription"] = 1;
-
-		parent::__construct($p_connection, $param);
-	}
-}
