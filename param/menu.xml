@@ -5,11 +5,77 @@
 		<its:translateRule selector="//item/@tooltip" translate="yes"/>
 	</its:rules>
 
-	<item module="gestion" label="Gestion" tooltip="Modules de l'application">
-		<item module="gestion" label="Gestion" tooltip="Modules de l'application"/>
-		<item module="exampleList" droits="consult" label="Exemple" tooltip="Exemple de module" />
-        <item divider="1"/>
-        <item module="requestList" label="Requêtes SQL" tooltip="Exécution de requêtes SQL dans la base de données" droits="param"/>
+	<item module="poissonList" label="Poissons" tooltip="Liste des poissons" >
+		<item module="poissonList" label="Poissons" tooltip="Liste des poissons" />
+		<item module="anomalieList" label="Anomalies" tooltip="Liste des anomalies détectées" droits="gestion"/>
+		<item divider="1" droits="requete"/>
+		<item module="requestList" label="Requêtes SQL" tooltip="Exécution de requêtes SQL dans la base de données" droits="requete"/>
+	</item>
+
+	<item module="bassinList" label="Bassins" tooltip="Liste des bassins" droits="consult">
+		<item module="bassinList" label="Bassins" tooltip="Liste des bassins"/>
+		<item module="circuitEauList" label="Circuits d'eau" tooltip="Liste des circuits d'eau"/>
+		<item module="sondeImport" label="Import sondes" tooltip="Importation des résultats d'analyses effectuées avec les sondes" droits="bassinGestion"/>
+		<item module="analyseGraph" label="Graphique des analyses" tooltip="Affichage des dernières analyses d'eau sous forme de graphique" droits="consult"/>
+	</item>
+
+	<item module="default" label="Alimentation" tooltip="Gestion de l'alimentation des poissons" droits="consult">
+		<item module="repartitionList" label="Répartitions" tooltip="Répartition des aliments dans les bassins" droits="bassinGestion"/>
+		<item module="alimentList" label="Aliments" tooltip="Liste des aliments" droits="consult"/>
+		<item module="categorieList" label="Catégories d'aliments" tooltip="Liste des catégories d'aliments" droits="consult"/>
+		<item module="alimentTypeList" label="Types d'aliments" tooltip="Liste des types d'aliments" droits="bassinAdmin,poissonAdmin"/>
+		<item module="reparTemplateList" label="Modèles de répartition" tooltip="Liste des modèles de répartition" droits="bassinAdmin,poissonAdmin"/>
+	</item>
+
+	<item module="default" label="Reproduction" tooltip="Gestion de la reproduction" droits="reproConsult">
+		<item module="poissonCampagneList" label="Poissons" tooltip="Liste des reproducteurs sélectionnés pour une campagne" droits="reproConsult"/>
+		<item module="sequenceList" label="Séquences et bassins" tooltip="Liste des séquences et des bassins pour une campagne" droits="reproConsult"/>
+		<item module="lotList" label="Lots de larves" tooltip="Liste des lots de larves pour une campagne" droits="reproConsult"/>
+		<item module="devenirList" label="Destination des lots" tooltip="Liste des lâchers ou des rentrées dans le stock captif" droits="reproConsult"/>
+		<item module="vieModeleList" label="Modèles de marquage VIE" tooltip="Liste des modèles de marquage VIE pour une campagne" droits="reproGestion"/>
+	</item>
+
+	<item module="default" label="Paramètres" tooltip="Paramètres généraux de l'application" droits="consult">
+		<item module="default" label="Poissons" tooltip="Paramètres liés aux poissons" droits="consult">
+			<item module="pittagTypeList" label="Types de pittags" tooltip="Liste des types de pittags" droits="consult"/>
+			<item module="poissonStatutList" label="Statuts des poissons" tooltip="Liste des statuts des poissons" droits="consult"/>
+			<item module="genderMethodeListe" label="Méthodes de sexage" tooltip="Liste des méthode de sexage utilisées" droits="consult"/>
+			<item module="evenementTypeList" label="Types d'événements" tooltip="Liste des types d'événements" droits="consult"/>
+			<item module="pathologieTypeList" label="Types de pathologie" tooltip="Liste des types de pathologie" droits="consult"/>
+			<item module="mortaliteTypeList" label="Types de mortalités" tooltip="Liste des types de mortalités" droits="consult"/>
+			<item module="cohorteTypeList" label="Détermination des cohortes" tooltip="Méthodes de détermination des cohortes" droits="consult"/>
+			<item module="sortieLieuList" label="Lieux de lâcher" tooltip="Liste des lieux de lâcher" droits="consult"/>
+			<item module="nageoireList" label="Nageoires" tooltip="Liste des nageoires (prélévements génétiques)" droits="consult"/>
+		</item >
+		
+		<item module="default" label="Sites et bassins" tooltip="Paramètres concernant les sites et les bassins" droits="consult">
+			<item module="siteListe" label="Sites" tooltip="Liste des sites" droits="consult"/>
+			<item module="bassinTypeList" label="Types de bassins" tooltip="Liste des types de bassins" droits="consult"/>
+			<item module="bassinUsageList" label="Usages des bassins" tooltip="Liste des types d'usage des bassins" droits="consult"/>
+			<item module="bassinZoneList" label="Zones d'implantation" tooltip="Liste des zones d'implantation des bassins" droits="consult"/>
+			<item module="metalList" label="Métaux" tooltip="Liste des métaux analysés" droits="consult"/>
+			<item module="laboratoireAnalyseList" label="Laboratoires" tooltip="Liste des laboratoires sollicités pour les analyses d'eau" droits="consult"/>
+			<item module="bassinEvenementTypeList" label="Types d'événements dans les bassins" tooltip="Liste des types d'événements pouvant survenir dans les bassins" droits="consult"/>
+			<item module="circuitEvenementTypeList" label="Types d'événements sur les circuits d'eau" tooltip="Liste des types d'événements pouvant survenir sur les circuits d'eau" droits="consult"/>
+		</item>
+
+		<item module="default" label="Reproduction" tooltip="Paramètres associés à la reproduction" droits="consult">
+			<item module="hormoneList" label="Hormones" tooltip="Liste des hormones utilisées" droits="consult"/>
+			<item module="anesthesieProduitList" label="Produits d'anesthésie" tooltip="Liste des produits d'anesthésie utilisés" droits="consult"/>
+			<item module="vieImplantationList" label="Implantation VIE" tooltip="Liste des emplacements d'implantation des marques VIE" droits="consult"/>			
+			<item module="spermeDilueurList" label="Dilueurs de sperme" tooltip="Liste des dilueurs de sperme" droits="consult"/>
+			<item module="spermeCaracteristiqueList" label="Caractéristiques du sperme" tooltip="Liste des caractéristiques potentielles du sperme" droits="consult"/>
+			<item module="spermeConservateurList" label="Conservateurs de spermes" tooltip="Produits utilisés pour conserver le sperme" droits="consult"/>
+			<item module="stadeOeufList" label="Stades des œufs" tooltip="Liste des stades des œufs" droits="consult"/>
+			<item module="stadeGonadeList" label="Stades des gonades" tooltip="Liste des stades des gonades" droits="consult"/>
+		</item>
+		
+		
+		
+		<item divider="1" droits="consult"/>
+		<item module="anomalieTypeList" label="Types d'anomalies" tooltip="Liste des types d'anomalies détectés dans la base de données" droits="consult"/>
+		<item module="mimeTypeList" label="Types de fichiers" tooltip="Liste des types de fichiers importables" droits="consult"/>
+
 	</item>
 
 	<item module="administration" label="Administration" tooltip="Administration de l'application" droits="admin">

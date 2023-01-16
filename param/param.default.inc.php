@@ -7,8 +7,8 @@
  * Parametres par defaut de l'application
  * Si des modifications doivent etre apportees, faites-les dans le fichier param.inc.php
  */
-$APPLI_version = "2.8.0b";
-$APPLI_dbversion = "2.8";
+$APPLI_version = "2.0.0a";
+$APPLI_dbversion = "2.0";
 $APPLI_versiondate = _("14/09/2022");
 $language = "fr";
 $DEFAULT_formatdate = "fr";
@@ -26,12 +26,6 @@ $APPLI_session_ttl = 14400;
 $APPLI_cookie_ttl = 7776000;
 // 10 heures
 $APPLI_absolute_session = 36000;
-/*
- *
- * Nom du chemin de stockage des sessions
- * @var unknown_type
- */
-$APPLI_path_stockage_session = "prototypephp";
 /*
  * Duree de conservation des traces (en jours) dans la table log
  */
@@ -117,20 +111,8 @@ $APPLI_modeDeveloppementDroit = false;
 $APPLI_utf8 = true;
 $APPLI_menufile = "param/menu.xml";
 $APPLI_temp = "temp";
-$APPLI_titre = "Collec-Science";
-$APPLI_assist_address = "https://github.com/collec-science/collec-science/issues/new";
+$APPLI_assist_address = "https://gitlab.irstea.fr/eabx-applis_web/esfc/-/issues/new";
 $APPLI_isFullDns = false;
-/*
- * Impression directe vers une imprimante a etiquettes
- * connectee au serveur
- * lpr|lp
- */
-$APPLI_print_direct_command = "lpr";
-/*
- * Emplacement de fop, programme externe utilise pour generer
- * les etiquettes au format PDF
- */
-$APPLI_fop = "/usr/bin/fop";
 /*
  * Variables systematiques pour SMARTY
  */
@@ -178,8 +160,8 @@ $APPLI_notSSL = false;
  * Cles privee et publique utilisees
  * pour la generation des jetons
  */
-$privateKey = "/etc/ssl/private/ssl-cert-snakeoil.key";
-$pubKey = "/etc/ssl/certs/ssl-cert-snakeoil.pem";
+$privateKey = "param/id_esfc";
+$pubKey = "param/id_esfc.pub";
 /*
  * Duree de validite du token d'identification
  */
