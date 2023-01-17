@@ -119,10 +119,10 @@ class MimeType extends ObjetBDD {
 	/**
 	 * Constructeur de la classe
 	 *
-	 * @param Adodb_instance $bdd        	
+	 * @param PDO $bdd        	
 	 * @param array $param        	
 	 */
-	function __construct($bdd, $param = null) {
+	function __construct($bdd, $param = array()) {
 		$this->param = $param;
 		$this->table = "mime_type";
 		$this->id_auto = 1;
@@ -142,9 +142,6 @@ class MimeType extends ObjetBDD {
 						"requis" => 1 
 				) 
 		);
-		if (! is_array ( $param ))
-			$param = array();
-		$param ["fullDescription"] = 1;
 		parent::__construct ( $bdd, $param );
 	}
 	/**
@@ -174,14 +171,11 @@ class DocumentAttach extends ObjetBDD {
 	/**
 	 * Constructeur de la classe
 	 *
-	 * @param Adodb_instance $bdd        	
+	 * @param PDO $bdd        	
 	 * @param array $param        	
 	 */
-	function __construct($bdd, $param = null) {
-		$this->paramori = $param;
-		$this->param = $param;
+	function __construct($bdd, $param = array()) {
 		$this->table = "document";
-		$this->id_auto = 1;
 		$this->colonnes = array (
 				"document_id" => array (
 						"type" => 1,
@@ -219,9 +213,6 @@ class DocumentAttach extends ObjetBDD {
 						"defaultValue" => "getDateJour"
 				)
 		);
-		if (! is_array ( $param ))
-			$param = array();
-		$param ["fullDescription"] = 1;
 		parent::__construct ( $bdd, $param );
 	}
 	
@@ -252,19 +243,7 @@ class DocumentAttach extends ObjetBDD {
 				$data ["document_date_import"] = date ( "d/m/Y" );
 				$data["document_date_creation"] = $document_date_creation;
 				$dataDoc = array ();
-				/*
-				 * Recherche antivirale
-				 */
-				$virus = false;
-				if (extension_loaded ( 'clamav' )) {
-					$retcode = cl_scanfile ( $file ["tmp_name"], $virusname );
-					if ($retcode == CL_VIRUS) {
-						$virus = true;
-						$texte_erreur = $file ["name"] . " : " . cl_pretcode ( $retcode ) . ". Virus found name : " . $virusname;
-						$log->setLog ( $_SESSION ["login"], "Document-ecrire", $texte_erreur );
-					}
-				}
-				
+								
 				/*
 				 * Recherche pour savoir s'il s'agit d'une image ou d'un pdf pour créer une vignette
 				 */
@@ -272,7 +251,6 @@ class DocumentAttach extends ObjetBDD {
 				/*
 				 * Ecriture du document
 				 */
-				if ($virus == false) {
 					$dataBinaire = fread ( fopen ( $file ["tmp_name"], "r" ), $file ["size"] );
 					
 					$dataDoc ["data"] = pg_escape_bytea ( $dataBinaire );
@@ -297,7 +275,7 @@ class DocumentAttach extends ObjetBDD {
 						$this->executeSQL ( $sql );
 					}
 					return $id;
-				}
+				
 			}
 		}
 	}
@@ -525,5 +503,3 @@ class DocumentAttach extends ObjetBDD {
 		return $filename;
 	}
 }
-
-?>
