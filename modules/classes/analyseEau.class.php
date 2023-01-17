@@ -15,6 +15,8 @@ class AnalyseEau extends ObjetBDD
 	 *        	instance ADODB $bdd
 	 * @param array $param        	
 	 */
+	public AnalyseMetal $analyseMetal;
+	public $classpath = "modules/classes";
 	function __construct($bdd, $param = array())
 	{
 		$this->table = "analyse_eau";
@@ -109,30 +111,36 @@ class AnalyseEau extends ObjetBDD
 	 *
 	 * @param int $id        	
 	 * @param string $dateRef        	
-	 * @param number $limit        	
-	 * @param number $offset        	
+	 * @param int $limit        	
+	 * @param int $offset        	
 	 * @return array
 	 */
-	function getDetailByCircuitEau($id, $dateRef = null, $limit = 1, $offset = 0)
+	function getDetailByCircuitEau($id, $dateRef = null, int $limit = 1, int $offset = 0):?array
 	{
 		if ($id > 0 && is_numeric($id)) {
-			$sql = "select * from " . $this->table . " 
-					natural join circuit_eau
+			$sql = "select * from analyse_eau
+					join circuit_eau using (circuit_eau_id)
 					left outer join laboratoire_analyse using (laboratoire_analyse_id)";
 			if (is_null($dateRef))
 				$dateRef = date("d/m/Y");
-			$dateRef = $this->formatDateLocaleVersDB($dateRef, 2);
-			$where = " where analyse_eau_date <= '" . $dateRef . "' and circuit_eau.circuit_eau_id = " . $id;
+			$param = array(
+				"date_ref" => $this->formatDateLocaleVersDB($dateRef, 2), 
+				"id" => $id)
+				;
+			$where = " where analyse_eau_date <= :date_ref and circuit_eau.circuit_eau_id = :id";
+			
 			$order = " order by analyse_eau_date desc LIMIT " . $limit . " OFFSET " . $offset;
-			$analyseMetal = new AnalyseMetal($this->connection, $this->paramori);
+			if (!is_object($this->analyseMetal)) {
+				$this->analyseMetal = $this->classInstanciate("AnalyseMetal", "analyseMetal.class.php");
+			} 
 			if ($limit == 1) {
-				$data = $this->lireParam($sql . $where . $order);
+				$data = $this->lireParamAsPrepared($sql . $where . $order, $param);
 				if ($data["analyse_eau_id"] > 0 && is_numeric($data["analyse_eau_id"]))
-					$data["metaux"] = $analyseMetal->getAnalyseToText($data["analyse_eau_id"]);
+					$data["metaux"] = $this->analyseMetal->getAnalyseToText($data["analyse_eau_id"]);
 			} else {
-				$data = $this->getListeParam($sql . $where . $order);
+				$data = $this->getListeParamAsPrepared($sql . $where . $order, $param);
 				foreach ($data as $key => $value) {
-					$data[$key]["metaux"] = $analyseMetal->getAnalyseToText($value["analyse_eau_id"]);
+					$data[$key]["metaux"] = $this->analyseMetal->getAnalyseToText($value["analyse_eau_id"]);
 				}
 			}
 			return $data;

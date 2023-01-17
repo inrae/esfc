@@ -30,12 +30,12 @@ class AlimentCategorie extends ObjetBDD
 	 * @param int $aliment_id        	
 	 * @return array
 	 */
-	function getListeFromAliment($aliment_id)
+	function getListeFromAliment($aliment_id) :?array
 	{
 		if ($aliment_id > 0 && is_numeric($aliment_id)) {
 			$sql = "select * from " . $this->table . "
-				where aliment_id = " . $aliment_id;
-			return $this->getListeParam($sql);
+				where aliment_id =  :aliment_id";
+			return $this->getListeParamAsPrepared($sql, array("aliment_id"=>$aliment_id));
 		}
 	}
 }

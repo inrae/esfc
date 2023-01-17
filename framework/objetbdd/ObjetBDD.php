@@ -1919,7 +1919,7 @@ class ObjetBDD
    * @param string $className
    * @param string $classFile
    * @param bool $pathAbsolute: if false, the path of the class is $this->classpath/$classFile (default: false)
-   * @return void
+   * @return object
    */
   function classInstanciate($className, $classFile, bool $pathAbsolute = false)
   {

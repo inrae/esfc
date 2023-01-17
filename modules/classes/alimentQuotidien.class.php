@@ -44,18 +44,18 @@ class AlimentQuotidien extends ObjetBDD
 	 *
 	 * @param string $date        	
 	 * @param int $bassin        	
-	 * @return code
+	 * @return void
 	 */
 	function deleteFromDateBassin($date, $bassin_id)
 	{
 		if (strlen($date) > 0 && $bassin_id > 0 && is_numeric($bassin_id)) {
 			$date = $this->encodeData($date);
-			$sql = "delete from " . $this->table . "
+			$sql = "delete from aliment_quotidien
 					using distrib_quotidien
 					where distrib_quotidien.distrib_quotidien_id = aliment_quotidien.distrib_quotidien_id
-					and distrib_quotidien_date = '" . $date . "'
-					and bassin_id = " . $bassin_id;
-			return $this->executeSQL($sql);
+					and distrib_quotidien_date = :datedist
+					and bassin_id = :bassin_id";
+			 $this->executeAsPrepared($sql, array("datedist"=>$date, "bassin_id"=>$bassin_id), true);
 		}
 	}
 }

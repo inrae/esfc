@@ -6,7 +6,7 @@
  * @license http://www.cecill.info/licences/Licence_CeCILL-C_V1-fr.html LICENCE DE LOGICIEL LIBRE CeCILL-C
  *  Creation 19 mars 2014
  */
-include_once 'modules/classes/categorie.class.php';
+
 
 /**
  * ORM de la table aliment
@@ -15,7 +15,10 @@ include_once 'modules/classes/categorie.class.php';
  *        
  */
 class Aliment extends ObjetBDD
+
 {
+	public $classpath = "modules/classes";
+	public AlimentCategorie $alimentCategorie;
 	/**
 	 * Constructeur de la classe
 	 *
@@ -55,7 +58,7 @@ class Aliment extends ObjetBDD
 	function ecrire($data)
 	{
 		$id = parent::ecrire($data);
-		if ($id > 0 && is_numeric($id)) {
+		if ($id > 0 ) {
 			/*
 			 * Traitement des categories rattachees
 			 */
@@ -75,8 +78,10 @@ class Aliment extends ObjetBDD
 			/*
 			 * Suppression des rattachements aux catégories
 			 */
-			$alimentCategorie = new AlimentCategorie($this->connection, $this->paramori);
-			$alimentCategorie->supprimerChamp($id, "aliment_id");
+			if (!is_object($this->alimentCategorie)) {
+				$this->alimentCategorie = $this->classInstanciate("AlimentCategorie", "alimentCategorie.class.php");
+			} 
+			$this->alimentCategorie->supprimerChamp($id, "aliment_id");
 			return parent::supprimer($id);
 		}
 	}
@@ -87,7 +92,7 @@ class Aliment extends ObjetBDD
 	 */
 	function getListeActif()
 	{
-		$sql = "select * from " . $this->table . " where actif = 1 order by aliment_libelle";
+		$sql = "select * from aliment where actif = 1 order by aliment_libelle";
 		return $this->getListeParam($sql);
 	}
 	/**
@@ -98,8 +103,8 @@ class Aliment extends ObjetBDD
 	 */
 	function getListe($order = "")
 	{
-		$sql = "select * from " . $this->table . " 
-				natural join aliment_type
+		$sql = "select * from aliment 
+				join aliment_type using (aliment_type_id)
 				order by aliment_libelle";
 		return $this->getListeParam($sql);
 	}
