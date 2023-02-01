@@ -13,7 +13,7 @@ class BassinEvenementType extends ObjetBDD
 	 * @param PDO $bdd        	
 	 * @param array $param        	
 	 */
-	function __construct($bdd, $param = null)
+	function __construct($bdd, $param = array())
 	{
 		$this->table = "bassin_evenement_type";
 		$this->colonnes = array(

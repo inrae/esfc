@@ -41,11 +41,11 @@ class Bassin_usage extends ObjetBDD
 	 *
 	 * @see ObjetBDD::getListe()
 	 */
-	function getListe($order = 0)
+	function getListe($order = ""):array|bool
 	{
-		$sql = "select * from " . $this->table . "
+		$sql = "select * from bassin_usage
 				left outer join categorie using (categorie_id)";
-		if ($order > 0 && is_numeric($order))
+		if (strlen($order) > 0 )
 			$sql .= " order by " . $order;
 		return $this->getListeParam($sql);
 	}

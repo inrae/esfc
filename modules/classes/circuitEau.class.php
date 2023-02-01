@@ -43,9 +43,9 @@ class Circuit_eau extends ObjetBDD
 	 * @param int $id
 	 * @return array
 	 */
-	function lire($id, $getDefault = true, $parentValue = 0)
+	function lire($id, $getDefault = true, $parentValue = 0):array
 	{
-		if (is_numeric($id) && $id > 0) {
+		if ($id > 0) {
 			$sql = "select circuit_eau_id, circuit_eau_libelle, circuit_eau_actif,
 					site_id, site_name
 					from circuit_eau
@@ -66,7 +66,7 @@ class Circuit_eau extends ObjetBDD
 	 */
 	function getListeSearch($data)
 	{
-		$data = $this->encodeData($data);
+		$param = array();
 		$sql = "select * 
 				from circuit_eau
 				left outer join site using (site_id)";
@@ -74,20 +74,23 @@ class Circuit_eau extends ObjetBDD
 		$where = '';
 		$and = '';
 		if (strlen($data["circuit_eau_libelle"]) > 0) {
-			$where .= $and . " upper(circuit_eau_libelle) like upper('%" . $data["circuit_eau_libelle"] . "%') ";
+			$where .= $and . " upper(circuit_eau_libelle) like upper(:circuit_eau_libelle) ";
 			$and = " and ";
+			$param["circuit_eau_libelle"] = "%" . $data["circuit_eau_libelle"] . "%";
 		}
-		if ($data["circuit_eau_actif"] > -1 && is_numeric($data["circuit_eau_actif"])) {
-			$where .= $and . " circuit_eau_actif = " . $data["circuit_eau_actif"];
+		if ($data["circuit_eau_actif"] > -1 ) {
+			$where .= $and . " circuit_eau_actif = :circuit_eau_actif"  ;
 			$and = " and ";
+			$param["circuit_eau_actif"] = $data["circuit_eau_actif"];
 		}
 		if ($data["site_id"] > 0) {
-			$where .= $and . " site_id = " . $data["site_id"];
+			$where .= $and . " site_id = :site_id" ;
 			$and = " and ";
+			$param["site_id"] = $data["site_id"];
 		}
 		if ($and == " and ")
 			$where = " where " . $where;
-		return $this->getListeParam($sql . $where . $order);
+		return $this->getListeParamAsPrepared($sql . $where . $order, $param);
 	}
 
 	/**

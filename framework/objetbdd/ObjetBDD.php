@@ -442,16 +442,16 @@ class ObjetBDD
    * @param int|array $id
    * @param boolean $getDefault
    * @param int $parentValue
-   * @return array|bool
+   * @return array
    */
-  function lire($id, bool $getDefault = true, int $parentValue = 0): array|bool
+  function lire($id, bool $getDefault = true, int $parentValue = 0): array
   {
     $data = array();
     // Integration cles multiples
     if ($this->cleMultiple == 1) {
       // Verification de la structure de la cle
       if ($this->verifData == 1 && !$this->verifDonnees($id)) {
-        return false;
+        throw new ObjetBDDException(_("La structure de la clé est incorrecte"));
       }
       $where = "";
       foreach ($id as $key => $value) {
@@ -471,7 +471,7 @@ class ObjetBDD
              * Verification de la cle unique
              */
       if ($this->verifData == 1 && !is_numeric($id)) {
-        return false;
+        throw new ObjetBDDException(_("La clé n'est pas numérique"));
       }
       if (strlen(preg_replace("#[^A-Z]+#", "", $this->cle)) > 0) {
         $cle = $this->quoteIdentifier . $this->cle . $this->quoteIdentifier;
@@ -519,7 +519,7 @@ class ObjetBDD
       if ($getDefault) {
         $collection = $this->getDefaultValue($parentValue);
       } else {
-        $collection = false;
+        $collection = array();
       }
     } else {
       /*
@@ -1833,7 +1833,7 @@ class ObjetBDD
    *
    * @return string
    */
-  function getUUID():string
+  function getUUID(): string
   {
     $sql = "select gen_random_uuid() as uuid";
     $data = $this->lireParam($sql);

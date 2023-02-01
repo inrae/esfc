@@ -1,4 +1,5 @@
 <?php
+
 /**
  * ORM de gestion de la table bassin_evenement
  *
@@ -50,12 +51,10 @@ class BassinEvenement extends ObjetBDD
 	 */
 	function getListeByBassin($bassin_id)
 	{
-		if ($bassin_id > 0 && is_numeric($bassin_id)) {
-			$sql = "select * from bassin_evenement
+		$sql = "select * from bassin_evenement
 					natural join bassin_evenement_type
-					where bassin_id = " . $bassin_id . "
+					where bassin_id = :id
 					order by bassin_evenement_date desc";
-			return $this->getListeParam($sql);
-		}
+		return $this->getListeParamAsPrepared($sql, array("id"=>$bassin_id));
 	}
 }

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * ORM de gestion de la table bassin_lot
  *
@@ -48,21 +49,18 @@ class BassinLot extends ObjetBDD
 	 * Retourne la liste des bassins utilisés pour un lot
 	 *
 	 * @param int $lot_id        	
-	 * @return tableau|NULL
+	 * @return array
 	 */
-	function getListeFromLot($lot_id)
+	function getListeFromLot(int $lot_id)
 	{
-		if ($lot_id > 0 && is_numeric($lot_id)) {
-			$sql = "select bassin_lot_id, lot_id, bassin_id, 
+		$sql = "select bassin_lot_id, lot_id, bassin_id, 
 					bl_date_arrivee, bl_date_depart,
 					bassin_nom
 					from bassin_lot
 					join bassin using (bassin_id)
-					where lot_id = " . $lot_id . "
+					where lot_id = :id
 					order by bl_date_arrivee desc";
-			return $this->getListeParam($sql);
-		} else
-			return null;
+		return $this->getListeParamAsPrepared($sql, array("id" => $lot_id));
 	}
 
 	/**
@@ -72,7 +70,7 @@ class BassinLot extends ObjetBDD
 	 *
 	 * @see ObjetBDD::ecrire()
 	 */
-	function write($data)
+	function ecrire($data)
 	{
 		$data["bassin_lot_id"] == 0 ? $creation = true : $creation = false;
 		$id = parent::ecrire($data);
@@ -98,20 +96,24 @@ class BassinLot extends ObjetBDD
 	 *
 	 * @param int $lot_id        	
 	 * @param string $bl_date_arrivee        	
-	 * @return array|NULL
+	 * @return array
 	 */
-	function getPrecedentBassin($lot_id, $bl_date_arrivee)
+	function getPrecedentBassin(int $lot_id, $bl_date_arrivee)
 	{
-		if ($lot_id > 0 && is_numeric($lot_id) && strlen($bl_date_arrivee) > 0) {
+		if ($lot_id > 0 && strlen($bl_date_arrivee) > 0) {
 			$bl_date_arrivee = $this->formatDateLocaleVersDB($this->encodeData($bl_date_arrivee));
 			$sql = "select * from bassin_lot
-				where bl_date_arrivee < '" . $bl_date_arrivee . "' 
-						and lot_id = " . $lot_id . "
+				where bl_date_arrivee < :date_arrivee'" . $bl_date_arrivee . "' 
+						and lot_id = :lot_id" . $lot_id . "
 				order by bl_date_arrivee desc
 				limit 1";
-			return $this->lireParam($sql);
-		} else
-			return null;
+			return $this->lireParamAsPrepared($sql, array(
+				"date_arrivee" => $bl_date_arrivee,
+				"lot_id" => $lot_id
+			));
+		} else {
+			return array();
+		}
 	}
 
 	/**
@@ -119,23 +121,26 @@ class BassinLot extends ObjetBDD
 	 *
 	 * @param int $lot_id        	
 	 * @param string $date        	
-	 * @return array|NULL
+	 * @return array|
 	 */
-	function getBassin($lot_id, $date)
+	function getBassin(int $lot_id, $date)
 	{
-		if ($lot_id > 0 && is_numeric($lot_id) && strlen($date) > 0) {
-			$this->encodeData($date);
+		if ($lot_id > 0  && strlen($date) > 0) {
 			$date = $this->formatDateLocaleVersDB($date);
 			$sql = "select bassin_id, lot_id, bl_date_arrivee, bl_date_depart,
 					bassin_nom
 					from bassin_lot
 					join bassin using (bassin_id)
-					where bl_date_arrivee < '" . $date . "' 
-						and lot_id = " . $lot_id . "
+					where bl_date_arrivee < :date_arrivee
+						and lot_id = :lot_id
 					order by bl_date_arrivee desc
 					limit 1";
-			return $this->lireParam($sql);
-		} else
-			return null;
+			return $this->lireParamAsPrepared($sql,array(
+				"date_arrivee" => $date,
+				"lot_id"=>$lot_id
+			));
+		} else {
+			return array();
+		}
 	}
 }

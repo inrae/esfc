@@ -1,4 +1,5 @@
 <?php
+
 /**
  * ORM de gestion de la table circuit_evenement
  *
@@ -48,14 +49,12 @@ class CircuitEvenement extends ObjetBDD
 	 * @param int $circuit_id        	
 	 * @return array
 	 */
-	function getListeBycircuit($circuit_eau_id)
+	function getListeBycircuit(int $circuit_eau_id)
 	{
-		if ($circuit_eau_id > 0 && is_numeric($circuit_eau_id)) {
-			$sql = "select * from circuit_evenement
-					natural join circuit_evenement_type
-					where circuit_eau_id = " . $circuit_eau_id . "
+		$sql = "select * from circuit_evenement
+					join circuit_evenement_type using (evenement_type_id)
+					where circuit_eau_id = :id
 					order by circuit_evenement_date desc";
-			return $this->getListeParam($sql);
-		}
+		return $this->getListeParamAsPrepared($sql, array("id" => $circuit_eau_id));
 	}
 }
