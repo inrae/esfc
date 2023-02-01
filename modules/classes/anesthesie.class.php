@@ -1,4 +1,5 @@
 <?php
+
 /**
  * ORM de gestion de la table anesthesie
  *
@@ -42,49 +43,43 @@ class Anesthesie extends ObjetBDD
             "anesthesie_dosage" => array(
                 "type" => 1
             )
-        );       
+        );
         parent::__construct($p_connection, $param);
     }
 
     /**
      * Retourne une anesthésie a partir du numero d'evenement
      *
-     * @param unknown $evenement_id
-     * @return array|NULL
+     * @param int $evenement_id
+     * @return array
      */
     function getDataByEvenement($evenement_id)
     {
-        if ($evenement_id > 0 && is_numeric($evenement_id)) {
-            $sql = "select * from anesthesie
-					natural join anesthesie_produit
-				where evenement_id = " . $evenement_id;
-            return $this->lireParam($sql);
-        } else
-            return null;
+        $sql = "select * from anesthesie
+					join anesthesie_produit using (anesthesie_produit_id)
+				where evenement_id = :id";
+        return $this->lireParamAsPrepared($sql, array("id" => $evenement_id));
     }
 
     /**
-     * Retourne la liste des echographies realisees pour un poisson
+     * Retourne la liste des anesthésies realisees pour un poisson
      *
      * @param int $poisson_id
-     * @return tableau
+     * @return array
      */
-    function getListByPoisson($poisson_id)
+    function getListByPoisson(int $poisson_id): ?array
     {
-        if ($poisson_id > 0 && is_numeric($poisson_id)) {
-            $sql = "select anesthesie_id, evenement_id, e.poisson_id,
-					anesthesie_date, anesthesie_commentaire,
-					evenement_type_libelle,
-					anesthesie_produit_libelle,
-					anesthesie_dosage
-					from anesthesie e
-					natural join  evenement
-					left outer join evenement_type using (evenement_type_id)
-					natural join anesthesie_produit
-					where e.poisson_id = " . $poisson_id . "
-					order by anesthesie_date desc";
-            return $this->getListeParam($sql);
-        } else
-            return null;
+        $sql = "select anesthesie_id, evenement_id, e.poisson_id,
+                anesthesie_date, anesthesie_commentaire,
+                evenement_type_libelle,
+                anesthesie_produit_libelle,
+                anesthesie_dosage
+                from anesthesie e
+                natural join  evenement
+                left outer join evenement_type using (evenement_type_id)
+                natural join anesthesie_produit
+                where e.poisson_id = :id
+                order by anesthesie_date desc";
+        return $this->getListeParamAsPrepared($sql, array("id" => $poisson_id));
     }
 }

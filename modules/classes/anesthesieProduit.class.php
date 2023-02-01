@@ -40,14 +40,15 @@ class Anesthesie_produit extends ObjetBDD
 
     function getListeActif($actif = -1)
     {
-        $sql = "select *
-				from " . $this->table;
+        $sql = "select * from anesthesie_produit" ;
+        $data = array();
         if ($actif > - 1 && is_numeric($actif)) {
-            $where = " where anesthesie_produit_actif = " . $actif;
+            $where = " where anesthesie_produit_actif = :actif "; 
+            $data ["actif"] = $actif;
         } else {
             $where = "";
         }
         $order = " order by anesthesie_produit_libelle";
-        return $this->getListeParam($sql . $where . $order);
+        return $this->getListeParamAsPrepared($sql . $where . $order, $data);
     }
 }

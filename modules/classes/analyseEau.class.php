@@ -153,26 +153,28 @@ class AnalyseEau extends ObjetBDD
 	 *
 	 * @see ObjetBDD::supprimer()
 	 */
-	function supprimer($id)
+	function supprimer($id):bool
 	{
-		if ($id > 0 && is_numeric($id)) {
+		if ($id > 0 ) {
 			/*
 			 * Suppression des analyses des metaux
 			 */
 			$analyseMetal = new AnalyseMetal($this->connection, $this->paramori);
 			$analyseMetal->supprimerChamp($id, "analyse_eau_id");
 			return parent::supprimer($id);
+		} else {
+			return false;
 		}
 	}
 
 	/**
 	 * Retourne le numero d'analyse en fonction de la date et du bassin concerne
 	 *
-	 * @param unknown $dateAnalyse        	
-	 * @param unknown $bassin_id        	
+	 * @param string $dateAnalyse        	
+	 * @param int $bassin_id        	
 	 * @return int
 	 */
-	function getIdFromDateBassin($dateAnalyse, $bassin_id)
+	function getIdFromDateBassin($dateAnalyse, $bassin_id) :?int
 	{
 		$dateAnalyse = $this->encodeData($dateAnalyse);
 		$dateAnalyse = $this->formatDateLocaleVersDB($dateAnalyse, 3);
@@ -192,7 +194,7 @@ class AnalyseEau extends ObjetBDD
 	 *
 	 * @param [string] $dateAnalyse
 	 * @param [int] $circuit_id
-	 * @return int
+	 * @return array
 	 */
 	function getIdFromDateCircuit($dateAnalyse, $circuit_id)
 	{
@@ -213,7 +215,7 @@ class AnalyseEau extends ObjetBDD
 	 * @param [string] $attribut
 	 * @return array
 	 */
-	function getValFromDatesCircuit($circuit_id, $date_from, $date_to, $attribut)
+	function getValFromDatesCircuit($circuit_id, $date_from, $date_to, $attribut) :?array
 	{
 		if (in_array($attribut, array("temperature", "o2_pc", "salinite", "ph", "nh4", "n_nh4", "no2", "n_no2", "no3", "n_no3"))) {
 			$date_from = $this->formatDateLocaleVersDB($date_from);

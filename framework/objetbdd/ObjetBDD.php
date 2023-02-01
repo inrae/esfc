@@ -444,7 +444,7 @@ class ObjetBDD
    * @param int $parentValue
    * @return array|bool
    */
-  function lire($id, $getDefault = true, $parentValue = 0): array|bool
+  function lire($id, bool $getDefault = true, int $parentValue = 0): array|bool
   {
     $data = array();
     // Integration cles multiples

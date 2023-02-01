@@ -47,9 +47,9 @@ class AnalyseMetal extends ObjetBDD
 	 * Retourne la liste des analyses de metaux realisees pour une analyse
 	 *
 	 * @param int $analyse_id        	
-	 * @return tableau|NULL
+	 * @return array
 	 */
-	function getListeFromAnalyse($analyse_id)
+	function getListeFromAnalyse(int $analyse_id) :?array
 	{
 		if ($analyse_id > 0 && is_numeric($analyse_id)) {
 			$sql = "select analyse_metal_id, analyse_eau_id, metal_id, 
@@ -60,10 +60,14 @@ class AnalyseMetal extends ObjetBDD
 					order by metal_nom
 					";
 			return $this->getListeParam($sql);
-		} else
-			return null;
+		}
 	}
-	function getAnalyseToText($analyse_id)
+	/**
+	 * Transform the result of the analysis in string
+	 * @param int $analyse_id
+	 * @return string
+	 */
+	function getAnalyseToText(int $analyse_id):string
 	{
 		$data = $this->getListeFromAnalyse($analyse_id);
 		$texte = "";
