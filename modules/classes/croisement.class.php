@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @author Eric Quinton
  * @copyright Copyright (c) 2015, IRSTEA / Eric Quinton
@@ -11,57 +12,54 @@
  * @author quinton
  *        
  */
-require_once 'modules/classes/sequence.class.php';
-class Croisement extends ObjetBDD {
-	function __construct($bdd, $param = null) {
-		$this->param = $param;
-		$this->paramori = $param;
+
+class Croisement extends ObjetBDD
+{
+	public PoissonSequence $poissonSequence;
+	function __construct($bdd, $param = array())
+	{
 		$this->table = "croisement";
-		$this->id_auto = "1";
-		$this->colonnes = array (
-				"croisement_id" => array (
-						"type" => 1,
-						"key" => 1,
-						"requis" => 1,
-						"defaultValue" => 0 
-				),
-				"sequence_id" => array (
-						"type" => 1,
-						"requis" => 1,
-						"parentAttrib" => 1 
-				),
-				"croisement_qualite_id" => array (
-						"type" => 1 
-				),
-				"croisement_date" => array (
-						"type" => 3 
-				),
-				"croisement_nom" => array (
-						"type" => 0,
-						"requis" => 1 
-				),
-				"ovocyte_masse" => array (
-						"type" => 1 
-				),
-				"ovocyte_densite" => array (
-						"type" => 1 
-				),
-				"tx_fecondation" => array (
-						"type" => 1 
-				),
-				"tx_survie_estime" => array (
-						"type" => 1 
-				),
-				"croisement_parents" => array (
-						"type" => 0
-				)
+		$this->colonnes = array(
+			"croisement_id" => array(
+				"type" => 1,
+				"key" => 1,
+				"requis" => 1,
+				"defaultValue" => 0
+			),
+			"sequence_id" => array(
+				"type" => 1,
+				"requis" => 1,
+				"parentAttrib" => 1
+			),
+			"croisement_qualite_id" => array(
+				"type" => 1
+			),
+			"croisement_date" => array(
+				"type" => 3
+			),
+			"croisement_nom" => array(
+				"type" => 0,
+				"requis" => 1
+			),
+			"ovocyte_masse" => array(
+				"type" => 1
+			),
+			"ovocyte_densite" => array(
+				"type" => 1
+			),
+			"tx_fecondation" => array(
+				"type" => 1
+			),
+			"tx_survie_estime" => array(
+				"type" => 1
+			),
+			"croisement_parents" => array(
+				"type" => 0
+			)
 		);
-		if (! is_array ( $param ))
-			$param = array();
-		$param ["fullDescription"] = 1;
-		parent::__construct ( $bdd, $param );
+		parent::__construct($bdd, $param);
 	}
-	
+
 	/**
 	 * Surcharge de la fonction ecrire pour prendre en compte la liste des reproducteurs
 	 * attaches
@@ -69,13 +67,14 @@ class Croisement extends ObjetBDD {
 	 *
 	 * @see ObjetBDD::ecrire()
 	 */
-	function ecrire($data) {
-		$id = parent::ecrire ( $data );
+	function ecrire($data)
+	{
+		$id = parent::ecrire($data);
 		if ($id > 0) {
 			/*
 			 * Ecriture de la liste des poissons concernes
 			 */
-			$this->ecrireTableNN ( "poisson_croisement", "croisement_id", "poisson_campagne_id", $id, $data ["poisson_campagne_id"] );
+			$this->ecrireTableNN("poisson_croisement", "croisement_id", "poisson_campagne_id", $id, $data["poisson_campagne_id"]);
 		}
 		return $id;
 	}
@@ -84,89 +83,89 @@ class Croisement extends ObjetBDD {
 	 * {@inheritDoc}
 	 * @see ObjetBDD::supprimer()
 	 */
-	function supprimer($id) {
+	function supprimer($id)
+	{
 		$this->ecrireTableNN("poisson_croisement", "croisement_id", "poisson_campagne_id", $id, array());
 		return parent::supprimer($id);
 	}
-	
+
 	/**
 	 * recupere la liste des croisement pour une sequence
 	 *
 	 * @param int $sequence_id        	
-	 * @return tableau|NULL
+	 * @return array
 	 */
-	function getListFromSequence($sequence_id) {
-		if ($sequence_id > 0 && is_numeric($sequence_id)) {
-			$sql = "select croisement_id, sequence_id, croisement_qualite_id, croisement_qualite_libelle,
+	function getListFromSequence(int $sequence_id)
+	{
+		$sql = "select croisement_id, sequence_id, croisement_qualite_id, croisement_qualite_libelle,
 					croisement_date, ovocyte_masse, ovocyte_densite, tx_fecondation, tx_survie_estime,
 					sequence_nom, croisement_nom
 					from croisement
 					join sequence using (sequence_id)
 					left outer join croisement_qualite using (croisement_qualite_id)
-					where sequence_id = " . $sequence_id . "
+					where sequence_id = :id
 					order by croisement_date, croisement_nom";
-			$data = $this->getListeParam ( $sql );
-			/*
+		$data = $this->getListeParamAsPrepared($sql, array("id" => $sequence_id));
+		/*
 			 * Recherche des parents
 			 */
-			foreach ( $data as $key => $value ) {
-				$data [$key] ["parents"] = $this->getParentsFromCroisement ( $value ["croisement_id"] );
-			}
-			return $data;
-		} else
-			return null;
+		foreach ($data as $key => $value) {
+			$data[$key]["parents"] = $this->getParentsFromCroisement($value["croisement_id"]);
+		}
+		return $data;
 	}
-	
+
 	/**
 	 * Recupere la liste des croisements pour une annee
 	 * 
 	 * @param int $annee        	
-	 * @return array|NULL
+	 * @return array
 	 */
-	function getListFromAnnee($annee) {
-		if ($annee > 0 && is_numeric($annee)) {
-			$sql = "select croisement_id, sequence_id, croisement_qualite_id, croisement_qualite_libelle,
+	function getListFromAnnee(int $annee)
+	{
+		$sql = "select croisement_id, sequence_id, croisement_qualite_id, croisement_qualite_libelle,
 					croisement_date, ovocyte_masse, ovocyte_densite, tx_fecondation, tx_survie_estime
 					from croisement
 					join sequence using (sequence_id)
 					left outer join croisement_qualite using (croisement_qualite_id)
-					where annee = " . $annee . "
+					where annee = :annee
 					order by croisement_date, croisement_id";
-			$data = $this->getListeParam ( $sql );
-			/*
+		$data = $this->getListeParamAsPrepared($sql, array("annee" => $annee));
+		/*
 			 * Recherche des parents
 			 */
-			foreach ( $data as $key => $value ) {
-				$data [$key] ["parents"] = $this->getParentsFromCroisement ( $value ["croisement_id"] );
-			}
-			return $data;
-		} else
-			return null;
+		foreach ($data as $key => $value) {
+			$data[$key]["parents"] = $this->getParentsFromCroisement($value["croisement_id"]);
+		}
+		return $data;
 	}
-	
+
 	/**
 	 * Recupere la liste des parents d'un croisement, sous forme de chaine "prete a l'emploi"
 	 *
 	 * @param int $croisement_id        	
 	 * @return string
 	 */
-	function getParentsFromCroisement($croisement_id) {
+	function getParentsFromCroisement(int $croisement_id)
+	{
 		$parents = "";
+		$new = true;
 		if ($croisement_id > 0 && is_numeric($croisement_id)) {
 			$sql = "select prenom, sexe_libelle_court
 						from poisson_croisement
 						join poisson_campagne using (poisson_campagne_id)
 						join poisson using (poisson_id)
 						left outer join sexe using (sexe_id)
-						where croisement_id = " . $croisement_id . "
+						where croisement_id = :id
 						order by sexe_libelle_court, prenom";
-			$poissons = $this->getListeParam ( $sql );
-			foreach ( $poissons as $key1 => $value1 ) {
+			$poissons = $this->getListeParamAsPrepared($sql, array("id" => $croisement_id));
+			foreach ($poissons as $value1) {
 				if ($new == false) {
 					$parents .= " ";
-				} else
+				} else {
 					$new = false;
-				$parents .= $value1 ["prenom"] . "(" . $value1 ["sexe_libelle_court"] . ")";
+				}
+				$parents .= $value1["prenom"] . "(" . $value1["sexe_libelle_court"] . ")";
 			}
 		}
 		return $parents;
@@ -175,72 +174,68 @@ class Croisement extends ObjetBDD {
 	/**
 	 * Retourne les poissons pour un croisement
 	 * @param int $croisement_id
-	 * @return tableau|NULL
+	 * @return array
 	 */
-	function getPoissonsFromCroisement ($croisement_id) {
-		if ($croisement_id > 0 && is_numeric($croisement_id)) {
-			$sql = "select poisson_campagne_id 
+	function getPoissonsFromCroisement(int $croisement_id)
+	{
+		$sql = "select poisson_campagne_id 
 					from poisson_croisement
-					where croisement_id = ".$croisement_id;
-			return $this->getListeParam($sql);
-		} else 
-			return null;
+					where croisement_id = :id";
+		return $this->getListeParamAsPrepared($sql, array("id" => $croisement_id));
 	}
 
 	/**
 	 * Retourne les identifiants des poissons utilises dans un croisement
 	 * @param int $croisement_id
-	 * @return tableau|NULL
+	 * @return array
 	 */
-	function getPoissonIdFromCroisement($croisement_id) {
-		if ($croisement_id > 0 && is_numeric($croisement_id)) {
-			$sql = "select poisson_id
+	function getPoissonIdFromCroisement(int $croisement_id)
+	{
+		$sql = "select poisson_id
 					from poisson_croisement
 					join poisson_campagne using (poisson_campagne_id)
 					join poisson using (poisson_id)
-					where croisement_id = ".$croisement_id;
-			return $this->getListeParam($sql);
-		} else
-			return null;
-		
+					where croisement_id = :id";
+		return $this->getListeParamAsPrepared($sql, array("id" => $croisement_id));
 	}
-	
+
 	/**
 	 * Retourne la liste de tous les poissons de la sequence, avec le fait q'ils soient
 	 * selectionnes ou non dans le croisement considere
 	 *
-	 * @param unknown $croisement_id        	
-	 * @param string $sequence_id        	
-	 * @return Ambigous <multitype:, number, tableau, NULL, boolean, $data>
+	 * @param int $croisement_id        	
+	 * @param int $sequence_id        	
+	 * @return array
 	 */
-	function getListAllPoisson($croisement_id, $sequence_id = null) {
-		$data = array ();
-		if ($croisement_id > 0 && is_numeric($croisement_id)) {
-			if (is_null ( $sequence_id )) {
-				/*
+	function getListAllPoisson(int $croisement_id, int $sequence_id = null)
+	{
+		$data = array();
+		if (is_null($sequence_id)) {
+			/*
 				 * Recuperation du numero de sequence
 				 */
-				$data = $this->lire ( $croisement_id );
-				$sequence_id = $data ["sequence_id"];
-			}
-			if ($sequence_id > 0 && is_numeric($sequence_id)) {
-				/*
+			$dataSequence = $this->lire($croisement_id);
+			$sequence_id = $dataSequence["sequence_id"];
+		}
+		if ($sequence_id > 0) {
+			/*
 				 * Recherche des poissons attaches a la sequence
 				 */
-				$poissonSequence = new PoissonSequence ( $this->connection, $this->paramori );
-				$data = $poissonSequence->getListFromSequence ( $sequence_id );
-				/*
+			if (!isset($this->poissonSequence)) {
+				$this->poissonSequence = $this->classInstanciate("PoissonSequence", "poissonSequence.class.php");
+			}
+			$data = $this->poissonSequence->getListFromSequence($sequence_id);
+			/*
 				 * Recherche des poissons attaches au croisement
 				 */
-				$sql = "select poisson_campagne_id 
+			$sql = "select poisson_campagne_id 
 						from poisson_croisement
-						where croisement_id = " . $croisement_id;
-				$poissonCroisement = $this->getListeParam ( $sql );
-				foreach ( $data as $key => $value ) {
-					foreach ( $poissonCroisement as $key1 => $value1 ) {
-						if ($value ["poisson_campagne_id"] == $value1 ["poisson_campagne_id"]) {
-							$data [$key] ["selected"] = 1;
-						}
+						where croisement_id = :croisement_id" . $croisement_id;
+			$poissonCroisement = $this->getListeParamAsPrepared($sql, array("croisement_id" => $croisement_id));
+			foreach ($data as $key => $value) {
+				foreach ($poissonCroisement as $value1) {
+					if ($value["poisson_campagne_id"] == $value1["poisson_campagne_id"]) {
+						$data[$key]["selected"] = 1;
 					}
 				}
 			}
@@ -253,47 +248,13 @@ class Croisement extends ObjetBDD {
 	 * @param int $id
 	 * @return array
 	 */
-	function getDetail($id) {
-		if ($id > 0 && is_numeric($id)) {
-			$sql = "select * from croisement
+	function getDetail($id)
+	{
+		$sql = "select * from croisement
 					left outer join croisement_qualite using (croisement_qualite_id)";
-			$where = " where croisement_id = ".$id;
-			$data = $this->lireParam($sql.$where);
-			$data["parents"] = $this->getParentsFromCroisement($id);
-			return $data;
-		}
+		$where = " where croisement_id = :id " . $id;
+		$data = $this->lireParamAsPrepared($sql . $where, array("id" => $id));
+		$data["parents"] = $this->getParentsFromCroisement($id);
+		return $data;
 	}
 }
-/**
- * ORM de gestion de la table croisement_qualite
- *
- * @author quinton
- *        
- */
-class CroisementQualite extends ObjetBDD {
-	function __construct($bdd, $param = null) {
-		$this->param = $param;
-		$this->paramori = $param;
-		$this->table = "croisement_qualite";
-		$this->id_auto = "1";
-		$this->colonnes = array (
-				"croisement_qualite_id" => array (
-						"type" => 1,
-						"key" => 1,
-						"requis" => 1,
-						"defaultValue" => 0 
-				),
-				"croisement_qualite_libelle" => array (
-						"type" => 0,
-						"requis" => 1 
-				) 
-		);
-		
-		if (! is_array ( $param ))
-			$param = array();
-		$param ["fullDescription"] = 1;
-		$param ["transformComma"] = 1;
-		parent::__construct ( $bdd, $param );
-	}
-}
-?>

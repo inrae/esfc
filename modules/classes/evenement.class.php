@@ -57,29 +57,25 @@ class Evenement extends ObjetBDD
      * @param int $poisson_id
      * @return array
      */
-    function getEvenementByPoisson($poisson_id)
+    function getEvenementByPoisson(int $poisson_id)
     {
-        if ($poisson_id > 0 && is_numeric($poisson_id)) {
-            $sql = "select evenement_id, poisson_id, evenement_date, evenement_type_libelle,
+        $sql = "select evenement_id, poisson_id, evenement_date, evenement_type_libelle,
  					evenement_commentaire
- 					from evenement
+                from evenement
  					left outer join evenement_type using (evenement_type_id)
- 					where poisson_id = " . $poisson_id . "order by evenement_date desc";
-            return $this->getListeParam($sql);
-        }
+                where poisson_id = :id order by evenement_date desc";
+        return $this->getListeParamAsPrepared($sql, array("id" => $poisson_id));
     }
 
     /**
      * Retourne l'ensemble des données d'événement pour les poissons répondant aux critères fournis
      * 
      * @param array $dataSearch
-     * @return tableau
+     * @return array
      */
-    function getAllEvenements($dataSearch)
+    function getAllEvenements(array $dataSearch)
     {
-        $dataSearch = $this->encodeData($dataSearch);
-        if (is_array($dataSearch)) {
-            $sql = "select p.poisson_id, matricule, prenom, cohorte, pittag_valeur,					 
+        $sql = "select p.poisson_id, matricule, prenom, cohorte, pittag_valeur,					 
  					e.evenement_id, evenement_type_id, evenement_type_libelle,
  					evenement_date, evenement_commentaire,
  					mortalite_date, mortalite_commentaire, mortalite_type_id, mortalite_type_libelle,
@@ -95,7 +91,7 @@ class Evenement extends ObjetBDD
 					tx_e2, tx_e2_texte, tx_calcium, tx_hematocrite, dosage_sanguin_commentaire,
                     parente_id, parente_commentaire, determination_parente_libelle
  					";
-            $from = " from evenement e 
+        $from = " from evenement e 
  					join poisson p using (poisson_id)
 					left outer join mortalite on (e.evenement_id = mortalite.evenement_id)
 					left outer join mortalite_type using (mortalite_type_id)
@@ -120,34 +116,37 @@ class Evenement extends ObjetBDD
 					left outer join dosage_sanguin ds on (e.evenement_id = ds.evenement_id)
                     left outer join parente pt on (e.evenement_id = pt.evenement_id)
                     left outer join determination_parente using (determination_parente_id)";
-            $order = " order by matricule, evenement_date";
-            $where = " where ";
-            $and = "";
-            if ($dataSearch["statut"] > 0 && is_numeric($dataSearch["statut"])) {
-                $where .= $and . " p.poisson_statut_id = " . $dataSearch["statut"];
-                $and = " and ";
-            }
-            if ($dataSearch["categorie"] > 0 && is_numeric($dataSearch["categorie"])) {
-                $where .= $and . " p.categorie_id = " . $dataSearch["categorie"];
-                $and = " and ";
-            }
-            if ($dataSearch["sexe"] > 0 && is_numeric($dataSearch["sexe"])) {
-                $where .= $and . " p.sexe_id = " . $dataSearch["sexe"];
-                $and = " and ";
-            }
-            if (strlen($dataSearch["texte"]) > 0) {
-                $texte = "%" . mb_strtoupper($dataSearch["texte"], 'UTF-8') . "%";
-                $where .= $and . " (upper(matricule) like '" . $texte . "' 
-						or upper(prenom) like '" . $texte . "' 
-						or cohorte like '" . $texte . "' 
-						or upper(pittag_valeur) like '" . $texte . "')";
-            }
-            if (strlen($where) == 7)
-                $where = "";
-            /* printr($sql.$from.$where.$order); */
-            $data = $this->getListeParam($sql . $from . $where . /*$group .*/ $order);
-            return $data;
+        $order = " order by matricule, evenement_date";
+        $where = " where ";
+        $param = array();
+        $and = "";
+        if ($dataSearch["statut"] > 0) {
+            $where .= $and . " p.poisson_statut_id = :poisson_statut_id";
+            $and = " and ";
+            $param["poisson_statut_id"] = $dataSearch["statut"];
         }
+        if ($dataSearch["categorie"] > 0) {
+            $where .= $and . " p.categorie_id = :categorie_id";
+            $and = " and ";
+            $param["categorie_id"] = $dataSearch["categorie"];
+        }
+        if ($dataSearch["sexe"] > 0) {
+            $where .= $and . " p.sexe_id = :sexe_id";
+            $and = " and ";
+            $param["sexe_id"] = $dataSearch["sexe"];
+        }
+        if (strlen($dataSearch["texte"]) > 0) {
+            $texte = "%" . mb_strtoupper($dataSearch["texte"], 'UTF-8') . "%";
+            $where .= $and . " (upper(matricule) like :texte 
+						or upper(prenom) like :texte
+						or cohorte like :texte
+						or upper(pittag_valeur) like :texte)";
+            $param["texte"] = $texte;
+        }
+        if (strlen($where) == 7) {
+            $where = "";
+        }
+        return $this->getListeParamAsPrepared($sql . $from . $where . $order, $param);
     }
 
     /**
@@ -158,85 +157,34 @@ class Evenement extends ObjetBDD
      */
     function supprimer($id)
     {
-        if ($id > 0 && is_numeric($id)) {
-            /*
-             * Traitement des suppressions en cascade
-             */
-            /*
-             * pathologie
-             */
-            $pathologie = new Pathologie($this->connection, $this->paramori);
-            $pathologie->supprimerChamp($id, "evenement_id");
-            /*
-             * Morphologie
-             */
-            $morphologie = new Morphologie($this->connection, $this->paramori);
-            $morphologie->supprimerChamp($id, "evenement_id");
-            /*
-             * Gender_selection
-             */
-            $genderSelection = new Gender_selection($this->connection, $this->paramori);
-            $genderSelection->supprimerChamp($id, "evenement_id");
-            /*
-             * Transfert
-             */
-            $transfert = new Transfert($this->connection, $this->paramori);
-            $transfert->supprimerChamp($id, "evenement_id");
-            /*
-             * Anomalie
-             */
-            $anomalie = new Anomalie_db($this->connection, $this->paramori);
-            $anomalie->supprimerChamp($id, "evenement_id");
-            /*
-             * Cohorte
-             */
-            $cohorte = new Cohorte($this->connection, $this->paramori);
-            $cohorte->supprimerChamp($id, "evenement_id");
-            /*
-             * Sortie
-             */
-            $sortie = new Sortie($this->connection, $this->paramori);
-            $sortie->supprimerChamp($id, "evenement_id");
-            /*
-             * Echographie
-             */
-            $echographie = new Echographie($this->connection, $this->paramori);
-            $echographie->supprimerChamp($id, "evenement_id");
-            /*
-             * Anesthesie
-             */
-            $anesthesie = new Anesthesie($this->connection, $this->paramori);
-            $anesthesie->supprimerChamp($id, "evenement_id");
-            /*
-             * Mortalite
-             */
-            $mortalite = new Mortalite($this->connection, $this->paramori);
-            $mortalite->supprimerChamp($id, "evenement_id");
-            /*
-             * Dosage sanguin
-             */
-            require_once 'modules/classes/dosageSanguin.class.php';
-            $dosageSanguin = new DosageSanguin($this->connection, $this->paramori);
-            $dosageSanguin->supprimerChamp($id, "evenement_id");
-            /*
-             * Genetique
-             */
-            $genetique = new Genetique($this->connection, $this->paramori);
-            $genetique->supprimerChamp($id, "evenement_id");
-            /*
-             * Determination de la parente
-             */
-            $parente = new Parente($this->connection, $this->paramori);
-            $parente->supprimerChamp($id, "evenement_id");
-            /*
-             * Documents associes
-             */
-            $sql = "delete from evenement_document where evenement_id = " . $id;
-            $this->executeSQL($sql);
-            /*
-             * Suppression finale de l'evenement
-             */
-            return parent::supprimer($id);
+        /**
+         * Traitement des suppressions en cascade
+         */
+        $tables = array(
+            "pathologie",
+            "morphologie",
+            "gender_selection",
+            "transfert",
+            "anomalie_db",
+            "cohorte",
+            "sortie",
+            "echographie",
+            "anesthesie",
+            "mortalite",
+            "dosage_sanguin",
+            "genetique",
+            "parente",
+            "evenement_document"
+        );
+        $param = array("id" => $id);
+        $sql = "delete from :table where evenement_id = :id";
+        foreach ($tables as $table) {
+            $param["table"] = $table;
+            $this->executeAsPrepared($sql, $param);
         }
+        /**
+         * Suppression finale de l'evenement
+         */
+        return parent::supprimer($id);
     }
 }

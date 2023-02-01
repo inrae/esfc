@@ -444,7 +444,7 @@ class ObjetBDD
    * @param int $parentValue
    * @return array
    */
-  function lire($id, bool $getDefault = true, int $parentValue = 0): array
+  function lire($id, bool $getDefault = true, int $parentValue = 0)
   {
     $data = array();
     // Integration cles multiples
@@ -591,7 +591,7 @@ class ObjetBDD
    * @param $id :integer - cle de l'enregistrement a supprimer
    * @return bool
    */
-  function supprimer($id): bool
+  function supprimer($id)
   {
     $data = array();
     // Integration cles multiples

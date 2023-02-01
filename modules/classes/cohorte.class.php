@@ -2,6 +2,7 @@
 class Cohorte extends ObjetBDD
 {
 
+    public Poisson $poisson;
     /**
      * Constructeur de la classe
      *
@@ -11,10 +12,7 @@ class Cohorte extends ObjetBDD
      */
     function __construct($bdd, $param = array())
     {
-        $this->paramori = $param;
-        $this->param = $param;
         $this->table = "cohorte";
-        $this->id_auto = "1";
         $this->colonnes = array(
             "cohorte_id" => array(
                 "type" => 1,
@@ -50,35 +48,31 @@ class Cohorte extends ObjetBDD
      * Retourne la liste des déterminations de cohortes pour un poisson
      *
      * @param int $poisson_id
-     * @return array <tableau, boolean, $data, string>
+     * @return array 
      */
-    function getListByPoisson($poisson_id)
+    function getListByPoisson(int $poisson_id)
     {
-        if ($poisson_id > 0 && is_numeric($poisson_id)) {
-            $sql = "select cohorte_id, cohorte.poisson_id, cohorte_date, cohorte_commentaire,
+        $sql = "select cohorte_id, cohorte.poisson_id, cohorte_date, cohorte_commentaire,
 					cohorte_determination, evenement_type_libelle, cohorte.evenement_id,
 					cohorte_type_id, cohorte_type_libelle
 					from cohorte
 					left outer join cohorte_type using (cohorte_type_id)
 					left outer join evenement using (evenement_id)
 					left outer join evenement_type using (evenement_type_id)
-					where cohorte.poisson_id = " . $poisson_id . " order by cohorte_date desc";
-            return $this->getListeParam($sql);
-        }
+					where cohorte.poisson_id = :id order by cohorte_date desc";
+        return $this->getListeParamAsPrepared($sql, array("id" => $poisson_id));
     }
 
     /**
      * Lit un enregistrement à partir de l'événement
      *
-     * @param unknown $evenement_id
-     * @return Ambigous <multitype:, boolean, $data, string>
+     * @param int $evenement_id
+     * @return array
      */
-    function getDataByEvenement($evenement_id)
+    function getDataByEvenement(int $evenement_id)
     {
-        if ($evenement_id > 0 && is_numeric($evenement_id)) {
-            $sql = "select * from " . $this->table . " where evenement_id = " . $evenement_id;
-            return $this->lireParam($sql);
-        }
+        $sql = "select * from cohorte where evenement_id = :id";
+        return $this->lireParamAsPrepared($sql, array("id" => $evenement_id));
     }
 
     /**
@@ -94,10 +88,12 @@ class Cohorte extends ObjetBDD
             /*
              * S'il s'agit d'une determination expert, on force le sexe
              */
-            $poisson = new Poisson($this->connection, $this->paramori);
-            $dataPoisson = $poisson->lire($data["poisson_id"]);
+            if (!isset($this->poisson)) {
+                $this->poisson = $this->classInstanciate("Poisson", "poisson.class.php");
+            }
+            $dataPoisson = $this->poisson->lire($data["poisson_id"]);
             $dataPoisson["cohorte"] = $data["cohorte_determination"];
-            $poisson->ecrire($dataPoisson);
+            $this->poisson->ecrire($dataPoisson);
         }
         return $ret;
     }

@@ -5,15 +5,10 @@
  * @author quinton
  *        
  */
-require_once 'modules/classes/poissonRepro.class.php';
-class DosageSanguin extends \ObjetBDD {
-	
-	/**
-	 *
-	 * @param
-	 *        	instance ADODB
-	 *        	
-	 */
+
+class DosageSanguin extends ObjetBDD
+{
+	public PoissonCampagne $poissonCampagne;
 	private $sql = "select dosage_sanguin_id, poisson_campagne_id, dosage_sanguin_date, 
 					tx_e2, tx_e2_texte, tx_calcium, tx_hematocrite,
 					dosage_sanguin_commentaire,
@@ -22,63 +17,60 @@ class DosageSanguin extends \ObjetBDD {
 					from dosage_sanguin ds
 					left outer join evenement using (evenement_id)
 					left outer join evenement_type using (evenement_type_id)";
-	public function __construct($p_connection, $param = NULL) {
-		$this->param = $param;
-		$this->paramori = $param;
+	public function __construct($p_connection, $param = array())
+	{
 		$this->table = "dosage_sanguin";
-		$this->id_auto = "1";
-		$this->colonnes = array (
-				"dosage_sanguin_id" => array (
-						"type" => 1,
-						"key" => 1,
-						"requis" => 1,
-						"defaultValue" => 0 
-				),
-				"poisson_campagne_id" => array (
-						"type" => 1,
-						"requis" => 0,
-						"parentAttrib" => 1 
-				),
-				"dosage_sanguin_date" => array (
-						"type" => 2,
-						"requis" => 1,
-						"defaultValue" => "getDateJour" 
-				),
-				"tx_e2" => array (
-						"type" => 1 
-				),
-				"tx_e2_texte" => array (
-						"type" => 0 
-				),
-				"tx_calcium" => array (
-						"type" => 1 
-				),
-				"tx_hematocrite" => array(
-						"type" => 1
-				),
-				"dosage_sanguin_commentaire" => array (
-						"type" => 0 
-				),
-				"poisson_id" => array ("type" => 1),
-				"evenement_id" => array ("type"=>1)
+		$this->colonnes = array(
+			"dosage_sanguin_id" => array(
+				"type" => 1,
+				"key" => 1,
+				"requis" => 1,
+				"defaultValue" => 0
+			),
+			"poisson_campagne_id" => array(
+				"type" => 1,
+				"requis" => 0,
+				"parentAttrib" => 1
+			),
+			"dosage_sanguin_date" => array(
+				"type" => 2,
+				"requis" => 1,
+				"defaultValue" => "getDateJour"
+			),
+			"tx_e2" => array(
+				"type" => 1
+			),
+			"tx_e2_texte" => array(
+				"type" => 0
+			),
+			"tx_calcium" => array(
+				"type" => 1
+			),
+			"tx_hematocrite" => array(
+				"type" => 1
+			),
+			"dosage_sanguin_commentaire" => array(
+				"type" => 0
+			),
+			"poisson_id" => array("type" => 1),
+			"evenement_id" => array("type" => 1)
 		);
-		if (! is_array ( $param ))
-			$param = array();
-		$param ["fullDescription"] = 1;
-		
-		parent::__construct ( $p_connection, $param );
+		parent::__construct($p_connection, $param);
 	}
 	/**
 	 * Surcharge de la fonction ecrire pour rajouter le numero du poisson
 	 * @see ObjetBDD::write()
 	 */
-	function write($data) {
-		if ($data["poisson_campagne_id"] > 0 && is_numeric($data["poisson_campagne_id"])) {
+	function write($data)
+	{
+		if ($data["poisson_campagne_id"] > 0) {
 			/*
 			 * Recherche du numero du poisson
 			 */
-			$poissonCampagne = new PoissonCampagne($this->connection, $this->paramori);
-			$dataPoisson = $poissonCampagne->lire($data["poisson_campagne_id"]);
+			if (!isset($this->poissonCampagne)) {
+				$this->poissonCampagne = $this->classInstanciate("PoissonCampagne", "poissonCampagne.class.php");
+			}
+			$dataPoisson = $this->poissonCampagne->lire($data["poisson_campagne_id"]);
 			$data["poisson_id"] = $dataPoisson["poisson_id"];
 		}
 		return parent::ecrire($data);
@@ -89,39 +81,33 @@ class DosageSanguin extends \ObjetBDD {
 	 * @param int $id
 	 * @return array
 	 */
-	function getdataByEvenement($id) {
-		if ($id > 0 && is_numeric($id)) {
-			$sql = "select * from ".$this->table. " where evenement_id = ".$id;
-			return $this->lireParam($sql);
-		}
+	function getdataByEvenement(int $id)
+	{
+		$sql = "select * from dosage_sanguin where evenement_id = :id";
+		return $this->lireParamAsPrepared($sql, array("id" => $id));
 	}
-	
+
 	/**
 	 * Retourne l'ensemble des bilans sanguins pour un poisson, pour une campagne donnee
 	 * 
 	 * @param int $poissonCampagneId        	
-	 * @return NULL array
+	 * @return array
 	 */
-	function getListeFromPoissonCampagne($poissonCampagneId) {
-		if ($poissonCampagneId > 0 && is_numeric($poissonCampagneId)) {
-			$where = " where poisson_campagne_id = " . $poissonCampagneId . " 
-					order by dosage_sanguin_date";
-			return $this->getListeParam ( $this->sql.$where );
-		} else
-			return null;
+	function getListeFromPoissonCampagne($poissonCampagneId)
+	{
+		$where = " where poisson_campagne_id = :id
+						order by dosage_sanguin_date";
+		return $this->getListeParamAsPrepared($this->sql . $where, array("id" => $poissonCampagneId));
 	}
 	/**
 	 * Retourne la liste des dosages sanguins pour un poisson
 	 * @param int $poisson_id
-	 * @return tableau
+	 * @return array
 	 */
-	function getListeFromPoisson($poisson_id) {
-		if ($poisson_id > 0 && is_numeric($poisson_id)) {
-			$where = " where ds.poisson_id = ".$poisson_id." 
+	function getListeFromPoisson(int $poisson_id)
+	{
+		$where = " where ds.poisson_id = :id
 					order by dosage_sanguin_date desc";
-			return $this->getListeParam($this->sql.$where);
-		}
+		return $this->getListeParamAsPrepared($this->sql . $where, array("id" => $poisson_id));
 	}
 }
-
-?>

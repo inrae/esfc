@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @author : quinton
  * @date : 1 févr. 2016
@@ -11,7 +12,8 @@
  * @author quinton
  *
  */
-class Devenir extends ObjetBDD {
+class Devenir extends ObjetBDD
+{
 	private $sql = "select d1.*, dt1.devenir_type_libelle, sl1.localisation,
 			c.categorie_libelle, lot_nom,
 			d2.devenir_date as devenir_date_parent, dt2.devenir_type_libelle as devenir_type_libelle_parent,
@@ -35,93 +37,74 @@ class Devenir extends ObjetBDD {
 	/**
 	 * Constructeur
 	 * @param PDO $bdd
-	 * @param ARRAY $param
+	 * @param array $param
 	 */
-	function __construct($bdd,$param=null) {
-		$this->param = $param;
-		$this->paramori = $param;
-		$this->table="devenir";
-		$this->id_auto="1";
-		$this->colonnes=array(
-				"devenir_id"=>array("type"=>1,"key"=>1, "requis"=>1, "defaultValue"=>0),
-				"devenir_type_id"=>array("type"=>1, "requis"=>1),
-				"lot_id"=>array("type"=>1, "parentAttrib"=>1),
-				"sortie_lieu_id"=>array("type"=>1),
-				"categorie_id"=>array("type"=>1, "requis"=>1),
-				"devenir_date"=>array("type"=>2, "requis"=>1),
-				"poisson_nombre"=>array("type"=>1),
-				"parent_devenir_id"=>array("type"=>1)
-				
+	function __construct($bdd, $param = array())
+	{
+		$this->table = "devenir";
+		$this->colonnes = array(
+			"devenir_id" => array("type" => 1, "key" => 1, "requis" => 1, "defaultValue" => 0),
+			"devenir_type_id" => array("type" => 1, "requis" => 1),
+			"lot_id" => array("type" => 1, "parentAttrib" => 1),
+			"sortie_lieu_id" => array("type" => 1),
+			"categorie_id" => array("type" => 1, "requis" => 1),
+			"devenir_date" => array("type" => 2, "requis" => 1),
+			"poisson_nombre" => array("type" => 1),
+			"parent_devenir_id" => array("type" => 1)
+
 		);
-		if(!is_array($param)) $param==array();
-		$param["fullDescription"]=1;
-		parent::__construct($bdd,$param);
+		parent::__construct($bdd, $param);
 	}
 	/**
 	 * Retourne la liste des lachers realises
-	 * @param number $annee
-	 * @return tableau
+	 * @param int $annee
+	 * @return array
 	 */
-	function getListeFull ($annee=0) {
+	function getListeFull(int $annee = 0)
+	{
 		$where = "";
-		if ($annee > 0 && is_numeric($annee)) {
-			$where = " where extract(year from d1.devenir_date) = ".$annee;
+		$param = array();
+		if ($annee > 0) {
+			$where = " where extract(year from d1.devenir_date) = :annee";
+			$param["annee"] = $annee;
 		}
-		$this->types["devenir_date_parent"] = 2;
-		return $this->getListeParam($this->sql.$where.$this->sqlOrder);
+		$this->colonnes["devenir_date_parent"]["type"] = 2;
+		return $this->getListeParamAsPrepared($this->sql . $where . $this->sqlOrder, $param);
 	}
 	/**
 	 * Retourne la liste des devenirs pour un lot considere
 	 * @param int $lotId
-	 * @return tableau
+	 * @return array
 	 */
-	function getListFromLot($lotId) {
-		if ($lotId > 0 && is_numeric($lotId)) {
-			$where = " where d1.lot_id = ".$lotId;
-			$this->types["devenir_date_parent"] = 2;
-			return $this->getListeParam($this->sql.$where.$this->sqlOrder);
-		}
+	function getListFromLot(int $lotId)
+	{
+		$where = " where d1.lot_id = :id";
+		$this->colonnes["devenir_date_parent"]["type"] = 2;
+		return $this->getListeParamAsPrepared($this->sql . $where . $this->sqlOrder, array("id" => $lotId));
 	}
 
 	/**
 	 * Retourne la liste des devenirs potentiels pour un devenir considere
 	 * @param int $id : devenir_id fils
-	 * @param number $lotId : numero du lot
-	 * @param number $annee : annee de reproduction
-	 * @return tableau
+	 * @param int $lotId : numero du lot
+	 * @param int $annee : annee de reproduction
+	 * @return array
 	 */
-	function getParentsPotentiels($id, $lotId = 0, $annee = 0) {
-		if (is_numeric ($id) && is_numeric($lotId) && is_numeric ($annee)) {
-			$where = " where d1.devenir_id <> ".$id;
-			if ($lotId > 0)
-				$where .= " and d1.lot_id = ".$lotId;
-			if ($annee > 0)
-				$where = " and extract(year from d1.devenir_date) = ".$annee;
-			$this->types["devenir_date_parent"] = 2;
-			return $this->getListeParam($this->sql.$where.$this->sqlOrder);
+	function getParentsPotentiels(int $id, int $lot_id = 0, int $annee = 0)
+	{
+		$param = array("id" => $id);
+		$where = " where d1.devenir_id <> :id";
+		if ($lot_id > 0) {
+			$where .= " and d1.lot_id = :lot_id";
+			$param["lot_id"] = $lot_id;
 		}
+		if ($annee > 0) {
+			$where = " and extract(year from d1.devenir_date) = :annee";
+			$param["annee"] = $annee;
+		}
+		$where = " and extract(year from d1.devenir_date) = " . $annee;
+		$this->colonnes["devenir_date_parent"]["type"] = 2;
+		return $this->getListeParamAsPrepared($this->sql . $where . $this->sqlOrder, $param);
 	}
 }
 
-/**
- * ORM de gestion de la table devenir_type
- * @author quinton
- *
- */
-class DevenirType extends ObjetBDD {
-	function __construct($bdd,$param=null) {
-		$this->param = $param;
-		$this->paramori = $param;
-		$this->table="devenir_type";
-		$this->id_auto="0";
-		$this->colonnes=array(
-				"devenir_type_id"=>array("type"=>1,"key"=>1, "requis"=>1, "defaultValue"=>0),
-				"devenir_type_libelle"=>array("requis"=>1)
-				);
-		if(!is_array($param)) $param==array();
-		$param["fullDescription"]=1;
-		parent::__construct($bdd,$param);
-	}
-}
-
-?>
