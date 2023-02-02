@@ -1000,7 +1000,7 @@ class ObjetBDD
    *
    * @return array|bool
    */
-  function getListe($order = ""): array|bool
+  function getListe($order = "")
   {
     $sql = "select * from " . $this->table;
     if (strlen($order) > 0) {
@@ -1021,7 +1021,7 @@ class ObjetBDD
    *
    * @return array|bool
    */
-  function getList($order = ""): array|bool
+  function getList($order = "")
   {
     return $this->getListe($order);
   }

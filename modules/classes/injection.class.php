@@ -11,11 +11,8 @@
  *
  */
 class Injection extends ObjetBDD {
-	function __construct($bdd, $param = null) {
-		$this->param = $param;
-		$this->paramori = $param;
+	function __construct($bdd, $param = array()) {
 		$this->table = "injection";
-		$this->id_auto = "1";
 		$this->colonnes = array (
 				"injection_id" => array (
 						"type" => 1,
@@ -41,60 +38,24 @@ class Injection extends ObjetBDD {
 				"injection_dose" => array ("type"=>1),
 				"injection_commentaire" => array("type"=>0)
 		);
-		if (! is_array ( $param ))
-			$param = array();
-		$param ["fullDescription"] = 1;
 		parent::__construct ( $bdd, $param );
 	}
 
 	/**
 	 * Retourne la liste des injections pour un poisson
 	 * @param int $poisson_campagne_id
-	 * @return tableau|NULL
+	 * @return array
 	 */
-	function getListFromPoissonCampagne($poisson_campagne_id) {
-		if ($poisson_campagne_id > 0 && is_numeric($poisson_campagne_id)) {
+	function getListFromPoissonCampagne(int $poisson_campagne_id) {
+
 			$sql = "select injection_id, poisson_campagne_id, sequence_id, injection_date,
 					sequence_nom, injection_dose, injection_commentaire,
 					hormone_id, hormone_nom, hormone_unite
 					from injection
 					join sequence using (sequence_id)
 					left outer join hormone using (hormone_id)
-					where poisson_campagne_id = ".$poisson_campagne_id."
+					where poisson_campagne_id = :id
 					order by injection_date";
-			return $this->getListeParam($sql);
-		} else
-			return null;
+			return $this->getListeParamAsPrepared($sql, array("id"=>$poisson_campagne_id));
 	}
 }
-
-class Hormone extends ObjetBDD {
-	function __construct($bdd, $param = null) {
-		$this->param = $param;
-		$this->paramori = $param;
-		$this->table = "hormone";
-		$this->id_auto = "1";
-		$this->colonnes = array (
-				"hormone_id" => array (
-						"type" => 1,
-						"key" => 1,
-						"requis" => 1,
-						"defaultValue" => 0
-				),			
-				"hormone_nom" => array (
-						"type" => 0,
-						"requis" => 1
-				),
-				"hormone_unite" => array (
-						"type" => 0			
-				)
-		);
-		if (! is_array ( $param ))
-			$param = array();
-		$param ["fullDescription"] = 1;
-		parent::__construct ( $bdd, $param );
-	}
-	
-}
-
-?>

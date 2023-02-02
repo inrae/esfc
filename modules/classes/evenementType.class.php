@@ -36,16 +36,4 @@ class Evenement_type extends ObjetBDD
         );
         parent::__construct($bdd, $param);
     }
-
-    /**
-     * Reecriture de la fonction pour trier la liste
-     * (non-PHPdoc)
-     *
-     * @see ObjetBDD::getListe()
-     */
-    function getListe($order = "")
-    {
-        $sql = 'select * from ' . $this->table . ' order by evenement_type_libelle';
-        return $this->getListeParam($sql);
-    }
 }

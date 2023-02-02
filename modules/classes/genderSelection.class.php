@@ -1,4 +1,5 @@
 <?php
+
 /**
  * ORM de gestion de la table gender_selection
  *
@@ -7,7 +8,7 @@
  */
 class Gender_selection extends ObjetBDD
 {
-
+    public Poisson $poisson;
     /**
      * Constructeur de la classe
      *
@@ -17,8 +18,6 @@ class Gender_selection extends ObjetBDD
      */
     function __construct($bdd, $param = array())
     {
-        $this->param = $param;
-        $this->paramori = $param;
         $this->table = "gender_selection";
         $this->id_auto = "1";
         $this->colonnes = array(
@@ -66,10 +65,12 @@ class Gender_selection extends ObjetBDD
              * S'il s'agit d'une determination expert ou par échographie, on force le sexe
              */
             if ($data["gender_methode_id"] == 1 || $data["gender_methode_id"] == 4) {
-                $poisson = new Poisson($this->connection, $this->paramori);
-                $dataPoisson = $poisson->lire($data["poisson_id"]);
+                if (!isset($this->poisson)) {
+                    $this->poisson = $this->classInstanciate("Poisson", "poisson.class.php");
+                }
+                $dataPoisson = $this->poisson->lire($data["poisson_id"]);
                 $dataPoisson["sexe_id"] = $data["sexe_id"];
-                $poisson->ecrire($dataPoisson);
+                $this->poisson->ecrire($dataPoisson);
             }
         }
         return $ret;
@@ -83,8 +84,7 @@ class Gender_selection extends ObjetBDD
      */
     function getListByPoisson($poisson_id)
     {
-        if ($poisson_id > 0 && is_numeric($poisson_id)) {
-            $sql = "select gender_selection_id, g.poisson_id, gender_selection_date, gender_selection_commentaire,
+        $sql = "select gender_selection_id, g.poisson_id, gender_selection_date, gender_selection_commentaire,
 					gender_methode_libelle, sexe_libelle_court, sexe_libelle, g.evenement_id,
 					evenement_type_libelle
 					from gender_selection g
@@ -92,9 +92,8 @@ class Gender_selection extends ObjetBDD
 					left outer join sexe using (sexe_id)
 					left outer join evenement using (evenement_id)
 					left outer join evenement_type using (evenement_type_id)
-					where g.poisson_id = " . $poisson_id . " order by gender_selection_date desc";
-            return $this->getListeParam($sql);
-        }
+					where g.poisson_id = :id order by gender_selection_date desc";
+        return $this->getListeParamAsPrepared($sql, array("id" => $poisson_id));
     }
 
     /**
@@ -103,11 +102,9 @@ class Gender_selection extends ObjetBDD
      * @param int $evenement_id
      * @return array
      */
-    function getDataByEvenement($evenement_id)
+    function getDataByEvenement(int $evenement_id)
     {
-        if ($evenement_id > 0 && is_numeric($evenement_id)) {
-            $sql = "select * from gender_selection where evenement_id = " . $evenement_id;
-            return $this->lireParam($sql);
-        }
+        $sql = "select * from gender_selection where evenement_id = :id";
+        return $this->lireParamAsPrepared($sql, array("id" => $evenement_id));
     }
 }

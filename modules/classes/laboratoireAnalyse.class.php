@@ -1,4 +1,5 @@
 <?php
+
 /**
  * ORM de gestion de la table laboratoire_analyse
  *
@@ -15,7 +16,6 @@ class LaboratoireAnalyse extends ObjetBDD
 	 */
 	function __construct($bdd, $param = array())
 	{
-		$this->param = $param;
 		$this->table = "laboratoire_analyse";
 		$this->colonnes = array(
 			"laboratoire_analyse_id" => array(
@@ -40,7 +40,7 @@ class LaboratoireAnalyse extends ObjetBDD
 	 */
 	function getListeActif()
 	{
-		$sql = "select * from " . $this->table . "
+		$sql = "select * from laboratoire_analyse
 				where laboratoire_analyse_actif = 1
 				order by laboratoire_analyse_libelle";
 		return $this->getListeParam($sql);

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * ORM de gestion de la table ventilation
  *
@@ -65,31 +66,28 @@ class Genetique extends ObjetBDD
      * @param int $poisson_id
      * @param
      *            int annee : annee de la campagne de reproduction, si requis
-     * @return tableau
+     * @return array
      */
-    function getListByPoisson($poisson_id, $annee = 0)
+    function getListByPoisson(int $poisson_id, int $annee = 0)
     {
-        if (is_numeric($poisson_id) && $poisson_id > 0) {
-            $where = " where g.poisson_id = " . $poisson_id;
-            if (is_numeric($annee) && $annee > 0) {
-                $where .= " and extract(year from genetique_date) = " . $annee;
-            }
-            return $this->getListeParam($this->sql . $where . $this->order);
+        $param = array("poisson_id" => $poisson_id);
+        $where = " where g.poisson_id = :poisson_id" . $poisson_id;
+        if ($annee > 0) {
+            $where .= " and extract(year from genetique_date) = :annee";
+            $param["annee"] = $annee;
         }
+        return $this->getListeParamAsPrepared($this->sql . $where . $this->order, $param);
     }
 
     /**
      * Retrouve le prelevement attache a l'evenement
      *
      * @param int $evenement_id
-     * @return array|NULL
+     * @return array
      */
-    function getDataByEvenement($evenement_id)
+    function getDataByEvenement(int $evenement_id)
     {
-        if ($evenement_id > 0 && is_numeric($evenement_id)) {
-            $where = " where evenement_id = " . $evenement_id;
-            return $this->lireParam($this->sql . $where);
-        } else
-            return null;
+        $where = " where evenement_id = :id ";
+        return $this->lireParamAsPrepared($this->sql . $where, array("id" => $evenement_id));
     }
 }

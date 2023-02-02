@@ -17,9 +17,7 @@ class Gender_methode extends ObjetBDD
      */
     function __construct($bdd, $param = array())
     {
-        $this->param = $param;
         $this->table = "gender_methode";
-        $this->id_auto = 1;
         $this->colonnes = array(
             "gender_methode_id" => array(
                 "type" => 1,
