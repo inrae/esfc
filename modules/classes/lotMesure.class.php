@@ -1,4 +1,5 @@
 <?php
+
 /**
  * ORM de gestion de la table lot_mesure
  *
@@ -7,6 +8,7 @@
  */
 class LotMesure extends ObjetBDD
 {
+	public Lot $lot;
 	/**
 	 * Constructeur de la classe
 	 *
@@ -60,19 +62,16 @@ class LotMesure extends ObjetBDD
 	 * Retourne la liste des mesures pur un lot
 	 *
 	 * @param int $lot_id        	
-	 * @return tableau|NULL
+	 * @return array
 	 */
-	function getListFromLot($lot_id)
+	function getListFromLot(int $lot_id)
 	{
-		if ($lot_id > 0 && is_numeric($lot_id)) {
-			$sql = "select lot_mesure_id, lot_id, lot_mesure_date, nb_jour, lot_mortalite,
+		$sql = "select lot_mesure_id, lot_id, lot_mesure_date, nb_jour, lot_mortalite,
 					lot_mesure_masse, lot_mesure_masse_indiv
 					from lot_mesure
-					where lot_id = " . $lot_id . "
+					where lot_id = :id
 					order by lot_mesure_date";
-			return $this->getListeParam($sql);
-		} else
-			return null;
+		return $this->getListeParamAsPrepared($sql, array("id" => $lot_id));
 	}
 
 	/**
@@ -87,8 +86,10 @@ class LotMesure extends ObjetBDD
 		 * Calcul du nombre de jours depuis l'éclosion
 		 */
 		if ($data["lot_id"] > 0 && strlen($data["lot_mesure_date"]) > 0) {
-			$lot = new Lot($this->connection, $this->paramori);
-			$dataLot = $lot->lire($data["lot_id"]);
+			if (!isset($this->lot)) {
+				$this->lot = $this->classInstanciate("Lot", "lot.class.php");
+			}
+			$dataLot = $this->lot->lire($data["lot_id"]);
 			$dateDebut = date_parse_from_format("d/m/Y", $dataLot["eclosion_date"]);
 			$dateFin = date_parse_from_format("d/m/Y", $data["lot_mesure_date"]);
 			$nbJours = round((strtotime($dateFin["year"] . "-" . $dateFin["month"] . "-" . $dateFin["day"]) - strtotime($dateDebut["year"] . "-" . $dateDebut["month"] . "-" . $dateDebut["day"])) / (60 * 60 * 24));
@@ -102,38 +103,35 @@ class LotMesure extends ObjetBDD
 	/**
 	 * Retourne le nombre de poissons morts et la derniere masse individuelle connue
 	 * pour un lot a une date connue
-	 * @param unknown $lot_id
-	 * @param unknown $date
-	 * @return array|NULL
+	 * @param int $lot_id
+	 * @param string $date
+	 * @return array
 	 */
-	function getMesureAtDate($lot_id, $date)
+	function getMesureAtDate(int $lot_id, string $date)
 	{
-		if ($lot_id > 0  && is_numeric($lot_id) && strlen($date) > 0) {
-			$date = $this->encodeData($date);
-			$date = $this->formatDateLocaleVersDB($date);
-			/*
+		$date = $this->formatDateLocaleVersDB($date);
+		/*
 			 * Recuperation de la mortalite totale
 			 */
-			$sql = "select sum(lot_mortalite) as lot_mortalite
+		$param = array("lot_id" => $lot_id, "date" => $date);
+		$sql = "select sum(lot_mortalite) as lot_mortalite
 					from lot_mesure
-					where lot_mesure_date <= '" . $date . "' 
-						and lot_id = " . $lot_id;
-			$data = $this->lireParam($sql);
-			if (!is_array($data))
-				$data["lot_mortalite"] = 0;
-			/*
+					where lot_mesure_date <= :date
+						and lot_id = :lot_id";
+		$data = $this->lireParamAsPrepared($sql, $param);
+		if (!is_array($data))
+			$data["lot_mortalite"] = 0;
+		/*
 			 * Recuperation de la derniere masse individuelle connue
 			 */
-			$sql = "select lot_mesure_masse_indiv 
+		$sql = "select lot_mesure_masse_indiv 
 					from lot_mesure
-					where lot_mesure_date <= '" . $date . "' 
-						and lot_id = " . $lot_id . "
+					where lot_mesure_date <= :date
+						and lot_id = :lot_id 
 					order by lot_mesure_date desc
 					limit 1";
-			$dataMasse = $this->lireParam($sql);
-			$data["masse_indiv"] = $dataMasse["lot_mesure_masse_indiv"];
-			return $data;
-		} else
-			return null;
+		$dataMasse = $this->lireParamAsPrepared($sql, $param);
+		$data["masse_indiv"] = $dataMasse["lot_mesure_masse_indiv"];
+		return $data;
 	}
 }

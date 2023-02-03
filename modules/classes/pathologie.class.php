@@ -1,4 +1,5 @@
 <?php
+
 /**
  * ORM de gestion de la table pathologie
  *
@@ -17,10 +18,8 @@ class Pathologie extends ObjetBDD
      */
     function __construct($bdd, $param = array())
     {
-        $this->paramori = $param;
-        $this->param = $param;
+
         $this->table = "pathologie";
-        $this->id_auto = "1";
         $this->colonnes = array(
             "pathologie_id" => array(
                 "type" => 1,
@@ -56,34 +55,30 @@ class Pathologie extends ObjetBDD
     /**
      * Retourne la liste des pathologies pour un poisson
      *
-     * @param unknown $poisson_id
-     * @return Ambigous <tableau, boolean, $data, string>
+     * @param int $poisson_id
+     * @return array
      */
-    function getListByPoisson($poisson_id)
+    function getListByPoisson(int $poisson_id)
     {
-        if ($poisson_id > 0 && is_numeric($poisson_id)) {
-            $sql = "select pathologie_id, patho.poisson_id, pathologie_date, pathologie_commentaire,
+        $sql = "select pathologie_id, patho.poisson_id, pathologie_date, pathologie_commentaire,
 					pathologie_type_libelle, evenement_type_libelle, patho.evenement_id
 					from pathologie patho
 					left outer join pathologie_type using (pathologie_type_id)
 					left outer join evenement using (evenement_id)
 					left outer join evenement_type using (evenement_type_id)
-					where patho.poisson_id = " . $poisson_id . " order by pathologie_date desc";
-            return $this->getListeParam($sql);
-        }
+					where patho.poisson_id = :id order by pathologie_date desc";
+        return $this->getListeParamAsPrepared($sql, array("id" => $poisson_id));
     }
 
     /**
      * Lit un enregistrement à partir de l'événement
      *
-     * @param unknown $evenement_id
-     * @return Ambigous <multitype:, boolean, $data, string>
+     * @param int $evenement_id
+     * @return array
      */
-    function getDataByEvenement($evenement_id)
+    function getDataByEvenement(int $evenement_id)
     {
-        if ($evenement_id > 0 && is_numeric($evenement_id)) {
-            $sql = "select * from pathologie where evenement_id = " . $evenement_id;
-            return $this->lireParam($sql);
-        }
+        $sql = "select * from pathologie where evenement_id = :id";
+        return $this->lireParamAsPrepared($sql, array("id" => $evenement_id));
     }
 }

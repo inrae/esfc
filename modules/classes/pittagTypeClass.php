@@ -17,9 +17,7 @@ class Pittag_type extends ObjetBDD
      */
     function __construct($bdd, $param = array())
     {
-        $this->param = $param;
         $this->table = "pittag_type";
-        $this->id_auto = "1";
         $this->colonnes = array(
             "pittag_type_id" => array(
                 "type" => 1,

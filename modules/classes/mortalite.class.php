@@ -1,4 +1,5 @@
 <?php
+
 /**
  * ORM de gestion de la table mortalite
  *
@@ -7,6 +8,7 @@
  */
 class Mortalite extends ObjetBDD
 {
+    public Poisson $poisson;
 
     /**
      * Constructeur de la classe
@@ -18,7 +20,6 @@ class Mortalite extends ObjetBDD
     function __construct($bdd, $param = array())
     {
         $this->table = "mortalite";
-        $this->id_auto = "1";
         $this->colonnes = array(
             "mortalite_id" => array(
                 "type" => 1,
@@ -62,14 +63,16 @@ class Mortalite extends ObjetBDD
             /*
              * Lecture du poisson
              */
-            $poisson = new Poisson($this->connection, $this->paramori);
-            $dataPoisson = $poisson->lire($data["poisson_id"]);
+            if (!isset($this->poisson)) {
+                $this->poisson = $this->classInstanciate("Poisson", "poisson.class.php");
+            }
+            $dataPoisson = $this->poisson->lire($data["poisson_id"]);
             if ($dataPoisson["poisson_id"] > 0 && $dataPoisson["poisson_statut_id"] == 1) {
                 /*
                  * Mise a niveau du statut : le poisson est mort
                  */
                 $dataPoisson["poisson_statut_id"] = 2;
-                $poisson->ecrire($dataPoisson);
+                $this->poisson->ecrire($dataPoisson);
             }
         }
         return $mortalite_id;
@@ -78,21 +81,19 @@ class Mortalite extends ObjetBDD
     /**
      * Retourne la liste des mortalites pour un poisson
      *
-     * @param unknown $poisson_id
-     * @return Ambigous <tableau, boolean, $data, string>
+     * @param int $poisson_id
+     * @return array
      */
-    function getListByPoisson($poisson_id)
+    function getListByPoisson(int $poisson_id)
     {
-        if ($poisson_id > 0 && is_numeric($poisson_id)) {
-            $sql = "select mortalite_id, mortalite.poisson_id, mortalite_date, mortalite_commentaire,
+        $sql = "select mortalite_id, mortalite.poisson_id, mortalite_date, mortalite_commentaire,
 					mortalite_type_libelle, evenement_type_libelle, mortalite.evenement_id
 					from mortalite 
 					left outer join mortalite_type using (mortalite_type_id)
 					left outer join evenement using (evenement_id)
 					left outer join evenement_type using (evenement_type_id)
-					where mortalite.poisson_id = " . $poisson_id . " order by mortalite_date desc";
-            return $this->getListeParam($sql);
-        }
+					where mortalite.poisson_id = :id order by mortalite_date desc";
+        return $this->getListeParamAsPrepared($sql, array("id" => $poisson_id));
     }
 
     /**
@@ -101,11 +102,9 @@ class Mortalite extends ObjetBDD
      * @param int $evenement_id
      * @return array
      */
-    function getDataByEvenement($evenement_id)
+    function getDataByEvenement(int $evenement_id)
     {
-        if ($evenement_id > 0 && is_numeric($evenement_id)) {
-            $sql = "select * from mortalite where evenement_id = " . $evenement_id;
-            return $this->lireParam($sql);
-        }
+        $sql = "select * from mortalite where evenement_id = :id";
+        return $this->lireParamAsPrepared($sql, array("id" => $evenement_id));
     }
 }

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * ORM de gestion de la table metal
  *
@@ -43,7 +44,7 @@ class Metal extends ObjetBDD
 	 * Retourne la liste des metaux analyses, selon qu'ils sont actifs ou non
 	 *
 	 * @param number $actif        	
-	 * @return tableau
+	 * @return array
 	 */
 	function getListActif($actif = 1)
 	{
@@ -60,25 +61,27 @@ class Metal extends ObjetBDD
 	 * Retourne la liste des metaux actifs qui ne figurent pas dans la liste fournie
 	 *
 	 * @param array $analyse        	
-	 * @return tableau
+	 * @return array
 	 */
-	function getListActifInconnu($analyse)
+	function getListActifInconnu(array $analyse)
 	{
 		$sql = "select * from metal";
 		$order = " order by metal_nom";
 		$where = " where metal_actif = 1";
+		$param = array();
 		if (count($analyse) > 0) {
+			$i = 1;
 			$where .= " and metal_id not in ( ";
-			$comma = false;
-			foreach ($analyse as $key => $value) {
-				if ($comma == true) {
+
+			foreach ($analyse as $value) {
+				if ($i > 0) {
 					$where .= ",";
-				} else
-					$comma = true;
-				$where .= $value["metal_id"];
+				}
+				$param["metal" . $i] = $value["metal_id"];
+				$where .= "metal" . $i;
 			}
 			$where .= ")";
 		}
-		return $this->getListeParam($sql . $where . $order);
+		return $this->getListeParamAsPrepared($sql . $where . $order, $param);
 	}
 }

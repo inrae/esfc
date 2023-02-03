@@ -35,15 +35,12 @@ class LotRepartTemplate extends ObjetBDD
 	 * Retourne la quantite a distribuer en fonction de l'age (en jours)
 	 * 
 	 * @param int $age        	
-	 * @return array|NULL
+	 * @return array
 	 */
-	function getFromAge($age)
+	function getFromAge(int $age)
 	{
-		if ($age > 0 && is_numeric($age)) {
-			$sql = "select * from lot_repart_template
-				where age = " . $age;
-			return $this->lireParam($sql);
-		} else
-			return null;
+		$sql = "select * from lot_repart_template
+				where age = :age";
+		return $this->lireParamAsPrepared($sql, array("age" => $age));
 	}
 }

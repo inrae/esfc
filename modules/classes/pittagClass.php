@@ -1,4 +1,5 @@
 <?php
+
 /**
  * ORM de gestion de la table pittag
  *
@@ -17,9 +18,7 @@ class Pittag extends ObjetBDD
      */
     function __construct($bdd, $param = array())
     {
-        $this->param = $param;
         $this->table = "pittag";
-        $this->id_auto = "1";
         $this->colonnes = array(
             "pittag_id" => array(
                 "type" => 1,
@@ -45,9 +44,6 @@ class Pittag extends ObjetBDD
                 "type" => 0
             )
         );
-        if (! is_array($param))
-            $param = array();
-        $param["fullDescription"] = 1;
         parent::__construct($bdd, $param);
     }
 
@@ -58,22 +54,21 @@ class Pittag extends ObjetBDD
      * @param int $limit
      * @return array
      */
-    function getListByPoisson($poisson_id, $limit = 0)
+    function getListByPoisson(int $poisson_id, int $limit = 0)
     {
-        if ($poisson_id > 0 && is_numeric($poisson_id)) {
-            $sql = "select pittag_id, poisson_id, pittag_date_pose, pittag_valeur, pittag_type_libelle,
+        $param = array("poisson_id" => $poisson_id);
+        $sql = "select pittag_id, poisson_id, pittag_date_pose, pittag_valeur, pittag_type_libelle,
 					pittag_commentaire
 					from pittag
 					left outer join pittag_type using (pittag_type_id)
-					where poisson_id = " . $poisson_id . " order by pittag_date_pose desc, pittag_id desc";
-            if ($limit > 0 && is_numeric($limit)) {
-                $sql .= " limit " . $limit;
-            }
-            if ($limit == 1) {
-                return $this->lireParam($sql);
-            } else {
-                return $this->getListeParam($sql);
-            }
+					where poisson_id = :poisson_id order by pittag_date_pose desc, pittag_id desc";
+        if ($limit > 0 && is_numeric($limit)) {
+            $sql .= " limit " . $limit;
+        }
+        if ($limit == 1) {
+            return $this->lireParamAsPrepared($sql, $param);
+        } else {
+            return $this->getListeParamAsPrepared($sql, $param);
         }
     }
 }

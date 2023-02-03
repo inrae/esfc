@@ -1,12 +1,10 @@
 <?php
+
 /**
  * @author Eric Quinton
  * @copyright Copyright (c) 2014, IRSTEA / Eric Quinton
  *  Creation 18 févr. 2014
  */
-include_once 'modules/classes/categorie.class.php';
-include_once 'modules/classes/evenement.class.php';
-include_once 'modules/classes/documentSturio.class.php';
 
 /**
  * ORM de gestion de la table poisson
@@ -16,7 +14,12 @@ include_once 'modules/classes/documentSturio.class.php';
  */
 class Poisson extends ObjetBDD
 {
-
+    public Lot $lot;
+    public Parent_poisson $parent_poisson;
+    public Evenement $evenement;
+    public DocumentLie $documentLie;
+    public Pittag $pittag;
+    public DocumentSturio $documentSturio;
     /**
      * Constructeur de la classe
      *
@@ -26,10 +29,7 @@ class Poisson extends ObjetBDD
      */
     function __construct($bdd, $param = array())
     {
-        $this->param = $param;
-        $this->paramori = $param;
         $this->table = "poisson";
-        $this->id_auto = "1";
         $this->colonnes = array(
             "poisson_id" => array(
                 "type" => 1,
@@ -84,92 +84,84 @@ class Poisson extends ObjetBDD
      */
     function getListeSearch($dataSearch)
     {
-        if (is_array($dataSearch)) {
-            $dataSearch = $this->encodeData($dataSearch);
-            $sql = "select poisson_id, sexe_id, matricule, prenom, cohorte, capture_date, sexe_libelle, sexe_libelle_court, poisson_statut_libelle,commentaire,
+
+        $sql = "select poisson_id, sexe_id, matricule, prenom, cohorte, capture_date, 
+                sexe_libelle, sexe_libelle_court, poisson_statut_libelle,commentaire,
 					pittag_valeur,
 					mortalite_date,
 					categorie_id, categorie_libelle";
-            $from = " from " . $this->table . " natural join sexe
-					  natural join poisson_statut
-					  natural join categorie
-					  left outer join mortalite using (poisson_id)					  
-					  left outer join v_pittag_by_poisson using (poisson_id)";
-            if ($dataSearch["displayMorpho"] == 1) {
-                $sql .= ", longueur_fourche, longueur_totale, masse";
-                $from .= " left outer join v_poisson_last_lf using (poisson_id)
+        $from = " from poisson 
+                    join sexe using (sexe_id)
+					join poisson_statut using (poisson_statut_id)
+					join categorie using (categorie_id)
+					left outer join mortalite using (poisson_id)					  
+					left outer join v_pittag_by_poisson using (poisson_id)";
+        if ($dataSearch["displayMorpho"] == 1) {
+            $sql .= ", longueur_fourche, longueur_totale, masse";
+            $from .= " left outer join v_poisson_last_lf using (poisson_id)
 					  left outer join v_poisson_last_lt using (poisson_id)
 					  left outer join v_poisson_last_masse using (poisson_id) ";
-            }
-            if ($dataSearch["displayBassin"] == 1 || $dataSearch["site_id"]> 0) {
-                $sql .= ", bassin_id, bassin_nom, site_id, site_name";
-                $from .= " left outer join v_poisson_last_bassin using (poisson_id)
-                            left outer join site using (site_id)";
-            }
-            /*
-             * Preparation de la clause group by
-             */
-            /*
-             * $group = " group by poisson_id, sexe_id, matricule, prenom,
-             * cohorte, capture_date, sexe_libelle, sexe_libelle_court, poisson_statut_libelle, mortalite_date,
-             * categorie_id, categorie_libelle, commentaire ";
-             */
-            /*
-             * Preparation de la clause order
-             */
-            $order = " order by matricule ";
-            /*
-             * Preparation de la clause where
-             */
-            $where = " where ";
-            $and = "";
-            if ($dataSearch["statut"] > 0 && is_numeric($dataSearch["statut"])) {
-                $where .= $and . " poisson_statut_id = " . $dataSearch["statut"];
-                $and = " and ";
-            }
-            if ($dataSearch["categorie"] > 0 && is_numeric($dataSearch["categorie"])) {
-                $where .= $and . " categorie_id = " . $dataSearch["categorie"];
-                $and = " and ";
-            }
-            if ($dataSearch["sexe"] > 0 && is_numeric($dataSearch["sexe"])) {
-                $where .= $and . " sexe_id = " . $dataSearch["sexe"];
-                $and = " and ";
-            }
-            if (strlen($dataSearch["texte"]) > 0) {
-                $texte = "%" . mb_strtoupper($dataSearch["texte"], 'UTF-8') . "%";
-                $where .= $and . " (upper(matricule) like '" . $texte . "' 
-						or upper(prenom) like '" . $texte . "' 
-						or cohorte like '" . $texte . "' 
-						or upper(pittag_valeur) like '" . $texte . "'";
-                if (is_numeric($dataSearch["texte"])) {
-                    $where .= " or poisson_id = " . $dataSearch["texte"];
-                }
-                $where .= ")";
-                $and = " and ";
-            }
-            if ($dataSearch["site_id"] > 0 && is_numeric($dataSearch["site_id"])) {
-                $where .= $and . " site_id = " . $dataSearch["site_id"];
-                $and = " and ";
-            }
-            if (strlen($where) > 7)
-                $data = $this->getListeParam($sql . $from . $where . /*$group .*/ $order);
-            /*
-             * Mise en forme des dates
-             */
-            foreach ($data as $key => $value) {
-                if (strlen($value["mortalite_date"]) > 0)
-                    $data[$key]["mortalite_date"] = $this->formatDateDBversLocal($value["mortalite_date"]);
-            }
-            /*
-             * Recherche des temperatures cumulees
-             */
-            if ($dataSearch["displayCumulTemp"] == 1) {
-                foreach ($data as $key => $value) {
-                    $data[$key]["temperature"] = $this->calcul_temperature($value["poisson_id"], $dataSearch["dateDebutTemp"], $dataSearch["dateFinTemp"]);
-                }
-            }
-            return ($data);
         }
+        if ($dataSearch["displayBassin"] == 1 || $dataSearch["site_id"] > 0) {
+            $sql .= ", bassin_id, bassin_nom, site_id, site_name";
+            $from .= " left outer join v_poisson_last_bassin using (poisson_id)
+                            left outer join site using (site_id)";
+        }
+        /**
+         * Preparation de la clause order
+         */
+        $order = " order by matricule ";
+        /**
+         * Preparation de la clause where
+         */
+        $where = " where ";
+        $and = "";
+        if ($dataSearch["statut"] > 0) {
+            $where .= $and . " poisson_statut_id = :poisson_statut_id";
+            $param["poisson_statut_id"] = $dataSearch["statut"];
+            $and = " and ";
+        }
+        if ($dataSearch["categorie"] > 0) {
+            $where .= $and . " categorie_id = :categorie_id";
+            $param["categorie_id"] = $dataSearch["categorie"];
+            $and = " and ";
+        }
+        if ($dataSearch["sexe"] > 0) {
+            $where .= $and . " sexe_id = :sexe_id";
+            $param["sexe_id"] = $dataSearch["sexe"];
+            $and = " and ";
+        }
+        if (strlen($dataSearch["texte"]) > 0) {
+            $texte = "%" . mb_strtoupper($dataSearch["texte"], 'UTF-8') . "%";
+            $where .= $and . " (upper(matricule) like :texte
+						or upper(prenom) like :texte
+						or cohorte like :texte
+						or upper(pittag_valeur) like :texte";
+            $param["texte"] = $texte;
+            if (is_numeric($dataSearch["texte"])) {
+                $where .= " or poisson_id = :texte";
+            }
+            $where .= ")";
+            $and = " and ";
+        }
+        if ($dataSearch["site_id"] > 0) {
+            $where .= $and . " site_id = :site_id ";
+            $param["site_id"] = $dataSearch["site_id"];
+            $and = " and ";
+        }
+        if (strlen($where) > 7) {
+            $this->colonnes["mortalite_date"] = array("type" => 2);
+            $data = $this->getListeParamAsPrepared($sql . $from . $where . $order, $param);
+        }
+        /**
+         * Recherche des temperatures cumulees
+         */
+        if ($dataSearch["displayCumulTemp"] == 1) {
+            foreach ($data as $key => $value) {
+                $data[$key]["temperature"] = $this->calcul_temperature($value["poisson_id"], $dataSearch["dateDebutTemp"], $dataSearch["dateFinTemp"]);
+            }
+        }
+        return ($data);
     }
 
     /**
@@ -178,10 +170,9 @@ class Poisson extends ObjetBDD
      * @param int $poisson_id
      * @return array
      */
-    function getDetail($poisson_id)
+    function getDetail(int $poisson_id)
     {
-        if ($poisson_id > 0 && is_numeric($poisson_id)) {
-            $sql = "select p.poisson_id, sexe_id, matricule, prenom, cohorte, capture_date, sexe_libelle, sexe_libelle_court, poisson_statut_libelle,
+        $sql = "select p.poisson_id, sexe_id, matricule, prenom, cohorte, capture_date, sexe_libelle, sexe_libelle_court, poisson_statut_libelle,
 					pittag_valeur, p.poisson_statut_id, date_naissance,
 					bassin_nom, b.bassin_id, b.site_id, site_name, 
 					categorie_id, categorie_libelle, commentaire
@@ -195,10 +186,8 @@ class Poisson extends ObjetBDD
                       left outer join bassin b on (b.bassin_id = (case when t.bassin_destination is not null then t.bassin_destination else t.bassin_origine end))*/
                       left outer join v_poisson_last_bassin b using (poisson_id)
                       left outer join site on (b.site_id = site.site_id)
-							";
-            $where = " where p.poisson_id = " . $poisson_id;
-            return $this->lireParam($sql . $where);
-        }
+					 where p.poisson_id = :poisson_id";
+        return $this->lireParamAsPrepared($sql, array("poisson_id" => $poisson_id));
     }
 
     /**
@@ -210,15 +199,17 @@ class Poisson extends ObjetBDD
     function getListPoissonFromName($libelle)
     {
         if (strlen($libelle) > 0) {
-            $libelle = $this->encodeData($libelle);
+            $libelle = "%" . $libelle . "%";
             $sql = "select poisson.poisson_id, matricule, prenom, pittag_valeur 
-					from " . $this->table . "
+					from poisson
 					left outer join v_pittag_by_poisson using (poisson_id)
-					where upper(matricule) like upper('%" . $libelle . "%') 
-					or upper(prenom) like upper('%" . $libelle . "%')
-					or upper(pittag_valeur) like upper('%" . $libelle . "%')
+					where upper(matricule) like upper(:libelle) 
+					or upper(prenom) like upper(:libelle)
+					or upper(pittag_valeur) like upper(:libelle)
 					order by matricule, pittag_valeur, prenom";
-            return $this->getListeParam($sql);
+            return $this->getListeParamAsPrepared($sql, array("libelle" => $libelle));
+        } else {
+            return array();
         }
     }
 
@@ -236,9 +227,10 @@ class Poisson extends ObjetBDD
          */
         $dataLot = array();
         if ($data["vie_modele_id"] > 0) {
-            require_once 'modules/classes/lot.class.php';
-            $lot = new Lot($this->connection, $this->paramori);
-            $dataLot = $lot->getFromVieModele($data["vie_modele_id"]);
+            if (!isset($this->lot)) {
+                $this->lot = $this->classInstanciate("Lot", "lot.class.php");
+            }
+            $dataLot = $this->lot->getFromVieModele($data["vie_modele_id"]);
             if ($dataLot["lot_id"] > 0) {
                 /*
                  * Mise a jour de la date de naissance
@@ -258,12 +250,12 @@ class Poisson extends ObjetBDD
             /*
              * Recuperation et ecriture des parents
              */
-            $parents = $lot->getParents($dataLot["lot_id"]);
+            $parents = $this->lot->getParents($dataLot["lot_id"]);
             $parentArray = array();
             /*
              * Formatage de la liste en tableau simple, pour prise en compte par la fonction ad-hoc
              */
-            foreach ($parents as $key => $value)
+            foreach ($parents as $value)
                 $parentArray[] = $value["poisson_id"];
             /*
              * Ecriture des parents
@@ -282,64 +274,74 @@ class Poisson extends ObjetBDD
      */
     function supprimer($id)
     {
-        if ($id > 0 && is_numeric($id)) {
-            $retour = 0;
-            /*
+
+        $retour = 0;
+        /*
              * Vérification des liens non supprimables
              */
-            /*
+        /*
              * Recherche des poissons "enfants"
              */
-            $parent_poisson = new Parent_poisson($this->connection, $this->paramori);
-            $listeEnfant = $parent_poisson->lireEnfant($id);
-            if (is_array($listeEnfant) == true && count($listeEnfant) > 0) {
-                $detailEnfant = "";
-                foreach ($listeEnfant as $key => $value)
-                    $detailEnfant .= $value["matricule"] . " ";
-                $retour = - 1;
-                $this->errorData[] = array(
-                    "code" => 0,
-                    "message" => "Le poisson est défini comme le parent d'autres poissons (" . $detailEnfant . ")"
-                );
-            }
-            if ($retour == 0) {
-                /*
+        if (!isset($this->parent_poisson)) {
+            $this->parent_poisson = $this->classInstanciate("Parent_poisson", "parent_poisson.class.php");
+        }
+        $listeEnfant = $this->parent_poisson->lireEnfant($id);
+        if (is_array($listeEnfant) == true && count($listeEnfant) > 0) {
+            $detailEnfant = "";
+            foreach ($listeEnfant as $key => $value)
+                $detailEnfant .= $value["matricule"] . " ";
+            $retour = -1;
+            $this->errorData[] = array(
+                "code" => 0,
+                "message" => "Le poisson est défini comme le parent d'autres poissons (" . $detailEnfant . ")"
+            );
+        }
+        if ($retour == 0) {
+            /*
                  * Vérification des événements
                  */
-                $evenement = new Evenement($this->connection, $this->paramori);
-                $listeEvenement = $evenement->getEvenementByPoisson($id);
-                if (is_array($listeEvenement) && count($listeEvenement) > 0) {
-                    $retour = - 1;
-                    $this->errorData[] = array(
-                        "code" => 0,
-                        "message" => "Le poisson contient des événements qui doivent être supprimés préalablement"
-                    );
-                }
+            if (!isset($this->evenement)) {
+                $this->evenement = $this->classInstanciate("Evenement", "evenement.class.php");
             }
-            if ($retour == 0) {
-                /*
-                 * Suppression dans les tables liées
-                 */
-                /*
-                 * Documents
-                 */
-                $documentLie = new DocumentLie($this->connection, $this->paramori, "poisson");
-                $listeDocument = $documentLie->getListeDocument($id);
-                $documentSturio = new DocumentSturio($this->connection, $this->paramori);
-                foreach ($listeDocument as $key => $value) {
-                    if ($value["document_id"] > 0)
-                        $documentSturio->supprimer($value["document_id"]);
-                }
-                /*
-                 * Pittag
-                 */
-                $pittag = new Pittag($this->connection, $this->paramori);
-                $pittag->supprimerChamp($id, "poisson_id");
-                /*
-                 * Suppression du poisson
-                 */
-                $retour = parent::supprimer($id);
+            $listeEvenement = $this->evenement->getEvenementByPoisson($id);
+            if (is_array($listeEvenement) && count($listeEvenement) > 0) {
+                $retour = -1;
+                $this->errorData[] = array(
+                    "code" => 0,
+                    "message" => "Le poisson contient des événements qui doivent être supprimés préalablement"
+                );
             }
+        }
+        if ($retour == 0) {
+            /*
+             * Suppression dans les tables liées
+             */
+            /*
+             * Documents
+             */
+            if (isset($this->documentLie)) {
+                include_once $this->classpath . "/documentLie.class.php";
+                $this->documentLie = new DocumentLie($this->connection, $this->paramori, "poisson");
+            }
+            if (!isset($this->documentSturio)) {
+                $this->documentSturio = $this->classInstanciate("DocumentSturio", "documentSturio.class.php");
+            }
+            $listeDocument = $this->documentLie->getListeDocument($id);
+            foreach ($listeDocument as  $value) {
+                if ($value["document_id"] > 0)
+                    $this->documentSturio->supprimer($value["document_id"]);
+            }
+            /*
+             * Pittag
+             */
+            if (!isset($this->pittag)) {
+                $this->pittag = $this->classInstanciate("Pittag", "pittag.class.php");
+            }
+            $pittag->supprimerChamp($id, "poisson_id");
+            /*
+             * Suppression du poisson
+             */
+            $retour = parent::supprimer($id);
         }
         return $retour;
     }

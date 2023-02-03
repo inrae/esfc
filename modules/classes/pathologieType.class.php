@@ -17,9 +17,7 @@ class Pathologie_type extends ObjetBDD
      */
     function __construct($bdd, $param = array())
     {
-        $this->param = $param;
         $this->table = "pathologie_type";
-        $this->id_auto = "1";
         $this->colonnes = array(
             "pathologie_type_id" => array(
                 "type" => 1,

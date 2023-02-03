@@ -7,7 +7,6 @@
  */
 class Nageoire extends ObjetBDD
 {
-
     /**
      * Constructeur de la classe
      *

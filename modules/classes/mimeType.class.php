@@ -13,9 +13,7 @@ class MimeType extends ObjetBDD {
 	 * @param array $param        	
 	 */
 	function __construct($bdd, $param = array()) {
-		$this->param = $param;
 		$this->table = "mime_type";
-		$this->id_auto = 1;
 		$this->colonnes = array (
 				"mime_type_id" => array (
 						"type" => 1,

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Table de determination de la parente
  * @author quinton
@@ -38,32 +39,28 @@ class Parente extends ObjetBDD
         );
         parent::__construct($bdd, $param);
     }
-    
-    function getListByPoisson($poisson_id)
+
+    function getListByPoisson(int $poisson_id)
     {
-        if ($poisson_id > 0 && is_numeric($poisson_id)) {
-            $sql = "select parente_id, parente.poisson_id, parente_date, parente_commentaire,
+        $sql = "select parente_id, parente.poisson_id, parente_date, parente_commentaire,
 					determination_parente_libelle, evenement_type_libelle, parente.evenement_id
 					from parente
 					left outer join determination_parente using (determination_parente_id)
 					left outer join evenement using (evenement_id)
 					left outer join evenement_type using (evenement_type_id)
-					where parente.poisson_id = " . $poisson_id . " order by parente_date desc";
-            return $this->getListeParam($sql);
-        }
+					where parente.poisson_id = :id order by parente_date desc";
+        return $this->getListeParamAsPrepared($sql, array("id" => $poisson_id));
     }
-    
+
     /**
      * Lit un enregistrement à partir de l'événement
      *
      * @param int $evenement_id
      * @return array
      */
-    function getDataByEvenement($evenement_id)
+    function getDataByEvenement(int $evenement_id)
     {
-        if ($evenement_id > 0 && is_numeric($evenement_id)) {
-            $sql = "select * from parente where evenement_id = " . $evenement_id;
-            return $this->lireParam($sql);
-        }
+        $sql = "select * from parente where evenement_id = :id";
+        return $this->lireParamAsPrepared($sql, array("id" => $evenement_id));
     }
 }

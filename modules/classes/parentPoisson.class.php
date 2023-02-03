@@ -1,4 +1,5 @@
 <?php
+
 /**
  * ORM de gestion de la table parent_poisson
  *
@@ -18,7 +19,6 @@ class Parent_poisson extends ObjetBDD
     function __construct($bdd, $param = array())
     {
         $this->table = "parent_poisson";
-        $this->id_auto = 1;
         $this->colonnes = array(
             "parent_poisson_id" => array(
                 "type" => 1,
@@ -45,17 +45,15 @@ class Parent_poisson extends ObjetBDD
      * @param int $poisson_id
      * @return array
      */
-    function getListParent($poisson_id)
+    function getListParent(int $poisson_id)
     {
-        if ($poisson_id > 0 && is_numeric($poisson_id)) {
-            $sql = "select parent_poisson_id, par.poisson_id, parent_id, matricule, pittag_valeur, prenom, sexe_libelle, cohorte
-					from " . $this->table . " par
+        $sql = "select parent_poisson_id, par.poisson_id, parent_id, matricule, pittag_valeur, prenom, sexe_libelle, cohorte
+					from parent_poisson par
 					join poisson pois on (par.parent_id = pois.poisson_id)
 					left outer join sexe using (sexe_id)
 					left outer join v_pittag_by_poisson pit on (pois.poisson_id = pit.poisson_id)
-					where par.poisson_id = " . $poisson_id . " order by matricule, pittag_valeur, prenom ";
-            return $this->getListeParam($sql);
-        }
+					where par.poisson_id = :id order by matricule, pittag_valeur, prenom ";
+        return $this->getListeParamAsPrepared($sql, array("id" => $poisson_id));
     }
 
     /**
@@ -66,15 +64,13 @@ class Parent_poisson extends ObjetBDD
      */
     function lireAvecParent($id)
     {
-        if ($id > 0 && is_numeric($id)) {
-            $sql = "select parent_poisson_id, parent_poisson.poisson_id, parent_id,
+        $sql = "select parent_poisson_id, parent_poisson.poisson_id, parent_id,
 				matricule, prenom, pittag_valeur
-				from " . $this->table . "
+				from parent_poisson
 				join poisson on (parent_poisson.parent_id = poisson.poisson_id)
 				left outer join v_pittag_by_poisson pit on (poisson.poisson_id = pit.poisson_id)
-				where parent_poisson_id = " . $id;
-            return $this->lireParam($sql);
-        }
+				where parent_poisson_id = :id";
+        return $this->lireParamAsPrepared($sql, array("id" => $id));
     }
 
     /**
@@ -83,16 +79,14 @@ class Parent_poisson extends ObjetBDD
      * @param int $parent_id
      * @return array
      */
-    function lireEnfant($parent_id)
+    function lireEnfant(int $parent_id)
     {
-        if ($parent_id > 0 && is_numeric($parent_id)) {
-            $sql = "select parent_poisson_id, parent_poisson.poisson_id, parent_id,
+        $sql = "select parent_poisson_id, parent_poisson.poisson_id, parent_id,
 				matricule, prenom, pittag_valeur
 				from " . $this->table . "
 				join poisson on (parent_poisson.poisson_id = poisson.poisson_id)
 				left outer join v_pittag_by_poisson pit on (poisson.poisson_id = pit.poisson_id)
-				where parent_id = " . $parent_id;
-        }
-        return $this->getListeParam($sql);
+				where parent_id = :id";
+        return $this->getListeParamAsPrepared($sql, array("id" => $parent_id));
     }
 }

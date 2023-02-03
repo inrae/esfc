@@ -1,4 +1,5 @@
 <?php
+
 /**
  * ORM de la table mortalite_type
  *
@@ -7,7 +8,6 @@
  */
 class Mortalite_type extends ObjetBDD
 {
-
     /**
      * Constructeur de la classe
      *
@@ -18,7 +18,6 @@ class Mortalite_type extends ObjetBDD
     function __construct($bdd, $param = array())
     {
         $this->table = "mortalite_type";
-        $this->id_auto = 1;
         $this->colonnes = array(
             "mortalite_type_id" => array(
                 "type" => 1,
