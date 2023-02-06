@@ -61,16 +61,15 @@ class RepartAliment extends ObjetBDD
 	 * @param int $templateId        	
 	 * @return array
 	 */
-	function getFromTemplate($templateId)
+	function getFromTemplate(int $templateId)
 	{
-		if ($templateId > 0 && is_numeric($templateId)) {
-			$sql = "select * from " . $this->table . "
+
+		$sql = "select * from " . $this->table . "
 				join aliment using (aliment_id)
-				where repart_template_id = " . $templateId . " 
+				where repart_template_id = :id
 				order by repart_alim_taux desc, aliment_libelle
 				";
-			return $this->getListeParam($sql);
-		}
+		return $this->getListeParamAsPrepared($sql, array("id" => $templateId));
 	}
 	/**
 	 * Retourne les aliments associes a un template,
@@ -80,32 +79,31 @@ class RepartAliment extends ObjetBDD
 	 * @param int $categorieId        	
 	 * @return array
 	 */
-	function getFromTemplateWithAliment($templateId, $categorieId)
+	function getFromTemplateWithAliment(int $templateId, int $categorieId)
 	{
-		if ($templateId > 0 && is_numeric($templateId)) {
-			$data = $this->getFromTemplate($templateId);
-			/*
+		$data = $this->getFromTemplate($templateId);
+		/*
 			 * Recuperation des aliments du même type
 			 */
-			if ($categorieId > 0 && is_numeric($categorieId)) {
-				$sql = "select distinct aliment_id, aliment_type_id, aliment_libelle
-						from aliment 
-						join aliment_categorie using (aliment_id)
-						where actif = 1 
-						and categorie_id = " . $categorieId . "
-						and aliment_id not in 
-						(select aliment_id from repart_aliment where repart_template_id = " . $templateId . ")
-						order by aliment_libelle";
-				$dataAliment = $this->getListeParam($sql);
-				/*
+		$sql = "SELECT distinct aliment_id, aliment_type_id, aliment_libelle
+				from aliment 
+					join aliment_categorie using (aliment_id)
+				where actif = 1 
+					and categorie_id = :categorieId
+					and aliment_id not in 
+					(select aliment_id from repart_aliment where repart_template_id = :templateId)
+					order by aliment_libelle";
+		$dataAliment = $this->getListeParamAsPrepared($sql, array(
+			"templateId" => $templateId,
+			"categorieId" => $categorieId
+		));
+		/*
 				 * Rajout des aliments à la liste
 				 */
-				foreach ($dataAliment as $key => $value) {
-					$value["repart_aliment_id"] = 0;
-					$data[] = $value;
-				}
-				return $data;
-			}
+		foreach ($dataAliment as $value) {
+			$value["repart_aliment_id"] = 0;
+			$data[] = $value;
 		}
+		return $data;
 	}
 }

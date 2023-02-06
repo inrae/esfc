@@ -18,9 +18,7 @@ class Poisson_statut extends ObjetBDD
      */
     function __construct($bdd, $param = array())
     {
-        $this->param = $param;
         $this->table = "poisson_statut";
-        $this->id_auto = "1";
         $this->colonnes = array(
             "poisson_statut_id" => array(
                 "type" => 1,

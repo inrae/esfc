@@ -351,39 +351,38 @@ class Poisson extends ObjetBDD
      * entre deux dates, en fonction des bassins frequentes
      *
      * @param int $poisson_id
-     * @param date $date_debut
-     * @param date $date_fin
+     * @param string $date_debut
+     * @param string $date_fin
      * @return numeric
      */
     function calcul_temperature($poisson_id, $date_debut, $date_fin)
     {
-        $date_debut = $this->encodeData($date_debut);
         $date_debut = $this->formatDateLocaleVersDB($date_debut);
-        $date_fin = $this->encodeData($date_fin);
         $date_fin = $this->formatDateLocaleVersDB($date_fin);
-        if (is_numeric($poisson_id) && $poisson_id > 0) {
-            /*
-             * Recherche des bassins frequentes
-             */
-            $sql = "select pb.* from v_poisson_bassins pb
-				where (date_debut <= '" . $date_debut . "' and ( date_fin > '" . $date_fin . "' or date_fin is null)
-				or (date_debut <= '" . $date_debut . "' and date_fin > '" . $date_debut . "')
-				or (date_debut > '" . $date_debut . "' and date_fin <= '" . $date_fin . "')
-				or (date_debut between '" . $date_debut . "' and '" . $date_fin . "' and (date_fin > '" . $date_fin . "' or date_fin is null))
-				)
-				and poisson_id = " . $poisson_id . "
+
+        /**
+         * Recherche des bassins frequentes
+         */
+        $sql = "select pb.* from v_poisson_bassins pb
+            where (:date_debut, :date_fi) overlaps 
+                (date_debut, case when date_fin is null then '2050-12-31' else date_fin end)
+				and poisson_id = :poisson_id
 				order by date_debut, date_fin";
-            $bassins = $this->getListeParam($sql);
-            $temperature = 0;
-            foreach ($bassins as $bassin) {
-                if ($bassin["date_debut"] < $date_debut)
-                    $bassin["date_debut"] = $date_debut;
-                if (strlen($bassin["date_fin"]) == 0)
-                    $bassin["date_fin"] = $date_fin;
-                /*
+        $bassins = $this->getListeParamAsPrepared($sql, array(
+            "date_debut" => $date_debut,
+            "date_fin" => $date_fin,
+            "poisson_id" => $poisson_id
+        ));
+        $temperature = 0;
+        foreach ($bassins as $bassin) {
+            if ($bassin["date_debut"] < $date_debut)
+                $bassin["date_debut"] = $date_debut;
+            if (strlen($bassin["date_fin"]) == 0)
+                $bassin["date_fin"] = $date_fin;
+            /*
                  * Calcul du total de la temperature
                  */
-                $sqltemp = "with gs as (
+            $sqltemp = "with gs as (
 				select generate_series('" . $bassin["date_debut"] . "'::date, '" . $bassin["date_fin"] . "'::date, interval ' 1 day') as date_jour
 				)
 				select  sum( ae.temperature) as temperature
@@ -399,11 +398,10 @@ class Poisson extends ObjetBDD
 				and ce.circuit_eau_id = ce2.circuit_eau_id
 				order by a2.analyse_eau_date desc limit 1)
 				";
-                $dataTotal = $this->lireParam($sqltemp);
-                if ($dataTotal["temperature"] > 0)
-                    $temperature += $dataTotal["temperature"];
-            }
-            return $temperature;
+            $dataTotal = $this->lireParam($sqltemp);
+            if ($dataTotal["temperature"] > 0)
+                $temperature += $dataTotal["temperature"];
         }
+        return $temperature;
     }
 }
