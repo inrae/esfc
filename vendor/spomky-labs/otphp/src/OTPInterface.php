@@ -2,29 +2,48 @@
 
 declare(strict_types=1);
 
-/*
- * The MIT License (MIT)
- *
- * Copyright (c) 2014-2019 Spomky-Labs
- *
- * This software may be modified and distributed under the terms
- * of the MIT license.  See the LICENSE file for details.
- */
-
 namespace OTPHP;
 
 interface OTPInterface
 {
+    public const DEFAULT_DIGITS = 6;
+
+    public const DEFAULT_DIGEST = 'sha1';
+
+    /**
+     * Create a OTP object from an existing secret.
+     *
+     * @param non-empty-string $secret
+     */
+    public static function createFromSecret(string $secret): self;
+
+    /**
+     * Create a new OTP object. A random 64 bytes secret will be generated.
+     */
+    public static function generate(): self;
+
+    /**
+     * @param non-empty-string $secret
+     */
+    public function setSecret(string $secret): void;
+
+    public function setDigits(int $digits): void;
+
+    /**
+     * @param non-empty-string $digest
+     */
+    public function setDigest(string $digest): void;
+
     /**
      * @return string Return the OTP at the specified timestamp
      */
-    public function at(int $timestamp): string;
+    public function at(int $input): string;
 
     /**
-     * Verify that the OTP is valid with the specified input.
-     * If no input is provided, the input is set to a default value or false is returned.
+     * Verify that the OTP is valid with the specified input. If no input is provided, the input is set to a default
+     * value or false is returned.
      */
-    public function verify(string $otp, ?int $input = null, ?int $window = null): bool;
+    public function verify(string $otp, null|int $input = null, null|int $window = null): bool;
 
     /**
      * @return string The secret of the OTP
@@ -39,7 +58,7 @@ interface OTPInterface
     /**
      * @return string|null The label of the OTP
      */
-    public function getLabel(): ?string;
+    public function getLabel(): null|string;
 
     /**
      * @return string|null The issuer
@@ -65,10 +84,7 @@ interface OTPInterface
      */
     public function getDigest(): string;
 
-    /**
-     * @return mixed|null
-     */
-    public function getParameter(string $parameter);
+    public function getParameter(string $parameter): mixed;
 
     public function hasParameter(string $parameter): bool;
 
@@ -77,10 +93,7 @@ interface OTPInterface
      */
     public function getParameters(): array;
 
-    /**
-     * @param mixed|null $value
-     */
-    public function setParameter(string $parameter, $value): void;
+    public function setParameter(string $parameter, mixed $value): void;
 
     /**
      * Get the provisioning URI.
