@@ -28,7 +28,7 @@ switch ($t_module["param"]) {
 		/*
 		 * Lecture du circuit d'eau
 		 */
-		$circuit = new Circuit_eau($bdd, $ObjetBDDParam);
+		$circuit = new CircuitEau($bdd, $ObjetBDDParam);
 		$smarty->assign("dataCircuit", $circuit->lire($_REQUEST["circuit_eau_id"]));
 		break;
 	case "write":

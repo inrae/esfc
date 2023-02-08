@@ -13,7 +13,7 @@ $bassin_usage = new Bassin_usage($bdd, $ObjetBDDParam);
 $smarty->assign("bassin_usage", $bassin_usage->getListe(2));
 $bassin_zone = new Bassin_zone($bdd, $ObjetBDDParam);
 $smarty->assign("bassin_zone", $bassin_zone->getListe(2));
-$circuit_eau = new Circuit_eau($bdd, $ObjetBDDParam);
+$circuit_eau = new CircuitEau($bdd, $ObjetBDDParam);
 $smarty->assign("circuit_eau", $circuit_eau->getListe(2));
 
 ?>

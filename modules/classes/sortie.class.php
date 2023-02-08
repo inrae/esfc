@@ -3,6 +3,7 @@
 class Sortie extends ObjetBDD
 {
 
+    public Poisson $poisson;
     /**
      * Constructeur de la classe
      *
@@ -58,14 +59,16 @@ class Sortie extends ObjetBDD
             /*
              * Lecture du poisson
              */
-            $poisson = new Poisson($this->connection, $this->paramori);
-            $dataPoisson = $poisson->lire($data["poisson_id"]);
+            if (!isset($this->poisson)) {
+                $this->poisson = $this->classInstanciate("Poisson", "poisson.class.php");
+            }
+            $dataPoisson = $this->poisson->lire($data["poisson_id"]);
             if ($dataPoisson["poisson_id"] > 0 && $dataPoisson["poisson_statut_id"] == 1) {
                 /*
                  * Mise a niveau du statut : le poisson a quitte l'elevage
                  */
                 $dataPoisson["poisson_statut_id"] = 4;
-                $poisson->ecrire($dataPoisson);
+                $this->poisson->ecrire($dataPoisson);
             }
         }
         return $sortie_id;
@@ -74,21 +77,19 @@ class Sortie extends ObjetBDD
     /**
      * Retourne la liste des sorties pour un poisson
      *
-     * @param unknown $poisson_id
-     * @return Ambigous <tableau, boolean, $data, string>
+     * @param int $poisson_id
+     * @return array
      */
-    function getListByPoisson($poisson_id)
+    function getListByPoisson(int $poisson_id)
     {
-        if ($poisson_id > 0 && is_numeric($poisson_id)) {
-            $sql = "select sortie_id, sortie.poisson_id, sortie_date, sortie_commentaire,
+        $sql = "select sortie_id, sortie.poisson_id, sortie_date, sortie_commentaire,
 					localisation, evenement_type_libelle, sortie.evenement_id, sevre
 					from sortie
 					left outer join sortie_lieu using (sortie_lieu_id)
 					left outer join evenement using (evenement_id)
 					left outer join evenement_type using (evenement_type_id)
-					where sortie.poisson_id = " . $poisson_id . " order by sortie_date desc";
-            return $this->getListeParam($sql);
-        }
+					where sortie.poisson_id = :id order by sortie_date desc";
+        return $this->getListeParamAsPrepared($sql, array("id" => $poisson_id));
     }
 
     /**
@@ -97,15 +98,13 @@ class Sortie extends ObjetBDD
      * @param int $evenement_id
      * @return array
      */
-    function getDataByEvenement($evenement_id)
+    function getDataByEvenement(int $evenement_id)
     {
-        if ($evenement_id > 0 && is_numeric($evenement_id)) {
-            $sql = "select sortie_id, poisson_id, sortie_date, sortie_commentaire,
+        $sql = "select sortie_id, poisson_id, sortie_date, sortie_commentaire,
 					localisation, evenement_id, sortie_lieu_id, sevre
 					from sortie
 					left outer join sortie_lieu using (sortie_lieu_id)
-					where evenement_id = " . $evenement_id;
-            return $this->lireParam($sql);
-        }
+					where evenement_id = :id";
+        return $this->lireParamAsPrepared($sql, array("id" => $evenement_id));
     }
 }

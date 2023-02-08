@@ -11,7 +11,6 @@ class Salinite extends ObjetBDD
     public AnalyseEau $analyseEau;
     public function __construct($p_connection, $param = array())
     {
-
         $this->table = "salinite";
         $this->colonnes = array(
             "salinite_id" => array(

@@ -1,36 +1,26 @@
 <?php
 /**
- * ORM de la table sexe
+ * ORM de gestion de la table sperme_dilueur
  *
  * @author quinton
  *        
  */
-class Sexe extends ObjetBDD
+class SpermeDilueur extends ObjetBDD
 {
 
-    /**
-     * Constructeur de la classe
-     *
-     * @param
-     *            instance ADODB $bdd
-     * @param array $param
-     */
     function __construct($bdd, $param = array())
     {
-        $this->table = "sexe";
+        $this->table = "sperme_dilueur";
         $this->colonnes = array(
-            "sexe_id" => array(
+            "sperme_dilueur_id" => array(
                 "type" => 1,
                 "key" => 1,
                 "requis" => 1,
                 "defaultValue" => 0
             ),
-            "sexe_libelle" => array(
+            "sperme_dilueur_libelle" => array(
                 "type" => 0,
                 "requis" => 1
-            ),
-            "sexe_libelle_court" => array(
-                "type" => 0
             )
         );
         parent::__construct($bdd, $param);

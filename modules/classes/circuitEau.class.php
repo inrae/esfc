@@ -5,7 +5,7 @@
  * @author quinton
  *        
  */
-class Circuit_eau extends ObjetBDD
+class CircuitEau extends ObjetBDD
 {
 	/**
 	 * Constructeur de la classe

@@ -1,6 +1,7 @@
 <?php
 class RepartTemplate extends ObjetBDD
 {
+	public RepartAliment $repartAliment;
 	/**
 	 * Constructeur de la classe
 	 *
@@ -45,23 +46,26 @@ class RepartTemplate extends ObjetBDD
 	 */
 	function getListSearch($param)
 	{
-		$param = $this->encodeData($param);
-		$sql = "select * from " . $this->table . "
+		$sql = "select * from repart_template
 				left outer join categorie using (categorie_id)";
+		$asql = array();
 		$order = " order by repart_template_date desc";
 		$and = "";
 		$where = "";
 		if ($param["categorie_id"] > 0) {
-			$where .= $and . $this->table . ".categorie_id = " . $param["categorie_id"];
+			$where .= $and . $this->table . ".categorie_id = :categorie_id";
 			$and = " and ";
+			$asql["categorie_id"] = $param["categorie_id"];
 		}
 		if ($param["actif"] > -1) {
-			$where .= $and . " actif = " . $param["actif"];
+			$where .= $and . " actif = :actif";
 			$and = " and ";
+			$asql["actif"] = $param["actif"];
 		}
-		if ($and == " and ")
+		if ($and == " and ") {
 			$where = " where " . $where;
-		return ($this->getListeParam($sql . $where . $order));
+		}
+		return $this->getListeParamAsPrepared($sql . $where . $order, $asql);
 	}
 	/**
 	 * Surcharge de la fonction supprimer pour effacer les répartitions d'aliment
@@ -71,23 +75,23 @@ class RepartTemplate extends ObjetBDD
 	 */
 	function supprimer($id)
 	{
-		if ($id > 0 && is_numeric($id)) {
+		/**
+		 * Verification que le modele n'a pas été utilisé
+		 */
+		$sql = "select count(*) as nb from distribution where repart_template_id = :id";
+		$rs = $this->getListeParamAsPrepared($sql, $id);
+		if ($rs[0]["nb"] == 0) {
 			/*
-			 * Verification que le modele n'a pas été utilisé
+			 * Suppression des répartitions d'aliments attachées
 			 */
-			$sql = "select count(*) as nb from distribution where repart_template_id = " . $id;
-			$rs = $this->getListeParam($sql);
-			if ($rs[0]["nb"] == 0) {
-				/*
-				 * Suppression des répartitions d'aliments attachées
-				 */
-				$repartAliment = new RepartAliment($this->connection, $this->paramori);
-				$repartAliment->deleteFromField($id, "repart_template_id");
-				return parent::supprimer($id);
-			} else
-				return -1;
-		} else
-			return -1;
+			if (!isset($this->repartAliment)) {
+				$this->repartAliment = $this->classInstanciate("RepartAliment", "repartAliment.class.php");
+			}
+			$this->repartAliment->deleteFromField($id, "repart_template_id");
+			return parent::supprimer($id);
+		} else {
+			return false;
+		}
 	}
 	/**
 	 * Retourne les modèles actifs pour la catégorie considérée
@@ -97,12 +101,10 @@ class RepartTemplate extends ObjetBDD
 	 */
 	function getListActifFromCategorie($categorie_id)
 	{
-		if ($categorie_id > 0 && is_numeric($categorie_id)) {
-			$sql = "select * from " . $this->table . "
+		$sql = "select * from repart_aliment
 					where actif = 1 
-					and categorie_id = " . $categorie_id . "
+					and categorie_id = :id
 					order by repart_template_libelle";
-			return $this->getListeParam($sql);
-		}
+		return $this->getListeParamAsPrepared($sql, array("id" => $categorie_id));
 	}
 }

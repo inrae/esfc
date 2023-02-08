@@ -51,20 +51,22 @@ class SortieLieu extends ObjetBDD
      *            [-1 | 0 | 1]
      * @return array
      */
-    function getListeActif($actif = -1)
+    function getListeActif(int $actif = -1)
     {
         $sql = "select sortie_lieu_id, localisation, longitude_dd, latitude_dd,
 				actif, poisson_statut_id, poisson_statut_libelle
 				from sortie_lieu
 				left outer join poisson_statut using (poisson_statut_id)
 				";
-        if ($actif > - 1 && is_numeric($actif)) {
-            $where = " where actif = " . $actif;
+        $param = array();
+        if ($actif > -1) {
+            $where = " where actif = :actif";
+            $param["actif"] = $actif;
         } else {
             $where = "";
         }
         $order = " order by localisation";
-        return $this->getListeParam($sql . $where . $order);
+        return $this->getListeParamAsPrepared($sql . $where . $order, $param);
     }
 
     /**

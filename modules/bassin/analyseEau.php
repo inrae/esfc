@@ -61,7 +61,7 @@ switch ($t_module["param"]) {
 		/*
 		 * Lecture des donnees concernant le circuit d'eau
 		 */
-		$circuitEau = new Circuit_eau($bdd, $ObjetBDDParam);
+		$circuitEau = new CircuitEau($bdd, $ObjetBDDParam);
 		$smarty->assign("dataCircuitEau", $circuitEau->lire($_REQUEST["circuit_eau_id"]));
 		/*
 		 * Lecture des laboratoires
@@ -123,7 +123,7 @@ switch ($t_module["param"]) {
 		/**
 		 * Visualisation sous forme de graphique des analyses d'eau
 		 */
-		$circuitEau = new Circuit_eau($bdd, $ObjetBDDParam);
+		$circuitEau = new CircuitEau($bdd, $ObjetBDDParam);
 		if ($_REQUEST["circuit_eau_id"] == 0) {
 			$circuits = $circuitEau->getListeSearch(array("circuit_eau_actif" => 1, "site_id" => $_SESSION["site_id"]));
 		} else {

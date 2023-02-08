@@ -103,7 +103,7 @@ class SearchParam {
 	/**
 	 * Encode les donnees avant de les envoyer au navigateur
 	 *
-	 * @param unknown $data        	
+	 * @param array|string $data        	
 	 * @return string|array
 	 */
 	function encodeData($data) {

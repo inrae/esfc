@@ -6,7 +6,7 @@
  *  Creation 4 mars 2014
  */
 include_once 'modules/classes/bassin.class.php';
-$dataClass = new Circuit_eau($bdd,$ObjetBDDParam);
+$dataClass = new CircuitEau($bdd,$ObjetBDDParam);
 $keyName = "circuit_eau_id";
 $id = $_REQUEST[$keyName];
 

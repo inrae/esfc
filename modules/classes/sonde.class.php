@@ -10,6 +10,8 @@ class SondeException extends Exception
  */
 class Sonde extends ObjetBDD
 {
+    public CircuitEau $circuitEau;
+    public AnalyseEau $analyseEau;
     /**
      * Constructeur
      *
@@ -40,7 +42,7 @@ class Sonde extends ObjetBDD
      * @param array $files
      * @return int
      */
-    function importData($sonde_id, array $files)
+    function importData(int $sonde_id, array $files)
     {
         $result = 0;
         $dsonde = $this->lire($sonde_id);
@@ -62,14 +64,14 @@ class Sonde extends ObjetBDD
         $data = array();
         foreach ($files as $file) {
             if ($file['error'] != UPLOAD_ERR_OK) {
-                throw new SondeException("Le fichier " . $file["name"] . " n'a pas été téléchargé correctement");
+                throw new SondeException(sprintf(_("Le fichier %s n'a pas été téléchargé correctement"),$file["name"]) );
             }
             if ($param["filetype"] == "xslx") {
                 $spreadSheet = $reader->load($file["tmp_name"]);
                 $sheet = $spreadSheet->getActiveSheet();
                 $highestRow = $sheet->getHighestRow("A");
-                if (!hightestRow > 1) {
-                    throw new SondeException("L'onglet " . $param["sheetname"] . " de " . $file["name"] . " est vide ou inexistant");
+                if (!($highestRow > 1)) {
+                    throw new SondeException(sprintf(_("L'onglet %1s de %2s est vide ou inexistant"),$param["sheetname"], $file["name"] ));
                 }
                 /**
                  * Recuperation de la ligne d'entete
@@ -111,12 +113,14 @@ class Sonde extends ObjetBDD
      * @param array $data : jeu de données
      * @return int
      */
-    function importPcwin($param, $data)
+    function importPcwin(array $param, array $data)
     {
-        require_once 'modules/classes/bassin.class.php';
-        $circuitEau = new Circuit_eau($this->connection, $this->paramori);
-        $analyseEau = new AnalyseEau($this->connection, $this->paramori);
-        $result = array();
+        if (!isset ($this->circuitEau)) {
+            $this->circuitEau = $this->classInstanciate("CircuitEau", "circuitEau.class.php");
+        }
+        if (!isset($this->analyseEau)) {
+            $this->analyseEau = $this->classInstanciate("AnalyseEau", "analyseEau.class.php");
+        }
         $circuits = array();
         $listeAnalyse = array(); /* tableau contenant la liste des dates d'analyse pour un bassin, et les analyses par date */
         foreach ($data as $row) {
@@ -140,18 +144,18 @@ class Sonde extends ObjetBDD
                 if (isset ($circuits[$realCircuitName])) {
                     $circuit_id = $circuits[$realCircuitName];
                 } else {
-                    $dcircuit = $circuitEau->getIdFromName($realCircuitName);
+                    $dcircuit = $this->circuitEau->getIdFromName($realCircuitName);
                     if ($dcircuit["circuit_eau_id"] > 0) {
                         $circuit_id = $dcircuit["circuit_eau_id"];
                         $circuits[$realCircuitName] = $dcircuit["circuit_eau_id"];
                     } else {
-                        throw new SondeException("Le circuit d'eau ".$realCircuitName." n'est pas connu dans la base de données");
+                        throw new SondeException(sprintf(_("Le circuit d'eau %s n'est pas connu dans la base de données"),$realCircuitName) );
                     }
                 }
                 /**
                  * Recherche s'il existe déjà une analyse
                  */
-                $analyseId = $analyseEau->getIdFromDateCircuit($row["date"],$circuit_id);
+                $analyseId = $this->analyseEau->getIdFromDateCircuit($row["date"],$circuit_id);
                 if (! $analyseId["analyse_eau_id"] > 0) {
                     /**
                      * Recherche de l'attribut correspondant au critère analysé
@@ -160,9 +164,8 @@ class Sonde extends ObjetBDD
                     if (strlen($attribut)>0) {
                     $listeAnalyse[$circuit_id] [$row["date"]] [$attribut] = $row["value"];
                     } else {
-                        throw new SondeException("La valeur analysée ".$drank[1]. " n'est pas décrite dans le fichier de paramétrage");
+                        throw new SondeException(sprintf(_("La valeur analysée %s n'est pas décrite dans le fichier de paramétrage"),$drank[1]));
                     }
-                    //$analyse = array("circuit_eau_id"=>$circuit_id); 
                 }
             }
         }
@@ -177,14 +180,13 @@ class Sonde extends ObjetBDD
                     $danalyse[$row] = $value;
                 }
                 try {
-                    $analyseEau->ecrire($danalyse);
+                    $this->analyseEau->ecrire($danalyse);
                     $nb ++;
-                } catch (Exception $e) {
-                    throw new SondeException("Erreur lors de l'écriture dans la table analyse_eau : ".implode(",",$danalyse));
+                } catch (Exception) {
+                    throw new SondeException(sprintf(_("Erreur lors de l'écriture dans la table analyse_eau : %s"),implode(",",$danalyse)));
                 }
             }
         }
         return ($nb);
     }
 }
-?>
