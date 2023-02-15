@@ -1,4 +1,5 @@
 <?php
+
 /**
  * ORM de gestion de la table Transfert
  *
@@ -8,19 +9,17 @@
 class Transfert extends ObjetBDD
 {
 
+    public Bassin $bassin;
+    public Poisson $poisson;
     /**
      * Constructeur de la classe
      *
-     * @param
-     *            instance ADODB $bdd
+     * @param $bdd
      * @param array $param
      */
     function __construct($bdd, $param = array())
     {
-        $this->param = $param;
-        $this->paramori = $param;
         $this->table = "transfert";
-        $this->id_auto = "1";
         $this->colonnes = array(
             "transfert_id" => array(
                 "type" => 1,
@@ -59,10 +58,9 @@ class Transfert extends ObjetBDD
      * @param int $poisson_id
      * @return array
      */
-    function getListByPoisson($poisson_id, $annee = 0)
+    function getListByPoisson(int $poisson_id, int $annee = 0)
     {
-        if ($poisson_id > 0 && is_numeric($poisson_id)) {
-            $sql = 'select transfert_id, transfert.poisson_id, bassin_origine, bassin_destination, transfert_date, evenement_id,
+        $sql = 'select transfert_id, transfert.poisson_id, bassin_origine, bassin_destination, transfert_date, evenement_id,
 					ori.bassin_nom as "bassin_origine_nom", dest.bassin_nom as "bassin_destination_nom",
 					evenement_id, evenement_type_libelle, transfert_commentaire
 					from transfert
@@ -71,12 +69,15 @@ class Transfert extends ObjetBDD
 					left outer join bassin dest on (bassin_destination = dest.bassin_id)
 					left outer join evenement using (evenement_id)
 					left outer join evenement_type using (evenement_type_id)';
-            $where = ' where transfert.poisson_id = ' . $poisson_id;
-            if ($annee > 0 && is_numeric($annee))
-                $where .= " and extract(year from transfert_date) = " . $annee;
-            $order = " order by transfert_date desc";
-            return $this->getListeParam($sql . $where . $order);
+        $where = ' where transfert.poisson_id = :poisson_id';
+        $param = array("poisson_id" => $poisson_id);
+        if ($annee > 0) {
+            $where .= " and extract(year from transfert_date) = :annee";
+            $param["annee"] = $annee;
         }
+
+        $order = " order by transfert_date desc";
+        return $this->getListeParamAsPrepared($sql . $where . $order, $param);
     }
 
     /**
@@ -85,10 +86,9 @@ class Transfert extends ObjetBDD
      * @param int $bassin_id
      * @return array
      */
-    function getListPoissonPresentByBassin($bassin_id)
+    function getListPoissonPresentByBassin(int $bassin_id)
     {
-        if ($bassin_id > 0 && is_numeric($bassin_id)) {
-            $sql = 'select distinct t.poisson_id,matricule, prenom, cohorte, t.transfert_date, 
+        $sql = 'select distinct t.poisson_id,matricule, prenom, cohorte, t.transfert_date, 
 					(case when t.bassin_destination is not null then t.bassin_destination else t.bassin_origine end) as "bassin_id",
 					bassin_nom, sexe_libelle_court,
 					pittag_valeur, masse
@@ -99,10 +99,9 @@ class Transfert extends ObjetBDD
 					left outer join v_pittag_by_poisson pittag on (pittag.poisson_id = poisson.poisson_id)
 					left outer join v_poisson_last_masse vmasse on (t.poisson_id = vmasse.poisson_id)
 					left outer join sexe using (sexe_id)
-					where  poisson_statut_id = 1 and bassin.bassin_id = ' . $bassin_id . "
- 					order by matricule";
-        }
-        return ($this->getListeParam($sql));
+					where  poisson_statut_id = 1 and bassin.bassin_id = :bassin_id
+ 					order by matricule';
+        return $this->getListeParamAsPrepared($sql, array("bassin_id" => $bassin_id));
     }
 
     /**
@@ -111,12 +110,11 @@ class Transfert extends ObjetBDD
      * @param int $evenement_id
      * @return array
      */
-    function getDataByEvenement($evenement_id)
+    function getDataByEvenement(int $evenement_id)
     {
-        if ($evenement_id > 0 && is_numeric($evenement_id)) {
-            $sql = "select * from transfert where evenement_id = " . $evenement_id;
-            return $this->lireParam($sql);
-        }
+
+        $sql = "select * from transfert where evenement_id = :evenement_id";
+        return $this->lireParamAsPrepared($sql, array("evenement_id" => $evenement_id));
     }
 
     /**
@@ -133,17 +131,21 @@ class Transfert extends ObjetBDD
             /*
              * Recuperation de l'usage du bassin
              */
-            $bassin = new Bassin($this->connection, $this->paramori);
-            $dataBassin = $bassin->lire($data["bassin_destination"]);
+            if (!isset($this->bassin)) {
+                $this->bassin = $this->classInstanciate("Bassin", "bassin.class.php");
+            }
+            $dataBassin = $this->bassin->lire($data["bassin_destination"]);
             if ($dataBassin["bassin_usage_id"] == 1) {
                 /*
                  * Recuperation du poisson
                  */
-                $poisson = new Poisson($this->connection, $this->paramori);
-                $dataPoisson = $poisson->lire($data["poisson_id"]);
+                if (!isset($this->poisson)) {
+                    $this->poisson = $this->classInstanciate("Poisson", "poisson.class.php");
+                }
+                $dataPoisson = $this->poisson->lire($data["poisson_id"]);
                 if ($dataPoisson["poisson_categorie_id"] == 2) {
                     $dataPoisson["poisson_categorie_id"] = 1;
-                    $poisson->ecrire($dataPoisson);
+                    $this->poisson->ecrire($dataPoisson);
                 }
             }
         }

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * ORM de gestion de la table vie_modele
  *
@@ -7,12 +8,9 @@
  */
 class VieModele extends ObjetBDD
 {
-	function __construct($bdd, $param = null)
+	function __construct($bdd, $param = array())
 	{
-		$this->param = $param;
-		$this->paramori = $param;
 		$this->table = "vie_modele";
-		$this->id_auto = "1";
 		$this->colonnes = array(
 			"vie_modele_id" => array(
 				"type" => 1,
@@ -37,9 +35,6 @@ class VieModele extends ObjetBDD
 				"requis" => 0
 			)
 		);
-		if (!is_array($param))
-			$param = array();
-		$param["fullDescription"] = 1;
 		parent::__construct($bdd, $param);
 	}
 
@@ -47,27 +42,26 @@ class VieModele extends ObjetBDD
 	 * Retourne l'ensemble des modèles pour l'année considérée
 	 *
 	 * @param int $annee        	
-	 * @return tableau
+	 * @return array
 	 */
-	function getModelesFromAnnee($annee)
+	function getModelesFromAnnee(int $annee)
 	{
-		if ($annee > 0 && is_numeric($annee)) {
-			$sql = "select vie_modele_id, vm.vie_implantation_id, vie_implantation_id2,
+
+		$sql = "select vie_modele_id, vm.vie_implantation_id, vie_implantation_id2,
 					annee, couleur,
 					v1.vie_implantation_libelle, v2.vie_implantation_libelle as vie_implantation_libelle2
 					from vie_modele vm
 					join vie_implantation v1 on (vm.vie_implantation_id = v1.vie_implantation_id)
 					join vie_implantation v2 on (vm.vie_implantation_id2 = v2.vie_implantation_id)
-					where annee = " . $annee . " 
+					where annee = :annee
 					order by vie_modele_id";
-			return $this->getListeParam($sql);
-		}
+		return $this->getListeParamAsPrepared($sql, array("annee" => $annee));
 	}
 
 	/**
 	 * Recupere l'ensemble des modeles disponibles dans la base de donnees
 	 *
-	 * @return tableau
+	 * @return array
 	 */
 	function getAllModeles()
 	{
