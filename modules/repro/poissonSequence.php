@@ -32,20 +32,20 @@ switch ($t_module ["param"]) {
 		$dataSearch = $searchExample->getParam ();
 		if ($searchExample->isSearch () == 1) {
 			$data = $dataClass->getListeSearch ( $dataExample );
-			$smarty->assign ( "data", $data );
-			$smarty->assign ( "isSearch", 1 );
+			$vue->set( , ""); ( "data", $data );
+			$vue->set( , ""); ( "isSearch", 1 );
 		}
-		$smarty->assign ( "exampleSearch", $dataSearch );
-		$smarty->assign ( "data", $dataClass->getListe () );
-		$smarty->assign ( "corps", "example/exampleList.tpl" );
+		$vue->set( , ""); ( "exampleSearch", $dataSearch );
+		$vue->set( , ""); ( "data", $dataClass->getListe () );
+		$vue->set( , ""); ( "corps", "example/exampleList.tpl" );
 		break;
 	case "display":
 		/*
 		 * Display the detail of the record
 		 */
 		$data = $dataClass->lire ( $id );
-		$smarty->assign ( "data", $data );
-		$smarty->assign ( "corps", "example/exampleDisplay.tpl" );
+		$vue->set( , ""); ( "data", $data );
+		$vue->set( , ""); ( "corps", "example/exampleDisplay.tpl" );
 		break;
 	case "change":
 		/*
@@ -55,9 +55,9 @@ switch ($t_module ["param"]) {
 		 */
 		$data = dataRead ( $dataClass, $id, "repro/poissonSequenceChange.tpl", $_REQUEST ["poisson_campagne_id"] );
 		$poissonCampagne = new PoissonCampagne ( $bdd, $ObjetBDDParam );
-		$smarty->assign ( "dataPoisson", $poissonCampagne->lire ( $data ["poisson_campagne_id"] ) );
+		$vue->set( , ""); ( "dataPoisson", $poissonCampagne->lire ( $data ["poisson_campagne_id"] ) );
 		$psEvenement = new PsEvenement ( $bdd, $ObjetBDDParam );
-		$smarty->assign ( "evenements", $psEvenement->getListeFromPoissonSequence ( $id ) );
+		$vue->set( , ""); ( "evenements", $psEvenement->getListeFromPoissonSequence ( $id ) );
 		/*
 		 * Recherche les donnees concernant la production de sperme
 		 */
@@ -66,7 +66,7 @@ switch ($t_module ["param"]) {
 		$dataSperme = $sperme->lireFromSequence ( $data ["poisson_campagne_id"], $data["sequence_id"] );
 		foreach($dataSperme as $key =>$value)
 			$data[$key] = $value;
-		$smarty->assign ( "data", $data );
+		$vue->set( , ""); ( "data", $data );
 		require_once 'modules/repro/spermeFunction.php';
 		
 		initSpermeChange ( $dataSperme ["sperme_id"] );
@@ -75,18 +75,18 @@ switch ($t_module ["param"]) {
 		 * Recuperation de la liste des sequences
 		 */
 		$sequence = new Sequence ( $bdd, $ObjetBDDParam );
-		$smarty->assign ( "sequences", $sequence->getListeByYear ( $_SESSION ['annee'] ) );
+		$vue->set( , ""); ( "sequences", $sequence->getListeByYear ( $_SESSION ['annee'] ) );
 		/*
 		 * Recuperation des statuts
 		 */
 		$psStatut = new PsStatut ( $bdd, $ObjetBDDParam );
-		$smarty->assign ( "statuts", $psStatut->getListe ( 1 ) );
+		$vue->set( , ""); ( "statuts", $psStatut->getListe ( 1 ) );
 		/*
 		 * Passage en parametre de la liste parente
 		 */
-		$smarty->assign ( "poissonDetailParent", $_SESSION ["poissonDetailParent"] );
+		$vue->set( , ""); ( "poissonDetailParent", $_SESSION ["poissonDetailParent"] );
 		if (isset ( $_REQUEST ["sequence_id"] ))
-			$smarty->assign ( "sequence_id", $_REQUEST ["sequence_id"] );
+			$vue->set( , ""); ( "sequence_id", $_REQUEST ["sequence_id"] );
 		break;
 	case "write":
 		/*

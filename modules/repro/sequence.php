@@ -17,18 +17,18 @@ $id = $_REQUEST[$keyName];
 include "modules/repro/setAnnee.php";
 switch ($t_module["param"]) {
 	case "list":
-		$smarty->assign("data", $dataClass->getListeByYear($_SESSION["annee"], $_REQUEST["site_id"]));
-		$smarty->assign("corps", "repro/sequenceList.tpl");
+		$vue->set( , "");("data", $dataClass->getListeByYear($_SESSION["annee"], $_REQUEST["site_id"]));
+		$vue->set( , "");("corps", "repro/sequenceList.tpl");
 		/*
 		 * Recuperation des donnees concernant les bassins
 		 */
 		require_once 'modules/classes/bassinCampagne.class.php';
 		$bassinCampagne = new BassinCampagne($bdd, $ObjetBDDParam);
-		$smarty->assign("bassins", $bassinCampagne->getListFromAnnee($_SESSION['annee'], $_REQUEST["site_id"]));
+		$vue->set( , "");("bassins", $bassinCampagne->getListFromAnnee($_SESSION['annee'], $_REQUEST["site_id"]));
 		$_SESSION["bassinParentModule"] = "sequenceList";
 		require_once 'modules/classes/site.class.php';
 		$site = new Site($bdd, $ObjetBDDParam);
-		$smarty->assign("site", $site->getListe(2));
+		$vue->set( , "");("site", $site->getListe(2));
 		
 		break;
 	case "display":
@@ -36,10 +36,10 @@ switch ($t_module["param"]) {
 		 * Display the detail of the record
 		 */
 		$data = $dataClass->lire($id);
-		$smarty->assign("dataSequence", $data);
-		$smarty->assign("corps", "repro/sequenceDisplay.tpl");
+		$vue->set( , "");("dataSequence", $data);
+		$vue->set( , "");("corps", "repro/sequenceDisplay.tpl");
 		$poissonSequence = new PoissonSequence($bdd, $ObjetBDDParam);
-		$smarty->assign("dataPoissons", $poissonSequence->getListFromSequence($id));
+		$vue->set( , "");("dataPoissons", $poissonSequence->getListFromSequence($id));
 		$_SESSION["poissonDetailParent"] = "sequenceDisplay";
 		$_SESSION["sequence_id"] = $id;
 		/*
@@ -57,11 +57,11 @@ switch ($t_module["param"]) {
 			$totalLot = $lot->getNbLarveFromCroisement($value["croisement_id"]);
 			$croisements[$key]["total_larve_compte"] = $totalLot["total_larve_compte"];
 		}
-		$smarty->assign("croisements", $croisements);
+		$vue->set( , "");("croisements", $croisements);
 		/*
 		 * Preparation des lots
 		 */
-		$smarty->assign("lots", $lot->getLotBySequence($id));
+		$vue->set( , "");("lots", $lot->getLotBySequence($id));
 		break;
 	case "change":
 		/*
@@ -75,11 +75,11 @@ switch ($t_module["param"]) {
 			 * Positionnement correct de la session par rapport à l'année courante
 			 */
 			$data["annee"] = $_SESSION["annee"];
-			$smarty->assign("data", $data);
+			$vue->set( , "");("data", $data);
 		}
 		require_once 'modules/classes/site.class.php';
 		$site = new Site($bdd, $ObjetBDDParam);
-		$smarty->assign("site", $site->getListe(2));
+		$vue->set( , "");("site", $site->getListe(2));
 		break;
 	case "write":
 		/*

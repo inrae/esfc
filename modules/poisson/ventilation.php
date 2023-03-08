@@ -12,7 +12,7 @@ $id = $_REQUEST[$keyName];
 /*
  * Passage en parametre de la liste parente
  */
-$smarty->assign ( "poissonDetailParent", $_SESSION ["poissonDetailParent"] );
+$vue->set( , ""); ( "poissonDetailParent", $_SESSION ["poissonDetailParent"] );
 
 switch ($t_module["param"]) {
 	case "list":
@@ -33,9 +33,9 @@ switch ($t_module["param"]) {
 		 * Lecture du poisson
 		*/
 		$poisson = new Poisson($bdd, $ObjetBDDParam);
-		$smarty->assign("dataPoisson", $poisson->getDetail($_REQUEST["poisson_id"]));
+		$vue->set( , "");("dataPoisson", $poisson->getDetail($_REQUEST["poisson_id"]));
 		if (isset ($_REQUEST["poisson_campagne_id"]) && is_numeric($_REQUEST["poisson_campagne_id"]))
-			$smarty->assign("poisson_campagne_id", $_REQUEST["poisson_campagne_id"]);
+			$vue->set( , "");("poisson_campagne_id", $_REQUEST["poisson_campagne_id"]);
 		break;
 	case "write":
 		/*

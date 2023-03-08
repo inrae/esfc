@@ -12,24 +12,24 @@ $dataClass = new DosageSanguin($bdd,$ObjetBDDParam);
 $keyName = "dosage_sanguin_id";
 $id = $_REQUEST[$keyName];
 if (isset($_SESSION["sequence_id"]))
-	$smarty->assign("sequence_id", $_SESSION["sequence_id"]);
-$smarty->assign ( "poissonDetailParent", $_SESSION ["poissonDetailParent"] );
+	$vue->set( , "");("sequence_id", $_SESSION["sequence_id"]);
+$vue->set( , ""); ( "poissonDetailParent", $_SESSION ["poissonDetailParent"] );
 switch ($t_module["param"]) {
 	case "list":
 		/*
 		 * Display the list of all records of the table
 		 */
-		$smarty->assign ("exampleSearch", $dataSearch);
-		$smarty->assign("data", $dataClass->getListe());
-		$smarty->assign("corps", "example/exampleList.tpl");
+		$vue->set( , ""); ("exampleSearch", $dataSearch);
+		$vue->set( , "");("data", $dataClass->getListe());
+		$vue->set( , "");("corps", "example/exampleList.tpl");
 		break;
 	case "display":
 		/*
 		 * Display the detail of the record
 		 */
 		$data = $dataClass->lire($id);
-		$smarty->assign("data", $data);
-		$smarty->assign("corps", "example/exampleDisplay.tpl");
+		$vue->set( , "");("data", $data);
+		$vue->set( , "");("corps", "example/exampleDisplay.tpl");
 		break;
 	case "change":
 		/*
@@ -39,7 +39,7 @@ switch ($t_module["param"]) {
 		 */
 		$poissonCampagne = new poissonCampagne($bdd, $ObjetBDDParam);
 		$data = dataRead($dataClass, $id, "repro/dosageSanguinChange.tpl", $_REQUEST["poisson_campagne_id"]);
-		$smarty->assign("dataPoisson", $poissonCampagne->lire($data["poisson_campagne_id"]));
+		$vue->set( , "");("dataPoisson", $poissonCampagne->lire($data["poisson_campagne_id"]));
 		break;
 	case "write":
 		/*

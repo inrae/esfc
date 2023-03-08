@@ -22,11 +22,11 @@ switch ($t_module ["param"]) {
 		/*
 		require_once 'modules/classes/document.class.php';
 		$document = new DocumentLie($bdd, $ObjetBDDParam,"article");
-		$smarty->assign("dataDoc", $document->getListeDocument($id));
-		$smarty->assign("moduleParent", "articleDisplay");
-		$smarty->assign("parentIdName", "article_id");
-		$smarty->assign("parent_id", $id);
-		$smarty->assign("parentType", "article");
+		$vue->set( , "");("dataDoc", $document->getListeDocument($id));
+		$vue->set( , "");("moduleParent", "articleDisplay");
+		$vue->set( , "");("parentIdName", "article_id");
+		$vue->set( , "");("parent_id", $id);
+		$vue->set( , "");("parentType", "article");
 		/*
 		 * Dans le template d'affichage (fichier moduleDisplay.tpl), rajouter l'instruction suivante :
 		 */
@@ -49,10 +49,10 @@ switch ($t_module ["param"]) {
 		 * parent_id : cle de la table parente
 		 */
 		dataRead ( $dataClass, $id, "document/documentChange.tpl" );
-		$smarty->assign ( "moduleParent", $_REQUEST ["moduleParent"] );
-		$smarty->assign ( "parentType", $_REQUEST ["parentType"] );
-		$smarty->assign ( "parentIdName", $_REQUEST ["parentIdName"] );
-		$smarty->assign ( "parent_id", $_REQUEST ["parent_id"] );
+		$vue->set( , ""); ( "moduleParent", $_REQUEST ["moduleParent"] );
+		$vue->set( , ""); ( "parentType", $_REQUEST ["parentType"] );
+		$vue->set( , ""); ( "parentIdName", $_REQUEST ["parentIdName"] );
+		$vue->set( , ""); ( "parent_id", $_REQUEST ["parent_id"] );
 		break;
 	case "write":
 		/*

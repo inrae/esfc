@@ -16,7 +16,7 @@ $id = $_REQUEST[$keyName];
 include "modules/repro/setAnnee.php";
 
 if (isset($_SESSION["sequence_id"]))
-	$smarty->assign("sequence_id", $_SESSION["sequence_id"]);
+	$vue->set( , "");("sequence_id", $_SESSION["sequence_id"]);
 
 if (isset($_REQUEST["annee"]) && !($_REQUEST["annee"] > 0)) {
 	$_REQUEST['annee'] = "";
@@ -30,16 +30,16 @@ switch ($t_module["param"]) {
 		$searchRepro->setParam($_REQUEST);
 		$dataSearch = $searchRepro->getParam();
 		if ($searchRepro->isSearch() == 1) {
-			$smarty->assign("data", $dataClass->getListForDisplay($dataSearch));
+			$vue->set( , "");("data", $dataClass->getListForDisplay($dataSearch));
 		}
-		$smarty->assign("dataSearch", $dataSearch);
-		//$smarty->assign ( "annees", $dataClass->getAnnees () );
-		$smarty->assign("corps", "repro/poissonCampagneList.tpl");
+		$vue->set( , "");("dataSearch", $dataSearch);
+		//$vue->set( , ""); ( "annees", $dataClass->getAnnees () );
+		$vue->set( , "");("corps", "repro/poissonCampagneList.tpl");
 		/*
 		 * Lecture de la liste des statuts
 		 */
 		$reproStatut = new ReproStatut($bdd, $ObjetBDDParam);
-		$smarty->assign("dataReproStatut", $reproStatut->getListe(1));
+		$vue->set( , "");("dataReproStatut", $reproStatut->getListe(1));
 		/*
 		 * Passage en parametre de la liste parente
 		 */
@@ -49,7 +49,7 @@ switch ($t_module["param"]) {
 		 */
 		require_once 'modules/classes/site.class.php';
 		$site = new Site($bdd, $ObjetBDDParam);
-		$smarty->assign("site", $site->getListe(2));
+		$vue->set( , "");("site", $site->getListe(2));
 		
 		/*
 		 * Affichage du graphique d'evolution de la masse
@@ -76,9 +76,9 @@ switch ($t_module["param"]) {
 			}
 			//printr ( $x );
 			//printr ( $y );
-			$smarty->assign("poisson_nom", $dataPoisson["prenom"] . " " . $dataPoisson["matricule"]);
-			$smarty->assign("massex", $x);
-			$smarty->assign("massey", $y);
+			$vue->set( , "");("poisson_nom", $dataPoisson["prenom"] . " " . $dataPoisson["matricule"]);
+			$vue->set( , "");("massex", $x);
+			$vue->set( , "");("massey", $y);
 		}
 		break;
 	case "display":
@@ -86,11 +86,11 @@ switch ($t_module["param"]) {
 		 * Display the detail of the record
 		 */
 		$data = $dataClass->lire($id);
-		$smarty->assign("dataPoisson", $data);
+		$vue->set( , "");("dataPoisson", $data);
 		/*
 		 * Passage en parametre de la liste parente
 		 */
-		$smarty->assign("poissonDetailParent", $_SESSION["poissonDetailParent"]);
+		$vue->set( , "");("poissonDetailParent", $_SESSION["poissonDetailParent"]);
 		/*
 		 * Module de retour au poisson
 		 */
@@ -122,26 +122,26 @@ switch ($t_module["param"]) {
 		$transferts = $transfert->getListByPoisson($data["poisson_id"], $_SESSION["annee"]);
 		$ventilations = $ventilation->getListByPoisson($data["poisson_id"], $_SESSION["annee"]);
 
-		$smarty->assign("dataSanguin", $dosages);
-		$smarty->assign("dataBiopsie", $biopsies);
-		$smarty->assign("dataSequence", $sequences);
-		$smarty->assign("dataPsEvenement", $psEvenement->getListeEvenementFromPoisson($id));
+		$vue->set( , "");("dataSanguin", $dosages);
+		$vue->set( , "");("dataBiopsie", $biopsies);
+		$vue->set( , "");("dataSequence", $sequences);
+		$vue->set( , "");("dataPsEvenement", $psEvenement->getListeEvenementFromPoisson($id));
 		$dataEcho = $echographie->getListByYear($data["poisson_id"], $_SESSION["annee"]);
-		$smarty->assign("dataEcho", $dataEcho);
-		$smarty->assign("injections", $injections);
-		$smarty->assign("spermes", $spermes);
-		$smarty->assign("dataTransfert", $transferts);
-		$smarty->assign("dataVentilation", $ventilations);
+		$vue->set( , "");("dataEcho", $dataEcho);
+		$vue->set( , "");("injections", $injections);
+		$vue->set( , "");("spermes", $spermes);
+		$vue->set( , "");("dataTransfert", $transferts);
+		$vue->set( , "");("dataVentilation", $ventilations);
 		if (is_numeric($id))
-			$smarty->assign("poisson_campagne_id", $id);
+			$vue->set( , "");("poisson_campagne_id", $id);
 		
 		/*
 		 * Recuperation des photos associees aux evenements
 		 */
-		$smarty->assign("moduleParent", "poissonCampagneDisplay");
-		$smarty->assign("parentType", "evenement");
-		$smarty->assign("parentIdName", "poisson_campagne_id");
-		$smarty->assign("parent_id", $id);
+		$vue->set( , "");("moduleParent", "poissonCampagneDisplay");
+		$vue->set( , "");("parentType", "evenement");
+		$vue->set( , "");("parentIdName", "poisson_campagne_id");
+		$vue->set( , "");("parent_id", $id);
 		/*
 		 * Generation de la liste des evenements issus des echographies
 		 */
@@ -150,11 +150,11 @@ switch ($t_module["param"]) {
 			$a_id[] = $value["evenement_id"];
 		}
 		require_once 'modules/document/documentFunctions.php';
-		$smarty->assign("dataDoc", getListeDocument("evenement", $a_id, $_REQUEST["document_limit"], $_REQUEST["document_offset"]));
+		$vue->set( , "");("dataDoc", getListeDocument("evenement", $a_id, $_REQUEST["document_limit"], $_REQUEST["document_offset"]));
 
-		$smarty->assign("corps", "repro/poissonCampagneDisplay.tpl");
+		$vue->set( , "");("corps", "repro/poissonCampagneDisplay.tpl");
 		if (isset($_REQUEST["sequence_id"]))
-			$smarty->assign("sequence_id", $_REQUEST["sequence_id"]);
+			$vue->set( , "");("sequence_id", $_REQUEST["sequence_id"]);
 			/*
 		 * Recherche des temperatures pour le graphique
 		 */
@@ -178,10 +178,10 @@ switch ($t_module["param"]) {
 				if ($d > $dateMaxi)
 					$dateMaxi = $d;
 			}
-			$smarty->assign("pfx" . $i, $x);
-			$smarty->assign("pfy" . $i, $y);
+			$vue->set( , "");("pfx" . $i, $x);
+			$vue->set( , "");("pfy" . $i, $y);
 		}
-		$smarty->assign("graphicsEnabled", 1);
+		$vue->set( , "");("graphicsEnabled", 1);
 		// }
 		/*
 		 * Recherche des donnees pour les taux sanguins et les injections
@@ -305,32 +305,32 @@ switch ($t_module["param"]) {
 			}
 		}
 
-		$smarty->assign("e2x", $e2x);
-		$smarty->assign("e2y", $e2y);
-		$smarty->assign("cax", $cax);
-		$smarty->assign("cay", $cay);
-		$smarty->assign("thx", $thx);
-		$smarty->assign("thy", $thy);
-		$smarty->assign("e2hy", $e2hy);
-		$smarty->assign("cahy", $cahy);
-		$smarty->assign("ix", $ix);
-		$smarty->assign("iy", $iy);
-		$smarty->assign("expx", $expx);
-		$smarty->assign("expy", $expy);
-		$smarty->assign("opix", $opix);
-		$smarty->assign("opiy", $opiy);
-		$smarty->assign("t50x", $t50x);
-		$smarty->assign("t50y", $t50y);
-		$smarty->assign("diamx", $diamx);
-		$smarty->assign("diamy", $diamy);
+		$vue->set( , "");("e2x", $e2x);
+		$vue->set( , "");("e2y", $e2y);
+		$vue->set( , "");("cax", $cax);
+		$vue->set( , "");("cay", $cay);
+		$vue->set( , "");("thx", $thx);
+		$vue->set( , "");("thy", $thy);
+		$vue->set( , "");("e2hy", $e2hy);
+		$vue->set( , "");("cahy", $cahy);
+		$vue->set( , "");("ix", $ix);
+		$vue->set( , "");("iy", $iy);
+		$vue->set( , "");("expx", $expx);
+		$vue->set( , "");("expy", $expy);
+		$vue->set( , "");("opix", $opix);
+		$vue->set( , "");("opiy", $opiy);
+		$vue->set( , "");("t50x", $t50x);
+		$vue->set( , "");("t50y", $t50y);
+		$vue->set( , "");("diamx", $diamx);
+		$vue->set( , "");("diamy", $diamy);
 		/*
 		 * Ajout de 3 jours aux bornes des graphiques
 		 */
 		$interval = new DateInterval("P1D");
 		date_sub($dateMini, $interval);
 		date_add($dateMaxi, $interval);
-		$smarty->assign("dateMini", date_format($dateMini, 'd/m/Y'));
-		$smarty->assign("dateMaxi", date_format($dateMaxi, 'd/m/Y'));
+		$vue->set( , "");("dateMini", date_format($dateMini, 'd/m/Y'));
+		$vue->set( , "");("dateMaxi", date_format($dateMaxi, 'd/m/Y'));
 
 		break;
 	case "change":
@@ -345,12 +345,12 @@ switch ($t_module["param"]) {
 		 */
 		require_once 'modules/classes/poisson.class.php';
 		$poisson = new Poisson($bdd, $ObjetBDDParam);
-		$smarty->assign("dataPoisson", $poisson->getDetail($_REQUEST["poisson_id"]));
+		$vue->set( , "");("dataPoisson", $poisson->getDetail($_REQUEST["poisson_id"]));
 		/*
 		 * Lecture de la table des statuts
 		 */
 		$reproStatut = new ReproStatut($bdd, $ObjetBDDParam);
-		$smarty->assign("reproStatut", $reproStatut->getListe(1));
+		$vue->set( , "");("reproStatut", $reproStatut->getListe(1));
 		/*
 		 * Calcul des annees de campagne potentielles
 		 */
@@ -358,12 +358,12 @@ switch ($t_module["param"]) {
 		for ($i = $anneeCourante; $i > 1995; $i--) {
 			$annees[]["annee"] = $i;
 		}
-		$smarty->assign("annees", $annees);
+		$vue->set( , "");("annees", $annees);
 		/*
 		 * Passage en parametre de la liste parente
 		 */
-		$smarty->assign("poissonDetailParent", $_SESSION["poissonDetailParent"]);
-		$smarty->assign("poissonParent", $_SESSION["poissonParent"]);
+		$vue->set( , "");("poissonDetailParent", $_SESSION["poissonDetailParent"]);
+		$vue->set( , "");("poissonParent", $_SESSION["poissonParent"]);
 		break;
 	case "write":
 		/*
@@ -387,11 +387,11 @@ switch ($t_module["param"]) {
 						$nb++;
 						$log->setLog($_SESSION["login"], get_class($dataClass) . "-delete", $id);
 					} else
-						$message .= formatErrorData($dataClass->getErrorData()) . "<br>";
+						$message->set( $dataClass->getErrorData()) . "<br>";
 				}
 			}
 			$module_coderetour = 2;
-			$message .= $nb . " poissons déselectionnés";
+			$message->set( $nb . " poissons déselectionnés";
 		} else
 			dataDelete($dataClass, $id);
 		break;
@@ -404,13 +404,13 @@ switch ($t_module["param"]) {
 		for ($i = $anneeCourante - 3; $i <= $anneeCourante; $i++) {
 			$annees[]["annee"] = $i;
 		}
-		$smarty->assign("annees", $annees);
-		$smarty->assign("corps", "repro/campagneInit.tpl");
+		$vue->set( , "");("annees", $annees);
+		$vue->set( , "");("corps", "repro/campagneInit.tpl");
 
 		break;
 	case "init":
 		$nb = $dataClass->initCampagne($_REQUEST["annee"]);
-		$message = $nb . " poisson(s) ajouté(s)";
+		$message->set(  $nb . " poisson(s) ajouté(s)";
 		$module_coderetour = 1;
 		break;
 	case "changeStatut":
@@ -424,14 +424,14 @@ switch ($t_module["param"]) {
 							$nb++;
 							$log->setLog($_SESSION["login"], get_class($dataClass) . "-delete", $id);
 						} else
-							$message .= formatErrorData($dataClass->getErrorData()) . "<br>";
+							$message->set( $dataClass->getErrorData()) . "<br>";
 					}
 				}
 			} else {
 				if ($dataClass->changeStatut($id, $_REQUEST["repro_statut_id"]) > 0)
 					$nb = 1;
 			}
-			$message .= $nb . " statuts modifiés";
+			$message->set( $nb . " statuts modifiés";
 		}
 		$module_coderetour = 1;
 		break;

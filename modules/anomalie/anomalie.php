@@ -18,24 +18,24 @@ switch ($t_module ["param"]) {
 		$dataAnomalie = $searchAnomalie->getParam ();
 		if ($searchAnomalie->isSearch () == 1) {
 			$data = $dataClass->getListeSearch ( $dataAnomalie );
-			$smarty->assign ( "dataAnomalie", $data );
-			$smarty->assign ( "isSearch", 1 );
+			$vue->set( , ""); ( "dataAnomalie", $data );
+			$vue->set( , ""); ( "isSearch", 1 );
 		}
-		$smarty->assign ( "anomalieSearch", $dataAnomalie );
-		$smarty->assign ( "corps", "anomalie/anomalieList.tpl" );
+		$vue->set( , ""); ( "anomalieSearch", $dataAnomalie );
+		$vue->set( , ""); ( "corps", "anomalie/anomalieList.tpl" );
 		/*
 		 * Recuperation des types d'anomalie
 		 */
 		$anomalieType = new Anomalie_db_type ( $bdd, $ObjetBDDParam );
-		$smarty->assign ( "anomalieType", $anomalieType->getListe () );
+		$vue->set( , ""); ( "anomalieType", $anomalieType->getListe () );
 		break;
 	case "display":
 		/*
 		 * Display the detail of the record
 		 */
 		$data = $dataClass->lire ( $id );
-		$smarty->assign ( "data", $data );
-		$smarty->assign ( "corps", "anomalie/anomalieDisplay.tpl" );
+		$vue->set( , ""); ( "data", $data );
+		$vue->set( , ""); ( "corps", "anomalie/anomalieDisplay.tpl" );
 		break;
 	case "change":
 		/*
@@ -47,16 +47,16 @@ switch ($t_module ["param"]) {
 		if ($id == 0) {
 			if ($_REQUEST ["poisson_id"] > 0) {
 				$data ["poisson_id"] = $_REQUEST ["poisson_id"];
-				$smarty->assign ( "data", $data );
+				$vue->set( , ""); ( "data", $data );
 			}
 		}
 		/*
 		 * Passage en parametre de la liste parente
 		*/
-		$smarty->assign("poissonDetailParent", $_SESSION["poissonDetailParent"]);
+		$vue->set( , "");("poissonDetailParent", $_SESSION["poissonDetailParent"]);
 		
 		$anomalieType = new Anomalie_db_type ( $bdd, $ObjetBDDParam );
-		$smarty->assign ( "anomalieType", $anomalieType->getListe () );
+		$vue->set( , ""); ( "anomalieType", $anomalieType->getListe () );
 		if ($_REQUEST ["poisson_id"] > 0) {
 			/*
 			 * Recuperation des informations generales sur le poisson
@@ -64,10 +64,10 @@ switch ($t_module ["param"]) {
 			include_once 'modules/classes/poisson.class.php';
 			$poisson = new Poisson ( $bdd, $ObjetBDDParam );
 			$dataPoisson = $poisson->getDetail ( $_REQUEST ["poisson_id"] );
-			$smarty->assign ( "dataPoisson", $dataPoisson );
+			$vue->set( , ""); ( "dataPoisson", $dataPoisson );
 		}
 		if ($_REQUEST ["module_origine"] == "poissonDisplay")
-			$smarty->assign ( "module_origine", "poissonDisplay" );
+			$vue->set( , ""); ( "module_origine", "poissonDisplay" );
 		break;
 	case "write":
 		/*
@@ -78,7 +78,7 @@ switch ($t_module ["param"]) {
 			$_REQUEST [$keyName] = $id;
 		}
 		if ($_REQUEST ["module_origine"] == "poissonDisplay")
-			$smarty->assign ( "module_origine", "poissonDisplay" );
+			$vue->set( , ""); ( "module_origine", "poissonDisplay" );
 		break;
 	case "delete":
 		/*

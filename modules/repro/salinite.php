@@ -21,8 +21,8 @@ switch ($t_module["param"]) {
 		 * Display the detail of the record
 		 */
 		$data = $dataClass->lire($id);
-		$smarty->assign("data", $data);
-		$smarty->assign("corps", "repro/saliniteChange.tpl");
+		$vue->set( , "");("data", $data);
+		$vue->set( , "");("corps", "repro/saliniteChange.tpl");
 		break;
 	case "new":
 		$id = 0;
@@ -40,13 +40,13 @@ switch ($t_module["param"]) {
 		$bassinCampagne = new BassinCampagne($bdd, $ObjetBDDParam);
 		$dataBassinCampagne = $bassinCampagne->lire($data["bassin_campagne_id"]);
 		$bassin = new Bassin($bdd, $ObjetBDDParam);
-		$smarty->assign("dataBassinCampagne", $dataBassinCampagne);
-		$smarty->assign("dataBassin", $bassin->lire($dataBassinCampagne["bassin_id"]));
+		$vue->set( , "");("dataBassinCampagne", $dataBassinCampagne);
+		$vue->set( , "");("dataBassin", $bassin->lire($dataBassinCampagne["bassin_id"]));
 		/*
 		 * Recuperation des donnees de salinite deja existantes
 		 */
 		$salinites = $dataClass->getListFromBassinCampagne($data["bassin_campagne_id"]);
-		$smarty->assign("salinites", $salinites );
+		$vue->set( , "");("salinites", $salinites );
 		/*
 		 * Assignation des valeurs par defaut en prenant en reference la derniere valeur entree
 		 */
@@ -54,9 +54,9 @@ switch ($t_module["param"]) {
 		if ($nbProfil > 0 && $id == 0) {
 			$data["salinite_datetime"] =$salinites[$nbProfil - 1]["salinite_datetime"];
 			//$data["profil_thermique_type_id"] = $profilThermiques[$nbProfil - 1]["profil_thermique_type_id"];
-			$smarty->assign("data", $data);			
+			$vue->set( , "");("data", $data);			
 		}
-		$smarty->assign("bassinParentModule", $_SESSION["bassinParentModule"]);
+		$vue->set( , "");("bassinParentModule", $_SESSION["bassinParentModule"]);
 		break;
 	case "write":
 		/*

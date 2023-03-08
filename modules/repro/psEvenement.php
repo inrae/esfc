@@ -11,8 +11,8 @@ $dataClass = new PsEvenement($bdd,$ObjetBDDParam);
 $keyName = "ps_evenement_id";
 $id = $_REQUEST[$keyName];
 if (isset($_SESSION["sequence_id"]))
-	$smarty->assign("sequence_id", $_SESSION["sequence_id"]);
-$smarty->assign ( "poissonDetailParent", $_SESSION ["poissonDetailParent"] );
+	$vue->set( , "");("sequence_id", $_SESSION["sequence_id"]);
+$vue->set( , ""); ( "poissonDetailParent", $_SESSION ["poissonDetailParent"] );
 switch ($t_module["param"]) {
 	case "list":
 		/*
@@ -34,20 +34,20 @@ switch ($t_module["param"]) {
 		$dataSearch = $searchExample->getParam ();
 		if ($searchExample->isSearch () == 1) {
 			$data = $dataClass->getListeSearch ( $dataExample );
-			$smarty->assign ( "data", $data );
-			$smarty->assign ("isSearch", 1);
+			$vue->set( , ""); ( "data", $data );
+			$vue->set( , ""); ("isSearch", 1);
 		}
-		$smarty->assign ("exampleSearch", $dataSearch);
-		$smarty->assign("data", $dataClass->getListe());
-		$smarty->assign("corps", "example/exampleList.tpl");
+		$vue->set( , ""); ("exampleSearch", $dataSearch);
+		$vue->set( , "");("data", $dataClass->getListe());
+		$vue->set( , "");("corps", "example/exampleList.tpl");
 		break;
 	case "display":
 		/*
 		 * Display the detail of the record
 		 */
 		$data = $dataClass->lire($id);
-		$smarty->assign("data", $data);
-		$smarty->assign("corps", "example/exampleDisplay.tpl");
+		$vue->set( , "");("data", $data);
+		$vue->set( , "");("corps", "example/exampleDisplay.tpl");
 		break;
 	case "change":
 		/*
@@ -66,8 +66,8 @@ switch ($t_module["param"]) {
 		/*
 		 * Affectation des donnees a smarty
 		 */
-		$smarty->assign("dataPsEvenement",$dataPsEvenement);
-		$smarty->assign("ps_evenement_id", $id);
+		$vue->set( , "");("dataPsEvenement",$dataPsEvenement);
+		$vue->set( , "");("ps_evenement_id", $id);
 		$module_coderetour = 1;
 		break;
 	case "write":

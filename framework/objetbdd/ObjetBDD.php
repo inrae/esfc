@@ -415,7 +415,7 @@ class ObjetBDD
    * @param string $sql
    * @return array|bool
    */
-  function execute($sql): array|bool
+  function execute($sql)
   {
     $rs = array();
 
@@ -638,7 +638,7 @@ class ObjetBDD
    * @param $id
    * @return array|bool
    */
-  function delete($id): array|bool
+  function delete($id)
   {
     return $this->supprimer($id);
   }
@@ -971,7 +971,7 @@ class ObjetBDD
    *            string - code de la requete SQL
    * @return array|bool contenant la liste des lignes concernees (identique a getListe)
    */
-  function getListeParam($sql): array|bool
+  function getListeParam($sql)
   {
     $collection = $this->execute($sql);
     if ($this->auto_date == 1) {
@@ -990,7 +990,7 @@ class ObjetBDD
    *            $sql
    * @return array|bool
    */
-  function getListParam($sql): array|bool
+  function getListParam($sql)
   {
     return $this->getListeParam($sql);
   }
@@ -1252,7 +1252,7 @@ class ObjetBDD
    * @param string
    * @return array|bool
    */
-  function executeSQL(string $ls_sql): array|bool
+  function executeSQL(string $ls_sql)
   {
     return $this->execute($ls_sql);
   }
@@ -1262,7 +1262,7 @@ class ObjetBDD
    *
    * @return bool|int
    */
-  function vidageTable(): bool|int
+  function vidageTable()
   {
     try {
       return $this->connection->exec('delete from ' . $this->table);
@@ -1279,7 +1279,7 @@ class ObjetBDD
    *
    * @return bool|int
    */
-  function clearTable(): bool|int
+  function clearTable()
   {
     return $this->vidageTable();
   }
@@ -1726,7 +1726,7 @@ class ObjetBDD
    * @throws Exception
    * @return array|bool : tableau des resultats
    */
-  function executeAsPrepared(string $sql, array $data, bool $onlyExecute = false): array|bool
+  function executeAsPrepared(string $sql, array $data, bool $onlyExecute = false)
   {
     if ($this->debug_mode == 2) {
       echo "executeAsPrepared - $sql<br>";

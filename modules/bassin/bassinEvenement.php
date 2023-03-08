@@ -25,13 +25,13 @@ switch ($t_module["param"]) {
 		 * Lecture des types d'événements
 		 */
 		$bassinEvenementType = new BassinEvenementType($bdd, $ObjetBDDParam);
-		$smarty->assign("dataEvntType", $bassinEvenementType->getListe(1));
+		$vue->set( , "");("dataEvntType", $bassinEvenementType->getListe(1));
 		/*
 		 * Lecture du bassin
 		 */
 		$bassin = new Bassin($bdd, $ObjetBDDParam);
-		$smarty->assign("dataBassin", $bassin->getDetail($_REQUEST["bassin_id"]));
-		$smarty->assign("bassinParentModule", $_SESSION["bassinParentModule"]);
+		$vue->set( , "");("dataBassin", $bassin->getDetail($_REQUEST["bassin_id"]));
+		$vue->set( , "");("bassinParentModule", $_SESSION["bassinParentModule"]);
 		break;
 	case "write":
 		/*

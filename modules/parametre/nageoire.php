@@ -14,8 +14,8 @@ switch ($t_module["param"]) {
 		/*
 		 * Display the list of all records of the table
 		 */
-		$smarty->assign("data", $dataClass->getListe(1));
-		$smarty->assign("corps", "parametre/nageoireList.tpl");
+		$vue->set( , "");("data", $dataClass->getListe(1));
+		$vue->set( , "");("corps", "parametre/nageoireList.tpl");
 		break;
 	case "change":
 		/*

@@ -21,10 +21,10 @@ switch ($t_module["param"]) {
 		 */
 		$data = dataRead($dataClass, $id, "repro/bassinLotChange.tpl", $_REQUEST["lot_id"]);
 		$bassin = new Bassin($bdd, $ObjetBDDParam);
-		$smarty->assign("bassins", $bassin->getListe(1,6));
+		$vue->set( , "");("bassins", $bassin->getListe(1,6));
 		require_once 'modules/classes/lot.class.php';
 		$lot = new Lot($bdd, $ObjetBDDParam);
-		$smarty->assign("dataLot", $lot->getDetail($data["lot_id"]));
+		$vue->set( , "");("dataLot", $lot->getDetail($data["lot_id"]));
 		break;
 	case "write":
 		/*

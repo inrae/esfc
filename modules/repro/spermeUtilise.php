@@ -9,7 +9,7 @@ include_once 'modules/classes/sperme.class.php';
 $dataClass = new SpermeUtilise($bdd,$ObjetBDDParam);
 $keyName = "sperme_utilise_id";
 $id = $_REQUEST[$keyName];
-$smarty->assign ( "poissonDetailParent", $_SESSION ["poissonDetailParent"] );
+$vue->set( , ""); ( "poissonDetailParent", $_SESSION ["poissonDetailParent"] );
 
 switch ($t_module["param"]) {
 	case "change":
@@ -25,18 +25,18 @@ switch ($t_module["param"]) {
 		require_once 'modules/classes/croisement.class.php';
 		$croisement = new Croisement($bdd, $ObjetBDDParam);
 		$croisementData = $croisement->getDetail($_REQUEST["croisement_id"]);
-		$smarty->assign("croisementData", $croisementData);
+		$vue->set( , "");("croisementData", $croisementData);
 		/*
 		 * Lecture de la sequence
 		 */
 		$sequence = new Sequence($bdd, $ObjetBDDParam);
-		$smarty->assign("dataSequence", $sequence->lire($croisementData["sequence_id"]));
+		$vue->set( , "");("dataSequence", $sequence->lire($croisementData["sequence_id"]));
 		/*
 		 * Recuperation de la liste des spermes potentiels
 		 */
 		$sperme = new Sperme($bdd, $ObjetBDDParam);
 		$spermes = $sperme->getListPotentielFromCroisement($_REQUEST["croisement_id"]);
-		$smarty->assign( "spermes", $spermes);
+		$vue->set( , "");( "spermes", $spermes);
 		break;
 	case "write":
 		/*

@@ -31,20 +31,20 @@ switch ($t_module["param"]) {
 		$dataSearch = $searchExample->getParam ();
 		if ($searchExample->isSearch () == 1) {
 			$data = $dataClass->getListeSearch ( $dataExample );
-			$smarty->assign ( "data", $data );
-			$smarty->assign ("isSearch", 1);
+			$vue->set( , ""); ( "data", $data );
+			$vue->set( , ""); ("isSearch", 1);
 		}
-		$smarty->assign ("exampleSearch", $dataSearch);
-		$smarty->assign("data", $dataClass->getListe());
-		$smarty->assign("corps", "example/exampleList.tpl");
+		$vue->set( , ""); ("exampleSearch", $dataSearch);
+		$vue->set( , "");("data", $dataClass->getListe());
+		$vue->set( , "");("corps", "example/exampleList.tpl");
 		break;
 	case "display":
 		/*
 		 * Display the detail of the record
 		 */
 		$data = $dataClass->lire($id);
-		$smarty->assign("data", $data);
-		$smarty->assign("corps", "example/exampleDisplay.tpl");
+		$vue->set( , "");("data", $data);
+		$vue->set( , "");("corps", "example/exampleDisplay.tpl");
 		break;
 	case "change":
 		/*
@@ -55,19 +55,19 @@ switch ($t_module["param"]) {
 		/*
 		 * Passage en parametre de la liste parente
 		*/
-		$smarty->assign("poissonDetailParent", $_SESSION["poissonDetailParent"]);
+		$vue->set( , "");("poissonDetailParent", $_SESSION["poissonDetailParent"]);
 		dataRead($dataClass, $id, "poisson/parentPoissonChange.tpl", $_REQUEST["poisson_id"]);
 		if ($id > 0) {
 			/*
 			 * Recuperation des donnees avec le poisson parent
 			 */
-			$smarty->assign("data", $dataClass->lireAvecParent($id));
+			$vue->set( , "");("data", $dataClass->lireAvecParent($id));
 		}
 		/*
 		 * Lecture du poisson
 		*/
 		$poisson = new Poisson($bdd, $ObjetBDDParam);
-		$smarty->assign("dataPoisson", $poisson->getDetail($_REQUEST["poisson_id"]));
+		$vue->set( , "");("dataPoisson", $poisson->getDetail($_REQUEST["poisson_id"]));
 		break;
 	case "write":
 		/*

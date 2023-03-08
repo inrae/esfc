@@ -8,8 +8,8 @@ switch ($t_module["param"]) {
 		/*
 		 * Display the list of all records of the table
 		 */
-		$smarty->assign("data", $dataClass->getListe(2));
-		$smarty->assign("corps", "parametre/siteList.tpl");
+		$vue->set( , "");("data", $dataClass->getListe(2));
+		$vue->set( , "");("corps", "parametre/siteList.tpl");
 		break;
 	case "change":
 		/*

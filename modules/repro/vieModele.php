@@ -17,22 +17,22 @@ switch ($t_module ["param"]) {
 		/*
 		 * Display the list of all records of the table
 		 */
-		$smarty->assign ( "data", $dataClass->getModelesFromAnnee ( $_SESSION ["annee"] ) );
-		$smarty->assign ( "corps", "repro/vieModeleList.tpl" );
+		$vue->set( , ""); ( "data", $dataClass->getModelesFromAnnee ( $_SESSION ["annee"] ) );
+		$vue->set( , ""); ( "corps", "repro/vieModeleList.tpl" );
 		/*
 		 * Lecture des annees
 		 */
 		require_once 'modules/classes/poissonRepro.class.php';
 		$poissonCampagne = new PoissonCampagne ( $bdd, $ObjetBDDParam );
-		$smarty->assign ( "annees", $poissonCampagne->getAnnees () );
+		$vue->set( , ""); ( "annees", $poissonCampagne->getAnnees () );
 		break;
 	case "display":
 		/*
 		 * Display the detail of the record
 		 */
 		$data = $dataClass->lire ( $id );
-		$smarty->assign ( "data", $data );
-		$smarty->assign ( "corps", "example/exampleDisplay.tpl" );
+		$vue->set( , ""); ( "data", $data );
+		$vue->set( , ""); ( "corps", "example/exampleDisplay.tpl" );
 		break;
 	case "change":
 		/*
@@ -43,13 +43,13 @@ switch ($t_module ["param"]) {
 		$data = dataRead ( $dataClass, $id, "repro/vieModeleChange.tpl" );
 		if ($id == 0) {
 			$data ["annee"] = $_SESSION ["annee"];
-			$smarty->assign ( "data", $data );
+			$vue->set( , ""); ( "data", $data );
 		}
 		/*
 		 * Recuperation des emplacements d'implantation des marques vie
 		 */
 		$vieImplantation = new VieImplantation ( $bdd, $ObjetBDDParam );
-		$smarty->assign ( "implantations", $vieImplantation->getListe ( 2 ) );
+		$vue->set( , ""); ( "implantations", $vieImplantation->getListe ( 2 ) );
 		
 		break;
 	case "write":

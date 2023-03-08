@@ -24,12 +24,12 @@ switch ($t_module["param"]) {
 		 * Lecture des types d'événements
 		 */
 		$circuitEvenementType = new circuitEvenementType($bdd, $ObjetBDDParam);
-		$smarty->assign("dataEvntType", $circuitEvenementType->getListe(1));
+		$vue->set( , "");("dataEvntType", $circuitEvenementType->getListe(1));
 		/*
 		 * Lecture du circuit d'eau
 		 */
 		$circuit = new CircuitEau($bdd, $ObjetBDDParam);
-		$smarty->assign("dataCircuit", $circuit->lire($_REQUEST["circuit_eau_id"]));
+		$vue->set( , "");("dataCircuit", $circuit->lire($_REQUEST["circuit_eau_id"]));
 		break;
 	case "write":
 		/*

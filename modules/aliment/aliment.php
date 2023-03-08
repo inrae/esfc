@@ -14,16 +14,8 @@ switch ($t_module ["param"]) {
 		/*
 		 * Display the list of all records of the table
 		 */
-		$smarty->assign ( "data", $dataClass->getListe ( 2 ) );
-		$smarty->assign ( "corps", "aliment/alimentList.tpl" );
-		break;
-	case "display":
-		/*
-		 * Display the detail of the record
-		 */
-		$data = $dataClass->lire ( $id );
-		$smarty->assign ( "data", $data );
-		$smarty->assign ( "corps", "example/exampleDisplay.tpl" );
+		$vue->set( $dataClass->getListe ( 2 ), "data");
+		$vue->set( "aliment/alimentList.tpl", "corps"); 
 		break;
 	case "change":
 		/*
@@ -36,7 +28,7 @@ switch ($t_module ["param"]) {
 		 * Recuperation des types d'aliment
 		 */
 		$alimentType = new AlimentType ( $bdd, $ObjetBDDParam );
-		$smarty->assign ( "alimentType", $alimentType->getListe ( 1 ) );
+		$vue->set( $alimentType->getListe ( 1 ) , "alimentType");
 		/*
 		 * Recuperation des categories
 		 */
@@ -56,7 +48,7 @@ switch ($t_module ["param"]) {
 					$dataCategorie [$key] ["checked"] = 1;
 			}
 		}
-		$smarty->assign ( "categorie", $dataCategorie );
+		$vue->set($dataCategorie , "categorie"); 
 		break;
 	case "write":
 		/*
@@ -74,5 +66,3 @@ switch ($t_module ["param"]) {
 		dataDelete ( $dataClass, $id );
 		break;
 }
-
-?>

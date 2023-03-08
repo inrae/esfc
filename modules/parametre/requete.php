@@ -14,8 +14,8 @@ switch ($t_module["param"]) {
         /*
          * Display the list of all records of the table
          */
-        $smarty->assign("data", $dataClass->getListe(2));
-        $smarty->assign("corps", "parametre/requeteList.tpl");
+        $vue->set( , "");("data", $dataClass->getListe(2));
+        $vue->set( , "");("corps", "parametre/requeteList.tpl");
         break;
     case "change":
         /*
@@ -27,13 +27,13 @@ switch ($t_module["param"]) {
         break;
     case "execListe":
     case "exec":
-        $smarty->assign("corps", "parametre/requeteChange.tpl");
-        $smarty->assign("data", $dataClass->lire($id));
+        $vue->set( , "");("corps", "parametre/requeteChange.tpl");
+        $vue->set( , "");("data", $dataClass->lire($id));
         try{
-        $smarty->assign("result", $dataClass->exec($id));
+        $vue->set( , "");("result", $dataClass->exec($id));
         $module_coderetour = 1;
         }catch (Exception $e){
-            $message = $e->getMessage();
+            $message->set(  $e->getMessage();
             $module_coderetour = -1;
         }
         break;
@@ -60,12 +60,12 @@ switch ($t_module["param"]) {
             if ($dinit["requete_id"] > 0){
                 $data ["body"] = $dinit["body"];
                 $data["datefields"] = $dinit["datefields"];
-                $smarty->assign("data", $data);
+                $vue->set( , "");("data", $data);
             }
         }
         break;
     default :
-        $message = "Le module demandé n'existe pas";
+        $message->set(  "Le module demandé n'existe pas";
         $module_coderetour = -1;
 }
 

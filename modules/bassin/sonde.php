@@ -29,20 +29,20 @@ switch ($t_module["param"]) {
         $dataSearch = $searchExample->getParam();
         if ($searchExample->isSearch() == 1) {
             $data = $dataClass->getListeSearch($dataExample);
-            $smarty->assign("data", $data);
-            $smarty->assign("isSearch", 1);
+            $vue->set( , "");("data", $data);
+            $vue->set( , "");("isSearch", 1);
         }
-        $smarty->assign("exampleSearch", $dataSearch);
-        $smarty->assign("data", $dataClass->getListe());
-        $smarty->assign("corps", "example/exampleList.tpl");
+        $vue->set( , "");("exampleSearch", $dataSearch);
+        $vue->set( , "");("data", $dataClass->getListe());
+        $vue->set( , "");("corps", "example/exampleList.tpl");
         break;
     case "display":
 		/*
          * Display the detail of the record
          */
         $data = $dataClass->lire($id);
-        $smarty->assign("data", $data);
-        $smarty->assign("corps", "example/exampleDisplay.tpl");
+        $vue->set( , "");("data", $data);
+        $vue->set( , "");("corps", "example/exampleDisplay.tpl");
         break;
     case "change":
 		/*
@@ -68,14 +68,14 @@ switch ($t_module["param"]) {
         dataDelete($dataClass, $id);
         break;
     case "import":
-        $smarty->assign('corps', 'bassin/sondeImport.tpl');
-        $smarty->assign("sondes", $dataClass->getListe(2));
+        $vue->set( , "");('corps', 'bassin/sondeImport.tpl');
+        $vue->set( , "");("sondes", $dataClass->getListe(2));
         /**
          * Site
          */
        /* require_once 'modules/classes/site.class.php';
         $site = new Site($bdd, $ObjetBDDParam);
-        $smarty->assign("site", $site->getListe(2));
+        $vue->set( , "");("site", $site->getListe(2));
         */
         break;
     case "importExec":
@@ -84,12 +84,12 @@ switch ($t_module["param"]) {
         try {
             $result = $dataClass->importData($_REQUEST["sonde_id"], $files);
             if (is_numeric($_REQUEST["sonde_id"])) {
-                $smarty->assign("sonde_id", $_REQUEST["sonde_id"]);
+                $vue->set( , "");("sonde_id", $_REQUEST["sonde_id"]);
             }
-            $message = $result . " analyses d'eau créées";
+            $message->set(  $result . " analyses d'eau créées";
             $module_coderetour = 1;
         } catch (Exception $e) {
-            $message = "Echec d'importation des données :<br>" . $e->getMessage();
+            $message->set(  "Echec d'importation des données :<br>" . $e->getMessage();
             $module_coderetour = -1;
         }
         break;

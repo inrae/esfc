@@ -12,7 +12,7 @@ $id = $_REQUEST[$keyName];
 /*
  * Passage en parametre de la liste parente
  */
-$smarty->assign ( "poissonDetailParent", $_SESSION ["poissonDetailParent"] );
+$vue->set( , ""); ( "poissonDetailParent", $_SESSION ["poissonDetailParent"] );
 
 switch ($t_module["param"]) {
     case "change":
@@ -26,25 +26,25 @@ switch ($t_module["param"]) {
          * Recherche des dilueurs
          */
         $dilueur = new SpermeDilueur($bdd, $ObjetBDDParam);
-        $smarty->assign("spermeDilueur", $dilueur->getListe(2));
+        $vue->set( , "");("spermeDilueur", $dilueur->getListe(2));
         /*
          * Recherche des conservateurs
          */
         $conservateur = new SpermeConservateur($bdd, $ObjetBDDParam);
-        $smarty->assign("spermeConservateur", $conservateur->getListe(2));
+        $vue->set( , "");("spermeConservateur", $conservateur->getListe(2));
         
         /*
          * Recherche des emplacements de conservation
          */
         $freezingPlace = new SpermeFreezingPlace($bdd, $ObjetBDDParam);
-        $smarty->assign("place", $freezingPlace->getListFromParent($id, 1));
+        $vue->set( , "");("place", $freezingPlace->getListFromParent($id, 1));
         
         /*
          * Recherche des mesures de temperature
          */
         $freezingMeasure = new SpermeFreezingMeasure($bdd, $ObjetBDDParam);
         $dataMeasure = $freezingMeasure->getListFromParent($id, 1);
-        $smarty->assign("freezingMeasure", $dataMeasure );
+        $vue->set( , "");("freezingMeasure", $dataMeasure );
         /*
          * Preparation des donnees pour le graphique
          */
@@ -55,20 +55,20 @@ switch ($t_module["param"]) {
             $x .= ",'" . $value ["measure_date"] . "'";
             $y .= "," . $value ["measure_temp"];
         }
-        $smarty->assign("mx", $x);
-        $smarty->assign("my", $y);
+        $vue->set( , "");("mx", $x);
+        $vue->set( , "");("my", $y);
         /*
          * Donnees du poisson
          */
         require_once 'modules/classes/poissonRepro.class.php';
         $poissonCampagne = new PoissonCampagne($bdd, $ObjetBDDParam);
-        $smarty->assign("dataPoisson", $poissonCampagne->lire($_REQUEST["poisson_campagne_id"]));
+        $vue->set( , "");("dataPoisson", $poissonCampagne->lire($_REQUEST["poisson_campagne_id"]));
         
         /*
          * Recherche des mesures de qualite rattachees
          */
         $sm = new SpermeMesure($bdd, $ObjetBDDParam);
-        $smarty->assign("dataMesure", $sm->getListFromCongelation($id));
+        $vue->set( , "");("dataMesure", $sm->getListFromCongelation($id));
         
         break;
     case "write":

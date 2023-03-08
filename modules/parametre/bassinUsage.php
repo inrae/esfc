@@ -14,16 +14,16 @@ switch ($t_module["param"]) {
 		/*
 		 * Display the list of all records of the table
 		 */
-		$smarty->assign("data", $dataClass->getListe(2));
-		$smarty->assign("corps", "parametre/bassinUsageList.tpl");
+		$vue->set( , "");("data", $dataClass->getListe(2));
+		$vue->set( , "");("corps", "parametre/bassinUsageList.tpl");
 		break;
 	case "display":
 		/*
 		 * Display the detail of the record
 		 */
 		$data = $dataClass->lire($id);
-		$smarty->assign("data", $data);
-		$smarty->assign("corps", "example/exampleDisplay.tpl");
+		$vue->set( , "");("data", $data);
+		$vue->set( , "");("corps", "example/exampleDisplay.tpl");
 		break;
 	case "change":
 		/*
@@ -37,7 +37,7 @@ switch ($t_module["param"]) {
 		 */
 		include_once 'modules/classes/aliment.class.php';
 		$categorie = new Categorie($bdd, $ObjetBDDParam);
-		$smarty->assign("categorie", $categorie->getListe(1));
+		$vue->set( , "");("categorie", $categorie->getListe(1));
 		break;
 	case "write":
 		/*

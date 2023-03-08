@@ -11,7 +11,7 @@ $id = $_REQUEST[$keyName];
 /*
  * Passage en parametre de la liste parente
  */
-$smarty->assign("poissonDetailParent", $_SESSION["poissonDetailParent"]);
+$vue->set( , "");("poissonDetailParent", $_SESSION["poissonDetailParent"]);
 
 switch ($t_module["param"]) {
     case "change":
@@ -23,13 +23,13 @@ switch ($t_module["param"]) {
         dataRead($dataClass, $id, "repro/spermeFreezingMeasureChange.tpl", $_REQUEST["sperme_congelation_id"]);
         $spermeCongelation = new SpermeCongelation($bdd, $ObjetBDDParam);
         $dataCongelation = $spermeCongelation->lire($_REQUEST["sperme_congelation_id"]);
-        $smarty->assign("dataCongelation", $dataCongelation);
+        $vue->set( , "");("dataCongelation", $dataCongelation);
         /*
          * Donnees du poisson
          */
         require_once 'modules/classes/poissonRepro.class.php';
         $poissonCampagne = new PoissonCampagne($bdd, $ObjetBDDParam);
-        $smarty->assign("dataPoisson", $poissonCampagne->lire($_REQUEST["poisson_campagne_id"]));
+        $vue->set( , "");("dataPoisson", $poissonCampagne->lire($_REQUEST["poisson_campagne_id"]));
         
         break;
     case "write":

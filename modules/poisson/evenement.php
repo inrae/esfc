@@ -17,8 +17,8 @@ switch ($t_module["param"]) {
 		 * Display the detail of the record
 		 */
 		$data = $dataClass->lire($id);
-        $smarty->assign("data", $data);
-        $smarty->assign("corps", "example/exampleDisplay.tpl");
+        $vue->set( , "");("data", $data);
+        $vue->set( , "");("corps", "example/exampleDisplay.tpl");
         break;
     case "change":
         if ($_REQUEST["poisson_id"] > 0) {
@@ -28,7 +28,7 @@ switch ($t_module["param"]) {
             /*
              * Passage en parametre de la liste parente
              */
-            $smarty->assign("poissonDetailParent", $_SESSION["poissonDetailParent"]);
+            $vue->set( , "");("poissonDetailParent", $_SESSION["poissonDetailParent"]);
             
             /*
              * Lecture des tables de parametres necessaires a la saisie
@@ -37,29 +37,29 @@ switch ($t_module["param"]) {
             include_once 'modules/classes/bassin.class.php';
             require_once 'modules/classes/dosageSanguin.class.php';
             $evenement_type = new Evenement_type($bdd, $ObjetBDDParam);
-            $smarty->assign("evntType", $evenement_type->getListe(2));
+            $vue->set( , "");("evntType", $evenement_type->getListe(2));
             $pathologie_type = new Pathologie_type($bdd, $ObjetBDDParam);
-            $smarty->assign("pathoType", $pathologie_type->getListe(2));
+            $vue->set( , "");("pathoType", $pathologie_type->getListe(2));
             $gender_methode = new Gender_methode($bdd, $ObjetBDDParam);
-            $smarty->assign("genderMethode", $gender_methode->getListe(1));
+            $vue->set( , "");("genderMethode", $gender_methode->getListe(1));
             $sexe = new Sexe($bdd, $ObjetBDDParam);
-            $smarty->assign("sexe", $sexe->getListe(1));
+            $vue->set( , "");("sexe", $sexe->getListe(1));
             $bassin = new Bassin($bdd, $ObjetBDDParam);
-            $smarty->assign("bassinList", $bassin->getListe());
-            $smarty->assign("bassinListActif", $bassin->getListe(1));
+            $vue->set( , "");("bassinList", $bassin->getListe());
+            $vue->set( , "");("bassinListActif", $bassin->getListe(1));
             $mortalite_type = new Mortalite_type($bdd, $ObjetBDDParam);
-            $smarty->assign("mortaliteType", $mortalite_type->getListe(2));
+            $vue->set( , "");("mortaliteType", $mortalite_type->getListe(2));
             $cohorte_type = new Cohorte_type($bdd, $ObjetBDDParam);
-            $smarty->assign("cohorteType", $cohorte_type->getListe(2));
+            $vue->set( , "");("cohorteType", $cohorte_type->getListe(2));
             $sortie_lieu = new SortieLieu($bdd, $ObjetBDDParam);
-            $smarty->assign("sortieLieu", $sortie_lieu->getListeActif(1));
+            $vue->set( , "");("sortieLieu", $sortie_lieu->getListeActif(1));
             $anesthesie_produit = new Anesthesie_produit($bdd, $ObjetBDDParam);
             $dataProduit = $anesthesie_produit->getListeActif(1);
             dataRead($dataClass, $id, "poisson/evenementChange.tpl", $_REQUEST["poisson_id"]);
             $nageoire = new Nageoire($bdd, $ObjetBDDParam);
-            $smarty->assign("nageoire", $nageoire->getListe(1));
+            $vue->set( , "");("nageoire", $nageoire->getListe(1));
             $determinationParente = new DeterminationParente($bdd, $ObjetBDDParam);
-            $smarty->assign("determinationParente", $determinationParente->getListe(1));
+            $vue->set( , "");("determinationParente", $determinationParente->getListe(1));
             
             /*
              * Tables des stades de maturation des oeufs ou gonades
@@ -68,42 +68,42 @@ switch ($t_module["param"]) {
             require_once 'modules/classes/stadeOeuf.class.php';
             $stadeGonade = new StadeGonade($bdd, $ObjetBDDParam);
             $stadeOeuf = new StadeOeuf($bdd, $ObjetBDDParam);
-            $smarty->assign("gonades", $stadeGonade->getListe(1));
-            $smarty->assign("oeufs", $stadeOeuf->getListe(1));
+            $vue->set( , "");("gonades", $stadeGonade->getListe(1));
+            $vue->set( , "");("oeufs", $stadeOeuf->getListe(1));
             /*
              * Lecture du poisson
              */
             $poisson = new Poisson($bdd, $ObjetBDDParam);
             $dataPoisson = $poisson->getDetail($_REQUEST["poisson_id"]);
-            $smarty->assign("dataPoisson", $dataPoisson);
+            $vue->set( , "");("dataPoisson", $dataPoisson);
             $dataTransfert = array();
             /*
              * Lecture des tables associees
              */
             if ($id > 0) {
                 $morphologie = new Morphologie($bdd, $ObjetBDDParam);
-                $smarty->assign("dataMorpho", $morphologie->getDataByEvenement($id));
+                $vue->set( , "");("dataMorpho", $morphologie->getDataByEvenement($id));
                 $pathologie = new Pathologie($bdd, $ObjetBDDParam);
-                $smarty->assign("dataPatho", $pathologie->getDataByEvenement($id));
+                $vue->set( , "");("dataPatho", $pathologie->getDataByEvenement($id));
                 $genderSelection = new Gender_selection($bdd, $ObjetBDDParam);
-                $smarty->assign("dataGender", $genderSelection->getDataByEvenement($id));
+                $vue->set( , "");("dataGender", $genderSelection->getDataByEvenement($id));
                 $mortalite = new Mortalite($bdd, $ObjetBDDParam);
-                $smarty->assign("dataMortalite", $mortalite->getDataByEvenement($id));
+                $vue->set( , "");("dataMortalite", $mortalite->getDataByEvenement($id));
                 $cohorte = new Cohorte($bdd, $ObjetBDDParam);
-                $smarty->assign("dataCohorte", $cohorte->getDataByEvenement($id));
+                $vue->set( , "");("dataCohorte", $cohorte->getDataByEvenement($id));
                 $sortie = new Sortie($bdd, $ObjetBDDParam);
-                $smarty->assign("dataSortie", $sortie->getDataByEvenement($id));
+                $vue->set( , "");("dataSortie", $sortie->getDataByEvenement($id));
                 $echographie = new Echographie($bdd, $ObjetBDDParam);
-                $smarty->assign("dataEcho", $echographie->getDataByEvenement($id));
+                $vue->set( , "");("dataEcho", $echographie->getDataByEvenement($id));
                 $anesthesie = new Anesthesie($bdd, $ObjetBDDParam);
                 $dataAnesthesie = $anesthesie->getDataByEvenement($id);
                 $dosageSanguin = new DosageSanguin($bdd, $ObjetBDDParam);
-                $smarty->assign("dataDosageSanguin", $dosageSanguin->getDataByEvenement($id));
+                $vue->set( , "");("dataDosageSanguin", $dosageSanguin->getDataByEvenement($id));
                 $genetique = new Genetique($bdd, $ObjetBDDParam);
-                $smarty->assign("dataGenetique", $genetique->getDataByEvenement($id));
-                $smarty->assign("dataAnesthesie", $dataAnesthesie);
+                $vue->set( , "");("dataGenetique", $genetique->getDataByEvenement($id));
+                $vue->set( , "");("dataAnesthesie", $dataAnesthesie);
                 $parente = new Parente($bdd, $ObjetBDDParam);
-                $smarty->assign("dataParente", $parente->getDataByEvenement($id));
+                $vue->set( , "");("dataParente", $parente->getDataByEvenement($id));
                 
                 /*
                  * Recherche si le produit est toujours utilise
@@ -121,7 +121,7 @@ switch ($t_module["param"]) {
                         );
                     }
                 }
-                $smarty->assign("produit", $dataProduit);
+                $vue->set( , "");("produit", $dataProduit);
                 
                 /*
                  * Traitement particulier du transfert
@@ -134,16 +134,16 @@ switch ($t_module["param"]) {
                 $dataTransfert["dernier_bassin_connu"] = $dataPoisson["bassin_id"];
                 $dataTransfert["dernier_bassin_connu_libelle"] = $dataPoisson["bassin_nom"];
             }
-            $smarty->assign("dataTransfert", $dataTransfert);
+            $vue->set( , "");("dataTransfert", $dataTransfert);
             /*
              * Gestion des documents associes
              */
-            $smarty->assign("moduleParent", "evenementChange");
-            $smarty->assign("parentType", "evenement");
-            $smarty->assign("parentIdName", "evenement_id");
-            $smarty->assign("parent_id", $id);
+            $vue->set( , "");("moduleParent", "evenementChange");
+            $vue->set( , "");("parentType", "evenement");
+            $vue->set( , "");("parentIdName", "evenement_id");
+            $vue->set( , "");("parent_id", $id);
             require_once 'modules/document/documentFunctions.php';
-            $smarty->assign("dataDoc", getListeDocument("evenement", $id, $_REQUEST["document_limit"], $_REQUEST["document_offset"]));
+            $vue->set( , "");("dataDoc", getListeDocument("evenement", $id, $_REQUEST["document_limit"], $_REQUEST["document_offset"]));
         }
         break;
     case "write":
@@ -166,8 +166,8 @@ switch ($t_module["param"]) {
                 $_REQUEST["morphologie_date"] = $_REQUEST["evenement_date"];
                 $morpho_id = $morphologie->ecrire($_REQUEST);
                 if (! $morpho_id > 0) {
-                    $message .= formatErrorData($morphologie->getErrorData());
-                    $message .= $LANG["message"][12];
+                    $message->set( $morphologie->getErrorData());
+                    $message->set( $LANG["message"][12];
                     $module_coderetour = - 1;
                 }
             }
@@ -179,8 +179,8 @@ switch ($t_module["param"]) {
                 $_REQUEST["pathologie_date"] = $_REQUEST["evenement_date"];
                 $patho_id = $pathologie->ecrire($_REQUEST);
                 if (! $patho_id > 0) {
-                    $message .= formatErrorData($pathologie->getErrorData());
-                    $message .= $LANG["message"][12];
+                    $message->set( $pathologie->getErrorData());
+                    $message->set( $LANG["message"][12];
                     $module_coderetour = - 1;
                 }
             }
@@ -192,8 +192,8 @@ switch ($t_module["param"]) {
                 $_REQUEST["gender_selection_date"] = $_REQUEST["evenement_date"];
                 $gender_id = $genderSelection->ecrire($_REQUEST);
                 if (! $gender_id > 0) {
-                    $message .= formatErrorData($genderSelection->getErrorData());
-                    $message .= $LANG["message"][12];
+                    $message->set( $genderSelection->getErrorData());
+                    $message->set( $LANG["message"][12];
                     $module_coderetour = - 1;
                 }
             }
@@ -205,8 +205,8 @@ switch ($t_module["param"]) {
                 $_REQUEST["transfert_date"] = $_REQUEST["evenement_date"];
                 $transfert_id = $transfert->ecrire($_REQUEST);
                 if (! $transfert_id > 0) {
-                    $message .= formatErrorData($transfert->getErrorData());
-                    $message .= $LANG["message"][12];
+                    $message->set( $transfert->getErrorData());
+                    $message->set( $LANG["message"][12];
                     $module_coderetour = - 1;
                 }
             }
@@ -218,8 +218,8 @@ switch ($t_module["param"]) {
                 $_REQUEST["mortalite_date"] = $_REQUEST["evenement_date"];
                 $mortalite_id = $mortalite->ecrire($_REQUEST);
                 if (! $mortalite_id > 0) {
-                    $message .= formatErrorData($mortalite->getErrorData());
-                    $message .= $LANG["message"][12];
+                    $message->set( $mortalite->getErrorData());
+                    $message->set( $LANG["message"][12];
                     $module_coderetour = - 1;
                 }
             }
@@ -231,8 +231,8 @@ switch ($t_module["param"]) {
                 $_REQUEST["cohorte_date"] = $_REQUEST["evenement_date"];
                 $cohorte_id = $cohorte->ecrire($_REQUEST);
                 if (! $cohorte_id > 0) {
-                    $message .= formatErrorData($cohorte->getErrorData());
-                    $message .= $LANG["message"][12];
+                    $message->set( $cohorte->getErrorData());
+                    $message->set( $LANG["message"][12];
                     $module_coderetour = - 1;
                 }
             }
@@ -244,8 +244,8 @@ switch ($t_module["param"]) {
                 $_REQUEST["sortie_date"] = $_REQUEST["evenement_date"];
                 $sortie_id = $sortie->ecrire($_REQUEST);
                 if (! $sortie_id > 0) {
-                    $message .= formatErrorData($sortie->getErrorData());
-                    $message .= $LANG["message"][12];
+                    $message->set( $sortie->getErrorData());
+                    $message->set( $LANG["message"][12];
                     $module_coderetour = - 1;
                 }
             }
@@ -257,8 +257,8 @@ switch ($t_module["param"]) {
                 $_REQUEST["echographie_date"] = $_REQUEST["evenement_date"];
                 $echographie_id = $echographie->ecrire($_REQUEST);
                 if (! $echographie_id > 0) {
-                    $message .= formatErrorData($echographie->getErrorData());
-                    $message .= $LANG["message"][12];
+                    $message->set( $echographie->getErrorData());
+                    $message->set( $LANG["message"][12];
                     $module_coderetour = - 1;
                 }
                 /*
@@ -295,8 +295,8 @@ switch ($t_module["param"]) {
                 $_REQUEST["anesthesie_date"] = $_REQUEST["evenement_date"];
                 $anesthesie_id = $anesthesie->ecrire($_REQUEST);
                 if (! $anesthesie_id > 0) {
-                    $message .= formatErrorData($anesthesie->getErrorData());
-                    $message .= $LANG["message"][12];
+                    $message->set( $anesthesie->getErrorData());
+                    $message->set( $LANG["message"][12];
                     $module_coderetour = - 1;
                 }
             }
@@ -321,8 +321,8 @@ switch ($t_module["param"]) {
                 $dosageSanguin = new DosageSanguin($bdd, $ObjetBDDParam);
                 $dosage_sanguin_id = $dosageSanguin->ecrire($_REQUEST);
                 if (! $dosage_sanguin_id > 0) {
-                    $message .= formatErrorData($dosageSanguin->getErrorData());
-                    $message .= $LANG["message"][12];
+                    $message->set( $dosageSanguin->getErrorData());
+                    $message->set( $LANG["message"][12];
                     $module_coderetour = - 1;
                 }
             }
@@ -334,8 +334,8 @@ switch ($t_module["param"]) {
                 $genetique = new Genetique($bdd, $ObjetBDDParam);
                 $genetique_id = $genetique->ecrire($_REQUEST);
                 if (! $genetique_id > 0) {
-                    $message .= formatErrorData($genetique->getErrorData());
-                    $message .= $LANG["message"][12];
+                    $message->set( $genetique->getErrorData());
+                    $message->set( $LANG["message"][12];
                     $module_coderetour = - 1;
                 }
             }
@@ -348,8 +348,8 @@ switch ($t_module["param"]) {
                 $parente = new Parente($bdd, $ObjetBDDParam);
                 $parente_id = $parente->ecrire($_REQUEST);
                 if (! $parente_id > 0) {
-                    $message .= formatErrorData($parente->getErrorData());
-                    $message .= $LANG["message"][12];
+                    $message->set( $parente->getErrorData());
+                    $message->set( $LANG["message"][12];
                     $module_coderetour = - 1;
                 }
             }
@@ -366,8 +366,8 @@ switch ($t_module["param"]) {
                 $_REQUEST["anomalie_db_type_id"] = $_REQUEST["anomalie_flag"];
                 $anomalie_id = $anomalie->ecrire($_REQUEST);
                 if (! $anomalie_id > 0) {
-                    $message .= formatErrorData($anomalie->getErrorData());
-                    $message .= $LANG["message"][12];
+                    $message->set( $anomalie->getErrorData());
+                    $message->set( $LANG["message"][12];
                     $module_coderetour = - 1;
                 }
             }

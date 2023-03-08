@@ -32,20 +32,20 @@ switch ($t_module["param"]) {
 		$dataSearch = $searchExample->getParam ();
 		if ($searchExample->isSearch () == 1) {
 			$data = $dataClass->getListeSearch ( $dataExample );
-			$smarty->assign ( "data", $data );
-			$smarty->assign ("isSearch", 1);
+			$vue->set( , ""); ( "data", $data );
+			$vue->set( , ""); ("isSearch", 1);
 		}
-		$smarty->assign ("exampleSearch", $dataSearch);
-		$smarty->assign("data", $dataClass->getListe());
-		$smarty->assign("corps", "example/exampleList.tpl");
+		$vue->set( , ""); ("exampleSearch", $dataSearch);
+		$vue->set( , "");("data", $dataClass->getListe());
+		$vue->set( , "");("corps", "example/exampleList.tpl");
 		break;
 	case "display":
 		/*
 		 * Display the detail of the record
 		 */
 		$data = $dataClass->lire($id);
-		$smarty->assign("data", $data);
-		$smarty->assign("corps", "example/exampleDisplay.tpl");
+		$vue->set( , "");("data", $data);
+		$vue->set( , "");("corps", "example/exampleDisplay.tpl");
 		break;
 	case "change":
 		/*
@@ -59,13 +59,13 @@ switch ($t_module["param"]) {
 		 */
 		require_once 'modules/classes/poissonRepro.class.php';
 		$poissonCampagne = new PoissonCampagne($bdd, $ObjetBDDParam);
-		$smarty->assign("dataPoisson", $poissonCampagne->lire($_REQUEST["poisson_campagne_id"]));
-		$smarty->assign ("sequences", $poissonCampagne->getListSequence($_REQUEST["poisson_campagne_id"], $_SESSION["annee"]));
+		$vue->set( , "");("dataPoisson", $poissonCampagne->lire($_REQUEST["poisson_campagne_id"]));
+		$vue->set( , ""); ("sequences", $poissonCampagne->getListSequence($_REQUEST["poisson_campagne_id"], $_SESSION["annee"]));
 		/*
 		 * Lecture des hormones
 		 */
 		$hormone = new Hormone($bdd, $ObjetBDDParam);
-		$smarty->assign("hormones", $hormone->getListe(2));
+		$vue->set( , "");("hormones", $hormone->getListe(2));
 		break;
 	case "write":
 		/*

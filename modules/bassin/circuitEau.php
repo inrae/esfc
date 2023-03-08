@@ -18,32 +18,32 @@ switch ($t_module["param"]) {
 		$searchCircuitEau->setParam ( $_REQUEST );
 		$dataSearch = $searchCircuitEau->getParam ();
 		if ($searchCircuitEau->isSearch () == 1) {
-			$smarty->assign ("isSearch", 1);
+			$vue->set( , ""); ("isSearch", 1);
 		}
-		$smarty->assign ("circuitEauSearch", $dataSearch);
+		$vue->set( , ""); ("circuitEauSearch", $dataSearch);
 		if ($searchCircuitEau->isSearch () == 1) {
 			$data = $dataClass->getListeSearch ( $dataSearch );
-			$smarty->assign ( "data", $data );
+			$vue->set( , ""); ( "data", $data );
 			/*
 			 * Recuperation des donnees d'analyse
 			 */
 			if ($_REQUEST["circuit_eau_id"] > 0) {
 				$analyseEau = new AnalyseEau($bdd, $ObjetBDDParam);
 				$dataAnalyse = $analyseEau->getDetailByCircuitEau($_REQUEST["circuit_eau_id"], $dataSearch["analyse_eau_date"]);
-				$smarty->assign("dataAnalyse", $dataAnalyse );
+				$vue->set( , "");("dataAnalyse", $dataAnalyse );
 			}
 		}
-		$smarty->assign("corps", "bassin/circuitEauList.tpl");
+		$vue->set( , "");("corps", "bassin/circuitEauList.tpl");
 		require_once 'modules/classes/site.class.php';
 		$site = new Site($bdd, $ObjetBDDParam);
-		$smarty->assign("site", $site->getListe(2));
+		$vue->set( , "");("site", $site->getListe(2));
 		break;
 	case "display":
 		/*
 		 * Display the detail of the record
 		 */
 		$data= $dataClass->lire($id);
-		$smarty->assign("data", $data);
+		$vue->set( , "");("data", $data);
 		/*
 		 * Recuperation des dernieres analyses d'eau
 		 */
@@ -61,24 +61,24 @@ switch ($t_module["param"]) {
 			if ($dataSearch["offset"] < 0) $dataSearch["offset"] = 0;
 			$searchCircuitEau->setParam("offset",$dataSearch["offset"]);
 		}
-		$smarty->assign("dataSearch",$dataSearch);
+		$vue->set( , "");("dataSearch",$dataSearch);
 		$analyseEau = new AnalyseEau($bdd, $ObjetBDDParam);
 		$dataAnalyse = $analyseEau->getDetailByCircuitEau($id, $dataSearch["analyse_date"], $dataSearch["limit"], $dataSearch["offset"]);
-		$smarty->assign("dataAnalyse", $dataAnalyse);
+		$vue->set( , "");("dataAnalyse", $dataAnalyse);
 		/*
 		 * Recuperation des bassins associes
 		 */
 		$bassin = new Bassin($bdd, $ObjetBDDParam);
-		$smarty->assign("dataBassin", $bassin->getListeByCircuitEau($id));
+		$vue->set( , "");("dataBassin", $bassin->getListeByCircuitEau($id));
 		/*
 		 * Recuperation des evenements
 		 */
 		$circuitEvenement = new CircuitEvenement($bdd, $ObjetBDDParam);
-		$smarty->assign("dataCircuitEvnt", $circuitEvenement->getListeBycircuit($id));
+		$vue->set( , "");("dataCircuitEvnt", $circuitEvenement->getListeBycircuit($id));
 		/*
 		 * Affichage
 		*/
-		$smarty->assign("corps", "bassin/circuitEauDisplay.tpl");
+		$vue->set( , "");("corps", "bassin/circuitEauDisplay.tpl");
 		break;
 	case "change":
 		/*
@@ -89,7 +89,7 @@ switch ($t_module["param"]) {
 		dataRead($dataClass, $id, "bassin/circuitEauChange.tpl");
 		require_once 'modules/classes/site.class.php';
 		$site = new Site($bdd, $ObjetBDDParam);
-		$smarty->assign("site", $site->getListe(2));
+		$vue->set( , "");("site", $site->getListe(2));
 		break;
 	case "write":
 		/*

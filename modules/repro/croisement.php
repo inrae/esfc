@@ -32,33 +32,33 @@ switch ($t_module["param"]) {
 		$dataSearch = $searchExample->getParam ();
 		if ($searchExample->isSearch () == 1) {
 			$data = $dataClass->getListeSearch ( $dataExample );
-			$smarty->assign ( "data", $data );
-			$smarty->assign ("isSearch", 1);
+			$vue->set( , ""); ( "data", $data );
+			$vue->set( , ""); ("isSearch", 1);
 		}
-		$smarty->assign ("exampleSearch", $dataSearch);
-		$smarty->assign("data", $dataClass->getListe());
-		$smarty->assign("corps", "example/exampleList.tpl");
+		$vue->set( , ""); ("exampleSearch", $dataSearch);
+		$vue->set( , "");("data", $dataClass->getListe());
+		$vue->set( , "");("corps", "example/exampleList.tpl");
 		break;
 	case "display":
 		/*
 		 * Display the detail of the record
 		 */
 		$data = $dataClass->getDetail($id);
-		$smarty->assign("data", $data);
+		$vue->set( , "");("data", $data);
 		/*
 		 * Lecture de la sequence
 		 */
 		$sequence = new Sequence($bdd, $ObjetBDDParam);
-		$smarty->assign("dataSequence", $sequence->lire($data["sequence_id"]));
+		$vue->set( , "");("dataSequence", $sequence->lire($data["sequence_id"]));
 		
 		/*
 		 * Recherche des spermes utilises
 		 */
 		require_once 'modules/classes/sperme.class.php';
 		$spermeUtilise = new SpermeUtilise($bdd, $ObjetBDDParam);
-		$smarty->assign("spermesUtilises", $spermeUtilise->getListFromCroisement($id));
+		$vue->set( , "");("spermesUtilises", $spermeUtilise->getListFromCroisement($id));
 		
-		$smarty->assign("corps", "repro/croisementDisplay.tpl");
+		$vue->set( , "");("corps", "repro/croisementDisplay.tpl");
 		break;
 	case "change":
 		require_once 'modules/classes/sequence.class.php';
@@ -72,21 +72,21 @@ switch ($t_module["param"]) {
 		 * Lecture de la table des qualites de croisement
 		 */
 		$croisementQualite = new CroisementQualite($bdd, $ObjetBDDParam);
-		$smarty->assign("croisementQualite", $croisementQualite->getListe(1));
+		$vue->set( , "");("croisementQualite", $croisementQualite->getListe(1));
 		/*
 		 * Lecture des poissons rattaches
 		 */
 		if ($id > 0) {
-			$smarty->assign("poissonSequence", $dataClass->getListAllPoisson($id), $data["sequence_id"]);
+			$vue->set( , "");("poissonSequence", $dataClass->getListAllPoisson($id), $data["sequence_id"]);
 		} else {
 			$poissonSequence = new PoissonSequence($bdd, $objetBDDParam);
-			$smarty->assign ("poissonSequence", $poissonSequence->getListFromSequence($data["sequence_id"]));
+			$vue->set( , ""); ("poissonSequence", $poissonSequence->getListFromSequence($data["sequence_id"]));
 		}
 		/*
 		 * Lecture de la sequence
 		 */
 		$sequence = new Sequence($bdd, $ObjetBDDParam);
-		$smarty->assign("dataSequence", $sequence->lire($data["sequence_id"]));
+		$vue->set( , "");("dataSequence", $sequence->lire($data["sequence_id"]));
 		break;
 	case "write":
 		/*

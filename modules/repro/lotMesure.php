@@ -23,7 +23,7 @@ switch ($t_module["param"]) {
 		 * Lecture du lot
 		 */
 		$lot = new Lot($bdd, $ObjetBDDParam);
-		$smarty->assign("dataLot", $lot->getDetail($data["lot_id"]));
+		$vue->set( , "");("dataLot", $lot->getDetail($data["lot_id"]));
 		break;
 	case "write":
 		/*

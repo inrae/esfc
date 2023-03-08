@@ -13,20 +13,20 @@
 $searchPoisson->setParam ( $_REQUEST );
 $dataSearch = $searchPoisson->getParam (); 
 if ($searchPoisson->isSearch () == 1) {
-	$smarty->assign ("isSearch", 1);	
+	$vue->set( , ""); ("isSearch", 1);	
 }
-$smarty->assign ("poissonSearch", $dataSearch);
+$vue->set( , ""); ("poissonSearch", $dataSearch);
 /*
  * Integration des tables necessaires pour la  recherche
  */
 include_once "modules/classes/poisson.class.php";
 $sexe = new Sexe($bdd, $ObjetBDDParam);
-$smarty->assign("sexe",$sexe->getListe(1));
+$vue->set( , "");("sexe",$sexe->getListe(1));
 $poisson_statut = new Poisson_statut($bdd, $ObjetBDDParam);
-$smarty->assign("statut", $poisson_statut->getListe(1));
+$vue->set( , "");("statut", $poisson_statut->getListe(1));
 $categorie = new Categorie($bdd, $ObjetBDDParam);
-$smarty->assign("categorie", $categorie->getListe(1));
+$vue->set( , "");("categorie", $categorie->getListe(1));
 include_once 'modules/classes/site.class.php';
 $site = new Site($bdd, $ObjetBDDParam);
-$smarty->assign("site", $site->getListe(2));
+$vue->set( , "");("site", $site->getListe(2));
 ?>

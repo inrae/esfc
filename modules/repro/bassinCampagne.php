@@ -22,13 +22,13 @@ switch ($t_module["param"]) {
 		 * Display the detail of the record
 		 */
 		$data = $dataClass->lire($id);
-		$smarty->assign("dataBassinCampagne", $data);
-		$smarty->assign("corps", "repro/bassinCampagneDisplay.tpl");
+		$vue->set( , "");("dataBassinCampagne", $data);
+		$vue->set( , "");("corps", "repro/bassinCampagneDisplay.tpl");
 		/*
 		 * Recuperation des donnees du profil thermique
 		 */
 		$profilThermique = new ProfilThermique($bdd, $ObjetBDDParam);
-		$smarty->assign("profilThermiques", $profilThermique->getListFromBassinCampagne($id));
+		$vue->set( , "");("profilThermiques", $profilThermique->getListFromBassinCampagne($id));
 		/*
 		 * Calcul des donnees pour le graphique
 		 */
@@ -43,14 +43,14 @@ switch ($t_module["param"]) {
 				$x.=",'".$value["pf_datetime"]."'";
 				$y .= ",".$value["pf_temperature"];
 			}
-			$smarty->assign("pfx".$i, $x);
-			$smarty->assign("pfy".$i, $y);
+			$vue->set( , "");("pfx".$i, $x);
+			$vue->set( , "");("pfy".$i, $y);
 		}
 		/*
 		 * Donnes de salinite
 		 */
 		$salinite = new Salinite($bdd, $ObjetBDDParam);
-		$smarty->assign("salinites", $salinite->getListFromBassinCampagne($id));
+		$vue->set( , "");("salinites", $salinite->getListFromBassinCampagne($id));
 		/*
 		 * Calcul des donnees pour le graphique
 		 */
@@ -65,31 +65,31 @@ switch ($t_module["param"]) {
 				$x.=",'".$value["salinite_datetime"]."'";
 				$y .= ",".$value["salinite_tx"];
 			}
-			$smarty->assign("sx".$i, $x);
-			$smarty->assign("sy".$i, $y);
+			$vue->set( , "");("sx".$i, $x);
+			$vue->set( , "");("sy".$i, $y);
 		}
 		/*
 		 * Recuperation des donnees du bassin
 		 */	
 		require_once 'modules/classes/bassin.class.php';
 		$bassin = new Bassin($bdd, $ObjetBDDParam);
-		$smarty->assign("dataBassin", $bassin->lire($data["bassin_id"]));
+		$vue->set( , "");("dataBassin", $bassin->lire($data["bassin_id"]));
 		/*
 		 * Recuperation de la liste des poissons presents
 		 */
 		include_once 'modules/classes/poisson.class.php';
 		$transfert = new Transfert($bdd, $ObjetBDDParam);
-		$smarty->assign("dataPoisson", $transfert->getListPoissonPresentByBassin($data["bassin_id"]));
+		$vue->set( , "");("dataPoisson", $transfert->getListPoissonPresentByBassin($data["bassin_id"]));
 		/*
 		 * Calcul de la date du jour
 		 */
-		$smarty->assign("dateJour", date(("d/m/Y")));
+		$vue->set( , "");("dateJour", date(("d/m/Y")));
 		/*
 		 * Recuperation des evenements
 		*/
 		$bassinEvenement = new BassinEvenement($bdd, $ObjetBDDParam);
-		$smarty->assign("dataBassinEvnt", $bassinEvenement->getListeByBassin($data["bassin_id"]));
-		$smarty->assign("bassinParentModule", $_SESSION["bassinParentModule"]);
+		$vue->set( , "");("dataBassinEvnt", $bassinEvenement->getListeByBassin($data["bassin_id"]));
+		$vue->set( , "");("bassinParentModule", $_SESSION["bassinParentModule"]);
 		break;
 	case "change":
 		/*
@@ -120,7 +120,7 @@ switch ($t_module["param"]) {
 		 */
 		if ($_REQUEST["annee"] > 0) {
 			$nb = $dataClass->initCampagne($_REQUEST["annee"]);
-			$message = $nb." bassin(s) ajouté(s) à la campagne de reproduction";
+			$message->set(  $nb." bassin(s) ajouté(s) à la campagne de reproduction";
 		}
 		$module_coderetour = 1;
 }

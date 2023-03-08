@@ -30,131 +30,131 @@ switch ($t_module["param"]) {
 		include "modules/poisson/poissonSearch.php";
 		if ($searchPoisson->isSearch () == 1) {
 			$data = $dataClass->getListeSearch ( $dataSearch );
-			$smarty->assign ( "data", $data );
+			$vue->set( , ""); ( "data", $data );
 		}
 		$_SESSION["poissonDetailParent"] = "poissonList";
-		$smarty->assign("corps", "poisson/poissonList.tpl");
+		$vue->set( , "");("corps", "poisson/poissonList.tpl");
 		break;
 	case "display":
 		/*
 		 * Display the detail of the record
 		 */
 		$data = $dataClass->getDetail($id);
-		$smarty->assign("dataPoisson", $data);
+		$vue->set( , "");("dataPoisson", $data);
 		/*
 		 * Passage en parametre de la liste parente
 		 */
-		$smarty->assign("poissonDetailParent", $_SESSION["poissonDetailParent"]);
+		$vue->set( , "");("poissonDetailParent", $_SESSION["poissonDetailParent"]);
 		/*
 		 * Recuperation des morphologies
 		 */
 		$morphologie = new Morphologie($bdd, $ObjetBDDParam);
-		$smarty->assign("dataMorpho", $morphologie->getListeByPoisson($id));
+		$vue->set( , "");("dataMorpho", $morphologie->getListeByPoisson($id));
 		/*
 		 * Recuperation des événements
 		 */
 		include_once 'modules/classes/evenement.class.php';
 		$evenement = new Evenement($bdd, $ObjetBDDParam);
-		$smarty->assign("dataEvenement",$evenement->getEvenementByPoisson($id));
+		$vue->set( , "");("dataEvenement",$evenement->getEvenementByPoisson($id));
 		/*
 		 * Recuperation du sexage
 		 */
 		$gender_selection = new Gender_selection($bdd, $ObjetBDDParam);
-		$smarty->assign("dataGender",$gender_selection->getListByPoisson($id));
+		$vue->set( , "");("dataGender",$gender_selection->getListByPoisson($id));
 		/*
 		 * Recuperation des pathologies
 		 */
 		$pathologie = new Pathologie($bdd, $ObjetBDDParam);
-		$smarty->assign("dataPatho", $pathologie->getListByPoisson($id));
+		$vue->set( , "");("dataPatho", $pathologie->getListByPoisson($id));
 		/*
 		 * Recuperation des pittag
 		 */
 		$pittag = new Pittag($bdd, $ObjetBDDParam);
-		$smarty->assign("dataPittag", $pittag->getListByPoisson($id));
+		$vue->set( , "");("dataPittag", $pittag->getListByPoisson($id));
 		/*
 		 * Recuperation des transferts
 		 */
 		$transfert = new Transfert($bdd, $ObjetBDDParam);
-		$smarty->assign("dataTransfert", $transfert->getListByPoisson($id));
+		$vue->set( , "");("dataTransfert", $transfert->getListByPoisson($id));
 		/*
 		 * Recuperation des mortalites
 		 */
 		$mortalite = new Mortalite($bdd, $ObjetBDDParam);
-		$smarty->assign("dataMortalite", $mortalite->getListByPoisson($id));
+		$vue->set( , "");("dataMortalite", $mortalite->getListByPoisson($id));
 		/*
 		 * Recuperation des cohortes
 		*/
 		$cohorte = new Cohorte($bdd, $ObjetBDDParam);
-		$smarty->assign("dataCohorte", $cohorte->getListByPoisson($id));
+		$vue->set( , "");("dataCohorte", $cohorte->getListByPoisson($id));
 		/*
 		 * Recuperation des parents
 		 */
 		$parent = new Parent_poisson($bdd, $ObjetBDDParam);
-		$smarty->assign("dataParent", $parent->getListParent($id));
+		$vue->set( , "");("dataParent", $parent->getListParent($id));
 		/*
 		 * Recuperation des anomalies
 		 */
 		include_once ("modules/classes/anomalie.class.php");
 		$anomalie = new Anomalie_db($bdd, $ObjetBDDParam);
-		$smarty->assign("dataAnomalie", $anomalie->getListByPoisson($id));
+		$vue->set( , "");("dataAnomalie", $anomalie->getListByPoisson($id));
 		/*
 		 * Recuperation des sorties
 		 */
 		$sortie = new Sortie($bdd, $ObjetBDDParam);
-		$smarty->assign("dataSortie", $sortie->getListByPoisson($id));
+		$vue->set( , "");("dataSortie", $sortie->getListByPoisson($id));
 		/*
 		 * Recuperation des echographies
 		 */
 		$echographie = new Echographie($bdd, $ObjetBDDParam);
-		$smarty->assign("dataEcho", $echographie->getListByPoisson($id));
+		$vue->set( , "");("dataEcho", $echographie->getListByPoisson($id));
 		/*
 		 * Recuperation des anesthesies
 		 */
 		$anesthesie = new Anesthesie($bdd, $ObjetBDDParam);
-		$smarty->assign("dataAnesthesie", $anesthesie->getListByPoisson($id));
+		$vue->set( , "");("dataAnesthesie", $anesthesie->getListByPoisson($id));
 		/*
 		 * Recuperation des mesures de ventilation
 		 */
 		$ventilation = new Ventilation($bdd, $ObjetBDDParam);
-		$smarty->assign("dataVentilation", $ventilation->getListByPoisson($id));
+		$vue->set( , "");("dataVentilation", $ventilation->getListByPoisson($id));
 		/*
 		 * Recuperation des campagnes de reproduction
 		 */
 		require_once 'modules/classes/poissonRepro.class.php';
 		$poissonCampagne = new PoissonCampagne($bdd, $ObjetBDDParam);
-		$smarty->assign("dataRepro", $poissonCampagne->getListFromPoisson($id));
+		$vue->set( , "");("dataRepro", $poissonCampagne->getListFromPoisson($id));
 		/*
 		 * Recuperation des dosages sanguins
 		 */
 		require_once 'modules/classes/dosageSanguin.class.php';
 		$dosageSanguin = new DosageSanguin($bdd, $ObjetBDDParam);
-		$smarty->assign("dataDosageSanguin", $dosageSanguin->getListeFromPoisson($id));
+		$vue->set( , "");("dataDosageSanguin", $dosageSanguin->getListeFromPoisson($id));
 		
 		/*
 		 * Recuperation des prelevements genetiques
 		 */
 		$genetique = new Genetique($bdd, $ObjetBDDParam);
-		$smarty->assign("dataGenetique", $genetique->getListByPoisson($id));
+		$vue->set( , "");("dataGenetique", $genetique->getListByPoisson($id));
 		
 		/*
 		 * Recuperation des determinations de parente
 		 */
 		$parente = new Parente($bdd, $ObjetBDDParam);
-		$smarty->assign("dataParente", $parente->getListByPoisson($id));
+		$vue->set( , "");("dataParente", $parente->getListByPoisson($id));
 		
 		/*
 		 * Gestion des documents associes
 		*/
-		$smarty->assign ( "moduleParent", "poissonDisplay" );
-		$smarty->assign ( "parentType", "poisson" );
-		$smarty->assign ( "parentIdName", "poisson_id" );
-		$smarty->assign ( "parent_id", $id );
+		$vue->set( , ""); ( "moduleParent", "poissonDisplay" );
+		$vue->set( , ""); ( "parentType", "poisson" );
+		$vue->set( , ""); ( "parentIdName", "poisson_id" );
+		$vue->set( , ""); ( "parent_id", $id );
 		require_once 'modules/document/documentFunctions.php';
-		$smarty->assign("dataDoc", getListeDocument("poisson", $id, $_REQUEST["document_limit"], $_REQUEST["document_offset"]));
+		$vue->set( , "");("dataDoc", getListeDocument("poisson", $id, $_REQUEST["document_limit"], $_REQUEST["document_offset"]));
 		/*
 		 * Affichage
 		 */
-		$smarty->assign("corps", "poisson/poissonDisplay.tpl");
+		$vue->set( , "");("corps", "poisson/poissonDisplay.tpl");
 		/*
 		 * Module de retour au poisson
 		 */
@@ -169,33 +169,33 @@ switch ($t_module["param"]) {
 		include_once "modules/classes/categorie.class.php";
 		$data=dataRead($dataClass, $id, "poisson/poissonChange.tpl");
 		$sexe = new Sexe($bdd, $ObjetBDDParam);
-		$smarty->assign("sexe", $sexe->getListe(1));
+		$vue->set( , "");("sexe", $sexe->getListe(1));
 		$poissonStatut = new Poisson_statut($bdd, $ObjetBDDParam);
-		$smarty->assign("poissonStatut", $poissonStatut->getListe(1));
+		$vue->set( , "");("poissonStatut", $poissonStatut->getListe(1));
 		$categorie = new Categorie($bdd, $ObjetBDDParam);
-		$smarty->assign("categorie", $categorie->getListe(1));
+		$vue->set( , "");("categorie", $categorie->getListe(1));
 		
 		/*
 		 * Modeles de marquages VIE, pour creation a partir des juveniles
 		 */
 		require_once "modules/classes/lot.class.php";
 		$vieModele = new VieModele($bdd, $ObjetBDDParam);
-		$smarty->assign("modeles", $vieModele->getAllModeles());
+		$vue->set( , "");("modeles", $vieModele->getAllModeles());
 		/*
 		 * Passage en parametre de la liste parente
 		*/
-		$smarty->assign("poissonDetailParent", $_SESSION["poissonDetailParent"]);
+		$vue->set( , "");("poissonDetailParent", $_SESSION["poissonDetailParent"]);
 		
 		/*
 		 * Recuperation de la liste des types de pittag
 		*/
 		$pittagType = new Pittag_type($bdd, $ObjetBDDParam);
-		$smarty->assign("pittagType", $pittagType->getListe(2));
+		$vue->set( , "");("pittagType", $pittagType->getListe(2));
 		/*
 		 * Recuperation du dernier pittag connu
 		 */
 		$pittag = new Pittag($bdd,$ObjetBDDParam);
-		$smarty->assign("dataPittag", $pittag->getListByPoisson($id,1));
+		$vue->set( , "");("dataPittag", $pittag->getListByPoisson($id,1));
 		break;
 	case "write":
 		/*
@@ -212,7 +212,7 @@ switch ($t_module["param"]) {
 				$idPittag = $pittag->ecrire($_REQUEST);
 				if (! $idPittag > 0) {
 					$module_coderetour = -1;
-					$message.=formatErrorData($pittag->getErrorData());
+					$message.=$pittag->getErrorData());
 					$message.=$LANG["message"][12];
 				}
 			}

@@ -15,13 +15,13 @@ $annees = $poissonCampagne->getAnnees ();
 $thisannee = date ('Y');
 if ($annees[0]["annee"] < $thisannee)
 	$annees[]["annee"]=$thisannee;
-$smarty->assign ( "annees", $annees );
+$vue->set( , ""); ( "annees", $annees );
 if (! isset ( $_SESSION ["annee"] )) {
-	$smarty->assign ( "annees", $annees );
+	$vue->set( , ""); ( "annees", $annees );
 	$_SESSION ["annee"] = $annees [0] ["annee"];
 	if (! isset ( $_SESSION ["annee"] ))
 		$_SESSION ["annee"] = $thisannee;
 }
-$smarty->assign ( "annee", $_SESSION ["annee"] );
+$vue->set( , ""); ( "annee", $_SESSION ["annee"] );
 
 ?>

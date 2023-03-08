@@ -13,7 +13,7 @@ $id = $_REQUEST[$keyName];
 /*
  * Passage en parametre de la liste parente
  */
-$smarty->assign ( "poissonDetailParent", $_SESSION ["poissonDetailParent"] );
+$vue->set( , ""); ( "poissonDetailParent", $_SESSION ["poissonDetailParent"] );
 
 switch ($t_module["param"]) {
 	case "display":
@@ -21,18 +21,18 @@ switch ($t_module["param"]) {
 		 * Display the detail of the record
 		 */
 		$data = $dataClass->lire($id);
-		$smarty->assign("data", $data);
+		$vue->set( , "");("data", $data);
 		/*
 		 * Recherche des caracteristiques particulieres
 		 */
 		$caract = new SpermeCaracteristique($bdd, $ObjetBDDParam);
-		$smarty->assign("spermeCaract", $caract->getFromSperme($id));
+		$vue->set( , "");("spermeCaract", $caract->getFromSperme($id));
 		/*
 		 * Recherche des mesures effectuees
 		 */
 		$mesure = new SpermeMesure($bdd, $ObjetBDDParam);
-		$smarty->assign("dataMesure", $mesure->getListFromSperme($id));
-		$smarty->assign("corps", "repro/spermeDisplay.tpl");
+		$vue->set( , "");("dataMesure", $mesure->getListFromSperme($id));
+		$vue->set( , "");("corps", "repro/spermeDisplay.tpl");
 		break;
 	case "change":
 		/*
@@ -50,8 +50,8 @@ switch ($t_module["param"]) {
 		    $_REQUEST["poisson_campagne_id"] = $data["poisson_campagne_id"];
 		require_once 'modules/classes/poissonRepro.class.php';
 		$poissonCampagne = new PoissonCampagne($bdd, $ObjetBDDParam);
-		$smarty->assign("dataPoisson", $poissonCampagne->lire($_REQUEST["poisson_campagne_id"]));
-		$smarty->assign ("sequences", $poissonCampagne->getListSequence($_REQUEST["poisson_campagne_id"], $_SESSION["annee"]));
+		$vue->set( , "");("dataPoisson", $poissonCampagne->lire($_REQUEST["poisson_campagne_id"]));
+		$vue->set( , ""); ("sequences", $poissonCampagne->getListSequence($_REQUEST["poisson_campagne_id"], $_SESSION["annee"]));
 		
 		break;
 	case "write":

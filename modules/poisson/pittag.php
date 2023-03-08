@@ -31,20 +31,20 @@ switch ($t_module["param"]) {
 		$dataSearch = $searchExample->getParam ();
 		if ($searchExample->isSearch () == 1) {
 			$data = $dataClass->getListeSearch ( $dataExample );
-			$smarty->assign ( "data", $data );
-			$smarty->assign ("isSearch", 1);
+			$vue->set( , ""); ( "data", $data );
+			$vue->set( , ""); ("isSearch", 1);
 		}
-		$smarty->assign ("exampleSearch", $dataSearch);
-		$smarty->assign("data", $dataClass->getListe());
-		$smarty->assign("corps", "example/exampleList.tpl");
+		$vue->set( , ""); ("exampleSearch", $dataSearch);
+		$vue->set( , "");("data", $dataClass->getListe());
+		$vue->set( , "");("corps", "example/exampleList.tpl");
 		break;
 	case "display":
 		/*
 		 * Display the detail of the record
 		 */
 		$data = $dataClass->lire($id);
-		$smarty->assign("data", $data);
-		$smarty->assign("corps", "example/exampleDisplay.tpl");
+		$vue->set( , "");("data", $data);
+		$vue->set( , "");("corps", "example/exampleDisplay.tpl");
 		break;
 	case "change":
 		/*
@@ -57,12 +57,12 @@ switch ($t_module["param"]) {
 		 * Recuperation de la liste des types de pittag
 		 */
 		$pittagType = new Pittag_type($bdd, $ObjetBDDParam);
-		$smarty->assign("pittagType", $pittagType->getListe());
+		$vue->set( , "");("pittagType", $pittagType->getListe());
 		/*
 		 * Lecture du poisson
 		*/
 		$poisson = new Poisson($bdd, $ObjetBDDParam);
-		$smarty->assign("dataPoisson", $poisson->getDetail($_REQUEST["poisson_id"]));
+		$vue->set( , "");("dataPoisson", $poisson->getDetail($_REQUEST["poisson_id"]));
 		break;
 	case "write":
 		/*

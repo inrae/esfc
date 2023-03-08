@@ -15,8 +15,8 @@ switch ($t_module["param"]) {
 		/*
 		 * Display the list of all records of the table
 		 */
-		$smarty->assign("data", $dataClass->getListeActif());
-		$smarty->assign("corps", "parametre/sortieLieuList.tpl");
+		$vue->set( , "");("data", $dataClass->getListeActif());
+		$vue->set( , "");("corps", "parametre/sortieLieuList.tpl");
 		break;
 	case "change":
 		/*
@@ -28,7 +28,7 @@ switch ($t_module["param"]) {
 		 * Lecture des statuts de poissons
 		 */
 		$poissonStatut = new Poisson_statut($bdd, $ObjetBDDParam);
-		$smarty->assign("poissonStatut", $poissonStatut->getListe(1));
+		$vue->set( , "");("poissonStatut", $poissonStatut->getListe(1));
 		dataRead($dataClass, $id, "parametre/sortieLieuChange.tpl");
 		break;
 	case "write":

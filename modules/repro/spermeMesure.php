@@ -20,24 +20,24 @@ switch ($t_module["param"]) {
         $data = dataRead($dataClass, $id, "repro/spermeMesureChange.tpl", $_REQUEST["sperme_id"]);
         if (isset($_REQUEST["sperme_congelation_id"])) {
             $data["sperme_congelation_id"] = $_REQUEST["sperme_congelation_id"];
-            $smarty->assign("data", $data);
+            $vue->set( , "");("data", $data);
         }
        /*
          * Recuperation des donnees du sperme
          */
         $sperme = new Sperme($bdd, $ObjetBDDParam);
         $dataSperme =  $sperme->lire($_REQUEST["sperme_id"]);
-        $smarty->assign("dataSperme",$dataSperme);
+        $vue->set( , "");("dataSperme",$dataSperme);
         
         require_once 'modules/classes/poissonRepro.class.php';
         $poissonCampagne = new PoissonCampagne($bdd, $ObjetBDDParam);
-        $smarty->assign("dataPoisson", $poissonCampagne->lire($dataSperme["poisson_campagne_id"]));
-        $smarty->assign ("sequences", $poissonCampagne->getListSequence($_REQUEST["poisson_campagne_id"], $_SESSION["annee"]));
+        $vue->set( , "");("dataPoisson", $poissonCampagne->lire($dataSperme["poisson_campagne_id"]));
+        $vue->set( , ""); ("sequences", $poissonCampagne->getListSequence($_REQUEST["poisson_campagne_id"], $_SESSION["annee"]));
         
         $qualite = new SpermeQualite($bdd, $ObjetBDDParam);
-        $smarty->assign("spermeQualite", $qualite->getListe(1));
+        $vue->set( , "");("spermeQualite", $qualite->getListe(1));
         $caract = new SpermeCaracteristique($bdd, $ObjetBDDParam);
-        $smarty->assign("spermeCaract", $caract->getFromSperme($sperme_id));
+        $vue->set( , "");("spermeCaract", $caract->getFromSperme($sperme_id));
             break;
     case "write":
         /*

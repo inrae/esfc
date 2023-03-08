@@ -12,32 +12,32 @@ function initSpermeChange($sperme_id) {
 	 * Lecture de sperme_qualite
 	 */
 	$spermeAspect = new SpermeAspect($bdd, $ObjetBDDParam);
-	$smarty->assign("spermeAspect", $spermeAspect->getListe(1));
+	$vue->set( , "");("spermeAspect", $spermeAspect->getListe(1));
 	/*
 	 * Recherche des caracteristiques particulieres
 	*/
 	$caract = new SpermeCaracteristique($bdd, $ObjetBDDParam);
-	$smarty->assign("spermeCaract", $caract->getFromSperme($sperme_id));
+	$vue->set( , "");("spermeCaract", $caract->getFromSperme($sperme_id));
 	/*
 	 * Recherche des dilueurs
 	*/
 	$dilueur = new SpermeDilueur($bdd, $ObjetBDDParam);
-	$smarty->assign("spermeDilueur", $dilueur->getListe(2));
+	$vue->set( , "");("spermeDilueur", $dilueur->getListe(2));
 	
 	/*
 	 * Recherche de la qualite de la semence, pour les analyses realisees en meme temps
 	 */
 	$qualite = new SpermeQualite($bdd, $ObjetBDDParam);
-	$smarty->assign("spermeQualite", $qualite->getListe(1));
+	$vue->set( , "");("spermeQualite", $qualite->getListe(1));
 	/*
 	 * Recherche des congelations associees
 	 */
 	$congelation = new SpermeCongelation($bdd, $ObjetBDDParam);
-	$smarty->assign("congelation", $congelation->getListFromSperme($sperme_id));
+	$vue->set( , "");("congelation", $congelation->getListFromSperme($sperme_id));
 	/*
 	 * Recherche des analyses realisees
 	 */
 	$mesure = new SpermeMesure($bdd, $ObjetBDDParam);
-	$smarty->assign("dataMesure", $mesure->getListFromSperme($sperme_id));
+	$vue->set( , "");("dataMesure", $mesure->getListFromSperme($sperme_id));
 }
 ?>

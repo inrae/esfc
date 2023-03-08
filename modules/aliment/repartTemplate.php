@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @author Eric Quinton
  * @copyright Copyright (c) 2014, IRSTEA / Eric Quinton
@@ -6,10 +7,10 @@
  *  Creation 20 mars 2014
  */
 include_once 'modules/classes/aliment.class.php';
-$dataClass = new RepartTemplate ( $bdd, $ObjetBDDParam );
+$dataClass = new RepartTemplate($bdd, $ObjetBDDParam);
 $keyName = "repart_template_id";
-$id = $_REQUEST [$keyName];
-switch ($t_module ["param"]) {
+$id = $_REQUEST[$keyName];
+switch ($t_module["param"]) {
 	case "list":
 		/*
 		 * Display the list of all records of the table
@@ -17,28 +18,22 @@ switch ($t_module ["param"]) {
 		/*
 		 * Gestion des variables de recherche
 		 */
-		$searchRepartTemplate->setParam ( $_REQUEST );
-		$dataSearch = $searchRepartTemplate->getParam ();
-		if ($searchRepartTemplate->isSearch () == 1) {
-			$smarty->assign ( "isSearch", 1 );
-			$data = $dataClass->getListSearch ( $dataSearch );
+		$searchRepartTemplate->setParam($_REQUEST);
+		$dataSearch = $searchRepartTemplate->getParam();
+		if ($searchRepartTemplate->isSearch() == 1) {
+			$vue->set(1, "isSearch");
+			$data = $dataClass->getListSearch($dataSearch);
+		} else {
+			$data = array();
 		}
-		$smarty->assign ( "repartTemplateSearch", $dataSearch );
-		$smarty->assign ( "data", $data );
-		$smarty->assign ( "corps", "aliment/repartTemplateList.tpl" );
+		$vue->set($dataSearch, "repartTemplateSearch");
+		$vue->set($data, "data");
+		$vue->set("aliment/repartTemplateList.tpl", "corps");
 		/*
 		 * Recherche de la categorie
 		 */
-		$categorie = new Categorie ( $bdd, $ObjetBDDParam );
-		$smarty->assign ( "categorie", $categorie->getListe ( 2 ) );
-		break;
-	case "display":
-		/*
-		 * Display the detail of the record
-		 */
-		$data = $dataClass->lire ( $id );
-		$smarty->assign ( "data", $data );
-		$smarty->assign ( "corps", "example/exampleDisplay.tpl" );
+		$categorie = new Categorie($bdd, $ObjetBDDParam);
+		$vue->set($categorie->getListe(2), "categorie");
 		break;
 	case "change":
 		/*
@@ -46,56 +41,56 @@ switch ($t_module ["param"]) {
 		 * If is a new record, generate a new record with default value :
 		 * $_REQUEST["idParent"] contains the identifiant of the parent record
 		 */
-		$data = dataRead ( $dataClass, $id, "aliment/repartTemplateChange.tpl" );
+		$data = dataRead($dataClass, $id, "aliment/repartTemplateChange.tpl");
 		/*
 		 * Lecture des categories
 		 */
-		$categorie = new Categorie ( $bdd, $ObjetBDDParam );
-		$smarty->assign ( "categorie", $categorie->getListe ( 2 ) );
+		$categorie = new Categorie($bdd, $ObjetBDDParam);
+		$vue->set($categorie->getListe(2), "categorie");
 		/*
 		 * Recuperation des aliments associés
 		 */
-		if ($data ["categorie_id"] > 0 && $id > 0) {
-			$repartAliment = new RepartAliment ( $bdd, $ObjetBDDParam );
-			$smarty->assign ( "dataAliment", $repartAliment->getFromTemplateWithAliment ( $id, $data ["categorie_id"] ) );
+		if ($data["categorie_id"] > 0 && $id > 0) {
+			$repartAliment = new RepartAliment($bdd, $ObjetBDDParam);
+			$vue->set($repartAliment->getFromTemplateWithAliment($id, $data["categorie_id"]), "dataAliment");
 		}
 		break;
 	case "write":
 		/*
 		 * write record in database
 		 */
-		$id = dataWrite ( $dataClass, $_REQUEST );
+		$id = dataWrite($dataClass, $_REQUEST);
 		if ($id > 0) {
-			$_REQUEST [$keyName] = $id;
+			$_REQUEST[$keyName] = $id;
 			/*
 			 * Preparation des aliments
 			 */
-			$data = array ();
-			foreach ( $_REQUEST as $key => $value ) {
-				if (preg_match ( '/[0-9]+$/', $key, $val )) {
-					$pos = strrpos ( $key, "_" );
-					$nom = substr ( $key, 0, $pos );
-					$data [$val [0]] [$nom] = $value;
+			$data = array();
+			foreach ($_REQUEST as $key => $value) {
+				if (preg_match('/[0-9]+$/', $key, $val)) {
+					$pos = strrpos($key, "_");
+					$nom = substr($key, 0, $pos);
+					$data[$val[0]][$nom] = $value;
 				}
 			}
 			/*
 			 * Mise en table
 			 */
-			$repartAliment = new RepartAliment ( $bdd, $ObjetBDDParam );
+			$repartAliment = new RepartAliment($bdd, $ObjetBDDParam);
 			$error = 0;
-			foreach ( $data as $key => $value ) {
-				if ($value ["repart_aliment_id"] > 0 || $value ["repart_alim_taux"] > 0) {
-					$value ["repart_template_id"] = $id;
-					$idRepart = $repartAliment->ecrire ( $value );
-					if (! $idRepart > 0) {
+			foreach ($data as $key => $value) {
+				if ($value["repart_aliment_id"] > 0 || $value["repart_alim_taux"] > 0) {
+					$value["repart_template_id"] = $id;
+					$idRepart = $repartAliment->ecrire($value);
+					if (!$idRepart > 0) {
 						$error = 1;
-						$message .= formatErrorData ( $repartAliment->getErrorData () );
+						$message->set($repartAliment->getErrorData());
 					}
 				}
 			}
 			if ($error == 1) {
-				$message .= $LANG ["message"] [12];
-				$module_coderetour = - 1;
+				$message->set(_("Problème lors de l'enregistrement"), true);
+				$module_coderetour = -1;
 			}
 		}
 		break;
@@ -103,8 +98,6 @@ switch ($t_module ["param"]) {
 		/*
 		 * delete record
 		 */
-		dataDelete ( $dataClass, $id );
+		dataDelete($dataClass, $id);
 		break;
 }
-
-?>

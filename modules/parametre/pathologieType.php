@@ -14,16 +14,16 @@ switch ($t_module["param"]) {
 		/*
 		 * Display the list of all records of the table
 		 */
-		$smarty->assign("data", $dataClass->getListe(2));
-		$smarty->assign("corps", "parametre/pathologieTypeList.tpl");
+		$vue->set( , "");("data", $dataClass->getListe(2));
+		$vue->set( , "");("corps", "parametre/pathologieTypeList.tpl");
 		break;
 	case "display":
 		/*
 		 * Display the detail of the record
 		 */
 		$data = $dataClass->lire($id);
-		$smarty->assign("data", $data);
-		$smarty->assign("corps", "example/exampleDisplay.tpl");
+		$vue->set( , "");("data", $data);
+		$vue->set( , "");("corps", "example/exampleDisplay.tpl");
 		break;
 	case "change":
 		/*

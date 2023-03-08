@@ -33,12 +33,12 @@ switch ($t_module["param"]) {
 		$dataSearch = $searchExample->getParam ();
 		if ($searchExample->isSearch () == 1) {
 			$data = $dataClass->getListeSearch ( $dataExample );
-			$smarty->assign ( "data", $data );
-			$smarty->assign ("isSearch", 1);
+			$vue->set( , ""); ( "data", $data );
+			$vue->set( , ""); ("isSearch", 1);
 		}
-		$smarty->assign ("exampleSearch", $dataSearch);
-		$smarty->assign("data", $dataClass->getListe());
-		$smarty->assign("corps", "example/exampleList.tpl");
+		$vue->set( , ""); ("exampleSearch", $dataSearch);
+		$vue->set( , "");("data", $dataClass->getListe());
+		$vue->set( , "");("corps", "example/exampleList.tpl");
 		 */
 		break;
 	case "display":
@@ -47,8 +47,8 @@ switch ($t_module["param"]) {
 		 */
 		/*
 		$data = $dataClass->lire($id);
-		$smarty->assign("data", $data);
-		$smarty->assign("corps", "example/exampleDisplay.tpl");
+		$vue->set( , "");("data", $data);
+		$vue->set( , "");("corps", "example/exampleDisplay.tpl");
 		 */
 		break;
 	case "change":
@@ -62,21 +62,21 @@ switch ($t_module["param"]) {
 		 * Lecture des donnees concernant le circuit d'eau
 		 */
 		$circuitEau = new CircuitEau($bdd, $ObjetBDDParam);
-		$smarty->assign("dataCircuitEau", $circuitEau->lire($_REQUEST["circuit_eau_id"]));
+		$vue->set( , "");("dataCircuitEau", $circuitEau->lire($_REQUEST["circuit_eau_id"]));
 		/*
 		 * Lecture des laboratoires
 		 */
 		$laboratoireAnalyse = new LaboratoireAnalyse($bdd, $ObjetBDDParam);
-		$smarty->assign("laboratoire", $laboratoireAnalyse->getListeActif());
+		$vue->set( , "");("laboratoire", $laboratoireAnalyse->getListeActif());
 		/*
 		 * Forcage de la date de reference (date de recherche) si creation d'un nouvel enregistrement
 		 */
 		if ($id == 0) {
 			$dataSearch = $searchCircuitEau->getParam();
 			$data["analyse_eau_date"] = $dataSearch["analyse_date"];
-			$smarty->assign("data", $data);
+			$vue->set( , "");("data", $data);
 		}
-		$smarty->assign("origine", $_REQUEST["origine"]);
+		$vue->set( , "");("origine", $_REQUEST["origine"]);
 		/*
 		 * Recuperation des analyses de metaux
 		 */
@@ -97,7 +97,7 @@ switch ($t_module["param"]) {
 				"metal_unite" => $value["metal_unite"]
 			);
 		}
-		$smarty->assign("dataMetal", $dataMetal);
+		$vue->set( , "");("dataMetal", $dataMetal);
 		break;
 	case "write":
 		/*
@@ -184,7 +184,7 @@ switch ($t_module["param"]) {
 			$graph["axis"]["x"]["min"] = $min->format("d/m/Y") . " 00:00:00";
 			$graph["axis"]["x"]["max"] = $max->format("d/m/Y") . " 23:59:59";
 		//printr($min::format( "d/m/Y"));
-			$smarty->assign("graph", base64_encode(json_encode($graph, JSON_NUMERIC_CHECK | JSON_UNESCAPED_SLASHES)));
+			$vue->set( , "");("graph", base64_encode(json_encode($graph, JSON_NUMERIC_CHECK | JSON_UNESCAPED_SLASHES)));
 		}
 		/**
 		 * Reaffectation des valeurs par defaut
@@ -192,13 +192,13 @@ switch ($t_module["param"]) {
 		if (!isset($_REQUEST["date_from"])) {
 			$date_to = date("d/m/Y");
 			$date_from = date("d/m/Y", strtotime('-1 month', time()));
-			$smarty->assign("date_from", $date_from);
-			$smarty->assign("date_to", $date_to);
-			$smarty->assign("attribut", "temperature");
+			$vue->set( , "");("date_from", $date_from);
+			$vue->set( , "");("date_to", $date_to);
+			$vue->set( , "");("attribut", "temperature");
 		} else {
-			$smarty->assign("date_from", $_REQUEST["date_from"]);
-			$smarty->assign("date_to", $_REQUEST["date_to"]);
-			$smarty->assign("attribut", $_REQUEST["attribut"]);
+			$vue->set( , "");("date_from", $_REQUEST["date_from"]);
+			$vue->set( , "");("date_to", $_REQUEST["date_to"]);
+			$vue->set( , "");("attribut", $_REQUEST["attribut"]);
 		}
 		$attributs = array(
 			"temperature" => "Température",
@@ -212,17 +212,17 @@ switch ($t_module["param"]) {
 			"no3" => "Oxyde nitrate NO3",
 			"n_no3" => "Ion nitrate N-NO3"
 		);
-		$smarty->assign("attributs", $attributs);
-		$smarty->assign("corps", "bassin/analyseGraph.tpl");
+		$vue->set( , "");("attributs", $attributs);
+		$vue->set( , "");("corps", "bassin/analyseGraph.tpl");
 		/**
 		 * recherche des circuits d'eau
 		 */
-		$smarty->assign("circuit_eau_id", $_REQUEST["circuit_eau_id"]);
-		$smarty->assign("circuits", $circuitEau->getListeSearch(array("site_id"=>$_SESSION["site_id"])));
+		$vue->set( , "");("circuit_eau_id", $_REQUEST["circuit_eau_id"]);
+		$vue->set( , "");("circuits", $circuitEau->getListeSearch(array("site_id"=>$_SESSION["site_id"])));
 
 		require_once 'modules/classes/site.class.php';
 		$site = new Site($bdd, $ObjetBDDParam);
-		$smarty->assign("site", $site->getListe(2));
+		$vue->set( , "");("site", $site->getListe(2));
 		break;
 }
 

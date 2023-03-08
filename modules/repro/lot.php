@@ -21,42 +21,42 @@ switch ($t_module["param"]) {
 
 		require_once 'modules/classes/poissonRepro.class.php';
 		$poissonCampagne = new PoissonCampagne($bdd, $ObjetBDDParam);
-		$smarty->assign("annees", $poissonCampagne->getAnnees());
-		$smarty->assign("lots", $dataClass->getLotByAnnee($_SESSION["annee"]));
-		$smarty->assign("corps", "repro/lotSearch.tpl");
-		$smarty->assign("dataAlim", $alimJuv->getParam());
+		$vue->set( , "");("annees", $poissonCampagne->getAnnees());
+		$vue->set( , "");("lots", $dataClass->getLotByAnnee($_SESSION["annee"]));
+		$vue->set( , "");("corps", "repro/lotSearch.tpl");
+		$vue->set( , "");("dataAlim", $alimJuv->getParam());
 		/**
 		 * Site
 		 */
 		require_once 'modules/classes/site.class.php';
 		$site = new Site($bdd, $ObjetBDDParam);
-		$smarty->assign("site", $site->getListe(2));
+		$vue->set( , "");("site", $site->getListe(2));
 		break;
 	case "display":
 		/*
 		 * Display the detail of the record
 		 */
 		$data = $dataClass->getDetail($id);
-		$smarty->assign("dataLot", $data);
-		$smarty->assign("corps", "repro/lotDisplay.tpl");
+		$vue->set( , "");("dataLot", $data);
+		$vue->set( , "");("corps", "repro/lotDisplay.tpl");
 		/*
 		 * Recuperation de la liste des mesures
 		 */
 		$lotMesure = new LotMesure($bdd, $ObjetBDDParam);
-		$smarty->assign("dataMesure", $lotMesure->getListFromLot($id));
+		$vue->set( , "");("dataMesure", $lotMesure->getListFromLot($id));
 		/*
 		 * Recuperation de la liste des bassins
 		 */
 		require_once 'modules/classes/bassin.class.php';
 		$bassinLot = new BassinLot($bdd, $ObjetBDDParam);
-		$smarty->assign("bassinLot", $bassinLot->getListeFromLot($id));
+		$vue->set( , "");("bassinLot", $bassinLot->getListeFromLot($id));
 		/*
 		 * Lecture des devenirs d'un lot
 		 */
 		require_once 'modules/classes/devenir.class.php';
 		$devenir = new Devenir($bdd, $ObjetBDDParam);
-		$smarty->assign("dataDevenir", $devenir->getListFromLot($id));
-		$smarty->assign("devenirOrigine", "lot");
+		$vue->set( , "");("dataDevenir", $devenir->getListFromLot($id));
+		$vue->set( , "");("devenirOrigine", "lot");
 
 		break;
 	case "change":
@@ -71,12 +71,12 @@ switch ($t_module["param"]) {
 		 */
 		require_once 'modules/classes/croisement.class.php';
 		$croisement = new Croisement($bdd, $ObjetBDDParam);
-		$smarty->assign("croisements", $croisement->getListFromAnnee($_SESSION["annee"]));
+		$vue->set( , "");("croisements", $croisement->getListFromAnnee($_SESSION["annee"]));
 		/*
 		 * Lecture de la liste des marquages VIE
 		 */
 		$vieModele = new VieModele($bdd, $ObjetBDDParam);
-		$smarty->assign("modeles", $vieModele->getModelesFromAnnee($_SESSION["annee"]));
+		$vue->set( , "");("modeles", $vieModele->getModelesFromAnnee($_SESSION["annee"]));
 		break;
 	case "write":
 		/*

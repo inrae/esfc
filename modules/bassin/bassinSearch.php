@@ -13,9 +13,9 @@
 $searchBassin->setParam ( $_REQUEST );
 $dataSearch = $searchBassin->getParam ();
 if ($searchBassin->isSearch () == 1) {
-	$smarty->assign ("isSearch", 1);
+	$vue->set( , ""); ("isSearch", 1);
 }
-$smarty->assign ("bassinSearch", $dataSearch);
+$vue->set( , ""); ("bassinSearch", $dataSearch);
 /*
  * Integration des tables necessaires pour la  recherche
 */

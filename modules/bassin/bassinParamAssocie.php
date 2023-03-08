@@ -8,12 +8,12 @@
  */
 include_once 'modules/classes/bassin.class.php';
 $bassin_type = new Bassin_type($bdd, $ObjetBDDParam);
-$smarty->assign("bassin_type", $bassin_type->getListe(2));
+$vue->set( , "");("bassin_type", $bassin_type->getListe(2));
 $bassin_usage = new Bassin_usage($bdd, $ObjetBDDParam);
-$smarty->assign("bassin_usage", $bassin_usage->getListe(2));
+$vue->set( , "");("bassin_usage", $bassin_usage->getListe(2));
 $bassin_zone = new Bassin_zone($bdd, $ObjetBDDParam);
-$smarty->assign("bassin_zone", $bassin_zone->getListe(2));
+$vue->set( , "");("bassin_zone", $bassin_zone->getListe(2));
 $circuit_eau = new CircuitEau($bdd, $ObjetBDDParam);
-$smarty->assign("circuit_eau", $circuit_eau->getListe(2));
+$vue->set( , "");("circuit_eau", $circuit_eau->getListe(2));
 
 ?>
