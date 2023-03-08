@@ -25,65 +25,66 @@ switch ($t_module["param"]) {
 		 */
 		include "modules/bassin/bassinSearch.php";
 		if ($searchBassin->isSearch() == 1) {
-			$data = $dataClass->getListeSearch($dataSearch);
-			$vue->set( , "");("data", $data);
+			$vue->set($dataClass->getListeSearch($dataSearch), "data");
 		}
 		/*
 		 * Preparation des dates pour la generation du recapitulatif des aliments
 		 */
 		!isset($_REQUEST["dateFin"]) ? $dateFin = date("d/m/Y") : $dateFin = $_REQUEST["dateFin"];
 		!isset($_REQUEST["dateDebut"]) ? $dateDebut = date("d/m/") . (date("Y") - 1) : $dateDebut = $_REQUEST["dateDebut"];
-		$vue->set( , "");("dateDebut", $dateDebut);
-		$vue->set( , "");("dateFin", $dateFin);
-		$vue->set( , "");("corps", "bassin/bassinList.tpl");
+		$vue->set($dateDebut, "dateDebut");
+		$vue->set($dateFin, "dateFin");
+		$vue->set("bassin/bassinList.tpl", "corps");
 		$_SESSION["bassinParentModule"] = "bassinList";
+		require_once "modules/classes/site.class.php";
 		$site = new Site($bdd, $ObjetBDDParam);
-		$vue->set( , "");("site", $site->getListe(2));
+		$vue->set($site->getListe(2), "site");
 		break;
 	case "display":
 		/*
 		 * Display the detail of the record
 		 */
 		$data = $dataClass->getDetail($id);
-		$vue->set( , "");("dataBassin", $data);
+		$vue->set($data, "dataBassin");
 		/*
 		 * Recuperation de la liste des poissons presents
 		 */
-		include_once 'modules/classes/poisson.class.php';
+		include_once 'modules/classes/transfert.class.php';
 		$transfert = new Transfert($bdd, $ObjetBDDParam);
-		$vue->set( , "");("dataPoisson", $transfert->getListPoissonPresentByBassin($id));
+		$vue->set($transfert->getListPoissonPresentByBassin($id), "dataPoisson");
 		/*
 		 * Recuperation des evenements
 		 */
+		require_once "modules/classes/bassinEvenement.class.php";
 		$bassinEvenement = new BassinEvenement($bdd, $ObjetBDDParam);
-		$vue->set( , "");("dataBassinEvnt", $bassinEvenement->getListeByBassin($id));
+		$vue->set($bassinEvenement->getListeByBassin($id), "dataBassinEvnt");
 		/*
 		 * Recuperation des aliments consommés sur la période déterminée
 		 */
-		include_once 'modules/classes/aliment.class.php';
+		include_once 'modules/classes/distribQuotidien.class.php';
 		$distribQuotidien = new DistribQuotidien($bdd, $ObjetBDDParam);
 		/*
 		 * Dates de recherche
 		 */
 		$searchAlimentation->setParam($_REQUEST);
 		$param = $searchAlimentation->getParam();
-		$vue->set( , "");("searchAlim", $param);
-		$vue->set( , "");("dataAlim", $distribQuotidien->getListeConsommation($id, $param["date_debut"], $param["date_fin"]));
-		$vue->set( , "");("alimentListe", $distribQuotidien->alimentListe);
+		$vue->set($param, "searchAlim");
+		$vue->set($distribQuotidien->getListeConsommation($id, $param["date_debut"], $param["date_fin"]), "dataAlim");
+		$vue->set($distribQuotidien->alimentListe, "alimentListe");
 		/*
 		 * Gestion des documents associes
 		 */
-		$vue->set( , "");("moduleParent", "bassinDisplay");
-		$vue->set( , "");("parentType", "bassin");
-		$vue->set( , "");("parentIdName", "bassin_id");
-		$vue->set( , "");("parent_id", $id);
+		$vue->set("bassinDisplay", "moduleParent");
+		$vue->set("bassin", "parentType");
+		$vue->set("bassin_id", "parentIdName");
+		$vue->set($id, "parent_id");
 		require_once 'modules/document/documentFunctions.php';
-		$vue->set( , "");("dataDoc", getListeDocument("bassin", $id, $_REQUEST["document_limit"], $_REQUEST["document_offset"]));
+		$vue->set(getListeDocument("bassin", $id, $_REQUEST["document_limit"], $_REQUEST["document_offset"]), "dataDoc");
 		/*
 		 * Affichage
 		 */
-		$vue->set( , "");("corps", "bassin/bassinDisplay.tpl");
-		$vue->set( , "");("bassinParentModule", $_SESSION["bassinParentModule"]);
+		$vue->set("bassin/bassinDisplay.tpl", "corps");
+		$vue->set($_SESSION["bassinParentModule"], "bassinParentModule");
 		$_SESSION["poissonDetailParent"] = "bassinDisplay";
 		$_SESSION["bassin_id"] = $id;
 		break;
@@ -98,10 +99,10 @@ switch ($t_module["param"]) {
 		 * Integration des tables de parametres
 		 */
 		include 'modules/bassin/bassinParamAssocie.php';
-		$vue->set( , "");("bassinParentModule", $_SESSION["bassinParentModule"]);
+		$vue->set($_SESSION["bassinParentModule"], "bassinParentModule");
 		require_once 'modules/classes/site.class.php';
 		$site = new Site($bdd, $ObjetBDDParam);
-		$vue->set( , "");("site", $site->getListe(2));
+		$vue->set($site->getListe(2), "site");
 		break;
 	case "write":
 		/*
@@ -119,19 +120,19 @@ switch ($t_module["param"]) {
 		dataDelete($dataClass, $id);
 		break;
 	case "calculMasseAjax":
+		//TODO : vérifier l'envoi au navigateur
 		include_once 'modules/classes/poisson.class.php';
 		if ($_REQUEST["bassin_id"] > 0) {
 			$masse = $dataClass->calculMasse($_REQUEST["bassin_id"]);
 			$masseJson = '{"0": {"val": "' . $masse . '" } }';
-			echo $masseJson;
+			$vue->set($masseJson);
 		}
 		break;
 	case "recapAlim":
+		//TODO : vérifier l'envoi au navigateur
 		$data = $dataClass->getRecapAlim($_REQUEST, $searchBassin->getParam());
 		ob_clean();
 		download_send_headers("sturio_bassin_alim_recap_" . date("Y-m-d") . ".csv");
 		echo array2csv($data);
 		die();
-		break;
 }
-?>

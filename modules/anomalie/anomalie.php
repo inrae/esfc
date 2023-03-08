@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @author Eric Quinton
  * @copyright Copyright (c) 2014, IRSTEA / Eric Quinton
@@ -6,36 +7,35 @@
  *  Creation 17 mars 2014
  */
 include_once 'modules/classes/anomalie.class.php';
-$dataClass = new Anomalie_db ( $bdd, $ObjetBDDParam );
+$dataClass = new Anomalie_db($bdd, $ObjetBDDParam);
 $keyName = "anomalie_db_id";
-$id = $_REQUEST [$keyName];
-switch ($t_module ["param"]) {
+$id = $_REQUEST[$keyName];
+switch ($t_module["param"]) {
 	case "list":
 		/*
 		 * Display the list of all records of the table
 		 */
-		$searchAnomalie->setParam ( $_REQUEST );
-		$dataAnomalie = $searchAnomalie->getParam ();
-		if ($searchAnomalie->isSearch () == 1) {
-			$data = $dataClass->getListeSearch ( $dataAnomalie );
-			$vue->set( , ""); ( "dataAnomalie", $data );
-			$vue->set( , ""); ( "isSearch", 1 );
+		$searchAnomalie->setParam($_REQUEST);
+		$dataAnomalie = $searchAnomalie->getParam();
+		if ($searchAnomalie->isSearch() == 1) {
+			$vue->set($dataClass->getListeSearch($dataAnomalie), "dataAnomalie");
+			$vue->set(1, "isSearch");
 		}
-		$vue->set( , ""); ( "anomalieSearch", $dataAnomalie );
-		$vue->set( , ""); ( "corps", "anomalie/anomalieList.tpl" );
+		$vue->set($dataAnomalie, "anomalieSearch");
+		$vue->set("anomalie/anomalieList.tpl", "corps");
 		/*
 		 * Recuperation des types d'anomalie
 		 */
-		$anomalieType = new Anomalie_db_type ( $bdd, $ObjetBDDParam );
-		$vue->set( , ""); ( "anomalieType", $anomalieType->getListe () );
+		require_once "modules/classes/anomalie_db_type.class.php";
+		$anomalieType = new Anomalie_db_type($bdd, $ObjetBDDParam);
+		$vue->set($anomalieType->getListe(), "anomalieType");
 		break;
 	case "display":
 		/*
 		 * Display the detail of the record
 		 */
-		$data = $dataClass->lire ( $id );
-		$vue->set( , ""); ( "data", $data );
-		$vue->set( , ""); ( "corps", "anomalie/anomalieDisplay.tpl" );
+		$vue->set($dataClass->lire($id), "data");
+		$vue->set("anomalie/anomalieDisplay.tpl", "corps");
 		break;
 	case "change":
 		/*
@@ -43,49 +43,47 @@ switch ($t_module ["param"]) {
 		 * If is a new record, generate a new record with default value :
 		 * $_REQUEST["idParent"] contains the identifiant of the parent record
 		 */
-		$data = dataRead ( $dataClass, $id, "anomalie/anomalieChange.tpl" );
+		$data = dataRead($dataClass, $id, "anomalie/anomalieChange.tpl");
 		if ($id == 0) {
-			if ($_REQUEST ["poisson_id"] > 0) {
-				$data ["poisson_id"] = $_REQUEST ["poisson_id"];
-				$vue->set( , ""); ( "data", $data );
+			if ($_REQUEST["poisson_id"] > 0) {
+				$data["poisson_id"] = $_REQUEST["poisson_id"];
+				$vue->set($data, "data");
 			}
 		}
 		/*
 		 * Passage en parametre de la liste parente
 		*/
-		$vue->set( , "");("poissonDetailParent", $_SESSION["poissonDetailParent"]);
-		
-		$anomalieType = new Anomalie_db_type ( $bdd, $ObjetBDDParam );
-		$vue->set( , ""); ( "anomalieType", $anomalieType->getListe () );
-		if ($_REQUEST ["poisson_id"] > 0) {
+		$vue->set($_SESSION["poissonDetailParent"], "poissonDetailParent");
+		require_once "modules/classes/anomalie_db_type.class.php";
+		$anomalieType = new Anomalie_db_type($bdd, $ObjetBDDParam);
+		$vue->set($anomalieType->getListe(), "anomalieType");
+		if ($_REQUEST["poisson_id"] > 0) {
 			/*
 			 * Recuperation des informations generales sur le poisson
 			 */
 			include_once 'modules/classes/poisson.class.php';
-			$poisson = new Poisson ( $bdd, $ObjetBDDParam );
-			$dataPoisson = $poisson->getDetail ( $_REQUEST ["poisson_id"] );
-			$vue->set( , ""); ( "dataPoisson", $dataPoisson );
+			$poisson = new Poisson($bdd, $ObjetBDDParam);
+			$vue->set($poisson->getDetail($_REQUEST["poisson_id"]), "dataPoisson");
 		}
-		if ($_REQUEST ["module_origine"] == "poissonDisplay")
-			$vue->set( , ""); ( "module_origine", "poissonDisplay" );
+		if ($_REQUEST["module_origine"] == "poissonDisplay")
+			$vue->set("poissonDisplay", "module_origine");
 		break;
 	case "write":
 		/*
 		 * write record in database
 		 */
-		$id = dataWrite ( $dataClass, $_REQUEST );
+		$id = dataWrite($dataClass, $_REQUEST);
 		if ($id > 0) {
-			$_REQUEST [$keyName] = $id;
+			$_REQUEST[$keyName] = $id;
 		}
-		if ($_REQUEST ["module_origine"] == "poissonDisplay")
-			$vue->set( , ""); ( "module_origine", "poissonDisplay" );
+		if ($_REQUEST["module_origine"] == "poissonDisplay") {
+			$vue->set("poissonDisplay", "module_origine");
+		}
 		break;
 	case "delete":
 		/*
 		 * delete record
 		 */
-		dataDelete ( $dataClass, $id );
+		dataDelete($dataClass, $id);
 		break;
 }
-
-?>
