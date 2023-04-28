@@ -930,7 +930,7 @@ class ObjetBDD
     $rs = $this->executeAsPrepared($sql, $ds);
     if ($mode == "ajout" && $this->id_auto == 1) {
       if ($this->typeDatabase == 'pgsql') {
-        if (count($rs) > 0) {
+        if (!empty($rs)) {
           $ret = $rs[0][$this->cle];
         }
       } else {
@@ -1462,8 +1462,11 @@ class ObjetBDD
    * @param array $lignes
    * @return void 
    */
-  function ecrireTableNN(string $nomTable, string $nomCle1, string $nomCle2, int $id, array $lignes = array()): void
+  function ecrireTableNN(string $nomTable, string $nomCle1, string $nomCle2, int $id, $lignes = array()): void
   {
+    if (is_null($lignes)) {
+      $lignes = array();
+    }
     if ($this->debug_mode == 2) {
       echo "ecrireTableNN - table : $nomTable<br>";
       echo "cle1 : $nomCle1<br>";
@@ -1578,7 +1581,7 @@ class ObjetBDD
    *            $lignes
    * @return void
    */
-  function writeTableNN($nomTable, $nomCle1, $nomCle2, $id, $lignes = array()): void
+  function writeTableNN($nomTable, $nomCle1, $nomCle2, $id, ? array $lignes = array()): void
   {
     $this->ecrireTableNN($nomTable, $nomCle1, $nomCle2, $id, $lignes);
   }
@@ -1683,8 +1686,9 @@ class ObjetBDD
           $data = mb_convert_encoding($data, 'UTF-8');
         }
       }
+      $data = addslashes($data);
     }
-    return addslashes($data);
+    return $data;
   }
 
   /**
@@ -1767,7 +1771,7 @@ class ObjetBDD
   {
     $collection = $this->executeAsPrepared($sql, $data);
 
-    if (is_array($collection)) {
+    if (!empty($collection) && is_array($collection)) {
       $collection = $collection[0];
       if ($this->auto_date == 1) {
         $collection = $this->utilDatesDBVersLocale($collection);
@@ -1788,15 +1792,14 @@ class ObjetBDD
   function getListeParamAsPrepared($sql, $data): array
   {
     $collection = $this->executeAsPrepared($sql, $data);
-    if (is_array($collection)) {
+    if (!empty($collection) && is_array($collection)) {
       if ($this->auto_date == 1) {
         $collection = $this->utilDatesDBVersLocale($collection);
       }
-      if (is_array($collection)) {
-        return $collection;
-      }
+      return $collection;
+    } else {
+      return array();
     }
-    return array();
   }
 
   /**
