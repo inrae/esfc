@@ -30,10 +30,10 @@ switch ($t_module["param"]) {
 		include "modules/poisson/poissonSearch.php";
 		if ($searchPoisson->isSearch () == 1) {
 			$data = $dataClass->getListeSearch ( $dataSearch );
-			$vue->set( , ""); ( "data", $data );
+			$vue->set($data , "data"); ( "",  );
 		}
 		$_SESSION["poissonDetailParent"] = "poissonList";
-		$vue->set( , "");("corps", "poisson/poissonList.tpl");
+		$vue->set("poisson/poissonList.tpl" , "corps");("", );
 		break;
 	case "display":
 		/*

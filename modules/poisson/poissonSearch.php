@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @author Eric Quinton
  * @copyright Copyright (c) 2014, IRSTEA / Eric Quinton
@@ -10,23 +11,24 @@
 /*
  * Gestion des variables de recherche
  */
-$searchPoisson->setParam ( $_REQUEST );
-$dataSearch = $searchPoisson->getParam (); 
-if ($searchPoisson->isSearch () == 1) {
-	$vue->set( , ""); ("isSearch", 1);	
+$searchPoisson->setParam($_REQUEST);
+$dataSearch = $searchPoisson->getParam();
+if ($searchPoisson->isSearch() == 1) {
+	$vue->set(1, "isSearch");
 }
-$vue->set( , ""); ("poissonSearch", $dataSearch);
+$vue->set($dataSearch, "poissonSearch");
 /*
  * Integration des tables necessaires pour la  recherche
  */
-include_once "modules/classes/poisson.class.php";
+include_once "modules/classes/sexe.class.php";
 $sexe = new Sexe($bdd, $ObjetBDDParam);
-$vue->set( , "");("sexe",$sexe->getListe(1));
+$vue->set($sexe->getListe(1), "sexe");
+include_once "modules/classes/poissonStatut.class.php";
 $poisson_statut = new Poisson_statut($bdd, $ObjetBDDParam);
-$vue->set( , "");("statut", $poisson_statut->getListe(1));
+$vue->set($poisson_statut->getListe(1), "statut");
+include_once "modules/classes/categorie.class.php";
 $categorie = new Categorie($bdd, $ObjetBDDParam);
-$vue->set( , "");("categorie", $categorie->getListe(1));
+$vue->set($categorie->getListe(1), "categorie");
 include_once 'modules/classes/site.class.php';
 $site = new Site($bdd, $ObjetBDDParam);
-$vue->set( , "");("site", $site->getListe(2));
-?>
+$vue->set($site->getListe(2), "site");

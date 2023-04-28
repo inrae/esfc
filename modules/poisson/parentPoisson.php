@@ -1,51 +1,18 @@
 <?php
+
 /**
  * @author Eric Quinton
  * @copyright Copyright (c) 2014, IRSTEA / Eric Quinton
  * @license http://www.cecill.info/licences/Licence_CeCILL-C_V1-fr.html LICENCE DE LOGICIEL LIBRE CeCILL-C
  *  Creation 19 mars 2014
  */
-include_once 'modules/classes/poisson.class.php';
-$dataClass = new Parent_poisson($bdd,$ObjetBDDParam);
+include_once 'modules/classes/parentPoisson.class.php';
+$dataClass = new Parent_poisson($bdd, $ObjetBDDParam);
 $keyName = "parent_poisson_id";
 $id = $_REQUEST[$keyName];
 
 switch ($t_module["param"]) {
-	case "list":
-		/*
-		 * Display the list of all records of the table
-		 */
-		/*
-		 * $searchExample must be defined into modules/beforesession.inc.php :
-		 * include_once 'modules/classes/searchParam.class.php';
-		 * and into modules/common.inc.php :
-		 * if (!isset($_SESSION["searchExample"])) {
-		 * $searchExample = new SearchExample();
-		 *	$_SESSION["searchExample"] = $searchExample;
-		 *	} else {
-		 *	$searchExample = $_SESSION["searchExample"];
-		 *	}
-		 * and, also, into modules/classes/searchParam.class.php...
-		 */
-		$searchExample->setParam ( $_REQUEST );
-		$dataSearch = $searchExample->getParam ();
-		if ($searchExample->isSearch () == 1) {
-			$data = $dataClass->getListeSearch ( $dataExample );
-			$vue->set( , ""); ( "data", $data );
-			$vue->set( , ""); ("isSearch", 1);
-		}
-		$vue->set( , ""); ("exampleSearch", $dataSearch);
-		$vue->set( , "");("data", $dataClass->getListe());
-		$vue->set( , "");("corps", "example/exampleList.tpl");
-		break;
-	case "display":
-		/*
-		 * Display the detail of the record
-		 */
-		$data = $dataClass->lire($id);
-		$vue->set( , "");("data", $data);
-		$vue->set( , "");("corps", "example/exampleDisplay.tpl");
-		break;
+
 	case "change":
 		/*
 		 * open the form to modify the record
@@ -55,19 +22,20 @@ switch ($t_module["param"]) {
 		/*
 		 * Passage en parametre de la liste parente
 		*/
-		$vue->set( , "");("poissonDetailParent", $_SESSION["poissonDetailParent"]);
+		$vue->set($_SESSION["poissonDetailParent"], "poissonDetailParent");
 		dataRead($dataClass, $id, "poisson/parentPoissonChange.tpl", $_REQUEST["poisson_id"]);
 		if ($id > 0) {
 			/*
 			 * Recuperation des donnees avec le poisson parent
 			 */
-			$vue->set( , "");("data", $dataClass->lireAvecParent($id));
+			$vue->set($dataClass->lireAvecParent($id), "data");
 		}
 		/*
 		 * Lecture du poisson
 		*/
+		include_once "modules/classes/poisson.class.php";
 		$poisson = new Poisson($bdd, $ObjetBDDParam);
-		$vue->set( , "");("dataPoisson", $poisson->getDetail($_REQUEST["poisson_id"]));
+		$vue->set($poisson->getDetail($_REQUEST["poisson_id"]), "dataPoisson");
 		break;
 	case "write":
 		/*
@@ -85,5 +53,3 @@ switch ($t_module["param"]) {
 		dataDelete($dataClass, $id);
 		break;
 }
-
-?>

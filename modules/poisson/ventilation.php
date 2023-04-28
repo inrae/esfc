@@ -1,24 +1,21 @@
 <?php
+
 /**
  * @author : quinton
  * @date : 14 mars 2016
  * @encoding : UTF-8
  * (c) 2016 - All rights reserved
  */
-include_once 'modules/classes/poisson.class.php';
-$dataClass = new Ventilation($bdd,$ObjetBDDParam);
+include_once 'modules/classes/ventilation.class.php';
+$dataClass = new Ventilation($bdd, $ObjetBDDParam);
 $keyName = "ventilation_id";
 $id = $_REQUEST[$keyName];
 /*
  * Passage en parametre de la liste parente
  */
-$vue->set( , ""); ( "poissonDetailParent", $_SESSION ["poissonDetailParent"] );
+$vue->set($_SESSION["poissonDetailParent"], "poissonDetailParent");
 
 switch ($t_module["param"]) {
-	case "list":
-		break;
-	case "display":
-		break;
 	case "change":
 		/*
 		 * open the form to modify the record
@@ -32,10 +29,11 @@ switch ($t_module["param"]) {
 		/*
 		 * Lecture du poisson
 		*/
+		include_once "modules/classes/poisson.class.php";
 		$poisson = new Poisson($bdd, $ObjetBDDParam);
-		$vue->set( , "");("dataPoisson", $poisson->getDetail($_REQUEST["poisson_id"]));
-		if (isset ($_REQUEST["poisson_campagne_id"]) && is_numeric($_REQUEST["poisson_campagne_id"]))
-			$vue->set( , "");("poisson_campagne_id", $_REQUEST["poisson_campagne_id"]);
+		$vue->set($poisson->getDetail($_REQUEST["poisson_id"]), "dataPoisson");
+		if (isset($_REQUEST["poisson_campagne_id"]) && is_numeric($_REQUEST["poisson_campagne_id"]))
+			$vue->set($_REQUEST["poisson_campagne_id"], "poisson_campagne_id");
 		break;
 	case "write":
 		/*
@@ -53,4 +51,3 @@ switch ($t_module["param"]) {
 		dataDelete($dataClass, $id);
 		break;
 }
-?>
