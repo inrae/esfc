@@ -1,12 +1,13 @@
 <?php
+
 /**
  * @author : quinton
  * @date : 10 mars 2016
  * @encoding : UTF-8
  * (c) 2016 - All rights reserved
  */
-include_once 'modules/classes/poisson.class.php';
-$dataClass = new Anesthesie_produit($bdd,$ObjetBDDParam);
+include_once 'modules/classes/anesthesieProduit.class.php';
+$dataClass = new Anesthesie_produit($bdd, $ObjetBDDParam);
 $keyName = "anesthesie_produit_id";
 $id = $_REQUEST[$keyName];
 switch ($t_module["param"]) {
@@ -14,8 +15,8 @@ switch ($t_module["param"]) {
 		/*
 		 * Display the list of all records of the table
 		 */
-		$vue->set( , "");("data", $dataClass->getListe(2));
-		$vue->set( , "");("corps", "parametre/anesthesieProduitList.tpl");
+		$vue->set($dataClass->getListe(2), "data");
+		$vue->set("parametre/anesthesieProduitList.tpl", "corps");
 		break;
 	case "change":
 		/*
@@ -41,5 +42,3 @@ switch ($t_module["param"]) {
 		dataDelete($dataClass, $id);
 		break;
 }
-
-?>

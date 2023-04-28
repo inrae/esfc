@@ -5,7 +5,7 @@
  * @license http://www.cecill.info/licences/Licence_CeCILL-C_V1-fr.html LICENCE DE LOGICIEL LIBRE CeCILL-C
  *  Creation 4 mars 2014
  */
-include_once 'modules/classes/bassin.class.php';
+include_once 'modules/classes/circuitEau.class.php';
 $dataClass = new CircuitEau($bdd,$ObjetBDDParam);
 $keyName = "circuit_eau_id";
 $id = $_REQUEST[$keyName];
@@ -18,32 +18,30 @@ switch ($t_module["param"]) {
 		$searchCircuitEau->setParam ( $_REQUEST );
 		$dataSearch = $searchCircuitEau->getParam ();
 		if ($searchCircuitEau->isSearch () == 1) {
-			$vue->set( , ""); ("isSearch", 1);
+			$vue->set(1 , "isSearch"); 
 		}
-		$vue->set( , ""); ("circuitEauSearch", $dataSearch);
+		$vue->set($dataSearch , "circuitEauSearch"); 
 		if ($searchCircuitEau->isSearch () == 1) {
-			$data = $dataClass->getListeSearch ( $dataSearch );
-			$vue->set( , ""); ( "data", $data );
+			$vue->set( $dataClass->getListeSearch ( $dataSearch ), "data");
 			/*
 			 * Recuperation des donnees d'analyse
 			 */
 			if ($_REQUEST["circuit_eau_id"] > 0) {
+				include_once "modules/classes/analyseEau.class.php";
 				$analyseEau = new AnalyseEau($bdd, $ObjetBDDParam);
-				$dataAnalyse = $analyseEau->getDetailByCircuitEau($_REQUEST["circuit_eau_id"], $dataSearch["analyse_eau_date"]);
-				$vue->set( , "");("dataAnalyse", $dataAnalyse );
+				$vue->set($analyseEau->getDetailByCircuitEau($_REQUEST["circuit_eau_id"], $dataSearch["analyse_eau_date"]) , "dataAnalyse");
 			}
 		}
-		$vue->set( , "");("corps", "bassin/circuitEauList.tpl");
+		$vue->set("bassin/circuitEauList.tpl" , "corps");
 		require_once 'modules/classes/site.class.php';
 		$site = new Site($bdd, $ObjetBDDParam);
-		$vue->set( , "");("site", $site->getListe(2));
+		$vue->set( $site->getListe(2), "site");
 		break;
 	case "display":
 		/*
 		 * Display the detail of the record
 		 */
-		$data= $dataClass->lire($id);
-		$vue->set( , "");("data", $data);
+		$vue->set($dataClass->lire($id) , "data");
 		/*
 		 * Recuperation des dernieres analyses d'eau
 		 */
@@ -61,24 +59,26 @@ switch ($t_module["param"]) {
 			if ($dataSearch["offset"] < 0) $dataSearch["offset"] = 0;
 			$searchCircuitEau->setParam("offset",$dataSearch["offset"]);
 		}
-		$vue->set( , "");("dataSearch",$dataSearch);
+		$vue->set($dataSearch , "dataSearch");
+		require_once "modules/classes/analyseEau.class.php";
 		$analyseEau = new AnalyseEau($bdd, $ObjetBDDParam);
-		$dataAnalyse = $analyseEau->getDetailByCircuitEau($id, $dataSearch["analyse_date"], $dataSearch["limit"], $dataSearch["offset"]);
-		$vue->set( , "");("dataAnalyse", $dataAnalyse);
+		$vue->set( $analyseEau->getDetailByCircuitEau($id, $dataSearch["analyse_date"], $dataSearch["limit"], $dataSearch["offset"]), "dataAnalyse");
 		/*
 		 * Recuperation des bassins associes
 		 */
+		require_once "modules/classes/bassin.class.php";
 		$bassin = new Bassin($bdd, $ObjetBDDParam);
-		$vue->set( , "");("dataBassin", $bassin->getListeByCircuitEau($id));
+		$vue->set($bassin->getListeByCircuitEau($id) , "dataBassin");
 		/*
 		 * Recuperation des evenements
 		 */
+		require_once "modules/classes/circuitEvenement.class.php";
 		$circuitEvenement = new CircuitEvenement($bdd, $ObjetBDDParam);
-		$vue->set( , "");("dataCircuitEvnt", $circuitEvenement->getListeBycircuit($id));
+		$vue->set($circuitEvenement->getListeBycircuit($id) , "dataCircuitEvnt");
 		/*
 		 * Affichage
 		*/
-		$vue->set( , "");("corps", "bassin/circuitEauDisplay.tpl");
+		$vue->set("bassin/circuitEauDisplay.tpl" , "corps");
 		break;
 	case "change":
 		/*
@@ -89,7 +89,7 @@ switch ($t_module["param"]) {
 		dataRead($dataClass, $id, "bassin/circuitEauChange.tpl");
 		require_once 'modules/classes/site.class.php';
 		$site = new Site($bdd, $ObjetBDDParam);
-		$vue->set( , "");("site", $site->getListe(2));
+		$vue->set( $site->getListe(2), "site");
 		break;
 	case "write":
 		/*
@@ -107,5 +107,3 @@ switch ($t_module["param"]) {
 		dataDelete($dataClass, $id);
 		break;
 }
-
-?>

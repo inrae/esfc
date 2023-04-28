@@ -1,12 +1,13 @@
 <?php
+
 /**
  * @author : quinton
  * @date : 16 mars 2016
  * @encoding : UTF-8
  * (c) 2016 - All rights reserved
  */
-include_once 'modules/classes/sperme.class.php';
-$dataClass = new SpermeConservateur($bdd,$ObjetBDDParam);
+include_once 'modules/classes/spermeConservateur.class.php';
+$dataClass = new SpermeConservateur($bdd, $ObjetBDDParam);
 $keyName = "sperme_conservateur_id";
 $id = $_REQUEST[$keyName];
 switch ($t_module["param"]) {
@@ -14,8 +15,8 @@ switch ($t_module["param"]) {
 		/*
 		 * Display the list of all records of the table
 		 */
-		$vue->set( , "");("data", $dataClass->getListe(2));
-		$vue->set( , "");("corps", "parametre/spermeConservateurList.tpl");
+		$vue->set($dataClass->getListe(2), "data");
+		$vue->set("parametre/spermeConservateurList.tpl", "corps");
 		break;
 	case "change":
 		/*
@@ -41,4 +42,3 @@ switch ($t_module["param"]) {
 		dataDelete($dataClass, $id);
 		break;
 }
-?>

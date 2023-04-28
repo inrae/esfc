@@ -13,14 +13,12 @@
 $searchBassin->setParam ( $_REQUEST );
 $dataSearch = $searchBassin->getParam ();
 if ($searchBassin->isSearch () == 1) {
-	$vue->set( , ""); ("isSearch", 1);
+	$vue->set(1 , "isSearch"); 
 }
-$vue->set( , ""); ("bassinSearch", $dataSearch);
+$vue->set( $dataSearch, "bassinSearch"); 
 /*
  * Integration des tables necessaires pour la  recherche
 */
 include 'modules/bassin/bassinParamAssocie.php';
 $_SESSION["bassinParentModule"] = "bassinListniv2";
 require_once 'modules/classes/site.class.php';
-
-?>

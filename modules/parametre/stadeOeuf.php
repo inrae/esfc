@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created : 3 févr. 2017
  * Creator : quinton
@@ -6,7 +7,7 @@
  * Copyright 2017 - All rights reserved
  */
 include_once 'modules/classes/stadeOeuf.class.php';
-$dataClass = new StadeOeuf($bdd,$ObjetBDDParam);
+$dataClass = new StadeOeuf($bdd, $ObjetBDDParam);
 $keyName = "stade_oeuf_id";
 $id = $_REQUEST[$keyName];
 switch ($t_module["param"]) {
@@ -14,8 +15,8 @@ switch ($t_module["param"]) {
 		/*
 		 * Display the list of all records of the table
 		 */
-		$vue->set( , "");("data", $dataClass->getListe(2));
-		$vue->set( , "");("corps", "parametre/stadeOeufList.tpl");
+		$vue->set($dataClass->getListe(2), "data");
+		$vue->set("parametre/stadeOeufList.tpl", "corps");
 		break;
 	case "change":
 		/*
@@ -41,4 +42,3 @@ switch ($t_module["param"]) {
 		dataDelete($dataClass, $id);
 		break;
 }
-?>

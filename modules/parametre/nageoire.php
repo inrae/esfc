@@ -1,12 +1,13 @@
 <?php
+
 /**
  * @author : quinton
  * @date : 31 mars 2016
  * @encoding : UTF-8
  * (c) 2016 - All rights reserved
  */
-include_once 'modules/classes/poisson.class.php';
-$dataClass = new Nageoire($bdd,$ObjetBDDParam);
+include_once 'modules/classes/naageoire.class.php';
+$dataClass = new Nageoire($bdd, $ObjetBDDParam);
 $keyName = "nageoire_id";
 $id = $_REQUEST[$keyName];
 switch ($t_module["param"]) {
@@ -14,8 +15,8 @@ switch ($t_module["param"]) {
 		/*
 		 * Display the list of all records of the table
 		 */
-		$vue->set( , "");("data", $dataClass->getListe(1));
-		$vue->set( , "");("corps", "parametre/nageoireList.tpl");
+		$vue->set($dataClass->getListe(1), "data");
+		$vue->set("parametre/nageoireList.tpl", "corps");
 		break;
 	case "change":
 		/*
@@ -41,4 +42,3 @@ switch ($t_module["param"]) {
 		dataDelete($dataClass, $id);
 		break;
 }
-?>

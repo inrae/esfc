@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @author Eric Quinton
  * @copyright Copyright (c) 2014, IRSTEA / Eric Quinton
@@ -6,8 +7,8 @@
  *  Creation 16 avr. 2014
  *  gestion de la table sortie_lieu
  */
-include_once 'modules/classes/poisson.class.php';
-$dataClass = new SortieLieu($bdd,$ObjetBDDParam);
+include_once 'modules/classes/sortieLieu.class.php';
+$dataClass = new SortieLieu($bdd, $ObjetBDDParam);
 $keyName = "sortie_lieu_id";
 $id = $_REQUEST[$keyName];
 switch ($t_module["param"]) {
@@ -15,8 +16,8 @@ switch ($t_module["param"]) {
 		/*
 		 * Display the list of all records of the table
 		 */
-		$vue->set( , "");("data", $dataClass->getListeActif());
-		$vue->set( , "");("corps", "parametre/sortieLieuList.tpl");
+		$vue->set($dataClass->getListeActif(), "data");
+		$vue->set("parametre/sortieLieuList.tpl", "corps");
 		break;
 	case "change":
 		/*
@@ -27,8 +28,9 @@ switch ($t_module["param"]) {
 		/*
 		 * Lecture des statuts de poissons
 		 */
+		include_once "modules/classes/poissonStatut.class.php";
 		$poissonStatut = new Poisson_statut($bdd, $ObjetBDDParam);
-		$vue->set( , "");("poissonStatut", $poissonStatut->getListe(1));
+		$vue->set($poissonStatut->getListe(1), "poissonStatut");
 		dataRead($dataClass, $id, "parametre/sortieLieuChange.tpl");
 		break;
 	case "write":
@@ -47,5 +49,3 @@ switch ($t_module["param"]) {
 		dataDelete($dataClass, $id);
 		break;
 }
-
-?>

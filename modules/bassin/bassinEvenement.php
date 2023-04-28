@@ -1,12 +1,13 @@
 <?php
+
 /**
  * @author Eric Quinton
  * @copyright Copyright (c) 2014, IRSTEA / Eric Quinton
  * @license http://www.cecill.info/licences/Licence_CeCILL-C_V1-fr.html LICENCE DE LOGICIEL LIBRE CeCILL-C
  *  Creation 2 avr. 2014
  */
-include_once 'modules/classes/bassin.class.php';
-$dataClass = new BassinEvenement($bdd,$ObjetBDDParam);
+include_once 'modules/classes/bassinEvenement.class.php';
+$dataClass = new BassinEvenement($bdd, $ObjetBDDParam);
 $keyName = "bassin_evenement_id";
 $id = $_REQUEST[$keyName];
 switch ($t_module["param"]) {
@@ -20,19 +21,19 @@ switch ($t_module["param"]) {
 		 * If is a new record, generate a new record with default value :
 		 * $_REQUEST["idParent"] contains the identifiant of the parent record
 		 */
-		dataRead($dataClass, $id, "bassin/bassinEvenementChange.tpl",$_REQUEST["bassin_id"]);
+		dataRead($dataClass, $id, "bassin/bassinEvenementChange.tpl", $_REQUEST["bassin_id"]);
 		/*
 		 * Lecture des types d'événements
 		 */
 		$bassinEvenementType = new BassinEvenementType($bdd, $ObjetBDDParam);
-		$vue->set( , "");("dataEvntType", $bassinEvenementType->getListe(1));
+		$vue->set($bassinEvenementType->getListe(1), "dataEvntType");
 		/*
 		 * Lecture du bassin
 		 */
+		include_once "modules/classes/bassin.class.php";
 		$bassin = new Bassin($bdd, $ObjetBDDParam);
-		$vue->set( , "");("dataBassin", $bassin->getDetail($_REQUEST["bassin_id"]));
-		$vue->set( , "");("bassinParentModule", $_SESSION["bassinParentModule"]);
-		break;
+		$vue->set($bassin->getDetail($_REQUEST["bassin_id"]), "dataBassin");
+		$vue->set($_SESSION["bassinParentModule"], "bassinParentModule");
 	case "write":
 		/*
 		 * write record in database
@@ -49,4 +50,3 @@ switch ($t_module["param"]) {
 		dataDelete($dataClass, $id);
 		break;
 }
-?>

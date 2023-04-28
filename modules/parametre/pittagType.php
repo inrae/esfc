@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @author Eric Quinton
  * @copyright Copyright (c) 2014, IRSTEA / Eric Quinton
@@ -7,8 +8,8 @@
  *  Gestion de la table pittag_type
  */
 
-include_once 'modules/classes/poisson.class.php';
-$dataClass = new Pittag_type($bdd,$ObjetBDDParam);
+include_once 'modules/classes/pittagTypeClass.php';
+$dataClass = new Pittag_type($bdd, $ObjetBDDParam);
 $keyName = "pittag_type_id";
 $id = $_REQUEST[$keyName];
 switch ($t_module["param"]) {
@@ -16,16 +17,8 @@ switch ($t_module["param"]) {
 		/*
 		 * Display the list of all records of the table
 		 */
-		$vue->set( , "");("data", $dataClass->getListe(2));
-		$vue->set( , "");("corps", "parametre/pittagTypeList.tpl");
-		break;
-	case "display":
-		/*
-		 * Display the detail of the record
-		 */
-		$data = $dataClass->lire($id);
-		$vue->set( , "");("data", $data);
-		$vue->set( , "");("corps", "example/exampleDisplay.tpl");
+		$vue->set($dataClass->getListe(2), "data");
+		$vue->set("parametre/pittagTypeList.tpl", "corps");
 		break;
 	case "change":
 		/*
@@ -51,4 +44,3 @@ switch ($t_module["param"]) {
 		dataDelete($dataClass, $id);
 		break;
 }
-?>

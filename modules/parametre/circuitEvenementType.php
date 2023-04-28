@@ -1,12 +1,13 @@
 <?php
+
 /**
  * @author : quinton
  * @date : 15 mars 2016
  * @encoding : UTF-8
  * (c) 2016 - All rights reserved
  */
-include_once 'modules/classes/bassin.class.php';
-$dataClass = new circuitEvenementType($bdd,$ObjetBDDParam);
+include_once 'modules/classes/circuitEvenementType.class.php';
+$dataClass = new circuitEvenementType($bdd, $ObjetBDDParam);
 $keyName = "circuit_evenement_type_id";
 $id = $_REQUEST[$keyName];
 switch ($t_module["param"]) {
@@ -14,16 +15,8 @@ switch ($t_module["param"]) {
 		/*
 		 * Display the list of all records of the table
 		 */
-		$vue->set( , "");("data", $dataClass->getListe(1));
-		$vue->set( , "");("corps", "parametre/circuitEvenementTypeList.tpl");
-		break;
-	case "display":
-		/*
-		 * Display the detail of the record
-		 */
-		$data = $dataClass->lire($id);
-		$vue->set( , "");("data", $data);
-		$vue->set( , "");("corps", "example/exampleDisplay.tpl");
+		$vue->set($dataClass->getListe(1), "data");
+		$vue->set("parametre/circuitEvenementTypeList.tpl", "corps");
 		break;
 	case "change":
 		/*
@@ -49,4 +42,3 @@ switch ($t_module["param"]) {
 		dataDelete($dataClass, $id);
 		break;
 }
-?>

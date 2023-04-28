@@ -1,6 +1,6 @@
 <?php
 include_once 'modules/classes/site.class.php';
-$dataClass = new Site($bdd,$ObjetBDDParam);
+$dataClass = new Site($bdd, $ObjetBDDParam);
 $keyName = "site_id";
 $id = $_REQUEST[$keyName];
 switch ($t_module["param"]) {
@@ -8,8 +8,8 @@ switch ($t_module["param"]) {
 		/*
 		 * Display the list of all records of the table
 		 */
-		$vue->set( , "");("data", $dataClass->getListe(2));
-		$vue->set( , "");("corps", "parametre/siteList.tpl");
+		$vue->set($dataClass->getListe(2), "data");
+		$vue->set("parametre/siteList.tpl", "corps");
 		break;
 	case "change":
 		/*

@@ -6,8 +6,6 @@
  * @license http://www.cecill.info/licences/Licence_CeCILL-C_V1-fr.html LICENCE DE LOGICIEL LIBRE CeCILL-C
  *  Creation 4 mars 2014
  */
-require_once 'modules/bassin/bassin.functions.php';
-
 include_once 'modules/classes/bassin.class.php';
 $dataClass = new Bassin($bdd, $ObjetBDDParam);
 $keyName = "bassin_id";
@@ -120,19 +118,12 @@ switch ($t_module["param"]) {
 		dataDelete($dataClass, $id);
 		break;
 	case "calculMasseAjax":
-		//TODO : vérifier l'envoi au navigateur
 		include_once 'modules/classes/poisson.class.php';
 		if ($_REQUEST["bassin_id"] > 0) {
 			$masse = $dataClass->calculMasse($_REQUEST["bassin_id"]);
-			$masseJson = '{"0": {"val": "' . $masse . '" } }';
-			$vue->set($masseJson);
+			$vue->set(array("val" => $masse));
 		}
 		break;
 	case "recapAlim":
-		//TODO : vérifier l'envoi au navigateur
-		$data = $dataClass->getRecapAlim($_REQUEST, $searchBassin->getParam());
-		ob_clean();
-		download_send_headers("sturio_bassin_alim_recap_" . date("Y-m-d") . ".csv");
-		echo array2csv($data);
-		die();
+		$vue->set($dataClass->getRecapAlim($_REQUEST, $searchBassin->getParam()));
 }

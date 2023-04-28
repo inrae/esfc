@@ -1,12 +1,13 @@
 <?php
+
 /**
  * @author Eric Quinton
  * @copyright Copyright (c) 2014, IRSTEA / Eric Quinton
  * @license http://www.cecill.info/licences/Licence_CeCILL-C_V1-fr.html LICENCE DE LOGICIEL LIBRE CeCILL-C
  *  Creation 18 févr. 2014
  */
-include_once 'modules/classes/poisson.class.php';
-$dataClass = new Poisson_statut($bdd,$ObjetBDDParam);
+include_once 'modules/classes/poissonStatut.class.php';
+$dataClass = new Poisson_statut($bdd, $ObjetBDDParam);
 $keyName = "poisson_statut_id";
 $id = $_REQUEST[$keyName];
 switch ($t_module["param"]) {
@@ -14,16 +15,8 @@ switch ($t_module["param"]) {
 		/*
 		 * Display the list of all records of the table
 		 */
-		$vue->set( , "");("data", $dataClass->getListe(1));
-		$vue->set( , "");("corps", "parametre/poissonStatutList.tpl");
-		break;
-	case "display":
-		/*
-		 * Display the detail of the record
-		 */
-		$data = $dataClass->lire($id);
-		$vue->set( , "");("data", $data);
-		$vue->set( , "");("corps", "example/exampleDisplay.tpl");
+		$vue->set($dataClass->getListe(1), "data");
+		$vue->set("parametre/poissonStatutList.tpl", "corps");
 		break;
 	case "change":
 		/*
@@ -49,5 +42,3 @@ switch ($t_module["param"]) {
 		dataDelete($dataClass, $id);
 		break;
 }
-
-?>

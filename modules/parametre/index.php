@@ -1,3 +1,2 @@
 <?php
-$message->set(  $LANG["message"][2];
-?>
+$message->set( _("Bienvenue"));

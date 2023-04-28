@@ -4,7 +4,8 @@
  * @date : 15 mars 2016
  * @encoding : UTF-8
  * (c) 2016 - All rights reserved
- */include_once 'modules/classes/bassin.class.php';
+ */
+include_once 'modules/classes/bassin.class.php';
 $dataClass = new CircuitEvenement($bdd,$ObjetBDDParam);
 $keyName = "circuit_evenement_id";
 $id = $_REQUEST[$keyName];
@@ -23,13 +24,15 @@ switch ($t_module["param"]) {
 		/*
 		 * Lecture des types d'événements
 		 */
+		include_once "modules/classes/circuitEvenementType.class.php";
 		$circuitEvenementType = new circuitEvenementType($bdd, $ObjetBDDParam);
-		$vue->set( , "");("dataEvntType", $circuitEvenementType->getListe(1));
+		$vue->set($circuitEvenementType->getListe(1) , "dataEvntType");
 		/*
 		 * Lecture du circuit d'eau
 		 */
+		include_once "modules/classes/circuitEau.class.php";
 		$circuit = new CircuitEau($bdd, $ObjetBDDParam);
-		$vue->set( , "");("dataCircuit", $circuit->lire($_REQUEST["circuit_eau_id"]));
+		$vue->set($circuit->lire($_REQUEST["circuit_eau_id"]) , "dataCircuit");
 		break;
 	case "write":
 		/*
@@ -47,5 +50,3 @@ switch ($t_module["param"]) {
 		dataDelete($dataClass, $id);
 		break;
 }
-
-?>

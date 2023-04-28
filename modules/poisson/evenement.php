@@ -12,14 +12,6 @@ $id = $_REQUEST[$keyName];
 switch ($t_module["param"]) {
     case "list":
         break;
-    case "display":
-		/*
-		 * Display the detail of the record
-		 */
-		$data = $dataClass->lire($id);
-        $vue->set( , "");("data", $data);
-        $vue->set( , "");("corps", "example/exampleDisplay.tpl");
-        break;
     case "change":
         if ($_REQUEST["poisson_id"] > 0) {
             /*

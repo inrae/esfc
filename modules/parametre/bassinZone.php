@@ -1,12 +1,13 @@
 <?php
+
 /**
  * @author Eric Quinton
  * @copyright Copyright (c) 2014, IRSTEA / Eric Quinton
  * @license http://www.cecill.info/licences/Licence_CeCILL-C_V1-fr.html LICENCE DE LOGICIEL LIBRE CeCILL-C
  *  Creation 4 mars 2014
  */
-include_once 'modules/classes/bassin.class.php';
-$dataClass = new Bassin_zone($bdd,$ObjetBDDParam);
+include_once 'modules/classes/bassinZone.class.php';
+$dataClass = new Bassin_zone($bdd, $ObjetBDDParam);
 $keyName = "bassin_zone_id";
 $id = $_REQUEST[$keyName];
 switch ($t_module["param"]) {
@@ -14,16 +15,8 @@ switch ($t_module["param"]) {
 		/*
 		 * Display the list of all records of the table
 		 */
-		$vue->set( , "");("data", $dataClass->getListe(2));
-		$vue->set( , "");("corps", "parametre/bassinZoneList.tpl");
-		break;
-	case "display":
-		/*
-		 * Display the detail of the record
-		 */
-		$data = $dataClass->lire($id);
-		$vue->set( , "");("data", $data);
-		$vue->set( , "");("corps", "example/exampleDisplay.tpl");
+		$vue->set($dataClass->getListe(2), "data");
+		$vue->set("parametre/bassinZoneList.tpl", "corps");
 		break;
 	case "change":
 		/*
@@ -49,5 +42,3 @@ switch ($t_module["param"]) {
 		dataDelete($dataClass, $id);
 		break;
 }
-
-?>
