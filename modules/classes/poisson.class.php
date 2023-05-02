@@ -198,7 +198,7 @@ class Poisson extends ObjetBDD
      */
     function getListPoissonFromName($libelle)
     {
-        if (strlen($libelle) > 0) {
+        if (!empty($libelle)) {
             $libelle = "%" . $libelle . "%";
             $sql = "select poisson.poisson_id, matricule, prenom, pittag_valeur 
 					from poisson

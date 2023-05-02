@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @author Eric Quinton
  * @copyright Copyright (c) 2014, IRSTEA / Eric Quinton
@@ -6,159 +7,168 @@
  *  Creation 25 févr. 2014
  */
 include_once 'modules/classes/poisson.class.php';
-$dataClass = new Poisson($bdd,$ObjetBDDParam);
+$dataClass = new Poisson($bdd, $ObjetBDDParam);
 $keyName = "poisson_id";
 $id = $_REQUEST[$keyName];
 
 switch ($t_module["param"]) {
 	case "list":
-		/*
-		 * Display the list of all records of the table
-		 */
-		/*
-		 * $searchExample must be defined into modules/beforesession.inc.php :
-		 * include_once 'modules/classes/searchParam.class.php';
-		 * and into modules/common.inc.php :
-		 * if (!isset($_SESSION["searchExample"])) {
-		 * $searchExample = new SearchExample();
-		 *	$_SESSION["searchExample"] = $searchExample;
-		 *	} else {
-		 *	$searchExample = $_SESSION["searchExample"];
-		 *	}
-		 * and, also, into modules/classes/searchParam.class.php...
-		 */
 		include "modules/poisson/poissonSearch.php";
-		if ($searchPoisson->isSearch () == 1) {
-			$data = $dataClass->getListeSearch ( $dataSearch );
-			$vue->set($data , "data"); ( "",  );
+		if ($searchPoisson->isSearch() == 1) {
+			$data = $dataClass->getListeSearch($dataSearch);
+			$vue->set($data, "data");
 		}
 		$_SESSION["poissonDetailParent"] = "poissonList";
-		$vue->set("poisson/poissonList.tpl" , "corps");("", );
+		$vue->set("poisson/poissonList.tpl", "corps");
 		break;
 	case "display":
 		/*
 		 * Display the detail of the record
 		 */
 		$data = $dataClass->getDetail($id);
-		$vue->set( , "");("dataPoisson", $data);
+		$vue->set($data, "dataPoisson");
 		/*
 		 * Passage en parametre de la liste parente
 		 */
-		$vue->set( , "");("poissonDetailParent", $_SESSION["poissonDetailParent"]);
+		$vue->set($_SESSION["poissonDetailParent"], "poissonDetailParent");
+		$classes = array(
+			"evenement",
+			"categorie",
+			"poissonStatut",
+			"morphologie",
+			"genderSelection",
+			"pathologie",
+			"pittag",
+			"transfert",
+			"mortalite",
+			"cohorte",
+			"sortie",
+			"echographie",
+			"anesthesie",
+			"ventilation",
+			"poissonRepro",
+			"dosageSanguin",
+			"genetique",
+			"parente",
+			"lot",
+			"vieModele",
+			"sexe",
+			"pittagType",
+			"anomalie"
+		);
+		foreach ($classes as $classe) {
+			require_once "modules/classes/$classe.class.php";
+		}
 		/*
 		 * Recuperation des morphologies
 		 */
 		$morphologie = new Morphologie($bdd, $ObjetBDDParam);
-		$vue->set( , "");("dataMorpho", $morphologie->getListeByPoisson($id));
+		$vue->set($morphologie->getListeByPoisson($id), "dataMorpho");
 		/*
 		 * Recuperation des événements
 		 */
-		include_once 'modules/classes/evenement.class.php';
 		$evenement = new Evenement($bdd, $ObjetBDDParam);
-		$vue->set( , "");("dataEvenement",$evenement->getEvenementByPoisson($id));
+		$vue->set($evenement->getEvenementByPoisson($id), "dataEvenement");
 		/*
 		 * Recuperation du sexage
 		 */
 		$gender_selection = new Gender_selection($bdd, $ObjetBDDParam);
-		$vue->set( , "");("dataGender",$gender_selection->getListByPoisson($id));
+		$vue->set($gender_selection->getListByPoisson($id), "dataGender");
 		/*
 		 * Recuperation des pathologies
 		 */
 		$pathologie = new Pathologie($bdd, $ObjetBDDParam);
-		$vue->set( , "");("dataPatho", $pathologie->getListByPoisson($id));
+		$vue->set($pathologie->getListByPoisson($id), "dataPatho");
 		/*
 		 * Recuperation des pittag
 		 */
 		$pittag = new Pittag($bdd, $ObjetBDDParam);
-		$vue->set( , "");("dataPittag", $pittag->getListByPoisson($id));
+		$vue->set($pittag->getListByPoisson($id), "dataPittag");
 		/*
 		 * Recuperation des transferts
 		 */
 		$transfert = new Transfert($bdd, $ObjetBDDParam);
-		$vue->set( , "");("dataTransfert", $transfert->getListByPoisson($id));
+		$vue->set($transfert->getListByPoisson($id), "dataTransfert");
 		/*
 		 * Recuperation des mortalites
 		 */
 		$mortalite = new Mortalite($bdd, $ObjetBDDParam);
-		$vue->set( , "");("dataMortalite", $mortalite->getListByPoisson($id));
+		$vue->set($mortalite->getListByPoisson($id), "dataMortalite");
 		/*
 		 * Recuperation des cohortes
 		*/
 		$cohorte = new Cohorte($bdd, $ObjetBDDParam);
-		$vue->set( , "");("dataCohorte", $cohorte->getListByPoisson($id));
+		$vue->set($cohorte->getListByPoisson($id), "dataCohorte");
 		/*
 		 * Recuperation des parents
 		 */
 		$parent = new Parent_poisson($bdd, $ObjetBDDParam);
-		$vue->set( , "");("dataParent", $parent->getListParent($id));
+		$vue->set($parent->getListParent($id), "dataParent");
 		/*
 		 * Recuperation des anomalies
 		 */
-		include_once ("modules/classes/anomalie.class.php");
 		$anomalie = new Anomalie_db($bdd, $ObjetBDDParam);
-		$vue->set( , "");("dataAnomalie", $anomalie->getListByPoisson($id));
+		$vue->set($anomalie->getListByPoisson($id), "dataAnomalie");
 		/*
 		 * Recuperation des sorties
 		 */
 		$sortie = new Sortie($bdd, $ObjetBDDParam);
-		$vue->set( , "");("dataSortie", $sortie->getListByPoisson($id));
+		$vue->set($sortie->getListByPoisson($id), "dataSortie");
 		/*
 		 * Recuperation des echographies
 		 */
 		$echographie = new Echographie($bdd, $ObjetBDDParam);
-		$vue->set( , "");("dataEcho", $echographie->getListByPoisson($id));
+		$vue->set($echographie->getListByPoisson($id), "dataEcho");
 		/*
 		 * Recuperation des anesthesies
 		 */
 		$anesthesie = new Anesthesie($bdd, $ObjetBDDParam);
-		$vue->set( , "");("dataAnesthesie", $anesthesie->getListByPoisson($id));
+		$vue->set($anesthesie->getListByPoisson($id), "dataAnesthesie");
 		/*
 		 * Recuperation des mesures de ventilation
 		 */
 		$ventilation = new Ventilation($bdd, $ObjetBDDParam);
-		$vue->set( , "");("dataVentilation", $ventilation->getListByPoisson($id));
+		$vue->set($ventilation->getListByPoisson($id), "dataVentilation");
 		/*
 		 * Recuperation des campagnes de reproduction
 		 */
-		require_once 'modules/classes/poissonRepro.class.php';
 		$poissonCampagne = new PoissonCampagne($bdd, $ObjetBDDParam);
-		$vue->set( , "");("dataRepro", $poissonCampagne->getListFromPoisson($id));
+		$vue->set($poissonCampagne->getListFromPoisson($id), "dataRepro");
 		/*
 		 * Recuperation des dosages sanguins
 		 */
-		require_once 'modules/classes/dosageSanguin.class.php';
 		$dosageSanguin = new DosageSanguin($bdd, $ObjetBDDParam);
-		$vue->set( , "");("dataDosageSanguin", $dosageSanguin->getListeFromPoisson($id));
-		
+		$vue->set($dosageSanguin->getListeFromPoisson($id), "dataDosageSanguin");
+
 		/*
 		 * Recuperation des prelevements genetiques
 		 */
 		$genetique = new Genetique($bdd, $ObjetBDDParam);
-		$vue->set( , "");("dataGenetique", $genetique->getListByPoisson($id));
-		
+		$vue->set($genetique->getListByPoisson($id), "dataGenetique");
+
 		/*
 		 * Recuperation des determinations de parente
 		 */
 		$parente = new Parente($bdd, $ObjetBDDParam);
-		$vue->set( , "");("dataParente", $parente->getListByPoisson($id));
-		
+		$vue->set($parente->getListByPoisson($id), "dataParente");
+
 		/*
 		 * Gestion des documents associes
 		*/
-		$vue->set( , ""); ( "moduleParent", "poissonDisplay" );
-		$vue->set( , ""); ( "parentType", "poisson" );
-		$vue->set( , ""); ( "parentIdName", "poisson_id" );
-		$vue->set( , ""); ( "parent_id", $id );
+		$vue->set("poissonDisplay", "moduleParent");
+		$vue->set("poisson", "parentType");
+		$vue->set("poisson_id", "parentIdName");
+		$vue->set($id, "parent_id");
 		require_once 'modules/document/documentFunctions.php';
-		$vue->set( , "");("dataDoc", getListeDocument("poisson", $id, $_REQUEST["document_limit"], $_REQUEST["document_offset"]));
+		$vue->set(getListeDocument("poisson", $id, $_REQUEST["document_limit"], $_REQUEST["document_offset"]), "dataDoc");
 		/*
 		 * Affichage
 		 */
-		$vue->set( , "");("corps", "poisson/poissonDisplay.tpl");
+		$vue->set("poisson/poissonDisplay.tpl", "corps");
 		/*
 		 * Module de retour au poisson
 		 */
-		$_SESSION ["poissonParent"] = "poissonDisplay";
+		$_SESSION["poissonParent"] = "poissonDisplay";
 		break;
 	case "change":
 		/*
@@ -166,36 +176,45 @@ switch ($t_module["param"]) {
 		 * If is a new record, generate a new record with default value :
 		 * $_REQUEST["idParent"] contains the identifiant of the parent record
 		 */
-		include_once "modules/classes/categorie.class.php";
-		$data=dataRead($dataClass, $id, "poisson/poissonChange.tpl");
+		$classes = array(
+			"poissonStatut",
+			"sexe",
+			"categorie",
+			"vieModele",
+			"pittagType",
+			"pittag"
+		);
+		foreach ($classes as $classe) {
+			require_once "modules/classes/$classe.class.php";
+		}
+		$data = dataRead($dataClass, $id, "poisson/poissonChange.tpl");
 		$sexe = new Sexe($bdd, $ObjetBDDParam);
-		$vue->set( , "");("sexe", $sexe->getListe(1));
+		$vue->set($sexe->getListe(1), "sexe");
 		$poissonStatut = new Poisson_statut($bdd, $ObjetBDDParam);
-		$vue->set( , "");("poissonStatut", $poissonStatut->getListe(1));
+		$vue->set($poissonStatut->getListe(1), "poissonStatut");
 		$categorie = new Categorie($bdd, $ObjetBDDParam);
-		$vue->set( , "");("categorie", $categorie->getListe(1));
-		
+		$vue->set($categorie->getListe(1), "categorie");
+
 		/*
 		 * Modeles de marquages VIE, pour creation a partir des juveniles
 		 */
-		require_once "modules/classes/lot.class.php";
 		$vieModele = new VieModele($bdd, $ObjetBDDParam);
-		$vue->set( , "");("modeles", $vieModele->getAllModeles());
+		$vue->set($vieModele->getAllModeles(), "modeles");
 		/*
 		 * Passage en parametre de la liste parente
 		*/
-		$vue->set( , "");("poissonDetailParent", $_SESSION["poissonDetailParent"]);
-		
+		$vue->set($_SESSION["poissonDetailParent"], "poissonDetailParent");
+
 		/*
 		 * Recuperation de la liste des types de pittag
 		*/
 		$pittagType = new Pittag_type($bdd, $ObjetBDDParam);
-		$vue->set( , "");("pittagType", $pittagType->getListe(2));
+		$vue->set($pittagType->getListe(2), "pittagType");
 		/*
 		 * Recuperation du dernier pittag connu
 		 */
-		$pittag = new Pittag($bdd,$ObjetBDDParam);
-		$vue->set( , "");("dataPittag", $pittag->getListByPoisson($id,1));
+		$pittag = new Pittag($bdd, $ObjetBDDParam);
+		$vue->set($pittag->getListByPoisson($id, 1), "dataPittag");
 		break;
 	case "write":
 		/*
@@ -207,13 +226,13 @@ switch ($t_module["param"]) {
 			/*
 			 * Ecriture du pittag
 			 */
-			if (strlen($_REQUEST["pittag_valeur"]) > 0) {
-				$pittag = new Pittag($bdd,$ObjetBDDParam);
+			if (!empty($_REQUEST["pittag_valeur"])) {
+				require_once "modules/classes/pittag.class.php";
+				$pittag = new Pittag($bdd, $ObjetBDDParam);
 				$idPittag = $pittag->ecrire($_REQUEST);
-				if (! $idPittag > 0) {
+				if (!$idPittag > 0) {
 					$module_coderetour = -1;
-					$message.=$pittag->getErrorData());
-					$message.=$LANG["message"][12];
+					$message->set($pittag->getErrorData(), true);
 				}
 			}
 		}
@@ -229,35 +248,8 @@ switch ($t_module["param"]) {
 		 * retourne la liste des poissons a partir du libelle fourni
 		 * au format JSON, en mode Ajax
 		 */
-		if (strlen($_REQUEST["libelle"]) > 0) {
-			$data = $dataClass->getListPoissonFromName($_REQUEST["libelle"]);
-			$dataJson = array();
-			$i = 0;
-			/*
-			 * Mise en forme du tableau pour etre facile a manipuler cote client
-			 */
-			foreach ($data as $key => $value) {
-				$dataJson[$i]["id"] = $value["poisson_id"];
-				$valeur = "";
-				$flag = 0;
-				if (strlen($value["matricule"]) > 0 ) {
-					$valeur = $value["matricule"];
-					$flag = 1;
-				}
-				if (strlen($value["pittag_valeur"]) > 0 ) {
-					if ($flag == 1) $valeur .= " - "; else $flag = 1;
-					$valeur .= $value["pittag_valeur"];
-				} 
-				if (strlen($value["prenom"]) > 0 ) {
-					if ($flag == 1) $valeur .= " - ";
-					$valeur .= $value["prenom"];
-				}
-				$dataJson[$i]["val"] = $valeur;
-				$i ++;
-			}
-			echo json_encode ($dataJson) ;
+		if (!empty($_REQUEST["libelle"])) {
+			$vue->set($dataClass->getListPoissonFromName($_REQUEST["libelle"]));
 		}
 		break;
 }
-
-?>
