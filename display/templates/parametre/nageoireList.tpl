@@ -1,4 +1,4 @@
-<h2>Nageoires (prélèvements génétiques)</h2>
+<h2{t}Nageoires (prélèvements génétiques){/t}</h2>
 {if $droits["paramAdmin"] == 1}
 <a href="index.php?module=nageoireChange&nageoire_id=0">
 Nouveau...
@@ -7,7 +7,7 @@ Nouveau...
 <script>
 setDataTables("ccaracteristiqueList");
 </script>
-<table id="cnageoireList" class="tableliste">
+<table class="table table-bordered table-hover datatable" id="cnageoireList" class="tableliste">
 <thead>
 <tr>
 <th>Libellé</th>

@@ -1,4 +1,4 @@
-<h2>Types de fichiers importables</h2>
+<h2{t}Types de fichiers importables{/t}</h2>
 {if $droits["paramAdmin"] == 1}
 <a href="index.php?module=mimeTypeChange&mime_type_id=0">
 Nouveau...
@@ -7,14 +7,14 @@ Nouveau...
 <script>
 setDataTables("cmimeTypeList");
 </script>
-<table id="cmimeTypeList" class="tableliste">
+<table class="table table-bordered table-hover datatable" id="cmimeTypeList" class="tableliste">
 <thead>
 <tr>
 <th>extension</th>
 <th>type mime</th>
 </tr>
 </thead>
-<tdata>
+<tbody>
 {section name=lst loop=$data}
 <tr>
 <td>
@@ -31,5 +31,5 @@ setDataTables("cmimeTypeList");
 </td>
 </tr>
 {/section}
-</tdata>
+</tbody>
 </table>

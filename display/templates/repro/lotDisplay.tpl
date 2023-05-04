@@ -1,5 +1,5 @@
 <a href="index.php?module=lotList">Retour à la liste</a>
-<h2>Détail d'un lot</h2>
+<h2{t}Détail d'un lot{/t}</h2>
 <div class="tableCell">
 {if $droits.reproGestion == 1}
 <a href="index.php?module=lotChange&lot_id={$dataLot.lot_id}">Modifier le lot</a>

@@ -1,7 +1,7 @@
 <script>
 setDataTablesFull("cmorphologieList");
 </script>
-<table id="cmorphologieList" class="tableliste">
+<table class="table table-bordered table-hover datatable" id="cmorphologieList" class="tableliste">
 <thead>
 <tr>
 <th>Événement associé</th>

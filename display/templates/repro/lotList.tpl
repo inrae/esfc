@@ -28,7 +28,7 @@ $('document').ready(function() {
 <a href="index.php?module=lotChange&lot_id=0">Nouveau lot de larves...</a>
 <form name="alimJuv" method="post" action="index.php">
 {/if}
-<table id="clotlist" class="tableliste">
+<table class="table table-bordered table-hover datatable" id="clotlist" class="tableliste">
 <thead>
 <tr>
 <th>Nom du lot</th>

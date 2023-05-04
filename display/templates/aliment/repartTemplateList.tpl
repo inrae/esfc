@@ -3,13 +3,13 @@ $(document).ready(function() {
 	setDataTables("crepartTemplateList",true, true, true, 50);
 }
 </script>
-<h2>Modèles de répartion des aliments</h2>
+<h2{t}Modèles de répartion des aliments{/t}</h2>
 {include file="aliment/repartTemplateSearch.tpl"}
 {if $isSearch == 1}
 {if $droits.bassinAdmin == 1}
 <a href="index.php?module=repartTemplateChange&repart_template_id=0">Nouvelle répartition...</a>
 {/if}
-<table id="crepartTemplateList" class="tableliste">
+<table class="table table-bordered table-hover datatable" id="crepartTemplateList" class="tableliste">
 <thead>
 <tr>
 {if $droits.bassinAdmin == 1}
@@ -21,7 +21,7 @@ $(document).ready(function() {
 <th>Actif ?</th>
 </tr>
 </thead>
-<tdata>
+<tbody>
 {section name=lst loop=$data}
 <tr>
 {if $droits.bassinAdmin == 1}
@@ -37,6 +37,6 @@ $(document).ready(function() {
 <td>{if $data[lst].actif == 1}oui{else}non{/if}</td>
 </tr>
 {/section}
-</tdata>
+</tbody>
 </table>
 {/if}

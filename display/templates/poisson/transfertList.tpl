@@ -1,7 +1,7 @@
 <script>
 setDataTablesFull("ctransfertList");
 </script>
-<table id="ctransfertList" class="tableliste">
+<table class="table table-bordered table-hover datatable" id="ctransfertList" class="tableliste">
 <thead>
 <tr>
 <th>Événement associé</th>
@@ -11,7 +11,7 @@ setDataTablesFull("ctransfertList");
 <th>Commentaire</th>
 </tr>
 </thead>
-<tdata>
+<tbody>
 {section name=lst loop=$dataTransfert}
 <tr>
 <td>
@@ -39,5 +39,5 @@ setDataTablesFull("ctransfertList");
 <td>{$dataTransfert[lst].transfert_commentaire}</td>
 </tr>
 {/section}
-</tdata>
+</tbody>
 </table>

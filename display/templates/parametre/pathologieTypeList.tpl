@@ -1,4 +1,4 @@
-<h2>Types de pathologies</h2>
+<h2{t}Types de pathologies{/t}</h2>
 {if $droits["paramAdmin"] == 1}
 <a href="index.php?module=pathologieTypeChange&pathologie_type_id=0">
 Nouveau...
@@ -7,13 +7,13 @@ Nouveau...
 <script>
 setDataTables("cpathologieTypeList");
 </script>
-<table id="cpathologieTypeList" class="tableliste">
+<table class="table table-bordered table-hover datatable" id="cpathologieTypeList" class="tableliste">
 <thead>
 <tr>
 <th>libellé</th>
 </tr>
 </thead>
-<tdata>
+<tbody>
 {section name=lst loop=$data}
 <tr>
 <td>
@@ -27,5 +27,5 @@ setDataTables("cpathologieTypeList");
 </td>
 </tr>
 {/section}
-</tdata>
+</tbody>
 </table>

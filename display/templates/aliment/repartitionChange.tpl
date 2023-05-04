@@ -154,20 +154,22 @@ $(document).ready(function() {
 	} );
 } ) ;
 </script>
-<h2>Modification d'une répartion</h2>
+<h2{t}Modification d'une répartion{/t}</h2>
 <a href="index.php?module=repartitionList">Retour à la liste</a>
 <a href="index.php?module=repartitionPrint&repartition_id={$data.repartition_id}" id="repartitionPrint">Imprimer la répartition</a>
 <div class="formSaisie">
 <div>
-<form id="repartitionForm" method="post" action="index.php?module=repartitionWrite">
+<div class="row">
+<div class="col-md-6">
+<form class="form-horizontal" id="" method="post" action="index.php">
+<input type="hidden" name="action" value="Write">
+<input type="hidden" name="moduleBase" value=""> id="repartitionForm" method="post" action="index.php?module=repartitionWrite">
 <input type="hidden" name="repartition_id" value="{$data.repartition_id}">
-<div class="formBouton">
-<input class="submit" type="submit" value="Enregistrer">
-</div>
-<dl>
-<dt>Catégorie d'alimentation <span class="red">*</span> :</dt> 
-<dd>
-<select name="categorie_id" id="categorie_id" {if $data.repartition_id > 0}disabled{/if}>
+
+<div class="form-group">
+<label for="" class="control-label col-md-4">{t}Catégorie d'alimentation <span class="red">*</span> :{/t}</label> 
+<div class="col-md-8">
+<select id="" class="form-control" name="categorie_id" id="categorie_id" {if $data.repartition_id > 0}disabled{/if}>
 {section name=lst loop=$categorie}
 <option value="{$categorie[lst].categorie_id}" {if $data.categorie_id == $categorie[lst].categorie_id}selected{/if}>
 {$categorie[lst].categorie_libelle}
@@ -175,18 +177,21 @@ $(document).ready(function() {
 {/section}
 </select>
 </dd>
-</dl>
-<dl><dt>Nom :</dt>
-<dd><input class="commentaire" name="repartition_name" value="{$data.repartition_name}" placeholder="Élevage, repro..."></dd>
-</dl>
- <dl>
- <dt>Date début :</dt>
- <dd><input class="date" name="date_debut_periode" value="{$data.date_debut_periode}"><span class="message"></span></dd>
- </dl>
- <dl>
- <dt>Date fin :</dt>
- <dd><input class="date" name="date_fin_periode" value="{$data.date_fin_periode}"><span class="message"></span></dd>
- </dl>
+</div>
+<div class="form-group"><label for="" class="control-label col-md-4">{t}Nom :{/t}</label>
+<div class="col-md-8">
+<input id="" class="form-control" class="commentaire" name="repartition_name" value="{$data.repartition_name}" placeholder="Élevage, repro..."></dd>
+</div>
+ <div class="form-group">
+ <label for="" class="control-label col-md-4">{t}Date début :{/t}</label>
+ <div class="col-md-8">
+<input id="" class="form-control" class="date" name="date_debut_periode" value="{$data.date_debut_periode}"><span class="message"></span></dd>
+ </div>
+ <div class="form-group">
+ <label for="" class="control-label col-md-4">{t}Date fin :{/t}</label>
+ <div class="col-md-8">
+<input id="" class="form-control" class="date" name="date_fin_periode" value="{$data.date_fin_periode}"><span class="message"></span></dd>
+ </div>
 <fieldset>
 <legend>Répartition des aliments par bassin</legend>
 <div id="afficher" class="masquageText"><i>Afficher tous les éléments</i></div>
@@ -196,10 +201,10 @@ $(document).ready(function() {
 <fieldset class="fsMasquable">
 <legend>{$dataBassin[lst].bassin_nom}</legend>
 <div class="masquage">
-<dl>
-<dt>Modèle de distribution utilisé <span class="red">*</span> :</dt>
-<dd>
-<select name="repart_template_id_{$dataBassin[lst].bassin_id}" id="repart_template_id_{$dataBassin[lst].bassin_id}">
+<div class="form-group">
+<label for="" class="control-label col-md-4">{t}Modèle de distribution utilisé <span class="red">*</span> :{/t}</label>
+<div class="col-md-8">
+<select id="" class="form-control" name="repart_template_id_{$dataBassin[lst].bassin_id}" id="repart_template_id_{$dataBassin[lst].bassin_id}">
 <option value="0" {if $dataBassin[lst].repart_template_id == 0}selected{/if}>Sélectionnez le modèle...</option>
 {section name=lst1 loop=$dataTemplate}
 <option value="{$dataTemplate[lst1].repart_template_id}" {if $dataTemplate[lst1].repart_template_id == $dataBassin[lst].repart_template_id}selected{/if}>
@@ -209,16 +214,16 @@ $(document).ready(function() {
 </select>
 <div class="erreur"></div>
 </dd>
-</dl>
-<dl>
-<dt>Masse (poids) des poissons dans le bassin (en grammes) :</dt>
-<dd>
-<input class="num10 masse" name="distribution_masse_{$dataBassin[lst].bassin_id}" id="distribution_masse_{$dataBassin[lst].bassin_id}" value="{$dataBassin[lst].distribution_masse}" data-cle="{$dataBassin[lst].bassin_id}">
+</div>
+<div class="form-group">
+<label for="" class="control-label col-md-4">{t}Masse (poids) des poissons dans le bassin (en grammes) :{/t}</label>
+<div class="col-md-8">
+<input id="" class="form-control" class="num10 masse" name="distribution_masse_{$dataBassin[lst].bassin_id}" id="distribution_masse_{$dataBassin[lst].bassin_id}" value="{$dataBassin[lst].distribution_masse}" data-cle="{$dataBassin[lst].bassin_id}">
 <input type="button" class="calcul" data-cle="{$dataBassin[lst].bassin_id}" value="Recalcul...">
 </dd>
-</dl>
-<dl>
-<dt>Nourrissage des jours précédents (même nbre de jours) :</dt>
+</div>
+<div class="form-group">
+<label for="" class="control-label col-md-4">{t}Nourrissage des jours précédents (même nbre de jours) :{/t}</label>
 <dd>
 Taux :
 <input name="taux_nourrissage_precedent_{$dataBassin[lst].bassin_id}" id="taux_nourrissage_precedent_{$dataBassin[lst].bassin_id}" data-cle="{$dataBassin[lst].bassin_id}" value="{$dataBassin[lst].taux_nourrissage_precedent}" class="num5" readonly>
@@ -234,26 +239,26 @@ Qté :
 <br>
 <input name="ration_commentaire_precedent_{$dataBassin[lst].bassin_id}" id="ration_commentaire_precedent_{$dataBassin[lst].bassin_id}" data-cle="{$dataBassin[lst].bassin_id}" value="{$dataBassin[lst].ration_commentaire_precedent}" size="30" readonly>
 </dd>
-</dl>
-<dl>
-<dt>Taux de nourrissage :</dt>
+</div>
+<div class="form-group">
+<label for="" class="control-label col-md-4">{t}Taux de nourrissage :{/t}</label>
 <dd>
 Évolution :
 <input class="num5 evol" name="evol_taux_nourrissage_{$dataBassin[lst].bassin_id}" id="evol_taux_nourrissage_{$dataBassin[lst].bassin_id}"  data-cle="{$dataBassin[lst].bassin_id}" value="{$dataBassin[lst].evol_taux_nourrissage}">
 Nouveau taux :
 <input class="num5 taux" name="taux_nourrissage_{$dataBassin[lst].bassin_id}" id="taux_nourrissage_{$dataBassin[lst].bassin_id}"  data-cle="{$dataBassin[lst].bassin_id}" value="{$dataBassin[lst].taux_nourrissage}">
 </dd>
-</dl>
-<dl>
-<dt>Ration distribuée :</dt>
-<dd>
-<input class="num10 ration" name="total_distribue_{$dataBassin[lst].bassin_id}" id="total_distribue_{$dataBassin[lst].bassin_id}" data-cle="{$dataBassin[lst].bassin_id}" value="{$dataBassin[lst].total_distribue}">
+</div>
+<div class="form-group">
+<label for="" class="control-label col-md-4">{t}Ration distribuée :{/t}</label>
+<div class="col-md-8">
+<input id="" class="form-control" class="num10 ration" name="total_distribue_{$dataBassin[lst].bassin_id}" id="total_distribue_{$dataBassin[lst].bassin_id}" data-cle="{$dataBassin[lst].bassin_id}" value="{$dataBassin[lst].total_distribue}">
 <br>
 <input name="distribution_consigne_{$dataBassin[lst].bassin_id}" id="distribution_consigne_{$dataBassin[lst].bassin_id}"  data-cle="{$dataBassin[lst].bassin_id}" value="{$dataBassin[lst].distribution_consigne}" placeholder="Consignes..." Title="Consignes de distribution" size="30">
 </dd>
-</dl>
-<dl>
-<dt>Jours de distribution :</dt>
+</div>
+<div class="form-group">
+<label for="" class="control-label col-md-4">{t}Jours de distribution :{/t}</label>
 <dd>
 lun <input type="checkbox" name="distribution_jour_1_{$dataBassin[lst].bassin_id}" value="1" {if $dataBassin[lst].distribution_jour_1 == 1}checked{/if}>
 mar <input type="checkbox" name="distribution_jour_2_{$dataBassin[lst].bassin_id}" value="1" {if $dataBassin[lst].distribution_jour_2 == 1}checked{/if}>
@@ -263,9 +268,9 @@ ven <input type="checkbox" name="distribution_jour_5_{$dataBassin[lst].bassin_id
 sam <input type="checkbox" name="distribution_jour_6_{$dataBassin[lst].bassin_id}" value="1" {if $dataBassin[lst].distribution_jour_6 == 1}checked{/if}>
 dim <input type="checkbox" name="distribution_jour_7_{$dataBassin[lst].bassin_id}" value="1" {if $dataBassin[lst].distribution_jour_7 == 1}checked{/if}>
 </dd>
-</dl>
-<dl>
-<dt>1/2 ration le soir uniquement :</dt>
+</div>
+<div class="form-group">
+<label for="" class="control-label col-md-4">{t}1/2 ration le soir uniquement :{/t}</label>
 <dd>
 lun <input type="checkbox" name="distribution_jour_soir_1_{$dataBassin[lst].bassin_id}" value="1" {if $dataBassin[lst].distribution_jour_soir_1 == 1}checked{/if}>
 mar <input type="checkbox" name="distribution_jour_soir_2_{$dataBassin[lst].bassin_id}" value="1" {if $dataBassin[lst].distribution_jour_soir_2 == 1}checked{/if}>
@@ -276,7 +281,7 @@ sam <input type="checkbox" name="distribution_jour_soir_6_{$dataBassin[lst].bass
 dim <input type="checkbox" name="distribution_jour_soir_7_{$dataBassin[lst].bassin_id}" value="1" {if $dataBassin[lst].distribution_jour_soir_7 == 1}checked{/if}>
 
 </dd>
-</dl>
+</div>
 </div>
 </fieldset>
 {/section}
@@ -286,18 +291,30 @@ dim <input type="checkbox" name="distribution_jour_soir_7_{$dataBassin[lst].bass
 
 
  
-<div class="formBouton">
-<input class="submit" type="submit" value="Enregistrer">
-</div>
+
+<div class="form-group center">
+<button type="submit" class="btn btn-primary button-valid">{t}Valider{/t}</button>
+<button class="btn btn-danger btn-delete">{t}Supprimer{/t}</button>
 </form>
+</div>
+</div>
 </div>
 {if $data.repartition_id > 0 &&$droits["bassinAdmin"] == 1}
 <div class="formBouton">
-<form action="index.php" method="post" onSubmit='return confirmSuppression("Confirmez-vous la suppression ?")'>
+<div class="row">
+<div class="col-md-6">
+<form class="form-horizontal" id="" method="post" action="index.php">
+<input type="hidden" name="action" value="Write">
+<input type="hidden" name="moduleBase" value=""> action="index.php" method="post" onSubmit='return confirmSuppression("Confirmez-vous la suppression ?")'>
 <input type="hidden" name="repartition_id" value="{$data.repartition_id}">
 <input type="hidden" name="module" value="repartitionDelete">
 <input class="submit" type="submit" value="Supprimer">
+<div class="form-group center">
+<button type="submit" class="btn btn-primary button-valid">{t}Valider{/t}</button>
+<button class="btn btn-danger btn-delete">{t}Supprimer{/t}</button>
 </form>
+</div>
+</div>
 </div>
 {/if}
 </div>

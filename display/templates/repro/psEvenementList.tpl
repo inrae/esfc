@@ -1,4 +1,4 @@
-<table id="cpsEvenement" class="tableliste">
+<table class="table table-bordered table-hover datatable" id="cpsEvenement" class="tableliste">
 <thead>
 <tr>
 <th>Séquence</th>
@@ -7,7 +7,7 @@
 <th>Commentaire</th>
 </tr>
 </thead>
-<tdata>
+<tbody>
 {section name=lst loop=$dataPsEvenement}
 <tr>
 <td>
@@ -20,5 +20,5 @@
 <td>{$dataPsEvenement[lst].ps_commentaire}</td>
 </tr>
 {/section}
-</tdata>
+</tbody>
 </table>

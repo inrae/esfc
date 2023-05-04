@@ -5,23 +5,27 @@
 {else}
 <a href="index.php?module=devenirList">Retour à la liste des lâchers et entrées dans le stock</a>
 {/if}
-<h2>Saisie de la destination d'une reproduction</h2>
+<h2{t}Saisie de la destination d'une reproduction{/t}</h2>
 <div class="formSaisie">
 <div>
-<form id="devenirForm" method="post" action="index.php?module=devenir{$devenirOrigine}Write">
+<div class="row">
+<div class="col-md-6">
+<form class="form-horizontal" id="" method="post" action="index.php">
+<input type="hidden" name="action" value="Write">
+<input type="hidden" name="moduleBase" value=""> id="devenirForm" method="post" action="index.php?module=devenir{$devenirOrigine}Write">
 <input type="hidden" name="devenir_id" value="{$data.devenir_id}">
 <input type="hidden" name="lot_id" value="{$data.lot_id}">
 <input type="hidden" name="devenirOrigine" value="{$devenirOrigine}">
-<dl>
-<dt>Date <span class="red">*</span> :</dt>
-<dd>
-<input class="date"  name="devenir_date" required value="{$data.devenir_date}">
+<div class="form-group">
+<label for="" class="control-label col-md-4">{t}Date <span class="red">*</span> :{/t}</label>
+<div class="col-md-8">
+<input id="" class="form-control" class="date"  name="devenir_date" required value="{$data.devenir_date}">
 </dd>
-</dl>
-<dl>
-<dt>Destination parente :</dt>
-<dd>
-<select name="parent_devenir_id">
+</div>
+<div class="form-group">
+<label for="" class="control-label col-md-4">{t}Destination parente :{/t}</label>
+<div class="col-md-8">
+<select id="" class="form-control" name="parent_devenir_id">
 <option value ="" {if $data.parent_devenir_id = ""}selected{/if}>Sélectionnez...</option>
 {section name=lst loop=$devenirParent}
 <option value="{$devenirParent[lst].devenir_id}" {if $devenirParent[lst].devenir_id == $data.devenir_id}selected{/if}>
@@ -30,11 +34,11 @@
 </option>
 {/section}
 </select>
-</dl>
+</div>
 
-<dl><dt>Nature<span class="red">*</span> :</dt>
-<dd>
-<select name="devenir_type_id">
+<div class="form-group"><label for="" class="control-label col-md-4">{t}Nature<span class="red">*</span> :{/t}</label>
+<div class="col-md-8">
+<select id="" class="form-control" name="devenir_type_id">
 {section name=lst loop=$devenirType}
 <option value="{$devenirType[lst].devenir_type_id}" {if $devenirType[lst].devenir_type_id == $data.devenir_type_id}selected{/if}>
 {$devenirType[lst].devenir_type_libelle}
@@ -42,11 +46,11 @@
 {/section}
 </select>
 </dd>
-</dl>
+</div>
 
-<dl><dt>Stade biologique<span class="red">*</span> :<dt>
-<dd>
-<select name="categorie_id">
+<div class="form-group"><label for="" class="control-label col-md-4">{t}Stade biologique<span class="red">*</span> :<label for="" class="control-label col-md-4">{t}
+<div class="col-md-8">
+<select id="" class="form-control" name="categorie_id">
 {section name=lst loop=$categories}
 <option value="{$categories[lst].categorie_id}" {if $categories[lst].categorie_id == $data.categorie_id}selected{/if}>
 {$categories[lst].categorie_libelle}
@@ -54,11 +58,11 @@
 {/section}
 </select>
 </dd>
-</dl>
-<dl>
-<dt>Lieu de lâcher :</dt>
-<dd>
-<select name="sortie_lieu_id">
+</div>
+<div class="form-group">
+<label for="" class="control-label col-md-4">{t}Lieu de lâcher :{/t}</label>
+<div class="col-md-8">
+<select id="" class="form-control" name="sortie_lieu_id">
 <option value="" {if $data.sortie_lieu_id == ""}selected{/if}>
 {section name=lst loop=$sorties}
 <option value="{$sorties[lst].sortie_lieu_id}" {if $sorties[lst].sortie_lieu_id == $data.sortie_lieu_id}selected{/if}>
@@ -67,28 +71,40 @@
 {/section}
 </select>
 </dd>
-</dl>
-<dl>
-<dt>Nombre de poissons concernés :</dt>
-<dd>
-<input class="nombre" name="poisson_nombre" value="{$data.poisson_nombre}">
-</dd>
-</dl>
-<dl></dl>
-
-<div class="formBouton">
-<input class="submit" type="submit" value="Enregistrer">
 </div>
+<div class="form-group">
+<label for="" class="control-label col-md-4">{t}Nombre de poissons concernés :{/t}</label>
+<div class="col-md-8">
+<input id="" class="form-control" class="nombre" name="poisson_nombre" value="{$data.poisson_nombre}">
+</dd>
+</div>
+<div class="form-group"></div>
+
+
+<div class="form-group center">
+<button type="submit" class="btn btn-primary button-valid">{t}Valider{/t}</button>
+<button class="btn btn-danger btn-delete">{t}Supprimer{/t}</button>
 </form>
+</div>
+</div>
 {if $data.devenir_id > 0 &&$droits["reproGestion"] == 1}
 <div class="formBouton">
-<form action="index.php" method="post" onSubmit='return confirmSuppression("Confirmez-vous la suppression ?")'>
+<div class="row">
+<div class="col-md-6">
+<form class="form-horizontal" id="" method="post" action="index.php">
+<input type="hidden" name="action" value="Write">
+<input type="hidden" name="moduleBase" value=""> action="index.php" method="post" onSubmit='return confirmSuppression("Confirmez-vous la suppression ?")'>
 <input type="hidden" name="module" value="devenir{$devenirOrigine}Delete">
 <input type="hidden" name="devenir_id" value="{$data.devenir_id}">
 <input type="hidden" name="lot_id" value="{$data.lot_id}">
 <input type="hidden" name="devenirOrigine" value="{$devenirOrigine}">
 <input class="submit" type="submit" value="Supprimer">
+<div class="form-group center">
+<button type="submit" class="btn btn-primary button-valid">{t}Valider{/t}</button>
+<button class="btn btn-danger btn-delete">{t}Supprimer{/t}</button>
 </form>
+</div>
+</div>
 </div>
 {/if}
 </div>

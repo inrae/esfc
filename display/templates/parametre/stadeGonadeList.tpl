@@ -1,4 +1,4 @@
-<h2>Stades de maturation des gonades</h2>
+<h2{t}Stades de maturation des gonades{/t}</h2>
 {if $droits["paramAdmin"] == 1}
 <a href="index.php?module=stadeGonadeChange&stade_gonade_id=0">
 Nouveau...
@@ -7,13 +7,13 @@ Nouveau...
 <script>
 setDataTables("stadeGonadeList");
 </script>
-<table id="stadeGonadeList" class="tableliste">
+<table class="table table-bordered table-hover datatable" id="stadeGonadeList" class="tableliste">
 <thead>
 <tr>
 <th>libellé</th>
 </tr>
 </thead>
-<tdata>
+<tbody>
 {section name=lst loop=$data}
 <tr>
 <td>
@@ -27,5 +27,5 @@ setDataTables("stadeGonadeList");
 </td>
 </tr>
 {/section}
-</tdata>
+</tbody>
 </table>

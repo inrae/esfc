@@ -3,16 +3,20 @@
 Retour au reproducteur
 </a>
 {include file="repro/poissonCampagneDetail.tpl"}
-<h2>Données du poisson pour la séquence considérée</h2>
+<h2{t}Données du poisson pour la séquence considérée{/t}</h2>
 <div class="formSaisie">
 <div>
-<form id="poissonSequenceForm" method="post" action="index.php?module=poissonSequenceWrite">
+<div class="row">
+<div class="col-md-6">
+<form class="form-horizontal" id="" method="post" action="index.php">
+<input type="hidden" name="action" value="Write">
+<input type="hidden" name="moduleBase" value=""> id="poissonSequenceForm" method="post" action="index.php?module=poissonSequenceWrite">
 <input type="hidden" name="poisson_sequence_id" value="{$data.poisson_sequence_id}">
 <input type="hidden" name="poisson_campagne_id" value="{$data.poisson_campagne_id}">
-<dl>
-<dt>Séquence de reproduction <span class="red">*</span> :</dt>
-<dd>
-<select name="sequence_id" >
+<div class="form-group">
+<label for="" class="control-label col-md-4">{t}Séquence de reproduction <span class="red">*</span> :{/t}</label>
+<div class="col-md-8">
+<select id="" class="form-control" name="sequence_id" >
 {section name=lst loop=$sequences}
 <option value="{$sequences[lst].sequence_id}" {if $sequences[lst].sequence_id == $data.sequence_id}selected{/if}>
 {$sequences[lst].site_name} - {$sequences[lst].sequence_nom} ({$sequences[lst].sequence_date_debut})
@@ -20,11 +24,11 @@ Retour au reproducteur
 {/section}
 </select>
 </dd>
-</dl>
-<dl>
-<dt>Statut du poisson pour la séquence :</dt>
-<dd>
-<select name="ps_statut_id">
+</div>
+<div class="form-group">
+<label for="" class="control-label col-md-4">{t}Statut du poisson pour la séquence :{/t}</label>
+<div class="col-md-8">
+<select id="" class="form-control" name="ps_statut_id">
 {section name=lst loop=$statuts}
 <option value="{$statuts[lst].ps_statut_id}" {if $statuts[lst].ps_statut_id == $data.ps_statut_id}selected{/if}>
 {$statuts[lst].ps_statut_libelle}
@@ -32,22 +36,22 @@ Retour au reproducteur
 {/section}
 </select>
 </dd>
-</dl>
-<dl></dl>
+</div>
+<div class="form-group"></div>
 {if $dataPoisson.sexe_id == 2}
-<dl>
-<dt>Date de l'expulsion<br>des ovocytes :</dt>
-<dd>
-<input class="date" name="ovocyte_expulsion_date"  value="{$data.ovocyte_expulsion_date}">
+<div class="form-group">
+<label for="" class="control-label col-md-4">{t}Date de l'expulsion<br>des ovocytes :{/t}</label>
+<div class="col-md-8">
+<input id="" class="form-control" class="date" name="ovocyte_expulsion_date"  value="{$data.ovocyte_expulsion_date}">
 <input class="timepicker" name="ovocyte_expulsion_time" value="{$data.ovocyte_expulsion_time}">
 </dd>
-</dl>
-<dl>
-<dt>Masse totale des ovocytes (grammes) :</dt>
-<dd>
-<input class="taux" name="ovocyte_masse" value="{$data.ovocyte_masse}">
+</div>
+<div class="form-group">
+<label for="" class="control-label col-md-4">{t}Masse totale des ovocytes (grammes) :{/t}</label>
+<div class="col-md-8">
+<input id="" class="form-control" class="taux" name="ovocyte_masse" value="{$data.ovocyte_masse}">
 </dd>
-</dl>
+</div>
 {/if}
 {if $dataPoisson.sexe_id == 1}
 <fieldset><legend>Prélèvements de sperme</legend>
@@ -57,22 +61,34 @@ Accédez à la fiche du poisson pour réaliser la saisie
 </fieldset>
 {/if}
 
-<dl></dl>
+<div class="form-group"></div>
 {if $droits.reproGestion == 1}
-<div class="formBouton">
-<input class="submit" type="submit" value="Enregistrer">
-</div>
+
 {/if}
+<div class="form-group center">
+<button type="submit" class="btn btn-primary button-valid">{t}Valider{/t}</button>
+<button class="btn btn-danger btn-delete">{t}Supprimer{/t}</button>
 </form>
+</div>
+</div>
 {if $data.poisson_sequence_id > 0 &&$droits["reproAdmin"] == 1}
 <div class="formBouton">
-<form action="index.php" method="post" onSubmit='return confirmSuppression("Confirmez-vous la suppression ?")'>
+<div class="row">
+<div class="col-md-6">
+<form class="form-horizontal" id="" method="post" action="index.php">
+<input type="hidden" name="action" value="Write">
+<input type="hidden" name="moduleBase" value=""> action="index.php" method="post" onSubmit='return confirmSuppression("Confirmez-vous la suppression ?")'>
 <input type="hidden" name="module" value="poissonSequenceDelete">
 <input type="hidden" name="poisson_sequence_id" value="{$data.poisson_sequence_id}">
 <input type="hidden" name="poisson_campagne_id" value="{$data.poisson_campagne_id}">
 <input type="hidden" name="sequence_id" value="{$data.sequence_id}">
 <input class="submit" type="submit" value="Supprimer">
+<div class="form-group center">
+<button type="submit" class="btn btn-primary button-valid">{t}Valider{/t}</button>
+<button class="btn btn-danger btn-delete">{t}Supprimer{/t}</button>
 </form>
+</div>
+</div>
 </div>
 {/if}
 </div>
@@ -103,7 +119,7 @@ Nouvel événement...
 <th>Commentaire</th>
 </tr>
 </thead>
-<tdata>
+<tbody>
 {section name=lst loop=$evenements}
 <tr>
 <td>
@@ -118,7 +134,7 @@ Nouvel événement...
 <td>{$evenements[lst].ps_commentaire}</td>
 </tr>
 {/section}
-</tdata>
+</tbody>
 </table>
 </fieldset>
 </div>

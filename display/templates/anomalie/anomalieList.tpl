@@ -4,7 +4,7 @@ setDataTables("canomalieList");
 <form method="get" action="index.php">
 <input type="hidden" name="isSearch" value="1">
 <input type="hidden" name="module" value="anomalieList">
-<table class="tableaffichage">
+<table class="table table-bordered table-hover datatable" class="tableaffichage">
 <tr><td>
 Anomalies traitées ? 
 <input type="radio" name="statut" value="0" {if $anomalieSearch.statut == 0}checked{/if}>non
@@ -34,7 +34,7 @@ Type d'anomalie :
 
 
 {if $isSearch == 1}
-<table id="canomalieList" class="tableliste">
+<table class="table table-bordered table-hover datatable" id="canomalieList" class="tableliste">
 <thead>
 <tr>
 {if $droits["poissonAdmin"] == 1}
@@ -49,7 +49,7 @@ Type d'anomalie :
 <th>État</th>
 </tr>
 </thead>
-<tdata>
+<tbody>
 {section name=lst loop=$dataAnomalie}
 <tr>
 {if $droits["poissonAdmin"] == 1}
@@ -97,6 +97,6 @@ Type d'anomalie :
 </td>
 </tr>
 {/section}
-</tdata>
+</tbody>
 </table>
 {/if}

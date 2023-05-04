@@ -1,7 +1,7 @@
 <script>
 setDataTables("cechographieList");
 </script>
-<table id="cechographieList" class="tableliste">
+<table class="table table-bordered table-hover datatable" id="cechographieList" class="tableliste">
 <thead>
 <tr>
 <th>Événement associé</th>
@@ -11,7 +11,7 @@ setDataTables("cechographieList");
 <th>Commentaire</th>
 </tr>
 </thead>
-<tdata>
+<tbody>
 {section name=lst loop=$dataEcho}
 <tr>
 <td>
@@ -31,5 +31,5 @@ setDataTables("cechographieList");
 <td>{$dataEcho[lst].echographie_commentaire}</td>
 </tr>
 {/section}
-</tdata>
+</tbody>
 </table>

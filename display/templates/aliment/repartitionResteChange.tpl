@@ -59,10 +59,14 @@ $(document).ready(function() {
 } );
 </script>
 <a href="index.php?module=repartitionList">Retour à la liste</a>
-<h2>Saisie des restes</h2>
+<h2{t}Saisie des restes{/t}</h2>
 <b>{$data.categorie_libelle}</b> <i>{$data.repartition_name}</i> - Période du <b>{$data.date_debut_periode}</b> au <b>{$data.date_fin_periode}</b>
 <div>
-<form id="repartitionForm" method="post" action="index.php?module=repartitionResteWrite">
+<div class="row">
+<div class="col-md-6">
+<form class="form-horizontal" id="" method="post" action="index.php">
+<input type="hidden" name="action" value="Write">
+<input type="hidden" name="moduleBase" value=""> id="repartitionForm" method="post" action="index.php?module=repartitionResteWrite">
 <input type="hidden" name="repartition_id" value="{$data.repartition_id}">
 <input type="hidden" name="date_debut_periode" value="{$data.date_debut_periode}">
 <input type="hidden" name="date_fin_periode" value="{$data.date_fin_periode}">
@@ -104,12 +108,15 @@ $(document).ready(function() {
 {/section}
 <tr>
 <td style="text_align:center;">
-<div class="formBouton">
-<input class="submit" type="submit" value="Enregistrer">
-</div>
+
 </td>
 </tr>
 </table>
+<div class="form-group center">
+<button type="submit" class="btn btn-primary button-valid">{t}Valider{/t}</button>
+<button class="btn btn-danger btn-delete">{t}Supprimer{/t}</button>
 </form>
+</div>
+</div>
 </div>
 

@@ -1,4 +1,4 @@
-<h2>Liste des sites</h2>
+<h2{t}Liste des sites{/t}</h2>
 {if $droits["paramAdmin"] == 1}
 <a href="index.php?module=siteChange&site_id=0">
 Nouveau...
@@ -7,7 +7,7 @@ Nouveau...
 <script>
 setDataTables("cbassinUsageList");
 </script>
-<table id="csiteList" class="tableliste">
+<table class="table table-bordered table-hover datatable" id="csiteList" class="tableliste">
 <thead>
 <tr>
 <th>Nom du site</th>

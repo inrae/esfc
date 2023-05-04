@@ -7,23 +7,27 @@ $( "#cdate_debut" ).datepicker( { dateFormat: "dd/mm/yy" } );
 <a href="index.php?module=sequenceList">
 Retour à la liste des séquences
 </a>
-<h2>Modification d'une séquence</h2>
+<h2{t}Modification d'une séquence{/t}</h2>
 <div class="formSaisie">
 <div>
-<form id="sequenceForm" method="post" action="index.php?module=sequenceWrite">
+<div class="row">
+<div class="col-md-6">
+<form class="form-horizontal" id="" method="post" action="index.php">
+<input type="hidden" name="action" value="Write">
+<input type="hidden" name="moduleBase" value=""> id="sequenceForm" method="post" action="index.php?module=sequenceWrite">
 <input type="hidden" name="sequence_id" value="{$data.sequence_id}">
 <fieldset>
 <legend>Séquence</legend>
-<dl>
-<dt>Année <span class="red">*</span> :</dt>
-<dd>
-<input name="annee" required readonly size="10" maxlength="10" value="{$data.annee}">
+<div class="form-group">
+<label for="" class="control-label col-md-4">{t}Année <span class="red">*</span> :{/t}</label>
+<div class="col-md-8">
+<input id="" class="form-control" name="annee" required readonly size="10" maxlength="10" value="{$data.annee}">
 </dd>
-</dl>
-<dl>
-<dt>Site <span class="red">*</span> :</dt>
-<dd>
-<select id="site_id" name="site_id">
+</div>
+<div class="form-group">
+<label for="" class="control-label col-md-4">{t}Site <span class="red">*</span> :{/t}</label>
+<div class="col-md-8">
+<select id="" class="form-control" id="site_id" name="site_id">
 {section name=lst loop=$site}
 <option value="{$site[lst].site_id}"} {if $site[lst].site_id == $data.site_id}selected{/if}>
 {$site[lst].site_name}
@@ -31,31 +35,43 @@ Retour à la liste des séquences
 {/section}
 </select>
 </dd>
-</dl>
-<dl>
-<dt>Nom de la séquence <span class="red">*</span> :</dt>
-<dd>
-<input name="sequence_nom" required size="20" maxlength="30" value="{$data.sequence_nom}">
-</dd>
-</dl>
-<dl>
-<dt>Date de début de la séquence <span class="red">*</span> :</dt>
-<dd>
-<input class="date" name="sequence_date_debut" id="cdate_debut" required size="10" maxlength="10" value="{$data.sequence_date_debut}">
-</dd>
-</dl>
-</fieldset>
-<div class="formBouton">
-<input class="submit" type="submit" value="Enregistrer">
 </div>
+<div class="form-group">
+<label for="" class="control-label col-md-4">{t}Nom de la séquence <span class="red">*</span> :{/t}</label>
+<div class="col-md-8">
+<input id="" class="form-control" name="sequence_nom" required size="20" maxlength="30" value="{$data.sequence_nom}">
+</dd>
+</div>
+<div class="form-group">
+<label for="" class="control-label col-md-4">{t}Date de début de la séquence <span class="red">*</span> :{/t}</label>
+<div class="col-md-8">
+<input id="" class="form-control" class="date" name="sequence_date_debut" id="cdate_debut" required size="10" maxlength="10" value="{$data.sequence_date_debut}">
+</dd>
+</div>
+</fieldset>
+
+<div class="form-group center">
+<button type="submit" class="btn btn-primary button-valid">{t}Valider{/t}</button>
+<button class="btn btn-danger btn-delete">{t}Supprimer{/t}</button>
 </form>
+</div>
+</div>
 {if $data.sequence_id > 0 &&$droits["reproAdmin"] == 1}
 <div class="formBouton">
-<form action="index.php" method="post" onSubmit='return confirmSuppression("Confirmez-vous la suppression ?")'>
+<div class="row">
+<div class="col-md-6">
+<form class="form-horizontal" id="" method="post" action="index.php">
+<input type="hidden" name="action" value="Write">
+<input type="hidden" name="moduleBase" value=""> action="index.php" method="post" onSubmit='return confirmSuppression("Confirmez-vous la suppression ?")'>
 <input type="hidden" name="module" value="sequenceDelete">
 <input type="hidden" name="sequence_id" value="{$data.sequence_id}">
 <input class="submit" type="submit" value="Supprimer">
+<div class="form-group center">
+<button type="submit" class="btn btn-primary button-valid">{t}Valider{/t}</button>
+<button class="btn btn-danger btn-delete">{t}Supprimer{/t}</button>
 </form>
+</div>
+</div>
 </div>
 {/if}
 </div>

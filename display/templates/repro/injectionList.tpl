@@ -3,7 +3,7 @@
 Nouvelle injection...
 </a>
 {/if}
-<table id="cinjection" class="tableliste">
+<table class="table table-bordered table-hover datatable" id="cinjection" class="tableliste">
 <thead>
 <tr>
 <th>Date/heure de l'injection</th>

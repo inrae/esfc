@@ -6,7 +6,7 @@ Retour à la liste des séquences
 Retour à la séquence
 </a>
 {include file="repro/sequenceDetail.tpl"}
-<h2>Détail du croisement <i>{$data.parents}</i></h2>
+<h2{t}Détail du croisement <i>{$data.parents}</i>{/t}</h2>
 {if $droits.reproGestion == 1}
 <a href="index.php?module=croisementChange&croisement_id={$data.croisement_id}">Modifier...</a>
 {/if}

@@ -5,14 +5,14 @@
 Nouvelle échographie...
 </a>
 {/if}
-<table id="cechographie" class="tableliste">
+<table class="table table-bordered table-hover datatable" id="cechographie" class="tableliste">
 <thead>
 <tr>
 <th>Date</th>
 <th>Commentaire</th>
 </tr>
 </thead>
-<tdata>
+<tbody>
 {section name=lst loop=$echographies}
 <tr>
 <td>
@@ -23,6 +23,6 @@ Nouvelle échographie...
 <td>{$echographies[lst].echographie_commentaire}</td>
 </tr>
 {/section}
-</tdata>
+</tbody>
 </table>
 </fieldset>

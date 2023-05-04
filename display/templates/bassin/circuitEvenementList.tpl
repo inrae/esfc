@@ -6,7 +6,7 @@ setDataTables("ccircuitEvenementList", true, false, false, 3);
 Nouvel événement...
 </a>
 {/if}
-<table id="ccircuitEvenementList" class="tableliste">
+<table class="table table-bordered table-hover datatable" id="ccircuitEvenementList" class="tableliste">
 <thead>
 <tr>
 <th>Évenement</th>

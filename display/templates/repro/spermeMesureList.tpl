@@ -1,7 +1,7 @@
 {if $droits.reproGestion == 1}
 <a href="index.php?module=spermeMesureChange&sperme_mesure_id=0&sperme_id={$data.sperme_id}&sperme_congelation_id={$data.sperme_congelation_id}">Nouvelle analyse...</a>
 {/if}
-<table class="tableaffichage">
+<table class="table table-bordered table-hover datatable" class="tableaffichage">
 <thead>
 <tr>
 <th>Date</th>

@@ -3,7 +3,7 @@
 Retour au reproducteur
 </a>
 {include file="repro/poissonCampagneDetail.tpl"}
-<h2>Détail d'un prélèvement de sperme</h2>
+<h2{t}Détail d'un prélèvement de sperme{/t}</h2>
 <div class="formDisplay">
 <dl>
 <dt>Date du prélèvement :</dt>

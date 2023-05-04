@@ -1,4 +1,4 @@
-<h2>Aliments distribués</h2>
+<h2{t}Aliments distribués{/t}</h2>
 {if $droits["bassinAdmin"] == 1}
 <a href="index.php?module=alimentChange&aliment_id=0">
 Nouveau...
@@ -7,7 +7,7 @@ Nouveau...
 <script>
 setDataTables("calimentList");
 </script>
-<table id="calimentList" class="tableliste">
+<table class="table table-bordered table-hover datatable" id="calimentList" class="tableliste">
 <thead>
 <tr>
 <th>libellé</th>
@@ -16,7 +16,7 @@ setDataTables("calimentList");
 <th>Actuellement<br>utilisé ?</th>
 </tr>
 </thead>
-<tdata>
+<tbody>
 {section name=lst loop=$data}
 <tr>
 <td>
@@ -39,5 +39,5 @@ setDataTables("calimentList");
 </td>
 </tr>
 {/section}
-</tdata>
+</tbody>
 </table>

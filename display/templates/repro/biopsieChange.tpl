@@ -8,34 +8,38 @@ $(document).ready(function() {
 Retour au reproducteur
 </a>
 {include file="repro/poissonCampagneDetail.tpl"}
-<h2>Modification d'une biopsie</h2>
+<h2{t}Modification d'une biopsie{/t}</h2>
 <div class="formSaisie">
 <div>
-<form id="biopsieForm" method="post" action="index.php?module=biopsieWrite" enctype="multipart/form-data" >
+<div class="row">
+<div class="col-md-6">
+<form class="form-horizontal" id="" method="post" action="index.php">
+<input type="hidden" name="action" value="Write">
+<input type="hidden" name="moduleBase" value=""> id="biopsieForm" method="post" action="index.php?module=biopsieWrite" enctype="multipart/form-data" >
 <input type="hidden" name="biopsie_id" value="{$data.biopsie_id}">
 <input type="hidden" name="poisson_campagne_id" value="{$data.poisson_campagne_id}">
-<dl>
-<dt>Date du prélèvement <span class="red">*</span> :</dt>
-<dd>
-<input class="datetimepicker" name="biopsie_date" required value="{$data.biopsie_date}">
+<div class="form-group">
+<label for="" class="control-label col-md-4">{t}Date du prélèvement <span class="red">*</span> :{/t}</label>
+<div class="col-md-8">
+<input id="" class="form-control" class="datetimepicker" name="biopsie_date" required value="{$data.biopsie_date}">
 </dd>
-</dl>
-<dl>
-<dt>Diamètre moyen (mm) :</dt>
-<dd>
-<input class="taux" name="diam_moyen" value="{$data.diam_moyen}">
+</div>
+<div class="form-group">
+<label for="" class="control-label col-md-4">{t}Diamètre moyen (mm) :{/t}</label>
+<div class="col-md-8">
+<input id="" class="form-control" class="taux" name="diam_moyen" value="{$data.diam_moyen}">
 </dd>
-</dl>
-<dl>
-<dt>Écart type du diamètre moyen :</dt>
-<dd>
-<input class="taux" name="diametre_ecart_type" value="{$data.diametre_ecart_type}">
+</div>
+<div class="form-group">
+<label for="" class="control-label col-md-4">{t}Écart type du diamètre moyen :{/t}</label>
+<div class="col-md-8">
+<input id="" class="form-control" class="taux" name="diametre_ecart_type" value="{$data.diametre_ecart_type}">
 </dd>
-</dl>
-<dl>
-<dt>Technique de mesure utilisée :</dt>
-<dd>
-<select name="biopsie_technique_calcul_id">
+</div>
+<div class="form-group">
+<label for="" class="control-label col-md-4">{t}Technique de mesure utilisée :{/t}</label>
+<div class="col-md-8">
+<select id="" class="form-control" name="biopsie_technique_calcul_id">
 <option value="" {if $data.biopsie_technique_calcul_id == ""}selected{/if}>
 Sélectionnez...
 </option>
@@ -45,93 +49,105 @@ Sélectionnez...
 </option>
 {/section}
 </select>
-</dl>
-<dl>
-<dt>Image utilisée pour le calcul du diamètre :
-</dt>
-<dt><input type="file" name="documentName[]" size="40" multiple></dt>
-</dl>
-<dl>
-<dt>Taux OPI :</dt>
-<dd>
-<input class="taux" name="tx_opi" value="{$data.tx_opi}">
+</div>
+<div class="form-group">
+<label for="" class="control-label col-md-4">{t}Image utilisée pour le calcul du diamètre :
+{/t}</label>
+<label for="" class="control-label col-md-4">{t}<input type="file" name="documentName[]" size="40" multiple>{/t}</label>
+</div>
+<div class="form-group">
+<label for="" class="control-label col-md-4">{t}Taux OPI :{/t}</label>
+<div class="col-md-8">
+<input id="" class="form-control" class="taux" name="tx_opi" value="{$data.tx_opi}">
 </dd>
-</dl>
-<dl>
-<dt>Taux de coloration normale :</dt>
-<dd>
-<input class="taux" name="tx_coloration_normal" value="{$data.tx_coloration_normal}">
+</div>
+<div class="form-group">
+<label for="" class="control-label col-md-4">{t}Taux de coloration normale :{/t}</label>
+<div class="col-md-8">
+<input id="" class="form-control" class="taux" name="tx_coloration_normal" value="{$data.tx_coloration_normal}">
 </dd>
-</dl>
-<dl>
-<dt>Taux d'éclatement :</dt>
-<dd>
-<input class="taux" name="tx_eclatement" value="{$data.tx_eclatement}">
+</div>
+<div class="form-group">
+<label for="" class="control-label col-md-4">{t}Taux d'éclatement :{/t}</label>
+<div class="col-md-8">
+<input id="" class="form-control" class="taux" name="tx_eclatement" value="{$data.tx_eclatement}">
 </dd>
-</dl>
+</div>
 <fieldset>
 <legend>Maturation Ringer</legend>
-<dl>
-<dt>T50 :</dt>
-<dd>
-<input class="time" name="ringer_t50" value="{$data.ringer_t50}">
+<div class="form-group">
+<label for="" class="control-label col-md-4">{t}T50 :{/t}</label>
+<div class="col-md-8">
+<input id="" class="form-control" class="time" name="ringer_t50" value="{$data.ringer_t50}">
 </dd>
-</dl>
-<dl>
-<dt>% maximal de maturation observé :</dt>
-<dd>
-<input class="taux" name="ringer_tx_max" value="{$data.ringer_tx_max}">
+</div>
+<div class="form-group">
+<label for="" class="control-label col-md-4">{t}% maximal de maturation observé :{/t}</label>
+<div class="col-md-8">
+<input id="" class="form-control" class="taux" name="ringer_tx_max" value="{$data.ringer_tx_max}">
  en 
  <input class="time" name="ringer_duree" value="{$data.ringer_duree}">
 </dd>
-</dl>
-<dl>
-<dt>Commentaires :</dt>
-<dd>
-<input class="commentaire" name="ringer_commentaire" value="{$data.ringer_commentaire}">
+</div>
+<div class="form-group">
+<label for="" class="control-label col-md-4">{t}Commentaires :{/t}</label>
+<div class="col-md-8">
+<input id="" class="form-control" class="commentaire" name="ringer_commentaire" value="{$data.ringer_commentaire}">
 </dd>
-</dl>
+</div>
 </fieldset>
 <fieldset>
 <legend>Maturation Leibovitz</legend>
-<dl>
-<dt>T50 :</dt>
-<dd>
-<input class="time" name="leibovitz_t50" value="{$data.leibovitz_t50}">
+<div class="form-group">
+<label for="" class="control-label col-md-4">{t}T50 :{/t}</label>
+<div class="col-md-8">
+<input id="" class="form-control" class="time" name="leibovitz_t50" value="{$data.leibovitz_t50}">
 </dd>
-</dl><dl>
-<dt>% maximal de maturation observé :</dt>
-<dd>
-<input class="taux" name="leibovitz_tx_max" value="{$data.leibovitz_tx_max}">
+</div><div class="form-group">
+<label for="" class="control-label col-md-4">{t}% maximal de maturation observé :{/t}</label>
+<div class="col-md-8">
+<input id="" class="form-control" class="taux" name="leibovitz_tx_max" value="{$data.leibovitz_tx_max}">
  en 
  <input class="time" name="leibovitz_duree" value="{$data.leibovitz_duree}">
 </dd>
-</dl>
-<dl>
-<dt>Commentaires :</dt>
-<dd>
-<input class="commentaire" name="leibovitz_commentaire" value="{$data.leibovitz_commentaire}">
-</dd>
-</dl>
-</fieldset>
-<dl>
-<dt>Commentaire général :</dt>
-<dd>
-<input class="commentaire" name="biopsie_commentaire" value="{$data.biopsie_commentaire}">
-</dd>
-</dl>
-<div class="formBouton">
-<input class="submit" type="submit" value="Enregistrer">
 </div>
+<div class="form-group">
+<label for="" class="control-label col-md-4">{t}Commentaires :{/t}</label>
+<div class="col-md-8">
+<input id="" class="form-control" class="commentaire" name="leibovitz_commentaire" value="{$data.leibovitz_commentaire}">
+</dd>
+</div>
+</fieldset>
+<div class="form-group">
+<label for="" class="control-label col-md-4">{t}Commentaire général :{/t}</label>
+<div class="col-md-8">
+<input id="" class="form-control" class="commentaire" name="biopsie_commentaire" value="{$data.biopsie_commentaire}">
+</dd>
+</div>
+
+<div class="form-group center">
+<button type="submit" class="btn btn-primary button-valid">{t}Valider{/t}</button>
+<button class="btn btn-danger btn-delete">{t}Supprimer{/t}</button>
 </form>
+</div>
+</div>
 {if $data.biopsie_id > 0 &&$droits["reproAdmin"] == 1}
 <div class="formBouton">
-<form action="index.php" method="post" onSubmit='return confirmSuppression("Confirmez-vous la suppression ?")'>
+<div class="row">
+<div class="col-md-6">
+<form class="form-horizontal" id="" method="post" action="index.php">
+<input type="hidden" name="action" value="Write">
+<input type="hidden" name="moduleBase" value=""> action="index.php" method="post" onSubmit='return confirmSuppression("Confirmez-vous la suppression ?")'>
 <input type="hidden" name="module" value="biopsieDelete">
 <input type="hidden" name="biopsie_id" value="{$data.biopsie_id}">
 <input type="hidden" name="poisson_campagne_id" value="{$data.poisson_campagne_id}">
 <input class="submit" type="submit" value="Supprimer">
+<div class="form-group center">
+<button type="submit" class="btn btn-primary button-valid">{t}Valider{/t}</button>
+<button class="btn btn-danger btn-delete">{t}Supprimer{/t}</button>
 </form>
+</div>
+</div>
 </div>
 {/if}
 </div>

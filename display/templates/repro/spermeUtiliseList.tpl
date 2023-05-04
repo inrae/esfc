@@ -3,7 +3,7 @@
 Nouveau...
 </a>
 {/if}
-<table id="cspermeUtilise" class="tableliste">
+<table class="table table-bordered table-hover datatable" id="cspermeUtilise" class="tableliste">
 <thead>
 <tr>
 <th>Poisson</th>

@@ -1,6 +1,6 @@
 
 
-<table id="csequence" class="tableliste">
+<table class="table table-bordered table-hover datatable" id="csequence" class="tableliste">
 <thead>
 <tr>
 <th>Données générales<br>de reproduction</th>
@@ -10,7 +10,7 @@
 <th>Masse totale des<br>ovocytes</th>
 </tr>
 </thead>
-<tdata>
+<tbody>
 {section name=lst loop=$dataPoissons}
 <tr>
 <td class="center">
@@ -27,5 +27,5 @@
 <td class="right">{$dataPoissons[lst].ovocyte_masse}</td>
 </tr>
 {/section}
-</tdata>
+</tbody>
 </table>

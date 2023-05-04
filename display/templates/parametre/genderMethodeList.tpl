@@ -1,4 +1,4 @@
-<h2>Méthodes de détermination du sexe</h2>
+<h2{t}Méthodes de détermination du sexe{/t}</h2>
 {if $droits["paramAdmin"] == 1}
 <a href="index.php?module=genderMethodeChange&gender_methode_id=0">
 Nouveau...
@@ -7,13 +7,13 @@ Nouveau...
 <script>
 setDataTables("cgenderMethodeList");
 </script>
-<table id="cgenderMethodeList" class="tableliste">
+<table class="table table-bordered table-hover datatable" id="cgenderMethodeList" class="tableliste">
 <thead>
 <tr>
 <th>libellé</th>
 </tr>
 </thead>
-<tdata>
+<tbody>
 {section name=lst loop=$data}
 <tr>
 <td>
@@ -27,5 +27,5 @@ setDataTables("cgenderMethodeList");
 </td>
 </tr>
 {/section}
-</tdata>
+</tbody>
 </table>

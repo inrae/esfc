@@ -1,6 +1,7 @@
-<table class="tableaffichage">
-<tr>
-<td>
+<div class="row">
+<div class="col-lg-8 form-display">
+<dl class="dl-horizontal">
+<dt>{t}
 <label>Lot :</label> {$dataLot.lot_nom}
 &nbsp;-&nbsp;
 <label>Séquence de reproduction :</label> {$dataLot.annee}/{$dataLot.site_name} 
@@ -14,6 +15,7 @@
 <br><label>Date d'éclosion : </label>{$dataLot.eclosion_date}
 <br>
 <label>Nbre de larves estimé / compté :</label> {$dataLot.nb_larve_initial} / {$dataLot.nb_larve_compte}
-</td>
-</tr>
-</table>
+</dd>
+</dl>
+</div>
+</div>

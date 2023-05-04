@@ -3,7 +3,7 @@
 Nouvel emplacement de congélation...
 </a>
 {/if}
-<table id="csperme" class="tableliste">
+<table class="table table-bordered table-hover datatable" id="csperme" class="tableliste">
 <thead>
 <tr>
 <th>Cuve</th>

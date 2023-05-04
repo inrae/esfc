@@ -34,7 +34,7 @@ $(document).ready(function() {
 
 </script>
 
-<h2>Détail d'un poisson</h2>
+<h2{t}Détail d'un poisson{/t}</h2>
 <a href="index.php?module={$poissonDetailParent}">Retour à la liste des poissons</a>
 <table class="tablemulticolonne">
 <tr>

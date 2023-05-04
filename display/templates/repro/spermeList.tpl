@@ -3,7 +3,7 @@
 Nouveau prélèvement...
 </a>
 {/if}
-<table id="csperme" class="tableliste">
+<table class="table table-bordered table-hover datatable" id="csperme" class="tableliste">
 <thead>
 <tr>
 <th>Date/heure<br>du prélèvement</th>

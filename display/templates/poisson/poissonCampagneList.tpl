@@ -1,7 +1,7 @@
 <script>
 setDataTables("creproList");
 </script>
-<table id="creproList" class="tableliste">
+<table class="table table-bordered table-hover datatable" id="creproList" class="tableliste">
 <thead>
 <tr>
 <th>Année</th>
@@ -11,7 +11,7 @@ setDataTables("creproList");
 <th>Specific<br>growth rate</th>
 </tr>
 </thead>
-<tdata>
+<tbody>
 {section name=lst loop=$dataRepro}
 <tr>
 <td>
@@ -31,5 +31,5 @@ setDataTables("creproList");
 <td class="{if $dataRepro[lst].specific_growth_rate > 0.02}etat3{else}right{/if}">{$dataRepro[lst].specific_growth_rate}</td>
 </tr>
 {/section}
-</tdata>
+</tbody>
 </table>

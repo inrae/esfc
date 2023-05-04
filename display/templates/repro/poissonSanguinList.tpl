@@ -3,7 +3,7 @@
 Nouvelle analyse...
 </a>
 {/if}
-<table id="csanguin" class="tableliste">
+<table class="table table-bordered table-hover datatable" id="csanguin" class="tableliste">
 <thead>
 <tr>
 <th>Date</th>
@@ -13,7 +13,7 @@ Nouvelle analyse...
 <th>Commentaire</th>
 </tr>
 </thead>
-<tdata>
+<tbody>
 {section name=lst loop=$dataSanguin}
 <tr>
 <td>
@@ -31,5 +31,5 @@ Nouvelle analyse...
 <td>{$dataSanguin[lst].dosage_sanguin_commentaire}</td>
 </tr>
 {/section}
-</tdata>
+</tbody>
 </table>

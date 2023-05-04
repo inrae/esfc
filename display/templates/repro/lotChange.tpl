@@ -14,15 +14,19 @@ $(document).ready(function() {
 Retour au lot
 </a>
 {/if}
-<h2>Caractéristiques du lot</h2>
+<h2{t}Caractéristiques du lot{/t}</h2>
 <div class="formSaisie">
 <div>
-<form id="lotForm" method="post" action="index.php?module=lotWrite">
+<div class="row">
+<div class="col-md-6">
+<form class="form-horizontal" id="" method="post" action="index.php">
+<input type="hidden" name="action" value="Write">
+<input type="hidden" name="moduleBase" value=""> id="lotForm" method="post" action="index.php?module=lotWrite">
 <input type="hidden" name="lot_id" value="{$data.lot_id}">
-<dl>
-<dt>Croisement d'origine <span class="red">*</span> :</dt>
-<dd>
-<select name="croisement_id" >
+<div class="form-group">
+<label for="" class="control-label col-md-4">{t}Croisement d'origine <span class="red">*</span> :{/t}</label>
+<div class="col-md-8">
+<select id="" class="form-control" name="croisement_id" >
 {section name=lst loop=$croisements}
 <option value="{$croisements[lst].croisement_id}" {if $croisements[lst].croisement_id == $data.croisement_id}selected{/if}>
 {$croisements[lst].parents}
@@ -30,42 +34,42 @@ Retour au lot
 {/section}
 </select>
 </dd>
-</dl>
-<dl>
-<dt>Nom du lot <span class="red">*</span> :</dt>
-<dd>
-<input class="commentaire" name="lot_nom" value="{$data.lot_nom}">
+</div>
+<div class="form-group">
+<label for="" class="control-label col-md-4">{t}Nom du lot <span class="red">*</span> :{/t}</label>
+<div class="col-md-8">
+<input id="" class="form-control" class="commentaire" name="lot_nom" value="{$data.lot_nom}">
 </dd>
-</dl>
-<dl>
-<dt>Date d'éclosion :</dt>
-<dd>
-<input class="date" name="eclosion_date" value="{$data.eclosion_date}">
+</div>
+<div class="form-group">
+<label for="" class="control-label col-md-4">{t}Date d'éclosion :{/t}</label>
+<div class="col-md-8">
+<input id="" class="form-control" class="date" name="eclosion_date" value="{$data.eclosion_date}">
 </dd>
-</dl>
-<dl>
-<dt>Nombre de larves estimé :</dt>
-<dd>
-<input class="taux" name="nb_larve_initial" value="{$data.nb_larve_initial}">
+</div>
+<div class="form-group">
+<label for="" class="control-label col-md-4">{t}Nombre de larves estimé :{/t}</label>
+<div class="col-md-8">
+<input id="" class="form-control" class="taux" name="nb_larve_initial" value="{$data.nb_larve_initial}">
 </dd>
-</dl>
-<dl>
-<dt>Nombre de larves compté :</dt>
-<dd>
-<input class="taux" name="nb_larve_compte" value="{$data.nb_larve_compte}">
+</div>
+<div class="form-group">
+<label for="" class="control-label col-md-4">{t}Nombre de larves compté :{/t}</label>
+<div class="col-md-8">
+<input id="" class="form-control" class="taux" name="nb_larve_compte" value="{$data.nb_larve_compte}">
 </dd>
-</dl>
+</div>
 <fieldset>
 <legend>Marquage VIE</legend>
-<dl>
-<dt>Date du marquage :</dt>
-<dd>
-<input class="date" name="vie_date_marquage" value="{$data.vie_date_marquage}">
+<div class="form-group">
+<label for="" class="control-label col-md-4">{t}Date du marquage :{/t}</label>
+<div class="col-md-8">
+<input id="" class="form-control" class="date" name="vie_date_marquage" value="{$data.vie_date_marquage}">
 </dd>
-</dl>
-<dl><dt>Modèle de marquage VIE utilisé :</dt>
-<dd>
-<select name="vie_modele_id">
+</div>
+<div class="form-group"><label for="" class="control-label col-md-4">{t}Modèle de marquage VIE utilisé :{/t}</label>
+<div class="col-md-8">
+<select id="" class="form-control" name="vie_modele_id">
 <option value="" {if $data.vie_modele_id == ""}selected{/if}>
 Sélectionnez...
 </option>
@@ -75,21 +79,33 @@ Sélectionnez...
 </option>
 {/section}
 </select>
-</dl>
+</div>
 
 </fieldset>
-<dl></dl>
-<div class="formBouton">
-<input class="submit" type="submit" value="Enregistrer">
-</div>
+<div class="form-group"></div>
+
+<div class="form-group center">
+<button type="submit" class="btn btn-primary button-valid">{t}Valider{/t}</button>
+<button class="btn btn-danger btn-delete">{t}Supprimer{/t}</button>
 </form>
+</div>
+</div>
 {if $data.lot_id > 0 &&$droits["reproAdmin"] == 1}
 <div class="formBouton">
-<form action="index.php" method="post" onSubmit='return confirmSuppression("Confirmez-vous la suppression ?")'>
+<div class="row">
+<div class="col-md-6">
+<form class="form-horizontal" id="" method="post" action="index.php">
+<input type="hidden" name="action" value="Write">
+<input type="hidden" name="moduleBase" value=""> action="index.php" method="post" onSubmit='return confirmSuppression("Confirmez-vous la suppression ?")'>
 <input type="hidden" name="module" value="lotDelete">
 <input type="hidden" name="lot_id" value="{$data.lot_id}">
 <input class="submit" type="submit" value="Supprimer">
+<div class="form-group center">
+<button type="submit" class="btn btn-primary button-valid">{t}Valider{/t}</button>
+<button class="btn btn-danger btn-delete">{t}Supprimer{/t}</button>
 </form>
+</div>
+</div>
 </div>
 {/if}
 </div>

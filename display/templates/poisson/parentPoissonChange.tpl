@@ -28,20 +28,24 @@ $(document).ready(function() {
 } ) ;
 </script>
 
-<h2>Attribution d'un parent au poisson</h2>
+<h2{t}Attribution d'un parent au poisson{/t}</h2>
 <a href="index.php?module={$poissonDetailParent}">Retour à la liste des poissons</a>
 >
 <a href="index.php?module=poissonDisplay&poisson_id={$dataPoisson.poisson_id}">Retour au poisson</a>
 {include file="poisson/poissonDetail.tpl"}
 <div class="formSaisie">
 <div>
-<form id="parentForm" method="post" action="index.php?module=parentPoissonWrite">
+<div class="row">
+<div class="col-md-6">
+<form class="form-horizontal" id="" method="post" action="index.php">
+<input type="hidden" name="action" value="Write">
+<input type="hidden" name="moduleBase" value=""> id="parentForm" method="post" action="index.php?module=parentPoissonWrite">
 <input type="hidden" name="parent_poisson_id" value="{$data.parent_poisson_id}">
 <input type="hidden" name="poisson_id" value="{$data.poisson_id}">
-<dl>
-<dt>Parent :</dt>
-<dd>
-<input id="recherche" placeholder="texte à rechercher" size="20" autofocus>
+<div class="form-group">
+<label for="" class="control-label col-md-4">{t}Parent :{/t}</label>
+<div class="col-md-8">
+<input id="" class="form-control" id="recherche" placeholder="texte à rechercher" size="20" autofocus>
 <select id="parent_id" name="parent_id">
 {if $data.parent_id > 0}
 <option value="{$data.parent_id}">
@@ -55,22 +59,34 @@ $(document).ready(function() {
 </option>
 {/if}
 </select>
-</dl>
-
-<div class="formBouton">
-<input class="submit" type="submit" value="Enregistrer">
 </div>
+
+
+<div class="form-group center">
+<button type="submit" class="btn btn-primary button-valid">{t}Valider{/t}</button>
+<button class="btn btn-danger btn-delete">{t}Supprimer{/t}</button>
 </form>
+</div>
+</div>
 
 
 {if $data.parent_poisson_id > 0 &&$droits["poissonAdmin"] == 1}
 <div class="formBouton">
-<form action="index.php" method="post" onSubmit='return confirmSuppression("Confirmez-vous la suppression ?")'>
+<div class="row">
+<div class="col-md-6">
+<form class="form-horizontal" id="" method="post" action="index.php">
+<input type="hidden" name="action" value="Write">
+<input type="hidden" name="moduleBase" value=""> action="index.php" method="post" onSubmit='return confirmSuppression("Confirmez-vous la suppression ?")'>
 <input type="hidden" name="parent_poisson_id" value="{$data.parent_poisson_id}">
 <input type="hidden" name="poisson_id" value="{$data.poisson_id}">
 <input type="hidden" name="module" value="parentPoissonDelete">
 <input class="submit" type="submit" value="Supprimer">
+<div class="form-group center">
+<button type="submit" class="btn btn-primary button-valid">{t}Valider{/t}</button>
+<button class="btn btn-danger btn-delete">{t}Supprimer{/t}</button>
 </form>
+</div>
+</div>
 </div>
 {/if}
 </div>

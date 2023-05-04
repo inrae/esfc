@@ -18,7 +18,7 @@ $(document).ready(function() {
 </script>
 <form method="get" action="index.php" id="search">
 <input type="hidden" name="module" value="sequenceList">
-<table class="tableaffichage">
+<table class="table table-bordered table-hover datatable" class="tableaffichage">
 <tr><td>Année : 
 <select id="annee" name="annee">
 {section name=lst loop=$annees}
@@ -41,9 +41,9 @@ Site :
 </tr>
 </table>
 </form>
-<h2>Séquences</h2>
+<h2{t}Séquences{/t}</h2>
 <a href="index.php?module=sequenceChange&sequence_id=0">Nouvelle séquence pour l'année</a>
-<table id="csequenceList" class="tableliste">
+<table class="table table-bordered table-hover datatable" id="csequenceList" class="tableliste">
 <thead>
 <tr>
 <th>Site</th>
@@ -66,7 +66,7 @@ Site :
 </tbody>
 </table>
 
-<h2>Bassins</h2>
+<h2{t}Bassins{/t}</h2>
 {if $droits.reproGestion == 1}
 <form id="initForm" method="post" action="index.php?module=bassinCampagneInit">
 Initialiser la liste des bassins pour la campagne 

@@ -4,30 +4,35 @@ $(document).ready(function() {
 	$(".num3").attr("pattern", "[0-9]+(\.[0-9]+)?");
 } ) ;
 </script>
-<h2>Modification d'un modèle de répartition d'aliment</h2>
+<h2{t}Modification d'un modèle de répartition d'aliment{/t}</h2>
 
 <a href="index.php?module=repartTemplateList">Retour à la liste</a>
 <div class="formSaisie">
 <div>
-<form id="repartTemplateForm" method="post" action="index.php?module=repartTemplateWrite">
+<div class="row">
+<div class="col-md-6">
+<form class="form-horizontal" id="" method="post" action="index.php">
+<input type="hidden" name="action" value="Write">
+<input type="hidden" name="moduleBase" value=""> id="repartTemplateForm" method="post" action="index.php?module=repartTemplateWrite">
 <input type="hidden" name="repart_template_id" value={$data.repart_template_id}>
 <fieldset>
 <legend>Données générales</legend>
-<dl>
-<dt>Date de création <span class="red">*</span> :</dt>
-<dd>
-<input class="date" name="repart_template_date" id="repart_template_date" value="{$data.repart_template_date}" required>
+<div class="form-group">
+<label for="" class="control-label col-md-4">{t}Date de création <span class="red">*</span> :{/t}</label>
+<div class="col-md-8">
+<input id="" class="form-control" class="date" name="repart_template_date" id="repart_template_date" value="{$data.repart_template_date}" required>
 </dd>
-</dl>
-<dl>
-<dt>Description  <span class="red">*</span> :</dt>
-<dd><input name="repart_template_libelle" value="{$data.repart_template_libelle}" autofocus required size="40">
+</div>
+<div class="form-group">
+<label for="" class="control-label col-md-4">{t}Description  <span class="red">*</span> :{/t}</label>
+<div class="col-md-8">
+<input id="" class="form-control" name="repart_template_libelle" value="{$data.repart_template_libelle}" autofocus required size="40">
 </dd>
-</dl>
-<dl>
-<dt>Catégorie d'alimentation <span class="red">*</span> :</dt> 
-<dd>
-<select name="categorie_id" id="categorie_id" {if $data.repart_template_id > 0}disabled{/if}>
+</div>
+<div class="form-group">
+<label for="" class="control-label col-md-4">{t}Catégorie d'alimentation <span class="red">*</span> :{/t}</label> 
+<div class="col-md-8">
+<select id="" class="form-control" name="categorie_id" id="categorie_id" {if $data.repart_template_id > 0}disabled{/if}>
 {section name=lst loop=$categorie}
 <option value="{$categorie[lst].categorie_id}" {if $data.categorie_id == $categorie[lst].categorie_id}selected{/if}>
 {$categorie[lst].categorie_libelle}
@@ -35,14 +40,14 @@ $(document).ready(function() {
 {/section}
 </select>
 </dd>
-</dl>
-<dl>
-<dt>Modèle utilisable ?</dt>
-<dd>
-<input type="radio" name="actif" value="1" {if $data.actif == 1}checked{/if}>oui
+</div>
+<div class="form-group">
+<label for="" class="control-label col-md-4">{t}Modèle utilisable ?{/t}</label>
+<div class="col-md-8">
+<input id="" class="form-control" type="radio" name="actif" value="1" {if $data.actif == 1}checked{/if}>oui
 <input type="radio" name="actif" value="0" {if $data.actif == 0}checked{/if}>non
 </dd>
-</dl>
+</div>
 </fieldset>
 
 {if $data.repart_template_id > 0}
@@ -51,8 +56,8 @@ $(document).ready(function() {
 {section name=lst loop=$dataAliment}
 <input type="hidden" name="repart_aliment_id_{$dataAliment[lst].aliment_id}" value="{$dataAliment[lst].repart_aliment_id}">
 <input type="hidden" name="aliment_id_{$dataAliment[lst].aliment_id}" value="{$dataAliment[lst].aliment_id}">
-<dl>
-<dt>{$dataAliment[lst].aliment_libelle}</dt>
+<div class="form-group">
+<label for="" class="control-label col-md-4">{t}{$dataAliment[lst].aliment_libelle}{/t}</label>
 <dd>
 <label for="repart_alim_taux_{$dataAliment[lst].aliment_id}">Pourcentage de la ration :</label>
 <input class="num3" id="repart_alim_taux_{$dataAliment[lst].aliment_id}" value="{$dataAliment[lst].repart_alim_taux}" style="width:3em;" name="repart_alim_taux_{$dataAliment[lst].aliment_id}" title="Taux de répartition de l'aliment (le total de tous les aliments doit faire 100)" >
@@ -71,24 +76,36 @@ Nuit :
 <label for="consigne">Consignes : </label>
 <input id="consigne" name="consigne_{$dataAliment[lst].aliment_id}" value="{$dataAliment[lst].consigne}" size="30">
 </dd>
-</dl>
+</div>
 {/section}
 </fieldset>
 {/if}
-<div class="formBouton">
-<input class="submit" type="submit" value="Enregistrer">
-</div>
+
+<div class="form-group center">
+<button type="submit" class="btn btn-primary button-valid">{t}Valider{/t}</button>
+<button class="btn btn-danger btn-delete">{t}Supprimer{/t}</button>
 </form>
+</div>
+</div>
 </div>
 
 
 {if $data.repart_template_id > 0 &&$droits["bassinAdmin"] == 1}
 <div class="formBouton">
-<form action="index.php" method="post" onSubmit='return confirmSuppression("Confirmez-vous la suppression ?")'>
+<div class="row">
+<div class="col-md-6">
+<form class="form-horizontal" id="" method="post" action="index.php">
+<input type="hidden" name="action" value="Write">
+<input type="hidden" name="moduleBase" value=""> action="index.php" method="post" onSubmit='return confirmSuppression("Confirmez-vous la suppression ?")'>
 <input type="hidden" name="repart_template_id" value="{$data.repart_template_id}">
 <input type="hidden" name="module" value="repartTemplateDelete">
 <input class="submit" type="submit" value="Supprimer">
+<div class="form-group center">
+<button type="submit" class="btn btn-primary button-valid">{t}Valider{/t}</button>
+<button class="btn btn-danger btn-delete">{t}Supprimer{/t}</button>
 </form>
+</div>
+</div>
 </div>
 {/if}
 </div>

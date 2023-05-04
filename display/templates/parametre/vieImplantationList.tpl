@@ -1,4 +1,4 @@
-<h2>Emplacements d'implantation des marques VIE</h2>
+<h2{t}Emplacements d'implantation des marques VIE{/t}</h2>
 {if $droits["paramAdmin"] == 1}
 <a href="index.php?module=vieImplantationChange&vie_implantation_id=0">
 Nouveau...
@@ -7,13 +7,13 @@ Nouveau...
 <script>
 setDataTables("chormonList");
 </script>
-<table id="cvie_implantationList" class="tableliste">
+<table class="table table-bordered table-hover datatable" id="cvie_implantationList" class="tableliste">
 <thead>
 <tr>
 <th>Nom de l'emplacement d'implantation</th>
 </tr>
 </thead>
-<tdata>
+<tbody>
 {section name=lst loop=$data}
 <tr>
 <td>
@@ -27,5 +27,5 @@ setDataTables("chormonList");
 </td>
 </tr>
 {/section}
-</tdata>
+</tbody>
 </table>

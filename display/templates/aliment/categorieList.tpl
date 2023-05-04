@@ -1,4 +1,4 @@
-<h2>Catégories d'aliments (types de poissons nourris)</h2>
+<h2{t}Catégories d'aliments (types de poissons nourris){/t}</h2>
 {if $droits["bassinAdmin"] == 1}
 <a href="index.php?module=categorieChange&categorie_id=0">
 Nouveau...
@@ -7,13 +7,13 @@ Nouveau...
 <script>
 setDataTables("ccategorieList");
 </script>
-<table id="ccategorieList" class="tableliste">
+<table class="table table-bordered table-hover datatable" id="ccategorieList" class="tableliste">
 <thead>
 <tr>
 <th>Catégorie</th>
 </tr>
 </thead>
-<tdata>
+<tbody>
 {section name=lst loop=$data}
 <tr>
 <td>
@@ -27,5 +27,5 @@ setDataTables("ccategorieList");
 </td>
 </tr>
 {/section}
-</tdata>
+</tbody>
 </table>

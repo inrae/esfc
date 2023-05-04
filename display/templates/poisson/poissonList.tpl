@@ -5,7 +5,7 @@
 {/if}
 <a href="index.php?module=evenementGetAllCSV">Liste de tous les événements pour les poissons sélectionnés au format CSV</a>
 
-<table id="cpoissonList" class="tableliste">
+<table class="table table-bordered table-hover datatable" id="cpoissonList" class="tableliste">
 <thead>
 <tr>
 <th>Id</th>

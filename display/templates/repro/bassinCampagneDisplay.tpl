@@ -65,7 +65,7 @@ $(document).ready(function() {
 	$(".commentaire").attr("size","30");
 } );
 </script>
-<h2>Détail d'un bassin</h2>
+<h2{t}Détail d'un bassin{/t}</h2>
 <a href="index.php?module={$bassinParentModule}">Retour à la liste des bassins</a>
 <table class="tablemulticolonne">
 <tr>

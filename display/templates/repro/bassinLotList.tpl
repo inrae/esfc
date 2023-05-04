@@ -4,7 +4,7 @@ Nouvelle affectation de bassin...
 </a>
 {/if}
 
-<table id="cBassinLot" class="tableliste">
+<table class="table table-bordered table-hover datatable" id="cBassinLot" class="tableliste">
 <thead>
 <tr>
 <th>Date de début<br>d'utilisation</th>

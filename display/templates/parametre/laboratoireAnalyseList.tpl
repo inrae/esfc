@@ -1,4 +1,4 @@
-<h2>Laboratoires d'analyse</h2>
+<h2{t}Laboratoires d'analyse{/t}</h2>
 {if $droits["paramAdmin"] == 1}
 <a href="index.php?module=laboratoireAnalyseChange&laboratoire_analyse_id=0">
 Nouveau...
@@ -7,14 +7,14 @@ Nouveau...
 <script>
 setDataTables("claboratoireAnalyseList");
 </script>
-<table id="claboratoireAnalyseList" class="tableliste">
+<table class="table table-bordered table-hover datatable" id="claboratoireAnalyseList" class="tableliste">
 <thead>
 <tr>
 <th>libellé</th>
 <th>Actif ?</th>
 </tr>
 </thead>
-<tdata>
+<tbody>
 {section name=lst loop=$data}
 <tr>
 <td>
@@ -30,5 +30,5 @@ setDataTables("claboratoireAnalyseList");
 {if $data[lst].laboratoire_analyse_actif == 1}oui{else}non{/if}
 </tr>
 {/section}
-</tdata>
+</tbody>
 </table>

@@ -30,7 +30,7 @@ setDataTables("calimList");
 {/section}
 </tr>
 </thead>
-<tdata>
+<tbody>
 {section name=lst loop=$dataAlim}
 <tr>
 <td>{$dataAlim[lst].distrib_quotidien_date}</td>
@@ -42,5 +42,5 @@ setDataTables("calimList");
 {/section}
 </tr>
 {/section}
-</tdata>
+</tbody>
 </table>

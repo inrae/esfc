@@ -1,4 +1,4 @@
-<h2>Types d'événements survenant dans les bassins</h2>
+<h2{t}Types d'événements survenant dans les bassins{/t}</h2>
 {if $droits["paramAdmin"] == 1}
 <a href="index.php?module=bassinEvenementTypeChange&bassin_evenement_type_id=0">
 Nouveau...
@@ -7,13 +7,13 @@ Nouveau...
 <script>
 setDataTables("cbassinEvenementTypeList");
 </script>
-<table id="cbassinEvenementTypeList" class="tableliste">
+<table class="table table-bordered table-hover datatable" id="cbassinEvenementTypeList" class="tableliste">
 <thead>
 <tr>
 <th>libellé</th>
 </tr>
 </thead>
-<tdata>
+<tbody>
 {section name=lst loop=$data}
 <tr>
 <td>
@@ -27,5 +27,5 @@ setDataTables("cbassinEvenementTypeList");
 </td>
 </tr>
 {/section}
-</tdata>
+</tbody>
 </table>

@@ -6,7 +6,7 @@ setDataTables("clotMesureList");
 Nouvelle mesure...
 </a>
 {/if}
-<table id="clotMesureList" class="tableliste">
+<table class="table table-bordered table-hover datatable" id="clotMesureList" class="tableliste">
 <thead>
 <tr>
 <th>Date</th>
@@ -17,7 +17,7 @@ Nouvelle mesure...
 <th>Masse<br>individuelle</th>
 </tr>
 </thead>
-<tdata>
+<tbody>
 {assign var=mortalite value=0}
 {section name=lst loop=$dataMesure}
 <tr>
@@ -38,5 +38,5 @@ Nouvelle mesure...
 <td class="right">{$dataMesure[lst].lot_mesure_masse_indiv}</td>
 </tr>
 {/section}
-</tdata>
+</tbody>
 </table>

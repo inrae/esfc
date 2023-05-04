@@ -1,6 +1,7 @@
-<table class="tableaffichage">
-<tr>
-<td>
+<div class="row">
+<div class="col-lg-8 form-display">
+<dl class="dl-horizontal">
+<dt>{t}
 (<span style="font-size:small;font-style:italic;">{$dataPoisson.poisson_id}</span>)
 <label>Matricule : </label>{$dataPoisson.matricule} {$dataPoisson.prenom}
 <br>
@@ -23,6 +24,7 @@
 <br>
 <label>Commentaire</label> : {$dataPoisson.commentaire}
 {/if}
-</td>
-</tr>
-</table>
+</dd>
+</dl>
+</div>
+</div>

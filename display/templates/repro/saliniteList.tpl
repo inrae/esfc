@@ -1,4 +1,4 @@
-<table id="csaliniteList" class="tableliste">
+<table class="table table-bordered table-hover datatable" id="csaliniteList" class="tableliste">
 <thead>
 <tr>
 <th>Date/heure</th>
@@ -6,7 +6,7 @@
 <th>Type</th>
 </tr>
 </thead>
-<tdata>
+<tbody>
 {section name=lst loop=$salinites}
 <tr>
 <td>
@@ -26,5 +26,5 @@
 </td>
 </tr>
 {/section}
-</tdata>
+</tbody>
 </table>

@@ -1,4 +1,4 @@
-<h2>Conservateurs du sperme utilisés pour la congélation</h2>
+<h2{t}Conservateurs du sperme utilisés pour la congélation{/t}</h2>
 {if $droits["paramAdmin"] == 1 || $droits.reproAdmin == 1}
 <a href="index.php?module=spermeConservateurChange&sperme_conservateur_id=0">
 Nouveau...
@@ -7,7 +7,7 @@ Nouveau...
 <script>
 setDataTables("cconservateurList");
 </script>
-<table id="cconservateurList" class="tableliste">
+<table class="table table-bordered table-hover datatable" id="cconservateurList" class="tableliste">
 <thead>
 <tr>
 <th>Nom du produit conservateur</th>

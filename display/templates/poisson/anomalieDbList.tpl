@@ -1,7 +1,7 @@
 <script>
 setDataTables("canomalie_dbList");
 </script>
-<table id="canomalie_dbList" class="tableliste">
+<table class="table table-bordered table-hover datatable" id="canomalie_dbList" class="tableliste">
 <thead>
 <tr>
 <th>Événement associé</th>
@@ -12,7 +12,7 @@ setDataTables("canomalie_dbList");
 <th>État</th>
 </tr>
 </thead>
-<tdata>
+<tbody>
 {section name=lst loop=$dataAnomalie}
 <tr>
 <td>
@@ -39,5 +39,5 @@ setDataTables("canomalie_dbList");
 </td>
 </tr>
 {/section}
-</tdata>
+</tbody>
 </table>

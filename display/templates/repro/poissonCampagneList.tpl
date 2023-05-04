@@ -79,7 +79,7 @@ $(document).ready(function() {
 <form method="get" action="index.php" id="search">
 <input type="hidden" name="module" value="poissonCampagneList">
 <input type="hidden" name="isSearch" value="1">
-<table class="tableaffichage">
+<table class="table table-bordered table-hover datatable" class="tableaffichage">
 <tr><td>
 Statut de reproduction : 
 <select id="selectStatut" name="repro_statut_id">
@@ -125,7 +125,7 @@ Ajouter tous les adultes vivants à la campagne...
 <form id="clistform" method="post" action="index.php" >
 <input type="hidden" name="module" value="poissonCampagneChangeStatut">
 
-<table id="cpoissonList" class="tableliste">
+<table class="table table-bordered table-hover datatable" id="cpoissonList" class="tableliste">
 <thead>
 <tr>
 <th>Données<br>d'élevage</th>

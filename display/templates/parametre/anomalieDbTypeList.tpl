@@ -1,4 +1,4 @@
-<h2>Types d'anomalie_dbs</h2>
+<h2{t}Types d'anomalie_dbs{/t}</h2>
 {if $droits["paramAdmin"] == 1}
 <a href="index.php?module=anomalieDbTypeChange&anomalie_db_type_id=0">
 Nouveau...
@@ -7,7 +7,7 @@ Nouveau...
 <script>
 setDataTables("canomalie_dbTypeList");
 </script>
-<table id="canomalie_dbTypeList" class="tableliste">
+<table class="table table-bordered table-hover datatable" id="canomalie_dbTypeList" class="tableliste">
 <thead>
 <tr>
 {if $droits["paramAdmin"] == 1}
@@ -16,7 +16,7 @@ setDataTables("canomalie_dbTypeList");
 <th>libellé</th>
 </tr>
 </thead>
-<tdata>
+<tbody>
 {section name=lst loop=$data}
 <tr>
 {if $droits["paramAdmin"] == 1}
@@ -31,5 +31,5 @@ setDataTables("canomalie_dbTypeList");
 </td>
 </tr>
 {/section}
-</tdata>
+</tbody>
 </table>

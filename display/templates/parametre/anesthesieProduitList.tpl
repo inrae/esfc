@@ -1,4 +1,4 @@
-<h2>Produits utilisés pour l'anesthésie</h2>
+<h2{t}Produits utilisés pour l'anesthésie{/t}</h2>
 {if $droits["paramAdmin"] == 1}
 <a href="index.php?module=anesthesieProduitChange&anesthesie_produit_id=0">
 Nouveau...
@@ -7,7 +7,7 @@ Nouveau...
 <script>
 setDataTables("cproduitList");
 </script>
-<table id="cproduitList" class="tableliste">
+<table class="table table-bordered table-hover datatable" id="cproduitList" class="tableliste">
 <thead>
 <tr>
 <th>Nom du produit</th>

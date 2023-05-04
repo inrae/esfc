@@ -1,4 +1,4 @@
-<h2>Types d'événements survenant dans les circuits d'eau</h2>
+<h2{t}Types d'événements survenant dans les circuits d'eau{/t}</h2>
 {if $droits["paramAdmin"] == 1}
 <a href="index.php?module=circuitEvenementTypeChange&circuit_evenement_type_id=0">
 Nouveau...
@@ -7,13 +7,13 @@ Nouveau...
 <script>
 setDataTables("ccircuitEvenementTypeList");
 </script>
-<table id="ccircuitEvenementTypeList" class="tableliste">
+<table class="table table-bordered table-hover datatable" id="ccircuitEvenementTypeList" class="tableliste">
 <thead>
 <tr>
 <th>libellé</th>
 </tr>
 </thead>
-<tdata>
+<tbody>
 {section name=lst loop=$data}
 <tr>
 <td>
@@ -27,5 +27,5 @@ setDataTables("ccircuitEvenementTypeList");
 </td>
 </tr>
 {/section}
-</tdata>
+</tbody>
 </table>

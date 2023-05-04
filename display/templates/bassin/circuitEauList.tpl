@@ -1,4 +1,4 @@
-<h2>Circuits d'alimentation en eau</h2>
+<h2{t}Circuits d'alimentation en eau{/t}</h2>
 {include file="bassin/circuitEauSearch.tpl"}
 {if $isSearch == 1}
 {if $droits["bassinAdmin"] == 1}
@@ -9,10 +9,10 @@ Nouveau...
 <script>
 setDataTables("ccircuitEauList");
 </script>
-<table class="tablemulticolonne">
+<table class="table table-bordered table-hover datatable" class="tablemulticolonne">
 <tr>
 <td>
-<table id="ccircuitEauList" class="tableliste">
+<table class="table table-bordered table-hover datatable" id="ccircuitEauList" class="tableliste">
 <thead>
 <tr>
 <th>libellé</th>

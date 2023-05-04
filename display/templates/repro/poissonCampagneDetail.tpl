@@ -8,9 +8,10 @@ $(document).ready(function() {
 });
 
 </script>
-<table class="tableaffichage">
-<tr>
-<td>
+<div class="row">
+<div class="col-lg-8 form-display">
+<dl class="dl-horizontal">
+<dt>{t}
 <label>Identification : </label>{$dataPoisson.matricule} {$dataPoisson.prenom} {$dataPoisson.pittag_valeur} - {$dataPoisson.sexe_libelle}
  {if $dataPoisson.poisson_statut_id != 1}- {$dataPoisson.poisson_statut_libelle}{/if}
 <span class="lienimage"><a href=index.php?module=poissonDisplay&poisson_id={$dataPoisson.poisson_id}>
@@ -34,6 +35,7 @@ $(document).ready(function() {
 </form>
 {/if}
 
-</td>
-</tr>
-</table>
+</dd>
+</dl>
+</div>
+</div>

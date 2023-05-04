@@ -1,7 +1,7 @@
 <script>
 setDataTables("cgender_selectionList");
 </script>
-<table id="cgender_selectionList" class="tableliste">
+<table class="table table-bordered table-hover datatable" id="cgender_selectionList" class="tableliste">
 <thead>
 <tr>
 <th>Événement associé</th>
@@ -11,7 +11,7 @@ setDataTables("cgender_selectionList");
 <th>Commentaire</th>
 </tr>
 </thead>
-<tdata>
+<tbody>
 {section name=lst loop=$dataGender}
 <tr>
 <td>
@@ -29,5 +29,5 @@ setDataTables("cgender_selectionList");
 <td>{$dataGender[lst].gender_selection_commentaire}</td>
 </tr>
 {/section}
-</tdata>
+</tbody>
 </table>

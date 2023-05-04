@@ -1,4 +1,4 @@
-<table id="csanguin" class="tableliste">
+<table class="table table-bordered table-hover datatable" id="csanguin" class="tableliste">
 <thead>
 <tr>
 <th>Événement associé</th>

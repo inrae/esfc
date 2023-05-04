@@ -1,4 +1,4 @@
-<h2>Types de pittag</h2>
+<h2{t}Types de pittag{/t}</h2>
 {if $droits["paramAdmin"] == 1}
 <a href="index.php?module=pittagTypeChange&pittag_type_id=0">
 Nouveau...
@@ -7,13 +7,13 @@ Nouveau...
 <script>
 setDataTables("pittagList");
 </script>
-<table id="pittagList" class="tableliste">
+<table class="table table-bordered table-hover datatable" id="pittagList" class="tableliste">
 <thead>
 <tr>
 <th>libellé</th>
 </tr>
 </thead>
-<tdata>
+<tbody>
 {section name=lst loop=$data}
 <tr>
 <td>
@@ -27,5 +27,5 @@ setDataTables("pittagList");
 </td>
 </tr>
 {/section}
-</tdata>
+</tbody>
 </table>

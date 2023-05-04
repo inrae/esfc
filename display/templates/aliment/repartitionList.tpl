@@ -1,13 +1,13 @@
-<table class="tablemulticolonne">
+<table class="table table-bordered table-hover datatable" class="tablemulticolonne">
 <tr>
 <td>
-<h2>Liste des répartitions d'aliments</h2>
+<h2{t}Liste des répartitions d'aliments{/t}</h2>
 {include file="aliment/repartitionSearch.tpl"}
 {if $isSearch == 1}
 <script>
 setDataTables("crepartitionList", 0 , 0, 0, {$repartitionSearch.limit});
 </script>
-<table class="tablemulticolonne">
+<table class="table table-bordered table-hover datatable" class="tablemulticolonne">
 <tr>
 <td style="width:25%;">
 {if $repartitionSearch.offset > 0}
@@ -25,7 +25,7 @@ suiv&gt;
 </tr>
 <tr>
 <td colspan="3">
-<table id="repartitionList">
+<table class="table table-bordered table-hover datatable" id="repartitionList">
 <thead>
 <tr>
 {if $droits.bassinGestion == 1}

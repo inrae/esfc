@@ -1,4 +1,4 @@
-<h2>Statuts des poissons</h2>
+<h2{t}Statuts des poissons{/t}</h2>
 {if $droits["paramAdmin"] == 1}
 <a href="index.php?module=poissonStatutChange&poisson_statut_id=0">
 Nouveau...
@@ -7,13 +7,13 @@ Nouveau...
 <script>
 setDataTables("cpoissonStatutList");
 </script>
-<table id="cpoissonStatutList" class="tableliste">
+<table class="table table-bordered table-hover datatable" id="cpoissonStatutList" class="tableliste">
 <thead>
 <tr>
 <th>libellé</th>
 </tr>
 </thead>
-<tdata>
+<tbody>
 {section name=lst loop=$data}
 <tr>
 <td>
@@ -27,5 +27,5 @@ setDataTables("cpoissonStatutList");
 </td>
 </tr>
 {/section}
-</tdata>
+</tbody>
 </table>

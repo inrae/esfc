@@ -1,4 +1,4 @@
-<h2>Types d'aliments</h2>
+<h2{t}Types d'aliments{/t}</h2>
 {if $droits["paramAdmin"] == 1}
 <a href="index.php?module=alimentTypeChange&aliment_type_id=0">
 Nouveau...
@@ -7,13 +7,13 @@ Nouveau...
 <script>
 setDataTables("calimentTypeList");
 </script>
-<table id="calimentTypeList" class="tableliste">
+<table class="table table-bordered table-hover datatable" id="calimentTypeList" class="tableliste">
 <thead>
 <tr>
 <th>libellé</th>
 </tr>
 </thead>
-<tdata>
+<tbody>
 {section name=lst loop=$data}
 <tr>
 <td>
@@ -27,5 +27,5 @@ setDataTables("calimentTypeList");
 </td>
 </tr>
 {/section}
-</tdata>
+</tbody>
 </table>

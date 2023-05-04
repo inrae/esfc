@@ -1,7 +1,7 @@
 <script>
 setDataTables("cbassinList");
 </script>
-<table id="cbassinList" class="tableliste">
+<table class="table table-bordered table-hover datatable" id="cbassinList" class="tableliste">
 <thead>
 <tr>
 <th>Bassin</th>
@@ -9,7 +9,7 @@ setDataTables("cbassinList");
 <th>Date de<br>départ</th>
 </tr>
 </thead>
-<tdata>
+<tbody>
 {section name=lst loop=$dataBassin}
 <tr>
 <td>
@@ -23,5 +23,5 @@ setDataTables("cbassinList");
 <td>{$dataBassin[lst].bassin_date_depart}</td>
 </tr>
 {/section}
-</tdata>
+</tbody>
 </table>

@@ -6,9 +6,13 @@ Retour à la liste des poissons
  Retour au poisson
  </a>
  {include file="poisson/poissonDetail.tpl"}
-<h2>Modification d'un (pit)tag</h2>
+<h2{t}Modification d'un (pit)tag{/t}</h2>
 <table class="tablesaisie">
-<form class="cmxform" id="pittagForm" method="post" action="index.php?module=pittagWrite">
+<div class="row">
+<div class="col-md-6">
+<form class="form-horizontal" id="" method="post" action="index.php">
+<input type="hidden" name="action" value="Write">
+<input type="hidden" name="moduleBase" value=""> class="cmxform" id="pittagForm" method="post" action="index.php?module=pittagWrite">
 <input type="hidden" name="pittag_id" value="{$data.pittag_id}">
 <input type="hidden" name="poisson_id" value="{$data.poisson_id}">
 <tr>
@@ -57,14 +61,28 @@ $( "#cpittag_date_pose" ).datepicker( { dateFormat: "dd/mm/yy" } );
 <tr>
 <td colspan="2"><div align="center">
 <input class="submit" type="submit" value="Enregistrer">
+<div class="form-group center">
+<button type="submit" class="btn btn-primary button-valid">{t}Valider{/t}</button>
+<button class="btn btn-danger btn-delete">{t}Supprimer{/t}</button>
 </form>
+</div>
+</div>
 {if $data.pittag_id > 0 &&$droits["poissonGestion"] == 1}
-<form action="index.php" method="post" onSubmit='return confirmSuppression("Confirmez-vous la suppression ?")'>
+<div class="row">
+<div class="col-md-6">
+<form class="form-horizontal" id="" method="post" action="index.php">
+<input type="hidden" name="action" value="Write">
+<input type="hidden" name="moduleBase" value=""> action="index.php" method="post" onSubmit='return confirmSuppression("Confirmez-vous la suppression ?")'>
 <input type="hidden" name="pittag_id" value="{$data.pittag_id}">
 <input type="hidden" name="poisson_id" value="{$data.poisson_id}">
 <input type="hidden" name="module" value="pittagDelete">
 <input class="submit" type="submit" value="Supprimer">
+<div class="form-group center">
+<button type="submit" class="btn btn-primary button-valid">{t}Valider{/t}</button>
+<button class="btn btn-danger btn-delete">{t}Supprimer{/t}</button>
 </form>
+</div>
+</div>
 {/if}
 </div>
 </td>

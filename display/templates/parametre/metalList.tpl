@@ -1,4 +1,4 @@
-<h2>Liste des métaux analysés</h2>
+<h2{t}Liste des métaux analysés{/t}</h2>
 {if $droits["paramAdmin"] == 1}
 <a href="index.php?module=metalChange&metal_id=0">
 Nouveau...
@@ -7,7 +7,7 @@ Nouveau...
 <script>
 setDataTables("cmetalList");
 </script>
-<table id="cmetalList" class="tableliste">
+<table class="table table-bordered table-hover datatable" id="cmetalList" class="tableliste">
 <thead>
 <tr>
 <th>Nom du metal</th>

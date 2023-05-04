@@ -1,4 +1,4 @@
-<h2>Méthodes de détermination de la cohorte</h2>
+<h2{t}Méthodes de détermination de la cohorte{/t}</h2>
 {if $droits["paramAdmin"] == 1}
 <a href="index.php?module=cohorteTypeChange&cohorte_type_id=0">
 Nouveau...
@@ -7,13 +7,13 @@ Nouveau...
 <script>
 setDataTables("ccohorteTypeList");
 </script>
-<table id="ccohorteTypeList" class="tableliste">
+<table class="table table-bordered table-hover datatable" id="ccohorteTypeList" class="tableliste">
 <thead>
 <tr>
 <th>libellé</th>
 </tr>
 </thead>
-<tdata>
+<tbody>
 {section name=lst loop=$data}
 <tr>
 <td>
@@ -27,5 +27,5 @@ setDataTables("ccohorteTypeList");
 </td>
 </tr>
 {/section}
-</tdata>
+</tbody>
 </table>

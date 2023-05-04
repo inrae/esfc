@@ -1,4 +1,4 @@
-<h2>Types d'événements</h2>
+<h2{t}Types d'événements{/t}</h2>
 {if $droits["paramAdmin"] == 1}
 <a href="index.php?module=evenementTypeChange&evenement_type_id=0">
 Nouveau...
@@ -7,14 +7,14 @@ Nouveau...
 <script>
 setDataTables("cevenementTypeList");
 </script>
-<table id="cevenementTypeList" class="tableliste">
+<table class="table table-bordered table-hover datatable" id="cevenementTypeList" class="tableliste">
 <thead>
 <tr>
 <th>libellé</th>
 <th>Actif ?</th>
 </tr>
 </thead>
-<tdata>
+<tbody>
 {section name=lst loop=$data}
 <tr>
 <td>
@@ -33,5 +33,5 @@ setDataTables("cevenementTypeList");
 </td>
 </tr>
 {/section}
-</tdata>
+</tbody>
 </table>

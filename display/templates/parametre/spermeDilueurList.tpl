@@ -1,4 +1,4 @@
-<h2>Dilueurs du sperme utilisés pour la congélation</h2>
+<h2{t}Dilueurs du sperme utilisés pour la congélation{/t}</h2>
 {if $droits["paramAdmin"] == 1 || $droits.reproAdmin == 1}
 <a href="index.php?module=spermeDilueurChange&sperme_dilueur_id=0">
 Nouveau...
@@ -7,7 +7,7 @@ Nouveau...
 <script>
 setDataTables("cdilueurList");
 </script>
-<table id="cdilueurList" class="tableliste">
+<table class="table table-bordered table-hover datatable" id="cdilueurList" class="tableliste">
 <thead>
 <tr>
 <th>Nom du produit dilueur</th>

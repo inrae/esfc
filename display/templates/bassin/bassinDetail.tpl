@@ -1,55 +1,57 @@
-<table class="tableaffichage">
-<tr>
-<td>
+<div class="row">
+<div class="col-lg-8 form-display">
+<dl class="dl-horizontal">
+<dt>{t}
 <label>Nom du bassin : </label>
-</td>
-<td>
+{/t}</dt>
+<dd>
 {$dataBassin.bassin_nom}
-</td>
-<td>
+{/t}</dt>
+<dd>
 <label>Site : </label>
-</td>
-<td>
+{/t}</dt>
+<dd>
 {$dataBassin.site_name}
-</td>
-</tr>
-<tr>
-<td>
+</dd>
+</dl>
+<dl class="dl-horizontal">
+<dt>{t}
 <label>Implantation : </label>
-</td>
-<td>
+{/t}</dt>
+<dd>
 {$dataBassin.bassin_zone_libelle} 
-</td>
-</tr>
-<tr>
-<td>
+</dd>
+</dl>
+<dl class="dl-horizontal">
+<dt>{t}
  <label>Type de bassin : </label>
- </td>
- <td>
+ </dd>
+ <dt>{t}
  {$dataBassin.bassin_type_libelle}
- </td>
- </tr>
- <tr>
-<td>
+ </dd>
+ </dl>
+ <dl class="dl-horizontal">
+<dt>{t}
 <label>Utilisation actuelle : </label>
-</td>
-<td>
+{/t}</dt>
+<dd>
 {$dataBassin.bassin_usage_libelle}
-</td>
-</tr>
-<tr>
-<td>
+</dd>
+</dl>
+<dl class="dl-horizontal">
+<dt>{t}
 <label>Circuit d'eau : </label>
-</td>
-<td>
+{/t}</dt>
+<dd>
 <a style="display:inline;" href="index.php?module=circuitEauDisplay&circuit_eau_id={$dataBassin.circuit_eau_id}">
 {$dataBassin.circuit_eau_libelle}
 </a>
-</td>
-</tr>
-<tr>
+</dd>
+</dl>
+<dl class="dl-horizontal">
 <td colspan="4">
 {if $dataBassin.actif == 1}Bassin en activité{else}Bassin non utilisé ou réformé{/if}
-</td>
-</tr>
-</table>
+</dd>
+</dl>
+</div>
+</div>

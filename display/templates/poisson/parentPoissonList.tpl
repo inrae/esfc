@@ -1,7 +1,7 @@
 <script>
 setDataTables("cparentList");
 </script>
-<table id="cparentList" class="tableliste">
+<table class="table table-bordered table-hover datatable" id="cparentList" class="tableliste">
 <thead>
 <tr>
 {if $droits.poissonGestion == 1}
@@ -12,7 +12,7 @@ setDataTables("cparentList");
 <th>Cohorte</th>
 </tr>
 </thead>
-<tdata>
+<tbody>
 {section name=lst loop=$dataParent}
 <tr>
 {if $droits.poissonGestion == 1}
@@ -39,5 +39,5 @@ setDataTables("cparentList");
 <td>{$dataParent[lst].cohorte}</td>
 </tr>
 {/section}
-</tdata>
+</tbody>
 </table>

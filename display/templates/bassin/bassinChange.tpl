@@ -5,9 +5,13 @@ Retour à la liste des bassins
  > 
 <a href="index.php?module=bassinDisplay&bassin_id={$data.bassin_id}"> Retour au bassin</a>
 {/if}
-<h2>Modification d'un bassin</h2>
+<h2{t}Modification d'un bassin{/t}</h2>
 <table class="tablesaisie">
-<form id="bassinform" method="post" action="index.php?module=bassinWrite">
+<div class="row">
+<div class="col-md-6">
+<form class="form-horizontal" id="" method="post" action="index.php">
+<input type="hidden" name="action" value="Write">
+<input type="hidden" name="moduleBase" value=""> id="bassinform" method="post" action="index.php?module=bassinWrite">
 <input type="hidden" name="bassin_id" value="{$data.bassin_id}">
 <tr>
 <td class="libelleSaisie">
@@ -169,14 +173,28 @@ Bassin en activité :
 <tr>
 <td colspan="2"><div align="center">
 <input class="submit" type="submit" value="Enregistrer">
+<div class="form-group center">
+<button type="submit" class="btn btn-primary button-valid">{t}Valider{/t}</button>
+<button class="btn btn-danger btn-delete">{t}Supprimer{/t}</button>
 </form>
+</div>
+</div>
 
 {if $data.bassin_id > 0 &&$droits["bassinAdmin"] == 1}
-<form action="index.php" method="post" onSubmit='return confirmSuppression("Confirmez-vous la suppression ?")'>
+<div class="row">
+<div class="col-md-6">
+<form class="form-horizontal" id="" method="post" action="index.php">
+<input type="hidden" name="action" value="Write">
+<input type="hidden" name="moduleBase" value=""> action="index.php" method="post" onSubmit='return confirmSuppression("Confirmez-vous la suppression ?")'>
 <input type="hidden" name="bassin_id" value="{$data.bassin_id}">
 <input type="hidden" name="module" value="bassinDelete">
 <input class="submit" type="submit" value="Supprimer">
+<div class="form-group center">
+<button type="submit" class="btn btn-primary button-valid">{t}Valider{/t}</button>
+<button class="btn btn-danger btn-delete">{t}Supprimer{/t}</button>
 </form>
+</div>
+</div>
 {/if}
 </div>
 </td>

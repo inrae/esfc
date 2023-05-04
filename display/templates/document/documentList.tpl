@@ -37,7 +37,7 @@ $(document).ready(function() {
 {include file="document/documentChange.tpl"}
 </div>
 {/if}
-<table id="documentList" class="tableliste">
+<table class="table table-bordered table-hover datatable" id="documentList" class="tableliste">
 <thead>
 <tr>
 <th>Vignette</th>
@@ -50,7 +50,7 @@ $(document).ready(function() {
 {/if}
 </tr>
 </thead>
-<tdata>
+<tbody>
 {section name=lst loop=$dataDoc}
 <tr>
 <td class="center">
@@ -82,5 +82,5 @@ $(document).ready(function() {
 {/if}
 </tr>
 {/section}
-</tdata>
+</tbody>
 </table>

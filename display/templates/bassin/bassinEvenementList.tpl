@@ -6,7 +6,7 @@ setDataTables("cbassinEvenementList");
 Nouvel événement...
 </a>
 {/if}
-<table id="cbassinEvenementList" class="tableliste">
+<table class="table table-bordered table-hover datatable" id="cbassinEvenementList" class="tableliste">
 <thead>
 <tr>
 <th>Évenement</th>
@@ -14,7 +14,7 @@ Nouvel événement...
 <th>Commentaire</th>
 </tr>
 </thead>
-<tdata>
+<tbody>
 {section name=lst loop=$dataBassinEvnt}
 <tr>
 <td>
@@ -32,5 +32,5 @@ Nouvel événement...
 <td>{$dataBassinEvnt[lst].bassin_evenement_commentaire}</td>
 </tr>
 {/section}
-</tdata>
+</tbody>
 </table>

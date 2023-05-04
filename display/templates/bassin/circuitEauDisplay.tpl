@@ -1,5 +1,5 @@
-<h2>Données physico-chimiques du circuit d'eau {$data.circuit_eau_libelle} 
-({if $data.circuit_eau_actif == 1}en service{else}hors service{/if})</h2>
+<h2{t}Données physico-chimiques du circuit d'eau {$data.circuit_eau_libelle} 
+({if $data.circuit_eau_actif == 1}en service{else}hors service{/if}){/t}</h2>
 <a href="index.php?module=circuitEauList">Retour à la liste des circuits d'eau</a>
 {if $droits["bassinGestion"]==1}
 <a href="index.php?module=circuitEauChange&circuit_eau_id={$data.circuit_eau_id}">

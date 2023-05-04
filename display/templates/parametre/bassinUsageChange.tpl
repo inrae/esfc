@@ -1,23 +1,27 @@
-<h2>Modification d'un type d'utilisation des bassins</h2>
+<h2{t}Modification d'un type d'utilisation des bassins{/t}</h2>
 
 <a href="index.php?module=bassinUsageList">Retour à la liste</a>
 <div class="formSaisie">
 <div>
 
-<form class="cmxform" id="bassinUsageForm" method="post" action="index.php?module=bassinUsageWrite">
+<div class="row">
+<div class="col-md-6">
+<form class="form-horizontal" id="" method="post" action="index.php">
+<input type="hidden" name="action" value="Write">
+<input type="hidden" name="moduleBase" value=""> class="cmxform" id="bassinUsageForm" method="post" action="index.php?module=bassinUsageWrite">
 <input type="hidden" name="bassin_usage_id" value="{$data.bassin_usage_id}">
-<dl>
-<dt>
+<div class="form-group">
+<label for="" class="control-label col-md-4">{t}
 Utilisation <span class="red">*</span> :
-</dt>
-<dd>
-<input id="cbassin_usage_libelle" name="bassin_usage_libelle" type="text" value="{$data.bassin_usage_libelle}" required autofocus/>
+{/t}</label>
+<div class="col-md-8">
+<input id="" class="form-control" id="cbassin_usage_libelle" name="bassin_usage_libelle" type="text" value="{$data.bassin_usage_libelle}" required autofocus/>
 </dd>
-</dl>
-<dl>
-<dt>Catégorie d'alimentation :</dt>
-<dd>
-<select name="categorie_id">
+</div>
+<div class="form-group">
+<label for="" class="control-label col-md-4">{t}Catégorie d'alimentation :{/t}</label>
+<div class="col-md-8">
+<select id="" class="form-control" name="categorie_id">
 <option value="" {if $data.categorie_id == ""}selected{/if}>
 Sélectionnez la catégorie...
 </option>
@@ -27,20 +31,32 @@ Sélectionnez la catégorie...
 </option>
 {/section}
 </select>
-</dl>
-<div class="formBouton">
-<input class="submit" type="submit" value="Enregistrer">
 </div>
+
+<div class="form-group center">
+<button type="submit" class="btn btn-primary button-valid">{t}Valider{/t}</button>
+<button class="btn btn-danger btn-delete">{t}Supprimer{/t}</button>
 </form>
+</div>
+</div>
 
 {if $data.bassin_usage_id > 0 &&$droits["paramAdmin"] == 1}
-<form action="index.php" method="post" onSubmit='return confirmSuppression("Confirmez-vous la suppression ?")'>
+<div class="row">
+<div class="col-md-6">
+<form class="form-horizontal" id="" method="post" action="index.php">
+<input type="hidden" name="action" value="Write">
+<input type="hidden" name="moduleBase" value=""> action="index.php" method="post" onSubmit='return confirmSuppression("Confirmez-vous la suppression ?")'>
 <input type="hidden" name="bassin_usage_id" value="{$data.bassin_usage_id}">
 <input type="hidden" name="module" value="bassinUsageDelete">
 <div class="formBouton">
 <input class="submit" type="submit" value="Supprimer">
 </div>
+<div class="form-group center">
+<button type="submit" class="btn btn-primary button-valid">{t}Valider{/t}</button>
+<button class="btn btn-danger btn-delete">{t}Supprimer{/t}</button>
 </form>
+</div>
+</div>
 {/if}
 </div>
 </div>

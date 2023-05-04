@@ -4,7 +4,7 @@ Nouvelle destination (lâcher, entrée dans le stock captif, etc.)
 </a>
 {/if}
 
-<table id="devenirList" class="tableliste">
+<table class="table table-bordered table-hover datatable" id="devenirList" class="tableliste">
 <thead>
 <tr>
 {if $droits["reproGestion"] == 1}

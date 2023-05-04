@@ -1,7 +1,7 @@
 <script>
 setDataTables("cgenetiqueList");
 </script>
-<table id="cgenetiqueList" class="tableliste">
+<table class="table table-bordered table-hover datatable" id="cgenetiqueList" class="tableliste">
 <thead>
 <tr>
 <th>Événement associé</th>

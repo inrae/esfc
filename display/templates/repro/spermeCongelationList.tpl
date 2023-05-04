@@ -3,7 +3,7 @@
 Nouvelle congélation de sperme...
 </a>
 {/if}
-<table id="csperme" class="tableliste">
+<table class="table table-bordered table-hover datatable" id="csperme" class="tableliste">
 <thead>
 <tr>
 <th>Date<br>de congélation</th>

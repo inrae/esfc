@@ -1,48 +1,64 @@
 <a href="index.php?module={$bassinParentModule}">Retour à la liste des bassins</a>
 > <a href="index.php?module=bassinCampagneDisplay&bassin_campagne_id={$data.bassin_campagne_id}">Retour au bassin</a>
 {include file="bassin/bassinDetail.tpl"}
-<h2>profil thermique du bassin</h2>
+<h2{t}profil thermique du bassin{/t}</h2>
 <div class="formSaisie">
 <div>
-<form id="profilThermiqueForm" method="post" action="index.php?module=profilThermiqueWrite">
+<div class="row">
+<div class="col-md-6">
+<form class="form-horizontal" id="" method="post" action="index.php">
+<input type="hidden" name="action" value="Write">
+<input type="hidden" name="moduleBase" value=""> id="profilThermiqueForm" method="post" action="index.php?module=profilThermiqueWrite">
 <input type="hidden" name="profil_thermique_id" value="{$data.profil_thermique_id}">
 <input type="hidden" name="bassin_campagne_id" value="{$data.bassin_campagne_id}">
 <input type="hidden" name="bassin_id" value="{$dataBassin.bassin_id}">
 <input type="hidden" name="circuit_eau_id" value="{$dataBassin.circuit_eau_id}">
-<dl>
-<dt>Date/heure <span class="red">*</span> :</dt>
-<dd>
-<input class="datetimepicker"  name="pf_datetime" required size="10" value="{$data.pf_datetime}">
+<div class="form-group">
+<label for="" class="control-label col-md-4">{t}Date/heure <span class="red">*</span> :{/t}</label>
+<div class="col-md-8">
+<input id="" class="form-control" class="datetimepicker"  name="pf_datetime" required size="10" value="{$data.pf_datetime}">
 </dd>
-</dl>
-<dl>
-<dt>Température <span class="red">*</span> :</dt>
-<dd>
-<input class="taux" name="pf_temperature" required value="{$data.pf_temperature}">
+</div>
+<div class="form-group">
+<label for="" class="control-label col-md-4">{t}Température <span class="red">*</span> :{/t}</label>
+<div class="col-md-8">
+<input id="" class="form-control" class="taux" name="pf_temperature" required value="{$data.pf_temperature}">
 </dd>
-</dl>
-<dl>
-<dt>Type :</dt>
+</div>
+<div class="form-group">
+<label for="" class="control-label col-md-4">{t}Type :{/t}</label>
 <dd>prévu 
 <input type="radio" {if $data.profil_thermique_type_id == "2" }checked{/if} name="profil_thermique_type_id" value="2">
 &nbsp;constaté
 <input type="radio" disabled {if $data.profil_thermique_type_id == 1}checked{/if} name="profil_thermique_type_id" value="1">
 </dd>
-</dl>
-<div class="formBouton">
-<input class="submit" type="submit" value="Enregistrer">
 </div>
+
+<div class="form-group center">
+<button type="submit" class="btn btn-primary button-valid">{t}Valider{/t}</button>
+<button class="btn btn-danger btn-delete">{t}Supprimer{/t}</button>
 </form>
+</div>
+</div>
 {if $data.profil_thermique_id > 0 &&$droits["reproGestion"] == 1}
 <div class="formBouton">
-<form action="index.php" method="post" onSubmit='return confirmSuppression("Confirmez-vous la suppression ?")'>
+<div class="row">
+<div class="col-md-6">
+<form class="form-horizontal" id="" method="post" action="index.php">
+<input type="hidden" name="action" value="Write">
+<input type="hidden" name="moduleBase" value=""> action="index.php" method="post" onSubmit='return confirmSuppression("Confirmez-vous la suppression ?")'>
 <input type="hidden" name="module" value="profilThermiqueDelete">
 <input type="hidden" name="profil_thermique_id" value="{$data.profil_thermique_id}">
 <input type="hidden" name="bassin_campagne_id" value="{$data.bassin_campagne_id}">
 <input type="hidden" name="bassin_id" value="{$dataBassin.bassin_id}">
 <input type="hidden" name="circuit_eau_id" value="{$dataBassin.circuit_eau_id}">
 <input class="submit" type="submit" value="Supprimer">
+<div class="form-group center">
+<button type="submit" class="btn btn-primary button-valid">{t}Valider{/t}</button>
+<button class="btn btn-danger btn-delete">{t}Supprimer{/t}</button>
 </form>
+</div>
+</div>
 </div>
 {/if}
 </div>

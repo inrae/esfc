@@ -1,7 +1,7 @@
 <script>
 setDataTables("cpittagList");
 </script>
-<table id="cpittagList" class="tableliste">
+<table class="table table-bordered table-hover datatable" id="cpittagList" class="tableliste">
 <thead>
 <tr>
 <th>Valeur</th>
@@ -10,7 +10,7 @@ setDataTables("cpittagList");
 <th>Commentaire</th>
 </tr>
 </thead>
-<tdata>
+<tbody>
 {section name=lst loop=$dataPittag}
 <tr>
 <td>
@@ -27,5 +27,5 @@ setDataTables("cpittagList");
 <td>{$dataPittag[lst].pittag_commentaire}</td>
 </tr>
 {/section}
-</tdata>
+</tbody>
 </table>

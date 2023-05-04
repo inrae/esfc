@@ -5,7 +5,7 @@ Nouveau croisement...
 </a>
 {/if}
 
-<table id="ccroisement" class="tableliste">
+<table class="table table-bordered table-hover datatable" id="ccroisement" class="tableliste">
 <thead>
 <tr>
 <th>Nom du croisement</th>
@@ -22,7 +22,7 @@ Nouveau croisement...
 <th>Qualité génétique<br>du croisement</th>
 </tr>
 </thead>
-<tdata>
+<tbody>
 {section name=lst loop=$croisements}
 <!-- calculs -->
 {assign var="ovocyte" value=intval($croisements[lst].ovocyte_masse * $croisements[lst].ovocyte_densite)}
@@ -60,6 +60,6 @@ Nouveau croisement...
 <td>{$croisements[lst].croisement_qualite_libelle}</td>
 </tr>
 {/section}
-</tdata>
+</tbody>
 </table>
 

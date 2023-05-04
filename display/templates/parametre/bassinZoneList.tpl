@@ -1,4 +1,4 @@
-<h2>Zones d'implantation des bassins</h2>
+<h2{t}Zones d'implantation des bassins{/t}</h2>
 {if $droits["paramAdmin"] == 1}
 <a href="index.php?module=bassinZoneChange&bassin_zone_id=0">
 Nouveau...
@@ -7,13 +7,13 @@ Nouveau...
 <script>
 setDataTables("cbassinZoneList");
 </script>
-<table id="cbassinZoneList" class="tableliste">
+<table class="table table-bordered table-hover datatable" id="cbassinZoneList" class="tableliste">
 <thead>
 <tr>
 <th>libellé</th>
 </tr>
 </thead>
-<tdata>
+<tbody>
 {section name=lst loop=$data}
 <tr>
 <td>
@@ -28,5 +28,5 @@ setDataTables("cbassinZoneList");
 <td>
 </tr>
 {/section}
-</tdata>
+</tbody>
 </table>

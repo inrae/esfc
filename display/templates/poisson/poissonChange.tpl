@@ -33,16 +33,20 @@ Retour à la liste des poissons
  Retour au poisson
  </a>
  {/if}
- <h2>Modification d'un poisson</h2>
+ <h2{t}Modification d'un poisson{/t}</h2>
 <div class="formSaisie">
 <div>
-<form id="poissonForm" method="post" action="index.php?module=poissonWrite">
+<div class="row">
+<div class="col-md-6">
+<form class="form-horizontal" id="" method="post" action="index.php">
+<input type="hidden" name="action" value="Write">
+<input type="hidden" name="moduleBase" value=""> id="poissonForm" method="post" action="index.php?module=poissonWrite">
 <input type="hidden" name="poisson_id" value="{$data.poisson_id}">
 <input type="hidden" name="sexe_id" value="{$data.sexe_id}">
-<dl>
-<dt>Statut <span class="red">*</span> :</dt>
-<dd>
-<select id="cpoisson_statut_id" name="poisson_statut_id">
+<div class="form-group">
+<label for="" class="control-label col-md-4">{t}Statut <span class="red">*</span> :{/t}</label>
+<div class="col-md-8">
+<select id="" class="form-control" id="cpoisson_statut_id" name="poisson_statut_id">
 {section name=lst loop=$poissonStatut}
 <option value="{$poissonStatut[lst].poisson_statut_id}" {if $poissonStatut[lst].poisson_statut_id == $data.poisson_statut_id}selected{/if}>
 {$poissonStatut[lst].poisson_statut_libelle}
@@ -50,12 +54,12 @@ Retour à la liste des poissons
 {/section}
 </select>
 </dd>
-</dl>
+</div>
 
-<dl>
-<dt>Catégorie <span class="red">*</span> :</dt>
-<dd>
-<select id="ccategorie_id" name="categorie_id" >
+<div class="form-group">
+<label for="" class="control-label col-md-4">{t}Catégorie <span class="red">*</span> :{/t}</label>
+<div class="col-md-8">
+<select id="" class="form-control" id="ccategorie_id" name="categorie_id" >
 {section name=lst loop=$categorie}
 <option value="{$categorie[lst].categorie_id}" {if $categorie[lst].categorie_id == $data.categorie_id}selected{/if}>
 {$categorie[lst].categorie_libelle}
@@ -63,12 +67,12 @@ Retour à la liste des poissons
 {/section}
 </select>
 </dd>
-</dl>
+</div>
 
-<dl>
-<dt>Sexe :</dt>
-<dd>
-<select id="csexe_id" name="sexe_id" disabled>
+<div class="form-group">
+<label for="" class="control-label col-md-4">{t}Sexe :{/t}</label>
+<div class="col-md-8">
+<select id="" class="form-control" id="csexe_id" name="sexe_id" disabled>
 {section name=lst loop=$sexe}
 <option value="{$sexe[lst].sexe_id}" {if $sexe[lst].sexe_id == $data.sexe_id}selected{/if}>
 {$sexe[lst].sexe_libelle}
@@ -77,19 +81,19 @@ Retour à la liste des poissons
 </select>
 <input type="hidden" name=sexe_id" value="{$data.sexe_id}">
 </dd>
-</dl>
+</div>
 <fieldset>
 <legend>Pittag</legend>
-<dl>
-<dt>Numéro de pittag <span class="red">*</span> : </dt>
-<dd>
-<input name="pittag_id" type="hidden" value="{$dataPittag.pittag_id}">
+<div class="form-group">
+<label for="" class="control-label col-md-4">{t}Numéro de pittag <span class="red">*</span> : {/t}</label>
+<div class="col-md-8">
+<input id="" class="form-control" name="pittag_id" type="hidden" value="{$dataPittag.pittag_id}">
 <input type="text" name="pittag_valeur" id="cpittag_valeur" size="20" value="{$dataPittag.pittag_valeur}" pattern="(([A-F0-9][A-F0-9])*|[0-9]*)" placeholder="01AB2C ou 12345" title="Nombre hexadécimal ou numérique" autofocus>
 
 </dd>
-</dl>
-<dl>
-<dt>Type de marque :</dt>
+</div>
+<div class="form-group">
+<label for="" class="control-label col-md-4">{t}Type de marque :{/t}</label>
 <dd>
 <span class="erreur" ></span>
 <select name="pittag_type_id">
@@ -103,65 +107,65 @@ Sélectionnez le type de marque...
 {/section}
 </select>
 </dd>
-</dl>
-<dl>
-<dt>Date de pose :</dt>
-<dd>
-<input name="pittag_date_pose" class="date" id="cpittag_date_pose" value="{$dataPittag.pittag_date_pose}" title="Date de pose de la marque" >
+</div>
+<div class="form-group">
+<label for="" class="control-label col-md-4">{t}Date de pose :{/t}</label>
+<div class="col-md-8">
+<input id="" class="form-control" name="pittag_date_pose" class="date" id="cpittag_date_pose" value="{$dataPittag.pittag_date_pose}" title="Date de pose de la marque" >
 </dd>
-</dl>
+</div>
 
 </fieldset>
 
-<dl>
-<dt>Matricule<span class="red">*</span> :</dt>
-<dd>
-<input name="matricule" id="cmatricule" value="{$data.matricule}" size="30" required>
+<div class="form-group">
+<label for="" class="control-label col-md-4">{t}Matricule<span class="red">*</span> :{/t}</label>
+<div class="col-md-8">
+<input id="" class="form-control" name="matricule" id="cmatricule" value="{$data.matricule}" size="30" required>
 </dd>
-</dl>
+</div>
 
-<dl>
-<dt>Prénom :</dt>
-<dd>
-<input name="prenom" id="cprenom" value="{$data.prenom}"  size="30">
+<div class="form-group">
+<label for="" class="control-label col-md-4">{t}Prénom :{/t}</label>
+<div class="col-md-8">
+<input id="" class="form-control" name="prenom" id="cprenom" value="{$data.prenom}"  size="30">
 </dd>
-</dl>
+</div>
 
-<dl>
-<dt>Cohorte :</dt>
-<dd>
-<input name="cohorte" id="ccohorte" value="{$data.cohorte}" size="10">
+<div class="form-group">
+<label for="" class="control-label col-md-4">{t}Cohorte :{/t}</label>
+<div class="col-md-8">
+<input id="" class="form-control" name="cohorte" id="ccohorte" value="{$data.cohorte}" size="10">
 </dd>
-</dl>
+</div>
 
-<dl>
-<dt>Date de capture :</dt>
-<dd>
-<input name="capture_date" id="ccapture_date" class="date" value="{$data.capture_date}" >
+<div class="form-group">
+<label for="" class="control-label col-md-4">{t}Date de capture :{/t}</label>
+<div class="col-md-8">
+<input id="" class="form-control" name="capture_date" id="ccapture_date" class="date" value="{$data.capture_date}" >
 </dd>
-</dl>
+</div>
 
-<dl>
-<dt>Date de naissance :</dt>
-<dd>
-<input name="date_naissance" id="cdate_naissance" class="date" value="{$data.date_naissance}" >
+<div class="form-group">
+<label for="" class="control-label col-md-4">{t}Date de naissance :{/t}</label>
+<div class="col-md-8">
+<input id="" class="form-control" name="date_naissance" id="cdate_naissance" class="date" value="{$data.date_naissance}" >
 </dd>
-</dl>
+</div>
 
-<dl>
-<dt>Commentaire :</dt>
-<dd>
-<input name="commentaire" id="ccommentaire" class="commentaire" value="{$data.commentaire}">
+<div class="form-group">
+<label for="" class="control-label col-md-4">{t}Commentaire :{/t}</label>
+<div class="col-md-8">
+<input id="" class="form-control" name="commentaire" id="ccommentaire" class="commentaire" value="{$data.commentaire}">
 </dd>
-</dl>
+</div>
 <fieldset><legend>Marquage VIE au stade juvénile - lot</legend>
 <label>La sélection du modèle de marquage VIE entraîne une mise
 à jour automatique de la date de naissance, de la cohorte et des parents
 à partir des données de reproduction</label>
-<dl>
-<dt>Modèle de marque :</dt>
-<dd>
-<select name="vie_modele_id" title="Pour générer automatiquement les parents...">
+<div class="form-group">
+<label for="" class="control-label col-md-4">{t}Modèle de marque :{/t}</label>
+<div class="col-md-8">
+<select id="" class="form-control" name="vie_modele_id" title="Pour générer automatiquement les parents...">
 <option value="" {if $data.vie_modele_id == ""}selected{/if}>
 Sélectionnez pour générer les parents...
 </option>
@@ -172,23 +176,35 @@ Sélectionnez pour générer les parents...
 {/section}
 </select>
 </dd>
-</dl>
+</div>
 </fieldset>
 
-<dl></dl>
-<div class="formBouton">
-<input class="submit" type="submit" value="Enregistrer">
-</div>
+<div class="form-group"></div>
+
+<div class="form-group center">
+<button type="submit" class="btn btn-primary button-valid">{t}Valider{/t}</button>
+<button class="btn btn-danger btn-delete">{t}Supprimer{/t}</button>
 </form>
+</div>
+</div>
 
 
 {if $data.poisson_id > 0 &&$droits["poissonAdmin"] == 1}
 <div class="formBouton">
-<form action="index.php" method="post" onSubmit='return confirmSuppression("Confirmez-vous la suppression ?")'>
+<div class="row">
+<div class="col-md-6">
+<form class="form-horizontal" id="" method="post" action="index.php">
+<input type="hidden" name="action" value="Write">
+<input type="hidden" name="moduleBase" value=""> action="index.php" method="post" onSubmit='return confirmSuppression("Confirmez-vous la suppression ?")'>
 <input type="hidden" name="poisson_id" value="{$data.poisson_id}">
 <input type="hidden" name="module" value="poissonDelete">
 <input class="submit" type="submit" value="Supprimer">
+<div class="form-group center">
+<button type="submit" class="btn btn-primary button-valid">{t}Valider{/t}</button>
+<button class="btn btn-danger btn-delete">{t}Supprimer{/t}</button>
 </form>
+</div>
+</div>
 </div>
 {/if}
 </div>

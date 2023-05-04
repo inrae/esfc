@@ -3,7 +3,7 @@
 Nouvelle biopsie...
 </a>
 {/if}
-<table id="cbiopsie" class="tableliste">
+<table class="table table-bordered table-hover datatable" id="cbiopsie" class="tableliste">
 <thead>
 <tr>
 <th>Date</th>
@@ -20,7 +20,7 @@ Nouvelle biopsie...
 <th>Commentaire<br>général</th>
 </tr>
 </thead>
-<tdata>
+<tbody>
 {section name=lst loop=$dataBiopsie}
 <tr>
 <td>
@@ -64,5 +64,5 @@ Nouvelle biopsie...
 <td >{$dataBiopsie[lst].biopsie_commentaire}</td>
 </tr>
 {/section}
-</tdata>
+</tbody>
 </table>

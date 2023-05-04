@@ -1,7 +1,7 @@
 <script>
 setDataTables("cpathologieList");
 </script>
-<table id="cpathologieList" class="tableliste">
+<table class="table table-bordered table-hover datatable" id="cpathologieList" class="tableliste">
 <thead>
 <tr>
 <th>Événement associé</th>
@@ -12,7 +12,7 @@ setDataTables("cpathologieList");
 
 </tr>
 </thead>
-<tdata>
+<tbody>
 {section name=lst loop=$dataPatho}
 <tr>
 <td>
@@ -31,5 +31,5 @@ setDataTables("cpathologieList");
 <td>{$dataPatho[lst].pathologie_commentaire}</td>
 </tr>
 {/section}
-</tdata>
+</tbody>
 </table>

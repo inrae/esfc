@@ -27,48 +27,52 @@ $(document).ready(function() {
 <div class="formSaisie">
 <div>
 
-<form class="cmxform" id="requeteForm" method="post" action="index.php">
+<div class="row">
+<div class="col-md-6">
+<form class="form-horizontal" id="" method="post" action="index.php">
+<input type="hidden" name="action" value="Write">
+<input type="hidden" name="moduleBase" value=""> class="cmxform" id="requeteForm" method="post" action="index.php">
 <input type="hidden" id="module" name="module" value="requeteWrite">
 <input type="hidden" name="requete_id" value="{$data.requete_id}">
-<dl>
-<dt>
+<div class="form-group">
+<label for="" class="control-label col-md-4">{t}
 Description de la requête <span class="red">*</span> :
-</dt>
-<dd>
-<input name="title" class="commentaire modif" type="text" value="{$data.title}" required autofocus/>
+{/t}</label>
+<div class="col-md-8">
+<input id="" class="form-control" name="title" class="commentaire modif" type="text" value="{$data.title}" required autofocus/>
 </dd>
-</dl>
-<dl>
-<dt>Code SQL <span class="red">*</span> : <b>SELECT</b></dt>
+</div>
+<div class="form-group">
+<label for="" class="control-label col-md-4">{t}Code SQL <span class="red">*</span> : <b>SELECT</b>{/t}</label>
 <dd>
 <textarea class="modif" name="body" cols="70" rows="10" wrap="soft" required>{$data.body}</textarea>
 </dd>
-</dl>
-<dl>
-<dt>Champs dates de la requête (séparés par une virgule) :</dt>
-<dd>
-<input class="modif" name="datefields" value="{$data.datefields}" placeholder="evenement_date,morphologie_date">
-</dl>
-<dl>
-<dt>date de création :</dt>
-<dd>
-<input name="creation_date" value="{$data.creation_date}" readonly>
+</div>
+<div class="form-group">
+<label for="" class="control-label col-md-4">{t}Champs dates de la requête (séparés par une virgule) :{/t}</label>
+<div class="col-md-8">
+<input id="" class="form-control" class="modif" name="datefields" value="{$data.datefields}" placeholder="evenement_date,morphologie_date">
+</div>
+<div class="form-group">
+<label for="" class="control-label col-md-4">{t}date de création :{/t}</label>
+<div class="col-md-8">
+<input id="" class="form-control" name="creation_date" value="{$data.creation_date}" readonly>
 </dd>
-</dl>
-<dl>
-<dt>par :</dt>
-<dd>
-<input name="login" value="{$data.login}" readonly>
+</div>
+<div class="form-group">
+<label for="" class="control-label col-md-4">{t}par :{/t}</label>
+<div class="col-md-8">
+<input id="" class="form-control" name="login" value="{$data.login}" readonly>
 </dd>
-</dl>
-<dl>
-<dt>Date de dernière exécution :</dt>
-<dd>
-<input name="last_exec" value="{$data.last_exec}" readonly>
+</div>
+<div class="form-group">
+<label for="" class="control-label col-md-4">{t}Date de dernière exécution :{/t}</label>
+<div class="col-md-8">
+<input id="" class="form-control" name="last_exec" value="{$data.last_exec}" readonly>
 </dd>
-</dl>
+</div>
 
-<dl></dl>
+<div class="form-group"></div>
 <div class="formBouton">
 {if $droits.requeteAdmin == 1}
 <input id="save" class="submit" type="submit" value="Enregistrer">
@@ -83,7 +87,12 @@ Description de la requête <span class="red">*</span> :
 {/if}
 {/if}
 </div>
+<div class="form-group center">
+<button type="submit" class="btn btn-primary button-valid">{t}Valider{/t}</button>
+<button class="btn btn-danger btn-delete">{t}Supprimer{/t}</button>
 </form>
+</div>
+</div>
 </div>
 </div>
 <script>

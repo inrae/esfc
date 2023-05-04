@@ -1,7 +1,7 @@
 <script>
 setDataTables("cparenteList");
 </script>
-<table id="cparenteList" class="tableliste">
+<table class="table table-bordered table-hover datatable" id="cparenteList" class="tableliste">
 <thead>
 <tr>
 <th>Événement associé</th>

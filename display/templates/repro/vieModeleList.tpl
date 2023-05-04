@@ -1,7 +1,7 @@
 <H2>Modèles d'implantation de marques VIE</H2>
 <form method="get" action="index.php" id="search">
 <input type="hidden" name="module" value="vieModeleList">
-<table class="tableaffichage">
+<table class="table table-bordered table-hover datatable" class="tableaffichage">
 <tr><td>Année : 
 <select name="annee">
 {section name=lst loop=$annees}
@@ -19,7 +19,7 @@
 {if $droits.reproGestion == 1}
 <a href="index.php?module=vieModeleChange&vie_modele_id=0">Nouveau modèle d'implantation VIE...</a>
 {/if}
-<table id="cvieModelelist" class="tableliste">
+<table class="table table-bordered table-hover datatable" id="cvieModelelist" class="tableliste">
 <thead>
 <tr>
 <th>Couleur</th>
@@ -27,7 +27,7 @@
 <th>Marque 2</th>
 </tr>
 </thead>
-<tdata>
+<tbody>
 {section name=lst loop=$data}
 <tr>
 <td>
@@ -43,5 +43,5 @@
 <td>{$data[lst].vie_implantation_libelle2}</td>
 </tr>
 {/section}
-</tdata>
+</tbody>
 </table>

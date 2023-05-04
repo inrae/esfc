@@ -14,62 +14,78 @@ $(document).ready(function() {
 Retour au reproducteur
 </a>
 {include file="repro/poissonCampagneDetail.tpl"}
-<h2>Modification d'un dosage sanguin</h2>
+<h2{t}Modification d'un dosage sanguin{/t}</h2>
 <div class="formSaisie">
 <div>
-<form id="dosageSanguinForm" method="post" action="index.php?module=dosageSanguinWrite">
+<div class="row">
+<div class="col-md-6">
+<form class="form-horizontal" id="" method="post" action="index.php">
+<input type="hidden" name="action" value="Write">
+<input type="hidden" name="moduleBase" value=""> id="dosageSanguinForm" method="post" action="index.php?module=dosageSanguinWrite">
 <input type="hidden" name="dosage_sanguin_id" value="{$data.dosage_sanguin_id}">
 <input type="hidden" name="poisson_campagne_id" value="{$data.poisson_campagne_id}">
 <fieldset>
 <legend>Dosage sanguin</legend>
-<dl>
-<dt>Date du prélèvement <span class="red">*</span> :</dt>
-<dd>
-<input class="date" name="dosage_sanguin_date" required size="10" maxlength="10" value="{$data.dosage_sanguin_date}">
+<div class="form-group">
+<label for="" class="control-label col-md-4">{t}Date du prélèvement <span class="red">*</span> :{/t}</label>
+<div class="col-md-8">
+<input id="" class="form-control" class="date" name="dosage_sanguin_date" required size="10" maxlength="10" value="{$data.dosage_sanguin_date}">
 </dd>
-</dl>
-<dl>
-<dt>Taux E2 :</dt>
-<dd>
-<input class="taux" name="tx_e2" value="{$data.tx_e2}">
-</dd>
-</dl>
-<dl>
-<dt>Taux E2 (forme textuelle, pour des fourchettes ou des tendances) :</dt>
-<dd>
-<input name="tx_e2_texte" size="20" value="{$data.tx_e2_texte}">
-</dd>
-</dl>
-<dl>
-<dt>Taux de calcium :</dt>
-<dd>
-<input class="taux" name="tx_calcium" value="{$data.tx_calcium}">
-</dd>
-</dl>
-<dl>
-<dt>Taux d'hématocrite :</dt>
-<dd>
-<input class="taux" name="tx_hematocrite" value="{$data.tx_hematocrite}">
-</dd>
-</dl>
-<dl>
-<dt>Commentaires :</dt>
-<dd>
-<input name="dosage_sanguin_commentaire" size="30" value="{$data.dosage_sanguin_commentaire}">
-</dl>
-</fieldset>
-<div class="formBouton">
-<input class="submit" type="submit" value="Enregistrer">
 </div>
+<div class="form-group">
+<label for="" class="control-label col-md-4">{t}Taux E2 :{/t}</label>
+<div class="col-md-8">
+<input id="" class="form-control" class="taux" name="tx_e2" value="{$data.tx_e2}">
+</dd>
+</div>
+<div class="form-group">
+<label for="" class="control-label col-md-4">{t}Taux E2 (forme textuelle, pour des fourchettes ou des tendances) :{/t}</label>
+<div class="col-md-8">
+<input id="" class="form-control" name="tx_e2_texte" size="20" value="{$data.tx_e2_texte}">
+</dd>
+</div>
+<div class="form-group">
+<label for="" class="control-label col-md-4">{t}Taux de calcium :{/t}</label>
+<div class="col-md-8">
+<input id="" class="form-control" class="taux" name="tx_calcium" value="{$data.tx_calcium}">
+</dd>
+</div>
+<div class="form-group">
+<label for="" class="control-label col-md-4">{t}Taux d'hématocrite :{/t}</label>
+<div class="col-md-8">
+<input id="" class="form-control" class="taux" name="tx_hematocrite" value="{$data.tx_hematocrite}">
+</dd>
+</div>
+<div class="form-group">
+<label for="" class="control-label col-md-4">{t}Commentaires :{/t}</label>
+<div class="col-md-8">
+<input id="" class="form-control" name="dosage_sanguin_commentaire" size="30" value="{$data.dosage_sanguin_commentaire}">
+</div>
+</fieldset>
+
+<div class="form-group center">
+<button type="submit" class="btn btn-primary button-valid">{t}Valider{/t}</button>
+<button class="btn btn-danger btn-delete">{t}Supprimer{/t}</button>
 </form>
+</div>
+</div>
 {if $data.dosage_sanguin_id > 0 &&$droits["reproAdmin"] == 1}
 <div class="formBouton">
-<form action="index.php" method="post" onSubmit='return confirmSuppression("Confirmez-vous la suppression ?")'>
+<div class="row">
+<div class="col-md-6">
+<form class="form-horizontal" id="" method="post" action="index.php">
+<input type="hidden" name="action" value="Write">
+<input type="hidden" name="moduleBase" value=""> action="index.php" method="post" onSubmit='return confirmSuppression("Confirmez-vous la suppression ?")'>
 <input type="hidden" name="module" value="dosageSanguinDelete">
 <input type="hidden" name="dosage_sanguin_id" value="{$data.dosage_sanguin_id}">
 <input type="hidden" name="poisson_campagne_id" value="{$data.poisson_campagne_id}">
 <input class="submit" type="submit" value="Supprimer">
+<div class="form-group center">
+<button type="submit" class="btn btn-primary button-valid">{t}Valider{/t}</button>
+<button class="btn btn-danger btn-delete">{t}Supprimer{/t}</button>
 </form>
+</div>
+</div>
 </div>
 {/if}
 </div>

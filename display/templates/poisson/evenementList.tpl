@@ -1,7 +1,7 @@
 <script>
 setDataTables("cevenementList");
 </script>
-<table id="cevenementList" class="tableliste">
+<table class="table table-bordered table-hover datatable" id="cevenementList" class="tableliste">
 <thead>
 <tr>
 <th>Nature</th>
@@ -9,7 +9,7 @@ setDataTables("cevenementList");
 <th>Commentaire</th>
 </tr>
 </thead>
-<tdata>
+<tbody>
 {section name=lst loop=$dataEvenement}
 <tr>
 <td>
@@ -25,5 +25,5 @@ setDataTables("cevenementList");
 <td>{$dataEvenement[lst].evenement_commentaire}</td>
 </tr>
 {/section}
-</tdata>
+</tbody>
 </table>

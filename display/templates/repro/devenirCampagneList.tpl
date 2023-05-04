@@ -7,7 +7,7 @@ $(document).ready(function() {
 </script>
 <form method="get" action="index.php" id="search">
 <input type="hidden" name="module" value="devenirList">
-<table class="tableaffichage">
+<table class="table table-bordered table-hover datatable" class="tableaffichage">
 <tr><td>Année : 
 <select name="annee" id="annee">
 {section name=lst loop=$annees}
@@ -21,5 +21,5 @@ $(document).ready(function() {
 </tr>
 </table>
 </form>
-<h2>Destination des poissons</h2>
+<h2{t}Destination des poissons{/t}</h2>
 {include file="repro/devenirList.tpl"}

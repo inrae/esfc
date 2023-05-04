@@ -10,7 +10,7 @@ var chart = c3.generate(JSON.parse(chartcontent));
 });
 </script>
 
-<h2>Visualisation des analyses d'eau des circuits actifs</h2>
+<h2{t}Visualisation des analyses d'eau des circuits actifs{/t}</h2>
 <form method="get" action="index.php">
     <input type="hidden" name="module" value="analyseGraph">
     <table class="tableaffichage">

@@ -13,7 +13,7 @@ setDataTablesFull("cbassinPoissonList");
 <th>Masse</th>
 </tr>
 </thead>
-<tdata>
+<tbody>
 {assign var=mt value=0}
 {section name=lst loop=$dataPoisson}
 <tr>
@@ -35,7 +35,7 @@ setDataTablesFull("cbassinPoissonList");
 {/if}
 </tr>
 {/section}
-</tdata>
+</tbody>
 </table>
 {if $mt > 0}
 <br>

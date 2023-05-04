@@ -1,7 +1,7 @@
 {include file="bassin/bassinSearch.tpl"}
 {if $isSearch == 1}
 
-<table class="tableaffichage">
+<table class="table table-bordered table-hover datatable" class="tableaffichage">
 <tr>
 <td>
 Récapitulatif hebdomadaire des quantités d'aliments distribués<br>
@@ -19,7 +19,7 @@ du <input class="date" name="dateDebut" value="{$dateDebut}"> au <input class="d
 <script>
 setDataTables("cbassinList",true, true, false, 50);
 </script>
-<table id="cbassinList" class="tableliste">
+<table class="table table-bordered table-hover datatable" id="cbassinList" class="tableliste">
 <thead>
 <tr>
 <th>Nom</th>

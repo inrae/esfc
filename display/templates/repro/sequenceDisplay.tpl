@@ -1,4 +1,4 @@
-<h2>Détail d'un séquence</h2>
+<h2{t}Détail d'un séquence{/t}</h2>
 <a href="index.php?module=sequenceList">
 Retour à la liste des séquences
 </a>

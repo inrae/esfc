@@ -3,7 +3,7 @@
 Rattacher une nouvelle séquence...
 </a>
 {/if}
-<table id="csequence" class="tableliste">
+<table class="table table-bordered table-hover datatable" id="csequence" class="tableliste">
 <thead>
 <tr>
 <th>Date<br>début</th>
@@ -13,7 +13,7 @@ Rattacher une nouvelle séquence...
 <th>Statut du poisson<br>pour la séquence</th>
 </tr>
 </thead>
-<tdata>
+<tbody>
 {section name=lst loop=$dataSequence}
 <tr>
 <td>
@@ -30,6 +30,6 @@ Rattacher une nouvelle séquence...
 <td>{$dataSequence[lst].ps_statut_libelle}</td>
 </tr>
 {/section}
-</tdata>
+</tbody>
 </table>
 <br>

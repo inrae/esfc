@@ -75,10 +75,14 @@ Retour à la liste des poissons
  Retour au poisson
  </a>
  {include file="poisson/poissonDetail.tpl"}
-<h2>Modification d'un événément</h2>
+<h2{t}Modification d'un événément{/t}</h2>
 <div class="formSaisie">
 <div>
-<form id="evenementForm" method="post" action="index.php?module=evenementWrite" enctype="multipart/form-data">
+<div class="row">
+<div class="col-md-6">
+<form class="form-horizontal" id="" method="post" action="index.php">
+<input type="hidden" name="action" value="Write">
+<input type="hidden" name="moduleBase" value=""> id="evenementForm" method="post" action="index.php?module=evenementWrite" enctype="multipart/form-data">
 <input type="hidden" name="evenement_id" value="{$data.evenement_id}">
 <input type="hidden" name="poisson_id" value="{$data.poisson_id}">
 <input type="hidden" name="morphologie_id" value="{$dataMorpho.morphologie_id}">
@@ -97,16 +101,14 @@ Retour à la liste des poissons
 <input type="hidden" name="dosage_sanguin_id" id="dosage_sanguin_id" value="{$dataDosageSanguin.dosage_sanguin_id}">
 <input type="hidden" name="genetique_id" id="genetique_id" value="{$dataGenetique.genetique_id}">
 <input type="hidden" name="document_id" value="0">
-<div class="formBouton">
-<input class="submit" type="submit" value="Enregistrer">
-</div>
+
 <fieldset>
 <legend>Données liées à l'événement lui-même</legend>
-<dl>
-<dt>
-Type d'événement <span class="red">*</span> :</dt>
-<dd>
-<select name="evenement_type_id">
+<div class="form-group">
+<label for="" class="control-label col-md-4">{t}
+Type d'événement <span class="red">*</span> :{/t}</label>
+<div class="col-md-8">
+<select id="" class="form-control" name="evenement_type_id">
 {section name=lst loop=$evntType}
 <option value="{$evntType[lst].evenement_type_id}" {if $evntType[lst].evenement_type_id == $data.evenement_type_id}selected{/if}>
 {$evntType[lst].evenement_type_libelle}
@@ -114,18 +116,18 @@ Type d'événement <span class="red">*</span> :</dt>
 {/section}
 </select>
 </dd>
-</dl>
-<dl>
-<dt>Date <span class="red">*</span> :</dt>
-<dd>
-<input class="date" name="evenement_date" id="cevenement_date" required size="10" maxlength="10" value="{$data.evenement_date}">
+</div>
+<div class="form-group">
+<label for="" class="control-label col-md-4">{t}Date <span class="red">*</span> :{/t}</label>
+<div class="col-md-8">
+<input id="" class="form-control" class="date" name="evenement_date" id="cevenement_date" required size="10" maxlength="10" value="{$data.evenement_date}">
 </dd>
-</dl>
-<dl>
-<dt>Commentaire général :</dt>
-<dd>
-<input class="commentaire" name="evenement_commentaire" value="{$data.evenement_commentaire}">
-</dl>
+</div>
+<div class="form-group">
+<label for="" class="control-label col-md-4">{t}Commentaire général :{/t}</label>
+<div class="col-md-8">
+<input id="" class="form-control" class="commentaire" name="evenement_commentaire" value="{$data.evenement_commentaire}">
+</div>
 </fieldset>
 
 <div id="afficher" class="masquageText">Afficher tous les éléments</div>
@@ -133,46 +135,46 @@ Type d'événement <span class="red">*</span> :</dt>
 <fieldset class="fsMasquable">
 <legend>Données morphologiques</legend>
 <div class="masquage">
-<dl>
-<dt>Longueur à la fourche (cm) :</dt>
-<dd>
-<input name="longueur_fourche" id="clongueur_fourche" value="{$dataMorpho.longueur_fourche}" size="10" maxlength="10" title="Valeur numérique" pattern="[0-9]+(\.[0-9]+)?">
+<div class="form-group">
+<label for="" class="control-label col-md-4">{t}Longueur à la fourche (cm) :{/t}</label>
+<div class="col-md-8">
+<input id="" class="form-control" name="longueur_fourche" id="clongueur_fourche" value="{$dataMorpho.longueur_fourche}" size="10" maxlength="10" title="Valeur numérique" pattern="[0-9]+(\.[0-9]+)?">
 </dd>
-</dl>
-<dl>
-<dt>Longueur totale (cm) :</dt>
-<dd>
-<input name="longueur_totale" id="clongueur_totale" value="{$dataMorpho.longueur_totale}" size="10" maxlength="10" title="Valeur numérique" pattern="[0-9]+(\.[0-9]+)?">
+</div>
+<div class="form-group">
+<label for="" class="control-label col-md-4">{t}Longueur totale (cm) :{/t}</label>
+<div class="col-md-8">
+<input id="" class="form-control" name="longueur_totale" id="clongueur_totale" value="{$dataMorpho.longueur_totale}" size="10" maxlength="10" title="Valeur numérique" pattern="[0-9]+(\.[0-9]+)?">
 </dd>
-</dl>
-<dl>
-<dt>Masse (g) :</dt>
-<dd>
-<input name="masse" id="cmasse" value="{$dataMorpho.masse}" size="10" maxlength="10" title="Valeur numérique" pattern="[0-9]+(\.[0-9]+)?">
+</div>
+<div class="form-group">
+<label for="" class="control-label col-md-4">{t}Masse (g) :{/t}</label>
+<div class="col-md-8">
+<input id="" class="form-control" name="masse" id="cmasse" value="{$dataMorpho.masse}" size="10" maxlength="10" title="Valeur numérique" pattern="[0-9]+(\.[0-9]+)?">
 </dd>
-</dl>
-<dl>
-<dt>Circonférence (cm) :</dt>
-<dd>
-<input name="circonference" id="circonference" value="{$dataMorpho.circonference}" size="10" maxlength="10" title="Valeur numérique" pattern="[0-9]+(\.[0-9]+)?">
+</div>
+<div class="form-group">
+<label for="" class="control-label col-md-4">{t}Circonférence (cm) :{/t}</label>
+<div class="col-md-8">
+<input id="" class="form-control" name="circonference" id="circonference" value="{$dataMorpho.circonference}" size="10" maxlength="10" title="Valeur numérique" pattern="[0-9]+(\.[0-9]+)?">
 </dd>
-</dl>
-<dl>
-<dt>Commentaire :</dt>
-<dd>
-<input name="morphologie_commentaire" id="cmorphologie_commentaire" value="{$dataMorpho.morphologie_commentaire}" size="40">
+</div>
+<div class="form-group">
+<label for="" class="control-label col-md-4">{t}Commentaire :{/t}</label>
+<div class="col-md-8">
+<input id="" class="form-control" name="morphologie_commentaire" id="cmorphologie_commentaire" value="{$dataMorpho.morphologie_commentaire}" size="40">
 </dd>
-</dl>
+</div>
 </div>
 </fieldset>
 
 <fieldset class="fsMasquable">
 <legend>Pathologie</legend>
 <div class="masquage">
-<dl>
-<dt>Type de pathologie <span class="red">*</span> :</dt>
-<dd>
-<select name="pathologie_type_id">
+<div class="form-group">
+<label for="" class="control-label col-md-4">{t}Type de pathologie <span class="red">*</span> :{/t}</label>
+<div class="col-md-8">
+<select id="" class="form-control" name="pathologie_type_id">
 <option value="" {if $dataPatho.pathologie_type_id == ""}selected{/if}>
 Sélectionnez la pathologie...
 </option>
@@ -183,19 +185,19 @@ Sélectionnez la pathologie...
 {/section}
 </select>
 </dd>
-</dl>
-<dl>
-<dt>Valeur numérique associée :</dt>
-<dd>
-<input name="pathologie_valeur" id="cpathologie_valeur" value="{$dataPatho.pathologie_valeur}" title="Valeur numérique" size="10" pattern="[0-9]+(\.[0-9]+)?">
+</div>
+<div class="form-group">
+<label for="" class="control-label col-md-4">{t}Valeur numérique associée :{/t}</label>
+<div class="col-md-8">
+<input id="" class="form-control" name="pathologie_valeur" id="cpathologie_valeur" value="{$dataPatho.pathologie_valeur}" title="Valeur numérique" size="10" pattern="[0-9]+(\.[0-9]+)?">
 </dd>
-</dl>
-<dl>
-<dt>Commentaire :</dt>
-<dd>
-<input name="pathologie_commentaire" id="cpathologie_commentaire" value="{$dataPatho.pathologie_commentaire}" size="40">
+</div>
+<div class="form-group">
+<label for="" class="control-label col-md-4">{t}Commentaire :{/t}</label>
+<div class="col-md-8">
+<input id="" class="form-control" name="pathologie_commentaire" id="cpathologie_commentaire" value="{$dataPatho.pathologie_commentaire}" size="40">
 </dd>
-</dl>
+</div>
 </div>
 </fieldset>
 <fieldset class="fsMasquable">
@@ -205,10 +207,10 @@ Sélectionnez la pathologie...
 {if $dataTransfert.bassin_origine > 0}
 {$bselect = $dataTransfert.bassin_origine}
 {/if}
-<dl>
-<dt>Bassin d'origine <span class="red">*</span> : </dt>
-<dd>
-<select name="bassin_origine" id="bassin_origine">
+<div class="form-group">
+<label for="" class="control-label col-md-4">{t}Bassin d'origine <span class="red">*</span> : {/t}</label>
+<div class="col-md-8">
+<select id="" class="form-control" name="bassin_origine" id="bassin_origine">
 <option value="" {if $bselect == 0} selected {/if}>
 Sélectionnez le bassin d'origine...
 </option>
@@ -220,11 +222,11 @@ Sélectionnez le bassin d'origine...
 </select>
 <span class="erreur"></span>
 </dd>
-</dl>
-<dl>
-<dt>Bassin de destination <span class="red">*</span> : </dt>
-<dd>
-<select name="bassin_destination" id="bassin_destination">
+</div>
+<div class="form-group">
+<label for="" class="control-label col-md-4">{t}Bassin de destination <span class="red">*</span> : {/t}</label>
+<div class="col-md-8">
+<select id="" class="form-control" name="bassin_destination" id="bassin_destination">
 <option value="" {if $dataTransfert.bassin_destination == ""} selected {/if}>
 Sélectionnez le bassin de destination...
 </option>
@@ -236,23 +238,23 @@ Sélectionnez le bassin de destination...
 </select>
 <span class="erreur"style="display:none; color:red;"></span>
 </dd>
-</dl>
-<dl>
-<dt>Commentaire :</dt>
-<dd>
-<input name="transfert_commentaire" value="{$dataTransfert.transfert_commentaire}" size="40">
+</div>
+<div class="form-group">
+<label for="" class="control-label col-md-4">{t}Commentaire :{/t}</label>
+<div class="col-md-8">
+<input id="" class="form-control" name="transfert_commentaire" value="{$dataTransfert.transfert_commentaire}" size="40">
 </dd>
-</dl>
+</div>
 </div>
 </fieldset>
 <fieldset class="fsMasquable">
 <legend>Échographie</legend>
 <div class="masquage">
-<dl>
-<dl>
-<dt>Stade des gonades :</dt>
-<dd>
-<select name="stade_gonade_id">
+<div class="form-group">
+<div class="form-group">
+<label for="" class="control-label col-md-4">{t}Stade des gonades :{/t}</label>
+<div class="col-md-8">
+<select id="" class="form-control" name="stade_gonade_id">
 <option value="" {if $dataEcho.stade_gonade_id == ""}selected{/if}>Sélectionnez...</option>
 {section name=lst loop=$gonades}
 <option value="{$gonades[lst].stade_gonade_id}" {if $dataEcho.stade_gonade_id == $gonades[lst].stade_gonade_id}selected{/if}>
@@ -261,12 +263,12 @@ Sélectionnez le bassin de destination...
 {/section}
 </select>
 </dd>
-</dl>
+</div>
 
-<dl>
-<dt>Stade des œufs :</dt>
-<dd>
-<select name="stade_oeuf_id">
+<div class="form-group">
+<label for="" class="control-label col-md-4">{t}Stade des œufs :{/t}</label>
+<div class="col-md-8">
+<select id="" class="form-control" name="stade_oeuf_id">
 <option value="" {if $dataEcho.stade_oeuf_id == ""}selected{/if}>Sélectionnez...</option>
 {section name=lst loop=$oeufs}
 <option value="{$oeufs[lst].stade_oeuf_id}" {if $dataEcho.stade_oeuf_id == $oeufs[lst].stade_oeuf_id}selected{/if}>
@@ -275,42 +277,42 @@ Sélectionnez le bassin de destination...
 {/section}
 </select>
 </dd>
-</dl>
+</div>
 
-<dt>Résultat qualitatif de l'échographie <span class="red">*</span> :</dt>
-<dd>
-<input name="echographie_commentaire" value="{$dataEcho.echographie_commentaire}" size="40">
+<label for="" class="control-label col-md-4">{t}Résultat qualitatif de l'échographie <span class="red">*</span> :{/t}</label>
+<div class="col-md-8">
+<input id="" class="form-control" name="echographie_commentaire" value="{$dataEcho.echographie_commentaire}" size="40">
 </dd>
-</dl>
-<dl>
-<dt>Images(s) à importer :
+</div>
+<div class="form-group">
+<label for="" class="control-label col-md-4">{t}Images(s) à importer :
 <br>(doc, jpg, png, pdf, xls, xlsx, docx, odt, ods, csv)
-</dt>
-<dt><input type="file" name="documentName[]" size="40" multiple></dt>
-</dl>
-<dl>
-<dt>Description des images :</dt>
-<dd>
-<input type="text" name="document_description" value="" size="40">
+{/t}</label>
+<label for="" class="control-label col-md-4">{t}<input type="file" name="documentName[]" size="40" multiple>{/t}</label>
+</div>
+<div class="form-group">
+<label for="" class="control-label col-md-4">{t}Description des images :{/t}</label>
+<div class="col-md-8">
+<input id="" class="form-control" type="text" name="document_description" value="" size="40">
 </dd>
-</dl>
-<dl>
-<dt>Date de création (ou de prise de vue) :</dt>
-<dd>
-<input name="document_date_creation" class="date" value="{$data.document_date_creation}">
+</div>
+<div class="form-group">
+<label for="" class="control-label col-md-4">{t}Date de création (ou de prise de vue) :{/t}</label>
+<div class="col-md-8">
+<input id="" class="form-control" name="document_date_creation" class="date" value="{$data.document_date_creation}">
 </dd>
-</dl>
+</div>
 </div>
 </fieldset>
 
 <fieldset class="fsMasquable">
 <legend>Anesthésie</legend>
 <div class="masquage">
-<dl>
+<div class="form-group">
 
-<dt>Produit utilisé <span class="red">*</span> :</dt>
-<dd>
-<select name="anesthesie_produit_id">
+<label for="" class="control-label col-md-4">{t}Produit utilisé <span class="red">*</span> :{/t}</label>
+<div class="col-md-8">
+<select id="" class="form-control" name="anesthesie_produit_id">
 <option value="" {if $dataAnesthesie.anesthesie_produit_id==""}selected{/if}>Sélectionnez le produit</option>
 {section name=lst loop=$produit}
 <option value="{$produit[lst].anesthesie_produit_id}" {if $produit[lst].anesthesie_produit_id == $dataAnesthesie.anesthesie_produit_id}selected{/if}>
@@ -319,62 +321,63 @@ Sélectionnez le bassin de destination...
 {/section}
 </select>
 </dd>
-<dt>Dosage (mg/l) : </dt>
-<dd>
-<input class="taux" name="anesthesie_dosage" value="{$dataAnesthesie.anesthesie_dosage}">
+<label for="" class="control-label col-md-4">{t}Dosage (mg/l) : {/t}</label>
+<div class="col-md-8">
+<input id="" class="form-control" class="taux" name="anesthesie_dosage" value="{$dataAnesthesie.anesthesie_dosage}">
 </dd>
-</dl>
-<dl>
-<dt>Commentaire :</dt>
-<dd>
-<input class="commentaire" name="anesthesie_commentaire" value="{$dataAnesthesie.anesthesie_commentaire}">
+</div>
+<div class="form-group">
+<label for="" class="control-label col-md-4">{t}Commentaire :{/t}</label>
+<div class="col-md-8">
+<input id="" class="form-control" class="commentaire" name="anesthesie_commentaire" value="{$dataAnesthesie.anesthesie_commentaire}">
 </dd>
-</dl>
+</div>
 
 </div>
 </fieldset>
 
 <fieldset class="fsMasquable">
 <legend>Dosage sanguin</legend>
-<dl>
-<dt>Taux E2 :</dt>
-<dd>
-<input class="taux" name="tx_e2" value="{$dataDosageSanguin.tx_e2}">
+<div class="form-group">
+<label for="" class="control-label col-md-4">{t}Taux E2 :{/t}</label>
+<div class="col-md-8">
+<input id="" class="form-control" class="taux" name="tx_e2" value="{$dataDosageSanguin.tx_e2}">
 </dd>
-</dl>
-<dl>
-<dt>Taux E2 (forme textuelle) :</dt>
-<dd>
-<input name="tx_e2_texte" size="20" value="{$dataDosageSanguin.tx_e2_texte}">
+</div>
+<div class="form-group">
+<label for="" class="control-label col-md-4">{t}Taux E2 (forme textuelle) :{/t}</label>
+<div class="col-md-8">
+<input id="" class="form-control" name="tx_e2_texte" size="20" value="{$dataDosageSanguin.tx_e2_texte}">
 </dd>
-</dl>
-<dl>
-<dt>Taux de calcium :</dt>
-<dd>
-<input class="taux" name="tx_calcium" value="{$dataDosageSanguin.tx_calcium}">
+</div>
+<div class="form-group">
+<label for="" class="control-label col-md-4">{t}Taux de calcium :{/t}</label>
+<div class="col-md-8">
+<input id="" class="form-control" class="taux" name="tx_calcium" value="{$dataDosageSanguin.tx_calcium}">
 </dd>
-</dl>
-<dl>
-<dt>Taux d'hématocrite :</dt>
-<dd>
-<input class="taux" name="tx_hematocrite" value="{$dataDosageSanguin.tx_hematocrite}">
+</div>
+<div class="form-group">
+<label for="" class="control-label col-md-4">{t}Taux d'hématocrite :{/t}</label>
+<div class="col-md-8">
+<input id="" class="form-control" class="taux" name="tx_hematocrite" value="{$dataDosageSanguin.tx_hematocrite}">
 </dd>
-</dl>
-<dl>
-<dt>Commentaires :</dt>
-<dd>
-<input name="dosage_sanguin_commentaire" class="commentaire" value="{$dataDosageSanguin.dosage_sanguin_commentaire}">
-</dl>
+</div>
+<div class="form-group">
+<label for="" class="control-label col-md-4">{t}Commentaires :{/t}</label>
+<div class="col-md-8">
+<input id="" class="form-control" name="dosage_sanguin_commentaire" class="commentaire" value="{$dataDosageSanguin.dosage_sanguin_commentaire}">
+</div>
 </fieldset>
 <fieldset class="fsMasquable">
 <legend>Prélèvement génétique</legend>
 <div class="masquage">
-<dl><dt>Référence du prélèvement<span class="red">*</span> :</dt>
-<dd><input class="commentaire" name="genetique_reference" value="{$dataGenetique.genetique_reference}"></dd>
-</dl>
-<dl><dt>Nageoire :</dt>
-<dd>
-<select name="nageoire_id">
+<div class="form-group"><label for="" class="control-label col-md-4">{t}Référence du prélèvement<span class="red">*</span> :{/t}</label>
+<div class="col-md-8">
+<input id="" class="form-control" class="commentaire" name="genetique_reference" value="{$dataGenetique.genetique_reference}"></dd>
+</div>
+<div class="form-group"><label for="" class="control-label col-md-4">{t}Nageoire :{/t}</label>
+<div class="col-md-8">
+<select id="" class="form-control" name="nageoire_id">
 <option value="" {if $dataGenetique.nageoire_id == ""}selected{/if}>Sélectionnez...</option>
 {section name=lst loop=$nageoire}
 <option value="{$nageoire[lst].nageoire_id}" {if $dataGenetique.nageoire_id == $nageoire[lst].nageoire_id}selected{/if}>
@@ -382,23 +385,23 @@ Sélectionnez le bassin de destination...
 </option>
 {/section}
 </select>
-</dd></dl>
-<dl>
-<dt>Commentaire :</dt>
-<dd>
-<input name="genetique_commentaire" class="commentaire" value="{$dataGenetique.genetique_commentaire}">
+</dd></div>
+<div class="form-group">
+<label for="" class="control-label col-md-4">{t}Commentaire :{/t}</label>
+<div class="col-md-8">
+<input id="" class="form-control" name="genetique_commentaire" class="commentaire" value="{$dataGenetique.genetique_commentaire}">
 </dd>
-</dl>
+</div>
 </div>
 </fieldset>
 <fieldset class="fsMasquable">
 <legend>Détermination du sexe</legend>
 <div class="masquage">
-<dl>
+<div class="form-group">
 
-<dt>Méthode utilisée :</dt>
-<dd>
-<select name="gender_methode_id">
+<label for="" class="control-label col-md-4">{t}Méthode utilisée :{/t}</label>
+<div class="col-md-8">
+<select id="" class="form-control" name="gender_methode_id">
 <option value="" {if $dataGender.gender_methode_id == ""}selected{/if}>
 Sélectionnez la méthode...
 </option>
@@ -409,11 +412,11 @@ Sélectionnez la méthode...
 {/section}
 </select>
 </dd>
-</dl>
-<dl>
-<dt>Sexe déterminé <span class="red">*</span> :</dt>
-<dd>
-<select name="sexe_id" >
+</div>
+<div class="form-group">
+<label for="" class="control-label col-md-4">{t}Sexe déterminé <span class="red">*</span> :{/t}</label>
+<div class="col-md-8">
+<select id="" class="form-control" name="sexe_id" >
 <option value="" {if $dataGender.sexe_id == ""}selected{/if}>
 Sélectionnez le sexe...
 </option>
@@ -424,23 +427,23 @@ Sélectionnez le sexe...
 {/section}
 </select>
 </dd>
-</dl>
-<dl>
-<dt>Commentaire :</dt>
-<dd>
-<input name="gender_selection_commentaire" id="cgender_selection_commentaire" value="{$dataGender.gender_selection_commentaire}" size="40">
+</div>
+<div class="form-group">
+<label for="" class="control-label col-md-4">{t}Commentaire :{/t}</label>
+<div class="col-md-8">
+<input id="" class="form-control" name="gender_selection_commentaire" id="cgender_selection_commentaire" value="{$dataGender.gender_selection_commentaire}" size="40">
 </dd>
-</dl>
+</div>
 </div>
 </fieldset>
 
 <fieldset class="fsMasquable">
 <legend>Détermination de la cohorte</legend>
 <div class="masquage">
-<dl>
-<dt>Type de détermination <span class="red">*</span> : </dt>
-<dd>
-<select name="cohorte_type_id" id="cohorte_type_id">
+<div class="form-group">
+<label for="" class="control-label col-md-4">{t}Type de détermination <span class="red">*</span> : {/t}</label>
+<div class="col-md-8">
+<select id="" class="form-control" name="cohorte_type_id" id="cohorte_type_id">
 <option value="" {if $dataCohorte.cohorte_type_id == ""} selected {/if}>
 Sélectionnez le type de détermination...
 </option>
@@ -451,27 +454,28 @@ Sélectionnez le type de détermination...
 {/section}
 </select>
 </dd>
-</dl>
-<dl>
-<dt>Détermination effectuée :</dt>
-<dd><input name="cohorte_determination" value="{$dataCohorte.cohorte_determination}"></dd>
-</dl>
-<dl>
-<dt>Commentaire : </dt>
-<dd>
-<input name="cohorte_commentaire" value="{$dataCohorte.cohorte_commentaire}" size="40">
+</div>
+<div class="form-group">
+<label for="" class="control-label col-md-4">{t}Détermination effectuée :{/t}</label>
+<div class="col-md-8">
+<input id="" class="form-control" name="cohorte_determination" value="{$dataCohorte.cohorte_determination}"></dd>
+</div>
+<div class="form-group">
+<label for="" class="control-label col-md-4">{t}Commentaire : {/t}</label>
+<div class="col-md-8">
+<input id="" class="form-control" name="cohorte_commentaire" value="{$dataCohorte.cohorte_commentaire}" size="40">
 </dd>
-</dl>
+</div>
 </div>
 </fieldset>
 
 <fieldset class="fsMasquable">
 <legend>Sortie du stock</legend>
 <div class="masquage">
-<dl>
-<dt>Lieu de lâcher/destination <span class="red">*</span> :</dt>
-<dd>
-<select name="sortie_lieu_id" id="sortie_lieu_id">
+<div class="form-group">
+<label for="" class="control-label col-md-4">{t}Lieu de lâcher/destination <span class="red">*</span> :{/t}</label>
+<div class="col-md-8">
+<select id="" class="form-control" name="sortie_lieu_id" id="sortie_lieu_id">
 <option value="" {if $dataSortie.sortie_lieu_id == ""} selected{/if}>
 Sélectionnez le lieu de lâcher/destination...
 </option>
@@ -482,29 +486,29 @@ Sélectionnez le lieu de lâcher/destination...
 {/section}
 </select>
 </dd>
-</dl>
-<dl>
-<dt>Informations de nourriture/sevrage :</dt>
-<dd>
-<input name="sevre" value="{$dataSortie.sevre}" size="40">
+</div>
+<div class="form-group">
+<label for="" class="control-label col-md-4">{t}Informations de nourriture/sevrage :{/t}</label>
+<div class="col-md-8">
+<input id="" class="form-control" name="sevre" value="{$dataSortie.sevre}" size="40">
 </dd>
-</dl>
-<dl>
-<dt>Commentaires :</dt>
-<dd>
-<input name="sortie_lieu_commentaire" value="{$dataSortie.sortie_commentaire}" size="40">
+</div>
+<div class="form-group">
+<label for="" class="control-label col-md-4">{t}Commentaires :{/t}</label>
+<div class="col-md-8">
+<input id="" class="form-control" name="sortie_lieu_commentaire" value="{$dataSortie.sortie_commentaire}" size="40">
 </dd>
-</dl>
+</div>
 </div>
 </fieldset>
 
 <fieldset class="fsMasquable">
 <legend>Détermination de la parenté</legend>
 <div class="masquage">
-<dl>
-<dt>Type de détermination <span class="red">*</span> : </dt>
-<dd>
-<select name="determination_parente_id" id="determination_parente_id">
+<div class="form-group">
+<label for="" class="control-label col-md-4">{t}Type de détermination <span class="red">*</span> : {/t}</label>
+<div class="col-md-8">
+<select id="" class="form-control" name="determination_parente_id" id="determination_parente_id">
 <option value="" {if $dataParente.determination_parente_id == ""} selected {/if}>
 Sélectionnez le type de détermination...
 </option>
@@ -515,23 +519,23 @@ Sélectionnez le type de détermination...
 {/section}
 </select>
 </dd>
-</dl>
-<dl>
-<dt>Commentaire : </dt>
-<dd>
-<input name="parente_commentaire" value="{$dataParente.parente_commentaire}" size="40">
+</div>
+<div class="form-group">
+<label for="" class="control-label col-md-4">{t}Commentaire : {/t}</label>
+<div class="col-md-8">
+<input id="" class="form-control" name="parente_commentaire" value="{$dataParente.parente_commentaire}" size="40">
 </dd>
-</dl>
+</div>
 </div>
 </fieldset>
 
 <fieldset class="fsMasquable">
 <legend>Mortalité</legend>
 <div class="masquage">
-<dl>
-<dt>Type de mortalité <span class="red">*</span> : </dt>
-<dd>
-<select name="mortalite_type_id" id="mortalite_type_id">
+<div class="form-group">
+<label for="" class="control-label col-md-4">{t}Type de mortalité <span class="red">*</span> : {/t}</label>
+<div class="col-md-8">
+<select id="" class="form-control" name="mortalite_type_id" id="mortalite_type_id">
 <option value="" {if $dataMortalite.mortalite_type_id == ""} selected {/if}>
 Sélectionnez le type de mortalité...
 </option>
@@ -542,29 +546,41 @@ Sélectionnez le type de mortalité...
 {/section}
 </select>
 </dd>
-</dl>
-<dl>
-<dt>Commentaire : </dt>
-<dd>
-<input name="mortalite_commentaire" value="{$dataMortalite.mortalite_commentaire}" size="40">
+</div>
+<div class="form-group">
+<label for="" class="control-label col-md-4">{t}Commentaire : {/t}</label>
+<div class="col-md-8">
+<input id="" class="form-control" name="mortalite_commentaire" value="{$dataMortalite.mortalite_commentaire}" size="40">
 </dd>
-</dl>
+</div>
 </div>
 </fieldset>
-<div class="formBouton">
-<input class="submit" type="submit" value="Enregistrer">
-</div>
+
+<div class="form-group center">
+<button type="submit" class="btn btn-primary button-valid">{t}Valider{/t}</button>
+<button class="btn btn-danger btn-delete">{t}Supprimer{/t}</button>
 </form>
+</div>
+</div>
 
 
 {if $data.evenement_id > 0 &&$droits["poissonAdmin"] == 1}
 <div class="formBouton">
-<form action="index.php" method="post" onSubmit='return confirmSuppression("Confirmez-vous la suppression ?")'>
+<div class="row">
+<div class="col-md-6">
+<form class="form-horizontal" id="" method="post" action="index.php">
+<input type="hidden" name="action" value="Write">
+<input type="hidden" name="moduleBase" value=""> action="index.php" method="post" onSubmit='return confirmSuppression("Confirmez-vous la suppression ?")'>
 <input type="hidden" name="evenement_id" value="{$data.evenement_id}">
 <input type="hidden" name="poisson_id" value="{$data.poisson_id}">
 <input type="hidden" name="module" value="evenementDelete">
 <input class="submit" type="submit" value="Supprimer">
+<div class="form-group center">
+<button type="submit" class="btn btn-primary button-valid">{t}Valider{/t}</button>
+<button class="btn btn-danger btn-delete">{t}Supprimer{/t}</button>
 </form>
+</div>
+</div>
 </div>
 {/if}
 </div>

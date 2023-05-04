@@ -1,4 +1,4 @@
-<h2>Liste des requêtes</h2>
+<h2{t}Liste des requêtes{/t}</h2>
 {if $droits["paramAdmin"] == 1}
 <a href="index.php?module=requeteChange&requete_id=0">
 Nouvelle requête...
@@ -10,7 +10,7 @@ Nouvelle requête...
 <script>
 setDataTables("crequeteList", true, true, true, 50);
 </script>
-<table id="crequeteList" class="tableliste">
+<table class="table table-bordered table-hover datatable" id="crequeteList" class="tableliste">
 <thead>
 <tr>
 <th>Id</th>

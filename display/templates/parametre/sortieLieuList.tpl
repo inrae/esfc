@@ -1,4 +1,4 @@
-<h2>Lieux de lâchers/destination des poissons</h2>
+<h2{t}Lieux de lâchers/destination des poissons{/t}</h2>
 {if $droits["paramAdmin"] == 1}
 <a href="index.php?module=sortieLieuChange&sortie_lieu_id=0">
 Nouveau...
@@ -7,7 +7,7 @@ Nouveau...
 <script>
 setDataTables("csortieLieuList");
 </script>
-<table id="csortieLieuList" class="tableliste">
+<table class="table table-bordered table-hover datatable" id="csortieLieuList" class="tableliste">
 <thead>
 <tr>
 <th>Lieu</th>
@@ -17,7 +17,7 @@ setDataTables("csortieLieuList");
 <th>Actif ?</th>
 </tr>
 </thead>
-<tdata>
+<tbody>
 {section name=lst loop=$data}
 <tr>
 <td>
@@ -38,5 +38,5 @@ setDataTables("csortieLieuList");
 {/if}
 </tr>
 {/section}
-</tdata>
+</tbody>
 </table>

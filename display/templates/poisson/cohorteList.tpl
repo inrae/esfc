@@ -1,7 +1,7 @@
 <script>
 setDataTables("ccohorteList");
 </script>
-<table id="ccohorteList" class="tableliste">
+<table class="table table-bordered table-hover datatable" id="ccohorteList" class="tableliste">
 <thead>
 <tr>
 <th>Événement associé</th>

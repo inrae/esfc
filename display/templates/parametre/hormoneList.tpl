@@ -1,4 +1,4 @@
-<h2>Hormones utilisées pour la reproduction</h2>
+<h2{t}Hormones utilisées pour la reproduction{/t}</h2>
 {if $droits["paramAdmin"] == 1}
 <a href="index.php?module=hormoneChange&hormone_id=0">
 Nouveau...
@@ -7,7 +7,7 @@ Nouveau...
 <script>
 setDataTables("chormonList");
 </script>
-<table id="chormoneList" class="tableliste">
+<table class="table table-bordered table-hover datatable" id="chormoneList" class="tableliste">
 <thead>
 <tr>
 <th>Nom de l'hormone</th>

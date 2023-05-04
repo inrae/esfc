@@ -157,7 +157,7 @@ $(document).ready(function() {
 	{/if}
 } );
 </script>
-<h2>Détail d'un reproducteur</h2>
+<h2{t}Détail d'un reproducteur{/t}</h2>
 <a href="index.php?module={$poissonDetailParent}&sequence_id={$sequence_id}">Retour à la liste des poissons</a>
 {if $droits["reproGestion"]==1}
 &nbsp;

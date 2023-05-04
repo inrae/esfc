@@ -1,5 +1,5 @@
-<h2>About &lt;APPLI&gt;
-</h2>
+<h2{t}About &lt;APPLI&gt;
+{/t}</h2>
 <p>
 Version {$version} du {$versiondate}.
 </p>

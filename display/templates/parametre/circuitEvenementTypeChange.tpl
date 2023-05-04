@@ -1,29 +1,46 @@
-<h2>Modification d'un type d'événement survenant dans les circuits d'eau</h2>
+<h2{t}Modification d'un type d'événement survenant dans les circuits d'eau{/t}</h2>
 
 <a href="index.php?module=circuitEvenementTypeList">Retour à la liste</a>
 <div class="formSaisie">
 <div>
 
-<form id="circuitEvenementTypeForm" method="post" action="index.php?module=circuitEvenementTypeWrite">
+<div class="row">
+<div class="col-md-6">
+<form class="form-horizontal" id="" method="post" action="index.php">
+<input type="hidden" name="action" value="Write">
+<input type="hidden" name="moduleBase" value=""> id="circuitEvenementTypeForm" method="post" action="index.php?module=circuitEvenementTypeWrite">
 <input type="hidden" name="circuit_evenement_type_id" value="{$data.circuit_evenement_type_id}">
-<dl>
-<dt>Type d'événement <span class="red">*</span> :</dt>
-<dd><input name="circuit_evenement_type_libelle" size="40" value="{$data.circuit_evenement_type_libelle}" autofocus></dd>
-</dl>
-
-<div class="formBouton">
-<input class="submit" type="submit" value="Enregistrer">
+<div class="form-group">
+<label for="" class="control-label col-md-4">{t}Type d'événement <span class="red">*</span> :{/t}</label>
+<div class="col-md-8">
+<input id="" class="form-control" name="circuit_evenement_type_libelle" size="40" value="{$data.circuit_evenement_type_libelle}" autofocus></dd>
 </div>
+
+
+<div class="form-group center">
+<button type="submit" class="btn btn-primary button-valid">{t}Valider{/t}</button>
+<button class="btn btn-danger btn-delete">{t}Supprimer{/t}</button>
 </form>
+</div>
+</div>
 </div>
 
 {if $data.circuit_evenement_type_id > 0 &&$droits["paramAdmin"] == 1}
 <div class="formBouton">
-<form action="index.php" method="post" onSubmit='return confirmSuppression("Confirmez-vous la suppression ?")'>
+<div class="row">
+<div class="col-md-6">
+<form class="form-horizontal" id="" method="post" action="index.php">
+<input type="hidden" name="action" value="Write">
+<input type="hidden" name="moduleBase" value=""> action="index.php" method="post" onSubmit='return confirmSuppression("Confirmez-vous la suppression ?")'>
 <input type="hidden" name="circuit_evenement_type_id" value="{$data.circuit_evenement_type_id}">
 <input type="hidden" name="module" value="circuitEvenementTypeDelete">
 <input class="submit" type="submit" value="Supprimer">
+<div class="form-group center">
+<button type="submit" class="btn btn-primary button-valid">{t}Valider{/t}</button>
+<button class="btn btn-danger btn-delete">{t}Supprimer{/t}</button>
 </form>
+</div>
+</div>
 </div>
 {/if}
 </div>
