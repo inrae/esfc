@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @author : quinton
  * @date : 17 mars 2016
@@ -6,10 +7,10 @@
  * (c) 2016 - All rights reserved
  */
 include_once 'modules/classes/sperme.class.php';
-$dataClass = new SpermeUtilise($bdd,$ObjetBDDParam);
+$dataClass = new SpermeUtilise($bdd, $ObjetBDDParam);
 $keyName = "sperme_utilise_id";
 $id = $_REQUEST[$keyName];
-$vue->set( , ""); ( "poissonDetailParent", $_SESSION ["poissonDetailParent"] );
+$vue->set($_SESSION["poissonDetailParent"], "poissonDetailParent");
 
 switch ($t_module["param"]) {
 	case "change":
@@ -25,18 +26,19 @@ switch ($t_module["param"]) {
 		require_once 'modules/classes/croisement.class.php';
 		$croisement = new Croisement($bdd, $ObjetBDDParam);
 		$croisementData = $croisement->getDetail($_REQUEST["croisement_id"]);
-		$vue->set( , "");("croisementData", $croisementData);
+		$vue->set($croisementData, "croisementData");
 		/*
 		 * Lecture de la sequence
 		 */
+		require_once "modules/classes/sequence.class.php";
 		$sequence = new Sequence($bdd, $ObjetBDDParam);
-		$vue->set( , "");("dataSequence", $sequence->lire($croisementData["sequence_id"]));
+		$vue->set($sequence->lire($croisementData["sequence_id"]), "dataSequence");
 		/*
 		 * Recuperation de la liste des spermes potentiels
 		 */
+		require_once "modules/classes/sperme.class.php";
 		$sperme = new Sperme($bdd, $ObjetBDDParam);
-		$spermes = $sperme->getListPotentielFromCroisement($_REQUEST["croisement_id"]);
-		$vue->set( , "");( "spermes", $spermes);
+		$vue->set($sperme->getListPotentielFromCroisement($_REQUEST["croisement_id"]), "spermes");
 		break;
 	case "write":
 		/*
@@ -54,5 +56,3 @@ switch ($t_module["param"]) {
 		dataDelete($dataClass, $id);
 		break;
 }
-
-?>

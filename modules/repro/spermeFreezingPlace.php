@@ -1,18 +1,19 @@
 <?php
+
 /**
  * Created : 3 juil. 2017
  * Creator : quinton
  * Encoding : UTF-8
  * Copyright 2017 - All rights reserved
  */
-include_once 'modules/classes/sperme.class.php';
+include_once 'modules/classes/spermeFreezingPlace.class.php';
 $dataClass = new SpermeFreezingPlace($bdd, $ObjetBDDParam);
 $keyName = "sperme_freezing_place_id";
 $id = $_REQUEST[$keyName];
 /*
  * Passage en parametre de la liste parente
  */
-$vue->set( , "");("poissonDetailParent", $_SESSION["poissonDetailParent"]);
+$vue->set($_SESSION["poissonDetailParent"], "poissonDetailParent");
 
 switch ($t_module["param"]) {
     case "change":
@@ -22,16 +23,17 @@ switch ($t_module["param"]) {
          * $_REQUEST["idParent"] contains the identifiant of the parent record
          */
         dataRead($dataClass, $id, "repro/spermeFreezingPlaceChange.tpl", $_REQUEST["sperme_congelation_id"]);
+        require_once "modules/classes/spermeCongelation.class.php";
         $spermeCongelation = new SpermeCongelation($bdd, $ObjetBDDParam);
-        $dataCongelation = $spermeCongelation->lire($_REQUEST["sperme_congelation_id"]);
-        $vue->set( , "");("dataCongelation", $dataCongelation);
+
+        $vue->set($spermeCongelation->lire($_REQUEST["sperme_congelation_id"]), "dataCongelation");
         /*
          * Donnees du poisson
          */
         require_once 'modules/classes/poissonCampagne.class.php';
         $poissonCampagne = new PoissonCampagne($bdd, $ObjetBDDParam);
-        $vue->set( , "");("dataPoisson", $poissonCampagne->lire($_REQUEST["poisson_campagne_id"]));
-        
+        $vue->set($poissonCampagne->lire($_REQUEST["poisson_campagne_id"]), "dataPoisson");
+
         break;
     case "write":
         /*
@@ -49,5 +51,3 @@ switch ($t_module["param"]) {
         dataDelete($dataClass, $id);
         break;
 }
-
-?>

@@ -1,43 +1,50 @@
 <?php
+
 /**
  * @author : quinton
  * @date : 16 mars 2016
  * @encoding : UTF-8
  * (c) 2016 - All rights reserved
  */
-require_once 'modules/classes/sperme.class.php';
-function initSpermeChange($sperme_id) {
-	global $smarty, $bdd, $ObjetBDDParam;
+require_once 'modules/classes/spermeAspect.class.php';
+require_once 'modules/classes/spermeCaracteristique.class.php';
+require_once 'modules/classes/spermeDilueur.class.php';
+require_once 'modules/classes/spermeQualite.class.php';
+require_once 'modules/classes/spermeCongelation.class.php';
+require_once 'modules/classes/spermeMesure.class.php';
+
+function initSpermeChange($sperme_id)
+{
+	global $bdd, $ObjetBDDParam, $vue;
 	/*
 	 * Lecture de sperme_qualite
 	 */
 	$spermeAspect = new SpermeAspect($bdd, $ObjetBDDParam);
-	$vue->set( , "");("spermeAspect", $spermeAspect->getListe(1));
+	$vue->set($spermeAspect->getListe(1), "spermeAspect");
 	/*
 	 * Recherche des caracteristiques particulieres
 	*/
 	$caract = new SpermeCaracteristique($bdd, $ObjetBDDParam);
-	$vue->set( , "");("spermeCaract", $caract->getFromSperme($sperme_id));
+	$vue->set($caract->getFromSperme($sperme_id), "spermeCaract");
 	/*
 	 * Recherche des dilueurs
 	*/
 	$dilueur = new SpermeDilueur($bdd, $ObjetBDDParam);
-	$vue->set( , "");("spermeDilueur", $dilueur->getListe(2));
-	
+	$vue->set($dilueur->getListe(2), "spermeDilueur");
+
 	/*
 	 * Recherche de la qualite de la semence, pour les analyses realisees en meme temps
 	 */
 	$qualite = new SpermeQualite($bdd, $ObjetBDDParam);
-	$vue->set( , "");("spermeQualite", $qualite->getListe(1));
+	$vue->set($qualite->getListe(1), "spermeQualite");
 	/*
 	 * Recherche des congelations associees
 	 */
 	$congelation = new SpermeCongelation($bdd, $ObjetBDDParam);
-	$vue->set( , "");("congelation", $congelation->getListFromSperme($sperme_id));
+	$vue->set($congelation->getListFromSperme($sperme_id), "congelation");
 	/*
 	 * Recherche des analyses realisees
 	 */
 	$mesure = new SpermeMesure($bdd, $ObjetBDDParam);
-	$vue->set( , "");("dataMesure", $mesure->getListFromSperme($sperme_id));
+	$vue->set($mesure->getListFromSperme($sperme_id), "dataMesure");
 }
-?>
