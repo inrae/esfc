@@ -19,9 +19,14 @@ if (! $paramAlim ["densite"] > 0)
  * Recherche des lots à traiter
  */
 require_once 'modules/classes/lot.class.php';
-require_once 'modules/classes/bassin.class.php';
-require_once 'modules/classes/aliment.class.php';
+require_once 'modules/classes/bassinLot.class.php';
+require_once "modules/classes/lotMesure.class.php";
+require_once "modules/classes/alimentQuotidien.class.php";
+require_once "modules/classes/distribQuotidien.class.php";
+require_once "modules/classes/lotRepartTemplate.class.php";
 require_once 'modules/classes/tableauRepartition.class.php';
+require_once "modules/classes/repartition.class.php";
+require_once "modules/classes/repartitionJuvenileLot.class.php";
 $lot = new Lot ( $bdd, $ObjetBDDParam );
 $bassinLot = new BassinLot ( $bdd, $ObjetBDDParam );
 $lotMesure = new LotMesure ( $bdd, $ObjetBDDParam );
@@ -196,4 +201,3 @@ ksort ( $bassins );
 $pdf = new RepartitionJuvenileLot ();
 $pdf->setData ( $dataRepartition, $bassins, $artemiaFlag );
 $pdf->exec ();
-?>

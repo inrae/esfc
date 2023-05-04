@@ -1,13 +1,14 @@
 <?php
+
 /**
  * @author Eric Quinton
  * @copyright Copyright (c) 2015, IRSTEA / Eric Quinton
  * @license http://www.cecill.info/licences/Licence_CeCILL-C_V1-fr.html LICENCE DE LOGICIEL LIBRE CeCILL-C
  *  Creation 7 mai 2015
  */
- 
+
 include_once 'modules/classes/bassin.class.php';
-$dataClass = new BassinLot($bdd,$ObjetBDDParam);
+$dataClass = new BassinLot($bdd, $ObjetBDDParam);
 $keyName = "bassin_lot_id";
 $id = $_REQUEST[$keyName];
 
@@ -21,10 +22,10 @@ switch ($t_module["param"]) {
 		 */
 		$data = dataRead($dataClass, $id, "repro/bassinLotChange.tpl", $_REQUEST["lot_id"]);
 		$bassin = new Bassin($bdd, $ObjetBDDParam);
-		$vue->set( , "");("bassins", $bassin->getListe(1,6));
+		$vue->set($bassin->getListe(1, 6), "bassins");
 		require_once 'modules/classes/lot.class.php';
 		$lot = new Lot($bdd, $ObjetBDDParam);
-		$vue->set( , "");("dataLot", $lot->getDetail($data["lot_id"]));
+		$vue->set($lot->getDetail($data["lot_id"]), "dataLot");
 		break;
 	case "write":
 		/*
@@ -42,4 +43,3 @@ switch ($t_module["param"]) {
 		dataDelete($dataClass, $id);
 		break;
 }
-?>

@@ -1,12 +1,13 @@
 <?php
+
 /**
  * @author Eric Quinton
  * @copyright Copyright (c) 2015, IRSTEA / Eric Quinton
  * @license http://www.cecill.info/licences/Licence_CeCILL-C_V1-fr.html LICENCE DE LOGICIEL LIBRE CeCILL-C
  *  Creation 11 mars 2015
  */
-include_once 'modules/classes/bassinCampagne.class.php';
-$dataClass = new Salinite($bdd,$ObjetBDDParam);
+include_once 'modules/classes/salinite.class.php';
+$dataClass = new Salinite($bdd, $ObjetBDDParam);
 $keyName = "salinite_id";
 $id = $_REQUEST[$keyName];
 
@@ -20,9 +21,8 @@ switch ($t_module["param"]) {
 		/*
 		 * Display the detail of the record
 		 */
-		$data = $dataClass->lire($id);
-		$vue->set( , "");("data", $data);
-		$vue->set( , "");("corps", "repro/saliniteChange.tpl");
+		$vue->set($dataClass->lire($id), "data");
+		$vue->set("repro/saliniteChange.tpl", "corps");
 		break;
 	case "new":
 		$id = 0;
@@ -38,25 +38,23 @@ switch ($t_module["param"]) {
 		 */
 		require_once 'modules/classes/bassin.class.php';
 		$bassinCampagne = new BassinCampagne($bdd, $ObjetBDDParam);
-		$dataBassinCampagne = $bassinCampagne->lire($data["bassin_campagne_id"]);
 		$bassin = new Bassin($bdd, $ObjetBDDParam);
-		$vue->set( , "");("dataBassinCampagne", $dataBassinCampagne);
-		$vue->set( , "");("dataBassin", $bassin->lire($dataBassinCampagne["bassin_id"]));
+		$vue->set($bassinCampagne->lire($data["bassin_campagne_id"]), "dataBassinCampagne");
+		$vue->set($bassin->lire($dataBassinCampagne["bassin_id"]), "dataBassin");
 		/*
 		 * Recuperation des donnees de salinite deja existantes
 		 */
 		$salinites = $dataClass->getListFromBassinCampagne($data["bassin_campagne_id"]);
-		$vue->set( , "");("salinites", $salinites );
+		$vue->set($salinites, "salinites");
 		/*
 		 * Assignation des valeurs par defaut en prenant en reference la derniere valeur entree
 		 */
 		$nbProfil = count($salinites);
 		if ($nbProfil > 0 && $id == 0) {
-			$data["salinite_datetime"] =$salinites[$nbProfil - 1]["salinite_datetime"];
-			//$data["profil_thermique_type_id"] = $profilThermiques[$nbProfil - 1]["profil_thermique_type_id"];
-			$vue->set( , "");("data", $data);			
+			$data["salinite_datetime"] = $salinites[$nbProfil - 1]["salinite_datetime"];
+			$vue->set($data, "data");
 		}
-		$vue->set( , "");("bassinParentModule", $_SESSION["bassinParentModule"]);
+		$vue->set($_SESSION["bassinParentModule"], "bassinParentModule");
 		break;
 	case "write":
 		/*
@@ -74,5 +72,3 @@ switch ($t_module["param"]) {
 		dataDelete($dataClass, $id);
 		break;
 }
-
-?>

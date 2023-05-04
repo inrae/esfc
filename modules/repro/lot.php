@@ -19,44 +19,45 @@ switch ($t_module["param"]) {
 		 * Display the list of all records of the table
 		 */
 
-		require_once 'modules/classes/poissonRepro.class.php';
+		require_once 'modules/classes/poissonCampagne.class.php';
 		$poissonCampagne = new PoissonCampagne($bdd, $ObjetBDDParam);
-		$vue->set( , "");("annees", $poissonCampagne->getAnnees());
-		$vue->set( , "");("lots", $dataClass->getLotByAnnee($_SESSION["annee"]));
-		$vue->set( , "");("corps", "repro/lotSearch.tpl");
-		$vue->set( , "");("dataAlim", $alimJuv->getParam());
+		$vue->set($poissonCampagne->getAnnees(), "annees");
+		$vue->set($dataClass->getLotByAnnee($_SESSION["annee"]), "lots");
+		$vue->set("repro/lotSearch.tpl", "corps");
+		$vue->set($alimJuv->getParam(), "dataAlim");
 		/**
 		 * Site
 		 */
 		require_once 'modules/classes/site.class.php';
 		$site = new Site($bdd, $ObjetBDDParam);
-		$vue->set( , "");("site", $site->getListe(2));
+		$vue->set($site->getListe(2), "site");
 		break;
 	case "display":
 		/*
 		 * Display the detail of the record
 		 */
 		$data = $dataClass->getDetail($id);
-		$vue->set( , "");("dataLot", $data);
-		$vue->set( , "");("corps", "repro/lotDisplay.tpl");
+		$vue->set($data, "dataLot");
+		$vue->set("repro/lotDisplay.tpl", "corps");
 		/*
 		 * Recuperation de la liste des mesures
 		 */
+		require_once "modules/classes/lotMesure.class.php";
 		$lotMesure = new LotMesure($bdd, $ObjetBDDParam);
-		$vue->set( , "");("dataMesure", $lotMesure->getListFromLot($id));
+		$vue->set($lotMesure->getListFromLot($id), "dataMesure");
 		/*
 		 * Recuperation de la liste des bassins
 		 */
-		require_once 'modules/classes/bassin.class.php';
+		require_once 'modules/classes/bassinLot.class.php';
 		$bassinLot = new BassinLot($bdd, $ObjetBDDParam);
-		$vue->set( , "");("bassinLot", $bassinLot->getListeFromLot($id));
+		$vue->set($bassinLot->getListeFromLot($id), "bassinLot");
 		/*
 		 * Lecture des devenirs d'un lot
 		 */
 		require_once 'modules/classes/devenir.class.php';
 		$devenir = new Devenir($bdd, $ObjetBDDParam);
-		$vue->set( , "");("dataDevenir", $devenir->getListFromLot($id));
-		$vue->set( , "");("devenirOrigine", "lot");
+		$vue->set($devenir->getListFromLot($id), "dataDevenir");
+		$vue->set("lot", "devenirOrigine");
 
 		break;
 	case "change":
@@ -71,12 +72,13 @@ switch ($t_module["param"]) {
 		 */
 		require_once 'modules/classes/croisement.class.php';
 		$croisement = new Croisement($bdd, $ObjetBDDParam);
-		$vue->set( , "");("croisements", $croisement->getListFromAnnee($_SESSION["annee"]));
+		$vue->set($croisement->getListFromAnnee($_SESSION["annee"]), "croisements");
 		/*
 		 * Lecture de la liste des marquages VIE
 		 */
+		require_once "modules/classes/vieModele.class.php";
 		$vieModele = new VieModele($bdd, $ObjetBDDParam);
-		$vue->set( , "");("modeles", $vieModele->getModelesFromAnnee($_SESSION["annee"]));
+		$vue->set($vieModele->getModelesFromAnnee($_SESSION["annee"]), "modeles");
 		break;
 	case "write":
 		/*
@@ -89,8 +91,9 @@ switch ($t_module["param"]) {
 				/*
 				 * Mise a jour du statut des poissons
 				 */
-				require_once 'modules/classes/sequence.class.php';
+				require_once 'modules/classes/poissonSequence.class.php';
 				$poissonSequence = new PoissonSequence($bdd, $objetBDDParam);
+				require_once "modules/classes/croisement.class.php";
 				$croisement = new Croisement($bdd, $ObjetBDDParam);
 				$dataCroisement = $croisement->lire($_REQUEST["croisement_id"]);
 				$poissons = $croisement->getPoissonsFromCroisement($_REQUEST["croisement_id"]);
@@ -107,5 +110,3 @@ switch ($t_module["param"]) {
 		dataDelete($dataClass, $id);
 		break;
 }
-
-?>

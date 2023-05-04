@@ -1,67 +1,42 @@
 <?php
+
 /**
  * @author Eric Quinton
  * @copyright Copyright (c) 2015, IRSTEA / Eric Quinton
  * @license http://www.cecill.info/licences/Licence_CeCILL-C_V1-fr.html LICENCE DE LOGICIEL LIBRE CeCILL-C
  *  Creation 12 mars 2015
  */
- 
+
 include_once 'modules/classes/croisement.class.php';
-$dataClass = new Croisement($bdd,$ObjetBDDParam);
+$dataClass = new Croisement($bdd, $ObjetBDDParam);
 $keyName = "croisement_id";
 $id = $_REQUEST[$keyName];
 
 switch ($t_module["param"]) {
-	case "list":
-		/*
-		 * Display the list of all records of the table
-		 */
-		/*
-		 * $searchExample must be defined into modules/beforesession.inc.php :
-		 * include_once 'modules/classes/searchParam.class.php';
-		 * and into modules/common.inc.php :
-		 * if (!isset($_SESSION["searchExample"])) {
-		 * $searchExample = new SearchExample();
-		 *	$_SESSION["searchExample"] = $searchExample;
-		 *	} else {
-		 *	$searchExample = $_SESSION["searchExample"];
-		 *	}
-		 * and, also, into modules/classes/searchParam.class.php...
-		 */
-		$searchExample->setParam ( $_REQUEST );
-		$dataSearch = $searchExample->getParam ();
-		if ($searchExample->isSearch () == 1) {
-			$data = $dataClass->getListeSearch ( $dataExample );
-			$vue->set( , ""); ( "data", $data );
-			$vue->set( , ""); ("isSearch", 1);
-		}
-		$vue->set( , ""); ("exampleSearch", $dataSearch);
-		$vue->set( , "");("data", $dataClass->getListe());
-		$vue->set( , "");("corps", "example/exampleList.tpl");
-		break;
 	case "display":
 		/*
 		 * Display the detail of the record
 		 */
 		$data = $dataClass->getDetail($id);
-		$vue->set( , "");("data", $data);
+		$vue->set($data, "data");
 		/*
 		 * Lecture de la sequence
 		 */
+		require_once "modules/classes/sequence.class.php";
 		$sequence = new Sequence($bdd, $ObjetBDDParam);
-		$vue->set( , "");("dataSequence", $sequence->lire($data["sequence_id"]));
-		
+		$vue->set($sequence->lire($data["sequence_id"]), "dataSequence");
+
 		/*
 		 * Recherche des spermes utilises
 		 */
 		require_once 'modules/classes/sperme.class.php';
 		$spermeUtilise = new SpermeUtilise($bdd, $ObjetBDDParam);
-		$vue->set( , "");("spermesUtilises", $spermeUtilise->getListFromCroisement($id));
-		
-		$vue->set( , "");("corps", "repro/croisementDisplay.tpl");
+		$vue->set($spermeUtilise->getListFromCroisement($id), "spermesUtilises");
+
+		$vue->set("repro/croisementDisplay.tpl", "corps");
 		break;
 	case "change":
-		require_once 'modules/classes/sequence.class.php';
+
 		/*
 		 * open the form to modify the record
 		 * If is a new record, generate a new record with default value :
@@ -71,22 +46,25 @@ switch ($t_module["param"]) {
 		/*
 		 * Lecture de la table des qualites de croisement
 		 */
+		require_once "modules/classes/croisementQualite.class.php";
 		$croisementQualite = new CroisementQualite($bdd, $ObjetBDDParam);
-		$vue->set( , "");("croisementQualite", $croisementQualite->getListe(1));
+		$vue->set($croisementQualite->getListe(1), "croisementQualite");
 		/*
 		 * Lecture des poissons rattaches
 		 */
+		require_once 'modules/classes/poissonSequence.class.php';
 		if ($id > 0) {
-			$vue->set( , "");("poissonSequence", $dataClass->getListAllPoisson($id), $data["sequence_id"]);
+			$vue->set($dataClass->getListAllPoisson($id, $data["sequence_id"]), "poissonSequence");
 		} else {
 			$poissonSequence = new PoissonSequence($bdd, $objetBDDParam);
-			$vue->set( , ""); ("poissonSequence", $poissonSequence->getListFromSequence($data["sequence_id"]));
+			$vue->set($poissonSequence->getListFromSequence($data["sequence_id"]), "poissonSequence");
 		}
 		/*
 		 * Lecture de la sequence
 		 */
+		require_once "modules/classes/sequence.class.php";
 		$sequence = new Sequence($bdd, $ObjetBDDParam);
-		$vue->set( , "");("dataSequence", $sequence->lire($data["sequence_id"]));
+		$vue->set($sequence->lire($data["sequence_id"]), "dataSequence");
 		break;
 	case "write":
 		/*
@@ -111,5 +89,3 @@ switch ($t_module["param"]) {
 		dataDelete($dataClass, $id);
 		break;
 }
-
-?>

@@ -5,24 +5,18 @@
  * @license http://www.cecill.info/licences/Licence_CeCILL-C_V1-fr.html LICENCE DE LOGICIEL LIBRE CeCILL-C
  *  Creation 11 mars 2015
  */
-include_once 'modules/classes/bassinCampagne.class.php';
+include_once 'modules/classes/profilThermique.class.php';
 $dataClass = new ProfilThermique($bdd,$ObjetBDDParam);
 $keyName = "profil_thermique_id";
 $id = $_REQUEST[$keyName];
 
 switch ($t_module["param"]) {
-	case "list":
-		/*
-		 * Display the list of all records of the table
-		 */
-		break;
 	case "display":
 		/*
 		 * Display the detail of the record
 		 */
-		$data = $dataClass->lire($id);
-		$vue->set( , "");("data", $data);
-		$vue->set( , "");("corps", "repro/profilThermiqueChange.tpl");
+		$vue->set( $dataClass->lire($id), "data");
+		$vue->set("repro/profilThermiqueChange.tpl" , "corps");
 		break;
 	case "new":
 		$id = 0;
@@ -36,27 +30,27 @@ switch ($t_module["param"]) {
 		/*
 		 * Recuperation des donnees du bassin
 		 */
-		require_once 'modules/classes/bassin.class.php';
+		require_once 'modules/classes/bassinCampagne.class.php';
 		$bassinCampagne = new BassinCampagne($bdd, $ObjetBDDParam);
 		$dataBassinCampagne = $bassinCampagne->lire($data["bassin_campagne_id"]);
+		require_once "modules/classes/bassin.class.php";
 		$bassin = new Bassin($bdd, $ObjetBDDParam);
-		$vue->set( , "");("dataBassinCampagne", $dataBassinCampagne);
-		$vue->set( , "");("dataBassin", $bassin->lire($dataBassinCampagne["bassin_id"]));
+		$vue->set( $dataBassinCampagne, "dataBassinCampagne");
+		$vue->set( $bassin->lire($dataBassinCampagne["bassin_id"]), "dataBassin");
 		/*
 		 * Recuperation des donnees de temperature deja existantes
 		 */
 		$profilThermiques = $dataClass->getListFromBassinCampagne($data["bassin_campagne_id"]);
-		$vue->set( , "");("profilThermiques", $profilThermiques );
+		$vue->set( $profilThermiques, "profilThermiques");
 		/*
 		 * Assignation des valeurs par defaut en prenant en reference la derniere valeur entree
 		 */
 		$nbProfil = count($profilThermiques);
 		if ($nbProfil > 0 && $id == 0) {
 			$data["pf_datetime"] =  $profilThermiques[$nbProfil - 1]["pf_datetime"];
-			//$data["profil_thermique_type_id"] = $profilThermiques[$nbProfil - 1]["profil_thermique_type_id"];
-			$vue->set( , "");("data", $data);			
+			$vue->set($data , "data");			
 		}
-		$vue->set( , "");("bassinParentModule", $_SESSION["bassinParentModule"]);
+		$vue->set($_SESSION["bassinParentModule"] , "bassinParentModule");
 		break;
 	case "write":
 		/*
@@ -74,5 +68,3 @@ switch ($t_module["param"]) {
 		dataDelete($dataClass, $id);
 		break;
 }
-
-?>

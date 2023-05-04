@@ -1,5 +1,5 @@
 <?php
-require_once 'modules/classes/poisson.class.php';
+
 /**
  *
  * @author quinton

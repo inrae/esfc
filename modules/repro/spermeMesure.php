@@ -29,7 +29,7 @@ switch ($t_module["param"]) {
         $dataSperme =  $sperme->lire($_REQUEST["sperme_id"]);
         $vue->set( , "");("dataSperme",$dataSperme);
         
-        require_once 'modules/classes/poissonRepro.class.php';
+        require_once 'modules/classes/poissonCampagne.class.php';
         $poissonCampagne = new PoissonCampagne($bdd, $ObjetBDDParam);
         $vue->set( , "");("dataPoisson", $poissonCampagne->lire($dataSperme["poisson_campagne_id"]));
         $vue->set( , ""); ("sequences", $poissonCampagne->getListSequence($_REQUEST["poisson_campagne_id"], $_SESSION["annee"]));

@@ -1,13 +1,14 @@
 <?php
+
 /**
  * @author Eric Quinton
  * @copyright Copyright (c) 2015, IRSTEA / Eric Quinton
  * @license http://www.cecill.info/licences/Licence_CeCILL-C_V1-fr.html LICENCE DE LOGICIEL LIBRE CeCILL-C
  *  Creation 13 mars 2015
  */
- 
+
 include_once 'modules/classes/lot.class.php';
-$dataClass = new LotMesure($bdd,$ObjetBDDParam);
+$dataClass = new LotMesure($bdd, $ObjetBDDParam);
 $keyName = "lot_mesure_id";
 $id = $_REQUEST[$keyName];
 
@@ -23,7 +24,7 @@ switch ($t_module["param"]) {
 		 * Lecture du lot
 		 */
 		$lot = new Lot($bdd, $ObjetBDDParam);
-		$vue->set( , "");("dataLot", $lot->getDetail($data["lot_id"]));
+		$vue->set($lot->getDetail($data["lot_id"]), "dataLot");
 		break;
 	case "write":
 		/*
@@ -41,4 +42,3 @@ switch ($t_module["param"]) {
 		dataDelete($dataClass, $id);
 		break;
 }
-?>

@@ -22,7 +22,7 @@ switch ($t_module ["param"]) {
 		/*
 		 * Lecture des annees
 		 */
-		require_once 'modules/classes/poissonRepro.class.php';
+		require_once 'modules/classes/poissonCampagne.class.php';
 		$poissonCampagne = new PoissonCampagne ( $bdd, $ObjetBDDParam );
 		$vue->set( , ""); ( "annees", $poissonCampagne->getAnnees () );
 		break;

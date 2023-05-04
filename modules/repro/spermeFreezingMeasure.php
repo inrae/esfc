@@ -27,7 +27,7 @@ switch ($t_module["param"]) {
         /*
          * Donnees du poisson
          */
-        require_once 'modules/classes/poissonRepro.class.php';
+        require_once 'modules/classes/poissonCampagne.class.php';
         $poissonCampagne = new PoissonCampagne($bdd, $ObjetBDDParam);
         $vue->set( , "");("dataPoisson", $poissonCampagne->lire($_REQUEST["poisson_campagne_id"]));
         

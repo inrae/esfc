@@ -1,38 +1,40 @@
 <?php
+
 /**
  * @author Eric Quinton
  * @copyright Copyright (c) 2015, IRSTEA / Eric Quinton
  * @license http://www.cecill.info/licences/Licence_CeCILL-C_V1-fr.html LICENCE DE LOGICIEL LIBRE CeCILL-C
  *  Creation 25 mars 2015
  */
- 
+
 include_once 'modules/classes/sperme.class.php';
-$dataClass = new Sperme($bdd,$ObjetBDDParam);
+$dataClass = new Sperme($bdd, $ObjetBDDParam);
 $keyName = "sperme_id";
 $id = $_REQUEST[$keyName];
 /*
  * Passage en parametre de la liste parente
  */
-$vue->set( , ""); ( "poissonDetailParent", $_SESSION ["poissonDetailParent"] );
+$vue->set($_SESSION["poissonDetailParent"], "poissonDetailParent");
 
 switch ($t_module["param"]) {
 	case "display":
 		/*
 		 * Display the detail of the record
 		 */
-		$data = $dataClass->lire($id);
-		$vue->set( , "");("data", $data);
+		$vue->set($dataClass->lire($id), "data");
 		/*
 		 * Recherche des caracteristiques particulieres
 		 */
+		require_once "modules/classes/spermeCaracteristique.class.php";
 		$caract = new SpermeCaracteristique($bdd, $ObjetBDDParam);
-		$vue->set( , "");("spermeCaract", $caract->getFromSperme($id));
+		$vue->set($caract->getFromSperme($id), "spermeCaract");
 		/*
 		 * Recherche des mesures effectuees
 		 */
+		require_once "modules/classes/spermeMesure.class.php";
 		$mesure = new SpermeMesure($bdd, $ObjetBDDParam);
-		$vue->set( , "");("dataMesure", $mesure->getListFromSperme($id));
-		$vue->set( , "");("corps", "repro/spermeDisplay.tpl");
+		$vue->set($mesure->getListFromSperme($id), "dataMesure");
+		$vue->set("repro/spermeDisplay.tpl", "corps");
 		break;
 	case "change":
 		/*
@@ -47,12 +49,12 @@ switch ($t_module["param"]) {
 		 * Donnees du poisson
 		 */
 		if (!isset($_REQUEST["poisson_campagne_id"]))
-		    $_REQUEST["poisson_campagne_id"] = $data["poisson_campagne_id"];
-		require_once 'modules/classes/poissonRepro.class.php';
+			$_REQUEST["poisson_campagne_id"] = $data["poisson_campagne_id"];
+		require_once 'modules/classes/poissonCampagne.class.php';
 		$poissonCampagne = new PoissonCampagne($bdd, $ObjetBDDParam);
-		$vue->set( , "");("dataPoisson", $poissonCampagne->lire($_REQUEST["poisson_campagne_id"]));
-		$vue->set( , ""); ("sequences", $poissonCampagne->getListSequence($_REQUEST["poisson_campagne_id"], $_SESSION["annee"]));
-		
+		$vue->set($poissonCampagne->lire($_REQUEST["poisson_campagne_id"]), "dataPoisson");
+		$vue->set($poissonCampagne->getListSequence($_REQUEST["poisson_campagne_id"], $_SESSION["annee"]), "sequences");
+
 		break;
 	case "write":
 		/*
@@ -64,7 +66,7 @@ switch ($t_module["param"]) {
 			/*
 			 * Mise a jour du statut du poisson_sequence
 			 */
-			require_once 'modules/classes/sequence.class.php';
+			require_once 'modules/classes/poissonSequence.class.php';
 			$poissonSequence = new PoissonSequence($bdd, $ObjetBDDParam);
 			$poissonSequence->updateStatutFromPoissonCampagne($_REQUEST["poisson_campagne_id"], $_REQUEST["sequence_id"], 4);
 		}
@@ -76,5 +78,3 @@ switch ($t_module["param"]) {
 		dataDelete($dataClass, $id);
 		break;
 }
-
-?>
