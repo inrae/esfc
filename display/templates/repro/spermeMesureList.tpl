@@ -4,15 +4,15 @@
 <table class="table table-bordered table-hover datatable" class="tableaffichage">
 <thead>
 <tr>
-<th>Date</th>
-<th>Qualité</th>
-<th>Motilité<br>initiale</th>
-<th>Tx survie<br>initial</th>
-<th>Motilité 60"</th>
-<th>Tx survie<br>60"</th>
-<th>Temps<br>survie</th>
-<th>pH</th>
-<th>Nbre paillettes<br>utilisées</th>
+<th>{t}Date{/t}<th>
+<th>{t}Qualité{/t}<th>
+<th>{t}Motilité<br>initiale{/t}<th>
+<th>{t}Tx survie<br>initial{/t}<th>
+<th>{t}Motilité 60"{/t}<th>
+<th>{t}Tx survie<br>60"{/t}<th>
+<th>{t}Temps<br>survie{/t}<th>
+<th>{t}pH{/t}<th>
+<th>{t}Nbre paillettes<br>utilisées{/t}<th>
 </tr>
 </thead>
 <tbody>

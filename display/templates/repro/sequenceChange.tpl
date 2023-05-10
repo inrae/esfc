@@ -17,7 +17,7 @@ Retour à la liste des séquences
 <input type="hidden" name="moduleBase" value=""> id="sequenceForm" method="post" action="index.php?module=sequenceWrite">
 <input type="hidden" name="sequence_id" value="{$data.sequence_id}">
 <fieldset>
-<legend>Séquence</legend>
+<legend>{t}Séquence{/t}<legend>
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}Année <span class="red">*</span> :{/t}</label>
 <div class="col-md-8">

@@ -10,7 +10,7 @@ setDataTables("ccategorieList");
 <table class="table table-bordered table-hover datatable" id="ccategorieList" class="tableliste">
 <thead>
 <tr>
-<th>Catégorie</th>
+<th>{t}Catégorie{/t}<th>
 </tr>
 </thead>
 <tbody>

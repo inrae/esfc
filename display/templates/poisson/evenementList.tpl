@@ -4,9 +4,9 @@ setDataTables("cevenementList");
 <table class="table table-bordered table-hover datatable" id="cevenementList" class="tableliste">
 <thead>
 <tr>
-<th>Nature</th>
-<th>Date</th>
-<th>Commentaire</th>
+<th>{t}Nature{/t}<th>
+<th>{t}Date{/t}<th>
+<th>{t}Commentaire{/t}<th>
 </tr>
 </thead>
 <tbody>

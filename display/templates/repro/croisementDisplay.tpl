@@ -58,7 +58,7 @@ Retour à la séquence
 </tr>
 <tr>
 <td>
-<fieldset><legend>Liste des spermes utilisés</legend>
+<fieldset><legend>{t}Liste des spermes utilisés{/t}<legend>
 {include file="repro/spermeUtiliseList.tpl"}
 </fieldset>
 </td>

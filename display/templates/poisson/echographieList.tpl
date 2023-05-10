@@ -4,11 +4,11 @@ setDataTables("cechographieList");
 <table class="table table-bordered table-hover datatable" id="cechographieList" class="tableliste">
 <thead>
 <tr>
-<th>Événement associé</th>
-<th>Date</th>
-<th>Stade gonade</th>
-<th>Stade œufs</th>
-<th>Commentaire</th>
+<th>{t}Événement associé{/t}<th>
+<th>{t}Date{/t}<th>
+<th>{t}Stade gonade{/t}<th>
+<th>{t}Stade œufs{/t}<th>
+<th>{t}Commentaire{/t}<th>
 </tr>
 </thead>
 <tbody>

@@ -4,10 +4,10 @@ setDataTables("cpittagList");
 <table class="table table-bordered table-hover datatable" id="cpittagList" class="tableliste">
 <thead>
 <tr>
-<th>Valeur</th>
-<th>Type de pittag</th>
-<th>Date de pose</th>
-<th>Commentaire</th>
+<th>{t}Valeur{/t}<th>
+<th>{t}Type de pittag{/t}<th>
+<th>{t}Date de pose{/t}<th>
+<th>{t}Commentaire{/t}<th>
 </tr>
 </thead>
 <tbody>

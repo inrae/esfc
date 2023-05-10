@@ -1,9 +1,9 @@
 <table class="table table-bordered table-hover datatable" id="csaliniteList" class="tableliste">
 <thead>
 <tr>
-<th>Date/heure</th>
-<th>Salinité</th>
-<th>Type</th>
+<th>{t}Date/heure{/t}<th>
+<th>{t}Salinité{/t}<th>
+<th>{t}Type{/t}<th>
 </tr>
 </thead>
 <tbody>

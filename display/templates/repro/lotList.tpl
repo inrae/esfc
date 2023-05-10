@@ -31,23 +31,23 @@ $('document').ready(function() {
 <table class="table table-bordered table-hover datatable" id="clotlist" class="tableliste">
 <thead>
 <tr>
-<th>Nom du lot</th>
-<th>Parents</th>
-<th>Séquence</th>
-<th>Bassin</th>
-<th>Date<br>d'éclosion</th>
-<th>Age<br>(jours)</th>
-<th>Nbre de larves<br>estimé</th>
-<th>Nbre de larves<br>comptées</th>
-<th>Marque VIE</th>
-<th>Date de marquage<br>VIE</th>
+<th>{t}Nom du lot{/t}<th>
+<th>{t}Parents{/t}<th>
+<th>{t}Séquence{/t}<th>
+<th>{t}Bassin{/t}<th>
+<th>{t}Date<br>d'éclosion{/t}<th>
+<th>{t}Age<br>(jours){/t}<th>
+<th>{t}Nbre de larves<br>estimé{/t}<th>
+<th>{t}Nbre de larves<br>comptées{/t}<th>
+<th>{t}Marque VIE{/t}<th>
+<th>{t}Date de marquage<br>VIE{/t}<th>
 {if $droits.reproGestion == 1}
-<th>Fiche<br>alim.
+<th>{t}Fiche<br>alim.
 <br>
 <div class="center">
 <input type="checkbox" id="bassinCheck" checked value="1">
 </div>
-</th>
+{/t}<th>
 {/if}
 </tr>
 </thead>
@@ -93,7 +93,7 @@ $('document').ready(function() {
 </table>
 
 {if $droits.reproGestion == 1}
-<fieldset><legend>Alimentation quotidienne</legend>
+<fieldset><legend>{t}Alimentation quotidienne{/t}<legend>
 
 <input type="hidden" name="module" value="lotalimGenerate">
 Date de début d'alimentation :

@@ -46,7 +46,7 @@ Retour au sperme
 <table class="tablemulticolonne">
 <tr>
 <td>
-<fieldset><legend>Modification d'une congélation de sperme</legend>
+<fieldset><legend>{t}Modification d'une congélation de sperme{/t}<legend>
 <div class="formSaisie">
 <div>
 <div class="row">
@@ -171,7 +171,7 @@ Retour au sperme
 </fieldset>
 </td>
 <td>
-<fieldset><legend>Vitesse de congélation</legend>
+<fieldset><legend>{t}Vitesse de congélation{/t}<legend>
 {include file="repro/spermeFreezingMeasureList.tpl"}
 <br>
 <div id="freeze"></div>
@@ -184,7 +184,7 @@ Retour au sperme
 </td>
 <td>
 <fieldset>
-<legend>Liste des emplacements de congélation</legend>
+<legend>{t}Liste des emplacements de congélation{/t}<legend>
 {include file='repro/spermeFreezingPlaceList.tpl'}
 </fieldset>
 </td>

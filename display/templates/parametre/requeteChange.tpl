@@ -104,7 +104,7 @@ setDataTablesFull("crequeteList", true, true, true, 50);
 <thead>
 <tr>
 {foreach $result[0] as $key=>$value}
-<th>{$key}</th>
+<th>{t}{$key}{/t}<th>
 {/foreach}
 </tr>
 </thead>

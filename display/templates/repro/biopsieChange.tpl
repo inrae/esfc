@@ -74,7 +74,7 @@ Sélectionnez...
 </dd>
 </div>
 <fieldset>
-<legend>Maturation Ringer</legend>
+<legend>{t}Maturation Ringer{/t}<legend>
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}T50 :{/t}</label>
 <div class="col-md-8">
@@ -97,7 +97,7 @@ Sélectionnez...
 </div>
 </fieldset>
 <fieldset>
-<legend>Maturation Leibovitz</legend>
+<legend>{t}Maturation Leibovitz{/t}<legend>
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}T50 :{/t}</label>
 <div class="col-md-8">

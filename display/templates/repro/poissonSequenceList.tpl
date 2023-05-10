@@ -6,11 +6,11 @@ Rattacher une nouvelle séquence...
 <table class="table table-bordered table-hover datatable" id="csequence" class="tableliste">
 <thead>
 <tr>
-<th>Date<br>début</th>
-<th>Nom</th>
-<th>Masse des<br>ovocytes</th>
-<th>Date d'expulsion</th>
-<th>Statut du poisson<br>pour la séquence</th>
+<th>{t}Date<br>début{/t}<th>
+<th>{t}Nom{/t}<th>
+<th>{t}Masse des<br>ovocytes{/t}<th>
+<th>{t}Date d'expulsion{/t}<th>
+<th>{t}Statut du poisson<br>pour la séquence{/t}<th>
 </tr>
 </thead>
 <tbody>

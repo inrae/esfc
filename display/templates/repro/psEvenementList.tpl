@@ -1,10 +1,10 @@
 <table class="table table-bordered table-hover datatable" id="cpsEvenement" class="tableliste">
 <thead>
 <tr>
-<th>Séquence</th>
-<th>Date</th>
-<th>Libellé</th>
-<th>Commentaire</th>
+<th>{t}Séquence{/t}<th>
+<th>{t}Date{/t}<th>
+<th>{t}Libellé{/t}<th>
+<th>{t}Commentaire{/t}<th>
 </tr>
 </thead>
 <tbody>

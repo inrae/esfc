@@ -6,11 +6,11 @@ Nouveau...
 <table class="table table-bordered table-hover datatable" id="cspermeUtilise" class="tableliste">
 <thead>
 <tr>
-<th>Poisson</th>
-<th>Date de la semence</th>
-<th>Date de congélation</th>
-<th>Volume utilisé (ml)</th>
-<th>Nb de paillettes utilisées</th>
+<th>{t}Poisson{/t}<th>
+<th>{t}Date de la semence{/t}<th>
+<th>{t}Date de congélation{/t}<th>
+<th>{t}Volume utilisé (ml){/t}<th>
+<th>{t}Nb de paillettes utilisées{/t}<th>
 </thead>
 <tbody>
 {section name=lst loop=$spermesUtilises}

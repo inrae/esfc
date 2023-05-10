@@ -128,18 +128,18 @@ Ajouter tous les adultes vivants à la campagne...
 <table class="table table-bordered table-hover datatable" id="cpoissonList" class="tableliste">
 <thead>
 <tr>
-<th>Données<br>d'élevage</th>
-<th>Identification</th>
-<th>Statut de<br>reproduction</th>
-<th>Cohorte</th>
-<th>Sexe</th>
-<th>Masse<br>actuelle</th>
-<th>Croissance</th>
-<th>Tx de croissance<br>journalier</th>
-<th>Specific<br>growth rate</th>
-<th>Années de<br>croisement</th>
-<th>Séquences</th>
-<th>Sélection</th>
+<th>{t}Données<br>d'élevage{/t}<th>
+<th>{t}Identification{/t}<th>
+<th>{t}Statut de<br>reproduction{/t}<th>
+<th>{t}Cohorte{/t}<th>
+<th>{t}Sexe{/t}<th>
+<th>{t}Masse<br>actuelle{/t}<th>
+<th>{t}Croissance{/t}<th>
+<th>{t}Tx de croissance<br>journalier{/t}<th>
+<th>{t}Specific<br>growth rate{/t}<th>
+<th>{t}Années de<br>croisement{/t}<th>
+<th>{t}Séquences{/t}<th>
+<th>{t}Sélection{/t}<th>
 </tr>
 </thead>
 <tbody>

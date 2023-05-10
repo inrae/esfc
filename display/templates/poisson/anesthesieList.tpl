@@ -4,11 +4,11 @@ setDataTables("canesthesieList");
 <table class="table table-bordered table-hover datatable" id="canesthesieList" class="tableliste">
 <thead>
 <tr>
-<th>Événement associé</th>
-<th>Date</th>
-<th>Produit utilisé</th>
-<th>Dosage (mg/l)</th>
-<th>Commentaire</th>
+<th>{t}Événement associé{/t}<th>
+<th>{t}Date{/t}<th>
+<th>{t}Produit utilisé{/t}<th>
+<th>{t}Dosage (mg/l){/t}<th>
+<th>{t}Commentaire{/t}<th>
 </tr>
 </thead>
 <tbody>

@@ -5,11 +5,11 @@ setDataTables("cparentList");
 <thead>
 <tr>
 {if $droits.poissonGestion == 1}
-<th>Modif</th>
+<th>{t}Modif{/t}<th>
 {/if}
-<th>Parent</th>
-<th>Sexe</th>
-<th>Cohorte</th>
+<th>{t}Parent{/t}<th>
+<th>{t}Sexe{/t}<th>
+<th>{t}Cohorte{/t}<th>
 </tr>
 </thead>
 <tbody>

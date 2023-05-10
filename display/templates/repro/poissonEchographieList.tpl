@@ -1,5 +1,5 @@
 <fieldset>
-<legend>Échographies</legend>
+<legend>{t}Échographies{/t}<legend>
 {if $droits.reproGestion == 1}
 <a href="index.php?module=echographieChange&echographie_id=0&poisson_campagne_id={$dataPoisson.poisson_campagne_id}">
 Nouvelle échographie...
@@ -8,8 +8,8 @@ Nouvelle échographie...
 <table class="table table-bordered table-hover datatable" id="cechographie" class="tableliste">
 <thead>
 <tr>
-<th>Date</th>
-<th>Commentaire</th>
+<th>{t}Date{/t}<th>
+<th>{t}Commentaire{/t}<th>
 </tr>
 </thead>
 <tbody>

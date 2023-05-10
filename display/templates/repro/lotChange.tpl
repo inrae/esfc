@@ -60,7 +60,7 @@ Retour au lot
 </dd>
 </div>
 <fieldset>
-<legend>Marquage VIE</legend>
+<legend>{t}Marquage VIE{/t}<legend>
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}Date du marquage :{/t}</label>
 <div class="col-md-8">

@@ -10,8 +10,8 @@ setDataTables("claboratoireAnalyseList");
 <table class="table table-bordered table-hover datatable" id="claboratoireAnalyseList" class="tableliste">
 <thead>
 <tr>
-<th>libellé</th>
-<th>Actif ?</th>
+<th>{t}libellé{/t}<th>
+<th>{t}Actif ?{/t}<th>
 </tr>
 </thead>
 <tbody>

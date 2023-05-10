@@ -29,15 +29,15 @@ suiv&gt;
 <thead>
 <tr>
 {if $droits.bassinGestion == 1}
-<th>Modif</th>
+<th>{t}Modif{/t}<th>
 {/if}
-<th>Catégorie</th>
-<th>Nom</th>
-<th>Date début</th>
-<th>Date fin</th>
+<th>{t}Catégorie{/t}<th>
+<th>{t}Nom{/t}<th>
+<th>{t}Date début{/t}<th>
+<th>{t}Date fin{/t}<th>
 {if $droits.bassinGestion == 1}
-<th>Saisir<br>les restes</th>
-<th>Dupliquer</th>
+<th>{t}Saisir<br>les restes{/t}<th>
+<th>{t}Dupliquer{/t}<th>
 {/if}
 </thead>
 <tbody>

@@ -10,11 +10,11 @@ setDataTables("csortieLieuList");
 <table class="table table-bordered table-hover datatable" id="csortieLieuList" class="tableliste">
 <thead>
 <tr>
-<th>Lieu</th>
-<th>Longitude</th>
-<th>Latitude</th>
-<th>Statut<br>correspondant</th>
-<th>Actif ?</th>
+<th>{t}Lieu{/t}<th>
+<th>{t}Longitude{/t}<th>
+<th>{t}Latitude{/t}<th>
+<th>{t}Statut<br>correspondant{/t}<th>
+<th>{t}Actif ?{/t}<th>
 </tr>
 </thead>
 <tbody>

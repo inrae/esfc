@@ -10,8 +10,8 @@ setDataTables("cbassinUsageList");
 <table class="table table-bordered table-hover datatable" id="cbassinUsageList" class="tableliste">
 <thead>
 <tr>
-<th>libellé</th>
-<th>Catégorie<br>d'alimentation</th>
+<th>{t}libellé{/t}<th>
+<th>{t}Catégorie<br>d'alimentation{/t}<th>
 </tr>
 </thead>
 <tbody>

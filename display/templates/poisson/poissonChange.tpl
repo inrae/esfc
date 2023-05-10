@@ -83,7 +83,7 @@ Retour à la liste des poissons
 </dd>
 </div>
 <fieldset>
-<legend>Pittag</legend>
+<legend>{t}Pittag{/t}<legend>
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}Numéro de pittag <span class="red">*</span> : {/t}</label>
 <div class="col-md-8">
@@ -158,7 +158,7 @@ Sélectionnez le type de marque...
 <input id="" class="form-control" name="commentaire" id="ccommentaire" class="commentaire" value="{$data.commentaire}">
 </dd>
 </div>
-<fieldset><legend>Marquage VIE au stade juvénile - lot</legend>
+<fieldset><legend>{t}Marquage VIE au stade juvénile - lot{/t}<legend>
 <label>La sélection du modèle de marquage VIE entraîne une mise
 à jour automatique de la date de naissance, de la cohorte et des parents
 à partir des données de reproduction</label>

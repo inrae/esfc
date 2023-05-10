@@ -4,11 +4,11 @@ setDataTables("ccohorteList");
 <table class="table table-bordered table-hover datatable" id="ccohorteList" class="tableliste">
 <thead>
 <tr>
-<th>Événement associé</th>
-<th>Type de<br>détermination</th>
-<th>Cohorte<br>déterminée</th>
-<th>Date</th>
-<th>Commentaire</th>
+<th>{t}Événement associé{/t}<th>
+<th>{t}Type de<br>détermination{/t}<th>
+<th>{t}Cohorte<br>déterminée{/t}<th>
+<th>{t}Date{/t}<th>
+<th>{t}Commentaire{/t}<th>
 </tr>
 </thead>
 <tbody>

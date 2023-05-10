@@ -10,7 +10,7 @@ setDataTables("ccohorteTypeList");
 <table class="table table-bordered table-hover datatable" id="ccohorteTypeList" class="tableliste">
 <thead>
 <tr>
-<th>libellé</th>
+<th>{t}libellé{/t}<th>
 </tr>
 </thead>
 <tbody>

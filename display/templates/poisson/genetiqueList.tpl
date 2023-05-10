@@ -4,11 +4,11 @@ setDataTables("cgenetiqueList");
 <table class="table table-bordered table-hover datatable" id="cgenetiqueList" class="tableliste">
 <thead>
 <tr>
-<th>Événement associé</th>
-<th>Date</th>
-<th>Référence</th>
-<th>Nageoire</th>
-<th>Commentaire</th>
+<th>{t}Événement associé{/t}<th>
+<th>{t}Date{/t}<th>
+<th>{t}Référence{/t}<th>
+<th>{t}Nageoire{/t}<th>
+<th>{t}Commentaire{/t}<th>
 </tr>
 </thead>
 <tbody>

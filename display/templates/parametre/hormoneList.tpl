@@ -10,8 +10,8 @@ setDataTables("chormonList");
 <table class="table table-bordered table-hover datatable" id="chormoneList" class="tableliste">
 <thead>
 <tr>
-<th>Nom de l'hormone</th>
-<th>Unité utilisée pour l'injection</th>
+<th>{t}Nom de l'hormone{/t}<th>
+<th>{t}Unité utilisée pour l'injection{/t}<th>
 </tr>
 </thead>
 <tbody>

@@ -4,13 +4,13 @@ setDataTablesFull("cbassinPoissonList");
 <table id="cbassinPoissonList" class="tableliste">
 <thead>
 <tr>
-<th>matricule</th>
-<th>tag(s)</th>
-<th>prénom</th>
-<th>Sexe</th>
-<th>Cohorte</th>
-<th>Date d'arrivée</th>
-<th>Masse</th>
+<th>{t}matricule{/t}<th>
+<th>{t}tag(s){/t}<th>
+<th>{t}prénom{/t}<th>
+<th>{t}Sexe{/t}<th>
+<th>{t}Cohorte{/t}<th>
+<th>{t}Date d'arrivée{/t}<th>
+<th>{t}Masse{/t}<th>
 </tr>
 </thead>
 <tbody>

@@ -65,6 +65,6 @@ $(document).ready(function() {
 <input class="commentaire" name="sperme_commentaire" value="{$data.sperme_commentaire}">
 </dl>
 <fieldset>
-<legend>Analyse réalisée au prélèvement</legend>
+<legend>{t}Analyse réalisée au prélèvement{/t}<legend>
 {include file="repro/spermeMesureChangeCorps.tpl"}
 </fieldset>

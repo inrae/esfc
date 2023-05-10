@@ -4,10 +4,10 @@ setDataTables("cpathologieList");
 <table class="table table-bordered table-hover datatable" id="cpathologieList" class="tableliste">
 <thead>
 <tr>
-<th>Événement associé</th>
-<th>Date</th>
-<th>Type de pathologie</th>
-<th>Commentaire</th>
+<th>{t}Événement associé{/t}<th>
+<th>{t}Date{/t}<th>
+<th>{t}Type de pathologie{/t}<th>
+<th>{t}Commentaire{/t}<th>
 
 
 </tr>

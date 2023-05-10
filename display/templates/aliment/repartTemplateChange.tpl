@@ -16,7 +16,7 @@ $(document).ready(function() {
 <input type="hidden" name="moduleBase" value=""> id="repartTemplateForm" method="post" action="index.php?module=repartTemplateWrite">
 <input type="hidden" name="repart_template_id" value={$data.repart_template_id}>
 <fieldset>
-<legend>Données générales</legend>
+<legend>{t}Données générales{/t}<legend>
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}Date de création <span class="red">*</span> :{/t}</label>
 <div class="col-md-8">
@@ -52,7 +52,7 @@ $(document).ready(function() {
 
 {if $data.repart_template_id > 0}
 <fieldset>
-<legend>Aliments distribués</legend>
+<legend>{t}Aliments distribués{/t}<legend>
 {section name=lst loop=$dataAliment}
 <input type="hidden" name="repart_aliment_id_{$dataAliment[lst].aliment_id}" value="{$dataAliment[lst].repart_aliment_id}">
 <input type="hidden" name="aliment_id_{$dataAliment[lst].aliment_id}" value="{$dataAliment[lst].aliment_id}">

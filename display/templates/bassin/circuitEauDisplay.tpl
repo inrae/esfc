@@ -55,7 +55,7 @@ Modifier le nom ou l'activité du circuit d'eau...
 </td>
 <td>
 <fieldset>
-<legend>Évements</legend>
+<legend>{t}Évements{/t}<legend>
 {include file="bassin/circuitEvenementList.tpl"}
 </fieldset>
 </td>
@@ -91,24 +91,24 @@ suiv&gt;
 <table id="canalyseEauList" class="tableliste">
 <thead>
 <tr>
-<th>Date<br>d'analyse</th>
-<th>T°</th>
-<th>O2<br>mg/l</th>
-<th>O2<br>% sat</th>
-<th>Salinité</th>
-<th>pH</th>
-<th>Laboratoire</th>
-<th>NH4</th>
-<th>NO2</th>
-<th>NO3</th>
-<th>Backwash<br>mécanique</th>
-<th>Backwash<br>biologique</th>
-<th>Commentaire<br>backwash bio</th>
-<th>Débit<br>rivière</th>
-<th>Débit<br>forage</th>
-<th>Débit<br>mer</th>
-<th>Métaux</th>
-<th>Observations</th>
+<th>{t}Date<br>d'analyse{/t}<th>
+<th>{t}T°{/t}<th>
+<th>{t}O2<br>mg/l{/t}<th>
+<th>{t}O2<br>% sat{/t}<th>
+<th>{t}Salinité{/t}<th>
+<th>{t}pH{/t}<th>
+<th>{t}Laboratoire{/t}<th>
+<th>{t}NH4{/t}<th>
+<th>{t}NO2{/t}<th>
+<th>{t}NO3{/t}<th>
+<th>{t}Backwash<br>mécanique{/t}<th>
+<th>{t}Backwash<br>biologique{/t}<th>
+<th>{t}Commentaire<br>backwash bio{/t}<th>
+<th>{t}Débit<br>rivière{/t}<th>
+<th>{t}Débit<br>forage{/t}<th>
+<th>{t}Débit<br>mer{/t}<th>
+<th>{t}Métaux{/t}<th>
+<th>{t}Observations{/t}<th>
 </tr>
 </thead>
 <tbody>

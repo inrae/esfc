@@ -43,10 +43,10 @@ Modifier les résultats de l'analyse...
 <div class="row">
 <div class="col-lg-8 form-display">
 <dl class="dl-horizontal">
-<th></th>
-<th>Valeur réelle</th>
-<th>Valeur N-N</th>
-<th>Valeur seuil</th>
+<th>{t}{/t}<th>
+<th>{t}Valeur réelle{/t}<th>
+<th>{t}Valeur N-N{/t}<th>
+<th>{t}Valeur seuil{/t}<th>
 </dl>
 <dl class="dl-horizontal">
 <dt>{t}NH4{/t}</dt>
@@ -97,7 +97,7 @@ Modifier les résultats de l'analyse...
 </dl>
 <dl class="dl-horizontal">
 <td colspan="2">
-<fieldset><legend>Métaux analysés</legend>
+<fieldset><legend>{t}Métaux analysés{/t}<legend>
 {$dataAnalyse.metaux}
 </fieldset>
 </dd>

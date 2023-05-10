@@ -38,15 +38,15 @@ Type d'anomalie :
 <thead>
 <tr>
 {if $droits["poissonAdmin"] == 1}
-<th>Modif</th>
+<th>{t}Modif{/t}<th>
 {/if}
-<th>Poisson</th>
-<th>Événement associé</th>
-<th>Type d'anomalie</th>
-<th>Date</th>
-<th>Commentaire</th>
-<th>Date de<br>traitement</th>
-<th>État</th>
+<th>{t}Poisson{/t}<th>
+<th>{t}Événement associé{/t}<th>
+<th>{t}Type d'anomalie{/t}<th>
+<th>{t}Date{/t}<th>
+<th>{t}Commentaire{/t}<th>
+<th>{t}Date de<br>traitement{/t}<th>
+<th>{t}État{/t}<th>
 </tr>
 </thead>
 <tbody>

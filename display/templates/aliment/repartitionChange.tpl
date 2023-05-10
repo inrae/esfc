@@ -193,13 +193,13 @@ $(document).ready(function() {
 <input id="" class="form-control" class="date" name="date_fin_periode" value="{$data.date_fin_periode}"><span class="message"></span></dd>
  </div>
 <fieldset>
-<legend>Répartition des aliments par bassin</legend>
+<legend>{t}Répartition des aliments par bassin{/t}<legend>
 <div id="afficher" class="masquageText"><i>Afficher tous les éléments</i></div>
 {section name=lst loop=$dataBassin}
 <input type="hidden" name="distribution_id_{$dataBassin[lst].bassin_id}" value="{$dataBassin[lst].distribution_id}">
 <input type="hidden" name="bassin_id_{$dataBassin[lst].bassin_id}" value="{$dataBassin[lst].bassin_id}">
 <fieldset class="fsMasquable">
-<legend>{$dataBassin[lst].bassin_nom}</legend>
+<legend>{t}{$dataBassin[lst].bassin_nom}{/t}<legend>
 <div class="masquage">
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}Modèle de distribution utilisé <span class="red">*</span> :{/t}</label>

@@ -10,7 +10,7 @@ setDataTables("ccaracteristiqueList");
 <table class="table table-bordered table-hover datatable" id="ccaracteristiqueList" class="tableliste">
 <thead>
 <tr>
-<th>Libellé</th>
+<th>{t}Libellé{/t}<th>
 </tr>
 </thead>
 <tbody>

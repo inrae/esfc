@@ -43,7 +43,7 @@ Retour au reproducteur
 {$data.sperme_commentaire}
 </dl>
 <fieldset>
-<legend>Congélation</legend>
+<legend>{t}Congélation{/t}<legend>
 <dl>
 <dt>Date de congélation :</dt>
 <dd>{$data.congelation_date}</dd>

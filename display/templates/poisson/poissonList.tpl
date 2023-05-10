@@ -8,25 +8,25 @@
 <table class="table table-bordered table-hover datatable" id="cpoissonList" class="tableliste">
 <thead>
 <tr>
-<th>Id</th>
-<th>(Pit)tag</th>
-<th>Matricule</th>
-<th>Prénom</th>
-<th>Sexe</th>
-<th>Statut</th>
-<th>Cohorte</th>
-<th>Date de capture<br>/naissance</th>
-<th>Date de<br>mortalité</th>
+<th>{t}Id{/t}<th>
+<th>{t}(Pit)tag{/t}<th>
+<th>{t}Matricule{/t}<th>
+<th>{t}Prénom{/t}<th>
+<th>{t}Sexe{/t}<th>
+<th>{t}Statut{/t}<th>
+<th>{t}Cohorte{/t}<th>
+<th>{t}Date de capture<br>/naissance{/t}<th>
+<th>{t}Date de<br>mortalité{/t}<th>
 {if $poissonSearch.displayBassin == 1}
-<th>Bassin</th>
+<th>{t}Bassin{/t}<th>
 {/if}
 {if $poissonSearch.displayMorpho == 1}
-<th>Masse</th>
-<th>Long<br>fourche</th>
-<th>Long<br>totale</th>
+<th>{t}Masse{/t}<th>
+<th>{t}Long<br>fourche{/t}<th>
+<th>{t}Long<br>totale{/t}<th>
 {/if}
 {if $poissonSearch.displayCumulTemp == 1}
-<th>Température<br>cumulée (bassin)</th>
+<th>{t}Température<br>cumulée (bassin){/t}<th>
 {/if}
 </tr>
 </thead>

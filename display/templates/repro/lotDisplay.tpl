@@ -7,17 +7,17 @@
 {include file="repro/lotDetail.tpl"}
 <br>
 <fieldset>
-<legend>Comptages et mesures</legend>
+<legend>{t}Comptages et mesures{/t}<legend>
 {include file="repro/lotMesureList.tpl"}
 </fieldset>
 <br>
 <fieldset>
-<legend>Bassins utilisés</legend>
+<legend>{t}Bassins utilisés{/t}<legend>
 {include file="repro/bassinLotList.tpl"}
 </fieldset>
 <br>
 <fieldset>
-<legend>Devenir du lot</legend>
+<legend>{t}Devenir du lot{/t}<legend>
 {include file="repro/devenirList.tpl"}
 </fieldset>
 </div>

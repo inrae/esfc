@@ -68,9 +68,9 @@ Retour à la séquence
 <dd>
 <table>
 <tr>
-<th>Poisson</th>
-<th>Sexe</th>
-<th>Sélectionné</th>
+<th>{t}Poisson{/t}<th>
+<th>{t}Sexe{/t}<th>
+<th>{t}Sélectionné{/t}<th>
 </tr>
 {section name=lst loop=$poissonSequence}
 <tr>

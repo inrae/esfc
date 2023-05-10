@@ -47,7 +47,7 @@ Modifier les informations...
 {include file="poisson/poissonDetail.tpl"}
 <div id="afficher" class="masquageText">Afficher tous les éléments</div>
 <fieldset class="fsMasquable">
-<legend>Événements associés</legend>
+<legend>{t}Événements associés{/t}<legend>
 <div class="masquage">
 {if $droits["poissonGestion"]==1}
 <a href="index.php?module=evenementChange&poisson_id={$dataPoisson.poisson_id}&evenement_id=0">
@@ -59,21 +59,21 @@ Nouvel événement...
 </div>
 </fieldset>
 <fieldset class="fsMasquable">
-<legend>Pathologies</legend>
+<legend>{t}Pathologies{/t}<legend>
 <div class="masquage">
 {include file="poisson/pathologieList.tpl"}
 <br>
 </div>
 </fieldset>
 <fieldset class="fsMasquable">
-<legend>Transferts effectués</legend>
+<legend>{t}Transferts effectués{/t}<legend>
 <div class="masquage">
 {include file="poisson/transfertList.tpl"}
 <br>
 </div>
 </fieldset>
 <fieldset class="fsMasquable">
-<legend>Campagnes de reproduction</legend>
+<legend>{t}Campagnes de reproduction{/t}<legend>
 <div class="masquage">
 {if $droits.reproGestion == 1} 
 <a href="index.php?module=poissonCampagneChange&poisson_id={$dataPoisson.poisson_id}&poisson_campagne_id=0">
@@ -84,26 +84,26 @@ Pré-sélectionner le poisson pour une campagne de reproduction
 </div>
 </fieldset>
 <fieldset class="fsMasquable">
-<legend>Dosages sanguins</legend>
+<legend>{t}Dosages sanguins{/t}<legend>
 <div class="masquage">
 {include file="poisson/dosageSanguinList.tpl"}
 </div>
 </fieldset>
 <fieldset class="fsMasquable">
-<legend>Prélèvements génétiques</legend>
+<legend>{t}Prélèvements génétiques{/t}<legend>
 <div class="masquage">
 {include file="poisson/genetiqueList.tpl"}
 </div>
 </fieldset>
 <fieldset class="fsMasquable">
-<legend>Sortie du stock</legend>
+<legend>{t}Sortie du stock{/t}<legend>
 <div class="masquage">
 {include file="poisson/sortieList.tpl"}
 <br>
 </div>
 </fieldset>
 <fieldset class="fsMasquable">
-<legend>Mortalité</legend>
+<legend>{t}Mortalité{/t}<legend>
 <div class="masquage">
 {include file="poisson/mortaliteList.tpl"}
 <br>
@@ -113,34 +113,34 @@ Pré-sélectionner le poisson pour une campagne de reproduction
 <td>
 
 <fieldset class="fsMasquable">
-<legend>Documents associés</legend>
+<legend>{t}Documents associés{/t}<legend>
 <div class="masquage">
 {include file="document/documentList.tpl"}
 <br>
 </div>
 </fieldset>
 <fieldset class="fsMasquable">
-<legend>Données morphologiques</legend>
+<legend>{t}Données morphologiques{/t}<legend>
 <div class="masquage">
 {include file="poisson/morphologieList.tpl"}
 <br>
 </div>
 </fieldset>
 <fieldset class="fsMasquable">
-<legend>Échographies</legend>
+<legend>{t}Échographies{/t}<legend>
 <div class="masquage">
 {include file="poisson/echographieList.tpl"}
 <br></div>
 </fieldset>
 <fieldset class="fsMasquable">
-<legend>Anesthésies</legend>
+<legend>{t}Anesthésies{/t}<legend>
 <div class="masquage">
 {include file="poisson/anesthesieList.tpl"}
 <br>
 </div>
 </fieldset>
 <fieldset class="fsMasquable">
-<legend>Ventilation</legend>
+<legend>{t}Ventilation{/t}<legend>
 <div class="masquage">
 {include file="poisson/ventilationList.tpl"}
 <br>
@@ -148,14 +148,14 @@ Pré-sélectionner le poisson pour une campagne de reproduction
 </fieldset>
 
 <fieldset class="fsMasquable">
-<legend>Détermination du sexe</legend>
+<legend>{t}Détermination du sexe{/t}<legend>
 <div class="masquage">
 {include file="poisson/genderSelectionList.tpl"}
 <br>
 </div>
 </fieldset>
 <fieldset class="fsMasquable">
-<legend>Liste des (pit)tags attribués</legend>
+<legend>{t}Liste des (pit)tags attribués{/t}<legend>
 <div class="masquage">
 {if $droits["poissonGestion"]==1}
 <a href="index.php?module=pittagChange&poisson_id={$dataPoisson.poisson_id}&pittag_id=0">
@@ -167,7 +167,7 @@ Nouveau pittag ou étiquette...
 </div>
 </fieldset>
 <fieldset class="fsMasquable">
-<legend>Liste des parents</legend>
+<legend>{t}Liste des parents{/t}<legend>
 <div class="masquage">
 {if $droits["poissonGestion"]==1}
 <a href="index.php?module=parentPoissonChange&poisson_id={$dataPoisson.poisson_id}&parent_poisson_id=0">
@@ -179,20 +179,20 @@ Nouveau parent...
 </div>
 </fieldset>
 <fieldset class="fsMasquable">
-<legend>Détermination de la parenté</legend>
+<legend>{t}Détermination de la parenté{/t}<legend>
 <div class="masquage">
 {include file="poisson/parenteList.tpl"}
 </div>
 </fieldset>
 <fieldset class="fsMasquable">
-<legend>Détermination de la cohorte</legend>
+<legend>{t}Détermination de la cohorte{/t}<legend>
 <div class="masquage">
 {include file="poisson/cohorteList.tpl"}
 <br>
 </div>
 </fieldset>
 <fieldset class="fsMasquable">
-<legend>Anomalies relevées dans les données</legend>
+<legend>{t}Anomalies relevées dans les données{/t}<legend>
 <div class="masquage">
 {if $droits["poissonGestion"] == 1}
 <a href="index.php?module=anomalieChange&poisson_id={$dataPoisson.poisson_id}&anomalie_db_id=0&module_origine=poissonDisplay">

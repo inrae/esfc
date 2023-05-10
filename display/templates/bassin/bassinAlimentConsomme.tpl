@@ -22,11 +22,11 @@ setDataTables("calimList");
 <table id="calimList" class="tableaffichage">
 <thead>
 <tr>
-<th>Date</th>
-<th>Total<br>distribué</th>
-<th>Reste</th>
+<th>{t}Date{/t}<th>
+<th>{t}Total<br>distribué{/t}<th>
+<th>{t}Reste{/t}<th>
 {section name=lst loop=$alimentListe}
-<th>{$alimentListe[lst].aliment_libelle_court}</th>
+<th>{t}{$alimentListe[lst].aliment_libelle_court}{/t}<th>
 {/section}
 </tr>
 </thead>

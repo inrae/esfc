@@ -3,11 +3,11 @@
 <table class="table table-bordered table-hover datatable" id="csequence" class="tableliste">
 <thead>
 <tr>
-<th>Données générales<br>de reproduction</th>
-<th>Nom du poisson</th>
-<th>Sexe</th>
-<th>Qualité<br>semence</th>
-<th>Masse totale des<br>ovocytes</th>
+<th>{t}Données générales<br>de reproduction{/t}<th>
+<th>{t}Nom du poisson{/t}<th>
+<th>{t}Sexe{/t}<th>
+<th>{t}Qualité<br>semence{/t}<th>
+<th>{t}Masse totale des<br>ovocytes{/t}<th>
 </tr>
 </thead>
 <tbody>

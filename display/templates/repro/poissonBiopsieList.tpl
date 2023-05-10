@@ -6,18 +6,18 @@ Nouvelle biopsie...
 <table class="table table-bordered table-hover datatable" id="cbiopsie" class="tableliste">
 <thead>
 <tr>
-<th>Date</th>
-<th>Diam. moyen<br>(écart-type)</th>
-<th>Taux<br>OPI</th>
-<th>Taux color<br>normale</th>
-<th>Taux<br>éclatement</th>
-<th>Ringer<br>T50</th>
-<th>Ringer<br>Tmax</th>
-<th>Ringer<br>commentaire</th>
-<th>Leib<br>T50</th>
-<th>Leib<br>Tmax</th>
-<th>Leib<br>commentaire</th>
-<th>Commentaire<br>général</th>
+<th>{t}Date{/t}<th>
+<th>{t}Diam. moyen<br>(écart-type){/t}<th>
+<th>{t}Taux<br>OPI{/t}<th>
+<th>{t}Taux color<br>normale{/t}<th>
+<th>{t}Taux<br>éclatement{/t}<th>
+<th>{t}Ringer<br>T50{/t}<th>
+<th>{t}Ringer<br>Tmax{/t}<th>
+<th>{t}Ringer<br>commentaire{/t}<th>
+<th>{t}Leib<br>T50{/t}<th>
+<th>{t}Leib<br>Tmax{/t}<th>
+<th>{t}Leib<br>commentaire{/t}<th>
+<th>{t}Commentaire<br>général{/t}<th>
 </tr>
 </thead>
 <tbody>

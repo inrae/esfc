@@ -8,7 +8,7 @@ Retour au reproducteur
 <tr>
 <td>
 <fieldset>
-<legend>Modification d'un prélèvement de sperme</legend>
+<legend>{t}Modification d'un prélèvement de sperme{/t}<legend>
 
 <div class="formSaisie">
 <div>
@@ -63,7 +63,7 @@ Retour au reproducteur
 </td>
 <td>
 <fieldset>
-<legend>Analyses réalisées</legend>
+<legend>{t}Analyses réalisées{/t}<legend>
 {include file="repro/spermeMesureList.tpl"}
 </fieldset>
 </td>
@@ -73,7 +73,7 @@ Retour au reproducteur
 <!-- Ajout de l'affichage des congelations -->
 {if $data.sperme_id > 0}
 <fieldset>
-<legend>Congélations</legend>
+<legend>{t}Congélations{/t}<legend>
 {include file="repro/spermeCongelationList.tpl"}
 </fieldset>
 {/if}

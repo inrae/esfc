@@ -103,7 +103,7 @@ Retour à la liste des poissons
 <input type="hidden" name="document_id" value="0">
 
 <fieldset>
-<legend>Données liées à l'événement lui-même</legend>
+<legend>{t}Données liées à l'événement lui-même{/t}<legend>
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}
 Type d'événement <span class="red">*</span> :{/t}</label>
@@ -133,7 +133,7 @@ Type d'événement <span class="red">*</span> :{/t}</label>
 <div id="afficher" class="masquageText">Afficher tous les éléments</div>
 
 <fieldset class="fsMasquable">
-<legend>Données morphologiques</legend>
+<legend>{t}Données morphologiques{/t}<legend>
 <div class="masquage">
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}Longueur à la fourche (cm) :{/t}</label>
@@ -169,7 +169,7 @@ Type d'événement <span class="red">*</span> :{/t}</label>
 </fieldset>
 
 <fieldset class="fsMasquable">
-<legend>Pathologie</legend>
+<legend>{t}Pathologie{/t}<legend>
 <div class="masquage">
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}Type de pathologie <span class="red">*</span> :{/t}</label>
@@ -201,7 +201,7 @@ Sélectionnez la pathologie...
 </div>
 </fieldset>
 <fieldset class="fsMasquable">
-<legend>Changement de bassin</legend>
+<legend>{t}Changement de bassin{/t}<legend>
 <div class="masquage">
 {$bselect = 0}
 {if $dataTransfert.bassin_origine > 0}
@@ -248,7 +248,7 @@ Sélectionnez le bassin de destination...
 </div>
 </fieldset>
 <fieldset class="fsMasquable">
-<legend>Échographie</legend>
+<legend>{t}Échographie{/t}<legend>
 <div class="masquage">
 <div class="form-group">
 <div class="form-group">
@@ -306,7 +306,7 @@ Sélectionnez le bassin de destination...
 </fieldset>
 
 <fieldset class="fsMasquable">
-<legend>Anesthésie</legend>
+<legend>{t}Anesthésie{/t}<legend>
 <div class="masquage">
 <div class="form-group">
 
@@ -337,7 +337,7 @@ Sélectionnez le bassin de destination...
 </fieldset>
 
 <fieldset class="fsMasquable">
-<legend>Dosage sanguin</legend>
+<legend>{t}Dosage sanguin{/t}<legend>
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}Taux E2 :{/t}</label>
 <div class="col-md-8">
@@ -369,7 +369,7 @@ Sélectionnez le bassin de destination...
 </div>
 </fieldset>
 <fieldset class="fsMasquable">
-<legend>Prélèvement génétique</legend>
+<legend>{t}Prélèvement génétique{/t}<legend>
 <div class="masquage">
 <div class="form-group"><label for="" class="control-label col-md-4">{t}Référence du prélèvement<span class="red">*</span> :{/t}</label>
 <div class="col-md-8">
@@ -395,7 +395,7 @@ Sélectionnez le bassin de destination...
 </div>
 </fieldset>
 <fieldset class="fsMasquable">
-<legend>Détermination du sexe</legend>
+<legend>{t}Détermination du sexe{/t}<legend>
 <div class="masquage">
 <div class="form-group">
 
@@ -438,7 +438,7 @@ Sélectionnez le sexe...
 </fieldset>
 
 <fieldset class="fsMasquable">
-<legend>Détermination de la cohorte</legend>
+<legend>{t}Détermination de la cohorte{/t}<legend>
 <div class="masquage">
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}Type de détermination <span class="red">*</span> : {/t}</label>
@@ -470,7 +470,7 @@ Sélectionnez le type de détermination...
 </fieldset>
 
 <fieldset class="fsMasquable">
-<legend>Sortie du stock</legend>
+<legend>{t}Sortie du stock{/t}<legend>
 <div class="masquage">
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}Lieu de lâcher/destination <span class="red">*</span> :{/t}</label>
@@ -503,7 +503,7 @@ Sélectionnez le lieu de lâcher/destination...
 </fieldset>
 
 <fieldset class="fsMasquable">
-<legend>Détermination de la parenté</legend>
+<legend>{t}Détermination de la parenté{/t}<legend>
 <div class="masquage">
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}Type de détermination <span class="red">*</span> : {/t}</label>
@@ -530,7 +530,7 @@ Sélectionnez le type de détermination...
 </fieldset>
 
 <fieldset class="fsMasquable">
-<legend>Mortalité</legend>
+<legend>{t}Mortalité{/t}<legend>
 <div class="masquage">
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}Type de mortalité <span class="red">*</span> : {/t}</label>

@@ -4,11 +4,11 @@ setDataTables("cgender_selectionList");
 <table class="table table-bordered table-hover datatable" id="cgender_selectionList" class="tableliste">
 <thead>
 <tr>
-<th>Événement associé</th>
-<th>Date de<br>détermination</th>
-<th>Méthode</th>
-<th>Sexe</th>
-<th>Commentaire</th>
+<th>{t}Événement associé{/t}<th>
+<th>{t}Date de<br>détermination{/t}<th>
+<th>{t}Méthode{/t}<th>
+<th>{t}Sexe{/t}<th>
+<th>{t}Commentaire{/t}<th>
 </tr>
 </thead>
 <tbody>

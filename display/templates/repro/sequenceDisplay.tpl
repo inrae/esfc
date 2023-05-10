@@ -15,17 +15,17 @@ Modifier les informations générales de la séquence...
 {include file="repro/sequenceDetail.tpl"}
 <br>
 <fieldset>
-<legend>Poissons rattachés à la séquence</legend>
+<legend>{t}Poissons rattachés à la séquence{/t}<legend>
 {include file="repro/sequencePoissonList.tpl"}
 </fieldset>
 <br>
 <fieldset>
-<legend>Croisements effectués</legend>
+<legend>{t}Croisements effectués{/t}<legend>
 {include file="repro/croisementList.tpl"}
 </fieldset>
 <br>
 <fieldset>
-<legend>Lots issus des croisements</legend>
+<legend>{t}Lots issus des croisements{/t}<legend>
 {include file="repro/lotList.tpl"}
 </fieldset>
 </td>

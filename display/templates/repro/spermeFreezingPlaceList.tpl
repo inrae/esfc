@@ -6,10 +6,10 @@ Nouvel emplacement de congélation...
 <table class="table table-bordered table-hover datatable" id="csperme" class="tableliste">
 <thead>
 <tr>
-<th>Cuve</th>
-<th>Numéro<br>canister</th>
-<th>Position<br>canister</th>
-<th>Nb<br>visiotubes</th>
+<th>{t}Cuve{/t}<th>
+<th>{t}Numéro<br>canister{/t}<th>
+<th>{t}Position<br>canister{/t}<th>
+<th>{t}Nb<br>visiotubes{/t}<th>
 </tr>
 </thead>
 <tbody>

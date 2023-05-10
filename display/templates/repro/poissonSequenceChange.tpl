@@ -54,7 +54,7 @@ Retour au reproducteur
 </div>
 {/if}
 {if $dataPoisson.sexe_id == 1}
-<fieldset><legend>Prélèvements de sperme</legend>
+<fieldset><legend>{t}Prélèvements de sperme{/t}<legend>
 <a href="index.php?module=poissonCampagneDisplay&poisson_campagne_id={$data.poisson_campagne_id}">
 Accédez à la fiche du poisson pour réaliser la saisie
 </a>
@@ -99,7 +99,7 @@ Accédez à la fiche du poisson pour réaliser la saisie
 {if $data.poisson_sequence_id > 0}
 <div>
 <fieldset>
-<legend>Événements</legend>
+<legend>{t}Événements{/t}<legend>
 
 {if $droits.reproGestion == 1 }
 <a href="index.php?module=psEvenementChange&ps_evenement_id=0&poisson_sequence_id={$data.poisson_sequence_id}&sequence_id={$data.sequence_id}">
@@ -114,9 +114,9 @@ Nouvel événement...
 <table id="cpsEvenement" class="tableaffichage">
 <thead>
 <tr>
-<th>Date</th>
-<th>Libellé</th>
-<th>Commentaire</th>
+<th>{t}Date{/t}<th>
+<th>{t}Libellé{/t}<th>
+<th>{t}Commentaire{/t}<th>
 </tr>
 </thead>
 <tbody>

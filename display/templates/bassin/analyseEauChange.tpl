@@ -190,7 +190,7 @@ Retour au circuit d'eau {$dataCircuitEau.circuit_eau_libelle}
 </dd></div>
 <div class="form-group"></div>
 <fieldset>
-<legend>Analyse des métaux lourds</legend>
+<legend>{t}Analyse des métaux lourds{/t}<legend>
 {section name=lst loop=$dataMetal}
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}{$dataMetal[lst].metal_nom} ({$dataMetal[lst].metal_unite}) :{/t}</label>

@@ -11,9 +11,9 @@ setDataTables("canomalie_dbTypeList");
 <thead>
 <tr>
 {if $droits["paramAdmin"] == 1}
-<th>Modifier</th>
+<th>{t}Modifier{/t}<th>
 {/if}
-<th>libellé</th>
+<th>{t}libellé{/t}<th>
 </tr>
 </thead>
 <tbody>

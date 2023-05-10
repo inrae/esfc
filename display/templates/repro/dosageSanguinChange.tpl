@@ -25,7 +25,7 @@ Retour au reproducteur
 <input type="hidden" name="dosage_sanguin_id" value="{$data.dosage_sanguin_id}">
 <input type="hidden" name="poisson_campagne_id" value="{$data.poisson_campagne_id}">
 <fieldset>
-<legend>Dosage sanguin</legend>
+<legend>{t}Dosage sanguin{/t}<legend>
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}Date du prélèvement <span class="red">*</span> :{/t}</label>
 <div class="col-md-8">

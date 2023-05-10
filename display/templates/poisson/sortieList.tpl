@@ -4,10 +4,10 @@ setDataTables("csortieList");
 <table class="table table-bordered table-hover datatable" id="csortieList" class="tableliste">
 <thead>
 <tr>
-<th>Événement associé</th>
-<th>Lieu</th>
-<th>Date</th>
-<th>Sevrage/Commentaire</th>
+<th>{t}Événement associé{/t}<th>
+<th>{t}Lieu{/t}<th>
+<th>{t}Date{/t}<th>
+<th>{t}Sevrage/Commentaire{/t}<th>
 </tr>
 </thead>
 <tbody>

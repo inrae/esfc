@@ -46,7 +46,7 @@ Statut du poisson pour la repro :
 </div>
 
 <fieldset>
-<legend>Indicateurs de croissance (calculés automatiquement en cas de nouvelle sélection)</legend>
+<legend>{t}Indicateurs de croissance (calculés automatiquement en cas de nouvelle sélection){/t}<legend>
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}Taux de croissance journalier :{/t}</label>
 <div class="col-md-8">

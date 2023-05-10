@@ -4,16 +4,14 @@
 Nouveau...
 </a>
 {/if}
-<script>
-setDataTables("calimentList");
-</script>
-<table class="table table-bordered table-hover datatable" id="calimentList" class="tableliste">
+
+<table class="table table-bordered table-hover datatable" id="calimentList" >
 <thead>
 <tr>
-<th>libellé</th>
-<th>Nom court<br>pour éditions</th>
-<th>Type d'aliment</th>
-<th>Actuellement<br>utilisé ?</th>
+<th>{t}libellé{/t}<th>
+<th>{t}Nom court pour éditions{/t}<th>
+<th>{t}Type d'aliment{/t}<th>
+<th>{t}Actuellement utilisé ?{/t}<th>
 </tr>
 </thead>
 <tbody>
@@ -32,10 +30,8 @@ setDataTables("calimentList");
 <td>
 {$data[lst].aliment_type_libelle}
 </td>
-<td>
-<div class="center">
+<td class="center">
 {if $data[lst].actif == 1}oui{else}non{/if}
-</div>
 </td>
 </tr>
 {/section}

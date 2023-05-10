@@ -14,7 +14,7 @@ $('document').ready(function() {
 	});
 });
 </script>
-<fieldset><legend>Alimentation quotidienne</legend>
+<fieldset><legend>{t}Alimentation quotidienne{/t}<legend>
 <form name="alimJuv" method="post" action="index.php">
 <input type="hidden" name="module" value="lotalimGenerate">
 Date de début d'alimentation :

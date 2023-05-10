@@ -4,11 +4,11 @@ setDataTablesFull("ctransfertList");
 <table class="table table-bordered table-hover datatable" id="ctransfertList" class="tableliste">
 <thead>
 <tr>
-<th>Événement associé</th>
-<th>Date de<br>transfert</th>
-<th>Bassin d'origine</th>
-<th>Bassin de destination</th>
-<th>Commentaire</th>
+<th>{t}Événement associé{/t}<th>
+<th>{t}Date de<br>transfert{/t}<th>
+<th>{t}Bassin d'origine{/t}<th>
+<th>{t}Bassin de destination{/t}<th>
+<th>{t}Commentaire{/t}<th>
 </tr>
 </thead>
 <tbody>

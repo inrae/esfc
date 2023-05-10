@@ -13,12 +13,12 @@ $(document).ready(function() {
 <thead>
 <tr>
 {if $droits.bassinAdmin == 1}
-<th>Modif</th>
+<th>{t}Modif{/t}<th>
 {/if}
-<th>Date de création</th>
-<th>Catégorie</th>
-<th>Description</th>
-<th>Actif ?</th>
+<th>{t}Date de création{/t}<th>
+<th>{t}Catégorie{/t}<th>
+<th>{t}Description{/t}<th>
+<th>{t}Actif ?{/t}<th>
 </tr>
 </thead>
 <tbody>
