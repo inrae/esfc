@@ -66,16 +66,19 @@ Retour au circuit d'eau {$dataCircuitEau.circuit_eau_libelle}
 <div class="col-md-8">
 <input id="" class="form-control" class="datetimepicker" id="canalyse_eau_date" name="analyse_eau_date" value="{$data.analyse_eau_date}" required size="10">
 </dd></div>
+</div>
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}Température : {/t}</label>
 <div class="col-md-8">
 <input id="" class="form-control" name="temperature" value="{$data.temperature}" class="taux">
 </dd></div>
+</div>
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}Oxygène (mg/l) : {/t}</label>
 <div class="col-md-8">
 <input id="" class="form-control" name="oxygene" value="{$data.oxygene}" class="taux">
 </dd>
+</div>
 </div>
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}Oxygène (% sat) : {/t}</label>
@@ -83,11 +86,13 @@ Retour au circuit d'eau {$dataCircuitEau.circuit_eau_libelle}
 <input id="" class="form-control" name="o2_pc" value="{$data.o2_pc}" class="taux">
 </dd>
 </div>
+</div>
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}salinité : {/t}</label>
 <div class="col-md-8">
 <input id="" class="form-control" name="salinite" value="{$data.salinite}" class="taux">
 </dd></div>
+</div>
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}pH : {/t}</label>
 <div class="col-md-8">
@@ -113,81 +118,96 @@ Retour au circuit d'eau {$dataCircuitEau.circuit_eau_libelle}
 <div class="col-md-8">
 <input id="" class="form-control" type='text' id="nh4" name="nh4" value="{$data.nh4}" class="taux">
 </dd></div>
+</div>
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}N-NH4 : {/t}</label>
 <div class="col-md-8">
 <input id="" class="form-control" type='text' id="n_nh4" name="n_nh4" value="{$data.n_nh4}" class="taux">
 </dd></div>
+</div>
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}NH4 - valeur seuil : {/t}</label>
 <div class="col-md-8">
 <input id="" class="form-control" id="nh4_seuil" name="nh4_seuil" value="{$data.nh4_seuil}"  size="10">
 </dd></div>
+</div>
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}NO2 : {/t}</label>
 <div class="col-md-8">
 <input id="" class="form-control" type='text' id="no2" name="no2" value="{$data.no2}" class="taux">
 </dd></div>
+</div>
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}N-NO2 : {/t}</label>
 <div class="col-md-8">
 <input id="" class="form-control" type='text' id="n_no2" name="n_no2" value="{$data.n_no2}" class="taux">
 </dd></div>
+</div>
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}NO2 - valeur seuil : {/t}</label>
 <div class="col-md-8">
 <input id="" class="form-control" id="no2_seuil" name="no2_seuil" value="{$data.no2_seuil}" size="10">
 </dd></div>
+</div>
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}NO3 : {/t}</label>
 <div class="col-md-8">
 <input id="" class="form-control" type='text' id="no3" name="no3" value="{$data.no3}" class="taux">
 </dd></div>
+</div>
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}N-NO3: {/t}</label>
 <div class="col-md-8">
 <input id="" class="form-control" type='text' id="n_no3" name="n_no3" value="{$data.n_no3}" class="taux">
 </dd></div>
+</div>
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}NO3 - valeur seuil : {/t}</label>
 <div class="col-md-8">
 <input id="" class="form-control" id="no3_seuil" name="no3_seuil" value="{$data.no3_seuil}" size="10">
 </dd></div>
+</div>
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}Backwash mécanique : {/t}</label>
 <div class="col-md-8">
 <input id="" class="form-control" type="radio" name="backwash_mecanique" value="1" {if $data.backwash_mecanique == 1}checked{/if}>Oui
 <input type="radio" name="backwash_mecanique" value="0" {if $data.backwash_mecanique == 0}checked{/if}>Non
 </dd></div>
+</div>
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}Backwash biologique : {/t}</label>
 <div class="col-md-8">
 <input id="" class="form-control" type="radio" name="backwash_biologique" value="1" {if $data.backwash_biologique == 1}checked{/if}>Oui
 <input type="radio" name="backwash_biologique" value="0" {if $data.backwash_biologique == 0}checked{/if}>Non
 </dd></div>
+</div>
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}Commentaire backwash bio : {/t}</label>
 <div class="col-md-8">
 <input id="" class="form-control" name="backwash_biologique_commentaire" value="{$data.backwash_biologique_commentaire}" class="commentaire">
 </dd></div>
+</div>
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}Débit d'eau de rivière (l/mn) : {/t}</label>
 <div class="col-md-8">
 <input id="" class="form-control" id="debit_eau_riviere" name="debit_eau_riviere" value="{$data.debit_eau_riviere}" class="taux">
 <input type='text' id="riviere_mls" name="riviere_mls" class="taux" placeholder="ml/s">
 </dd></div>
+</div>
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}Débit d'eau de forage (l/mn) : {/t}</label>
 <div class="col-md-8">
 <input id="" class="form-control" id="debit_eau_forage" name="debit_eau_forage" value="{$data.debit_eau_forage}" class="taux">
 <input type='text' id="forage_mls" name="forage_mls" class="taux" placeholder="ml/s">
 </dd></div>
+</div>
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}Débit d'eau de mer (l/mn) : {/t}</label>
 <div class="col-md-8">
 <input id="" class="form-control" id="debit_eau_mer" name="debit_eau_mer" value="{$data.debit_eau_mer}" class="taux">
 <input type='text' id="mer_mls" name="mer_mls" class="taux" placeholder="ml/s">
 </dd></div>
+</div>
 <div class="form-group"></div>
 <fieldset>
 <legend>{t}Analyse des métaux lourds{/t}<legend>

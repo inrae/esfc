@@ -6,18 +6,18 @@ Nouveau prélèvement...
 <table class="table table-bordered table-hover datatable" id="csperme" class="tableliste">
 <thead>
 <tr>
-<th>{t}Date/heure<br>du prélèvement{/t}<th>
-<th>{t}Séquence{/t}<th>
-<th>{t}Aspect / Qualité estimée{/t}<th>
-<th>{t}Motilité<br>initiale{/t}<th>
-<th>{t}Tx survie<br>initial{/t}<th>
-<th>{t}Motilité<br>60"{/t}<th>
-<th>{t}Tx survie<br>60"{/t}<th>
-<th>{t}Temps survie<br>à 5% (en sec.){/t}<th>
-<th>{t}pH{/t}<th>
-<th>{t}Date<br>mesure{/t}<th>
-<th>{t}Date<br>congélation{/t}<th>
-<th>{t}Remarque{/t}<th>
+<th>{t}Date/heure<br>du prélèvement{/t}</th>
+<th>{t}Séquence{/t}</th>
+<th>{t}Aspect / Qualité estimée{/t}</th>
+<th>{t}Motilité<br>initiale{/t}</th>
+<th>{t}Tx survie<br>initial{/t}</th>
+<th>{t}Motilité<br>60"{/t}</th>
+<th>{t}Tx survie<br>60"{/t}</th>
+<th>{t}Temps survie<br>à 5% (en sec.){/t}</th>
+<th>{t}pH{/t}</th>
+<th>{t}Date<br>mesure{/t}</th>
+<th>{t}Date<br>congélation{/t}</th>
+<th>{t}Remarque{/t}</th>
 </tr>
 </thead>
 <tbody>

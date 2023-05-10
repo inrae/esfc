@@ -18,6 +18,7 @@ Nom de l'endroit d'implantation <span class="red">*</span> :
 <input id="" class="form-control" name="vie_implantation_libelle" type="text" value="{$data.vie_implantation_libelle}" required autofocus/>
 </dd>
 </div>
+</div>
 <div class="form-group"></div>
 
 <div class="form-group center">

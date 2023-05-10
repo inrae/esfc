@@ -10,8 +10,8 @@ setDataTables("cmimeTypeList");
 <table class="table table-bordered table-hover datatable" id="cmimeTypeList" class="tableliste">
 <thead>
 <tr>
-<th>{t}extension{/t}<th>
-<th>{t}type mime{/t}<th>
+<th>{t}extension{/t}</th>
+<th>{t}type mime{/t}</th>
 </tr>
 </thead>
 <tbody>

@@ -15,6 +15,7 @@
 <div class="col-md-8">
 <input id="" class="form-control" name="laboratoire_analyse_libelle" value="{$data.laboratoire_analyse_libelle}" size="40" autofocus required></dd>
 </div>
+</div>
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}Sollicité actuellement ?{/t}</label>
 <div class="col-md-8">

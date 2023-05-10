@@ -31,23 +31,23 @@ $('document').ready(function() {
 <table class="table table-bordered table-hover datatable" id="clotlist" class="tableliste">
 <thead>
 <tr>
-<th>{t}Nom du lot{/t}<th>
-<th>{t}Parents{/t}<th>
-<th>{t}Séquence{/t}<th>
-<th>{t}Bassin{/t}<th>
-<th>{t}Date<br>d'éclosion{/t}<th>
-<th>{t}Age<br>(jours){/t}<th>
-<th>{t}Nbre de larves<br>estimé{/t}<th>
-<th>{t}Nbre de larves<br>comptées{/t}<th>
-<th>{t}Marque VIE{/t}<th>
-<th>{t}Date de marquage<br>VIE{/t}<th>
+<th>{t}Nom du lot{/t}</th>
+<th>{t}Parents{/t}</th>
+<th>{t}Séquence{/t}</th>
+<th>{t}Bassin{/t}</th>
+<th>{t}Date<br>d'éclosion{/t}</th>
+<th>{t}Age<br>(jours){/t}</th>
+<th>{t}Nbre de larves<br>estimé{/t}</th>
+<th>{t}Nbre de larves<br>comptées{/t}</th>
+<th>{t}Marque VIE{/t}</th>
+<th>{t}Date de marquage<br>VIE{/t}</th>
 {if $droits.reproGestion == 1}
 <th>{t}Fiche<br>alim.
 <br>
 <div class="center">
 <input type="checkbox" id="bassinCheck" checked value="1">
 </div>
-{/t}<th>
+{/t}</th>
 {/if}
 </tr>
 </thead>

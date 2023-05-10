@@ -18,11 +18,13 @@ Nom de l'hormone <span class="red">*</span> :
 <input id="" class="form-control" name="hormone_nom" type="text" value="{$data.hormone_nom}" required autofocus/>
 </dd>
 </div>
+</div>
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}Unité utilisée pour<br>quantifier les injections :{/t}</label>
 <div class="col-md-8">
 <input id="" class="form-control" name="hormone_unite" type="text" value="{$data.hormone_unite}">
 </dd>
+</div>
 </div>
 <div class="form-group"></div>
 

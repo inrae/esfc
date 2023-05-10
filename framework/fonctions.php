@@ -27,7 +27,7 @@ class FileException extends Exception {}
  *
  * @return mixed
  */
-function dataRead($dataClass, $id, $smartyPage, $idParent = null)
+function dataRead($dataClass, $id, $smartyPage, $idParent = 0)
 {
   global $vue, $OBJETBDD_debugmode, $message;
   if (isset($vue)) {

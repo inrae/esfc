@@ -10,7 +10,7 @@ setDataTables("cdilueurList");
 <table class="table table-bordered table-hover datatable" id="cdilueurList" class="tableliste">
 <thead>
 <tr>
-<th>{t}Nom du produit dilueur{/t}<th>
+<th>{t}Nom du produit dilueur{/t}</th>
 </tr>
 </thead>
 <tbody>

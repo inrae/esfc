@@ -16,6 +16,7 @@
 {/t}</label>
 <label for="" class="control-label col-md-4">{t}<input type="file" name="documentName[]" size="40" multiple>{/t}</label>
 </div>
+</div>
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}Description :{/t}</label>
 <div class="col-md-8">

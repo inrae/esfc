@@ -10,7 +10,7 @@ setDataTables("cbassinEvenementTypeList");
 <table class="table table-bordered table-hover datatable" id="cbassinEvenementTypeList" class="tableliste">
 <thead>
 <tr>
-<th>{t}libellé{/t}<th>
+<th>{t}libellé{/t}</th>
 </tr>
 </thead>
 <tbody>

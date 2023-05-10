@@ -18,6 +18,7 @@ Nom du site <span class="red">*</span> :
 <input id="" class="form-control" name="site_name" type="text" value="{$data.site_name}" required autofocus/>
 </dd>
 </div>
+</div>
 <div class="form-group"></div>
 
 <div class="form-group center">

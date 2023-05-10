@@ -9,9 +9,9 @@ Nouvel événement...
 <table class="table table-bordered table-hover datatable" id="cbassinEvenementList" class="tableliste">
 <thead>
 <tr>
-<th>{t}Évenement{/t}<th>
-<th>{t}Date{/t}<th>
-<th>{t}Commentaire{/t}<th>
+<th>{t}Évenement{/t}</th>
+<th>{t}Date{/t}</th>
+<th>{t}Commentaire{/t}</th>
 </tr>
 </thead>
 <tbody>

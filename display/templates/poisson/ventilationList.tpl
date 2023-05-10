@@ -7,9 +7,9 @@ setDataTables("cventilationList");
 <table class="table table-bordered table-hover datatable" id="cventilationList" class="tableliste">
 <thead>
 <tr>
-<th>{t}Date{/t}<th>
-<th>{t}Nombre de battements/s{/t}<th>
-<th>{t}Commentaire{/t}<th>
+<th>{t}Date{/t}</th>
+<th>{t}Nombre de battements/s{/t}</th>
+<th>{t}Commentaire{/t}</th>
 </tr>
 </thead>
 <tbody>

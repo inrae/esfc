@@ -9,12 +9,12 @@ Nouvelle mesure...
 <table class="table table-bordered table-hover datatable" id="clotMesureList" class="tableliste">
 <thead>
 <tr>
-<th>{t}Date{/t}<th>
-<th>{t}Nbre de<br>jours{/t}<th>
-<th>{t}Mortalité{/t}<th>
-<th>{t}Mortalité<br>cumulée{/t}<th>
-<th>{t}Masse<br>globale{/t}<th>
-<th>{t}Masse<br>individuelle{/t}<th>
+<th>{t}Date{/t}</th>
+<th>{t}Nbre de<br>jours{/t}</th>
+<th>{t}Mortalité{/t}</th>
+<th>{t}Mortalité<br>cumulée{/t}</th>
+<th>{t}Masse<br>globale{/t}</th>
+<th>{t}Masse<br>individuelle{/t}</th>
 </tr>
 </thead>
 <tbody>

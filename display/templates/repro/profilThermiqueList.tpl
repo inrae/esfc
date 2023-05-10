@@ -1,9 +1,9 @@
 <table class="table table-bordered table-hover datatable" id="cprofilThermiqueList" class="tableliste">
 <thead>
 <tr>
-<th>{t}Date/heure{/t}<th>
-<th>{t}Température{/t}<th>
-<th>{t}Type{/t}<th>
+<th>{t}Date/heure{/t}</th>
+<th>{t}Température{/t}</th>
+<th>{t}Type{/t}</th>
 </tr>
 </thead>
 <tbody>

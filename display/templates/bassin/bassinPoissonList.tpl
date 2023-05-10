@@ -4,9 +4,9 @@ setDataTables("cbassinList");
 <table class="table table-bordered table-hover datatable" id="cbassinList" class="tableliste">
 <thead>
 <tr>
-<th>{t}Bassin{/t}<th>
-<th>{t}Date<br>d'arrivée{/t}<th>
-<th>{t}Date de<br>départ{/t}<th>
+<th>{t}Bassin{/t}</th>
+<th>{t}Date<br>d'arrivée{/t}</th>
+<th>{t}Date de<br>départ{/t}</th>
 </tr>
 </thead>
 <tbody>

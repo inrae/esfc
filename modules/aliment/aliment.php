@@ -27,16 +27,18 @@ switch ($t_module ["param"]) {
 		/*
 		 * Recuperation des types d'aliment
 		 */
+		include_once "modules/classes/alimentType.class.php";
 		$alimentType = new AlimentType ( $bdd, $ObjetBDDParam );
 		$vue->set( $alimentType->getListe ( 1 ) , "alimentType");
 		/*
 		 * Recuperation des categories
 		 */
+		include_once "modules/classes/categorie.class.php";
 		$categorie = new Categorie ( $bdd, $ObjetBDDParam );
 		$dataCategorie = $categorie->getListe ( 2 );
 		/*
 		 * Recuperation des categories actuellement associees
-		 */
+		 */include_once "modules/classes/alimentCategorie.class.php";
 		$alimentCategorie = new AlimentCategorie ( $bdd, $ObjetBDDParam );
 		$dataAC = $alimentCategorie->getListeFromAliment ( $id );
 		/*

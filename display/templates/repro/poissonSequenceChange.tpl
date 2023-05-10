@@ -25,6 +25,7 @@ Retour au reproducteur
 </select>
 </dd>
 </div>
+</div>
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}Statut du poisson pour la séquence :{/t}</label>
 <div class="col-md-8">
@@ -37,6 +38,7 @@ Retour au reproducteur
 </select>
 </dd>
 </div>
+</div>
 <div class="form-group"></div>
 {if $dataPoisson.sexe_id == 2}
 <div class="form-group">
@@ -45,6 +47,7 @@ Retour au reproducteur
 <input id="" class="form-control" class="date" name="ovocyte_expulsion_date"  value="{$data.ovocyte_expulsion_date}">
 <input class="timepicker" name="ovocyte_expulsion_time" value="{$data.ovocyte_expulsion_time}">
 </dd>
+</div>
 </div>
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}Masse totale des ovocytes (grammes) :{/t}</label>
@@ -114,9 +117,9 @@ Nouvel événement...
 <table id="cpsEvenement" class="tableaffichage">
 <thead>
 <tr>
-<th>{t}Date{/t}<th>
-<th>{t}Libellé{/t}<th>
-<th>{t}Commentaire{/t}<th>
+<th>{t}Date{/t}</th>
+<th>{t}Libellé{/t}</th>
+<th>{t}Commentaire{/t}</th>
 </tr>
 </thead>
 <tbody>

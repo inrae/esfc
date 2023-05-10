@@ -12,12 +12,13 @@
 <div class="col-md-8">
 <input id="aliment_libelle" class="form-control" name="aliment_libelle" value="{$data.aliment_libelle}"" autofocus required></dd>
 </div>
+</div>
 <div class="form-group">
 <label for="aliment_libelle_court" class="control-label col-md-4"><span class="red">*</span>{t}Nom court (pour éditions) :{/t}</label>
 <div class="col-md-8">
 <input id="aliment_libelle_court" class="form-control" name="aliment_libelle_court" value="{$data.aliment_libelle_court}" size="8" maxlength="8" required></dd>
 </div>
-
+</div>
 <div class="form-group">
 <label for="aliment_type_id" class="control-label col-md-4"><span class="red">*</span>{t}Type d'aliment :{/t}</label>
 <div class="col-md-8">
@@ -30,15 +31,15 @@
 </select>
 </dd>
 </div>
-
+</div>
 <div class="form-group">
 <label for="actif" class="control-label col-md-4">{t}Aliment actuellement utilisé ?{/t}</label>
 <div class="col-md-8">
-<input id="actif" class="form-control" type="radio" name="actif" value="1" {if $data.actif == 1 or $data.actif == ""}checked{/if}>oui
-<input type="radio" name="actif" value="0" {if $data.actif == 0}checked{/if}>non
+<input id="actif"  type="radio" name="actif" value="1" {if $data.actif == 1 or $data.actif == ""}checked{/if}>&nbsp;{t}oui{/t}
+&nbsp;<input type="radio" name="actif" value="0" {if $data.actif == 0}checked{/if}>&nbsp;{t}non{/t}
 </dd>
 </div>
-
+</div>
 <fieldset>
 <legend>{t}Catégories de poissons nourris{/t}<legend>
 
@@ -49,6 +50,7 @@
 <div class="col-md-8">
 <input id="categorie" class="form-control" type="checkbox" name="categorie[]" value="{$categorie[lst].categorie_id}" {if $categorie[lst].checked == 1}checked{/if}>
 </dd>
+</div>
 </div>
 {/section}
 </fieldset>

@@ -19,6 +19,7 @@ Retour au détail du poisson
 <input id="" class="form-control" name="identification" readonly value="{$dataPoisson.matricule} {$dataPoisson.prenom} {$dataPoisson.pittag_valeur}">
 </dd>
 </div>
+</div>
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}Année :{/t}</label>
 <div class="col-md-8">
@@ -30,6 +31,7 @@ Retour au détail du poisson
 {/section}
 </select>
 </dd>
+</div>
 </div>
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}
@@ -52,6 +54,7 @@ Statut du poisson pour la repro :
 <div class="col-md-8">
 <input id="" class="form-control" class="taux" name="tx_croissance_journalier" size="10" maxlength="10" value="{$data.tx_croissance_journalier}">
 </dd>
+</div>
 </div>
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}Taux de croissance spécifique :{/t}</label>

@@ -6,11 +6,11 @@ Nouvelle injection...
 <table class="table table-bordered table-hover datatable" id="cinjection" class="tableliste">
 <thead>
 <tr>
-<th>{t}Date/heure de l'injection{/t}<th>
-<th>{t}Séquence correspondante{/t}<th>
-<th>{t}Hormone{/t}<th>
-<th>{t}Dosage{/t}<th>
-<th>{t}Remarque{/t}<th>
+<th>{t}Date/heure de l'injection{/t}</th>
+<th>{t}Séquence correspondante{/t}</th>
+<th>{t}Hormone{/t}</th>
+<th>{t}Dosage{/t}</th>
+<th>{t}Remarque{/t}</th>
 </tr>
 </thead>
 <tbody>

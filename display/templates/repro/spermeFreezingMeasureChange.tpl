@@ -28,6 +28,7 @@ Retour à la congélation
 <div class="col-md-8">
 <input id="" class="form-control" name="measure_date" class="datetimepicker" value="{$data.measure_date}"></dd>
 </div>
+</div>
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}Temperature relevée<span class="red">*</span> :{/t}</label>
 <div class="col-md-8">

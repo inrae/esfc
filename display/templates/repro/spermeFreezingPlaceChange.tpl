@@ -28,16 +28,19 @@ Retour à la congélation
 <div class="col-md-8">
 <input id="" class="form-control" name="cuve_libelle" value="{$data.cuve_libelle}"></dd>
 </div>
+</div>
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}Nombre de visiotubes :{/t}</label>
 <div class="col-md-8">
 <input id="" class="form-control" class="nombre" name="nb_visiotube" value="{$data.nb_visiotube}"></dd>
+</div>
 </div>
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}Numéro de canister :{/t}</label>
 <div class="col-md-8">
 <input id="" class="form-control" name="canister_numero" value="{$data.canister_numero}">
 </dd>
+</div>
 </div>
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}Position du canister :{/t}</label>

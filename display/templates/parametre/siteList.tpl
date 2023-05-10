@@ -10,7 +10,7 @@ setDataTables("cbassinUsageList");
 <table class="table table-bordered table-hover datatable" id="csiteList" class="tableliste">
 <thead>
 <tr>
-<th>{t}Nom du site{/t}<th>
+<th>{t}Nom du site{/t}</th>
 </tr>
 </thead>
 <tbody>

@@ -10,9 +10,9 @@ setDataTables("cmetalList");
 <table class="table table-bordered table-hover datatable" id="cmetalList" class="tableliste">
 <thead>
 <tr>
-<th>{t}Nom du metal{/t}<th>
-<th>{t}Unité utilisée pour la mesure{/t}<th>
-<th>{t}Actif ?{/t}<th>
+<th>{t}Nom du metal{/t}</th>
+<th>{t}Unité utilisée pour la mesure{/t}</th>
+<th>{t}Actif ?{/t}</th>
 </tr>
 </thead>
 <tbody>

@@ -40,6 +40,7 @@ $(document).ready(function() {
 <input id="" class="form-control" type="text" class="date" name="anomalie_db_date" value="{$data.anomalie_db_date}">
 </dd>
 </div>
+</div>
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}Type d'anomalie <span class="red">*</span> :{/t}</label>
 <div class="col-md-8">
@@ -51,6 +52,7 @@ $(document).ready(function() {
 {/section}
 </select>
 </dd>
+</div>
 </div>
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}Poisson concerné :{/t}</label>
@@ -67,11 +69,13 @@ $(document).ready(function() {
 </a>
 {/if}
 </div>
+</div>
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}Commentaire :{/t}</label>
 <div class="col-md-8">
 <input id="" class="form-control" name="anomalie_db_commentaire" value="{$data.anomalie_db_commentaire}" size="40">
 </dd>
+</div>
 </div>
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}Statut :{/t}</label>
@@ -90,6 +94,7 @@ Anomalie levée
 <img id="statut_img" src="display/images/warning_icon.png" height="20">
 {/if}
 </dd>
+</div>
 </div>
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}Date de traitement de l'anomalie :{/t}</label>

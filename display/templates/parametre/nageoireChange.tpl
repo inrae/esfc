@@ -18,6 +18,7 @@ Nom de la nageoire <span class="red">*</span> :
 <input id="" class="form-control" name="nageoire_libelle" type="text" value="{$data.nageoire_libelle}" required autofocus/>
 </dd>
 </div>
+</div>
 <div class="form-group"></div>
 
 <div class="form-group center">

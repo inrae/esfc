@@ -4,13 +4,13 @@ setDataTablesFull("cmorphologieList");
 <table class="table table-bordered table-hover datatable" id="cmorphologieList" class="tableliste">
 <thead>
 <tr>
-<th>{t}Événement associé{/t}<th>
-<th>{t}Date de mesure{/t}<th>
-<th>{t}Longueur<br>à la fourche (cm){/t}<th>
-<th>{t}Longueur<br>totale (cm){/t}<th>
-<th>{t}Masse (g){/t}<th>
-<th>{t}Circon<br>férence (cm){/t}<th>
-<th>{t}Commentaire{/t}<th>
+<th>{t}Événement associé{/t}</th>
+<th>{t}Date de mesure{/t}</th>
+<th>{t}Longueur<br>à la fourche (cm){/t}</th>
+<th>{t}Longueur<br>totale (cm){/t}</th>
+<th>{t}Masse (g){/t}</th>
+<th>{t}Circon<br>férence (cm){/t}</th>
+<th>{t}Commentaire{/t}</th>
 </tr>
 </thead>
 <tbody>

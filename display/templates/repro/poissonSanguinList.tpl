@@ -6,11 +6,11 @@ Nouvelle analyse...
 <table class="table table-bordered table-hover datatable" id="csanguin" class="tableliste">
 <thead>
 <tr>
-<th>{t}Date{/t}<th>
-<th>{t}Taux E2{/t}<th>
-<th>{t}Taux<br>calcium{/t}<th>
-<th>{t}Taux<br>hématocrite{/t}<th>
-<th>{t}Commentaire{/t}<th>
+<th>{t}Date{/t}</th>
+<th>{t}Taux E2{/t}</th>
+<th>{t}Taux<br>calcium{/t}</th>
+<th>{t}Taux<br>hématocrite{/t}</th>
+<th>{t}Commentaire{/t}</th>
 </tr>
 </thead>
 <tbody>

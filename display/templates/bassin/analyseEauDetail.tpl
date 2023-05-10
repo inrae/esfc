@@ -43,10 +43,10 @@ Modifier les résultats de l'analyse...
 <div class="row">
 <div class="col-lg-8 form-display">
 <dl class="dl-horizontal">
-<th>{t}{/t}<th>
-<th>{t}Valeur réelle{/t}<th>
-<th>{t}Valeur N-N{/t}<th>
-<th>{t}Valeur seuil{/t}<th>
+<th>{t}{/t}</th>
+<th>{t}Valeur réelle{/t}</th>
+<th>{t}Valeur N-N{/t}</th>
+<th>{t}Valeur seuil{/t}</th>
 </dl>
 <dl class="dl-horizontal">
 <dt>{t}NH4{/t}</dt>

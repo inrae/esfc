@@ -18,6 +18,7 @@ Nom de la caractéristique <span class="red">*</span> :
 <input id="" class="form-control" name="sperme_caracteristique_libelle" type="text" value="{$data.sperme_caracteristique_libelle}" required autofocus/>
 </dd>
 </div>
+</div>
 <div class="form-group"></div>
 
 <div class="form-group center">

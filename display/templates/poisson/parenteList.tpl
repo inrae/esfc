@@ -4,10 +4,10 @@ setDataTables("cparenteList");
 <table class="table table-bordered table-hover datatable" id="cparenteList" class="tableliste">
 <thead>
 <tr>
-<th>{t}Événement associé{/t}<th>
-<th>{t}Type de parente{/t}<th>
-<th>{t}Date{/t}<th>
-<th>{t}Commentaire{/t}<th>
+<th>{t}Événement associé{/t}</th>
+<th>{t}Type de parente{/t}</th>
+<th>{t}Date{/t}</th>
+<th>{t}Commentaire{/t}</th>
 </tr>
 </thead>
 <tbody>

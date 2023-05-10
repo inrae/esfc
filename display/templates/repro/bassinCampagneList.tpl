@@ -9,11 +9,11 @@ $(document).ready(function() {
 <table class="table table-bordered table-hover datatable" id="cBassinCampagne" class="tableliste">
 <thead>
 <tr>
-<th>{t}Données<br>générales{/t}<th>
-<th>{t}Site{/t}<th>
-<th>{t}Nom{/t}<th>
-<th>{t}Utilisation{/t}<th>
-<th>{t}Suppr.{/t}<th>
+<th>{t}Données<br>générales{/t}</th>
+<th>{t}Site{/t}</th>
+<th>{t}Nom{/t}</th>
+<th>{t}Utilisation{/t}</th>
+<th>{t}Suppr.{/t}</th>
 </tr>
 </thead>
 <tbody>

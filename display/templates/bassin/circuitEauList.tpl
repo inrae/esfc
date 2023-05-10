@@ -15,12 +15,12 @@ setDataTables("ccircuitEauList");
 <table class="table table-bordered table-hover datatable" id="ccircuitEauList" class="tableliste">
 <thead>
 <tr>
-<th>{t}libellé{/t}<th>
-<th>{t}En service{/t}<th>
+<th>{t}libellé{/t}</th>
+<th>{t}En service{/t}</th>
 {if $droits["bassinGestion"] == 1}
-<th>{t}Nouvelles<br>Données{/t}<th>
+<th>{t}Nouvelles<br>Données{/t}</th>
 {/if}
-<th>{t}Dernière<br>analyse{/t}<th>
+<th>{t}Dernière<br>analyse{/t}</th>
 </tr>
 </thead>
 <tbody>

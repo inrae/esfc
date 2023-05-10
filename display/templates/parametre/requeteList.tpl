@@ -13,14 +13,14 @@ setDataTables("crequeteList", true, true, true, 50);
 <table class="table table-bordered table-hover datatable" id="crequeteList" class="tableliste">
 <thead>
 <tr>
-<th>{t}Id{/t}<th>
-<th>{t}Description{/t}<th>
-<th>{t}Date création{/t}<th>
-<th>{t}Date dernière<br>exécution{/t}<th>
-<th>{t}Créateur (login){/t}<th>
-<th>{t}<img src="display/images/exec.png" height="25">{/t}<th>
+<th>{t}Id{/t}</th>
+<th>{t}Description{/t}</th>
+<th>{t}Date création{/t}</th>
+<th>{t}Date dernière<br>exécution{/t}</th>
+<th>{t}Créateur (login){/t}</th>
+<th>{t}<img src="display/images/exec.png" height="25">{/t}</th>
 {if $droits["paramAdmin"] == 1}
-<th>{t}<img src="display/images/copy.png" height="25">{/t}<th>
+<th>{t}<img src="display/images/copy.png" height="25">{/t}</th>
 {/if}
 </tr>
 </thead>

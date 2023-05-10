@@ -4,12 +4,12 @@ setDataTables("canomalie_dbList");
 <table class="table table-bordered table-hover datatable" id="canomalie_dbList" class="tableliste">
 <thead>
 <tr>
-<th>{t}Événement associé{/t}<th>
-<th>{t}Type d'anomalie{/t}<th>
-<th>{t}Date{/t}<th>
-<th>{t}Commentaire{/t}<th>
-<th>{t}Date de<br>traitement{/t}<th>
-<th>{t}État{/t}<th>
+<th>{t}Événement associé{/t}</th>
+<th>{t}Type d'anomalie{/t}</th>
+<th>{t}Date{/t}</th>
+<th>{t}Commentaire{/t}</th>
+<th>{t}Date de<br>traitement{/t}</th>
+<th>{t}État{/t}</th>
 </tr>
 </thead>
 <tbody>

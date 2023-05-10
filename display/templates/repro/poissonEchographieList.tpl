@@ -8,8 +8,8 @@ Nouvelle échographie...
 <table class="table table-bordered table-hover datatable" id="cechographie" class="tableliste">
 <thead>
 <tr>
-<th>{t}Date{/t}<th>
-<th>{t}Commentaire{/t}<th>
+<th>{t}Date{/t}</th>
+<th>{t}Commentaire{/t}</th>
 </tr>
 </thead>
 <tbody>

@@ -10,7 +10,7 @@ setDataTables("cconservateurList");
 <table class="table table-bordered table-hover datatable" id="cconservateurList" class="tableliste">
 <thead>
 <tr>
-<th>{t}Nom du produit conservateur{/t}<th>
+<th>{t}Nom du produit conservateur{/t}</th>
 </tr>
 </thead>
 <tbody>

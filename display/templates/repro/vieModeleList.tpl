@@ -22,9 +22,9 @@
 <table class="table table-bordered table-hover datatable" id="cvieModelelist" class="tableliste">
 <thead>
 <tr>
-<th>{t}Couleur{/t}<th>
-<th>{t}Marque 1{/t}<th>
-<th>{t}Marque 2{/t}<th>
+<th>{t}Couleur{/t}</th>
+<th>{t}Marque 1{/t}</th>
+<th>{t}Marque 2{/t}</th>
 </tr>
 </thead>
 <tbody>

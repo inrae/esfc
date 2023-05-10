@@ -15,17 +15,20 @@
 <div class="col-md-8">
 <input id="" class="form-control" name="localisation" size="40" value="{$data.localisation}" autofocus></dd>
 </div>
+</div>
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}Longitude (coord. décimales, WGS84) :{/t}</label>
 <div class="col-md-8">
 <input id="" class="form-control" name="longitude_dd" value="{$data.longitude_dd}" pattern="-?[0-9]+(\.[0-9]+)?" title="Nombre décimal">
 </dd>
 </div>
+</div>
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}Latitude (coord. décimales, WGS84) :{/t}</label>
 <div class="col-md-8">
 <input id="" class="form-control" name="latitude_dd" value="{$data.latitude_dd}" pattern="-?[0-9]+(\.[0-9]+)?" title="Nombre décimal">
 <dd>
+</div>
 </div>
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}Statut pris par le poisson :{/t}</label>
@@ -38,6 +41,7 @@
 {/section}
 </select>
 </dd>
+</div>
 </div>
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}Lieu actuellement utilisé ?{/t}</label>

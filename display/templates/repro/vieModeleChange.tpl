@@ -14,6 +14,7 @@
 <input id="" class="form-control" name="couleur" class="commentaire" autofocus required value={$data.couleur}>
 </dd>
 </div>
+</div>
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}Premier emplacement <span class="red">*</span> :{/t}</label>
 <div class="col-md-8">
@@ -25,6 +26,7 @@
 {/section}
 </select>
 </div>
+</div>
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}Second emplacement <span class="red">*</span> :{/t}</label>
 <div class="col-md-8">
@@ -35,6 +37,7 @@
 </option>
 {/section}
 </select>
+</div>
 </div>
 <div class="form-group"></div>
 

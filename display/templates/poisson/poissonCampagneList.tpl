@@ -4,11 +4,11 @@ setDataTables("creproList");
 <table class="table table-bordered table-hover datatable" id="creproList" class="tableliste">
 <thead>
 <tr>
-<th>{t}Année{/t}<th>
-<th>{t}Statut{/t}<th>
-<th>{t}masse{/t}<th>
-<th>{t}Tx croissance<br>journalier{/t}<th>
-<th>{t}Specific<br>growth rate{/t}<th>
+<th>{t}Année{/t}</th>
+<th>{t}Statut{/t}</th>
+<th>{t}masse{/t}</th>
+<th>{t}Tx croissance<br>journalier{/t}</th>
+<th>{t}Specific<br>growth rate{/t}</th>
 </tr>
 </thead>
 <tbody>

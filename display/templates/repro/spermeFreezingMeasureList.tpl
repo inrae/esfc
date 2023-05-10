@@ -6,8 +6,8 @@ Nouvelle mesure de température...
 <table class="table table-bordered table-hover datatable" id="csperme" class="tableliste">
 <thead>
 <tr>
-<th>{t}Date/heure{/t}<th>
-<th>{t}Température{/t}<th>
+<th>{t}Date/heure{/t}</th>
+<th>{t}Température{/t}</th>
 </tr>
 </thead>
 <tbody>

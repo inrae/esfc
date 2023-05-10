@@ -6,15 +6,15 @@ Nouvelle congélation de sperme...
 <table class="table table-bordered table-hover datatable" id="csperme" class="tableliste">
 <thead>
 <tr>
-<th>{t}Date<br>de congélation{/t}<th>
-<th>{t}Volume<br>total (ml){/t}<th>
-<th>{t}Volume<br>sperme (ml){/t}<th>
-<th>{t}Nb<br>paillettes{/t}<th>
-<th>{t}Nb<br>visiotubes{/t}<th>
-<th>{t}Dilueur{/t}<th>
-<th>{t}Conservateur{/t}<th>
-<th>{t}Nb<br>paillettes<br>utilisées{/t}<th>
-<th>{t}Remarque{/t}<th>
+<th>{t}Date<br>de congélation{/t}</th>
+<th>{t}Volume<br>total (ml){/t}</th>
+<th>{t}Volume<br>sperme (ml){/t}</th>
+<th>{t}Nb<br>paillettes{/t}</th>
+<th>{t}Nb<br>visiotubes{/t}</th>
+<th>{t}Dilueur{/t}</th>
+<th>{t}Conservateur{/t}</th>
+<th>{t}Nb<br>paillettes<br>utilisées{/t}</th>
+<th>{t}Remarque{/t}</th>
 </tr>
 </thead>
 <tbody>

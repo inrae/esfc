@@ -178,6 +178,7 @@ $(document).ready(function() {
 </select>
 </dd>
 </div>
+</div>
 <div class="form-group"><label for="" class="control-label col-md-4">{t}Nom :{/t}</label>
 <div class="col-md-8">
 <input id="" class="form-control" class="commentaire" name="repartition_name" value="{$data.repartition_name}" placeholder="Élevage, repro..."></dd>
@@ -215,12 +216,14 @@ $(document).ready(function() {
 <div class="erreur"></div>
 </dd>
 </div>
+</div>
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}Masse (poids) des poissons dans le bassin (en grammes) :{/t}</label>
 <div class="col-md-8">
 <input id="" class="form-control" class="num10 masse" name="distribution_masse_{$dataBassin[lst].bassin_id}" id="distribution_masse_{$dataBassin[lst].bassin_id}" value="{$dataBassin[lst].distribution_masse}" data-cle="{$dataBassin[lst].bassin_id}">
 <input type="button" class="calcul" data-cle="{$dataBassin[lst].bassin_id}" value="Recalcul...">
 </dd>
+</div>
 </div>
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}Nourrissage des jours précédents (même nbre de jours) :{/t}</label>
@@ -240,6 +243,7 @@ Qté :
 <input name="ration_commentaire_precedent_{$dataBassin[lst].bassin_id}" id="ration_commentaire_precedent_{$dataBassin[lst].bassin_id}" data-cle="{$dataBassin[lst].bassin_id}" value="{$dataBassin[lst].ration_commentaire_precedent}" size="30" readonly>
 </dd>
 </div>
+</div>
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}Taux de nourrissage :{/t}</label>
 <dd>
@@ -249,6 +253,7 @@ Nouveau taux :
 <input class="num5 taux" name="taux_nourrissage_{$dataBassin[lst].bassin_id}" id="taux_nourrissage_{$dataBassin[lst].bassin_id}"  data-cle="{$dataBassin[lst].bassin_id}" value="{$dataBassin[lst].taux_nourrissage}">
 </dd>
 </div>
+</div>
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}Ration distribuée :{/t}</label>
 <div class="col-md-8">
@@ -256,6 +261,7 @@ Nouveau taux :
 <br>
 <input name="distribution_consigne_{$dataBassin[lst].bassin_id}" id="distribution_consigne_{$dataBassin[lst].bassin_id}"  data-cle="{$dataBassin[lst].bassin_id}" value="{$dataBassin[lst].distribution_consigne}" placeholder="Consignes..." Title="Consignes de distribution" size="30">
 </dd>
+</div>
 </div>
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}Jours de distribution :{/t}</label>
@@ -268,6 +274,7 @@ ven <input type="checkbox" name="distribution_jour_5_{$dataBassin[lst].bassin_id
 sam <input type="checkbox" name="distribution_jour_6_{$dataBassin[lst].bassin_id}" value="1" {if $dataBassin[lst].distribution_jour_6 == 1}checked{/if}>
 dim <input type="checkbox" name="distribution_jour_7_{$dataBassin[lst].bassin_id}" value="1" {if $dataBassin[lst].distribution_jour_7 == 1}checked{/if}>
 </dd>
+</div>
 </div>
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}1/2 ration le soir uniquement :{/t}</label>

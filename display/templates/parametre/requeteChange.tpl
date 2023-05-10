@@ -42,16 +42,19 @@ Description de la requête <span class="red">*</span> :
 <input id="" class="form-control" name="title" class="commentaire modif" type="text" value="{$data.title}" required autofocus/>
 </dd>
 </div>
+</div>
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}Code SQL <span class="red">*</span> : <b>SELECT</b>{/t}</label>
 <dd>
 <textarea class="modif" name="body" cols="70" rows="10" wrap="soft" required>{$data.body}</textarea>
 </dd>
 </div>
+</div>
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}Champs dates de la requête (séparés par une virgule) :{/t}</label>
 <div class="col-md-8">
 <input id="" class="form-control" class="modif" name="datefields" value="{$data.datefields}" placeholder="evenement_date,morphologie_date">
+</div>
 </div>
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}date de création :{/t}</label>
@@ -59,11 +62,13 @@ Description de la requête <span class="red">*</span> :
 <input id="" class="form-control" name="creation_date" value="{$data.creation_date}" readonly>
 </dd>
 </div>
+</div>
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}par :{/t}</label>
 <div class="col-md-8">
 <input id="" class="form-control" name="login" value="{$data.login}" readonly>
 </dd>
+</div>
 </div>
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}Date de dernière exécution :{/t}</label>
@@ -104,7 +109,7 @@ setDataTablesFull("crequeteList", true, true, true, 50);
 <thead>
 <tr>
 {foreach $result[0] as $key=>$value}
-<th>{t}{$key}{/t}<th>
+<th>{t}{$key}{/t}</th>
 {/foreach}
 </tr>
 </thead>

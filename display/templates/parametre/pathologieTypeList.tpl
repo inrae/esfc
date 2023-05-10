@@ -10,7 +10,7 @@ setDataTables("cpathologieTypeList");
 <table class="table table-bordered table-hover datatable" id="cpathologieTypeList" class="tableliste">
 <thead>
 <tr>
-<th>{t}libellé{/t}<th>
+<th>{t}libellé{/t}</th>
 </tr>
 </thead>
 <tbody>

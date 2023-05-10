@@ -10,7 +10,7 @@ setDataTables("stadeOeufList");
 <table class="table table-bordered table-hover datatable" id="stadeOeufList" class="tableliste">
 <thead>
 <tr>
-<th>{t}libellé{/t}<th>
+<th>{t}libellé{/t}</th>
 </tr>
 </thead>
 <tbody>

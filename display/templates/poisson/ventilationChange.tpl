@@ -28,11 +28,13 @@ Retour à la liste des poissons
 <input id="" class="form-control" class="datetimepicker" name="ventilation_date" required value="{$data.ventilation_date}">
 </dd>
 </div>
+</div>
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}Nb de battements/seconde <span class="red">*</span> :{/t}</label>
 <div class="col-md-8">
 <input id="" class="form-control" class="taux" name="battement_nb" value="{$data.battement_nb}">
 </dd>
+</div>
 </div>
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}Commentaire :{/t}</label>

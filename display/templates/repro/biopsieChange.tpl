@@ -24,17 +24,20 @@ Retour au reproducteur
 <input id="" class="form-control" class="datetimepicker" name="biopsie_date" required value="{$data.biopsie_date}">
 </dd>
 </div>
+</div>
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}Diamètre moyen (mm) :{/t}</label>
 <div class="col-md-8">
 <input id="" class="form-control" class="taux" name="diam_moyen" value="{$data.diam_moyen}">
 </dd>
 </div>
+</div>
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}Écart type du diamètre moyen :{/t}</label>
 <div class="col-md-8">
 <input id="" class="form-control" class="taux" name="diametre_ecart_type" value="{$data.diametre_ecart_type}">
 </dd>
+</div>
 </div>
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}Technique de mesure utilisée :{/t}</label>
@@ -50,10 +53,12 @@ Sélectionnez...
 {/section}
 </select>
 </div>
+</div>
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}Image utilisée pour le calcul du diamètre :
 {/t}</label>
 <label for="" class="control-label col-md-4">{t}<input type="file" name="documentName[]" size="40" multiple>{/t}</label>
+</div>
 </div>
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}Taux OPI :{/t}</label>
@@ -61,11 +66,13 @@ Sélectionnez...
 <input id="" class="form-control" class="taux" name="tx_opi" value="{$data.tx_opi}">
 </dd>
 </div>
+</div>
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}Taux de coloration normale :{/t}</label>
 <div class="col-md-8">
 <input id="" class="form-control" class="taux" name="tx_coloration_normal" value="{$data.tx_coloration_normal}">
 </dd>
+</div>
 </div>
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}Taux d'éclatement :{/t}</label>
@@ -81,6 +88,7 @@ Sélectionnez...
 <input id="" class="form-control" class="time" name="ringer_t50" value="{$data.ringer_t50}">
 </dd>
 </div>
+</div>
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}% maximal de maturation observé :{/t}</label>
 <div class="col-md-8">
@@ -88,6 +96,7 @@ Sélectionnez...
  en 
  <input class="time" name="ringer_duree" value="{$data.ringer_duree}">
 </dd>
+</div>
 </div>
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}Commentaires :{/t}</label>
@@ -110,6 +119,7 @@ Sélectionnez...
  en 
  <input class="time" name="leibovitz_duree" value="{$data.leibovitz_duree}">
 </dd>
+</div>
 </div>
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}Commentaires :{/t}</label>

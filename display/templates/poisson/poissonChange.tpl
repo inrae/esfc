@@ -92,6 +92,7 @@ Retour à la liste des poissons
 
 </dd>
 </div>
+</div>
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}Type de marque :{/t}</label>
 <dd>
@@ -107,6 +108,7 @@ Sélectionnez le type de marque...
 {/section}
 </select>
 </dd>
+</div>
 </div>
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}Date de pose :{/t}</label>

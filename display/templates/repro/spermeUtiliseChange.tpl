@@ -58,10 +58,12 @@ Retour à la séquence&nbsp;
 </select>
 </dd> 
 </div>
+</div>
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}Volume utilisé (ml) :{/t}</label>
 <div class="col-md-8">
 <input id="" class="form-control" class="taux" name="volume_utilise" value="{$data.volume_utilise}"></dd>
+</div>
 </div>
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}Nbre de paillettes utilisées :{/t}</label>

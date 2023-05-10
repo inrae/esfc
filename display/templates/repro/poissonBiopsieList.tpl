@@ -6,18 +6,18 @@ Nouvelle biopsie...
 <table class="table table-bordered table-hover datatable" id="cbiopsie" class="tableliste">
 <thead>
 <tr>
-<th>{t}Date{/t}<th>
-<th>{t}Diam. moyen<br>(écart-type){/t}<th>
-<th>{t}Taux<br>OPI{/t}<th>
-<th>{t}Taux color<br>normale{/t}<th>
-<th>{t}Taux<br>éclatement{/t}<th>
-<th>{t}Ringer<br>T50{/t}<th>
-<th>{t}Ringer<br>Tmax{/t}<th>
-<th>{t}Ringer<br>commentaire{/t}<th>
-<th>{t}Leib<br>T50{/t}<th>
-<th>{t}Leib<br>Tmax{/t}<th>
-<th>{t}Leib<br>commentaire{/t}<th>
-<th>{t}Commentaire<br>général{/t}<th>
+<th>{t}Date{/t}</th>
+<th>{t}Diam. moyen<br>(écart-type){/t}</th>
+<th>{t}Taux<br>OPI{/t}</th>
+<th>{t}Taux color<br>normale{/t}</th>
+<th>{t}Taux<br>éclatement{/t}</th>
+<th>{t}Ringer<br>T50{/t}</th>
+<th>{t}Ringer<br>Tmax{/t}</th>
+<th>{t}Ringer<br>commentaire{/t}</th>
+<th>{t}Leib<br>T50{/t}</th>
+<th>{t}Leib<br>Tmax{/t}</th>
+<th>{t}Leib<br>commentaire{/t}</th>
+<th>{t}Commentaire<br>général{/t}</th>
 </tr>
 </thead>
 <tbody>

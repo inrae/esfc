@@ -10,7 +10,7 @@ setDataTables("cmortaliteTypeList");
 <table class="table table-bordered table-hover datatable" id="cmortaliteTypeList" class="tableliste">
 <thead>
 <tr>
-<th>{t}libellé{/t}<th>
+<th>{t}libellé{/t}</th>
 </tr>
 </thead>
 <tbody>

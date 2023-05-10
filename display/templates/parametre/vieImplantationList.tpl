@@ -10,7 +10,7 @@ setDataTables("chormonList");
 <table class="table table-bordered table-hover datatable" id="cvie_implantationList" class="tableliste">
 <thead>
 <tr>
-<th>{t}Nom de l'emplacement d'implantation{/t}<th>
+<th>{t}Nom de l'emplacement d'implantation{/t}</th>
 </tr>
 </thead>
 <tbody>

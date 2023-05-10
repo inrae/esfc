@@ -46,9 +46,9 @@ Site :
 <table class="table table-bordered table-hover datatable" id="csequenceList" class="tableliste">
 <thead>
 <tr>
-<th>{t}Site{/t}<th>
-<th>{t}Nom de la séquence{/t}<th>
-<th>{t}Date de début{/t}<th>
+<th>{t}Site{/t}</th>
+<th>{t}Nom de la séquence{/t}</th>
+<th>{t}Date de début{/t}</th>
 </tr>
 </thead>
 <tbody>

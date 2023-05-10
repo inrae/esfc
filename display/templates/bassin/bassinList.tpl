@@ -22,15 +22,15 @@ setDataTables("cbassinList",true, true, false, 50);
 <table class="table table-bordered table-hover datatable" id="cbassinList" class="tableliste">
 <thead>
 <tr>
-<th>{t}Nom{/t}<th>
-<th>{t}Description{/t}<th>
-<th>{t}Zone<br>d'implantation{/t}<th>
-<th>{t}Type{/t}<th>
-<th>{t}Utilisation{/t}<th>
-<th>{t}Circuit<br>d'eau{/t}<th>
-<th>{t}dimensions<br>(longueur x largeur x hauteur d'eau){/t}<th>
-<th>{t}Surface - volume d'eau{/t}<th>
-<th>{t}Utilisé<br>actuellement ?{/t}<th>
+<th>{t}Nom{/t}</th>
+<th>{t}Description{/t}</th>
+<th>{t}Zone<br>d'implantation{/t}</th>
+<th>{t}Type{/t}</th>
+<th>{t}Utilisation{/t}</th>
+<th>{t}Circuit<br>d'eau{/t}</th>
+<th>{t}dimensions<br>(longueur x largeur x hauteur d'eau){/t}</th>
+<th>{t}Surface - volume d'eau{/t}</th>
+<th>{t}Utilisé<br>actuellement ?{/t}</th>
 </tr>
 </thead>
 <tbody>

@@ -8,18 +8,18 @@ Nouveau croisement...
 <table class="table table-bordered table-hover datatable" id="ccroisement" class="tableliste">
 <thead>
 <tr>
-<th>{t}Nom du croisement{/t}<th>
-<th>{t}Date/heure de<br>fécondation{/t}<th>
-<th>{t}Poissons{/t}<th>
-<th>{t}Masse des<br>ovocytes{/t}<th>
-<th>{t}Nbre d'ovocytes<br>par gramme{/t}<th>
-<th>{t}Nbre total<br>d'ovocytes{/t}<th>
-<th>{t}Taux de<br>fécondation{/t}<th>
-<th>{t}Nbre d'oeufs<br>calculé{/t}<th>
-<th>{t}Taux de survie<br>estimé{/t}<th>
-<th>{t}Nbre de larves<br>théorique{/t}<th>
-<th>{t}Nbre de larves<br>compté{/t}<th>
-<th>{t}Qualité génétique<br>du croisement{/t}<th>
+<th>{t}Nom du croisement{/t}</th>
+<th>{t}Date/heure de<br>fécondation{/t}</th>
+<th>{t}Poissons{/t}</th>
+<th>{t}Masse des<br>ovocytes{/t}</th>
+<th>{t}Nbre d'ovocytes<br>par gramme{/t}</th>
+<th>{t}Nbre total<br>d'ovocytes{/t}</th>
+<th>{t}Taux de<br>fécondation{/t}</th>
+<th>{t}Nbre d'oeufs<br>calculé{/t}</th>
+<th>{t}Taux de survie<br>estimé{/t}</th>
+<th>{t}Nbre de larves<br>théorique{/t}</th>
+<th>{t}Nbre de larves<br>compté{/t}</th>
+<th>{t}Qualité génétique<br>du croisement{/t}</th>
 </tr>
 </thead>
 <tbody>

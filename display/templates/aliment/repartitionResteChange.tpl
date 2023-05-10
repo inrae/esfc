@@ -73,14 +73,14 @@ $(document).ready(function() {
 <input type="hidden" name="nbJour" value="{$nbJour}">
 <table>
 <tr>
-<th>{t}Bassin{/t}<th>
+<th>{t}Bassin{/t}</th>
 {section name=lst loop=$dateArray}
-<th>{t}{$dateArray[lst].libelle}{/t}<th>
+<th>{t}{$dateArray[lst].libelle}{/t}</th>
 {/section}
-<th>{t}Total<br>reste{/t}<th>
-<th>{t}Commentaire{/t}<th>
-<th>{t}Total<br>distribué{/t}<th>
-<th>{t}Taux de<br>reste{/t}<th>
+<th>{t}Total<br>reste{/t}</th>
+<th>{t}Commentaire{/t}</th>
+<th>{t}Total<br>distribué{/t}</th>
+<th>{t}Taux de<br>reste{/t}</th>
 </tr>
 {section name=lst loop=$dataBassin}
 <input name="distribution_id_{$dataBassin[lst].distribution_id}" type="hidden" value="{$dataBassin[lst].distribution_id}">

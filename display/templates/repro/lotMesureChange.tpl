@@ -35,19 +35,23 @@ $(document).ready(function() {
 <input id="" class="form-control" class="date"  name="lot_mesure_date" required value="{$data.lot_mesure_date}">
 </dd>
 </div>
+</div>
 <div class="form-group"><label for="" class="control-label col-md-4">{t}Nombre de jours depuis l'éclosion :{/t}</label>
 <div class="col-md-8">
 <input id="" class="form-control" name="nb_jour" readonly class="entier" value="{$data.nb_jour}"> 
 (valeur calculée à l'enregistrement)</dd>
 </div>
+</div>
 <div class="form-group"><label for="" class="control-label col-md-4">{t}Nbre d'individus morts :{/t}</label>
 <div class="col-md-8">
 <input id="" class="form-control" name="lot_mortalite" class="entier" value="{$data.lot_mortalite}"></dd>
+</div>
 </div>
 <div class="form-group"><label for="" class="control-label col-md-4">{t}Masse globale (en grammes) :{/t}</label>
 <div class="col-md-8">
 <input id="" class="form-control" name="lot_mesure_masse" class="taux" value="{$data.lot_mesure_masse}">
 </dd>
+</div>
 </div>
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}Masse individuelle (en grammes) :{/t}</label>

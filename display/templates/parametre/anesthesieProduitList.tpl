@@ -10,8 +10,8 @@ setDataTables("cproduitList");
 <table class="table table-bordered table-hover datatable" id="cproduitList" class="tableliste">
 <thead>
 <tr>
-<th>{t}Nom du produit{/t}<th>
-<th>{t}Utilisé actuellement ?{/t}<th>
+<th>{t}Nom du produit{/t}</th>
+<th>{t}Utilisé actuellement ?{/t}</th>
 </tr>
 </thead>
 <tbody>

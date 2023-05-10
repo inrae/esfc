@@ -23,11 +23,13 @@ $(document).ready(function() {
 <input id="" class="form-control" class="date" name="repart_template_date" id="repart_template_date" value="{$data.repart_template_date}" required>
 </dd>
 </div>
+</div>
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}Description  <span class="red">*</span> :{/t}</label>
 <div class="col-md-8">
 <input id="" class="form-control" name="repart_template_libelle" value="{$data.repart_template_libelle}" autofocus required size="40">
 </dd>
+</div>
 </div>
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}Catégorie d'alimentation <span class="red">*</span> :{/t}</label> 
@@ -40,6 +42,7 @@ $(document).ready(function() {
 {/section}
 </select>
 </dd>
+</div>
 </div>
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}Modèle utilisable ?{/t}</label>

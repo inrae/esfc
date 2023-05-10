@@ -7,9 +7,9 @@ Nouvelle affectation de bassin...
 <table class="table table-bordered table-hover datatable" id="cBassinLot" class="tableliste">
 <thead>
 <tr>
-<th>{t}Date de début<br>d'utilisation{/t}<th>
-<th>{t}Nom du bassin{/t}<th>
-<th>{t}Date de fin<br>d'utilisation{/t}<th>
+<th>{t}Date de début<br>d'utilisation{/t}</th>
+<th>{t}Nom du bassin{/t}</th>
+<th>{t}Date de fin<br>d'utilisation{/t}</th>
 </tr>
 </thead>
 <tbody>

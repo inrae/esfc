@@ -19,11 +19,13 @@
 <input id="" class="form-control" class="datetimepicker" name="salinite_datetime" required value="{$data.salinite_datetime}">
 </dd>
 </div>
+</div>
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}Taux de salinité <span class="red">*</span> :{/t}</label>
 <div class="col-md-8">
 <input id="" class="form-control" class="taux" name="salinite_tx" required value="{$data.salinite_tx}">
 </dd>
+</div>
 </div>
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}Type :{/t}</label>

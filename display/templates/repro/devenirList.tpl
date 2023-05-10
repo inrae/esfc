@@ -10,13 +10,13 @@ Nouvelle destination (lâcher, entrée dans le stock captif, etc.)
 {if $droits["reproGestion"] == 1}
 <th class="center">
 <img src="display/images/edit.gif" height="25">
-{/t}<th>
+{/t}</th>
 {/if}
-<th>{t}N° de lot{/t}<th>
-<th>{t}Date{/t}<th>
-<th>{t}Destination{/t}<th>
-<th>{t}Nbre<br>poissons{/t}<th>
-<th>{t}Destination parente{/t}<th>
+<th>{t}N° de lot{/t}</th>
+<th>{t}Date{/t}</th>
+<th>{t}Destination{/t}</th>
+<th>{t}Nbre<br>poissons{/t}</th>
+<th>{t}Destination parente{/t}</th>
 </tr>
 </thead><tbody>
 {section name=lst loop=$dataDevenir}

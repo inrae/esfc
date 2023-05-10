@@ -18,6 +18,7 @@ Nom du stade de maturation de l'œuf <span class="red">*</span> :
 <input id="" class="form-control" name="stade_oeuf_libelle"  value="{$data.stade_oeuf_libelle}" required autofocus/>
 </dd>
 </div>
+</div>
 <div class="form-group"></div>
 
 <div class="form-group center">

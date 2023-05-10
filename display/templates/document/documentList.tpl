@@ -40,13 +40,13 @@ $(document).ready(function() {
 <table class="table table-bordered table-hover datatable" id="documentList" class="tableliste">
 <thead>
 <tr>
-<th>{t}Vignette{/t}<th>
-<th>{t}Nom du document{/t}<th>
-<th>{t}Description{/t}<th>
-<th>{t}Taille{/t}<th>
-<th>{t}Date<br>d'import{/t}<th>
+<th>{t}Vignette{/t}</th>
+<th>{t}Nom du document{/t}</th>
+<th>{t}Description{/t}</th>
+<th>{t}Taille{/t}</th>
+<th>{t}Date<br>d'import{/t}</th>
 {if $droits["gestion"] == 1}
-<th>{t}Supprimer{/t}<th>
+<th>{t}Supprimer{/t}</th>
 {/if}
 </tr>
 </thead>

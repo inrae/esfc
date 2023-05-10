@@ -32,11 +32,13 @@ Retour au reproducteur
 <input id="" class="form-control" class="date" name="dosage_sanguin_date" required size="10" maxlength="10" value="{$data.dosage_sanguin_date}">
 </dd>
 </div>
+</div>
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}Taux E2 :{/t}</label>
 <div class="col-md-8">
 <input id="" class="form-control" class="taux" name="tx_e2" value="{$data.tx_e2}">
 </dd>
+</div>
 </div>
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}Taux E2 (forme textuelle, pour des fourchettes ou des tendances) :{/t}</label>
@@ -44,17 +46,20 @@ Retour au reproducteur
 <input id="" class="form-control" name="tx_e2_texte" size="20" value="{$data.tx_e2_texte}">
 </dd>
 </div>
+</div>
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}Taux de calcium :{/t}</label>
 <div class="col-md-8">
 <input id="" class="form-control" class="taux" name="tx_calcium" value="{$data.tx_calcium}">
 </dd>
 </div>
+</div>
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}Taux d'hématocrite :{/t}</label>
 <div class="col-md-8">
 <input id="" class="form-control" class="taux" name="tx_hematocrite" value="{$data.tx_hematocrite}">
 </dd>
+</div>
 </div>
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}Commentaires :{/t}</label>
