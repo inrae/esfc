@@ -1,4 +1,4 @@
-<h2{t}Stades de maturation des œufs{/t}</h2>
+<h2>{t}Stades de maturation des œufs{/t}</h2>
 {if $droits["paramAdmin"] == 1}
 <a href="index.php?module=stadeOeufChange&stade_oeuf_id=0">
 Nouveau...

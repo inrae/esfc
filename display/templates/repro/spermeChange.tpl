@@ -8,7 +8,7 @@ Retour au reproducteur
 <tr>
 <td>
 <fieldset>
-<legend>{t}Modification d'un prélèvement de sperme{/t}<legend>
+<legend>{t}Modification d'un prélèvement de sperme{/t}</legend>
 
 <div class="formSaisie">
 <div>
@@ -18,7 +18,7 @@ Retour au reproducteur
 <input type="hidden" name="action" value="Write">
 <input type="hidden" name="moduleBase" value=""> id="spermeForm" method="post" action="index.php?module=spermeWrite">
 <div class="form-group">
-<label for="" class="control-label col-md-4">{t}Séquence de reproduction <span class="red">*</span> :{/t}</label>
+<label for="" class="control-label col-md-4">{t}Séquence de reproduction :{/t}<span class="red">*</span></label>
 <div class="col-md-8">
 <select id="" class="form-control" name="sequence_id">
 {section name=lst loop=$sequences}
@@ -63,7 +63,7 @@ Retour au reproducteur
 </td>
 <td>
 <fieldset>
-<legend>{t}Analyses réalisées{/t}<legend>
+<legend>{t}Analyses réalisées{/t}</legend>
 {include file="repro/spermeMesureList.tpl"}
 </fieldset>
 </td>
@@ -73,7 +73,7 @@ Retour au reproducteur
 <!-- Ajout de l'affichage des congelations -->
 {if $data.sperme_id > 0}
 <fieldset>
-<legend>{t}Congélations{/t}<legend>
+<legend>{t}Congélations{/t}</legend>
 {include file="repro/spermeCongelationList.tpl"}
 </fieldset>
 {/if}

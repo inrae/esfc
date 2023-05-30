@@ -1,4 +1,4 @@
-<h2{t}Modification d'une zone d'implantation des bassins{/t}</h2>
+<h2>{t}Modification d'une zone d'implantation des bassins{/t}</h2>
 
 <a href="index.php?module=bassinZoneList">Retour à la liste</a>
 <table class="tablesaisie">

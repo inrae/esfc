@@ -6,7 +6,7 @@
  * @license http://www.cecill.info/licences/Licence_CeCILL-C_V1-fr.html LICENCE DE LOGICIEL LIBRE CeCILL-C
  *  Creation 20 mars 2014
  */
-include_once 'modules/classes/aliment.class.php';
+include_once 'modules/classes/repartTemplate.class.php';
 $dataClass = new RepartTemplate($bdd, $ObjetBDDParam);
 $keyName = "repart_template_id";
 $id = $_REQUEST[$keyName];
@@ -18,9 +18,12 @@ switch ($t_module["param"]) {
 		/*
 		 * Gestion des variables de recherche
 		 */
-		$searchRepartTemplate->setParam($_REQUEST);
-		$dataSearch = $searchRepartTemplate->getParam();
-		if ($searchRepartTemplate->isSearch() == 1) {
+		if (!isset($_SESSION["searchRepartTemplate"])) {
+			$_SESSION["searchRepartTemplate"] = new SearchRepartTemplate();
+		}
+		$_SESSION["searchRepartTemplate"]->setParam($_REQUEST);
+		$dataSearch = $_SESSION["searchRepartTemplate"]->getParam();
+		if ($_SESSION["searchRepartTemplate"]->isSearch() == 1) {
 			$vue->set(1, "isSearch");
 			$data = $dataClass->getListSearch($dataSearch);
 		} else {
@@ -32,6 +35,7 @@ switch ($t_module["param"]) {
 		/*
 		 * Recherche de la categorie
 		 */
+		require_once "modules/classes/categorie.class.php";
 		$categorie = new Categorie($bdd, $ObjetBDDParam);
 		$vue->set($categorie->getListe(2), "categorie");
 		break;
@@ -45,12 +49,14 @@ switch ($t_module["param"]) {
 		/*
 		 * Lecture des categories
 		 */
+		require_once "modules/classes/categorie.class.php";
 		$categorie = new Categorie($bdd, $ObjetBDDParam);
 		$vue->set($categorie->getListe(2), "categorie");
 		/*
 		 * Recuperation des aliments associés
 		 */
 		if ($data["categorie_id"] > 0 && $id > 0) {
+			require_once "modules/classes/repartAliment.class.php";
 			$repartAliment = new RepartAliment($bdd, $ObjetBDDParam);
 			$vue->set($repartAliment->getFromTemplateWithAliment($id, $data["categorie_id"]), "dataAliment");
 		}
@@ -66,7 +72,7 @@ switch ($t_module["param"]) {
 			 * Preparation des aliments
 			 */
 			$data = array();
-			foreach ($_REQUEST as $key => $value) {
+			foreach ($_REQUEST as $value) {
 				if (preg_match('/[0-9]+$/', $key, $val)) {
 					$pos = strrpos($key, "_");
 					$nom = substr($key, 0, $pos);
@@ -76,9 +82,10 @@ switch ($t_module["param"]) {
 			/*
 			 * Mise en table
 			 */
+			require_once "modules/classes/repartAliment.class.php";
 			$repartAliment = new RepartAliment($bdd, $ObjetBDDParam);
 			$error = 0;
-			foreach ($data as $key => $value) {
+			foreach ($data as  $value) {
 				if ($value["repart_aliment_id"] > 0 || $value["repart_alim_taux"] > 0) {
 					$value["repart_template_id"] = $id;
 					$idRepart = $repartAliment->ecrire($value);

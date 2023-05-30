@@ -7,8 +7,8 @@ setDataTables("canomalieList");
 <table class="table table-bordered table-hover datatable" class="tableaffichage">
 <tr><td>
 Anomalies traitées ? 
-<input type="radio" name="statut" value="0" {if $anomalieSearch.statut == 0}checked{/if}>non
-<input type="radio" name="statut" value="1" {if $anomalieSearch.statut == 1}checked{/if}>oui
+<input type="radio" name="statut" value="0" {if $anomalieSearch.statut == 0}checked{/if}>{t}non{/t}
+<input type="radio" name="statut" value="1" {if $anomalieSearch.statut == 1}checked{/if}>{t}oui{/t}
 <input type="radio" name="statut" value="-1" {if $anomalieSearch.statut == -1}checked{/if}>Indifférent
 <br>
 Type d'anomalie :

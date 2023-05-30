@@ -157,7 +157,7 @@ $(document).ready(function() {
 	{/if}
 } );
 </script>
-<h2{t}Détail d'un reproducteur{/t}</h2>
+<h2>{t}Détail d'un reproducteur{/t}</h2>
 <a href="index.php?module={$poissonDetailParent}&sequence_id={$sequence_id}">Retour à la liste des poissons</a>
 {if $droits["reproGestion"]==1}
 &nbsp;
@@ -175,12 +175,12 @@ Modifier les informations générales...
 <tr>
 <td>
 <fieldset>
-<legend>{t}Séquences de reproduction{/t}<legend>
+<legend>{t}Séquences de reproduction{/t}</legend>
 {include file="repro/poissonSequenceList.tpl"}
 </fieldset>
 <br>
 <fieldset>
-<legend>{t}Échographies de l'année{/t}<legend>
+<legend>{t}Échographies de l'année{/t}</legend>
 {if $droits.reproGestion == 1}
 <a href="index.php?module=evenementChange&evenement_id=0&poisson_id={$dataPoisson.poisson_id}">
 Nouvelle échographie (nouvel événement)...
@@ -192,34 +192,34 @@ Nouvelle échographie (nouvel événement)...
 </fieldset>
 <br>
 <fieldset>
-<legend>{t}Analyses sanguines{/t}<legend>
+<legend>{t}Analyses sanguines{/t}</legend>
 {include file="repro/poissonSanguinList.tpl"}
 </fieldset>
 {if $dataPoisson.sexe_libelle_court == "m"}
 <br>
 <fieldset>
-<legend>{t}Prélèvements de sperme{/t}<legend>
+<legend>{t}Prélèvements de sperme{/t}</legend>
 {include file="repro/spermeList.tpl"}
 </fieldset>
 {/if}
 </td>
 <td>
 <fieldset>
-<legend>{t}Transferts de l'année{/t}<legend>
+<legend>{t}Transferts de l'année{/t}</legend>
 {include file="poisson/transfertList.tpl"}
 </fieldset>
 <fieldset>
-<legend>{t}Événements liés aux séquences{/t}<legend>
+<legend>{t}Événements liés aux séquences{/t}</legend>
 {include file="repro/psEvenementList.tpl"}
 </fieldset>
 <br>
 <fieldset>
-<legend>{t}Mesures de ventilation{/t}<legend>
+<legend>{t}Mesures de ventilation{/t}</legend>
 {include file="poisson/ventilationList.tpl"}
 </fieldset>
 <br>
 <fieldset>
-<legend>{t}Injections{/t}<legend>
+<legend>{t}Injections{/t}</legend>
 {include file="repro/injectionList.tpl"}
 </fieldset>
 </td>
@@ -228,7 +228,7 @@ Nouvelle échographie (nouvel événement)...
 <tr>
 <td colspan="2">
 <fieldset>
-<legend>{t}Biopsies{/t}<legend>
+<legend>{t}Biopsies{/t}</legend>
 {include file="repro/poissonBiopsieList.tpl"}
 </fieldset>
 </td>
@@ -237,18 +237,18 @@ Nouvelle échographie (nouvel événement)...
 
 </table>
 <fieldset>
-<legend>{t}Taux sanguins, injections et expulsions{/t}<legend>
+<legend>{t}Taux sanguins, injections et expulsions{/t}</legend>
 <div id="tauxSanguin"></div>
 </fieldset>
 {if $dataPoisson.sexe_libelle_court == "f"}
 <br>
 <fieldset>
-<legend>{t}Valeurs de biopsie{/t}<legend>
+<legend>{t}Valeurs de biopsie{/t}</legend>
 <div id="biopsie"></div>
 </fieldset>
 {/if}
 <br>
 <fieldset>
-<legend>{t}Profil thermique du poisson{/t}<legend>
+<legend>{t}Profil thermique du poisson{/t}</legend>
 <div id="profilThermique"></div>
 </fieldset>

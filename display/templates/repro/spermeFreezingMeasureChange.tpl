@@ -11,7 +11,7 @@ Retour à la congélation
 </a>
 {include file="repro/poissonCampagneDetail.tpl"}
 
-<h2{t}Modification d'une température relevée pendant la phase de congélation{/t}</h2>
+<h2>{t}Modification d'une température relevée pendant la phase de congélation{/t}</h2>
 <div class="formSaisie">
 <div>
 <div class="row">
@@ -24,13 +24,13 @@ Retour à la congélation
 <input type="hidden" name="sperme_id" value="{$dataCongelation.sperme_id}">
 <input type="hidden" name="sperme_freezing_measure_id" value="{$data.sperme_freezing_measure_id}">
 <div class="form-group">
-<label for="" class="control-label col-md-4">{t}Date/heure<span class="red">*</span> :{/t}</label>
+<label for="" class="control-label col-md-4">{t}Date/heure:{/t}<span class="red">*</span></label>
 <div class="col-md-8">
 <input id="" class="form-control" name="measure_date" class="datetimepicker" value="{$data.measure_date}">
 </div>
 </div>
 <div class="form-group">
-<label for="" class="control-label col-md-4">{t}Temperature relevée<span class="red">*</span> :{/t}</label>
+<label for="" class="control-label col-md-4">{t}Temperature relevée:{/t}<span class="red">*</span></label>
 <div class="col-md-8">
 <input id="" class="form-control" name="measure_temp" class="taux" value="{$data.measure_temp}" autofocus>
 </div>

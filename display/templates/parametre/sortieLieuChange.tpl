@@ -1,4 +1,4 @@
-<h2{t}Modification d'un lieu de lâcher/destination{/t}</h2>
+<h2>{t}Modification d'un lieu de lâcher/destination{/t}</h2>
 
 <a href="index.php?module=sortieLieuList">Retour à la liste</a>
 <div class="formSaisie">
@@ -11,7 +11,7 @@
 <input type="hidden" name="moduleBase" value=""> id="sortieLieuForm" method="post" action="index.php?module=sortieLieuWrite">
 <input type="hidden" name="sortie_lieu_id" value="{$data.sortie_lieu_id}">
 <div class="form-group">
-<label for="" class="control-label col-md-4">{t}Nom du lieu <span class="red">*</span> :{/t}</label>
+<label for="" class="control-label col-md-4">{t}Nom du lieu :{/t}<span class="red">*</span></label>
 <div class="col-md-8">
 <input id="" class="form-control" name="localisation" size="40" value="{$data.localisation}" autofocus>
 </div>

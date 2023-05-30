@@ -1,4 +1,4 @@
-<h2{t}Modification d'un type d'événement survenant dans les bassins{/t}</h2>
+<h2>{t}Modification d'un type d'événement survenant dans les bassins{/t}</h2>
 
 <a href="index.php?module=bassinEvenementTypeList">Retour à la liste</a>
 <div class="formSaisie">
@@ -11,7 +11,7 @@
 <input type="hidden" name="moduleBase" value=""> id="bassinEvenementTypeForm" method="post" action="index.php?module=bassinEvenementTypeWrite">
 <input type="hidden" name="bassin_evenement_type_id" value="{$data.bassin_evenement_type_id}">
 <div class="form-group">
-<label for="" class="control-label col-md-4">{t}Type d'événement <span class="red">*</span> :{/t}</label>
+<label for="" class="control-label col-md-4">{t}Type d'événement :{/t}<span class="red">*</span></label>
 <div class="col-md-8">
 <input id="" class="form-control" name="bassin_evenement_type_libelle" size="40" value="{$data.bassin_evenement_type_libelle}" autofocus>
 </div>

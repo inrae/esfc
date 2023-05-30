@@ -1,4 +1,4 @@
-<h2{t}Liste des métaux analysés{/t}</h2>
+<h2>{t}Liste des métaux analysés{/t}</h2>
 {if $droits["paramAdmin"] == 1}
 <a href="index.php?module=metalChange&metal_id=0">
 Nouveau...

@@ -6,7 +6,7 @@ Retour à la liste des poissons
  Retour au poisson
  </a>
  {include file="poisson/poissonDetail.tpl"}
-<h2{t}Modification d'un (pit)tag{/t}</h2>
+<h2>{t}Modification d'un (pit)tag{/t}</h2>
 <table class="tablesaisie">
 <div class="row">
 <div class="col-md-6">

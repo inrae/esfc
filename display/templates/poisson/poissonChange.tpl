@@ -33,7 +33,7 @@ Retour à la liste des poissons
  Retour au poisson
  </a>
  {/if}
- <h2{t}Modification d'un poisson{/t}</h2>
+ <h2>{t}Modification d'un poisson{/t}</h2>
 <div class="formSaisie">
 <div>
 <div class="row">
@@ -44,7 +44,7 @@ Retour à la liste des poissons
 <input type="hidden" name="poisson_id" value="{$data.poisson_id}">
 <input type="hidden" name="sexe_id" value="{$data.sexe_id}">
 <div class="form-group">
-<label for="" class="control-label col-md-4">{t}Statut <span class="red">*</span> :{/t}</label>
+<label for="" class="control-label col-md-4">{t}Statut :{/t}<span class="red">*</span></label>
 <div class="col-md-8">
 <select id="" class="form-control" id="cpoisson_statut_id" name="poisson_statut_id">
 {section name=lst loop=$poissonStatut}
@@ -57,7 +57,7 @@ Retour à la liste des poissons
 </div>
 
 <div class="form-group">
-<label for="" class="control-label col-md-4">{t}Catégorie <span class="red">*</span> :{/t}</label>
+<label for="" class="control-label col-md-4">{t}Catégorie :{/t}<span class="red">*</span></label>
 <div class="col-md-8">
 <select id="" class="form-control" id="ccategorie_id" name="categorie_id" >
 {section name=lst loop=$categorie}
@@ -83,7 +83,7 @@ Retour à la liste des poissons
 
 </div>
 <fieldset>
-<legend>{t}Pittag{/t}<legend>
+<legend>{t}Pittag{/t}</legend>
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}Numéro de pittag <span class="red">*</span> : {/t}</label>
 <div class="col-md-8">
@@ -120,7 +120,7 @@ Sélectionnez le type de marque...
 </fieldset>
 
 <div class="form-group">
-<label for="" class="control-label col-md-4">{t}Matricule<span class="red">*</span> :{/t}</label>
+<label for="" class="control-label col-md-4">{t}Matricule:{/t}<span class="red">*</span></label>
 <div class="col-md-8">
 <input id="" class="form-control" name="matricule" id="cmatricule" value="{$data.matricule}" size="30" required>
 
@@ -160,7 +160,7 @@ Sélectionnez le type de marque...
 <input id="" class="form-control" name="commentaire" id="ccommentaire" class="commentaire" value="{$data.commentaire}">
 
 </div>
-<fieldset><legend>{t}Marquage VIE au stade juvénile - lot{/t}<legend>
+<fieldset><legend>{t}Marquage VIE au stade juvénile - lot{/t}</legend>
 <label>La sélection du modèle de marquage VIE entraîne une mise
 à jour automatique de la date de naissance, de la cohorte et des parents
 à partir des données de reproduction</label>

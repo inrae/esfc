@@ -8,7 +8,7 @@ $(document).ready(function() {
 <table class="tablemulticolonne">
 <tr><td>
 <fieldset>
-<legend>{t}Afficher les lots{/t}<legend>
+<legend>{t}Afficher les lots{/t}</legend>
 <form method="get" action="index.php" id="search">
 <input type="hidden" name="module" value="lotList">
 Année : 

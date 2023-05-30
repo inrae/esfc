@@ -31,7 +31,7 @@ Retour à la séquence&nbsp;
 <a href="index.php?module=croisementDisplay&croisement_id={$croisementData.croisement_id}">
 &nbsp;Retour au croisement {$croisementData.parents}</a>
 {include file="repro/sequenceDetail.tpl"}
-<h2{t}Modification du sperme utilisé pour le croisement{/t}</h2>
+<h2>{t}Modification du sperme utilisé pour le croisement{/t}</h2>
 <div class="formSaisie">
 <div>
 <div class="row">
@@ -44,7 +44,7 @@ Retour à la séquence&nbsp;
 <input type="hidden" id="sperme_id" name="sperme_id" value="{$data.sperme_id}">
 <input type="hidden" id="sperme_congelation_id" name="sperme_congelation_id" value="{$data.sperme_congelation_id}">
 <div class="form-group">
-<label for="" class="control-label col-md-4">{t}Sperme<span class="red">*</span> :{/t}</label>
+<label for="" class="control-label col-md-4">{t}Sperme:{/t}<span class="red">*</span></label>
 <div class="col-md-8">
 <select id="" class="form-control" id="sperme_select" name="sperme_select">
 {section name=lst loop=$spermes}

@@ -1,4 +1,4 @@
-<h2{t}Types d'anomalie_dbs{/t}</h2>
+<h2>{t}Types d'anomalie_dbs{/t}</h2>
 {if $droits["paramAdmin"] == 1}
 <a href="index.php?module=anomalieDbTypeChange&anomalie_db_type_id=0">
 Nouveau...

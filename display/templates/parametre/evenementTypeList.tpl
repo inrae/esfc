@@ -1,4 +1,4 @@
-<h2{t}Types d'événements{/t}</h2>
+<h2>{t}Types d'événements{/t}</h2>
 {if $droits["paramAdmin"] == 1}
 <a href="index.php?module=evenementTypeChange&evenement_type_id=0">
 Nouveau...

@@ -1,4 +1,4 @@
-<h2{t}Aliments distribués{/t}</h2>
+<h2>{t}Aliments distribués{/t}</h2>
     {if $droits["bassinAdmin"] == 1}
     <a href="index.php?module=alimentChange&aliment_id=0">
         Nouveau...

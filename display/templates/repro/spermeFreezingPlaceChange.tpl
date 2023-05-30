@@ -11,7 +11,7 @@ Retour à la congélation
 </a>
 {include file="repro/poissonCampagneDetail.tpl"}
 
-<h2{t}Modification d'une congélation de sperme{/t}</h2>
+<h2>{t}Modification d'une congélation de sperme{/t}</h2>
 <div class="formSaisie">
 <div>
 <div class="row">

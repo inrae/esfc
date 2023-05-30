@@ -1,4 +1,4 @@
-<h2{t}Statuts des poissons{/t}</h2>
+<h2>{t}Statuts des poissons{/t}</h2>
 {if $droits["paramAdmin"] == 1}
 <a href="index.php?module=poissonStatutChange&poisson_statut_id=0">
 Nouveau...

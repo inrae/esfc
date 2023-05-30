@@ -43,7 +43,7 @@
                     </div>
             </div>
             <fieldset>
-                <legend>{t}Catégories de poissons nourris{/t}<legend>
+                <legend>{t}Catégories de poissons nourris{/t}</legend>
                 <!-- gestion de la saisie des categories -->
                 {section name=lst loop=$categorie}
                 <div class="form-group black">

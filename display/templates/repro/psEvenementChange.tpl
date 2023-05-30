@@ -22,7 +22,7 @@ $(".timepicker").timepicker( {
 <input type="hidden" name="poisson_sequence_id" value="{$dataPsEvenement.poisson_sequence_id}">
 <input type="hidden" name="ps_evenement_id" value="{$dataPsEvenement.ps_evenement_id}">
 <div class="form-group">
-<label for="" class="control-label col-md-4">{t}Date <span class="red">*</span> :{/t}</label>
+<label for="" class="control-label col-md-4">{t}Date :{/t}<span class="red">*</span></label>
 <div class="col-md-8">
 <input id="" class="form-control" class="date" name="ps_date" required value="{$dataPsEvenement.ps_date}">
 <input class="timepicker" name="ps_time" required value="{$dataPsEvenement.ps_time}">
@@ -30,7 +30,7 @@ $(".timepicker").timepicker( {
 </div>
 </div>
 <div class="form-group">
-<label for="" class="control-label col-md-4">{t}Libellé <span class="red">*</span> :{/t}</label>
+<label for="" class="control-label col-md-4">{t}Libellé :{/t}<span class="red">*</span></label>
 <div class="col-md-8">
 <input id="" class="form-control" class="commentaire" name="ps_libelle" required value="{$dataPsEvenement.ps_libelle}">
 

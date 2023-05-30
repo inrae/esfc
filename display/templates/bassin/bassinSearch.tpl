@@ -15,8 +15,8 @@ Nom :</td><td> <input name="bassin_nom" value="{$bassinSearch.bassin_nom}">
 </td>
 <td>
 Bassin en activité ?</td><td> 
-<input type="radio" name="bassin_actif" value="1" {if $bassinSearch.bassin_actif == 1}checked{/if}>oui
-<input type="radio" name="bassin_actif" value="0" {if $bassinSearch.bassin_actif == 0}checked{/if}>non
+<input type="radio" name="bassin_actif" value="1" {if $bassinSearch.bassin_actif == 1}checked{/if}>{t}oui{/t}
+<input type="radio" name="bassin_actif" value="0" {if $bassinSearch.bassin_actif == 0}checked{/if}>{t}non{/t}
 <input type="radio" name="bassin_actif" value="" {if $bassinSearch.bassin_actif == ""}checked{/if}>Indifférent
 </td>
 </tr>

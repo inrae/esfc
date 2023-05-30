@@ -45,6 +45,10 @@ body {
 	text-align: right;
 }
 
+.left {
+	text-align: left;
+}
+
 .red {
 	color: #D1041D;
 }

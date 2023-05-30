@@ -1,4 +1,4 @@
-<h2{t}Modification d'un produit d'anesthésie{/t}</h2>
+<h2>{t}Modification d'un produit d'anesthésie{/t}</h2>
 
 <a href="index.php?module=anesthesieProduitList">Retour à la liste</a>
 <div class="formSaisie">
@@ -22,8 +22,8 @@ Nom du produit d'anesthésie <span class="red">*</span> :
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}Actif ?{/t}</label>
 <div class="col-md-8">
-<input id="" class="form-control" type="radio" id="cactif_0" name="anesthesie_produit_actif" value="1" {if $data.anesthesie_produit_actif == 1} checked{/if}>oui 
-<input type="radio" id="cactif_1" name="anesthesie_produit_actif" value="0" {if $data.anesthesie_produit_actif == 0} checked{/if}>non 
+<input id="" class="form-control" type="radio" id="cactif_0" name="anesthesie_produit_actif" value="1" {if $data.anesthesie_produit_actif == 1} checked{/if}>{t}oui{/t} 
+<input type="radio" id="cactif_1" name="anesthesie_produit_actif" value="0" {if $data.anesthesie_produit_actif == 0} checked{/if}>{t}non{/t} 
 
 </div>
 </div>

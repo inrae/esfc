@@ -1,1 +1,1 @@
-<h2{t}Welcome into this application !{/t}</h2>
+<h2>{t}Welcome into this application !{/t}</h2>

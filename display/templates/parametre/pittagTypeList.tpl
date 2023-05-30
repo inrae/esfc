@@ -1,4 +1,4 @@
-<h2{t}Types de pittag{/t}</h2>
+<h2>{t}Types de pittag{/t}</h2>
 {if $droits["paramAdmin"] == 1}
 <a href="index.php?module=pittagTypeChange&pittag_type_id=0">
 Nouveau...

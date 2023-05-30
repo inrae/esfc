@@ -1,4 +1,4 @@
-<h2{t}Lieux de lâchers/destination des poissons{/t}</h2>
+<h2>{t}Lieux de lâchers/destination des poissons{/t}</h2>
 {if $droits["paramAdmin"] == 1}
 <a href="index.php?module=sortieLieuChange&sortie_lieu_id=0">
 Nouveau...

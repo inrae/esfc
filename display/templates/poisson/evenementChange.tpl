@@ -75,7 +75,7 @@ Retour à la liste des poissons
  Retour au poisson
  </a>
  {include file="poisson/poissonDetail.tpl"}
-<h2{t}Modification d'un événément{/t}</h2>
+<h2>{t}Modification d'un événément{/t}</h2>
 <div class="formSaisie">
 <div>
 <div class="row">
@@ -103,10 +103,10 @@ Retour à la liste des poissons
 <input type="hidden" name="document_id" value="0">
 
 <fieldset>
-<legend>{t}Données liées à l'événement lui-même{/t}<legend>
+<legend>{t}Données liées à l'événement lui-même{/t}</legend>
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}
-Type d'événement <span class="red">*</span> :{/t}</label>
+Type d'événement :{/t}<span class="red">*</span></label>
 <div class="col-md-8">
 <select id="" class="form-control" name="evenement_type_id">
 {section name=lst loop=$evntType}
@@ -119,7 +119,7 @@ Type d'événement <span class="red">*</span> :{/t}</label>
 </div>
 </div>
 <div class="form-group">
-<label for="" class="control-label col-md-4">{t}Date <span class="red">*</span> :{/t}</label>
+<label for="" class="control-label col-md-4">{t}Date :{/t}<span class="red">*</span></label>
 <div class="col-md-8">
 <input id="" class="form-control" class="date" name="evenement_date" id="cevenement_date" required size="10" maxlength="10" value="{$data.evenement_date}">
 
@@ -135,7 +135,7 @@ Type d'événement <span class="red">*</span> :{/t}</label>
 <div id="afficher" class="masquageText">Afficher tous les éléments</div>
 
 <fieldset class="fsMasquable">
-<legend>{t}Données morphologiques{/t}<legend>
+<legend>{t}Données morphologiques{/t}</legend>
 <div class="masquage">
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}Longueur à la fourche (cm) :{/t}</label>
@@ -175,10 +175,10 @@ Type d'événement <span class="red">*</span> :{/t}</label>
 </fieldset>
 
 <fieldset class="fsMasquable">
-<legend>{t}Pathologie{/t}<legend>
+<legend>{t}Pathologie{/t}</legend>
 <div class="masquage">
 <div class="form-group">
-<label for="" class="control-label col-md-4">{t}Type de pathologie <span class="red">*</span> :{/t}</label>
+<label for="" class="control-label col-md-4">{t}Type de pathologie :{/t}<span class="red">*</span></label>
 <div class="col-md-8">
 <select id="" class="form-control" name="pathologie_type_id">
 <option value="" {if $dataPatho.pathologie_type_id == ""}selected{/if}>
@@ -209,7 +209,7 @@ Sélectionnez la pathologie...
 </div>
 </fieldset>
 <fieldset class="fsMasquable">
-<legend>{t}Changement de bassin{/t}<legend>
+<legend>{t}Changement de bassin{/t}</legend>
 <div class="masquage">
 {$bselect = 0}
 {if $dataTransfert.bassin_origine > 0}
@@ -258,7 +258,7 @@ Sélectionnez le bassin de destination...
 </div>
 </fieldset>
 <fieldset class="fsMasquable">
-<legend>{t}Échographie{/t}<legend>
+<legend>{t}Échographie{/t}</legend>
 <div class="masquage">
 <div class="form-group">
 <div class="form-group">
@@ -289,7 +289,7 @@ Sélectionnez le bassin de destination...
 
 </div>
 
-<label for="" class="control-label col-md-4">{t}Résultat qualitatif de l'échographie <span class="red">*</span> :{/t}</label>
+<label for="" class="control-label col-md-4">{t}Résultat qualitatif de l'échographie :{/t}<span class="red">*</span></label>
 <div class="col-md-8">
 <input id="" class="form-control" name="echographie_commentaire" value="{$dataEcho.echographie_commentaire}" size="40">
 
@@ -319,11 +319,11 @@ Sélectionnez le bassin de destination...
 </fieldset>
 
 <fieldset class="fsMasquable">
-<legend>{t}Anesthésie{/t}<legend>
+<legend>{t}Anesthésie{/t}</legend>
 <div class="masquage">
 <div class="form-group">
 
-<label for="" class="control-label col-md-4">{t}Produit utilisé <span class="red">*</span> :{/t}</label>
+<label for="" class="control-label col-md-4">{t}Produit utilisé :{/t}<span class="red">*</span></label>
 <div class="col-md-8">
 <select id="" class="form-control" name="anesthesie_produit_id">
 <option value="" {if $dataAnesthesie.anesthesie_produit_id==""}selected{/if}>Sélectionnez le produit</option>
@@ -351,7 +351,7 @@ Sélectionnez le bassin de destination...
 </fieldset>
 
 <fieldset class="fsMasquable">
-<legend>{t}Dosage sanguin{/t}<legend>
+<legend>{t}Dosage sanguin{/t}</legend>
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}Taux E2 :{/t}</label>
 <div class="col-md-8">
@@ -387,9 +387,9 @@ Sélectionnez le bassin de destination...
 </div>
 </fieldset>
 <fieldset class="fsMasquable">
-<legend>{t}Prélèvement génétique{/t}<legend>
+<legend>{t}Prélèvement génétique{/t}</legend>
 <div class="masquage">
-<div class="form-group"><label for="" class="control-label col-md-4">{t}Référence du prélèvement<span class="red">*</span> :{/t}</label>
+<div class="form-group"><label for="" class="control-label col-md-4">{t}Référence du prélèvement:{/t}<span class="red">*</span></label>
 <div class="col-md-8">
 <input id="" class="form-control" class="commentaire" name="genetique_reference" value="{$dataGenetique.genetique_reference}">
 </div>
@@ -415,7 +415,7 @@ Sélectionnez le bassin de destination...
 </div>
 </fieldset>
 <fieldset class="fsMasquable">
-<legend>{t}Détermination du sexe{/t}<legend>
+<legend>{t}Détermination du sexe{/t}</legend>
 <div class="masquage">
 <div class="form-group">
 
@@ -435,7 +435,7 @@ Sélectionnez la méthode...
 </div>
 </div>
 <div class="form-group">
-<label for="" class="control-label col-md-4">{t}Sexe déterminé <span class="red">*</span> :{/t}</label>
+<label for="" class="control-label col-md-4">{t}Sexe déterminé :{/t}<span class="red">*</span></label>
 <div class="col-md-8">
 <select id="" class="form-control" name="sexe_id" >
 <option value="" {if $dataGender.sexe_id == ""}selected{/if}>
@@ -460,7 +460,7 @@ Sélectionnez le sexe...
 </fieldset>
 
 <fieldset class="fsMasquable">
-<legend>{t}Détermination de la cohorte{/t}<legend>
+<legend>{t}Détermination de la cohorte{/t}</legend>
 <div class="masquage">
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}Type de détermination <span class="red">*</span> : {/t}</label>
@@ -494,10 +494,10 @@ Sélectionnez le type de détermination...
 </fieldset>
 
 <fieldset class="fsMasquable">
-<legend>{t}Sortie du stock{/t}<legend>
+<legend>{t}Sortie du stock{/t}</legend>
 <div class="masquage">
 <div class="form-group">
-<label for="" class="control-label col-md-4">{t}Lieu de lâcher/destination <span class="red">*</span> :{/t}</label>
+<label for="" class="control-label col-md-4">{t}Lieu de lâcher/destination :{/t}<span class="red">*</span></label>
 <div class="col-md-8">
 <select id="" class="form-control" name="sortie_lieu_id" id="sortie_lieu_id">
 <option value="" {if $dataSortie.sortie_lieu_id == ""} selected{/if}>
@@ -529,7 +529,7 @@ Sélectionnez le lieu de lâcher/destination...
 </fieldset>
 
 <fieldset class="fsMasquable">
-<legend>{t}Détermination de la parenté{/t}<legend>
+<legend>{t}Détermination de la parenté{/t}</legend>
 <div class="masquage">
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}Type de détermination <span class="red">*</span> : {/t}</label>
@@ -557,7 +557,7 @@ Sélectionnez le type de détermination...
 </fieldset>
 
 <fieldset class="fsMasquable">
-<legend>{t}Mortalité{/t}<legend>
+<legend>{t}Mortalité{/t}</legend>
 <div class="masquage">
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}Type de mortalité <span class="red">*</span> : {/t}</label>

@@ -1,7 +1,7 @@
 <a href="index.php?module={$bassinParentModule}">Retour à la liste des bassins</a>
 > <a href="index.php?module=bassinCampagneDisplay&bassin_campagne_id={$data.bassin_campagne_id}">Retour au bassin</a>
 {include file="bassin/bassinDetail.tpl"}
-<h2{t}profil thermique du bassin{/t}</h2>
+<h2>{t}profil thermique du bassin{/t}</h2>
 <div class="formSaisie">
 <div>
 <div class="row">
@@ -14,14 +14,14 @@
 <input type="hidden" name="bassin_id" value="{$dataBassin.bassin_id}">
 <input type="hidden" name="circuit_eau_id" value="{$dataBassin.circuit_eau_id}">
 <div class="form-group">
-<label for="" class="control-label col-md-4">{t}Date/heure <span class="red">*</span> :{/t}</label>
+<label for="" class="control-label col-md-4">{t}Date/heure :{/t}<span class="red">*</span></label>
 <div class="col-md-8">
 <input id="" class="form-control" class="datetimepicker"  name="pf_datetime" required size="10" value="{$data.pf_datetime}">
 
 </div>
 </div>
 <div class="form-group">
-<label for="" class="control-label col-md-4">{t}Température <span class="red">*</span> :{/t}</label>
+<label for="" class="control-label col-md-4">{t}Température :{/t}<span class="red">*</span></label>
 <div class="col-md-8">
 <input id="" class="form-control" class="taux" name="pf_temperature" required value="{$data.pf_temperature}">
 

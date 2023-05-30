@@ -154,7 +154,7 @@ $(document).ready(function() {
 	} );
 } ) ;
 </script>
-<h2{t}Modification d'une répartion{/t}</h2>
+<h2>{t}Modification d'une répartion{/t}</h2>
 <a href="index.php?module=repartitionList">Retour à la liste</a>
 <a href="index.php?module=repartitionPrint&repartition_id={$data.repartition_id}" id="repartitionPrint">Imprimer la répartition</a>
 <div class="formSaisie">
@@ -167,7 +167,7 @@ $(document).ready(function() {
 <input type="hidden" name="repartition_id" value="{$data.repartition_id}">
 
 <div class="form-group">
-<label for="" class="control-label col-md-4">{t}Catégorie d'alimentation <span class="red">*</span> :{/t}</label> 
+<label for="" class="control-label col-md-4">{t}Catégorie d'alimentation :{/t}<span class="red">*</span></label> 
 <div class="col-md-8">
 <select id="" class="form-control" name="categorie_id" id="categorie_id" {if $data.repartition_id > 0}disabled{/if}>
 {section name=lst loop=$categorie}
@@ -194,16 +194,16 @@ $(document).ready(function() {
 <input id="" class="form-control" class="date" name="date_fin_periode" value="{$data.date_fin_periode}"><span class="message"></span>
  </div>
 <fieldset>
-<legend>{t}Répartition des aliments par bassin{/t}<legend>
+<legend>{t}Répartition des aliments par bassin{/t}</legend>
 <div id="afficher" class="masquageText"><i>Afficher tous les éléments</i></div>
 {section name=lst loop=$dataBassin}
 <input type="hidden" name="distribution_id_{$dataBassin[lst].bassin_id}" value="{$dataBassin[lst].distribution_id}">
 <input type="hidden" name="bassin_id_{$dataBassin[lst].bassin_id}" value="{$dataBassin[lst].bassin_id}">
 <fieldset class="fsMasquable">
-<legend>{t}{$dataBassin[lst].bassin_nom}{/t}<legend>
+<legend>{t}{$dataBassin[lst].bassin_nom}{/t}</legend>
 <div class="masquage">
 <div class="form-group">
-<label for="" class="control-label col-md-4">{t}Modèle de distribution utilisé <span class="red">*</span> :{/t}</label>
+<label for="" class="control-label col-md-4">{t}Modèle de distribution utilisé :{/t}<span class="red">*</span></label>
 <div class="col-md-8">
 <select id="" class="form-control" name="repart_template_id_{$dataBassin[lst].bassin_id}" id="repart_template_id_{$dataBassin[lst].bassin_id}">
 <option value="0" {if $dataBassin[lst].repart_template_id == 0}selected{/if}>Sélectionnez le modèle...</option>

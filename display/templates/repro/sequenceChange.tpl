@@ -7,7 +7,7 @@ $( "#cdate_debut" ).datepicker( { dateFormat: "dd/mm/yy" } );
 <a href="index.php?module=sequenceList">
 Retour à la liste des séquences
 </a>
-<h2{t}Modification d'une séquence{/t}</h2>
+<h2>{t}Modification d'une séquence{/t}</h2>
 <div class="formSaisie">
 <div>
 <div class="row">
@@ -17,16 +17,16 @@ Retour à la liste des séquences
 <input type="hidden" name="moduleBase" value=""> id="sequenceForm" method="post" action="index.php?module=sequenceWrite">
 <input type="hidden" name="sequence_id" value="{$data.sequence_id}">
 <fieldset>
-<legend>{t}Séquence{/t}<legend>
+<legend>{t}Séquence{/t}</legend>
 <div class="form-group">
-<label for="" class="control-label col-md-4">{t}Année <span class="red">*</span> :{/t}</label>
+<label for="" class="control-label col-md-4">{t}Année :{/t}<span class="red">*</span></label>
 <div class="col-md-8">
 <input id="" class="form-control" name="annee" required readonly size="10" maxlength="10" value="{$data.annee}">
 
 </div>
 </div>
 <div class="form-group">
-<label for="" class="control-label col-md-4">{t}Site <span class="red">*</span> :{/t}</label>
+<label for="" class="control-label col-md-4">{t}Site :{/t}<span class="red">*</span></label>
 <div class="col-md-8">
 <select id="" class="form-control" id="site_id" name="site_id">
 {section name=lst loop=$site}
@@ -39,14 +39,14 @@ Retour à la liste des séquences
 </div>
 </div>
 <div class="form-group">
-<label for="" class="control-label col-md-4">{t}Nom de la séquence <span class="red">*</span> :{/t}</label>
+<label for="" class="control-label col-md-4">{t}Nom de la séquence :{/t}<span class="red">*</span></label>
 <div class="col-md-8">
 <input id="" class="form-control" name="sequence_nom" required size="20" maxlength="30" value="{$data.sequence_nom}">
 
 </div>
 </div>
 <div class="form-group">
-<label for="" class="control-label col-md-4">{t}Date de début de la séquence <span class="red">*</span> :{/t}</label>
+<label for="" class="control-label col-md-4">{t}Date de début de la séquence :{/t}<span class="red">*</span></label>
 <div class="col-md-8">
 <input id="" class="form-control" class="date" name="sequence_date_debut" id="cdate_debut" required size="10" maxlength="10" value="{$data.sequence_date_debut}">
 

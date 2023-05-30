@@ -4,5 +4,3 @@
  * Utilise notamment pour recuperer les instances de classes stockees en 
  * variables de session
  */
-
-?>

@@ -9,7 +9,7 @@ $(document).ready(function() {
 Retour au reproducteur
 </a>
 {include file="repro/poissonCampagneDetail.tpl"}
-<h2{t}Modification d'une injection{/t}</h2>
+<h2>{t}Modification d'une injection{/t}</h2>
 <div class="formSaisie">
 <div>
 <div class="row">
@@ -20,7 +20,7 @@ Retour au reproducteur
 <input type="hidden" name="injection_id" value="{$data.injection_id}">
 <input type="hidden" name="poisson_campagne_id" value="{$data.poisson_campagne_id}">
 <div class="form-group">
-<label for="" class="control-label col-md-4">{t}Date de l'injection <span class="red">*</span> :{/t}</label>
+<label for="" class="control-label col-md-4">{t}Date de l'injection :{/t}<span class="red">*</span></label>
 <div class="col-md-8">
 <input id="" class="form-control" class="datetimepicker" name="injection_date" required value="{$data.injection_date}">
 <!--  input class="timepicker" name="injection_time" required value="{$data.injection_time}"-->
@@ -28,7 +28,7 @@ Retour au reproducteur
 </div>
 </div>
 <div class="form-group">
-<label for="" class="control-label col-md-4">{t}Séquence de reproduction <span class="red">*</span> :{/t}</label>
+<label for="" class="control-label col-md-4">{t}Séquence de reproduction :{/t}<span class="red">*</span></label>
 <div class="col-md-8">
 <select id="" class="form-control" name="sequence_id">
 {section name=lst loop=$sequences}

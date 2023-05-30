@@ -1,4 +1,4 @@
-<h2{t}Produits utilisés pour l'anesthésie{/t}</h2>
+<h2>{t}Produits utilisés pour l'anesthésie{/t}</h2>
 {if $droits["paramAdmin"] == 1}
 <a href="index.php?module=anesthesieProduitChange&anesthesie_produit_id=0">
 Nouveau...

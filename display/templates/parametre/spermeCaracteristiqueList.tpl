@@ -1,4 +1,4 @@
-<h2{t}Caractéristiques particulières du sperme{/t}</h2>
+<h2>{t}Caractéristiques particulières du sperme{/t}</h2>
 {if $droits["paramAdmin"] == 1 || $droits.reproAdmin == 1}
 <a href="index.php?module=spermeCaracteristiqueChange&sperme_caracteristique_id=0">
 Nouveau...

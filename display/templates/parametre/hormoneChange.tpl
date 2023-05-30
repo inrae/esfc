@@ -1,4 +1,4 @@
-<h2{t}Modification d'une hormone{/t}</h2>
+<h2>{t}Modification d'une hormone{/t}</h2>
 
 <a href="index.php?module=hormoneList">Retour à la liste</a>
 <div class="formSaisie">

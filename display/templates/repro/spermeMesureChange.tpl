@@ -8,7 +8,7 @@ Retour au reproducteur
 <a href="index.php?module=spermeChange&sperme_id={$data.sperme_id}">Retour au prélèvement</a>
 {include file="repro/poissonCampagneDetail.tpl"}
 
-<h2{t}Modification de l'analyse du prélèvement{/t}</h2>
+<h2>{t}Modification de l'analyse du prélèvement{/t}</h2>
 <div class="formSaisie">
 <div>
 <div class="row">

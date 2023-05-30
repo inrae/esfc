@@ -46,7 +46,7 @@ Retour au sperme
 <table class="tablemulticolonne">
 <tr>
 <td>
-<fieldset><legend>{t}Modification d'une congélation de sperme{/t}<legend>
+<fieldset><legend>{t}Modification d'une congélation de sperme{/t}</legend>
 <div class="formSaisie">
 <div>
 <div class="row">
@@ -60,7 +60,7 @@ Retour au sperme
 <input type="hidden" name="sperme_congelation_id" value="{$data.sperme_congelation_id}">
 <input type="hidden" name="poisson_campagne_id" value="{$dataPoisson.poisson_campagne_id}">
 <div class="form-group">
-<label for="" class="control-label col-md-4">{t}Date de congélation<span class="red">*</span> :{/t}</label>
+<label for="" class="control-label col-md-4">{t}Date de congélation:{/t}<span class="red">*</span></label>
 <div class="col-md-8">
 <input id="" class="form-control" class="date" name="congelation_date" value="{$data.congelation_date}" required >
 </div>
@@ -179,7 +179,7 @@ Retour au sperme
 </fieldset>
 </td>
 <td>
-<fieldset><legend>{t}Vitesse de congélation{/t}<legend>
+<fieldset><legend>{t}Vitesse de congélation{/t}</legend>
 {include file="repro/spermeFreezingMeasureList.tpl"}
 <br>
 <div id="freeze"></div>
@@ -192,7 +192,7 @@ Retour au sperme
 </td>
 <td>
 <fieldset>
-<legend>{t}Liste des emplacements de congélation{/t}<legend>
+<legend>{t}Liste des emplacements de congélation{/t}</legend>
 {include file='repro/spermeFreezingPlaceList.tpl'}
 </fieldset>
 </td>

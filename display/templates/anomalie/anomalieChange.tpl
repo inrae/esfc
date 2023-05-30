@@ -16,7 +16,7 @@ $(document).ready(function() {
 	} );
 } );
 </script>
-<h2{t}Traitement d'une anomalie{/t}</h2>
+<h2>{t}Traitement d'une anomalie{/t}</h2>
 {if $module_origine == "poissonDisplay"}
 <a href="index.php?module={$poissonDetailParent}">Retour à la liste des poissons</a>
 >
@@ -42,7 +42,7 @@ $(document).ready(function() {
 </div>
 </div>
 <div class="form-group">
-<label for="" class="control-label col-md-4">{t}Type d'anomalie <span class="red">*</span> :{/t}</label>
+<label for="" class="control-label col-md-4">{t}Type d'anomalie :{/t}<span class="red">*</span></label>
 <div class="col-md-8">
 <select id="" class="form-control" name="anomalie_db_type_id">
 {section name=lst loop=$anomalieType}

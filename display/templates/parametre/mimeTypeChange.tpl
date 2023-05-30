@@ -1,4 +1,4 @@
-<h2{t}Modification d'un type de fichier importable{/t}</h2>
+<h2>{t}Modification d'un type de fichier importable{/t}</h2>
 
 <a href="index.php?module=mimeTypeList">Retour à la liste</a>
 <table class="tablesaisie">

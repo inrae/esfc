@@ -6,7 +6,7 @@ $(document).ready(function() {
 <a href="index.php?module={$bassinParentModule}">Retour à la liste des bassins</a>
 > <a href="index.php?module=bassinDisplay&bassin_id={$data.bassin_id}">Retour au bassin</a>
 {include file="bassin/bassinDetail.tpl"}
-<h2{t}Modification d'un événement survenu dans le bassin{/t}</h2>
+<h2>{t}Modification d'un événement survenu dans le bassin{/t}</h2>
 <div class="formSaisie">
 <div>
 <div class="row">
@@ -17,7 +17,7 @@ $(document).ready(function() {
 <input type="hidden" name="bassin_evenement_id" value="{$data.bassin_evenement_id}">
 <input type="hidden" name="bassin_id" value="{$data.bassin_id}">
 <div class="form-group">
-<label for="" class="control-label col-md-4">{t}Type d'événement <span class="red">*</span> :{/t}</label>
+<label for="" class="control-label col-md-4">{t}Type d'événement :{/t}<span class="red">*</span></label>
 <div class="col-md-8">
 <select id="" class="form-control" name="bassin_evenement_type_id">
 {section name=lst loop=$dataEvntType}
@@ -30,7 +30,7 @@ $(document).ready(function() {
 </div>
 </div>
 <div class="form-group">
-<label for="" class="control-label col-md-4">{t}Date <span class="red">*</span> :{/t}</label>
+<label for="" class="control-label col-md-4">{t}Date :{/t}<span class="red">*</span></label>
 <div class="col-md-8">
 <input id="" class="form-control" class="date" name="bassin_evenement_date" value="{$data.bassin_evenement_date}">
 </div>

@@ -45,7 +45,7 @@ $( "input[type='text']" ).change(function() {
 } );
 </script>
 
-<h2{t}Saisie-modification d'une analyse d'eau{/t}</h2>
+<h2>{t}Saisie-modification d'une analyse d'eau{/t}</h2>
 <a href="index.php?module=circuitEauList&circuit_eau_id={$data.circuit_eau_id}">
 Retour à la liste des circuits d'eau
 </a> > 
@@ -210,7 +210,7 @@ Retour au circuit d'eau {$dataCircuitEau.circuit_eau_libelle}
 </div>
 <div class="form-group"></div>
 <fieldset>
-<legend>{t}Analyse des métaux lourds{/t}<legend>
+<legend>{t}Analyse des métaux lourds{/t}</legend>
 {section name=lst loop=$dataMetal}
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}{$dataMetal[lst].metal_nom} ({$dataMetal[lst].metal_unite}) :{/t}</label>

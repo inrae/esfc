@@ -1,4 +1,4 @@
-<h2{t}Hormones utilisées pour la reproduction{/t}</h2>
+<h2>{t}Hormones utilisées pour la reproduction{/t}</h2>
 {if $droits["paramAdmin"] == 1}
 <a href="index.php?module=hormoneChange&hormone_id=0">
 Nouveau...

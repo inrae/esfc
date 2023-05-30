@@ -1,4 +1,4 @@
-<h2{t}Emplacements d'implantation des marques VIE{/t}</h2>
+<h2>{t}Emplacements d'implantation des marques VIE{/t}</h2>
 {if $droits["paramAdmin"] == 1}
 <a href="index.php?module=vieImplantationChange&vie_implantation_id=0">
 Nouveau...

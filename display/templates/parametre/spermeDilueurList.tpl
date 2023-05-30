@@ -1,4 +1,4 @@
-<h2{t}Dilueurs du sperme utilisés pour la congélation{/t}</h2>
+<h2>{t}Dilueurs du sperme utilisés pour la congélation{/t}</h2>
 {if $droits["paramAdmin"] == 1 || $droits.reproAdmin == 1}
 <a href="index.php?module=spermeDilueurChange&sperme_dilueur_id=0">
 Nouveau...

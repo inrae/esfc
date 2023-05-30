@@ -65,12 +65,12 @@ $(document).ready(function() {
 	$(".commentaire").attr("size","30");
 } );
 </script>
-<h2{t}Détail d'un bassin{/t}</h2>
+<h2>{t}Détail d'un bassin{/t}</h2>
 <a href="index.php?module={$bassinParentModule}">Retour à la liste des bassins</a>
 <table class="tablemulticolonne">
 <tr>
 <td>
-<fieldset><legend>{t}Identification du bassin{/t}<legend>
+<fieldset><legend>{t}Identification du bassin{/t}</legend>
 {include file="bassin/bassinDetail.tpl"}
 
 <label>Usage du bassin pour la reproduction</label> : 
@@ -89,7 +89,7 @@ $(document).ready(function() {
 
 </td>
 <td>
-<fieldset><legend>{t}Événements survenus{/t}<legend>
+<fieldset><legend>{t}Événements survenus{/t}</legend>
 {include file="bassin/bassinEvenementList.tpl"}
 </fieldset>
 </td>
@@ -97,7 +97,7 @@ $(document).ready(function() {
 <tr>
 <td>
 <fieldset>
-<legend>{t}Liste des poissons présents au {$dateJour}{/t}<legend>
+<legend>{t}Liste des poissons présents au {$dateJour}{/t}</legend>
 {include file="bassin/bassinPoissonPresent.tpl"}
 </fieldset>
 </td>
@@ -105,7 +105,7 @@ $(document).ready(function() {
 <tr>
 <td>
 <fieldset>
-<legend>{t}Profil thermique - températures prévues et relevés des analyses d'eau{/t}<legend>
+<legend>{t}Profil thermique - températures prévues et relevés des analyses d'eau{/t}</legend>
 {if $droits.reproGestion == 1}
 <a href="index.php?module=profilThermiqueChange&profil_thermique_id=0&bassin_campagne_id={$dataBassinCampagne.bassin_campagne_id}">
 Nouvelle température prévue...
@@ -118,7 +118,7 @@ Nouvelle température prévue...
 </td>
 <td>
 <fieldset>
-<legend>{t}Évolution de la salinité - salinités prévues et relevés des analyses d'eau{/t}<legend>
+<legend>{t}Évolution de la salinité - salinités prévues et relevés des analyses d'eau{/t}</legend>
 {if $droits.reproGestion == 1}
 <a href="index.php?module=saliniteChange&salinite_id=0&bassin_campagne_id={$dataBassinCampagne.bassin_campagne_id}">
 Nouvelle salinité prévue...

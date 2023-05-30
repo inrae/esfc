@@ -1,4 +1,4 @@
-<h2{t}Méthodes de détermination de la cohorte{/t}</h2>
+<h2>{t}Méthodes de détermination de la cohorte{/t}</h2>
 {if $droits["paramAdmin"] == 1}
 <a href="index.php?module=cohorteTypeChange&cohorte_type_id=0">
 Nouveau...

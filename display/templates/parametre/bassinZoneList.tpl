@@ -1,4 +1,4 @@
-<h2{t}Zones d'implantation des bassins{/t}</h2>
+<h2>{t}Zones d'implantation des bassins{/t}</h2>
 {if $droits["paramAdmin"] == 1}
 <a href="index.php?module=bassinZoneChange&bassin_zone_id=0">
 Nouveau...

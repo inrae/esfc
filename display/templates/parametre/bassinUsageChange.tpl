@@ -1,4 +1,4 @@
-<h2{t}Modification d'un type d'utilisation des bassins{/t}</h2>
+<h2>{t}Modification d'un type d'utilisation des bassins{/t}</h2>
 
 <a href="index.php?module=bassinUsageList">Retour à la liste</a>
 <div class="formSaisie">

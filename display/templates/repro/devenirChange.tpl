@@ -5,7 +5,7 @@
 {else}
 <a href="index.php?module=devenirList">Retour à la liste des lâchers et entrées dans le stock</a>
 {/if}
-<h2{t}Saisie de la destination d'une reproduction{/t}</h2>
+<h2>{t}Saisie de la destination d'une reproduction{/t}</h2>
 <div class="formSaisie">
 <div>
 <div class="row">
@@ -17,7 +17,7 @@
 <input type="hidden" name="lot_id" value="{$data.lot_id}">
 <input type="hidden" name="devenirOrigine" value="{$devenirOrigine}">
 <div class="form-group">
-<label for="" class="control-label col-md-4">{t}Date <span class="red">*</span> :{/t}</label>
+<label for="" class="control-label col-md-4">{t}Date :{/t}<span class="red">*</span></label>
 <div class="col-md-8">
 <input id="" class="form-control" class="date"  name="devenir_date" required value="{$data.devenir_date}">
 
@@ -37,7 +37,7 @@
 </select>
 </div>
 
-<div class="form-group"><label for="" class="control-label col-md-4">{t}Nature<span class="red">*</span> :{/t}</label>
+<div class="form-group"><label for="" class="control-label col-md-4">{t}Nature:{/t}<span class="red">*</span></label>
 <div class="col-md-8">
 <select id="" class="form-control" name="devenir_type_id">
 {section name=lst loop=$devenirType}

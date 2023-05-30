@@ -1,4 +1,4 @@
-<h2{t}Méthodes de détermination du sexe{/t}</h2>
+<h2>{t}Méthodes de détermination du sexe{/t}</h2>
 {if $droits["paramAdmin"] == 1}
 <a href="index.php?module=genderMethodeChange&gender_methode_id=0">
 Nouveau...

@@ -21,5 +21,5 @@ $(document).ready(function() {
 </tr>
 </table>
 </form>
-<h2{t}Destination des poissons{/t}</h2>
+<h2>{t}Destination des poissons{/t}</h2>
 {include file="repro/devenirList.tpl"}

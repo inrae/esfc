@@ -10,7 +10,7 @@ Retour à la liste des poissons
  Retour au poisson
  </a>
  {include file="poisson/poissonDetail.tpl"}
-<h2{t}Modification/saisie d'une mesure du nombre de battements de ventilation{/t}</h2>
+<h2>{t}Modification/saisie d'une mesure du nombre de battements de ventilation{/t}</h2>
 <div class="formSaisie">
 <div>
 <div class="row">
@@ -23,14 +23,14 @@ Retour à la liste des poissons
 <input type="hidden" name="poisson_id" value="{$data.poisson_id}">
 <input type="hidden" name="ventilation_id" value="{$data.ventilation_id}">
 <div class="form-group">
-<label for="" class="control-label col-md-4">{t}Date de la mesure <span class="red">*</span> :{/t}</label>
+<label for="" class="control-label col-md-4">{t}Date de la mesure :{/t}<span class="red">*</span></label>
 <div class="col-md-8">
 <input id="" class="form-control" class="datetimepicker" name="ventilation_date" required value="{$data.ventilation_date}">
 
 </div>
 </div>
 <div class="form-group">
-<label for="" class="control-label col-md-4">{t}Nb de battements/seconde <span class="red">*</span> :{/t}</label>
+<label for="" class="control-label col-md-4">{t}Nb de battements/seconde :{/t}<span class="red">*</span></label>
 <div class="col-md-8">
 <input id="" class="form-control" class="taux" name="battement_nb" value="{$data.battement_nb}">
 

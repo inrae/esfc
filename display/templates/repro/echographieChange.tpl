@@ -3,7 +3,7 @@
 Retour au reproducteur
 </a>
 {include file="repro/poissonCampagneDetail.tpl"}
-<h2{t}Modification d'une échographie{/t}</h2>
+<h2>{t}Modification d'une échographie{/t}</h2>
 <div class="formSaisie">
 <div>
 <div class="row">
@@ -14,7 +14,7 @@ Retour au reproducteur
 <input type="hidden" name="echographie_id" value="{$data.echographie_id}">
 <input type="hidden" name="poisson_campagne_id" value="{$data.poisson_campagne_id}">
 <div class="form-group">
-<label for="" class="control-label col-md-4">{t}Date de l'échographie <span class="red">*</span> :{/t}</label>
+<label for="" class="control-label col-md-4">{t}Date de l'échographie :{/t}<span class="red">*</span></label>
 <div class="col-md-8">
 <input id="" class="form-control" class="date" name="echographie_date" required size="10" maxlength="10" value="{$data.echographie_date}">
 

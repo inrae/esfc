@@ -8,7 +8,7 @@ $(document).ready(function() {
 Retour au reproducteur
 </a>
 {include file="repro/poissonCampagneDetail.tpl"}
-<h2{t}Modification d'une biopsie{/t}</h2>
+<h2>{t}Modification d'une biopsie{/t}</h2>
 <div class="formSaisie">
 <div>
 <div class="row">
@@ -19,7 +19,7 @@ Retour au reproducteur
 <input type="hidden" name="biopsie_id" value="{$data.biopsie_id}">
 <input type="hidden" name="poisson_campagne_id" value="{$data.poisson_campagne_id}">
 <div class="form-group">
-<label for="" class="control-label col-md-4">{t}Date du prélèvement <span class="red">*</span> :{/t}</label>
+<label for="" class="control-label col-md-4">{t}Date du prélèvement :{/t}<span class="red">*</span></label>
 <div class="col-md-8">
 <input id="" class="form-control" class="datetimepicker" name="biopsie_date" required value="{$data.biopsie_date}">
 
@@ -81,7 +81,7 @@ Sélectionnez...
 
 </div>
 <fieldset>
-<legend>{t}Maturation Ringer{/t}<legend>
+<legend>{t}Maturation Ringer{/t}</legend>
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}T50 :{/t}</label>
 <div class="col-md-8">
@@ -106,7 +106,7 @@ Sélectionnez...
 </div>
 </fieldset>
 <fieldset>
-<legend>{t}Maturation Leibovitz{/t}<legend>
+<legend>{t}Maturation Leibovitz{/t}</legend>
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}T50 :{/t}</label>
 <div class="col-md-8">

@@ -3,7 +3,7 @@
 Retour au reproducteur
 </a>
 {include file="repro/poissonCampagneDetail.tpl"}
-<h2{t}Données du poisson pour la séquence considérée{/t}</h2>
+<h2>{t}Données du poisson pour la séquence considérée{/t}</h2>
 <div class="formSaisie">
 <div>
 <div class="row">
@@ -14,7 +14,7 @@ Retour au reproducteur
 <input type="hidden" name="poisson_sequence_id" value="{$data.poisson_sequence_id}">
 <input type="hidden" name="poisson_campagne_id" value="{$data.poisson_campagne_id}">
 <div class="form-group">
-<label for="" class="control-label col-md-4">{t}Séquence de reproduction <span class="red">*</span> :{/t}</label>
+<label for="" class="control-label col-md-4">{t}Séquence de reproduction :{/t}<span class="red">*</span></label>
 <div class="col-md-8">
 <select id="" class="form-control" name="sequence_id" >
 {section name=lst loop=$sequences}
@@ -57,7 +57,7 @@ Retour au reproducteur
 </div>
 {/if}
 {if $dataPoisson.sexe_id == 1}
-<fieldset><legend>{t}Prélèvements de sperme{/t}<legend>
+<fieldset><legend>{t}Prélèvements de sperme{/t}</legend>
 <a href="index.php?module=poissonCampagneDisplay&poisson_campagne_id={$data.poisson_campagne_id}">
 Accédez à la fiche du poisson pour réaliser la saisie
 </a>
@@ -102,7 +102,7 @@ Accédez à la fiche du poisson pour réaliser la saisie
 {if $data.poisson_sequence_id > 0}
 <div>
 <fieldset>
-<legend>{t}Événements{/t}<legend>
+<legend>{t}Événements{/t}</legend>
 
 {if $droits.reproGestion == 1 }
 <a href="index.php?module=psEvenementChange&ps_evenement_id=0&poisson_sequence_id={$data.poisson_sequence_id}&sequence_id={$data.sequence_id}">

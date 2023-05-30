@@ -1,4 +1,4 @@
-<h2{t}Modification d'une méthode de détermination du sexe{/t}</h2>
+<h2>{t}Modification d'une méthode de détermination du sexe{/t}</h2>
 
 <a href="index.php?module=genderMethodeList">Retour à la liste</a>
 <table class="tablesaisie">

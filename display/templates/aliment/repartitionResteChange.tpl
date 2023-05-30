@@ -59,7 +59,7 @@ $(document).ready(function() {
 } );
 </script>
 <a href="index.php?module=repartitionList">Retour à la liste</a>
-<h2{t}Saisie des restes{/t}</h2>
+<h2>{t}Saisie des restes{/t}</h2>
 <b>{$data.categorie_libelle}</b> <i>{$data.repartition_name}</i> - Période du <b>{$data.date_debut_periode}</b> au <b>{$data.date_fin_periode}</b>
 <div>
 <div class="row">

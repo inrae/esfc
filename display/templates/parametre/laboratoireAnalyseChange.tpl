@@ -1,4 +1,4 @@
-<h2{t}Modification d'un laboratoire d'analyse{/t}</h2>
+<h2>{t}Modification d'un laboratoire d'analyse{/t}</h2>
 
 <a href="index.php?module=laboratoireAnalyseList">Retour à la liste</a>
 <div class="formSaisie">
@@ -11,7 +11,7 @@
 <input type="hidden" name="moduleBase" value=""> id="laboratoireAnalyseForm" method="post" action="index.php?module=laboratoireAnalyseWrite">
 <input type="hidden" name="laboratoire_analyse_id" value="{$data.laboratoire_analyse_id}">
 <div class="form-group">
-<label for="" class="control-label col-md-4">{t}Nom du laboratoire <span class="red">*</span> :{/t}</label>
+<label for="" class="control-label col-md-4">{t}Nom du laboratoire :{/t}<span class="red">*</span></label>
 <div class="col-md-8">
 <input id="" class="form-control" name="laboratoire_analyse_libelle" value="{$data.laboratoire_analyse_libelle}" size="40" autofocus required>
 </div>
@@ -19,8 +19,8 @@
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}Sollicité actuellement ?{/t}</label>
 <div class="col-md-8">
-<input id="" class="form-control" type="radio" name="laboratoire_analyse_actif" value="1" {if $data.laboratoire_analyse_actif == 1}checked{/if}>oui
-<input type="radio" name="laboratoire_analyse_actif" value="0" {if $data.laboratoire_analyse_actif == 0}checked{/if}>non
+<input id="" class="form-control" type="radio" name="laboratoire_analyse_actif" value="1" {if $data.laboratoire_analyse_actif == 1}checked{/if}>{t}oui{/t}
+<input type="radio" name="laboratoire_analyse_actif" value="0" {if $data.laboratoire_analyse_actif == 0}checked{/if}>{t}non{/t}
 
 </div>
 

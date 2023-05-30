@@ -19,7 +19,7 @@ $(document).ready(function() {
 <a href="index.php?module=lotList">Retour à la liste des lots</a>&nbsp;
 <a href="index.php?module=lotDisplay&lot_id={$data.lot_id}">Retour au lot</a>
 {include file="repro/lotDetail.tpl"}
-<h2{t}Mesures pour le lot{/t}</h2>
+<h2>{t}Mesures pour le lot{/t}</h2>
 <div class="formSaisie">
 <div>
 <div class="row">
@@ -30,7 +30,7 @@ $(document).ready(function() {
 <input type="hidden" name="lot_mesure_id" value="{$data.lot_mesure_id}">
 <input type="hidden" name="lot_id" value="{$data.lot_id}">
 <div class="form-group">
-<label for="" class="control-label col-md-4">{t}Date <span class="red">*</span> :{/t}</label>
+<label for="" class="control-label col-md-4">{t}Date :{/t}<span class="red">*</span></label>
 <div class="col-md-8">
 <input id="" class="form-control" class="date"  name="lot_mesure_date" required value="{$data.lot_mesure_date}">
 

@@ -1,4 +1,4 @@
-<h2{t}Modification d'un modèle de marquage VIE{/t}</h2>
+<h2>{t}Modification d'un modèle de marquage VIE{/t}</h2>
 <div class="formSaisie">
 <div>
 <div class="row">
@@ -9,14 +9,14 @@
 <input type="hidden" name="vie_modele_id" value="{$data.vie_modele_id}">
 <input type="hidden" name="annee" value="{$data.annee}">
 <div class="form-group">
-<label for="" class="control-label col-md-4">{t}Couleur de la marque <span class="red">*</span> :{/t}</label>
+<label for="" class="control-label col-md-4">{t}Couleur de la marque :{/t}<span class="red">*</span></label>
 <div class="col-md-8">
 <input id="" class="form-control" name="couleur" class="commentaire" autofocus required value={$data.couleur}>
 
 </div>
 </div>
 <div class="form-group">
-<label for="" class="control-label col-md-4">{t}Premier emplacement <span class="red">*</span> :{/t}</label>
+<label for="" class="control-label col-md-4">{t}Premier emplacement :{/t}<span class="red">*</span></label>
 <div class="col-md-8">
 <select id="" class="form-control" name="vie_implantation_id">
 {section name=lst loop=$implantations}
@@ -28,7 +28,7 @@
 </div>
 </div>
 <div class="form-group">
-<label for="" class="control-label col-md-4">{t}Second emplacement <span class="red">*</span> :{/t}</label>
+<label for="" class="control-label col-md-4">{t}Second emplacement :{/t}<span class="red">*</span></label>
 <div class="col-md-8">
 <select id="" class="form-control" name="vie_implantation_id2">
 {section name=lst loop=$implantations}

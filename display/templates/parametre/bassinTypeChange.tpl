@@ -1,4 +1,4 @@
-<h2{t}Modification d'un type de bassin{/t}</h2>
+<h2>{t}Modification d'un type de bassin{/t}</h2>
 
 <a href="index.php?module=bassinTypeList">Retour à la liste</a>
 <table class="tablesaisie">

@@ -2,7 +2,7 @@
 <a href="index.php?module=lotDisplay&lot_id={$data.lot_id}">Retour au lot</a>
 {include file="repro/lotDetail.tpl"}
 
-<h2{t}Modification de l'attribution d'un bassin{/t}</h2>
+<h2>{t}Modification de l'attribution d'un bassin{/t}</h2>
 <div class="formSaisie">
 <div>
 <div class="row">
@@ -13,14 +13,14 @@
 <input type="hidden" name="bassin_lot_id" value="{$data.bassin_lot_id}">
 <input type="hidden" name="lot_id" value="{$data.lot_id}">
 <div class="form-group">
-<label for="" class="control-label col-md-4">{t}Date de début d'utilisation <span class="red">*</span> :{/t}</label>
+<label for="" class="control-label col-md-4">{t}Date de début d'utilisation :{/t}<span class="red">*</span></label>
 <div class="col-md-8">
 <input id="" class="form-control" class="date" name="bl_date_arrivee" value="{$data.bl_date_arrivee}" required>
 
 </div>
 </div>
 <div class="form-group">
-<label for="" class="control-label col-md-4">{t}Bassin <span class="red">*</span> :{/t}</label>
+<label for="" class="control-label col-md-4">{t}Bassin :{/t}<span class="red">*</span></label>
 <div class="col-md-8">
 <select id="" class="form-control" name="bassin_id" >
 {section name=lst loop=$bassins}

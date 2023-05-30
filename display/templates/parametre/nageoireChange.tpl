@@ -1,4 +1,4 @@
-<h2{t}Modification d'une nageoire (prélèvements génétiques){/t}</h2>
+<h2>{t}Modification d'une nageoire (prélèvements génétiques){/t}</h2>
 
 <a href="index.php?module=nageoireList">Retour à la liste</a>
 <div class="formSaisie">

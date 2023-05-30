@@ -24,7 +24,7 @@
 		<item module="alimentList" label="Aliments" tooltip="Liste des aliments" droits="consult"/>
 		<item module="categorieList" label="Catégories d'aliments" tooltip="Liste des catégories d'aliments" droits="consult"/>
 		<item module="alimentTypeList" label="Types d'aliments" tooltip="Liste des types d'aliments" droits="bassinAdmin,poissonAdmin"/>
-		<item module="reparTemplateList" label="Modèles de répartition" tooltip="Liste des modèles de répartition" droits="bassinAdmin,poissonAdmin"/>
+		<item module="repartTemplateList" label="Modèles de répartition" tooltip="Liste des modèles de répartition" droits="bassinAdmin,poissonAdmin"/>
 	</item>
 
 	<item module="default" label="Reproduction" tooltip="Gestion de la reproduction" droits="reproConsult">

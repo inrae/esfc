@@ -1,4 +1,4 @@
-<h2{t}Importation des résultats d'analyse des circuits d'eau à partir des fichiers de sonde{/t}</h2>
+<h2>{t}Importation des résultats d'analyse des circuits d'eau à partir des fichiers de sonde{/t}</h2>
 
 <div class="formSaisie">
 <form id="documentForm" method="post" action="index.php"  enctype="multipart/form-data">

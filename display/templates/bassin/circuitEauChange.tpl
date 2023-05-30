@@ -1,4 +1,4 @@
-<h2{t}Modification du nom d'un circuit d'eau{/t}</h2>
+<h2>{t}Modification du nom d'un circuit d'eau{/t}</h2>
 
 <a href="index.php?module=circuitEauList">Retour à la liste des circuits d'eau</a>
 {if $data.circuit_eau_id > 0 }

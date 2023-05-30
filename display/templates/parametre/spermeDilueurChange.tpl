@@ -1,4 +1,4 @@
-<h2{t}Modification d'un dilueur de sperme{/t}</h2>
+<h2>{t}Modification d'un dilueur de sperme{/t}</h2>
 
 <a href="index.php?module=spermeDilueurList">Retour à la liste</a>
 <div class="formSaisie">

@@ -16,14 +16,14 @@ Retour à la séquence
 <input type="hidden" name="croisement_id" value="{$data.croisement_id}">
 <input type="hidden" name="sequence_id" value="{$data.sequence_id}">
 <div class="form-group">
-<label for="" class="control-label col-md-4">{t}Date/heure de la fécondation <span class="red">*</span> :{/t}</label>
+<label for="" class="control-label col-md-4">{t}Date/heure de la fécondation :{/t}<span class="red">*</span></label>
 <div class="col-md-8">
 <input id="" class="form-control" class="datetimepicker" name="croisement_date" required value="{$data.croisement_date}">
 
 </div>
 </div>
 <div class="form-group">
-<label for="" class="control-label col-md-4">{t}Nom du croisement <span class="red">*</span> :{/t}</label>
+<label for="" class="control-label col-md-4">{t}Nom du croisement :{/t}<span class="red">*</span></label>
 <div class="col-md-8">
 <input id="" class="form-control" name="croisement_nom" value={$data.croisement_nom}>
 

@@ -1,4 +1,4 @@
-<h2{t}Modification d'un site{/t}</h2>
+<h2>{t}Modification d'un site{/t}</h2>
 
 <a href="index.php?module=siteList">Retour à la liste des sites</a>
 <div class="formSaisie">

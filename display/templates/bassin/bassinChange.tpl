@@ -5,7 +5,7 @@ Retour à la liste des bassins
  > 
 <a href="index.php?module=bassinDisplay&bassin_id={$data.bassin_id}"> Retour au bassin</a>
 {/if}
-<h2{t}Modification d'un bassin{/t}</h2>
+<h2>{t}Modification d'un bassin{/t}</h2>
 <table class="tablesaisie">
 <div class="row">
 <div class="col-md-6">
@@ -165,8 +165,8 @@ Volume (en litres) :
 Bassin en activité :
 </td>
 <td class="datamodif">
-<input type="radio" id="cactif_0" name="actif" value="1" {if $data.actif == 1} checked{/if}>oui 
-<input type="radio" id="cactif_1" name="actif" value="0" {if $data.actif == 0} checked{/if}>non 
+<input type="radio" id="cactif_0" name="actif" value="1" {if $data.actif == 1} checked{/if}>{t}oui{/t} 
+<input type="radio" id="cactif_1" name="actif" value="0" {if $data.actif == 0} checked{/if}>{t}non{/t} 
 </td>
 </tr>
 

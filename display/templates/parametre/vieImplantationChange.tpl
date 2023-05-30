@@ -1,4 +1,4 @@
-<h2{t}Modification de l'endroit d'implantation d'une marque VIE{/t}</h2>
+<h2>{t}Modification de l'endroit d'implantation d'une marque VIE{/t}</h2>
 
 <a href="index.php?module=vieImplantationList">Retour à la liste</a>
 <div class="formSaisie">

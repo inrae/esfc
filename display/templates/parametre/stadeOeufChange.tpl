@@ -1,4 +1,4 @@
-<h2{t}Modification d'un stade de maturation d'un œuf{/t}</h2>
+<h2>{t}Modification d'un stade de maturation d'un œuf{/t}</h2>
 
 <a href="index.php?module=stadeOeufList">Retour à la liste</a>
 <div class="formSaisie">

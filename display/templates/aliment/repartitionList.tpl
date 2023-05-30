@@ -1,7 +1,7 @@
 <table class="table table-bordered table-hover datatable" class="tablemulticolonne">
 <tr>
 <td>
-<h2{t}Liste des répartitions d'aliments{/t}</h2>
+<h2>{t}Liste des répartitions d'aliments{/t}</h2>
 {include file="aliment/repartitionSearch.tpl"}
 {if $isSearch == 1}
 <script>

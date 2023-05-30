@@ -1,6 +1,6 @@
 <a href="index.php?module=circuitEauList">Retour à la liste des circuits d'eau</a>
 > <a href="index.php?module=circuitEauDisplay&circuit_eau_id={$data.circuit_eau_id}">Retour au circuit d'eau</a>
-<h2{t}Modification d'un événement survenu dans le circuit d'eau {$dataCircuit.circuit_eau_libelle}{/t}</h2>
+<h2>{t}Modification d'un événement survenu dans le circuit d'eau {$dataCircuit.circuit_eau_libelle}{/t}</h2>
 <div class="formSaisie">
 <div>
 <div class="row">
@@ -11,7 +11,7 @@
 <input type="hidden" name="circuit_evenement_id" value="{$data.circuit_evenement_id}">
 <input type="hidden" name="circuit_eau_id" value="{$data.circuit_eau_id}">
 <div class="form-group">
-<label for="" class="control-label col-md-4">{t}Type d'événement <span class="red">*</span> :{/t}</label>
+<label for="" class="control-label col-md-4">{t}Type d'événement :{/t}<span class="red">*</span></label>
 <div class="col-md-8">
 <select id="" class="form-control" name="circuit_evenement_type_id">
 {section name=lst loop=$dataEvntType}
@@ -24,7 +24,7 @@
 </div>
 </div>
 <div class="form-group">
-<label for="" class="control-label col-md-4">{t}Date <span class="red">*</span> :{/t}</label>
+<label for="" class="control-label col-md-4">{t}Date :{/t}<span class="red">*</span></label>
 <div class="col-md-8">
 <input id="" class="form-control" class="date" name="circuit_evenement_date" value="{$data.circuit_evenement_date}">
 </div>

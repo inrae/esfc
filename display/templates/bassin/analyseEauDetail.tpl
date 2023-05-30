@@ -97,7 +97,7 @@ Modifier les résultats de l'analyse...
 </dl>
 <dl class="dl-horizontal">
 <td colspan="2">
-<fieldset><legend>{t}Métaux analysés{/t}<legend>
+<fieldset><legend>{t}Métaux analysés{/t}</legend>
 {$dataAnalyse.metaux}
 </fieldset>
 </dd>

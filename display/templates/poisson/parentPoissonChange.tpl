@@ -28,7 +28,7 @@ $(document).ready(function() {
 } ) ;
 </script>
 
-<h2{t}Attribution d'un parent au poisson{/t}</h2>
+<h2>{t}Attribution d'un parent au poisson{/t}</h2>
 <a href="index.php?module={$poissonDetailParent}">Retour à la liste des poissons</a>
 >
 <a href="index.php?module=poissonDisplay&poisson_id={$dataPoisson.poisson_id}">Retour au poisson</a>

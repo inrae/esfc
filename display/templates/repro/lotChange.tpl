@@ -14,7 +14,7 @@ $(document).ready(function() {
 Retour au lot
 </a>
 {/if}
-<h2{t}Caractéristiques du lot{/t}</h2>
+<h2>{t}Caractéristiques du lot{/t}</h2>
 <div class="formSaisie">
 <div>
 <div class="row">
@@ -24,7 +24,7 @@ Retour au lot
 <input type="hidden" name="moduleBase" value=""> id="lotForm" method="post" action="index.php?module=lotWrite">
 <input type="hidden" name="lot_id" value="{$data.lot_id}">
 <div class="form-group">
-<label for="" class="control-label col-md-4">{t}Croisement d'origine <span class="red">*</span> :{/t}</label>
+<label for="" class="control-label col-md-4">{t}Croisement d'origine :{/t}<span class="red">*</span></label>
 <div class="col-md-8">
 <select id="" class="form-control" name="croisement_id" >
 {section name=lst loop=$croisements}
@@ -37,7 +37,7 @@ Retour au lot
 </div>
 </div>
 <div class="form-group">
-<label for="" class="control-label col-md-4">{t}Nom du lot <span class="red">*</span> :{/t}</label>
+<label for="" class="control-label col-md-4">{t}Nom du lot :{/t}<span class="red">*</span></label>
 <div class="col-md-8">
 <input id="" class="form-control" class="commentaire" name="lot_nom" value="{$data.lot_nom}">
 
@@ -64,7 +64,7 @@ Retour au lot
 
 </div>
 <fieldset>
-<legend>{t}Marquage VIE{/t}<legend>
+<legend>{t}Marquage VIE{/t}</legend>
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}Date du marquage :{/t}</label>
 <div class="col-md-8">

@@ -1,4 +1,4 @@
-<h2{t}Modification d'une caractéristique du sperme{/t}</h2>
+<h2>{t}Modification d'une caractéristique du sperme{/t}</h2>
 
 <a href="index.php?module=spermeCaracteristiqueList">Retour à la liste</a>
 <div class="formSaisie">

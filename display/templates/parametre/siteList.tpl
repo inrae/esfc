@@ -1,4 +1,4 @@
-<h2{t}Liste des sites{/t}</h2>
+<h2>{t}Liste des sites{/t}</h2>
 {if $droits["paramAdmin"] == 1}
 <a href="index.php?module=siteChange&site_id=0">
 Nouveau...

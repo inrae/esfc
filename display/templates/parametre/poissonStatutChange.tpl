@@ -1,4 +1,4 @@
-<h2{t}Modification d'un statut de poisson{/t}</h2>
+<h2>{t}Modification d'un statut de poisson{/t}</h2>
 
 <a href="index.php?module=poissonStatutList">Retour à la liste</a>
 <table class="tablesaisie">

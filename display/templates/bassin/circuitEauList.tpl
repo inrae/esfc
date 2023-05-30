@@ -1,4 +1,4 @@
-<h2{t}Circuits d'alimentation en eau{/t}</h2>
+<h2>{t}Circuits d'alimentation en eau{/t}</h2>
 {include file="bassin/circuitEauSearch.tpl"}
 {if $isSearch == 1}
 {if $droits["bassinAdmin"] == 1}

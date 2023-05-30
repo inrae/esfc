@@ -93,7 +93,7 @@ $('document').ready(function() {
 </table>
 
 {if $droits.reproGestion == 1}
-<fieldset><legend>{t}Alimentation quotidienne{/t}<legend>
+<fieldset><legend>{t}Alimentation quotidienne{/t}</legend>
 
 <input type="hidden" name="module" value="lotalimGenerate">
 Date de début d'alimentation :

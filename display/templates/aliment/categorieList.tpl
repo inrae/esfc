@@ -1,4 +1,4 @@
-<h2{t}Catégories d'aliments (types de poissons nourris){/t}</h2>
+<h2>{t}Catégories d'aliments (types de poissons nourris){/t}</h2>
 {if $droits["bassinAdmin"] == 1}
 <a href="index.php?module=categorieChange&categorie_id=0">
 Nouveau...

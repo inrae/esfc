@@ -3,7 +3,7 @@
 <a href="index.php?module={$poissonParent}&poisson_campagne_id={$data.poisson_campagne_id}&poisson_id={$data.poisson_id}">
 Retour au détail du poisson
 </a>
-<h2{t}Sélectionner un poisson pour une campagne{/t}</h2>
+<h2>{t}Sélectionner un poisson pour une campagne{/t}</h2>
 <div class="formSaisie">
 <div>
 <div class="row">
@@ -48,7 +48,7 @@ Statut du poisson pour la repro :
 </div>
 
 <fieldset>
-<legend>{t}Indicateurs de croissance (calculés automatiquement en cas de nouvelle sélection){/t}<legend>
+<legend>{t}Indicateurs de croissance (calculés automatiquement en cas de nouvelle sélection){/t}</legend>
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}Taux de croissance journalier :{/t}</label>
 <div class="col-md-8">

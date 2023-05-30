@@ -3,7 +3,7 @@
 Retour au reproducteur
 </a>
 {include file="repro/poissonCampagneDetail.tpl"}
-<h2{t}Détail d'un prélèvement de sperme{/t}</h2>
+<h2>{t}Détail d'un prélèvement de sperme{/t}</h2>
 <div class="formDisplay">
 <dl>
 <dt>Date du prélèvement :</dt>
@@ -43,7 +43,7 @@ Retour au reproducteur
 {$data.sperme_commentaire}
 </dl>
 <fieldset>
-<legend>{t}Congélation{/t}<legend>
+<legend>{t}Congélation{/t}</legend>
 <dl>
 <dt>Date de congélation :</dt>
 <dd>{$data.congelation_date}</dd>
