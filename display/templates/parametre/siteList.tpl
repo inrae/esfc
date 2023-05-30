@@ -5,7 +5,7 @@ Nouveau...
 </a>
 {/if}
 <script>
-setDataTables("cbassinUsageList");
+
 </script>
 <table class="table table-bordered table-hover datatable" id="csiteList" class="tableliste">
 <thead>

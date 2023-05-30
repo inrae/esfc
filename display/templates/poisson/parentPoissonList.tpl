@@ -1,5 +1,5 @@
 <script>
-setDataTables("cparentList");
+
 </script>
 <table class="table table-bordered table-hover datatable" id="cparentList" class="tableliste">
 <thead>

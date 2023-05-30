@@ -101,7 +101,7 @@ Description de la requête <span class="red">*</span> :
 </div>
 </div>
 <script>
-setDataTablesFull("crequeteList", true, true, true, 50);
+
 </script>
 
 {if count($result) > 0}

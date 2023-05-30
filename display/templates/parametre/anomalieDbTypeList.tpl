@@ -5,7 +5,7 @@ Nouveau...
 </a>
 {/if}
 <script>
-setDataTables("canomalie_dbTypeList");
+
 </script>
 <table class="table table-bordered table-hover datatable" id="canomalie_dbTypeList" class="tableliste">
 <thead>

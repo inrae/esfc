@@ -1,5 +1,5 @@
 <script>
-setDataTables("cbassinList");
+
 </script>
 <table class="table table-bordered table-hover datatable" id="cbassinList" class="tableliste">
 <thead>

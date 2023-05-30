@@ -1,5 +1,5 @@
 <script>
-setDataTables("cventilationList");
+
 </script>
 {if $droits.poissonGestion==1 || $droits.reproGestion == 1}
 <a href="index.php?module=ventilationChange&poisson_id={$dataPoisson.poisson_id}&ventilation_id=0&poisson_campagne_id={$poisson_campagne_id}">Nouvelle mesure...</a>

@@ -68,7 +68,7 @@ Nouvelle analyse...
 </a>
 {/if}
 <script>
-setDataTables("canalyseEauList", 1 , 0, 0, {$dataSearch.limit}, true);
+
 </script>
 <table class="tablemulticolonne">
 <tr>

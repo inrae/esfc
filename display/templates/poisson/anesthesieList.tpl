@@ -1,5 +1,5 @@
 <script>
-setDataTables("canesthesieList");
+
 </script>
 <table class="table table-bordered table-hover datatable" id="canesthesieList" class="tableliste">
 <thead>

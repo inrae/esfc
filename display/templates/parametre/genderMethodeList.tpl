@@ -5,7 +5,7 @@ Nouveau...
 </a>
 {/if}
 <script>
-setDataTables("cgenderMethodeList");
+
 </script>
 <table class="table table-bordered table-hover datatable" id="cgenderMethodeList" class="tableliste">
 <thead>

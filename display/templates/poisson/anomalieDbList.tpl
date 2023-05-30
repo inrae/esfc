@@ -1,5 +1,5 @@
 <script>
-setDataTables("canomalie_dbList");
+
 </script>
 <table class="table table-bordered table-hover datatable" id="canomalie_dbList" class="tableliste">
 <thead>

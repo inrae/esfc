@@ -11,10 +11,6 @@ $dataClass = new BassinEvenement($bdd, $ObjetBDDParam);
 $keyName = "bassin_evenement_id";
 $id = $_REQUEST[$keyName];
 switch ($t_module["param"]) {
-	case "list":
-		break;
-	case "display":
-		break;
 	case "change":
 		/*
 		 * open the form to modify the record
@@ -25,8 +21,10 @@ switch ($t_module["param"]) {
 		/*
 		 * Lecture des types d'événements
 		 */
+		require_once "modules/classes/bassinEvenementType.class.php";
 		$bassinEvenementType = new BassinEvenementType($bdd, $ObjetBDDParam);
 		$vue->set($bassinEvenementType->getListe(1), "dataEvntType");
+
 		/*
 		 * Lecture du bassin
 		 */
@@ -34,6 +32,7 @@ switch ($t_module["param"]) {
 		$bassin = new Bassin($bdd, $ObjetBDDParam);
 		$vue->set($bassin->getDetail($_REQUEST["bassin_id"]), "dataBassin");
 		$vue->set($_SESSION["bassinParentModule"], "bassinParentModule");
+		break;
 	case "write":
 		/*
 		 * write record in database

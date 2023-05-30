@@ -7,7 +7,7 @@ Nouveau...
 </a>
 {/if}
 <script>
-setDataTables("ccircuitEauList");
+
 </script>
 <table class="table table-bordered table-hover datatable" class="tablemulticolonne">
 <tr>

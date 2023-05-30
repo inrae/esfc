@@ -5,7 +5,7 @@
 {include file="aliment/repartitionSearch.tpl"}
 {if $isSearch == 1}
 <script>
-setDataTables("crepartitionList", 0 , 0, 0, {$repartitionSearch.limit});
+
 </script>
 <table class="table table-bordered table-hover datatable" class="tablemulticolonne">
 <tr>

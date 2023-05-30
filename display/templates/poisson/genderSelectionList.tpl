@@ -1,5 +1,5 @@
 <script>
-setDataTables("cgender_selectionList");
+
 </script>
 <table class="table table-bordered table-hover datatable" id="cgender_selectionList" class="tableliste">
 <thead>

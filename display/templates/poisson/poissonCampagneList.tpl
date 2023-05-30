@@ -1,5 +1,5 @@
 <script>
-setDataTables("creproList");
+
 </script>
 <table class="table table-bordered table-hover datatable" id="creproList" class="tableliste">
 <thead>

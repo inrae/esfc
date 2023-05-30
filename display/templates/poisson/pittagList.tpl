@@ -1,5 +1,5 @@
 <script>
-setDataTables("cpittagList");
+
 </script>
 <table class="table table-bordered table-hover datatable" id="cpittagList" class="tableliste">
 <thead>

@@ -1,5 +1,5 @@
 <script>
-setDataTables("clotMesureList");
+
 </script>
 {if $droits["reproGestion"] == 1}
 <a href="index.php?module=lotMesureChange&lot_mesure_id=0&lot_id={$dataLot.lot_id}">

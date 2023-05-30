@@ -5,7 +5,7 @@ Nouveau...
 </a>
 {/if}
 <script>
-setDataTables("cproduitList");
+
 </script>
 <table class="table table-bordered table-hover datatable" id="cproduitList" class="tableliste">
 <thead>

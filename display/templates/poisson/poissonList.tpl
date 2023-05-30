@@ -80,6 +80,6 @@
 </table>
 <br>
 <script>
-$dt = setDataTablesFull("cpoissonList",true, false, true, 50);
+$dt = 
 </script>
 {/if}

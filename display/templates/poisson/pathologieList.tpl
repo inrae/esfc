@@ -1,5 +1,5 @@
 <script>
-setDataTables("cpathologieList");
+
 </script>
 <table class="table table-bordered table-hover datatable" id="cpathologieList" class="tableliste">
 <thead>

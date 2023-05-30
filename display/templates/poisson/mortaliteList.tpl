@@ -1,5 +1,5 @@
 <script>
-setDataTables("cmortaliteList");
+
 </script>
 <table class="table table-bordered table-hover datatable" id="cmortaliteList" class="tableliste">
 <thead>

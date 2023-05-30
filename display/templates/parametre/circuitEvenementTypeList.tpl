@@ -5,7 +5,7 @@ Nouveau...
 </a>
 {/if}
 <script>
-setDataTables("ccircuitEvenementTypeList");
+
 </script>
 <table class="table table-bordered table-hover datatable" id="ccircuitEvenementTypeList" class="tableliste">
 <thead>

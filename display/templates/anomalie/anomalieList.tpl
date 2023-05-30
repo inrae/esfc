@@ -1,5 +1,5 @@
 <script>
-setDataTables("canomalieList");
+
 </script>
 <form method="get" action="index.php">
 <input type="hidden" name="isSearch" value="1">

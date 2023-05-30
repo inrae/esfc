@@ -74,7 +74,7 @@ $(document).ready(function() {
 	{/if}
 
 } ) ;
-//setDataTables("cpoissonList", false, false, true);
+//
 </script>
 <form method="get" action="index.php" id="search">
 <input type="hidden" name="module" value="poissonCampagneList">

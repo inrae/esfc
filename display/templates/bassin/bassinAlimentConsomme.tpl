@@ -17,7 +17,7 @@ Date de fin :
 </table>
 </form>
 <script>
-setDataTables("calimList");
+
 </script>
 <table id="calimList" class="tableaffichage">
 <thead>

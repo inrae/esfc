@@ -1,5 +1,5 @@
 <script>
-setDataTablesFull("ctransfertList");
+
 </script>
 <table class="table table-bordered table-hover datatable" id="ctransfertList" class="tableliste">
 <thead>
