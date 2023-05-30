@@ -22,7 +22,7 @@ switch ($t_module["param"]) {
 		 * Display the list of all records of the table
 		 */
 		include "modules/bassin/bassinSearch.php";
-		if ($searchBassin->isSearch() == 1) {
+		if ($_SESSION["searchBassin"]->isSearch() == 1) {
 			$vue->set($dataClass->getListeSearch($dataSearch), "data");
 		}
 		/*

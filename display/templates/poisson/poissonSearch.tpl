@@ -22,13 +22,14 @@ $(document).ready(function() {
 <form method="get" action="index.php" id="search">
 <input type="hidden" name="isSearch" value="1">
 <input type="hidden" name="module" value="poissonList">
-<table class="tableaffichage">
-<tr>
-<td>
+<div class="tab-content col-md-6 form-horizontal" id="tableaffichage">
+<div class="row">
+			<div class="form-group">
+
 Libellé à rechercher (id, tag, prenom, matricule, cohorte) : 
 <input id="texte" name="texte" value="{$poissonSearch.texte}" size="40" maxlength="40">
-</td>
-<td>
+
+
 Site :
 <select name="site_id">
 <option value="" {if $poissonSearch.site_id == ""}selected{/if}>Sélectionnez le site...</option>
@@ -38,10 +39,11 @@ Site :
 </option>
 {/section}
 </select>
-</td>
-</tr>
-<tr>
-<td>
+
+</div>
+<div class="row">
+			<div class="form-group">
+
 Catégorie :
 <select id="categorie" name="categorie" id="categorie">
 <option value="" {if $categorie[lst].categorie_id == ""}selected{/if}>Sélectionnez la catégorie...</option>
@@ -60,8 +62,8 @@ Catégorie :
 </option>
 {/section}
 </select>
-</td>
-<td>
+
+
  Sexe : 
  <select id="sexe" name="sexe">
  <option value="" {if $poissonSearch.sexe == ""}selected{/if}>Sélectionnez le sexe...</option>
@@ -71,24 +73,26 @@ Catégorie :
 </option>
 {/section}
  </select>
-</td>
-</tr>
-<tr>
-<td>Afficher : <label>les données morphologiques ?</label>
+
+</div>
+<div class="row">
+			<div class="form-group">
+Afficher : <label>les données morphologiques ?</label>
 <input type="radio" name="displayMorpho" value="0" {if $poissonSearch.displayMorpho == 0}checked{/if}> non
 <input type="radio" name="displayMorpho" value="1" {if $poissonSearch.displayMorpho == 1}checked{/if}> oui
 <label>&nbsp;le bassin ?</label>
 <input type="radio" name="displayBassin" value="0" {if $poissonSearch.displayBassin == 0}checked{/if}> non
 <input type="radio" name="displayBassin" value="1" {if $poissonSearch.displayBassin == 1}checked{/if}> oui
 
-</td>
-<td>
+
+
 <div>
 <input type="submit" value="Rechercher">
 </div>
-</td>
-</tr>
-<tr>
+
+</div>
+<div class="row">
+			<div class="form-group">
 <td colspan = "2">
 Afficher : <label>le cumul des températures ? </label>
 <input type="radio" name="displayCumulTemp" value="0" {if $poissonSearch.displayCumulTemp == 0}checked{/if}> non
@@ -98,7 +102,8 @@ Afficher : <label>le cumul des températures ? </label>
 au 
 <input class="date" name="dateFinTemp" value="{$poissonSearch.dateFinTemp}">
 - calcul long...)
-</td>
-<tr>
+
+<div class="row">
+			<div class="form-group">
 </table>
 </form>

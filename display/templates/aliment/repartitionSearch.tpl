@@ -9,9 +9,10 @@ $(document).ready(function() {
 <form method="get" action="index.php" id="fsearch">
 <input type="hidden" name="isSearch" value="1">
 <input type="hidden" name="module" value="repartitionList">
-<table class="tableaffichage">
-<tr>
-<td>
+<div class="tab-content col-md-6 form-horizontal" id="tableaffichage">
+<div class="row">
+			<div class="form-group">
+
 Catégorie d'alimentation : 
 <select class="search" name="categorie_id" id="categorie_id">
 <option value="" {if $repartitionSearch.categorie_id==""}selected{/if}>Sélectionnez la catégorie...</option>
@@ -33,22 +34,24 @@ Site :
 <br>
 Date à partir de laquelle sont affichées les répartitions : 
 <input class="date search" name="date_reference" value="{$repartitionSearch.date_reference}">
-</td>
-</tr>
-<tr>
-<td>
+
+</div>
+<div class="row">
+			<div class="form-group">
+
 <label for "limit">Nombre d'éléments à afficher : </label>
 <input class="search" id="limit" name="limit" value="{$repartitionSearch.limit}" pattern="[0-9]+" required size="5">
 <label for "offset">Afficher à partir de l'enregistrement n° : </label> 
 <input class="search" id="offset" name="offset" value="{$repartitionSearch.offset}" pattern="[0-9]+" required size="5">
-</td>
-</tr>
-<tr>
-<td>
+
+</div>
+<div class="row">
+			<div class="form-group">
+
 <div class="center">
 <input type="submit" value="Rechercher">
 </div>
-</td>
-</tr>
+
+</div>
 </table>
 </form>

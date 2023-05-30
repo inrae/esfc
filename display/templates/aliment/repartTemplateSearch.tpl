@@ -1,7 +1,7 @@
 <form method="get" action="index.php" id="search">
 	<input type="hidden" name="isSearch" value="1">
 	<input type="hidden" name="module" value="repartTemplateList">
-	<div class="tab-content col-md-6 form-horizontal" id="tableaffichage">
+	<div class="col-md-6 form-horizontal" id="tableaffichage">
 		<div class="row">
 			<div class="form-group">
 				<label for="categorie_id" class="col-md-4 control-label">{t}Catégorie d'alimentation :{/t}</label>

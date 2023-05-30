@@ -10,9 +10,12 @@
 /*
  * Gestion des variables de recherche
 */
-$searchBassin->setParam ( $_REQUEST );
-$dataSearch = $searchBassin->getParam ();
-if ($searchBassin->isSearch () == 1) {
+if(!isset($_SESSION["searchBassin"])) {
+	$_SESSION["searchBassin"] = new SearchBassin();
+}
+$_SESSION["searchBassin"]->setParam ( $_REQUEST );
+$dataSearch = $_SESSION["searchBassin"]->getParam ();
+if ($_SESSION["searchBassin"]->isSearch () == 1) {
 	$vue->set(1 , "isSearch"); 
 }
 $vue->set( $dataSearch, "bassinSearch"); 

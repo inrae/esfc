@@ -6,7 +6,8 @@ $(document).ready(function() {
 });
 </script>
 <table class="tablemulticolonne">
-<tr><td>
+<div class="row">
+			<div class="form-group">
 <fieldset>
 <legend>{t}Afficher les lots{/t}</legend>
 <form method="get" action="index.php" id="search">
@@ -33,11 +34,12 @@ Site :
 
 </form>
 </fieldset>
-</td>
-</tr>
-<tr>
-<td>
+
+</div>
+<div class="row">
+			<div class="form-group">
+
 {include file="repro/lotList.tpl"}
-</td>
-</tr>
+
+</div>
 </table>
