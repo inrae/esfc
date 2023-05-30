@@ -16,7 +16,7 @@ Nom du conservateur <span class="red">*</span> :
 {/t}</label>
 <div class="col-md-8">
 <input id="" class="form-control" name="sperme_conservateur_libelle" type="text" value="{$data.sperme_conservateur_libelle}" required autofocus/>
-</dd>
+
 </div>
 </div>
 <div class="form-group">

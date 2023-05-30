@@ -22,7 +22,7 @@ Retour à la liste des séquences
 <label for="" class="control-label col-md-4">{t}Année <span class="red">*</span> :{/t}</label>
 <div class="col-md-8">
 <input id="" class="form-control" name="annee" required readonly size="10" maxlength="10" value="{$data.annee}">
-</dd>
+
 </div>
 </div>
 <div class="form-group">
@@ -35,21 +35,21 @@ Retour à la liste des séquences
 </option>
 {/section}
 </select>
-</dd>
+
 </div>
 </div>
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}Nom de la séquence <span class="red">*</span> :{/t}</label>
 <div class="col-md-8">
 <input id="" class="form-control" name="sequence_nom" required size="20" maxlength="30" value="{$data.sequence_nom}">
-</dd>
+
 </div>
 </div>
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}Date de début de la séquence <span class="red">*</span> :{/t}</label>
 <div class="col-md-8">
 <input id="" class="form-control" class="date" name="sequence_date_debut" id="cdate_debut" required size="10" maxlength="10" value="{$data.sequence_date_debut}">
-</dd>
+
 </div>
 </fieldset>
 

@@ -26,13 +26,13 @@ Retour à la congélation
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}Date/heure<span class="red">*</span> :{/t}</label>
 <div class="col-md-8">
-<input id="" class="form-control" name="measure_date" class="datetimepicker" value="{$data.measure_date}"></dd>
+<input id="" class="form-control" name="measure_date" class="datetimepicker" value="{$data.measure_date}">
 </div>
 </div>
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}Temperature relevée<span class="red">*</span> :{/t}</label>
 <div class="col-md-8">
-<input id="" class="form-control" name="measure_temp" class="taux" value="{$data.measure_temp}" autofocus></dd>
+<input id="" class="form-control" name="measure_temp" class="taux" value="{$data.measure_temp}" autofocus>
 </div>
 
 

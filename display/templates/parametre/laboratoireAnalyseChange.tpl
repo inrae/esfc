@@ -13,7 +13,7 @@
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}Nom du laboratoire <span class="red">*</span> :{/t}</label>
 <div class="col-md-8">
-<input id="" class="form-control" name="laboratoire_analyse_libelle" value="{$data.laboratoire_analyse_libelle}" size="40" autofocus required></dd>
+<input id="" class="form-control" name="laboratoire_analyse_libelle" value="{$data.laboratoire_analyse_libelle}" size="40" autofocus required>
 </div>
 </div>
 <div class="form-group">
@@ -21,7 +21,7 @@
 <div class="col-md-8">
 <input id="" class="form-control" type="radio" name="laboratoire_analyse_actif" value="1" {if $data.laboratoire_analyse_actif == 1}checked{/if}>oui
 <input type="radio" name="laboratoire_analyse_actif" value="0" {if $data.laboratoire_analyse_actif == 0}checked{/if}>non
-</dd>
+
 </div>
 
 <div class="form-group center">

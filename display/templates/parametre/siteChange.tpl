@@ -16,7 +16,7 @@ Nom du site <span class="red">*</span> :
 {/t}</label>
 <div class="col-md-8">
 <input id="" class="form-control" name="site_name" type="text" value="{$data.site_name}" required autofocus/>
-</dd>
+
 </div>
 </div>
 <div class="form-group"></div>

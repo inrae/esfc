@@ -13,7 +13,7 @@
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}Type d'aliment <span class="red">*</span> :{/t}</label>
 <div class="col-md-8">
-<input id="" class="form-control" name="aliment_type_libelle" size="40" value="{$data.aliment_type_libelle}" autofocus></dd>
+<input id="" class="form-control" name="aliment_type_libelle" size="40" value="{$data.aliment_type_libelle}" autofocus>
 </div>
 
 

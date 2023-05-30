@@ -23,7 +23,7 @@ Retour au reproducteur
 </option>
 {/section}
 </select>
-</dd>
+
 </div>
 </div>
 <div class="form-group">
@@ -36,7 +36,7 @@ Retour au reproducteur
 </option>
 {/section}
 </select>
-</dd>
+
 </div>
 </div>
 <div class="form-group"></div>
@@ -46,14 +46,14 @@ Retour au reproducteur
 <div class="col-md-8">
 <input id="" class="form-control" class="date" name="ovocyte_expulsion_date"  value="{$data.ovocyte_expulsion_date}">
 <input class="timepicker" name="ovocyte_expulsion_time" value="{$data.ovocyte_expulsion_time}">
-</dd>
+
 </div>
 </div>
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}Masse totale des ovocytes (grammes) :{/t}</label>
 <div class="col-md-8">
 <input id="" class="form-control" class="taux" name="ovocyte_masse" value="{$data.ovocyte_masse}">
-</dd>
+
 </div>
 {/if}
 {if $dataPoisson.sexe_id == 1}

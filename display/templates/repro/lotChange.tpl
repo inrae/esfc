@@ -33,35 +33,35 @@ Retour au lot
 </option>
 {/section}
 </select>
-</dd>
+
 </div>
 </div>
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}Nom du lot <span class="red">*</span> :{/t}</label>
 <div class="col-md-8">
 <input id="" class="form-control" class="commentaire" name="lot_nom" value="{$data.lot_nom}">
-</dd>
+
 </div>
 </div>
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}Date d'éclosion :{/t}</label>
 <div class="col-md-8">
 <input id="" class="form-control" class="date" name="eclosion_date" value="{$data.eclosion_date}">
-</dd>
+
 </div>
 </div>
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}Nombre de larves estimé :{/t}</label>
 <div class="col-md-8">
 <input id="" class="form-control" class="taux" name="nb_larve_initial" value="{$data.nb_larve_initial}">
-</dd>
+
 </div>
 </div>
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}Nombre de larves compté :{/t}</label>
 <div class="col-md-8">
 <input id="" class="form-control" class="taux" name="nb_larve_compte" value="{$data.nb_larve_compte}">
-</dd>
+
 </div>
 <fieldset>
 <legend>{t}Marquage VIE{/t}<legend>
@@ -69,7 +69,7 @@ Retour au lot
 <label for="" class="control-label col-md-4">{t}Date du marquage :{/t}</label>
 <div class="col-md-8">
 <input id="" class="form-control" class="date" name="vie_date_marquage" value="{$data.vie_date_marquage}">
-</dd>
+
 </div>
 </div>
 <div class="form-group"><label for="" class="control-label col-md-4">{t}Modèle de marquage VIE utilisé :{/t}</label>

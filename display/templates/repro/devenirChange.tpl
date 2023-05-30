@@ -20,7 +20,7 @@
 <label for="" class="control-label col-md-4">{t}Date <span class="red">*</span> :{/t}</label>
 <div class="col-md-8">
 <input id="" class="form-control" class="date"  name="devenir_date" required value="{$data.devenir_date}">
-</dd>
+
 </div>
 </div>
 <div class="form-group">
@@ -46,7 +46,7 @@
 </option>
 {/section}
 </select>
-</dd>
+
 </div>
 
 <div class="form-group"><label for="" class="control-label col-md-4">{t}Stade biologique<span class="red">*</span> :<label for="" class="control-label col-md-4">{t}
@@ -58,7 +58,7 @@
 </option>
 {/section}
 </select>
-</dd>
+
 </div>
 </div>
 <div class="form-group">
@@ -72,14 +72,14 @@
 </option>
 {/section}
 </select>
-</dd>
+
 </div>
 </div>
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}Nombre de poissons concernés :{/t}</label>
 <div class="col-md-8">
 <input id="" class="form-control" class="nombre" name="poisson_nombre" value="{$data.poisson_nombre}">
-</dd>
+
 </div>
 </div>
 <div class="form-group"></div>

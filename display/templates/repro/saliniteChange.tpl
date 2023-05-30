@@ -17,14 +17,14 @@
 <label for="" class="control-label col-md-4">{t}Date/heure <span class="red">*</span> :{/t}</label>
 <div class="col-md-8">
 <input id="" class="form-control" class="datetimepicker" name="salinite_datetime" required value="{$data.salinite_datetime}">
-</dd>
+
 </div>
 </div>
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}Taux de salinité <span class="red">*</span> :{/t}</label>
 <div class="col-md-8">
 <input id="" class="form-control" class="taux" name="salinite_tx" required value="{$data.salinite_tx}">
-</dd>
+
 </div>
 </div>
 <div class="form-group">
@@ -33,7 +33,7 @@
 <input type="radio" {if $data.profil_thermique_type_id == 2 || $data.profil_thermique_type_id == ""}checked{/if} name="profil_thermique_type_id" value="2">
 &nbsp;constaté
 <input type="radio" disabled {if $data.profil_thermique_type_id == 1}checked{/if} name="profil_thermique_type_id" value="1">
-</dd>
+
 </div>
 
 <div class="form-group center">

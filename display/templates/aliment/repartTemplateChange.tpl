@@ -21,14 +21,14 @@ $(document).ready(function() {
 <label for="" class="control-label col-md-4">{t}Date de création <span class="red">*</span> :{/t}</label>
 <div class="col-md-8">
 <input id="" class="form-control" class="date" name="repart_template_date" id="repart_template_date" value="{$data.repart_template_date}" required>
-</dd>
+
 </div>
 </div>
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}Description  <span class="red">*</span> :{/t}</label>
 <div class="col-md-8">
 <input id="" class="form-control" name="repart_template_libelle" value="{$data.repart_template_libelle}" autofocus required size="40">
-</dd>
+
 </div>
 </div>
 <div class="form-group">
@@ -41,7 +41,7 @@ $(document).ready(function() {
 </option>
 {/section}
 </select>
-</dd>
+
 </div>
 </div>
 <div class="form-group">
@@ -49,7 +49,7 @@ $(document).ready(function() {
 <div class="col-md-8">
 <input id="" class="form-control" type="radio" name="actif" value="1" {if $data.actif == 1}checked{/if}>oui
 <input type="radio" name="actif" value="0" {if $data.actif == 0}checked{/if}>non
-</dd>
+
 </div>
 </fieldset>
 
@@ -78,7 +78,7 @@ Nuit :
 <br>
 <label for="consigne">Consignes : </label>
 <input id="consigne" name="consigne_{$dataAliment[lst].aliment_id}" value="{$dataAliment[lst].consigne}" size="30">
-</dd>
+
 </div>
 {/section}
 </fieldset>

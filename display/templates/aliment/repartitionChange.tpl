@@ -176,22 +176,22 @@ $(document).ready(function() {
 </option>
 {/section}
 </select>
-</dd>
+
 </div>
 </div>
 <div class="form-group"><label for="" class="control-label col-md-4">{t}Nom :{/t}</label>
 <div class="col-md-8">
-<input id="" class="form-control" class="commentaire" name="repartition_name" value="{$data.repartition_name}" placeholder="Élevage, repro..."></dd>
+<input id="" class="form-control" class="commentaire" name="repartition_name" value="{$data.repartition_name}" placeholder="Élevage, repro...">
 </div>
  <div class="form-group">
  <label for="" class="control-label col-md-4">{t}Date début :{/t}</label>
  <div class="col-md-8">
-<input id="" class="form-control" class="date" name="date_debut_periode" value="{$data.date_debut_periode}"><span class="message"></span></dd>
+<input id="" class="form-control" class="date" name="date_debut_periode" value="{$data.date_debut_periode}"><span class="message"></span>
  </div>
  <div class="form-group">
  <label for="" class="control-label col-md-4">{t}Date fin :{/t}</label>
  <div class="col-md-8">
-<input id="" class="form-control" class="date" name="date_fin_periode" value="{$data.date_fin_periode}"><span class="message"></span></dd>
+<input id="" class="form-control" class="date" name="date_fin_periode" value="{$data.date_fin_periode}"><span class="message"></span>
  </div>
 <fieldset>
 <legend>{t}Répartition des aliments par bassin{/t}<legend>
@@ -214,7 +214,7 @@ $(document).ready(function() {
 {/section}
 </select>
 <div class="erreur"></div>
-</dd>
+
 </div>
 </div>
 <div class="form-group">
@@ -222,7 +222,7 @@ $(document).ready(function() {
 <div class="col-md-8">
 <input id="" class="form-control" class="num10 masse" name="distribution_masse_{$dataBassin[lst].bassin_id}" id="distribution_masse_{$dataBassin[lst].bassin_id}" value="{$dataBassin[lst].distribution_masse}" data-cle="{$dataBassin[lst].bassin_id}">
 <input type="button" class="calcul" data-cle="{$dataBassin[lst].bassin_id}" value="Recalcul...">
-</dd>
+
 </div>
 </div>
 <div class="form-group">
@@ -241,7 +241,7 @@ Qté :
 <input class="num5" name="taux_reste_precedent_{$dataBassin[lst].bassin_id}" value="{$dataBassin[lst].taux_reste_precedent}" readonly>
 <br>
 <input name="ration_commentaire_precedent_{$dataBassin[lst].bassin_id}" id="ration_commentaire_precedent_{$dataBassin[lst].bassin_id}" data-cle="{$dataBassin[lst].bassin_id}" value="{$dataBassin[lst].ration_commentaire_precedent}" size="30" readonly>
-</dd>
+
 </div>
 </div>
 <div class="form-group">
@@ -251,7 +251,7 @@ Qté :
 <input class="num5 evol" name="evol_taux_nourrissage_{$dataBassin[lst].bassin_id}" id="evol_taux_nourrissage_{$dataBassin[lst].bassin_id}"  data-cle="{$dataBassin[lst].bassin_id}" value="{$dataBassin[lst].evol_taux_nourrissage}">
 Nouveau taux :
 <input class="num5 taux" name="taux_nourrissage_{$dataBassin[lst].bassin_id}" id="taux_nourrissage_{$dataBassin[lst].bassin_id}"  data-cle="{$dataBassin[lst].bassin_id}" value="{$dataBassin[lst].taux_nourrissage}">
-</dd>
+
 </div>
 </div>
 <div class="form-group">
@@ -260,7 +260,7 @@ Nouveau taux :
 <input id="" class="form-control" class="num10 ration" name="total_distribue_{$dataBassin[lst].bassin_id}" id="total_distribue_{$dataBassin[lst].bassin_id}" data-cle="{$dataBassin[lst].bassin_id}" value="{$dataBassin[lst].total_distribue}">
 <br>
 <input name="distribution_consigne_{$dataBassin[lst].bassin_id}" id="distribution_consigne_{$dataBassin[lst].bassin_id}"  data-cle="{$dataBassin[lst].bassin_id}" value="{$dataBassin[lst].distribution_consigne}" placeholder="Consignes..." Title="Consignes de distribution" size="30">
-</dd>
+
 </div>
 </div>
 <div class="form-group">
@@ -273,7 +273,7 @@ jeu <input type="checkbox" name="distribution_jour_4_{$dataBassin[lst].bassin_id
 ven <input type="checkbox" name="distribution_jour_5_{$dataBassin[lst].bassin_id}" value="1" {if $dataBassin[lst].distribution_jour_5 == 1}checked{/if}>
 sam <input type="checkbox" name="distribution_jour_6_{$dataBassin[lst].bassin_id}" value="1" {if $dataBassin[lst].distribution_jour_6 == 1}checked{/if}>
 dim <input type="checkbox" name="distribution_jour_7_{$dataBassin[lst].bassin_id}" value="1" {if $dataBassin[lst].distribution_jour_7 == 1}checked{/if}>
-</dd>
+
 </div>
 </div>
 <div class="form-group">
@@ -287,7 +287,7 @@ ven <input type="checkbox" name="distribution_jour_soir_5_{$dataBassin[lst].bass
 sam <input type="checkbox" name="distribution_jour_soir_6_{$dataBassin[lst].bassin_id}" value="1" {if $dataBassin[lst].distribution_jour_soir_6 == 1}checked{/if}>
 dim <input type="checkbox" name="distribution_jour_soir_7_{$dataBassin[lst].bassin_id}" value="1" {if $dataBassin[lst].distribution_jour_soir_7 == 1}checked{/if}>
 
-</dd>
+
 </div>
 </div>
 </fieldset>

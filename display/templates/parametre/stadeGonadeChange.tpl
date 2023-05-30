@@ -16,7 +16,7 @@ Nom du stade de maturation de la gonade <span class="red">*</span> :
 {/t}</label>
 <div class="col-md-8">
 <input id="" class="form-control" name="stade_gonade_libelle" type="text" value="{$data.stade_gonade_libelle}" required autofocus/>
-</dd>
+
 </div>
 </div>
 <div class="form-group"></div>

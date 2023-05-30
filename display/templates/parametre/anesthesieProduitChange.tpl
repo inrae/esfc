@@ -16,7 +16,7 @@ Nom du produit d'anesthésie <span class="red">*</span> :
 {/t}</label>
 <div class="col-md-8">
 <input id="" class="form-control" name="anesthesie_produit_libelle" type="text" value="{$data.anesthesie_produit_libelle}" required autofocus/>
-</dd>
+
 </div>
 </div>
 <div class="form-group">
@@ -24,7 +24,7 @@ Nom du produit d'anesthésie <span class="red">*</span> :
 <div class="col-md-8">
 <input id="" class="form-control" type="radio" id="cactif_0" name="anesthesie_produit_actif" value="1" {if $data.anesthesie_produit_actif == 1} checked{/if}>oui 
 <input type="radio" id="cactif_1" name="anesthesie_produit_actif" value="0" {if $data.anesthesie_produit_actif == 0} checked{/if}>non 
-</dd>
+
 </div>
 </div>
 <div class="form-group"></div>

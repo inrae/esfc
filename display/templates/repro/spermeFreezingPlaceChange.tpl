@@ -26,20 +26,20 @@ Retour à la congélation
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}Nom de la cuve :{/t}</label>
 <div class="col-md-8">
-<input id="" class="form-control" name="cuve_libelle" value="{$data.cuve_libelle}"></dd>
+<input id="" class="form-control" name="cuve_libelle" value="{$data.cuve_libelle}">
 </div>
 </div>
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}Nombre de visiotubes :{/t}</label>
 <div class="col-md-8">
-<input id="" class="form-control" class="nombre" name="nb_visiotube" value="{$data.nb_visiotube}"></dd>
+<input id="" class="form-control" class="nombre" name="nb_visiotube" value="{$data.nb_visiotube}">
 </div>
 </div>
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}Numéro de canister :{/t}</label>
 <div class="col-md-8">
 <input id="" class="form-control" name="canister_numero" value="{$data.canister_numero}">
-</dd>
+
 </div>
 </div>
 <div class="form-group">
@@ -50,7 +50,7 @@ Retour à la congélation
 <option value="1" {if $data.position_canister == "1"}selected{/if}>Bas</option>
 <option value="2" {if $data.position_canister == "2"}selected{/if}>Haut</option>
 </select>
-</dd>
+
 </div>
 
 

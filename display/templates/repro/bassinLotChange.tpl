@@ -16,7 +16,7 @@
 <label for="" class="control-label col-md-4">{t}Date de début d'utilisation <span class="red">*</span> :{/t}</label>
 <div class="col-md-8">
 <input id="" class="form-control" class="date" name="bl_date_arrivee" value="{$data.bl_date_arrivee}" required>
-</dd>
+
 </div>
 </div>
 <div class="form-group">
@@ -29,14 +29,14 @@
 </option>
 {/section}
 </select>
-</dd>
+
 </div>
 </div>
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}Date de fin d'utilisation :{/t}</label>
 <div class="col-md-8">
 <input id="" class="form-control" class="date" name="bl_date_depart" value="{$data.bl_date_depart}">
-</dd>
+
 </div>
 </div>
 <div class="form-group"></div>

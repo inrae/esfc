@@ -17,28 +17,28 @@ Retour au reproducteur
 <label for="" class="control-label col-md-4">{t}Date de l'échographie <span class="red">*</span> :{/t}</label>
 <div class="col-md-8">
 <input id="" class="form-control" class="date" name="echographie_date" required size="10" maxlength="10" value="{$data.echographie_date}">
-</dd>
+
 </div>
 </div>
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}Commentaires :{/t}</label>
 <div class="col-md-8">
 <input id="" class="form-control" class="commentaire" name="echographie_commentaire" value="{$data.echographie_commentaire}">
-</dd>
+
 </div>
 </div>
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}Nombre de clichés :{/t}</label>
 <div class="col-md-8">
 <input id="" class="form-control" class="nombre" name="cliche_nb" value="{$data.cliche_nb}">
-</dd>
+
 </div>
 </div>
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}Référence des clichés :{/t}</label>
 <div class="col-md-8">
 <input id="" class="form-control" class="commentaire" name="cliche_ref" value="{$data.cliche_ref}">
-</dd>
+
 </div>
 </div>
 <div class="form-group">
@@ -52,7 +52,7 @@ Retour au reproducteur
 </option>
 {/section}
 </select>
-</dd>
+
 </div>
 
 <div class="form-group">
@@ -66,7 +66,7 @@ Retour au reproducteur
 </option>
 {/section}
 </select>
-</dd>
+
 </div>
 
 

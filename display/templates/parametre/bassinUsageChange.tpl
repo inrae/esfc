@@ -16,7 +16,7 @@ Utilisation <span class="red">*</span> :
 {/t}</label>
 <div class="col-md-8">
 <input id="" class="form-control" id="cbassin_usage_libelle" name="bassin_usage_libelle" type="text" value="{$data.bassin_usage_libelle}" required autofocus/>
-</dd>
+
 </div>
 </div>
 <div class="form-group">

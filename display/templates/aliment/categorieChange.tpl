@@ -11,7 +11,7 @@
 <div class="form-group">
 <label for="categorie_libelle" class="control-label col-md-4"><span class="red">*</span>{t}Type de poisson nourri :{/t}</label>
 <div class="col-md-8">
-<input id="categorie_libelle" class="form-control" name="categorie_libelle" value="{$data.categorie_libelle}" autofocus></dd>
+<input id="categorie_libelle" class="form-control" name="categorie_libelle" value="{$data.categorie_libelle}" autofocus>
 </div>
 
 

@@ -17,14 +17,14 @@
 <label for="" class="control-label col-md-4">{t}Date/heure <span class="red">*</span> :{/t}</label>
 <div class="col-md-8">
 <input id="" class="form-control" class="datetimepicker"  name="pf_datetime" required size="10" value="{$data.pf_datetime}">
-</dd>
+
 </div>
 </div>
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}Température <span class="red">*</span> :{/t}</label>
 <div class="col-md-8">
 <input id="" class="form-control" class="taux" name="pf_temperature" required value="{$data.pf_temperature}">
-</dd>
+
 </div>
 </div>
 <div class="form-group">
@@ -33,7 +33,7 @@
 <input type="radio" {if $data.profil_thermique_type_id == "2" }checked{/if} name="profil_thermique_type_id" value="2">
 &nbsp;constaté
 <input type="radio" disabled {if $data.profil_thermique_type_id == 1}checked{/if} name="profil_thermique_type_id" value="1">
-</dd>
+
 </div>
 
 <div class="form-group center">

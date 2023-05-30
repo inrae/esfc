@@ -62,33 +62,33 @@ Retour au sperme
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}Date de congélation<span class="red">*</span> :{/t}</label>
 <div class="col-md-8">
-<input id="" class="form-control" class="date" name="congelation_date" value="{$data.congelation_date}" required ></dd>
+<input id="" class="form-control" class="date" name="congelation_date" value="{$data.congelation_date}" required >
 </div>
 </div>
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}Volume total congelé (ml) :{/t}</label>
 <div class="col-md-8">
 <input id="" class="form-control" class="taux" name="congelation_volume" value="{$data.congelation_volume}">
-</dd>
+
 </div>
 </div>
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}Volume de sperme (ml) :{/t}</label>
 <div class="col-md-8">
 <input id="" class="form-control" class="taux" name="volume_sperme" value="{$data.volume_sperme}">
-</dd>
+
 </div>
 </div>
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}Nombre total de paillettes :{/t}</label>
 <div class="col-md-8">
-<input id="" class="form-control" class="nombre" name="nb_paillette" value="{$data.nb_paillette}"></dd>
+<input id="" class="form-control" class="nombre" name="nb_paillette" value="{$data.nb_paillette}">
 </div>
 </div>
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}Nombre total de visiotubes :{/t}</label>
 <div class="col-md-8">
-<input id="" class="form-control" class="nombre" name="nb_visiotube" value="{$data.nb_visiotube}"></dd>
+<input id="" class="form-control" class="nombre" name="nb_visiotube" value="{$data.nb_visiotube}">
 </div>
 </div>
 <div class="form-group">
@@ -102,14 +102,14 @@ Retour au sperme
 </option>
 {/section}
 </select>
-</dd>
+
 </div>
 </div>
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}Volume de dilueur utilisé (ml) :{/t}</label>
 <div class="col-md-8">
 <input id="" class="form-control" class="taux" name="volume_dilueur" value="{$data.volume_dilueur}">
-</dd>
+
 </div>
 
 <div class="form-group">
@@ -123,21 +123,21 @@ Retour au sperme
 </option>
 {/section}
 </select>
-</dd>
+
 </div>
 </div>
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}Volume de conservateur utilisé (ml) :{/t}</label>
 <div class="col-md-8">
 <input id="" class="form-control" class="taux" name="volume_conservateur" value="{$data.volume_conservateur}">
-</dd>
+
 </div>
 </div>
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}Nb de paillettes utilisées en repro :{/t}</label>
 <div class="col-md-8">
 <input id="" class="form-control" class="nombre" name="nb_paillettes_utilisees" value="{$data.nb_paillettes_utilisees}" readonly>
-</dd>
+
 </div>
 
 <div class="form-group">

@@ -13,7 +13,7 @@
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}Type d'anomalieDb <span class="red">*</span> :{/t}</label>
 <div class="col-md-8">
-<input id="" class="form-control" name="anomalie_db_type_libelle" size="40" value="{$data.anomalie_db_type_libelle}" autofocus></dd>
+<input id="" class="form-control" name="anomalie_db_type_libelle" size="40" value="{$data.anomalie_db_type_libelle}" autofocus>
 </div>
 
 

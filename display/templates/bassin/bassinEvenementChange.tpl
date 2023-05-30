@@ -26,20 +26,20 @@ $(document).ready(function() {
 </option>
 {/section}
 </select>
-</dd>
+
 </div>
 </div>
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}Date <span class="red">*</span> :{/t}</label>
 <div class="col-md-8">
-<input id="" class="form-control" class="date" name="bassin_evenement_date" value="{$data.bassin_evenement_date}"></dd>
+<input id="" class="form-control" class="date" name="bassin_evenement_date" value="{$data.bassin_evenement_date}">
 </div>
 </div>
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}Commentaires :{/t}</label>
 <div class="col-md-8">
 <input id="" class="form-control" name="bassin_evenement_commentaire" value="{$data.bassin_evenement_commentaire}" style="size:40;">
-</dd>
+
 </div>
 
 

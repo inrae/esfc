@@ -53,7 +53,7 @@ Retour à la liste des poissons
 </option>
 {/section}
 </select>
-</dd>
+
 </div>
 
 <div class="form-group">
@@ -66,7 +66,7 @@ Retour à la liste des poissons
 </option>
 {/section}
 </select>
-</dd>
+
 </div>
 
 <div class="form-group">
@@ -80,7 +80,7 @@ Retour à la liste des poissons
 {/section}
 </select>
 <input type="hidden" name=sexe_id" value="{$data.sexe_id}">
-</dd>
+
 </div>
 <fieldset>
 <legend>{t}Pittag{/t}<legend>
@@ -90,7 +90,7 @@ Retour à la liste des poissons
 <input id="" class="form-control" name="pittag_id" type="hidden" value="{$dataPittag.pittag_id}">
 <input type="text" name="pittag_valeur" id="cpittag_valeur" size="20" value="{$dataPittag.pittag_valeur}" pattern="(([A-F0-9][A-F0-9])*|[0-9]*)" placeholder="01AB2C ou 12345" title="Nombre hexadécimal ou numérique" autofocus>
 
-</dd>
+
 </div>
 </div>
 <div class="form-group">
@@ -107,14 +107,14 @@ Sélectionnez le type de marque...
 </option>
 {/section}
 </select>
-</dd>
+
 </div>
 </div>
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}Date de pose :{/t}</label>
 <div class="col-md-8">
 <input id="" class="form-control" name="pittag_date_pose" class="date" id="cpittag_date_pose" value="{$dataPittag.pittag_date_pose}" title="Date de pose de la marque" >
-</dd>
+
 </div>
 
 </fieldset>
@@ -123,42 +123,42 @@ Sélectionnez le type de marque...
 <label for="" class="control-label col-md-4">{t}Matricule<span class="red">*</span> :{/t}</label>
 <div class="col-md-8">
 <input id="" class="form-control" name="matricule" id="cmatricule" value="{$data.matricule}" size="30" required>
-</dd>
+
 </div>
 
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}Prénom :{/t}</label>
 <div class="col-md-8">
 <input id="" class="form-control" name="prenom" id="cprenom" value="{$data.prenom}"  size="30">
-</dd>
+
 </div>
 
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}Cohorte :{/t}</label>
 <div class="col-md-8">
 <input id="" class="form-control" name="cohorte" id="ccohorte" value="{$data.cohorte}" size="10">
-</dd>
+
 </div>
 
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}Date de capture :{/t}</label>
 <div class="col-md-8">
 <input id="" class="form-control" name="capture_date" id="ccapture_date" class="date" value="{$data.capture_date}" >
-</dd>
+
 </div>
 
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}Date de naissance :{/t}</label>
 <div class="col-md-8">
 <input id="" class="form-control" name="date_naissance" id="cdate_naissance" class="date" value="{$data.date_naissance}" >
-</dd>
+
 </div>
 
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}Commentaire :{/t}</label>
 <div class="col-md-8">
 <input id="" class="form-control" name="commentaire" id="ccommentaire" class="commentaire" value="{$data.commentaire}">
-</dd>
+
 </div>
 <fieldset><legend>{t}Marquage VIE au stade juvénile - lot{/t}<legend>
 <label>La sélection du modèle de marquage VIE entraîne une mise
@@ -177,7 +177,7 @@ Sélectionnez pour générer les parents...
 </option>
 {/section}
 </select>
-</dd>
+
 </div>
 </fieldset>
 

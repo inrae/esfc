@@ -26,21 +26,21 @@ $(".timepicker").timepicker( {
 <div class="col-md-8">
 <input id="" class="form-control" class="date" name="ps_date" required value="{$dataPsEvenement.ps_date}">
 <input class="timepicker" name="ps_time" required value="{$dataPsEvenement.ps_time}">
-</dd>
+
 </div>
 </div>
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}Libellé <span class="red">*</span> :{/t}</label>
 <div class="col-md-8">
 <input id="" class="form-control" class="commentaire" name="ps_libelle" required value="{$dataPsEvenement.ps_libelle}">
-</dd>
+
 </div>
 </div>
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}Commentaire :{/t}</label>
 <div class="col-md-8">
 <input id="" class="form-control" class="commentaire" name="ps_commentaire" value="{$dataPsEvenement.ps_commentaire}">
-</dd>
+
 </div>
 
 <div class="form-group center">

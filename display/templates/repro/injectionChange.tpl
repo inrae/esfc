@@ -24,7 +24,7 @@ Retour au reproducteur
 <div class="col-md-8">
 <input id="" class="form-control" class="datetimepicker" name="injection_date" required value="{$data.injection_date}">
 <!--  input class="timepicker" name="injection_time" required value="{$data.injection_time}"-->
-</dd>
+
 </div>
 </div>
 <div class="form-group">
@@ -50,7 +50,7 @@ Retour au reproducteur
 </option>
 {/section}
 </select>
-</dd>
+
 </div>
 </div>
 <div class="form-group">
@@ -62,7 +62,7 @@ Retour au reproducteur
 <label for="" class="control-label col-md-4">{t}Commentaire :{/t}</label>
 <div class="col-md-8">
 <input id="" class="form-control" class="commentaire" name="injection_commentaire" value="{$data.injection_commentaire}">
-</dd>
+
 </div>
 
 <div class="form-group center">

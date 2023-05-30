@@ -19,42 +19,42 @@ Retour à la séquence
 <label for="" class="control-label col-md-4">{t}Date/heure de la fécondation <span class="red">*</span> :{/t}</label>
 <div class="col-md-8">
 <input id="" class="form-control" class="datetimepicker" name="croisement_date" required value="{$data.croisement_date}">
-</dd>
+
 </div>
 </div>
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}Nom du croisement <span class="red">*</span> :{/t}</label>
 <div class="col-md-8">
 <input id="" class="form-control" name="croisement_nom" value={$data.croisement_nom}>
-</dd>
+
 </div>
 </div>
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}Masse des ovocytes (en grammes) :{/t}</label>
 <div class="col-md-8">
 <input id="" class="form-control" class="taux" name="ovocyte_masse" value="{$data.ovocyte_masse}">
-</dd>
+
 </div>
 </div>
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}Nbre ovocytes par gramme :{/t}</label>
 <div class="col-md-8">
 <input id="" class="form-control" class="taux" name="ovocyte_densite" value="{$data.ovocyte_densite}">
-</dd>
+
 </div>
 </div>
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}Taux de fécondation :{/t}</label>
 <div class="col-md-8">
 <input id="" class="form-control" class="taux" name="tx_fecondation" value="{$data.tx_fecondation}">
-</dd>
+
 </div>
 </div>
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}Taux de survie estimé :{/t}</label>
 <div class="col-md-8">
 <input id="" class="form-control" class="taux" name="tx_survie_estime" value="{$data.tx_survie_estime}">
-</dd>
+
 </div>
 </div>
 <div class="form-group">
@@ -89,7 +89,7 @@ Retour à la séquence
 </tr>
 {/section}
 </table>
-</dd>
+
 </div>
 
 <div class="form-group center">

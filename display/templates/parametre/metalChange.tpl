@@ -16,14 +16,14 @@ Nom du métal <span class="red">*</span> :
 {/t}</label>
 <div class="col-md-8">
 <input id="" class="form-control" name="metal_nom" type="text" value="{$data.metal_nom}" required autofocus/>
-</dd>
+
 </div>
 </div>
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}Unité utilisée pour<br>quantifier les analyses :{/t}</label>
 <div class="col-md-8">
 <input id="" class="form-control" name="metal_unite" type="text" value="{$data.metal_unite}">
-</dd>
+
 </div>
 </div>
 <div class="form-group">
@@ -31,7 +31,7 @@ Nom du métal <span class="red">*</span> :
 <div class="col-md-8">
 <input id="" class="form-control" type="radio" id="cactif_0" name="metal_actif" value="1" {if $data.metal_actif == 1} checked{/if}>oui 
 <input type="radio" id="cactif_1" name="metal_actif" value="0" {if $data.metal_actif == 0} checked{/if}>non 
-</dd>
+
 </div>
 </div>
 <div class="form-group"></div>

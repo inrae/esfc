@@ -12,7 +12,7 @@
 <label for="" class="control-label col-md-4">{t}Couleur de la marque <span class="red">*</span> :{/t}</label>
 <div class="col-md-8">
 <input id="" class="form-control" name="couleur" class="commentaire" autofocus required value={$data.couleur}>
-</dd>
+
 </div>
 </div>
 <div class="form-group">

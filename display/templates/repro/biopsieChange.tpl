@@ -22,21 +22,21 @@ Retour au reproducteur
 <label for="" class="control-label col-md-4">{t}Date du prélèvement <span class="red">*</span> :{/t}</label>
 <div class="col-md-8">
 <input id="" class="form-control" class="datetimepicker" name="biopsie_date" required value="{$data.biopsie_date}">
-</dd>
+
 </div>
 </div>
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}Diamètre moyen (mm) :{/t}</label>
 <div class="col-md-8">
 <input id="" class="form-control" class="taux" name="diam_moyen" value="{$data.diam_moyen}">
-</dd>
+
 </div>
 </div>
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}Écart type du diamètre moyen :{/t}</label>
 <div class="col-md-8">
 <input id="" class="form-control" class="taux" name="diametre_ecart_type" value="{$data.diametre_ecart_type}">
-</dd>
+
 </div>
 </div>
 <div class="form-group">
@@ -64,21 +64,21 @@ Sélectionnez...
 <label for="" class="control-label col-md-4">{t}Taux OPI :{/t}</label>
 <div class="col-md-8">
 <input id="" class="form-control" class="taux" name="tx_opi" value="{$data.tx_opi}">
-</dd>
+
 </div>
 </div>
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}Taux de coloration normale :{/t}</label>
 <div class="col-md-8">
 <input id="" class="form-control" class="taux" name="tx_coloration_normal" value="{$data.tx_coloration_normal}">
-</dd>
+
 </div>
 </div>
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}Taux d'éclatement :{/t}</label>
 <div class="col-md-8">
 <input id="" class="form-control" class="taux" name="tx_eclatement" value="{$data.tx_eclatement}">
-</dd>
+
 </div>
 <fieldset>
 <legend>{t}Maturation Ringer{/t}<legend>
@@ -86,7 +86,7 @@ Sélectionnez...
 <label for="" class="control-label col-md-4">{t}T50 :{/t}</label>
 <div class="col-md-8">
 <input id="" class="form-control" class="time" name="ringer_t50" value="{$data.ringer_t50}">
-</dd>
+
 </div>
 </div>
 <div class="form-group">
@@ -95,14 +95,14 @@ Sélectionnez...
 <input id="" class="form-control" class="taux" name="ringer_tx_max" value="{$data.ringer_tx_max}">
  en 
  <input class="time" name="ringer_duree" value="{$data.ringer_duree}">
-</dd>
+
 </div>
 </div>
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}Commentaires :{/t}</label>
 <div class="col-md-8">
 <input id="" class="form-control" class="commentaire" name="ringer_commentaire" value="{$data.ringer_commentaire}">
-</dd>
+
 </div>
 </fieldset>
 <fieldset>
@@ -111,28 +111,28 @@ Sélectionnez...
 <label for="" class="control-label col-md-4">{t}T50 :{/t}</label>
 <div class="col-md-8">
 <input id="" class="form-control" class="time" name="leibovitz_t50" value="{$data.leibovitz_t50}">
-</dd>
+
 </div><div class="form-group">
 <label for="" class="control-label col-md-4">{t}% maximal de maturation observé :{/t}</label>
 <div class="col-md-8">
 <input id="" class="form-control" class="taux" name="leibovitz_tx_max" value="{$data.leibovitz_tx_max}">
  en 
  <input class="time" name="leibovitz_duree" value="{$data.leibovitz_duree}">
-</dd>
+
 </div>
 </div>
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}Commentaires :{/t}</label>
 <div class="col-md-8">
 <input id="" class="form-control" class="commentaire" name="leibovitz_commentaire" value="{$data.leibovitz_commentaire}">
-</dd>
+
 </div>
 </fieldset>
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}Commentaire général :{/t}</label>
 <div class="col-md-8">
 <input id="" class="form-control" class="commentaire" name="biopsie_commentaire" value="{$data.biopsie_commentaire}">
-</dd>
+
 </div>
 
 <div class="form-group center">

@@ -13,14 +13,14 @@
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}Nom du lieu <span class="red">*</span> :{/t}</label>
 <div class="col-md-8">
-<input id="" class="form-control" name="localisation" size="40" value="{$data.localisation}" autofocus></dd>
+<input id="" class="form-control" name="localisation" size="40" value="{$data.localisation}" autofocus>
 </div>
 </div>
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}Longitude (coord. décimales, WGS84) :{/t}</label>
 <div class="col-md-8">
 <input id="" class="form-control" name="longitude_dd" value="{$data.longitude_dd}" pattern="-?[0-9]+(\.[0-9]+)?" title="Nombre décimal">
-</dd>
+
 </div>
 </div>
 <div class="form-group">
@@ -40,7 +40,7 @@
 </option>
 {/section}
 </select>
-</dd>
+
 </div>
 </div>
 <div class="form-group">
@@ -49,7 +49,7 @@
 <input id="" class="form-control" type="radio" name="actif" value="0" {if $data.actif == 0}checked{/if} > non
 <br>
 <input type="radio" name="actif" value="1" {if $data.actif == 1}checked{/if} > oui
-</dd>
+
 </div>
 
 

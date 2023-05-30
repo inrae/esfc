@@ -54,6 +54,9 @@ body {
 .green {
 	color: #A4C400;
 }
+.black {
+	color: #000;
+}
 .message {
 	font-style: italic;
 	color: #003A80;
@@ -94,6 +97,7 @@ legend {
 	border-width: 1px;
 	/*background:  #98c1e9;*/
 	background-color: rgba(0,158,224, 0.3);
+	color: #000;
 }
 
 

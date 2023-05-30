@@ -21,7 +21,7 @@
 <label for="" class="control-label col-md-4">{t}Description :{/t}</label>
 <div class="col-md-8">
 <input id="" class="form-control" type="text" name="document_description" value="" size="40">
-</dd>
+
 </div>
 
 <div class="form-group center">

@@ -16,7 +16,7 @@ Nom du dilueur <span class="red">*</span> :
 {/t}</label>
 <div class="col-md-8">
 <input id="" class="form-control" name="sperme_dilueur_libelle" type="text" value="{$data.sperme_dilueur_libelle}" required autofocus/>
-</dd>
+
 </div>
 </div>
 <div class="form-group">

@@ -56,19 +56,19 @@ Retour à la séquence&nbsp;
 </option>
 {/section}
 </select>
-</dd> 
+ 
 </div>
 </div>
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}Volume utilisé (ml) :{/t}</label>
 <div class="col-md-8">
-<input id="" class="form-control" class="taux" name="volume_utilise" value="{$data.volume_utilise}"></dd>
+<input id="" class="form-control" class="taux" name="volume_utilise" value="{$data.volume_utilise}">
 </div>
 </div>
 <div class="form-group">
 <label for="" class="control-label col-md-4">{t}Nbre de paillettes utilisées :{/t}</label>
 <div class="col-md-8">
-<input id="" class="form-control" class="nombre" name="nb_paillette_croisement" value="{$data.nb_paillette_croisement}"></dd>
+<input id="" class="form-control" class="nombre" name="nb_paillette_croisement" value="{$data.nb_paillette_croisement}">
 </div>
 
 <div class="form-group center">
