@@ -8,17 +8,17 @@
 <input type="hidden" name="action" value="Write">
 <input type="hidden" name="moduleBase" value=""> class="cmxform" id="evenementTypeForm" method="post" action="index.php?module=evenementTypeWrite">
 <input type="hidden" name="evenement_type_id" value="{$data.evenement_type_id}">
-<tr>
-<td class="libelleSaisie">
-Nom du type d'événement <span class="red">*</span> :</td>
-<td class="datamodif">
+<div class="form-group">
+                <label for="" class="control-label col-md-4">{t}
+Nom du type d'événement <span class="red">*</span> :{/t}</label>
+                <div class="col-md-8">
 <input id="cevenement_type_libelle" name="evenement_type_libelle" type="text" value="{$data.evenement_type_libelle}" required autofocus/>
-</td>
-</tr>
-<tr>
-<td class="libelleSaisie">
-Actif dans les sélections<span class="red">*</span> ?</td>
-<td class="datamodif">
+</div>
+</div>
+<div class="form-group">
+                <label for="" class="control-label col-md-4">{t}
+Actif dans les sélections<span class="red">*</span> ?{/t}</label>
+                <div class="col-md-8">
 <input type="radio" name="evenement_type_actif" value="0" {if $data.evenement_type_actif == 0}checked{/if} > non
 <br>
 <input type="radio" name="evenement_type_actif" value="1" {if $data.evenement_type_actif == 1}checked{/if} > oui
@@ -50,7 +50,7 @@ Actif dans les sélections<span class="red">*</span> ?</td>
 </div>
 {/if}
 </div>
-</td>
-</tr>
+</div>
+</div>
 </table>
 <span class="red">*</span><span class="messagebas">Champ obligatoire</span>

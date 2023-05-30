@@ -8,13 +8,13 @@
 <input type="hidden" name="action" value="Write">
 <input type="hidden" name="moduleBase" value=""> class="cmxform" id="mortaliteTypeForm" method="post" action="index.php?module=mortaliteTypeWrite">
 <input type="hidden" name="mortalite_type_id" value="{$data.mortalite_type_id}">
-<tr>
-<td class="libelleSaisie">
-Type de mortalite <span class="red">*</span> :</td>
-<td class="datamodif">
+<div class="form-group">
+                <label for="" class="control-label col-md-4">{t}
+Type de mortalite <span class="red">*</span> :{/t}</label>
+                <div class="col-md-8">
 <input id="cmortalite_type_libelle" name="mortalite_type_libelle" type="text" value="{$data.mortalite_type_libelle}" required autofocus/>
-</td>
-</tr>
+</div>
+</div>
 <tr>
 <td colspan="2"><div align="center">
 <input class="submit" type="submit" value="Enregistrer">
@@ -42,7 +42,7 @@ Type de mortalite <span class="red">*</span> :</td>
 </div>
 {/if}
 </div>
-</td>
-</tr>
+</div>
+</div>
 </table>
 <span class="red">*</span><span class="messagebas">Champ obligatoire</span>

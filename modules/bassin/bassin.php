@@ -64,8 +64,11 @@ switch ($t_module["param"]) {
 		/*
 		 * Dates de recherche
 		 */
-		$searchAlimentation->setParam($_REQUEST);
-		$param = $searchAlimentation->getParam();
+		if (!isset($_SESSION["searchAlimentation"])) {
+			$_SESSION["searchAlimentation"] = new SearchAlimentation();
+		}
+		$_SESSION["searchAlimentation"]->setParam($_REQUEST);
+		$param = $_SESSION["searchAlimentation"]->getParam();
 		$vue->set($param, "searchAlim");
 		$vue->set($distribQuotidien->getListeConsommation($id, $param["date_debut"], $param["date_fin"]), "dataAlim");
 		$vue->set($distribQuotidien->alimentListe, "alimentListe");
@@ -76,7 +79,7 @@ switch ($t_module["param"]) {
 		$vue->set("bassin", "parentType");
 		$vue->set("bassin_id", "parentIdName");
 		$vue->set($id, "parent_id");
-		require_once 'modules/document/documentFunctions.php';
+		include_once 'modules/document/documentFunctions.php';
 		$vue->set(getListeDocument("bassin", $id, $_REQUEST["document_limit"], $_REQUEST["document_offset"]), "dataDoc");
 		/*
 		 * Affichage
@@ -125,5 +128,6 @@ switch ($t_module["param"]) {
 		}
 		break;
 	case "recapAlim":
-		$vue->set($dataClass->getRecapAlim($_REQUEST, $searchBassin->getParam()));
+		$vue->set($dataClass->getRecapAlim($_REQUEST, $_SESSION["searchBassin"]->getParam()));
+		break;
 }

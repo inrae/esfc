@@ -8,13 +8,13 @@
 <input type="hidden" name="action" value="Write">
 <input type="hidden" name="moduleBase" value=""> class="cmxform" id="pittagTypeForm" method="post" action="index.php?module=pittagTypeWrite">
 <input type="hidden" name="pittag_type_id" value="{$data.pittag_type_id}">
-<tr>
-<td class="libelleSaisie">
-Nom du type de pittag <span class="red">*</span> :</td>
-<td class="datamodif">
+<div class="form-group">
+                <label for="" class="control-label col-md-4">{t}
+Nom du type de pittag <span class="red">*</span> :{/t}</label>
+                <div class="col-md-8">
 <input id="cpittag_type_libelle" name="pittag_type_libelle" type="text" value="{$data.pittag_type_libelle}" required autofocus/>
-</td>
-</tr>
+</div>
+</div>
 <tr>
 <td colspan="2"><div align="center">
 <input class="submit" type="submit" value="Enregistrer">
@@ -42,7 +42,7 @@ Nom du type de pittag <span class="red">*</span> :</td>
 </div>
 {/if}
 </div>
-</td>
-</tr>
+</div>
+</div>
 </table>
 <span class="red">*</span><span class="messagebas">Champ obligatoire</span>

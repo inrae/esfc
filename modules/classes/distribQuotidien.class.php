@@ -108,18 +108,13 @@ class DistribQuotidien extends ObjetBDD
 			"bassin_id" => $bassin_id
 		));
 	}
-	function getListeConsommation($bassin_id, $date_debut, $date_fin)
+	function getListeConsommation(int $bassin_id, $date_debut, $date_fin)
 	{
-		$date_debut = $this->formatDateLocaleVersDB($date_debut);
-		$date_fin = $this->formatDateLocaleVersDB($date_fin);
-		$param = array(
-			"date_debut" => $date_debut,
-			"date_fin" => $date_fin,
-			"bassin_id" => $bassin_id
-		);
-		/*
-			 * Preparation de la premiere commande de selection du crosstab
-			 */
+		$date_debut = $this->connection->quote($this->formatDateLocaleVersDB( $date_debut));
+		$date_fin = $this->connection->quote($this->formatDateLocaleVersDB($date_fin));
+		/**
+		 * Preparation de la premiere commande de selection du crosstab
+		 */
 		$sql1 = "select distrib_quotidien_id, bassin_nom, distrib_quotidien_date, 
 				total_distribue, reste, 
 				aliment_libelle_court, quantite
@@ -127,31 +122,34 @@ class DistribQuotidien extends ObjetBDD
 				join bassin using (bassin_id)
 				left outer join aliment_quotidien using (distrib_quotidien_id)
 				left outer join aliment using (aliment_id)
-				where distrib_quotidien_date >= :date_debut
-					and distrib_quotidien_date <= :date_fin
-					and bassin_id = :bassin_id
+				where distrib_quotidien_date >= '$date_debut'
+					and distrib_quotidien_date <= '$date_fin'
+					and bassin_id = $bassin_id
 				order by distrib_quotidien_date desc";
-		/*
-			 * Recuperation de la liste des libellés des aliments
-			 */
+		/**
+		 * Recuperation de la liste des libellés des aliments
+		 */
 		$sql2 = "select distinct aliment_libelle_court
 					from distrib_quotidien
 					natural join aliment_quotidien
 					natural join aliment
-					where distrib_quotidien_date >= :date_debut
-					and distrib_quotidien_date <= :date_fin
-					and bassin_id = :bassin_id
+					where distrib_quotidien_date >= $date_debut
+					and distrib_quotidien_date <= $date_fin
+					and bassin_id = $bassin_id
 					order by 1";
 		$sql3 = "select distinct aliment_libelle_court
 					from distrib_quotidien
 					natural join aliment_quotidien
 					natural join aliment
-					where distrib_quotidien_date >= :date_debut
-					and distrib_quotidien_date <= :date_fin
-					and bassin_id = :bassin_id
+					where distrib_quotidien_date >= '$date_debut'
+					and distrib_quotidien_date <= '$date_fin'
+					and bassin_id = $bassin_id
 					order by 1";
-		$this->alimentListe = $this->getListeParamAsPrepared($sql2, $param);
-		/*
+		$this->alimentListe = $this->getListeParam($sql2);
+		if (empty($this->alimentListe)) {
+			return array();
+		}
+		/**
 			 * Preparation de la clause AS
 			 */
 		$as = "distrib_quotidien_id int8, 
@@ -166,10 +164,10 @@ class DistribQuotidien extends ObjetBDD
 		/*
 			 * Preparation de la requete
 			 */
-		$sql = "select * from crosstab ('" . $sql1 . "', '" . $sql3 . "')
-				AS ( " . $as . " )";
-		// printr($sql);
-		return $this->getListeParamAsPrepared($sql, $param);
+			$sql = "select * from crosstab ('" . $sql1 . "', '" . $sql3 . "')
+			AS ( " . $as . " )";
+		printA($sql);
+		return $this->getListeParam($sql);
 	}
 	/**
 	 * Ecrit un enregistrement à partir du bassin et de la date

@@ -11,17 +11,17 @@
 <input type="hidden" name="action" value="Write">
 <input type="hidden" name="moduleBase" value=""> class="cmxform" id="circuitEauForm" method="post" action="index.php?module=circuitEauWrite">
 <input type="hidden" name="circuit_eau_id" value="{$data.circuit_eau_id}">
-<tr>
-<td class="libelleSaisie">
-Nom du circuit d'eau <span class="red">*</span> :</td>
-<td class="datamodif">
+<div class="form-group">
+                <label for="" class="control-label col-md-4">{t}
+Nom du circuit d'eau <span class="red">*</span> :{/t}</label>
+                <div class="col-md-8">
 <input id="ccircuit_eau_libelle" name="circuit_eau_libelle" type="text" value="{$data.circuit_eau_libelle}" required autofocus/>
-</td>
-</tr>
+</div>
+</div>
 
-<tr>
-<td class="libelleSaisie">Site d'implantation :</td>
-<td class="datamodif">
+<div class="form-group">
+                <label for="" class="control-label col-md-4">{t}Site d'implantation :{/t}</label>
+                <div class="col-md-8">
 <select name="site_id">
 <option value="" {if $data.site_id == ""}selected{/if}>Sélectionnez le site...</option>
 {section name=lst loop=$site}
@@ -30,14 +30,14 @@ Nom du circuit d'eau <span class="red">*</span> :</td>
 </option>
 {/section}
 </select>
-</td>
-</tr>
+</div>
+</div>
 
-<tr>
-<td class="libelleSaisie">
+<div class="form-group">
+                <label for="" class="control-label col-md-4">{t}
 Circuit d'eau en service ? 
-</td>
-<td class="datamodif">
+{/t}</label>
+                <div class="col-md-8">
 <input type="radio" name="circuit_eau_actif" value="1" {if $data.circuit_eau_actif == 1 || $data.circuit_eau_actif == ""}checked{/if}> oui
 <input type="radio" name="circuit_eau_actif" value="0" {if $data.circuit_eau_actif == 0}checked{/if}> non
 
@@ -68,7 +68,7 @@ Circuit d'eau en service ?
 </div>
 {/if}
 </div>
-</td>
-</tr>
+</div>
+</div>
 </table>
 <span class="red">*</span><span class="messagebas">Champ obligatoire</span>

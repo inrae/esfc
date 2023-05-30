@@ -8,13 +8,13 @@
 <input type="hidden" name="action" value="Write">
 <input type="hidden" name="moduleBase" value=""> class="cmxform" id="poissonStatutForm" method="post" action="index.php?module=poissonStatutWrite">
 <input type="hidden" name="poisson_statut_id" value="{$data.poisson_statut_id}">
-<tr>
-<td class="libelleSaisie">
-Nom du statut <span class="red">*</span> :</td>
-<td class="datamodif">
+<div class="form-group">
+                <label for="" class="control-label col-md-4">{t}
+Nom du statut <span class="red">*</span> :{/t}</label>
+                <div class="col-md-8">
 <input id="cpoisson_statut_libelle" name="poisson_statut_libelle" type="text" value="{$data.poisson_statut_libelle}" required autofocus/>
-</td>
-</tr>
+</div>
+</div>
 <tr>
 <td colspan="2"><div align="center">
 <input class="submit" type="submit" value="Enregistrer">
@@ -42,7 +42,7 @@ Nom du statut <span class="red">*</span> :</td>
 </div>
 {/if}
 </div>
-</td>
-</tr>
+</div>
+</div>
 </table>
 <span class="red">*</span><span class="messagebas">Champ obligatoire</span>

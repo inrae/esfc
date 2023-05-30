@@ -66,8 +66,8 @@ Retour au reproducteur
 <legend>{t}Analyses réalisées{/t}</legend>
 {include file="repro/spermeMesureList.tpl"}
 </fieldset>
-</td>
-</tr>
+</div>
+</div>
 <tr>
 <td colspan="2">
 <!-- Ajout de l'affichage des congelations -->
@@ -77,6 +77,6 @@ Retour au reproducteur
 {include file="repro/spermeCongelationList.tpl"}
 </fieldset>
 {/if}
-</td>
-</tr>
+</div>
+</div>
 </table>

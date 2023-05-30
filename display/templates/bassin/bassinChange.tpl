@@ -1,203 +1,178 @@
+<h2>{t}Modification d'un bassin{/t}</h2>
 <a href="index.php?module={$bassinParentModule}">
-Retour à la liste des bassins
+    {t}Retour à la liste des bassins{/t}
 </a>
 {if $data.bassin_id > 0}
- > 
-<a href="index.php?module=bassinDisplay&bassin_id={$data.bassin_id}"> Retour au bassin</a>
+>
+<a href="index.php?module=bassinDisplay&bassin_id={$data.bassin_id}">{t}Retour au bassin{/t}</a>
 {/if}
-<h2>{t}Modification d'un bassin{/t}</h2>
-<table class="tablesaisie">
 <div class="row">
-<div class="col-md-6">
-<form class="form-horizontal" id="" method="post" action="index.php">
-<input type="hidden" name="action" value="Write">
-<input type="hidden" name="moduleBase" value=""> id="bassinform" method="post" action="index.php?module=bassinWrite">
-<input type="hidden" name="bassin_id" value="{$data.bassin_id}">
-<tr>
-<td class="libelleSaisie">
-Nom du bassin <span class="red">*</span> :</td>
-<td class="datamodif">
-<input id="cbassin_nom" name="bassin_nom" value="{$data.bassin_nom}" size="20" required>
-</td>
-</tr>
-<tr>
-<td class="libelleSaisie">
-Description :
-</td>
-<td class="datamodif">
-<input id="cbassin_description" name="bassin_description" value="{$data.bassin_description}" size="20">
-</td>
-</tr>
+    <div class="col-md-6">
+        <form class="form-horizontal" id="bassinform" method="post" action="index.php">
+            <input type="hidden" name="action" value="Write">
+            <input type="hidden" name="moduleBase" value="bassin">
+            <input type="hidden" name="bassin_id" value="{$data.bassin_id}">
+            <div class="form-group">
+                <label for="cbassin_nom" class="control-label col-md-4"><span class="red">*</span>
+                    {t}Nom du bassin :{/t}</label>
+                <div class="col-md-8">
+                    <input id="cbassin_nom" class="form-control" name="bassin_nom" value="{$data.bassin_nom}" size="20"
+                        required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="cbassin_description" class="control-label col-md-4">{t}Description :{/t}</label>
+                <div class="col-md-8">
+                    <input id="cbassin_description" class="form-control" name="bassin_description"
+                        value="{$data.bassin_description}" size="20">
+                </div>
+            </div>
 
-<tr>
-<td class="libelleSaisie">
-Type de bassin :</td>
-<td class="datamodif">
-<select id="cbassin_type_id" name="bassin_type_id">
-<option value="" {if $bassinType[lst].bassin_type_id == ""}selected{/if}>
-Sélectionnez le type de bassin...
-</option>
-{section name=lst loop=$bassin_type}
-<option value="{$bassin_type[lst].bassin_type_id}" {if $bassin_type[lst].bassin_type_id == $data.bassin_type_id}selected{/if}>
-{$bassin_type[lst].bassin_type_libelle}
-</option>
-{/section}
-</select>
-</td>
-</tr>
+            <div class="form-group">
+                <label for="cbassin_type_id" class="control-label col-md-4">{t}Type de bassin :{/t}</label>
+                <div class="col-md-8">
+                    <select class="form-control" id="cbassin_type_id" name="bassin_type_id">
+                        <option value="" {if $bassinType[lst].bassin_type_id=="" }selected{/if}>
+                            {t}Sélectionnez le type de bassin...{/t}
+                        </option>
+                        {section name=lst loop=$bassin_type}
+                        <option value="{$bassin_type[lst].bassin_type_id}" {if
+                            $bassin_type[lst].bassin_type_id==$data.bassin_type_id}selected{/if}>
+                            {$bassin_type[lst].bassin_type_libelle}
+                        </option>
+                        {/section}
+                    </select>
+                </div>
+            </div>
 
-<tr>
-<td class="libelleSaisie">Site d'implantation :</td>
-<td class="datamodif">
-<select name="site_id">
-<option value="" {if $data.site_id == ""}selected{/if}>Sélectionnez le site...</option>
-{section name=lst loop=$site}
-<option value="{$site[lst].site_id}" {if $data.site_id == $site[lst].site_id}selected{/if}>
-{$site[lst].site_name}
-</option>
-{/section}
-</select>
-</td>
-</tr>
+            <div class="form-group">
+                <label for="site_id" class="control-label col-md-4">{t}Site d'implantation :{/t}</label>
+                <div class="col-md-8">
+                    <select class="form-control" name="site_id">
+                        <option value="" {if $data.site_id=="" }selected{/if}>{t}Sélectionnez le site...{/t}</option>
+                        {section name=lst loop=$site}
+                        <option value="{$site[lst].site_id}" {if $data.site_id==$site[lst].site_id}selected{/if}>
+                            {$site[lst].site_name}
+                        </option>
+                        {/section}
+                    </select>
+                </div>
+            </div>
 
-<tr>
-<td class="libelleSaisie">
-Utilisation du bassin :</td>
-<td class="datamodif">
-<select id="cbassin_usage_id" name="bassin_usage_id">
-<option value="" {if $bassin_usage[lst].bassin_usage_id == ""}selected{/if}>
-Sélectionnez l'utilisation du bassin...
-</option>
-{section name=lst loop=$bassin_usage}
-<option value="{$bassin_usage[lst].bassin_usage_id}" {if $bassin_usage[lst].bassin_usage_id == $data.bassin_usage_id}selected{/if}>
-{$bassin_usage[lst].bassin_usage_libelle}
-</option>
-{/section}
-</select>
-</td>
-</tr>
+            <div class="form-group">
+                <label for="cbassin_usage_id" class="control-label col-md-4">{t}Utilisation du bassin :{/t}</label>
+                <div class="col-md-8">
+                    <select class="form-control" id="cbassin_usage_id" name="bassin_usage_id">
+                        <option value="" {if $bassin_usage[lst].bassin_usage_id=="" }selected{/if}>
+                            {t}Sélectionnez l'utilisation du bassin...{/t}
+                        </option>
+                        {section name=lst loop=$bassin_usage}
+                        <option value="{$bassin_usage[lst].bassin_usage_id}" {if
+                            $bassin_usage[lst].bassin_usage_id==$data.bassin_usage_id}selected{/if}>
+                            {$bassin_usage[lst].bassin_usage_libelle}
+                        </option>
+                        {/section}
+                    </select>
+                </div>
+            </div>
 
-<tr>
-<td class="libelleSaisie">
-Zone d'implantation du bassin :</td>
-<td class="datamodif">
-<select id="cbassin_zone_id" name="bassin_zone_id">
-<option value="" {if $bassin_zone[lst].bassin_zone_id == ""}selected{/if}>
-Sélectionnez la zone d'implantation du bassin...
-</option>
-{section name=lst loop=$bassin_zone}
-<option value="{$bassin_zone[lst].bassin_zone_id}" {if $bassin_zone[lst].bassin_zone_id == $data.bassin_zone_id}selected{/if}>
-{$bassin_zone[lst].bassin_zone_libelle}
-</option>
-{/section}
-</select>
-</td>
-</tr>
+            <div class="form-group">
+                <label for="cbassin_zone_id" class="control-label col-md-4">{t}Zone d'implantation du bassin
+                    :{/t}</label>
+                <div class="col-md-8">
+                    <select class="form-control" id="cbassin_zone_id" name="bassin_zone_id">
+                        <option value="" {if $bassin_zone[lst].bassin_zone_id=="" }selected{/if}>
+                            {t}Sélectionnez la zone d'implantation du bassin...{/t}
+                        </option>
+                        {section name=lst loop=$bassin_zone}
+                        <option value="{$bassin_zone[lst].bassin_zone_id}" {if
+                            $bassin_zone[lst].bassin_zone_id==$data.bassin_zone_id}selected{/if}>
+                            {$bassin_zone[lst].bassin_zone_libelle}
+                        </option>
+                        {/section}
+                    </select>
+                </div>
+            </div>
 
-<tr>
-<td class="libelleSaisie">
-Circuit d'eau :</td>
-<td class="datamodif">
-<select id="ccircuit_eau_id" name="circuit_eau_id">
-<option value="" {if $circuit_eau[lst].circuit_eau_id == ""}selected{/if}>
-Sélectionnez le circuit d'eau...
-</option>
-{section name=lst loop=$circuit_eau}
-<option value="{$circuit_eau[lst].circuit_eau_id}" {if $circuit_eau[lst].circuit_eau_id == $data.circuit_eau_id}selected{/if}>
-{$circuit_eau[lst].circuit_eau_libelle}
-</option>
-{/section}
-</select>
-</td>
-</tr>
+            <div class="form-group">
+                <label for="ccircuit_eau_id" class="control-label col-md-4">{t}Circuit d'eau :{/t}</label>
+                <div class="col-md-8">
+                    <select class="form-control" id="ccircuit_eau_id" name="circuit_eau_id">
+                        <option value="" {if $circuit_eau[lst].circuit_eau_id=="" }selected{/if}>
+                            {t}Sélectionnez le circuit d'eau...{/t}
+                        </option>
+                        {section name=lst loop=$circuit_eau}
+                        <option value="{$circuit_eau[lst].circuit_eau_id}" {if
+                            $circuit_eau[lst].circuit_eau_id==$data.circuit_eau_id}selected{/if}>
+                            {$circuit_eau[lst].circuit_eau_libelle}
+                        </option>
+                        {/section}
+                    </select>
+                </div>
+            </div>
 
-<tr>
-<td class="libelleSaisie">
-<label for="longueur">
-Longueur (en cm) :
-</label>
-</td>
-<td class="datamodif">
-<input id="longueur" name="longueur" value="{$data.longueur}" size="10" pattern="[0-9]+(\.[0-9]+)?" />
-</td>
-</tr>
+            <div class="form-group">
+                <label for="longueur" class="control-label col-md-4">{t}Longueur (en cm) :{/t}</label>
+                <div class="col-md-8">
+                    <input id="longueur" class="form-control taux" name="longueur" value="{$data.longueur}" />
+                </div>
+            </div>
 
-<tr>
-<td class="libelleSaisie">
-Largeur ou diamètre (en cm) :
-</td>
-<td class="datamodif">
-<input id="clargeur_diametre" name="largeur_diametre" value="{$data.largeur_diametre}" size="10" pattern="[0-9]+" >
-</td>
-</tr>
+            <div class="form-group">
+                <label for="clargeur_diametre" class="control-label col-md-4">{t}Largeur ou diamètre (en cm)
+                    :{/t}</label>
+                <div class="col-md-8">
+                    <input id="clargeur_diametre" class="form-control nombre" name="largeur_diametre"
+                        value="{$data.largeur_diametre}">
+                </div>
+            </div>
 
+            <div class="form-group">
+                <label for="csurface" class="control-label col-md-4">{t}
+                    Surface (en cm2) :
+                    {/t}</label>
+                <div class="col-md-8">
+                    <input class="form-control nombre" id="csurface" name="surface" value="{$data.surface}">
+                </div>
+            </div>
 
+            <div class="form-group">
+                <label for="chauteur_eau" class="control-label col-md-4">{t}Hauteur d'eau (en cm) :{/t}</label>
+                <div class="col-md-8">
+                    <input class="form-control nombre" id="chauteur_eau" name="hauteur_eau" value="{$data.hauteur_eau}">
+                </div>
+            </div>
 
-<tr>
-<td class="libelleSaisie">
-Surface (en cm2) :
-</td>
-<td class="datamodif">
-<input id="csurface" name="surface" value="{$data.surface}" size="10" pattern="[0-9]+">
-</td>
-</tr>
+            <div class="form-group">
+                <label for="cvolume" class="control-label col-md-4">{t}Volume (en litres) :{/t}</label>
+                <div class="col-md-8">
+                    <input class="form-control nombre" id="cvolume" name="volume" value="{$data.volume}">
+                </div>
+            </div>
 
-<tr>
-<td class="libelleSaisie">
-Hauteur d'eau (en cm) :
-</td>
-<td class="datamodif">
-<input id="chauteur_eau" name="hauteur_eau" value="{$data.hauteur_eau}" size="10" type="number" pattern="[0-9]+">
-</td>
-</tr>
+            <div class="form-group">
+                <label for="cactif_0" class="control-label col-md-4">{t}Bassin en activité :{/t}</label>
+                <div class="col-md-8">
+                    <label class="radio-inline">
+                        <input type="radio" id="cactif_0" name="actif" value="1" {if $data.actif==1}
+                            checked{/if}>{t}oui{/t}
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" id="cactif_1" name="actif" value="0" {if $data.actif==0}
+                            checked{/if}>{t}non{/t}
+                    </label>
+                </div>
+            </div>
 
-<tr>
-<td class="libelleSaisie">
-Volume (en litres) :
-</td>
-<td class="datamodif">
-<input id="cvolume" name="volume" value="{$data.volume}" size="10" type="number" pattern="[0-9]+">
-</td>
-</tr>
-
-<tr>
-<td class="libelleSaisie">
-Bassin en activité :
-</td>
-<td class="datamodif">
-<input type="radio" id="cactif_0" name="actif" value="1" {if $data.actif == 1} checked{/if}>{t}oui{/t} 
-<input type="radio" id="cactif_1" name="actif" value="0" {if $data.actif == 0} checked{/if}>{t}non{/t} 
-</td>
-</tr>
-
-<tr>
-<td colspan="2"><div align="center">
-<input class="submit" type="submit" value="Enregistrer">
-<div class="form-group center">
-<button type="submit" class="btn btn-primary button-valid">{t}Valider{/t}</button>
-<button class="btn btn-danger btn-delete">{t}Supprimer{/t}</button>
-</form>
-</div>
+            <div class="form-group center">
+                <button type="submit" class="btn btn-primary button-valid">{t}Valider{/t}</button>
+                {if $data.bassin_id > 0 &&$droits["bassinAdmin"] == 1}
+                <button class="btn btn-danger btn-delete">{t}Supprimer{/t}</button>
+                {/if}
+            </div>
+        </form>
+    </div>
 </div>
 
-{if $data.bassin_id > 0 &&$droits["bassinAdmin"] == 1}
-<div class="row">
-<div class="col-md-6">
-<form class="form-horizontal" id="" method="post" action="index.php">
-<input type="hidden" name="action" value="Write">
-<input type="hidden" name="moduleBase" value=""> action="index.php" method="post" onSubmit='return confirmSuppression("Confirmez-vous la suppression ?")'>
-<input type="hidden" name="bassin_id" value="{$data.bassin_id}">
-<input type="hidden" name="module" value="bassinDelete">
-<input class="submit" type="submit" value="Supprimer">
-<div class="form-group center">
-<button type="submit" class="btn btn-primary button-valid">{t}Valider{/t}</button>
-<button class="btn btn-danger btn-delete">{t}Supprimer{/t}</button>
-</form>
-</div>
-</div>
-{/if}
-</div>
-</td>
-</tr>
-</table>
+
 <span class="red">*</span><span class="messagebas">Champ obligatoire</span>

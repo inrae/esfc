@@ -103,14 +103,14 @@ $(document).ready(function() {
 </td>
 <td>
 <input name="taux_reste_{$dataBassin[lst].distribution_id}" class="num5" readonly id="taux_reste_{$dataBassin[lst].distribution_id}" value="{$dataBassin[lst].taux_reste}">
-</td>
-</tr>
+</div>
+</div>
 {/section}
 <tr>
 <td style="text_align:center;">
 
-</td>
-</tr>
+</div>
+</div>
 </table>
 <div class="form-group center">
 <button type="submit" class="btn btn-primary button-valid">{t}Valider{/t}</button>

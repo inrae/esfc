@@ -134,8 +134,8 @@ Nouvel événement...
 {$evenements[lst].ps_datetime}
 {/if}</td>
 <td>{$evenements[lst].ps_libelle}</td>
-<td>{$evenements[lst].ps_commentaire}</td>
-</tr>
+<td>{$evenements[lst].ps_commentaire}</div>
+</div>
 {/section}
 </tbody>
 </table>

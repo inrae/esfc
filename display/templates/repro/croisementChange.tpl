@@ -85,8 +85,8 @@ Retour à la séquence
 <td class="center">{$poissonSequence[lst].sexe_libelle_court}</td>
 <td class="center">
 <input name="poisson_campagne_id[]" type="checkbox" value="{$poissonSequence[lst].poisson_campagne_id}" {if $poissonSequence[lst].selected == 1}checked{/if}>
-</td>
-</tr>
+</div>
+</div>
 {/section}
 </table>
 

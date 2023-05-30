@@ -1,7 +1,5 @@
-<script>
-setDataTablesFull("cbassinPoissonList");
-</script>
-<table id="cbassinPoissonList" class="tableliste">
+
+<table id="cbassinPoissonList" class="table table-bordered table-hover datatable-nopaging">
 <thead>
 <tr>
 <th>{t}matricule{/t}</th>
@@ -36,8 +34,8 @@ setDataTablesFull("cbassinPoissonList");
 </tr>
 {/section}
 </tbody>
+<tfoot>
+    <td colspan="6">Masse totale des poissons dans le bassin :</td>
+    <td>{$mt}</td>
+</tfoot>
 </table>
-{if $mt > 0}
-<br>
-Masse totale des poissons dans le bassin : {$mt}
-{/if}

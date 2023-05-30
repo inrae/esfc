@@ -1,6 +1,6 @@
 <h2>{t}Modification d'un aliment{/t}</h2>
 
-<a href="index.php?module=alimentList">Retour à la liste</a>
+<a href="index.php?module=alimentList">{t}Retour à la liste{/t}</a>
 <div class="row">
     <div class="col-md-6">
         <form class="form-horizontal" id="alimentForm" method="post" action="index.php">

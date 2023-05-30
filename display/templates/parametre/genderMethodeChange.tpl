@@ -8,13 +8,13 @@
 <input type="hidden" name="action" value="Write">
 <input type="hidden" name="moduleBase" value=""> class="cmxform" id="genderMethodeForm" method="post" action="index.php?module=genderMethodeWrite">
 <input type="hidden" name="gender_methode_id" value="{$data.gender_methode_id}">
-<tr>
-<td class="libelleSaisie">
-Nom de la méthode de détermination du sexe <span class="red">*</span> :</td>
-<td class="datamodif">
+<div class="form-group">
+                <label for="" class="control-label col-md-4">{t}
+Nom de la méthode de détermination du sexe <span class="red">*</span> :{/t}</label>
+                <div class="col-md-8">
 <input id="cgender_methode_libelle" name="gender_methode_libelle" type="text" value="{$data.gender_methode_libelle}" required autofocus/>
-</td>
-</tr>
+</div>
+</div>
 <tr>
 <td colspan="2"><div align="center">
 <input class="submit" type="submit" value="Enregistrer">
@@ -42,7 +42,7 @@ Nom de la méthode de détermination du sexe <span class="red">*</span> :</td>
 </div>
 {/if}
 </div>
-</td>
-</tr>
+</div>
+</div>
 </table>
 <span class="red">*</span><span class="messagebas">Champ obligatoire</span>

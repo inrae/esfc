@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @author Eric Quinton
  * @copyright Copyright (c) 2014, IRSTEA / Eric Quinton
@@ -12,13 +13,16 @@
  * @author quinton
  *        
  */
-class DocumentSturio extends DocumentAttach {
+require_once "modules/classes/documentAttach.class.php";
+
+class DocumentSturio extends DocumentAttach
+{
 	public $resolution = 800;
-	public $modules = array (
-			"poisson",
-			"evenement",
-			"bassin",
-			"biopsie" 
+	public $modules = array(
+		"poisson",
+		"evenement",
+		"bassin",
+		"biopsie"
 	);
 	/**
 	 * Surcharge de la fonction supprimer pour effacer les enregistrements liés
@@ -26,17 +30,18 @@ class DocumentSturio extends DocumentAttach {
 	 *
 	 * @see ObjetBDD::supprimer()
 	 */
-	function supprimer($id) {
-		if ($id > 0 && is_numeric ( $id )) {
-			/*
-			 * Suppression dans les tables liées
-			 */
-			foreach ( $this->modules as $value ) {
-				$sql = "delete from " . $value . "_document where document_id = " . $id;
-				$this->executeSQL ( $sql );
-			}
-			return parent::supprimer ( $id );
+	function supprimer($id)
+	{
+		/**
+		 * Suppression dans les tables liées
+		 */
+		$param = array("id" => $id);
+		$sql = "delete from :tablename where document_id = :id";
+		foreach ($this->modules as $value) {
+			$param["tablename"] = $value . "_document";
+			$this->executeAsPrepared($sql, $param);
 		}
+		//return parent::supprimer($id);
 	}
 	/**
 	 * Retourne la liste des documents associes au type (evenement, poisson, bassin) et à la clé correspondante
@@ -45,23 +50,24 @@ class DocumentSturio extends DocumentAttach {
 	 * @param int $id        	
 	 * @return array
 	 */
-	function getListeDocument($type, $id, $limit = "all", $offset = 0) {
+	function getListeDocument($type, $id, $limit = "all", $offset = 0)
+	{
 		/*
 		 * Verification des valeurs numeriques
 		 */
 		$ok = true;
-		if (is_array ( $id )) {
-			foreach ( $id as $value ) {
-				if (! is_numeric ( $value ))
+		if (is_array($id)) {
+			foreach ($id as $value) {
+				if (!is_numeric($value))
 					$ok = false;
 			}
-			if (count($id) == 0 )
+			if (count($id) == 0)
 				$ok = false;
 		} else {
-			if (! is_numeric ( $id ) || $id < 1 || strlen($id) == 0)
+			if (!is_numeric($id) || $id < 1 || strlen($id) == 0)
 				$ok = false;
 		}
-		if (in_array ( $type, $this->modules ) && $ok == true) {
+		if (in_array($type, $this->modules) && $ok == true) {
 			$order = " order by case 
 						when document_date_creation  is null then '1970-01-01'
 						else document_date_creation
@@ -88,10 +94,10 @@ class DocumentSturio extends DocumentAttach {
  					document_date_creation
 					from document
 					join " . $type . "_document using (document_id)";
-				if (is_array ( $id )) {
+				if (is_array($id)) {
 					$where = " where " . $type . "_id in (";
 					$comma = "";
-					foreach ( $id as $value ) {
+					foreach ($id as $value) {
 						$where .= $comma . $value;
 						$comma = ",";
 					}
@@ -104,21 +110,21 @@ class DocumentSturio extends DocumentAttach {
 				$limit = "all";
 			if (!is_numeric($offset))
 				$offset = 0;
-			$limit = " limit ".$limit;
-			$offset = " offset ".$offset;
+			$limit = " limit " . $limit;
+			$offset = " offset " . $offset;
 			$commande = "select * from ($sql $where) as a  $order $limit $offset";
-			$liste = $this->getListeParam ( $commande);
+			$liste = $this->getListeParam($commande);
 			/*
 			 * Stockage des photos dans le dossier temporaire
 			 */
-			foreach ( $liste as $key => $value ) {
-				$liste [$key] ["photo_name"] = $this->generateFileName ( $value ["document_id"], 0, $this->resolution );
-				$liste [$key] ["photo_preview"] = $this->generateFileName ( $value ["document_id"], 1, $this->resolution );
-				$liste [$key] ["thumbnail_name"] = $this->generateFileName ( $value ["document_id"], 2, $this->resolution );
+			foreach ($liste as $key => $value) {
+				$liste[$key]["photo_name"] = $this->generateFileName($value["document_id"], 0, $this->resolution);
+				$liste[$key]["photo_preview"] = $this->generateFileName($value["document_id"], 1, $this->resolution);
+				$liste[$key]["thumbnail_name"] = $this->generateFileName($value["document_id"], 2, $this->resolution);
 			}
-			return ($liste);
+			return $liste;
 		} else {
-			return (array());
+			return array();
 		}
 	}
 }

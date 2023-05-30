@@ -8,20 +8,20 @@
 <input type="hidden" name="action" value="Write">
 <input type="hidden" name="moduleBase" value=""> id="mimeTypeForm" method="post" action="index.php?module=mimeTypeWrite">
 <input type="hidden" name="mime_type_id" value="{$data.mime_type_id}">
-<tr>
-<td class="libelleSaisie">
-Extension du fichier <span class="red">*</span> :</td>
-<td class="datamodif">
+<div class="form-group">
+                <label for="" class="control-label col-md-4">{t}
+Extension du fichier <span class="red">*</span> :{/t}</label>
+                <div class="col-md-8">
 <input id="cextension" name="extension" type="text" value="{$data.extension}" required autofocus/>
-</td>
-</tr>
-<tr>
-<td class="libelleSaisie">
-Type de contenu (mime-Type) <span class="red">*</span> :</td>
-<td class="datamodif">
+</div>
+</div>
+<div class="form-group">
+                <label for="" class="control-label col-md-4">{t}
+Type de contenu (mime-Type) <span class="red">*</span> :{/t}</label>
+                <div class="col-md-8">
 <input id="ccontent_type" name="content_type" type="text" value="{$data.content_type}" required />
-</td>
-</tr>
+</div>
+</div>
 <tr>
 <td colspan="2"><div align="center">
 <input class="submit" type="submit" value="Enregistrer">
@@ -49,7 +49,7 @@ Type de contenu (mime-Type) <span class="red">*</span> :</td>
 </div>
 {/if}
 </div>
-</td>
-</tr>
+</div>
+</div>
 </table>
 <span class="red">*</span><span class="messagebas">Champ obligatoire</span>

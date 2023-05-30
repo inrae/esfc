@@ -8,13 +8,13 @@
 <input type="hidden" name="action" value="Write">
 <input type="hidden" name="moduleBase" value=""> class="cmxform" id="cohorteTypeForm" method="post" action="index.php?module=cohorteTypeWrite">
 <input type="hidden" name="cohorte_type_id" value="{$data.cohorte_type_id}">
-<tr>
-<td class="libelleSaisie">
-Méthode de détermination de la cohorte <span class="red">*</span> :</td>
-<td class="datamodif">
+<div class="form-group">
+                <label for="" class="control-label col-md-4">{t}
+Méthode de détermination de la cohorte <span class="red">*</span> :{/t}</label>
+                <div class="col-md-8">
 <input id="ccohorte_type_libelle" name="cohorte_type_libelle" type="text" value="{$data.cohorte_type_libelle}" required autofocus/>
-</td>
-</tr>
+</div>
+</div>
 <tr>
 <td colspan="2"><div align="center">
 <input class="submit" type="submit" value="Enregistrer">
@@ -42,7 +42,7 @@ Méthode de détermination de la cohorte <span class="red">*</span> :</td>
 </div>
 {/if}
 </div>
-</td>
-</tr>
+</div>
+</div>
 </table>
 <span class="red">*</span><span class="messagebas">Champ obligatoire</span>

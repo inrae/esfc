@@ -184,8 +184,8 @@ Retour au sperme
 <br>
 <div id="freeze"></div>
 </fieldset>
-</td>
-</tr>
+</div>
+</div>
 <tr>
 <td>
 {include file='repro/spermeMesureList.tpl'}
@@ -197,7 +197,7 @@ Retour au sperme
 </fieldset>
 </td>
 <td>
-</td>
-</tr>
+</div>
+</div>
 </table>
 

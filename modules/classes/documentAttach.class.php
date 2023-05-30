@@ -1,12 +1,8 @@
 <?php
 
-/**
- * @author Eric Quinton
- * @copyright Copyright (c) 2014, IRSTEA / Eric Quinton
- * @license http://www.cecill.info/licences/Licence_CeCILL-C_V1-fr.html LICENCE DE LOGICIEL LIBRE CeCILL-C
- *  Creation 7 avr. 2014
- *  
- */
+class DocumentException extends Exception
+{
+}
 
 /**
  * Orm de gestion de la table document :
@@ -148,9 +144,8 @@ class DocumentAttach extends ObjetBDD
 	 */
 	function getData(int $id)
 	{
-		$this->codageHtml = false;
 		$sql = "select document_id, document_nom, content_type, mime_type_id, extension, document_date_creation
-				from " . $this->table . "
+				from document
 				join mime_type using (mime_type_id)
 				where document_id = :id";
 		return $this->lireParamAsPrepared($sql, array("id" => $id));
@@ -250,7 +245,7 @@ class DocumentAttach extends ObjetBDD
 	 * @param int $id        	
 	 * @param $phototype :
 	 *        	0 - photo originale, 1 - photo a la resolution fournie, 2 - vignette
-	 * @param binary $document        	
+	 * @param int $resolution     	
 	 * @return string
 	 */
 	function writeFileImage(int $id, int $phototype = 0, int $resolution = 800)
@@ -337,9 +332,8 @@ class DocumentAttach extends ObjetBDD
 						$writeOk = true;
 						$document = stream_get_contents($docRef);
 						if ($document == false) {
-							printr("erreur de lecture " . $docRef);
+							throw new DocumentException(_("Unable to read the document"));
 						}
-							
 					}
 				}
 				/*
