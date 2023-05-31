@@ -164,9 +164,8 @@ class DistribQuotidien extends ObjetBDD
 		/*
 			 * Preparation de la requete
 			 */
-			$sql = "select * from crosstab ('" . $sql1 . "', '" . $sql3 . "')
+			$sql = "select * from crosstab ('" . $sql1 . "'::varchar, '" . $sql3 . "'::varchar)
 			AS ( " . $as . " )";
-		printA($sql);
 		return $this->getListeParam($sql);
 	}
 	/**

@@ -1,21 +1,23 @@
 <script>
-    /**
-       * Management of tabs
-       */
-    var moduleName = "bassinDisplay";
-    var localStorage = window.localStorage;
-    try {
-        activeTab = localStorage.getItem(moduleName + "Tab");
-    } catch (Exception) {
-        activeTab = "";
-    }
-    try {
-        if (activeTab.length > 0) {
-            $("#" + activeTab).tab('show');
+    $(document).ready(function () {
+        /**
+           * Management of tabs
+           */
+        var moduleName = "bassinDisplay";
+        var localStorage = window.localStorage;
+        try {
+            activeTab = localStorage.getItem(moduleName + "Tab");
+        } catch (Exception) {
+            activeTab = "";
         }
-    } catch (Exception) { }
-    $('a[data-toggle="tab"]').on('shown.bs.tab', function () {
-        localStorage.setItem(moduleName + "Tab", $(this).attr("id"));
+        try {
+            if (activeTab.length > 0) {
+                $("#" + activeTab).tab('show');
+            }
+        } catch (Exception) { }
+        $('a[data-toggle="tab"]').on('shown.bs.tab', function () {
+            localStorage.setItem(moduleName + "Tab", $(this).attr("id"));
+        });
     });
 </script>
 
@@ -33,8 +35,8 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" id="tab-fish" href="#nav-fish" data-toggle="tab" role="tab"
-                    aria-controls="nav-fish" aria-selected="false">
+                <a class="nav-link" id="tab-fish" href="#nav-fish" data-toggle="tab" role="tab" aria-controls="nav-fish"
+                    aria-selected="false">
                     <img src="display/images/fish.png" height="25">
                     {t}Poissons présents{/t}
                 </a>

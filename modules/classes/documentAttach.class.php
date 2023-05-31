@@ -13,7 +13,8 @@ class DocumentException extends Exception
  */
 class DocumentAttach extends ObjetBDD
 {
-	public $temp = "tmp"; // Chemin de stockage des images générées à la volée
+	public $temp = "temp"; // Chemin de stockage des images générées à la volée
+	public MimeType $mimetype;
 	/**
 	 * Constructeur de la classe
 	 *
@@ -72,22 +73,24 @@ class DocumentAttach extends ObjetBDD
 	 *        	string description : description du contenu du document
 	 * @return int
 	 */
-	function ecrire($file, $description = NULL, $document_date_creation = NULL)
+	function ecrire($file, $description = "", $document_date_creation = "")
 	{
 		if ($file["error"] == 0 && $file["size"] > 0) {
 			/*
 			 * Recuperation de l'extension
 			 */
-			$extension = $this->encodeData(substr($file["name"], strrpos($file["name"], ".") + 1));
-			$mimeType = new MimeType($this->connection, $this->paramori);
-			$mime_type_id = $mimeType->getTypeMime($extension);
+			$extension = substr($file["name"], strrpos($file["name"], ".") + 1);
+			if (!isset($this->mimetype)) {
+				$this->mimetype = $this->classInstanciate("MimeType", "mimeType.class.php");
+			}
+			$mime_type_id = $this->mimetype->getTypeMime($extension);
 			if ($mime_type_id > 0) {
 				$data = array();
 				$data["document_nom"] = $file["name"];
 				$data["size"] = $file["size"];
 				$data["mime_type_id"] = $mime_type_id;
 				$data["document_description"] = $description;
-				$data["document_date_import"] = date("d/m/Y");
+				$data["document_date_import"] = date($_SESSION["MASKDATE"]);
 				$data["document_date_creation"] = $document_date_creation;
 				$dataDoc = array();
 
@@ -99,21 +102,22 @@ class DocumentAttach extends ObjetBDD
 				 * Ecriture du document
 				 */
 				$dataBinaire = fread(fopen($file["tmp_name"], "r"), $file["size"]);
+				
 
-				$dataDoc["data"] = $this->connection->quote($dataBinaire,  PDO::PARAM_LOB);
+				$dataDoc["data"] = pg_escape_bytea($dataBinaire);
 				if ($extension == "pdf" || $extension == "png" || $extension == "jpg") {
 					$image = new Imagick();
 					$image->readImageBlob($dataBinaire);
 					$image->setiteratorindex(0);
 					$image->resizeimage(200, 200, Imagick::FILTER_LANCZOS, 1, true);
 					$image->setformat("png");
-					$dataDoc["thumbnail"] = $this->connection->quote($image->getimageblob(),  PDO::PARAM_LOB);
+					$dataDoc["thumbnail"] = pg_escape_bytea($image->getimageblob());
 				}
-				/*
+				/**
 					 * suppression du stockage temporaire
 					 */
 				unset($file["tmp_name"]);
-				/*
+				/**
 					 * Ecriture dans la base de données
 					 */
 				$id = parent::ecrire($data);
@@ -122,9 +126,12 @@ class DocumentAttach extends ObjetBDD
 					$this->executeSQL($sql);
 				}
 				return $id;
+			} else {
+				throw new DocumentException(_("Le type MIME du fichier n'est pas reconnu"));
 			}
+		} else {
+			throw new DocumentException(_("Pas de fichier chargé"));
 		}
-		return -1;
 	}
 	/**
 	 * Appel de la fonction ecrire native
@@ -174,7 +181,9 @@ class DocumentAttach extends ObjetBDD
 	 */
 	function documentSent($id, $phototype, $attached = false, $resolution = 800)
 	{
-		$id = $this->encodeData($id);
+		if (empty($phototype)) {
+			$phototype = 0;
+		}
 		$filename = $this->generateFileName($id, $phototype, $resolution);
 		if (strlen($filename) > 0 && is_numeric($id) && $id > 0) {
 			// $filename = $this->temp . "/" . $nomfile;

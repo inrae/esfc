@@ -1667,6 +1667,7 @@ class ObjetBDD
    *
    * @param array|string $data
    * @return array|string
+   * @deprecated 
    */
   function encodeData($data)
   {
