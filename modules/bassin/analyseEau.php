@@ -6,11 +6,13 @@
  * @license http://www.cecill.info/licences/Licence_CeCILL-C_V1-fr.html LICENCE DE LOGICIEL LIBRE CeCILL-C
  *  Creation 11 mars 2014
  */
-include_once 'modules/classes/bassin.class.php';
+include_once 'modules/classes/analyseEau.class.php';
 $dataClass = new AnalyseEau($bdd, $ObjetBDDParam);
 $keyName = "analyse_eau_id";
 $id = $_REQUEST[$keyName];
-
+if (!isset($_SESSION["searchCircuitEau"])) {
+	$_SESSION["searchCircuitEau"] = new SearchCircuitEau();
+}
 switch ($t_module["param"]) {
 
 	case "change":
@@ -36,7 +38,7 @@ switch ($t_module["param"]) {
 		 * Forcage de la date de reference (date de recherche) si creation d'un nouvel enregistrement
 		 */
 		if ($id == 0) {
-			$dataSearch = $searchCircuitEau->getParam();
+			$dataSearch = $_SESSION["searchCircuitEau"]->getParam();
 			$data["analyse_eau_date"] = $dataSearch["analyse_date"];
 			$vue->set( $data, "data");
 		}

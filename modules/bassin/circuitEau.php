@@ -9,19 +9,22 @@ include_once 'modules/classes/circuitEau.class.php';
 $dataClass = new CircuitEau($bdd,$ObjetBDDParam);
 $keyName = "circuit_eau_id";
 $id = $_REQUEST[$keyName];
+if (!isset($_SESSION["searchCircuitEau"])) {
+	$_SESSION["searchCircuitEau"] = new SearchCircuitEau();
+}
 
 switch ($t_module["param"]) {
 	case "list":
 		/*
 		 * Display the list of all records of the table
 		 */
-		$searchCircuitEau->setParam ( $_REQUEST );
-		$dataSearch = $searchCircuitEau->getParam ();
-		if ($searchCircuitEau->isSearch () == 1) {
+		$_SESSION["searchCircuitEau"]->setParam ( $_REQUEST );
+		$dataSearch = $_SESSION["searchCircuitEau"]->getParam ();
+		if ($_SESSION["searchCircuitEau"]->isSearch () == 1) {
 			$vue->set(1 , "isSearch"); 
 		}
 		$vue->set($dataSearch , "circuitEauSearch"); 
-		if ($searchCircuitEau->isSearch () == 1) {
+		if ($_SESSION["searchCircuitEau"]->isSearch () == 1) {
 			$vue->set( $dataClass->getListeSearch ( $dataSearch ), "data");
 			/*
 			 * Recuperation des donnees d'analyse
@@ -48,16 +51,16 @@ switch ($t_module["param"]) {
 		/*
 		 * Traitement des valeurs next et previous, si fournies
 		 */
-		$searchCircuitEau->setParam($_REQUEST);
-		$dataSearch = $searchCircuitEau->getParam ();
+		$_SESSION["searchCircuitEau"]->setParam($_REQUEST);
+		$dataSearch = $_SESSION["searchCircuitEau"]->getParam ();
 		if ($_REQUEST["next"] > 0 ) {
 			$dataSearch["offset"] = $dataSearch["offset"] + $dataSearch["limit"];
-			$searchCircuitEau->setParam("offset",$dataSearch["offset"]);
+			$_SESSION["searchCircuitEau"]->setParam("offset",$dataSearch["offset"]);
 		}
 		if ($_REQUEST["previous"] > 0) {
 			$dataSearch["offset"] = $dataSearch["offset"] - $dataSearch["limit"];
 			if ($dataSearch["offset"] < 0) $dataSearch["offset"] = 0;
-			$searchCircuitEau->setParam("offset",$dataSearch["offset"]);
+			$_SESSION["searchCircuitEau"]->setParam("offset",$dataSearch["offset"]);
 		}
 		$vue->set($dataSearch , "dataSearch");
 		require_once "modules/classes/analyseEau.class.php";

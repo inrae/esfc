@@ -130,7 +130,7 @@ class AnalyseEau extends ObjetBDD
 			$where = " where analyse_eau_date <= :date_ref and circuit_eau.circuit_eau_id = :id";
 			
 			$order = " order by analyse_eau_date desc LIMIT " . $limit . " OFFSET " . $offset;
-			if (!is_object($this->analyseMetal)) {
+			if (!isset($this->analyseMetal)) {
 				$this->analyseMetal = $this->classInstanciate("AnalyseMetal", "analyseMetal.class.php");
 			} 
 			if ($limit == 1) {

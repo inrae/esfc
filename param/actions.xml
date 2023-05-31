@@ -2,89 +2,89 @@
 	<pittagTypeList action="modules/parametre/pittagType.php" param="list" droits="consult"  retourlogin="1" type="smarty" />
 	<pittagTypeChange action="modules/parametre/pittagType.php" param="change" droits="paramAdmin" type="smarty" />
 	<pittagTypeWrite action="modules/parametre/pittagType.php" param="write" droits="paramAdmin" retourok="pittagTypeList" retourko="pittagTypeChange" modulebefore="pittagTypeChange" />
-	<pittagTypeDelete action="modules/parametre/pittagType.php" param="delete" droits="paramAdmin" retoursuppr="pittagTypeList" retourko="pittagTypeChange" modulebefore="pittagTypeChange" />
+	<pittagTypeDelete action="modules/parametre/pittagType.php" param="delete" droits="paramAdmin" retourok="pittagTypeList" retourko="pittagTypeChange" modulebefore="pittagTypeChange" />
 
 	<poissonStatutList action="modules/parametre/poissonStatut.php" param="list" droits="consult" retourlogin="1" type="smarty"    />
 	<poissonStatutChange action="modules/parametre/poissonStatut.php" param="change" droits="paramAdmin" type="smarty" />
 	<poissonStatutWrite action="modules/parametre/poissonStatut.php" param="write" droits="paramAdmin" retourok="poissonStatutList" retourko="poissonStatutChange" modulebefore="poissonStatutChange" />
-	<poissonStatutDelete action="modules/parametre/poissonStatut.php" param="delete" droits="paramAdmin" retoursuppr="poissonStatutList" retourko="poissonStatutChange"  modulebefore="poissonStatutChange"/>
+	<poissonStatutDelete action="modules/parametre/poissonStatut.php" param="delete" droits="paramAdmin" retourok="poissonStatutList" retourko="poissonStatutChange"  modulebefore="poissonStatutChange"/>
 
 	<genderMethodeList action="modules/parametre/genderMethode.php" param="list" droits="consult" retourlogin="1" type="smarty"    />
 	<genderMethodeChange action="modules/parametre/genderMethode.php" param="change" droits="paramAdmin" type="smarty" />
 	<genderMethodeWrite action="modules/parametre/genderMethode.php" param="write" droits="paramAdmin" retourok="genderMethodeList" retourko="genderMethodeChange" modulebefore="genderMethodeChange" />
-	<genderMethodeDelete action="modules/parametre/genderMethode.php" param="delete" droits="paramAdmin" retoursuppr="genderMethodeList" retourko="genderMethodeChange"  modulebefore="genderMethodeChange"/>
+	<genderMethodeDelete action="modules/parametre/genderMethode.php" param="delete" droits="paramAdmin" retourok="genderMethodeList" retourko="genderMethodeChange"  modulebefore="genderMethodeChange"/>
 
 	<evenementTypeList action="modules/parametre/evenementType.php" param="list" droits="consult"  retourlogin="1" type="smarty"    />
 	<evenementTypeChange action="modules/parametre/evenementType.php" param="change" droits="paramAdmin" type="smarty" />
 	<evenementTypeWrite action="modules/parametre/evenementType.php" param="write" droits="paramAdmin" retourok="evenementTypeList" retourko="evenementTypeChange" modulebefore="evenementTypeChange" />
-	<evenementTypeDelete action="modules/parametre/evenementType.php" param="delete" droits="paramAdmin" retoursuppr="evenementTypeList" retourko="evenementTypeChange"  modulebefore="evenementTypeChange"/>
+	<evenementTypeDelete action="modules/parametre/evenementType.php" param="delete" droits="paramAdmin" retourok="evenementTypeList" retourko="evenementTypeChange"  modulebefore="evenementTypeChange"/>
 
 	<pathologieTypeList action="modules/parametre/pathologieType.php" param="list" droits="consult"  retourlogin="1" type="smarty"  />
 	<pathologieTypeChange action="modules/parametre/pathologieType.php" param="change" droits="paramAdmin" type="smarty" />
 	<pathologieTypeWrite action="modules/parametre/pathologieType.php" param="write" droits="paramAdmin" retourok="pathologieTypeList" retourko="pathologieTypeChange" modulebefore="pathologieTypeChange" />
-	<pathologieTypeDelete action="modules/parametre/pathologieType.php" param="delete" droits="paramAdmin" retoursuppr="pathologieTypeList" retourko="pathologieTypeChange"  modulebefore="pathologieTypeChange"/>
+	<pathologieTypeDelete action="modules/parametre/pathologieType.php" param="delete" droits="paramAdmin" retourok="pathologieTypeList" retourko="pathologieTypeChange"  modulebefore="pathologieTypeChange"/>
 
 	<poissonList action="modules/poisson/poisson.php" param="list" droits="consult"  retourlogin="1" type="smarty" />
 	<poissonDisplay action="modules/poisson/poisson.php" param="display" droits="consult" type="smarty" />
 	<poissonChange action="modules/poisson/poisson.php" param="change" droits="poissonGestion" type="smarty" />
 	<poissonWrite action="modules/poisson/poisson.php" param="write" droits="poissonGestion" retourok="poissonDisplay" retourko="poissonChange" modulebefore="poissonChange" />
-	<poissonDelete action="modules/poisson/poisson.php" param="delete" droits="poissonAdmin" retoursuppr="poissonList" retourko="poissonChange"  modulebefore="poissonChange"/>
+	<poissonDelete action="modules/poisson/poisson.php" param="delete" droits="poissonAdmin" retourok="poissonList" retourko="poissonChange"  modulebefore="poissonChange"/>
 	<poissonSearchAjax action="modules/poisson/poisson.php" param="getListeAjaxJson" droits="consult" type="ajax"/>
 	
 	<evenementChange action="modules/poisson/evenement.php" param="change" droits="poissonGestion" type="smarty" />
 	<evenementWrite action="modules/poisson/evenement.php" param="write" droits="poissonGestion"  retourok="poissonDisplay" retourko="evenementChange" modulebefore="evenementChange" />
-	<evenementDelete action="modules/poisson/evenement.php" param="delete" droits="poissonAdmin" retoursuppr="poissonDisplay" retourko="evenementChange"  modulebefore="evenementChange"/>
+	<evenementDelete action="modules/poisson/evenement.php" param="delete" droits="poissonAdmin" retourok="poissonDisplay" retourko="evenementChange"  modulebefore="evenementChange"/>
 	<evenementGetAllCSV action="modules/poisson/evenement.php" param="getAllCSV" droits="consult"  type="file" />
 	
 	<pittagChange action="modules/poisson/pittag.php" param="change" droits="poissonGestion" type="smarty" />
 	<pittagWrite action="modules/poisson/pittag.php" param="write" droits="poissonGestion" retourok="poissonDisplay" retourko="pittagChange" modulebefore="pittagChange" />
-	<pittagDelete action="modules/poisson/pittag.php" param="delete" droits="poissonGestion" retoursuppr="poissonDisplay" retourko="pittagChange"  modulebefore="pittagChange"/>
+	<pittagDelete action="modules/poisson/pittag.php" param="delete" droits="poissonGestion" retourok="poissonDisplay" retourko="pittagChange"  modulebefore="pittagChange"/>
 
 	<bassinTypeList action="modules/parametre/bassinType.php" param="list" droits="consult" retourlogin="1"  type="smarty" />
 	<bassinTypeChange action="modules/parametre/bassinType.php" param="change" droits="paramAdmin" type="smarty" />
 	<bassinTypeWrite action="modules/parametre/bassinType.php" param="write" droits="paramAdmin" retourok="bassinTypeList" retourko="bassinTypeChange" modulebefore="bassinTypeChange" />
-	<bassinTypeDelete action="modules/parametre/bassinType.php" param="delete" droits="paramAdmin" retoursuppr="bassinTypeList" retourko="bassinTypeChange"  modulebefore="bassinTypeChange"/>
+	<bassinTypeDelete action="modules/parametre/bassinType.php" param="delete" droits="paramAdmin" retourok="bassinTypeList" retourko="bassinTypeChange"  modulebefore="bassinTypeChange"/>
 
 	<bassinUsageList action="modules/parametre/bassinUsage.php" param="list" droits="consult" retourlogin="1" type="smarty"  />
 	<bassinUsageChange action="modules/parametre/bassinUsage.php" param="change" droits="paramAdmin" type="smarty" />
 	<bassinUsageWrite action="modules/parametre/bassinUsage.php" param="write" droits="paramAdmin" retourok="bassinUsageList" retourko="bassinUsageChange" modulebefore="bassinUsageChange" />
-	<bassinUsageDelete action="modules/parametre/bassinUsage.php" param="delete" droits="paramAdmin" retoursuppr="bassinUsageList" retourko="bassinUsageChange"  modulebefore="bassinUsageChange"/>
+	<bassinUsageDelete action="modules/parametre/bassinUsage.php" param="delete" droits="paramAdmin" retourok="bassinUsageList" retourko="bassinUsageChange"  modulebefore="bassinUsageChange"/>
 
 	<bassinZoneList action="modules/parametre/bassinZone.php" param="list" droits="consult" retourlogin="1"  type="smarty"/>
 	<bassinZoneChange action="modules/parametre/bassinZone.php" param="change" droits="paramAdmin"  type="smarty"/>
 	<bassinZoneWrite action="modules/parametre/bassinZone.php" param="write" droits="paramAdmin" retourok="bassinZoneList" retourko="bassinZoneChange" modulebefore="bassinZoneChange" />
-	<bassinZoneDelete action="modules/parametre/bassinZone.php" param="delete" droits="paramAdmin" retoursuppr="bassinZoneList" retourko="bassinZoneChange"  modulebefore="bassinZoneChange"/>
+	<bassinZoneDelete action="modules/parametre/bassinZone.php" param="delete" droits="paramAdmin" retourok="bassinZoneList" retourko="bassinZoneChange"  modulebefore="bassinZoneChange"/>
 
 	<bassinList action="modules/bassin/bassin.php" param="list" droits="consult"  retourlogin="1"  type="smarty"  />
 	<bassinListniv2 action="modules/bassin/bassin.php" param="list" droits="consult"  type="smarty" />
 	<bassinDisplay action="modules/bassin/bassin.php" param="display" droits="consult" type="smarty" />
 	<bassinChange action="modules/bassin/bassin.php" param="change" droits="bassinGestion"  type="smarty"/>
 	<bassinWrite action="modules/bassin/bassin.php" param="write" droits="bassinGestion" retourok="bassinDisplay" retourko="bassinChange" modulebefore="bassinChange" />
-	<bassinDelete action="modules/bassin/bassin.php" param="delete" droits="bassinAdmin" retoursuppr="bassinList" retourko="bassinChange"  modulebefore="bassinChange"/>
+	<bassinDelete action="modules/bassin/bassin.php" param="delete" droits="bassinAdmin" retourok="bassinList" retourko="bassinChange"  modulebefore="bassinChange"/>
 	<bassinCalculMasseAjax action="modules/bassin/bassin.php" param="calculMasseAjax"  type="ajax" droits="consult" />
 	<bassinRecapAlim action="modules/bassin/bassin.php" param="recapAlim"  modulebefore="bassinList" type="smarty" droits="consult" />
 	
 	<bassinEvenementChange action="modules/bassin/bassinEvenement.php" param="change" droits="bassinGestion" type="smarty" />
 	<bassinEvenementWrite action="modules/bassin/bassinEvenement.php" param="write" droits="bassinGestion" retourok="bassinDisplay" retourko="bassinEvenementChange" modulebefore="bassinEvenementChange" />
-	<bassinEvenementDelete action="modules/bassin/bassinEvenement.php" param="delete" droits="bassinAdmin" retoursuppr="bassinDisplay" retourko="bassinEvenementChange"  modulebefore="bassinEvenementChange"/>
+	<bassinEvenementDelete action="modules/bassin/bassinEvenement.php" param="delete" droits="bassinAdmin" retourok="bassinDisplay" retourko="bassinEvenementChange"  modulebefore="bassinEvenementChange"/>
 
 	<circuitEvenementChange action="modules/bassin/circuitEvenement.php" param="change" droits="bassinGestion" type="smarty" />
 	<circuitEvenementWrite action="modules/bassin/circuitEvenement.php" param="write" droits="bassinGestion" retourok="circuitEauDisplay" retourko="circuitEvenementChange" modulebefore="circuitEvenementChange" />
-	<circuitEvenementDelete action="modules/bassin/circuitEvenement.php" param="delete" droits="bassinAdmin" retoursuppr="circuitEauDisplay" retourko="circuitEvenementChange"  modulebefore="circuitEvenementChange"/>
+	<circuitEvenementDelete action="modules/bassin/circuitEvenement.php" param="delete" droits="bassinAdmin" retourok="circuitEauDisplay" retourko="circuitEvenementChange"  modulebefore="circuitEvenementChange"/>
 	
 
 	<circuitEauList action="modules/bassin/circuitEau.php" param="list" droits="consult" retourlogin="1" type="smarty"  />
 	<circuitEauDisplay action="modules/bassin/circuitEau.php" param="display" droits="consult" type="smarty" />
 	<circuitEauChange action="modules/bassin/circuitEau.php" param="change" droits="bassinGestion" type="smarty" />
 	<circuitEauWrite action="modules/bassin/circuitEau.php" param="write" droits="bassinGestion" retourok="circuitEauDisplay" retourko="circuitEauChange" modulebefore="circuitEauChange" />
-	<circuitEauDelete action="modules/bassin/circuitEau.php" param="delete" droits="bassinAdmin" retoursuppr="circuitEauList" retourko="circuitEauChange"  modulebefore="circuitEauChange"/>
+	<circuitEauDelete action="modules/bassin/circuitEau.php" param="delete" droits="bassinAdmin" retourok="circuitEauList" retourko="circuitEauChange"  modulebefore="circuitEauChange"/>
 
 	<analyseEauDisplay action="modules/bassin/analyseEau.php" param="display" droits="consult" type="smarty" />
 	<analyseEauChange action="modules/bassin/analyseEau.php" param="change" droits="bassinGestion" type="smarty" />
 	<analyseEauWriteList action="modules/bassin/analyseEau.php" param="write" droits="bassinGestion" retourok="circuitEauList" retourko="analyseEauChange" modulebefore="analyseEauChange" />
-	<analyseEauDeleteList action="modules/bassin/analyseEau.php" param="delete" droits="bassinGestion" retoursuppr="circuitEauList" retourko="analyseEauChange"  modulebefore="analyseEauChange"/>
+	<analyseEauDeleteList action="modules/bassin/analyseEau.php" param="delete" droits="bassinGestion" retourok="circuitEauList" retourko="analyseEauChange"  modulebefore="analyseEauChange"/>
 	<analyseEauWrite action="modules/bassin/analyseEau.php" param="write" droits="bassinGestion" retourok="circuitEauDisplay" retourko="analyseEauChange" modulebefore="analyseEauChange" />
-	<analyseEauDelete action="modules/bassin/analyseEau.php" param="delete" droits="bassinAdmin" retoursuppr="circuitEauDisplay" retourko="analyseEauChange"  modulebefore="analyseEauChange"/>
+	<analyseEauDelete action="modules/bassin/analyseEau.php" param="delete" droits="bassinAdmin" retourok="circuitEauDisplay" retourko="analyseEauChange"  modulebefore="analyseEauChange"/>
 	<sondeImport action="modules/bassin/sonde.php" param="import" droits="bassinGestion" retourlogin="1" type="smarty"/>
 	<sondeExec action="modules/bassin/sonde.php" param="importExec" droits="bassinGestion" retourok="sondeImport" retourko="sondeImport"/>
 	<analyseGraph action="modules/bassin/analyseEau.php" param="graph" droits="bassinGestion" type="smarty"/>
@@ -92,107 +92,107 @@
 	<mimeTypeList action="modules/parametre/mimeType.php" param="list" droits="consult" retourlogin="1"  type="smarty" />
 	<mimeTypeChange action="modules/parametre/mimeType.php" param="change" droits="paramAdmin" type="smarty" />
 	<mimeTypeWrite action="modules/parametre/mimeType.php" param="write" droits="paramAdmin" retourok="mimeTypeList" retourko="mimeTypeChange" modulebefore="mimeTypeChange" />
-	<mimeTypeDelete action="modules/parametre/mimeType.php" param="delete" droits="paramAdmin" retoursuppr="mimeTypeList" retourko="mimeTypeChange"  modulebefore="mimeTypeChange"/>
+	<mimeTypeDelete action="modules/parametre/mimeType.php" param="delete" droits="paramAdmin" retourok="mimeTypeList" retourko="mimeTypeChange"  modulebefore="mimeTypeChange"/>
 
 	<mortaliteTypeList action="modules/parametre/mortaliteType.php" param="list" retourlogin="1" droits="consult"  type="smarty" />
 	<mortaliteTypeChange action="modules/parametre/mortaliteType.php" param="change" droits="paramAdmin"  type="smarty"/>
 	<mortaliteTypeWrite action="modules/parametre/mortaliteType.php" param="write" droits="paramAdmin" retourok="mortaliteTypeList" retourko="mortaliteTypeChange" modulebefore="mortaliteTypeChange" />
-	<mortaliteTypeDelete action="modules/parametre/mortaliteType.php" param="delete" droits="paramAdmin" retoursuppr="mortaliteTypeList" retourko="mortaliteTypeChange"  modulebefore="mortaliteTypeChange"/>
+	<mortaliteTypeDelete action="modules/parametre/mortaliteType.php" param="delete" droits="paramAdmin" retourok="mortaliteTypeList" retourko="mortaliteTypeChange"  modulebefore="mortaliteTypeChange"/>
 
 	<cohorteTypeList action="modules/parametre/cohorteType.php" param="list" droits="consult" retourlogin="1"   type="smarty"/>
 	<cohorteTypeChange action="modules/parametre/cohorteType.php" param="change" droits="paramAdmin" type="smarty" />
 	<cohorteTypeWrite action="modules/parametre/cohorteType.php" param="write" droits="paramAdmin" retourok="cohorteTypeList" retourko="cohorteTypeChange" modulebefore="cohorteTypeChange" />
-	<cohorteTypeDelete action="modules/parametre/cohorteType.php" param="delete" droits="paramAdmin" retoursuppr="cohorteTypeList" retourko="cohorteTypeChange"  modulebefore="cohorteTypeChange"/>
+	<cohorteTypeDelete action="modules/parametre/cohorteType.php" param="delete" droits="paramAdmin" retourok="cohorteTypeList" retourko="cohorteTypeChange"  modulebefore="cohorteTypeChange"/>
 
 	<anomalieList action="modules/anomalie/anomalie.php" param="list" droits="consult" retourlogin="1"  type="smarty" />
 	<anomalieChange action="modules/anomalie/anomalie.php" param="change" droits="poissonGestion"  type="smarty"/>
 	<anomalieWrite action="modules/anomalie/anomalie.php" param="write" droits="poissonAdmin" retourok="anomalieList" retourko="anomalieChange" modulebefore="anomalieChange" />
-	<anomalieDelete action="modules/anomalie/anomalie.php" param="delete" droits="poissonAdmin" retoursuppr="anomalieList" retourko="anomalieChange"  modulebefore="anomalieChange"/>
+	<anomalieDelete action="modules/anomalie/anomalie.php" param="delete" droits="poissonAdmin" retourok="anomalieList" retourko="anomalieChange"  modulebefore="anomalieChange"/>
 	<poissonAnomalieWrite action="modules/anomalie/anomalie.php" param="write" droits="poissonGestion" retourok="poissonDisplay" retourko="anomalieChange" modulebefore="anomalieChange" />
 
 	<parentPoissonChange action="modules/poisson/parentPoisson.php" param="change" droits="poissonGestion" type="smarty" />
 	<parentPoissonWrite action="modules/poisson/parentPoisson.php" param="write" droits="poissonGestion" retourok="poissonDisplay" retourko="parentPoissonChange" modulebefore="parentPoissonChange" />
-	<parentPoissonDelete action="modules/poisson/parentPoisson.php" param="delete" droits="poissonAdmin" retoursuppr="poissonDisplay" retourko="parentPoissonChange"  modulebefore="parentPoissonChange"/>
+	<parentPoissonDelete action="modules/poisson/parentPoisson.php" param="delete" droits="poissonAdmin" retourok="poissonDisplay" retourko="parentPoissonChange"  modulebefore="parentPoissonChange"/>
 
 	<alimentTypeList action="modules/parametre/alimentType.php" param="list" droits="consult" retourlogin="1"  type="smarty" />
 	<alimentTypeChange action="modules/parametre/alimentType.php" param="change" droits="paramAdmin" type="smarty" />
 	<alimentTypeWrite action="modules/parametre/alimentType.php" param="write" droits="paramAdmin" retourok="alimentTypeList" retourko="alimentTypeChange" modulebefore="alimentTypeChange" />
-	<alimentTypeDelete action="modules/parametre/alimentType.php" param="delete" droits="paramAdmin" retoursuppr="alimentTypeList" retourko="alimentTypeChange"  modulebefore="alimentTypeChange"/>
+	<alimentTypeDelete action="modules/parametre/alimentType.php" param="delete" droits="paramAdmin" retourok="alimentTypeList" retourko="alimentTypeChange"  modulebefore="alimentTypeChange"/>
 
 	<anomalieDbTypeList action="modules/parametre/anomalieDbType.php" param="list" droits="consult" retourlogin="1"  type="smarty" />
 	<anomalieDbTypeChange action="modules/parametre/anomalieDbType.php" param="change" droits="paramAdmin" type="smarty" />
 	<anomalieDbTypeWrite action="modules/parametre/anomalieDbType.php" param="write" droits="paramAdmin" retourok="anomalieDbTypeList" retourko="anomalieDbTypeChange" modulebefore="anomalieDbTypeChange" />
-	<anomalieDbTypeDelete action="modules/parametre/anomalieDbType.php" param="delete" droits="paramAdmin" retoursuppr="anomalieDbTypeList" retourko="anomalieDbTypeChange"  modulebefore="anomalieDbTypeChange"/>
+	<anomalieDbTypeDelete action="modules/parametre/anomalieDbType.php" param="delete" droits="paramAdmin" retourok="anomalieDbTypeList" retourko="anomalieDbTypeChange"  modulebefore="anomalieDbTypeChange"/>
 
 	<laboratoireAnalyseList action="modules/parametre/laboratoireAnalyse.php" param="list" droits="consult" retourlogin="1" type="smarty"  />
 	<laboratoireAnalyseChange action="modules/parametre/laboratoireAnalyse.php" param="change" droits="paramAdmin" type="smarty" />
 	<laboratoireAnalyseWrite action="modules/parametre/laboratoireAnalyse.php" param="write" droits="paramAdmin" retourok="laboratoireAnalyseList" retourko="laboratoireAnalyseChange" modulebefore="laboratoireAnalyseChange" />
-	<laboratoireAnalyseDelete action="modules/parametre/laboratoireAnalyse.php" param="delete" droits="paramAdmin" retoursuppr="laboratoireAnalyseList" retourko="laboratoireAnalyseChange"  modulebefore="laboratoireAnalyseChange"/>
+	<laboratoireAnalyseDelete action="modules/parametre/laboratoireAnalyse.php" param="delete" droits="paramAdmin" retourok="laboratoireAnalyseList" retourko="laboratoireAnalyseChange"  modulebefore="laboratoireAnalyseChange"/>
 
 	<bassinEvenementTypeList action="modules/parametre/bassinEvenementType.php" param="list" droits="consult"  retourlogin="1"  type="smarty"/>
 	<bassinEvenementTypeChange action="modules/parametre/bassinEvenementType.php" param="change" droits="paramAdmin"  type="smarty"/>
 	<bassinEvenementTypeWrite action="modules/parametre/bassinEvenementType.php" param="write" droits="paramAdmin" retourok="bassinEvenementTypeList" retourko="bassinEvenementTypeChange" modulebefore="bassinEvenementTypeChange" />
-	<bassinEvenementTypeDelete action="modules/parametre/bassinEvenementType.php" param="delete" droits="paramAdmin" retoursuppr="bassinEvenementTypeList" retourko="bassinEvenementTypeChange"  modulebefore="bassinEvenementTypeChange"/>
+	<bassinEvenementTypeDelete action="modules/parametre/bassinEvenementType.php" param="delete" droits="paramAdmin" retourok="bassinEvenementTypeList" retourko="bassinEvenementTypeChange"  modulebefore="bassinEvenementTypeChange"/>
 
 	<circuitEvenementTypeList action="modules/parametre/circuitEvenementType.php" param="list" droits="consult"  retourlogin="1" type="smarty" />
 	<circuitEvenementTypeChange action="modules/parametre/circuitEvenementType.php" param="change" droits="paramAdmin" type="smarty" />
 	<circuitEvenementTypeWrite action="modules/parametre/circuitEvenementType.php" param="write" droits="paramAdmin" retourok="circuitEvenementTypeList" retourko="circuitEvenementTypeChange" modulebefore="circuitEvenementTypeChange" />
-	<circuitEvenementTypeDelete action="modules/parametre/circuitEvenementType.php" param="delete" droits="paramAdmin" retoursuppr="circuitEvenementTypeList" retourko="circuitEvenementTypeChange"  modulebefore="circuitEvenementTypeChange"/>
+	<circuitEvenementTypeDelete action="modules/parametre/circuitEvenementType.php" param="delete" droits="paramAdmin" retourok="circuitEvenementTypeList" retourko="circuitEvenementTypeChange"  modulebefore="circuitEvenementTypeChange"/>
 
 	<sortieLieuList action="modules/parametre/sortieLieu.php" param="list" droits="consult"  retourlogin="1" type="smarty" />
 	<sortieLieuChange action="modules/parametre/sortieLieu.php" param="change" droits="paramAdmin" type="smarty" />
 	<sortieLieuWrite action="modules/parametre/sortieLieu.php" param="write" droits="paramAdmin" retourok="sortieLieuList" retourko="sortieLieuChange" modulebefore="sortieLieuChange" />
-	<sortieLieuDelete action="modules/parametre/sortieLieu.php" param="delete" droits="paramAdmin" retoursuppr="sortieLieuList" retourko="sortieLieuChange"  modulebefore="sortieLieuChange"/>
+	<sortieLieuDelete action="modules/parametre/sortieLieu.php" param="delete" droits="paramAdmin" retourok="sortieLieuList" retourko="sortieLieuChange"  modulebefore="sortieLieuChange"/>
 
 	<nageoireList action="modules/parametre/nageoire.php" param="list" droits="consult"  retourlogin="1"  type="smarty"/>
 	<nageoireChange action="modules/parametre/nageoire.php" param="change" droits="paramAdmin"  type="smarty"/>
 	<nageoireWrite action="modules/parametre/nageoire.php" param="write" droits="paramAdmin" retourok="nageoireList" retourko="nageoireChange" modulebefore="nageoireChange" />
-	<nageoireDelete action="modules/parametre/nageoire.php" param="delete" droits="paramAdmin" retoursuppr="nageoireList" retourko="nageoireChange"  modulebefore="nageoireChange"/>
+	<nageoireDelete action="modules/parametre/nageoire.php" param="delete" droits="paramAdmin" retourok="nageoireList" retourko="nageoireChange"  modulebefore="nageoireChange"/>
 
 	<hormoneList action="modules/parametre/hormone.php" param="list" droits="consult"  retourlogin="1"   type="smarty"/>
 	<hormoneChange action="modules/parametre/hormone.php" param="change" droits="paramAdmin,reproAdmin" type="smarty" />
 	<hormoneWrite action="modules/parametre/hormone.php" param="write" droits="paramAdmin,reproAdmin" retourok="hormoneList" retourko="hormoneChange" modulebefore="hormoneChange" />
-	<hormoneDelete action="modules/parametre/hormone.php" param="delete" droits="paramAdmin,reproAdmin" retoursuppr="hormoneList" retourko="hormoneChange"  modulebefore="hormoneChange"/>
+	<hormoneDelete action="modules/parametre/hormone.php" param="delete" droits="paramAdmin,reproAdmin" retourok="hormoneList" retourko="hormoneChange"  modulebefore="hormoneChange"/>
 
 	<vieImplantationList action="modules/parametre/vieImplantation.php" param="list" droits="consult"  retourlogin="1" type="smarty"  />
 	<vieImplantationChange action="modules/parametre/vieImplantation.php" param="change" droits="paramAdmin,reproAdmin" type="smarty" />
 	<vieImplantationWrite action="modules/parametre/vieImplantation.php" param="write" droits="paramAdmin,reproAdmin" retourok="vieImplantationList" retourko="vieImplantationChange" modulebefore="vieImplantationChange" />
-	<vieImplantationDelete action="modules/parametre/vieImplantation.php" param="delete" droits="paramAdmin,reproAdmin" retoursuppr="vieImplantationList" retourko="vieImplantationChange"  modulebefore="vieImplantationChange"/>
+	<vieImplantationDelete action="modules/parametre/vieImplantation.php" param="delete" droits="paramAdmin,reproAdmin" retourok="vieImplantationList" retourko="vieImplantationChange"  modulebefore="vieImplantationChange"/>
 
 	<metalList action="modules/parametre/metal.php" param="list" droits="consult"  retourlogin="1" type="smarty" />
 	<metalChange action="modules/parametre/metal.php" param="change" droits="paramAdmin,bassinAdmin" type="smarty" />
 	<metalWrite action="modules/parametre/metal.php" param="write" droits="paramAdmin,bassinAdmin" retourok="metalList" retourko="metalChange" modulebefore="metalChange" />
-	<metalDelete action="modules/parametre/metal.php" param="delete" droits="paramAdmin,bassinAdmin" retoursuppr="metalList" retourko="metalChange"  modulebefore="metalChange"/>
+	<metalDelete action="modules/parametre/metal.php" param="delete" droits="paramAdmin,bassinAdmin" retourok="metalList" retourko="metalChange"  modulebefore="metalChange"/>
 
 	<anesthesieProduitList action="modules/parametre/anesthesieProduit.php" param="list" droits="consult"  retourlogin="1" type="smarty" />
 	<anesthesieProduitChange action="modules/parametre/anesthesieProduit.php" param="change" droits="paramAdmin,reproAdmin" type="smarty" />
 	<anesthesieProduitWrite action="modules/parametre/anesthesieProduit.php" param="write" droits="paramAdmin,reproAdmin" retourok="anesthesieProduitList" retourko="anesthesieProduitChange" modulebefore="anesthesieProduitChange" />
-	<anesthesieProduitDelete action="modules/parametre/anesthesieProduit.php" param="delete" droits="paramAdmin,reproAdmin" retoursuppr="anesthesieProduitList" retourko="anesthesieProduitChange"  modulebefore="anesthesieProduitChange"/>
+	<anesthesieProduitDelete action="modules/parametre/anesthesieProduit.php" param="delete" droits="paramAdmin,reproAdmin" retourok="anesthesieProduitList" retourko="anesthesieProduitChange"  modulebefore="anesthesieProduitChange"/>
 
 	<spermeDilueurList action="modules/parametre/spermeDilueur.php" param="list" droits="consult"  retourlogin="1" type="smarty"  />
 	<spermeDilueurChange action="modules/parametre/spermeDilueur.php" param="change" droits="paramAdmin,reproAdmin" type="smarty" />
 	<spermeDilueurWrite action="modules/parametre/spermeDilueur.php" param="write" droits="paramAdmin,reproAdmin" retourok="spermeDilueurList" retourko="spermeDilueurChange" modulebefore="spermeDilueurChange" />
-	<spermeDilueurDelete action="modules/parametre/spermeDilueur.php" param="delete" droits="paramAdmin,reproAdmin" retoursuppr="spermeDilueurList" retourko="spermeDilueurChange"  modulebefore="spermeDilueurChange"/>
+	<spermeDilueurDelete action="modules/parametre/spermeDilueur.php" param="delete" droits="paramAdmin,reproAdmin" retourok="spermeDilueurList" retourko="spermeDilueurChange"  modulebefore="spermeDilueurChange"/>
 
 	<spermeCaracteristiqueList action="modules/parametre/spermeCaracteristique.php" param="list" droits="consult"  retourlogin="1" type="smarty"  />
 	<spermeCaracteristiqueChange action="modules/parametre/spermeCaracteristique.php" param="change" droits="paramAdmin,reproAdmin"  type="smarty"/>
 	<spermeCaracteristiqueWrite action="modules/parametre/spermeCaracteristique.php" param="write" droits="paramAdmin,reproAdmin" retourok="spermeCaracteristiqueList" retourko="spermeCaracteristiqueChange" modulebefore="spermeCaracteristiqueChange" />
-	<spermeCaracteristiqueDelete action="modules/parametre/spermeCaracteristique.php" param="delete" droits="paramAdmin,reproAdmin" retoursuppr="spermeCaracteristiqueList" retourko="spermeCaracteristiqueChange"  modulebefore="spermeCaracteristiqueChange"/>
+	<spermeCaracteristiqueDelete action="modules/parametre/spermeCaracteristique.php" param="delete" droits="paramAdmin,reproAdmin" retourok="spermeCaracteristiqueList" retourko="spermeCaracteristiqueChange"  modulebefore="spermeCaracteristiqueChange"/>
 
 	<stadeOeufList action="modules/parametre/stadeOeuf.php" param="list" droits="consult"  retourlogin="1" type="smarty" />
 	<stadeOeufChange action="modules/parametre/stadeOeuf.php" param="change" droits="paramAdmin"  type="smarty"/>
 	<stadeOeufWrite action="modules/parametre/stadeOeuf.php" param="write" droits="paramAdmin" retourok="stadeOeufList" retourko="stadeOeufChange" modulebefore="stadeOeufChange" />
-	<stadeOeufDelete action="modules/parametre/stadeOeuf.php" param="delete" droits="paramAdmin" retoursuppr="stadeOeufList" retourko="stadeOeufChange"  modulebefore="stadeOeufChange"/>
+	<stadeOeufDelete action="modules/parametre/stadeOeuf.php" param="delete" droits="paramAdmin" retourok="stadeOeufList" retourko="stadeOeufChange"  modulebefore="stadeOeufChange"/>
 
 	<stadeGonadeList action="modules/parametre/stadeGonade.php" param="list" droits="consult"  retourlogin="1" type="smarty" />
 	<stadeGonadeChange action="modules/parametre/stadeGonade.php" param="change" droits="paramAdmin"  type="smarty"/>
 	<stadeGonadeWrite action="modules/parametre/stadeGonade.php" param="write" droits="paramAdmin" retourok="stadeGonadeList" retourko="stadeGonadeChange" modulebefore="stadeGonadeChange" />
-	<stadeGonadeDelete action="modules/parametre/stadeGonade.php" param="delete" droits="paramAdmin" retoursuppr="stadeGonadeList" retourko="stadeGonadeChange"  modulebefore="stadeGonadeChange"/>
+	<stadeGonadeDelete action="modules/parametre/stadeGonade.php" param="delete" droits="paramAdmin" retourok="stadeGonadeList" retourko="stadeGonadeChange"  modulebefore="stadeGonadeChange"/>
 
 	<spermeConservateurList action="modules/parametre/spermeConservateur.php" param="list" droits="consult"  retourlogin="1" type="smarty"  />
 	<spermeConservateurChange action="modules/parametre/spermeConservateur.php" param="change" droits="paramAdmin,reproAdmin"  type="smarty"/>
 	<spermeConservateurWrite action="modules/parametre/spermeConservateur.php" param="write" droits="paramAdmin,reproAdmin" retourok="spermeConservateurList" retourko="spermeConservateurChange" modulebefore="spermeConservateurChange" />
-	<spermeConservateurDelete action="modules/parametre/spermeConservateur.php" param="delete" droits="paramAdmin,reproAdmin" retoursuppr="spermeConservateurList" retourko="spermeConservateurChange"  modulebefore="spermeConservateurChange"/>
+	<spermeConservateurDelete action="modules/parametre/spermeConservateur.php" param="delete" droits="paramAdmin,reproAdmin" retourok="spermeConservateurList" retourko="spermeConservateurChange"  modulebefore="spermeConservateurChange"/>
 
 
 	<alimentation retourlogin="1"  type="smarty"/>
@@ -200,31 +200,31 @@
 	<alimentList action="modules/aliment/aliment.php" param="list" droits="consult" retourlogin="1"  type="smarty"/>
 	<alimentChange action="modules/aliment/aliment.php" param="change" droits="bassinAdmin"  type="smarty"/>
 	<alimentWrite action="modules/aliment/aliment.php" param="write" droits="bassinAdmin" retourok="alimentList" retourko="alimentChange" modulebefore="alimentChange" />
-	<alimentDelete action="modules/aliment/aliment.php" param="delete" droits="bassinAdmin" retoursuppr="alimentList" retourko="alimentChange"  modulebefore="alimentChange"/>
+	<alimentDelete action="modules/aliment/aliment.php" param="delete" droits="bassinAdmin" retourok="alimentList" retourko="alimentChange"  modulebefore="alimentChange"/>
 
 	<categorieList action="modules/aliment/categorie.php" param="list" droits="consult" retourlogin="1"  type="smarty"/>
 	<categorieChange action="modules/aliment/categorie.php" param="change" droits="bassinAdmin" type="smarty" />
 	<categorieWrite action="modules/aliment/categorie.php" param="write" droits="bassinAdmin" retourok="categorieList" retourko="categorieChange" modulebefore="categorieChange" />
-	<categorieDelete action="modules/aliment/categorie.php" param="delete" droits="bassinAdmin" retoursuppr="categorieList" retourko="categorieChange"  modulebefore="categorieChange"/>
+	<categorieDelete action="modules/aliment/categorie.php" param="delete" droits="bassinAdmin" retourok="categorieList" retourko="categorieChange"  modulebefore="categorieChange"/>
 
 	<repartTemplateList action="modules/aliment/repartTemplate.php" param="list" droits="consult" retourlogin="1" type="smarty"  />
 	<repartTemplateChange action="modules/aliment/repartTemplate.php" param="change" droits="bassinAdmin"  type="smarty"/>
 	<repartTemplateWrite action="modules/aliment/repartTemplate.php" param="write" droits="bassinAdmin" retourok="repartTemplateChange" retourko="repartTemplateChange" modulebefore="repartTemplateChange" />
-	<repartTemplateDelete action="modules/aliment/repartTemplate.php" param="delete" droits="bassinAdmin" retoursuppr="repartTemplateList" retourko="repartTemplateChange"  modulebefore="repartTemplateChange"/>
+	<repartTemplateDelete action="modules/aliment/repartTemplate.php" param="delete" droits="bassinAdmin" retourok="repartTemplateList" retourko="repartTemplateChange"  modulebefore="repartTemplateChange"/>
 
 	<repartitionList action="modules/aliment/repartition.php" param="list" droits="consult" retourlogin="1"  type="smarty"/>
 	<repartitionChange action="modules/aliment/repartition.php" param="change" droits="bassinGestion"  type="smarty"/>
 	<repartitionCreate action="modules/aliment/repartition.php" param="create" droits="bassinGestion" retourok="repartitionChange" retourko="repartitionList" modulebefore="repartitionList,repartitionDuplicate" />
 	<repartitionDuplicate action="modules/aliment/repartition.php" param="duplicate" droits="bassinGestion" retourok="repartitionChange" retourko="repartitionList" modulebefore="repartitionList" />
 	<repartitionWrite action="modules/aliment/repartition.php" param="write" droits="bassinGestion" retourok="repartitionChange" retourko="repartitionChange" modulebefore="repartitionChange,repartitionPrint" />
-	<repartitionDelete action="modules/aliment/repartition.php" param="delete" droits="bassinAdmin" retoursuppr="repartitionList" retourko="repartitionChange"  modulebefore="repartitionChange"/>
+	<repartitionDelete action="modules/aliment/repartition.php" param="delete" droits="bassinAdmin" retourok="repartitionList" retourko="repartitionChange"  modulebefore="repartitionChange"/>
 	<repartitionPrint action="modules/aliment/repartition.php" param="print" droits="bassinGestion" modulebefore=""/>
 	<repartitionResteChange action="modules/aliment/repartition.php" param="resteChange" droits="bassinGestion"  type="smarty"/>
 	<repartitionResteWrite action="modules/aliment/repartition.php" param="resteWrite" droits="bassinGestion" modulebefore="repartitionResteChange" retourok="repartitionList" retourko="repartitionResteChange"/>
 
 	<documentChange action="modules/document/document.php" param="change" droits="bassinGestion,poissonGestion,reproGestion" type="smarty" />
 	<documentWrite action="modules/document/document.php" param="write" droits="bassinGestion,poissonGestion,reproGestion" retourok="documentList" retourko="documentChange"  />
-	<documentDelete action="modules/document/document.php" param="delete" droits="bassinGestion,poissonGestion,reproGestion" retoursuppr="documentList" retourko="documentChange" />
+	<documentDelete action="modules/document/document.php" param="delete" droits="bassinGestion,poissonGestion,reproGestion" retourok="documentList" retourko="documentChange" />
 	<documentGet action="modules/document/document.php" param="get" droits="consult" ajax="1"/>
 	<documentChangeData action="modules/document/document.php" param="changeData" droits="bassinGestion,poissonGestion,reproGestion" />
 	<documentWriteData action="modules/document/document.php" param="writeData" droits="bassinGestion,poissonGestion,reproGestion" retourok="documentList" retourko="documentChange"  />
@@ -236,7 +236,7 @@
 	<poissonCampagneDisplay action="modules/repro/poissonCampagne.php" param="display" droits="reproConsult" type="smarty"/>
 	<poissonCampagneChange action="modules/repro/poissonCampagne.php" param="change" droits="reproGestion" type="smarty"/>
 	<poissonCampagneWrite action="modules/repro/poissonCampagne.php" param="write" droits="reproGestion" modulebefore="poissonCampagneChange" retourok="poissonCampagneDisplay" retourko="poissonCampagneChange"/>
-	<poissonCampagneDelete action="modules/repro/poissonCampagne.php" param="delete" droits="reproAdmin" modulebefore="poissonCampagneChange,poissonCampagneList" retoursuppr="poissonCampagneList" retourko="poissonCampagneChange"/>
+	<poissonCampagneDelete action="modules/repro/poissonCampagne.php" param="delete" droits="reproAdmin" modulebefore="poissonCampagneChange,poissonCampagneList" retourok="poissonCampagneList" retourko="poissonCampagneChange"/>
 	<poissonCampagneChangeStatut action="modules/repro/poissonCampagne.php" param="changeStatut" droits="reproGestion" modulebefore="poissonCampagneList,poissonCampagneChangeStatut,repro" retourok="poissonCampagneList"  type="smarty"/>
 	<poissonCampagneInit action="modules/repro/poissonCampagne.php" param="init" droits="reproAdmin" modulebefore="poissonCampagneList,poissonCampagneInit,repro" retourok="poissonCampagneList" />
 	<poissonCampagneRecalcul action="modules/repro/poissonCampagne.php" param="recalcul" droits="reproGestion" modulebefore="poissonCampagneDisplay" retourok="poissonCampagneDisplay" retourko="poissonCampagneDisplay"/>
@@ -245,119 +245,119 @@
 	<sequenceDisplay action="modules/repro/sequence.php" param="display" droits="reproConsult" type="smarty" />
 	<sequenceChange action="modules/repro/sequence.php" param="change" droits="reproGestion"  type="smarty"/>
 	<sequenceWrite action="modules/repro/sequence.php" param="write" droits="reproGestion" modulebefore="sequenceChange" retourok="sequenceDisplay" retourko="sequenceChange"/>
-	<sequenceDelete action="modules/repro/sequence.php" param="delete" droits="reproGestion" modulebefore="sequenceChange" retoursuppr="sequenceList" retourko="sequenceChange"/>
+	<sequenceDelete action="modules/repro/sequence.php" param="delete" droits="reproGestion" modulebefore="sequenceChange" retourok="sequenceList" retourko="sequenceChange"/>
 
 	<dosageSanguinChange action="modules/repro/dosageSanguin.php" param="change" droits="reproGestion"  type="smarty"/>
 	<dosageSanguinWrite action="modules/repro/dosageSanguin.php" param="write" droits="reproGestion" modulebefore="dosageSanguinChange" retourok="poissonCampagneDisplay" retourko="dosageSanguinChange"/>
-	<dosageSanguinDelete action="modules/repro/dosageSanguin.php" param="delete" droits="reproGestion" modulebefore="dosageSanguinChange" retoursuppr="poissonCampagneDisplay" retourko="dosageSanguinChange"/>
+	<dosageSanguinDelete action="modules/repro/dosageSanguin.php" param="delete" droits="reproGestion" modulebefore="dosageSanguinChange" retourok="poissonCampagneDisplay" retourko="dosageSanguinChange"/>
 
 	<biopsieChange action="modules/repro/biopsie.php" param="change" droits="reproGestion"  type="smarty"/>
 	<biopsieWrite action="modules/repro/biopsie.php" param="write" droits="reproGestion" modulebefore="biopsieChange" retourok="poissonCampagneDisplay" retourko="biopsieChange"/>
-	<biopsieDelete action="modules/repro/biopsie.php" param="delete" droits="reproGestion" modulebefore="biopsieChange" retoursuppr="poissonCampagneDisplay" retourko="biopsieChange"/>
+	<biopsieDelete action="modules/repro/biopsie.php" param="delete" droits="reproGestion" modulebefore="biopsieChange" retourok="poissonCampagneDisplay" retourko="biopsieChange"/>
 
 	<poissonSequenceChange action="modules/repro/poissonSequence.php" param="change" droits="reproGestion"  type="smarty"/>
 	<poissonSequenceWrite action="modules/repro/poissonSequence.php" param="write" droits="reproGestion" modulebefore="poissonSequenceChange" retourok="poissonCampagneDisplay" retourko="poissonSequenceChange"/>
-	<poissonSequenceDelete action="modules/repro/poissonSequence.php" param="delete" droits="reproGestion" modulebefore="poissonSequenceChange" retoursuppr="poissonCampagneDisplay" retourko="poissonSequenceChange"/>
+	<poissonSequenceDelete action="modules/repro/poissonSequence.php" param="delete" droits="reproGestion" modulebefore="poissonSequenceChange" retourok="poissonCampagneDisplay" retourko="poissonSequenceChange"/>
 
 	<psEvenementChange action="modules/repro/psEvenement.php" param="change" droits="reproGestion" retourok="poissonSequenceChange" type="smarty"/>
 	<psEvenementWrite action="modules/repro/psEvenement.php" param="write" droits="reproGestion" modulebefore="psEvenementChange,poissonSequenceChange" retourok="poissonSequenceChange" retourko="poissonSequenceChange"/>
-	<psEvenementDelete action="modules/repro/psEvenement.php" param="delete" droits="reproGestion" modulebefore="psEvenementChange" retoursuppr="poissonSequenceChange" retourko="poissonSequenceChange"/>
+	<psEvenementDelete action="modules/repro/psEvenement.php" param="delete" droits="reproGestion" modulebefore="psEvenementChange" retourok="poissonSequenceChange" retourko="poissonSequenceChange"/>
 
 	<bassinCampagneDisplay action="modules/repro/bassinCampagne.php" param="display" droits="reproConsult" type="smarty"/>
-	<bassinCampagneDelete action="modules/repro/bassinCampagne.php" param="delete" droits="reproGestion" modulebefore="sequenceList" retoursuppr="sequenceList" retourko="sequenceList"/>
+	<bassinCampagneDelete action="modules/repro/bassinCampagne.php" param="delete" droits="reproGestion" modulebefore="sequenceList" retourok="sequenceList" retourko="sequenceList"/>
 	<bassinCampagneWrite action="modules/repro/bassinCampagne.php" param="write" droits="reproGestion" modulebefore="bassinCampagneDisplay" retourok="bassinCampagneDisplay" retourko="bassinCampagneDisplay" />
 	<bassinCampagneInit action="modules/repro/bassinCampagne.php" param="init" droits="reproGestion" modulebefore="sequenceList" retourok="sequenceList" />
 
 	<echographieChange action="modules/repro/echographie.php" param="change" droits="reproGestion"  type="smarty"/>
 	<echographieWrite action="modules/repro/echographie.php" param="write" droits="reproGestion" modulebefore="echographieChange" retourok="echographieChange" retourko="echographieChange"/>
-	<echographieDelete action="modules/repro/echographie.php" param="delete" droits="reproGestion" modulebefore="echographieChange" retoursuppr="poissonCampagneDisplay" retourko="echographieChange"/>
+	<echographieDelete action="modules/repro/echographie.php" param="delete" droits="reproGestion" modulebefore="echographieChange" retourok="poissonCampagneDisplay" retourko="echographieChange"/>
 
 	<profilThermiqueChange action="modules/repro/profilThermique.php" param="change" droits="reproGestion" type="smarty"/>
 	<profilThermiqueNew action="modules/repro/profilThermique.php" param="new" droits="reproGestion" type="smarty"/>
 	<profilThermiqueWrite action="modules/repro/profilThermique.php" param="write" droits="reproGestion" modulebefore="profilThermiqueChange,profilThermiqueNew" retourok="profilThermiqueNew"/>
-	<profilThermiqueDelete action="modules/repro/profilThermique.php" param="delete" droits="reproGestion" modulebefore="profilThermiqueChange" retoursuppr="profilThermiqueNew" retourko="profilThermiqueChange"/>
+	<profilThermiqueDelete action="modules/repro/profilThermique.php" param="delete" droits="reproGestion" modulebefore="profilThermiqueChange" retourok="profilThermiqueNew" retourko="profilThermiqueChange"/>
 
 	<croisementChange action="modules/repro/croisement.php" param="change" droits="reproGestion"  type="smarty"/>
 	<croisementDisplay action="modules/repro/croisement.php" param="display" droits="reproGestion"  type="smarty"/>
 	<croisementWrite action="modules/repro/croisement.php" param="write" droits="reproGestion" modulebefore="croisementChange" retourok="croisementDisplay" retourko="croisementChange"/>
-	<croisementDelete action="modules/repro/croisement.php" param="delete" droits="reproGestion" modulebefore="croisementChange" retoursuppr="sequenceDisplay" retourko="croisementChange"/>
+	<croisementDelete action="modules/repro/croisement.php" param="delete" droits="reproGestion" modulebefore="croisementChange" retourok="sequenceDisplay" retourko="croisementChange"/>
 
 	<lotList action="modules/repro/lot.php" param="list" retourlogin="1" droits="reproConsult"  type="smarty"/>
 	<lotDisplay action="modules/repro/lot.php" param="display" droits="reproConsult"  type="smarty"/>
 	<lotChange action="modules/repro/lot.php" param="change" droits="reproGestion"  type="smarty"/>
 	<lotWrite action="modules/repro/lot.php" param="write" droits="reproGestion" modulebefore="lotChange" retourok="lotDisplay" retourko="lotChange"/>
-	<lotDelete action="modules/repro/lot.php" param="delete" droits="reproGestion" modulebefore="lotChange" retoursuppr="lotList" retourko="lotChange"/>
+	<lotDelete action="modules/repro/lot.php" param="delete" droits="reproGestion" modulebefore="lotChange" retourok="lotList" retourko="lotChange"/>
 
 	<lotMesureChange action="modules/repro/lotMesure.php" param="change" droits="reproGestion"  type="smarty"/>
 	<lotMesureWrite action="modules/repro/lotMesure.php" param="write" droits="reproGestion" modulebefore="lotMesureChange" retourok="lotDisplay" retourko="lotMesureChange"/>
-	<lotMesureDelete action="modules/repro/lotMesure.php" param="delete" droits="reproGestion" modulebefore="lotMesureChange" retoursuppr="lotDisplay" retourko="lotMesureChange"/>
+	<lotMesureDelete action="modules/repro/lotMesure.php" param="delete" droits="reproGestion" modulebefore="lotMesureChange" retourok="lotDisplay" retourko="lotMesureChange"/>
 
 	<injectionChange action="modules/repro/injection.php" param="change" droits="reproGestion"  type="smarty"/>
 	<injectionWrite action="modules/repro/injection.php" param="write" droits="reproGestion" modulebefore="injectionChange" retourok="poissonCampagneDisplay" retourko="injectionChange"/>
-	<injectionDelete action="modules/repro/injection.php" param="delete" droits="reproGestion" modulebefore="injectionChange" retoursuppr="poissonCampagneDisplay" retourko="injectionChange"/>
+	<injectionDelete action="modules/repro/injection.php" param="delete" droits="reproGestion" modulebefore="injectionChange" retourok="poissonCampagneDisplay" retourko="injectionChange"/>
 
 	<saliniteChange action="modules/repro/salinite.php" param="change" droits="reproGestion" type="smarty"/>
 	<saliniteNew action="modules/repro/salinite.php" param="new" droits="reproGestion" type="smarty"/>
 	<saliniteWrite action="modules/repro/salinite.php" param="write" droits="reproGestion" modulebefore="saliniteChange,saliniteNew" retourok="saliniteNew"/>
-	<saliniteDelete action="modules/repro/salinite.php" param="delete" droits="reproGestion" modulebefore="saliniteChange" retoursuppr="saliniteNew" retourko="saliniteChange"/>
+	<saliniteDelete action="modules/repro/salinite.php" param="delete" droits="reproGestion" modulebefore="saliniteChange" retourok="saliniteNew" retourko="saliniteChange"/>
 
 	<spermeDisplay action="modules/repro/sperme.php" param="display" droits="reproConsult"  type="smarty"/>
 	<spermeChange action="modules/repro/sperme.php" param="change" droits="reproGestion"  type="smarty"/>
 	<spermeWrite action="modules/repro/sperme.php" param="write" droits="reproGestion" modulebefore="spermeChange" retourok="spermeChange" retourko="spermeChange"/>
-	<spermeDelete action="modules/repro/sperme.php" param="delete" droits="reproGestion" modulebefore="spermeChange" retoursuppr="poissonCampagneDisplay" retourko="spermeChange"/>
+	<spermeDelete action="modules/repro/sperme.php" param="delete" droits="reproGestion" modulebefore="spermeChange" retourok="poissonCampagneDisplay" retourko="spermeChange"/>
 
 	<spermeUtiliseChange action="modules/repro/spermeUtilise.php" param="change" droits="reproGestion" type="smarty" />
 	<spermeUtiliseWrite action="modules/repro/spermeUtilise.php" param="write" droits="reproGestion" modulebefore="spermeUtiliseChange" retourok="croisementDisplay" retourko="spermeUtiliseChange"/>
-	<spermeUtiliseDelete action="modules/repro/spermeUtilise.php" param="delete" droits="reproGestion" modulebefore="spermeUtiliseChange" retoursuppr="croisementDisplay" retourko="spermeUtiliseChange"/>
+	<spermeUtiliseDelete action="modules/repro/spermeUtilise.php" param="delete" droits="reproGestion" modulebefore="spermeUtiliseChange" retourok="croisementDisplay" retourko="spermeUtiliseChange"/>
 
 
 	<spermeMesureChange action="modules/repro/spermeMesure.php" param="change" droits="reproGestion" type="smarty" />
 	<spermeMesureWrite action="modules/repro/spermeMesure.php" param="write" droits="reproGestion" modulebefore="spermeMesureChange" retourok="spermeChange" retourko="spermeMesureChange"/>
-	<spermeMesureDelete action="modules/repro/spermeMesure.php" param="delete" droits="reproGestion" modulebefore="spermeMesureChange" retoursuppr="spermeChange" retourko="spermeMesureChange"/>
+	<spermeMesureDelete action="modules/repro/spermeMesure.php" param="delete" droits="reproGestion" modulebefore="spermeMesureChange" retourok="spermeChange" retourko="spermeMesureChange"/>
 
 	<spermeCongelationChange action="modules/repro/spermeCongelation.php" param="change" droits="reproGestion" type="smarty" />
 	<spermeCongelationWrite action="modules/repro/spermeCongelation.php" param="write" droits="reproGestion" modulebefore="spermeCongelationChange" retourok="spermeCongelationChange" retourko="spermeCongelationChange"/>
-	<spermeCongelationDelete action="modules/repro/spermeCongelation.php" param="delete" droits="reproGestion" modulebefore="spermeCongelationChange" retoursuppr="spermeChange" retourko="spermeCongelationChange"/>
+	<spermeCongelationDelete action="modules/repro/spermeCongelation.php" param="delete" droits="reproGestion" modulebefore="spermeCongelationChange" retourok="spermeChange" retourko="spermeCongelationChange"/>
 
 	<spermeFreezingPlaceChange action="modules/repro/spermeFreezingPlace.php" param="change" droits="reproGestion"  type="smarty"/>
 	<spermeFreezingPlaceWrite action="modules/repro/spermeFreezingPlace.php" param="write" droits="reproGestion" modulebefore="spermeFreezingPlaceChange" retourok="spermeCongelationChange" retourko="spermeFreezingPlaceChange"/>
-	<spermeFreezingPlaceDelete action="modules/repro/spermeFreezingPlace.php" param="delete" droits="reproGestion" modulebefore="spermeFreezingPlaceChange" retoursuppr="spermeCongelationChange" retourko="spermeFreezingPlaceChange"/>
+	<spermeFreezingPlaceDelete action="modules/repro/spermeFreezingPlace.php" param="delete" droits="reproGestion" modulebefore="spermeFreezingPlaceChange" retourok="spermeCongelationChange" retourko="spermeFreezingPlaceChange"/>
 
 	<spermeFreezingMeasureChange action="modules/repro/spermeFreezingMeasure.php" param="change" droits="reproGestion" type="smarty" />
 	<spermeFreezingMeasureWrite action="modules/repro/spermeFreezingMeasure.php" param="write" droits="reproGestion" modulebefore="spermeFreezingMeasureChange" retourok="spermeFreezingMeasureChange" retourko="spermeFreezingMeasureChange"/>
-	<spermeFreezingMeasureDelete action="modules/repro/spermeFreezingMeasure.php" param="delete" droits="reproGestion" modulebefore="spermeFreezingMeasureChange" retoursuppr="spermeCongelationChange" retourko="spermeFreezingMeasureChange"/>
+	<spermeFreezingMeasureDelete action="modules/repro/spermeFreezingMeasure.php" param="delete" droits="reproGestion" modulebefore="spermeFreezingMeasureChange" retourok="spermeCongelationChange" retourko="spermeFreezingMeasureChange"/>
 
 
 	<vieModeleList action="modules/repro/vieModele.php" param="list" retourlogin="1" droits="reproConsult"  type="smarty"/>
 	<vieModeleChange action="modules/repro/vieModele.php" param="change" droits="reproGestion"  type="smarty"/>
 	<vieModeleWrite action="modules/repro/vieModele.php" param="write" droits="reproGestion" modulebefore="vieModeleChange" retourok="vieModeleList" retourko="vieModeleChange"/>
-	<vieModeleDelete action="modules/repro/vieModele.php" param="delete" droits="reproGestion" modulebefore="vieModeleChange" retoursuppr="vieModeleList" retourko="vieModeleChange"/>
+	<vieModeleDelete action="modules/repro/vieModele.php" param="delete" droits="reproGestion" modulebefore="vieModeleChange" retourok="vieModeleList" retourko="vieModeleChange"/>
 
 	<bassinLotChange action="modules/repro/bassinLot.php" param="change" droits="reproGestion" type="smarty" />
 	<bassinLotWrite action="modules/repro/bassinLot.php" param="write" droits="reproGestion" modulebefore="bassinLotChange" retourok="lotDisplay" retourko="bassinLotChange"/>
-	<bassinLotDelete action="modules/repro/bassinLot.php" param="delete" droits="reproGestion" modulebefore="bassinLotChange" retoursuppr="lotDisplay" retourko="bassinLotChange"/>
+	<bassinLotDelete action="modules/repro/bassinLot.php" param="delete" droits="reproGestion" modulebefore="bassinLotChange" retourok="lotDisplay" retourko="bassinLotChange"/>
 
 	<lotalimGenerate action="modules/repro/lotAlim.php" droits="reproGestion,bassinGestion"  type="ajax" modulebefore="lotList"/>
 
 	<devenirList action="modules/repro/devenir.php" param="list" retourlogin="1" droits="reproConsult"  type="smarty"/>
 	<devenirChange action="modules/repro/devenir.php" param="change" droits="reproGestion" type="smarty" />
 	<devenirWrite action="modules/repro/devenir.php" param="write" droits="reproGestion" modulebefore="devenirChange" retourok="devenirList" retourko="devenirChange"/>
-	<devenirDelete action="modules/repro/devenir.php" param="delete" droits="reproGestion" modulebefore="devenirChange" retoursuppr="devenirList" retourko="devenirChange"/>
+	<devenirDelete action="modules/repro/devenir.php" param="delete" droits="reproGestion" modulebefore="devenirChange" retourok="devenirList" retourko="devenirChange"/>
 
 	<devenirlotChange action="modules/repro/devenir.php" param="change" droits="reproGestion"  type="smarty"/>
 	<devenirlotWrite action="modules/repro/devenir.php" param="write" droits="reproGestion" modulebefore="devenirlotChange" retourok="lotDisplay" retourko="devenirlotChange"/>
-	<devenirlotDelete action="modules/repro/devenir.php" param="delete" droits="reproGestion" modulebefore="devenirlotChange" retoursuppr="lotDisplay" retourko="devenirlotChange"/>
+	<devenirlotDelete action="modules/repro/devenir.php" param="delete" droits="reproGestion" modulebefore="devenirlotChange" retourok="lotDisplay" retourko="devenirlotChange"/>
 
 	<ventilationChange action="modules/poisson/ventilation.php" param="change" droits="reproGestion,poissonGestion"  type="smarty"/>
 	<ventilationWrite action="modules/poisson/ventilation.php" param="write" droits="reproGestion,poissonGestion" modulebefore="ventilationChange" retourok="poissonDisplay" retourko="ventilationChange"/>
-	<ventilationDelete action="modules/poisson/ventilation.php" param="delete" droits="reproGestion,poissonGestion" modulebefore="ventilationChange" retoursuppr="poissonDisplay" retourko="ventilationChange"/>
+	<ventilationDelete action="modules/poisson/ventilation.php" param="delete" droits="reproGestion,poissonGestion" modulebefore="ventilationChange" retourok="poissonDisplay" retourko="ventilationChange"/>
 	<ventilationCampagneWrite action="modules/poisson/ventilation.php" param="write" droits="reproGestion,poissonGestion" modulebefore="ventilationChange" retourok="poissonCampagneDisplay" retourko="ventilationChange"/>
-	<ventilationCampagneDelete action="modules/poisson/ventilation.php" param="delete" droits="reproGestion,poissonGestion" modulebefore="ventilationChange" retoursuppr="poissonCampagneDisplay" retourko="ventilationChange"/>
+	<ventilationCampagneDelete action="modules/poisson/ventilation.php" param="delete" droits="reproGestion,poissonGestion" modulebefore="ventilationChange" retourok="poissonCampagneDisplay" retourko="ventilationChange"/>
 
 	<requeteList action="modules/parametre/requete.php" param="list" retourlogin="1" droits="requete" type="smarty" />
 	<requeteChange action="modules/parametre/requete.php" param="change" droits="requeteAdmin"  type="smarty"/>
 	<requeteWrite action="modules/parametre/requete.php" param="write" droits="requeteAdmin" modulebefore="requeteChange,requeteCopy" retourok="requeteChange" retourko="requeteChange"/>
-	<requeteDelete action="modules/parametre/requete.php" param="delete" droits="requeteAdmin" modulebefore="requeteChange,requeteExec,requeteWriteExec,requeteExecList" retoursuppr="requeteList" retourko="requeteChange"/>
+	<requeteDelete action="modules/parametre/requete.php" param="delete" droits="requeteAdmin" modulebefore="requeteChange,requeteExec,requeteWriteExec,requeteExecList" retourok="requeteList" retourko="requeteChange"/>
 	<requeteExec action="modules/parametre/requete.php" param="exec" droits="requete" />
 	<requeteExecList action="modules/parametre/requete.php" param="execListe" droits="requete"  type="smarty"/>
 	<requeteWriteExec action="modules/parametre/requete.php" param="write" droits="requeteAdmin" modulebefore="requeteChange,requeteExec,requeteWriteExec" retourok="requeteExec" retourko="requeteChange"/>
@@ -368,6 +368,6 @@
 	<siteList action="modules/parametre/site.php" param="list" retourlogin="1" droits="consult" type="smarty" />
 	<siteChange action="modules/parametre/site.php" param="change" droits="paramAdmin"  type="smarty"/>
 	<siteWrite action="modules/parametre/site.php" param="write" droits="paramAdmin" modulebefore="siteChange" retourok="siteList" retourko="siteChange"/>
-	<siteDelete action="modules/parametre/site.php" param="delete" droits="paramAdmin" modulebefore="siteChange" retoursuppr="siteList" retourko="siteChange"/>
+	<siteDelete action="modules/parametre/site.php" param="delete" droits="paramAdmin" modulebefore="siteChange" retourok="siteList" retourko="siteChange"/>
 
 </navigation>
