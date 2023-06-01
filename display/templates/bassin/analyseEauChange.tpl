@@ -55,9 +55,12 @@
 <div class="row">
 	<div class="col-md-6">
 		<form class="form-horizontal" id="analyseEauForm" method="post" action="index.php">
-			<input id="action" type="hidden" name="action" value="analyseEauWrite{$origine}">
+			<input id="module" type="hidden" name="module" value="analyseEauWrite{$origine}">
 			<input type="hidden" name="analyse_eau_id" value="{$data.analyse_eau_id}">
 			<input type="hidden" name="circuit_eau_id" value="{$data.circuit_eau_id}">
+			<div class="form-group center">
+				<button type="submit" class="btn btn-primary button-valid">{t}Valider{/t}</button>
+			</div>
 			<div class="form-group">
 				<label for="" class="control-label col-md-4">{t}Date d'analyse :{/t}<span class="red">*</span></label>
 				<div class="col-md-8">

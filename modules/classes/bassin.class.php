@@ -217,8 +217,14 @@ class Bassin extends ObjetBDD
 	 */
 	function getListeByCircuitEau($circuitId)
 	{
-		$sql = "select bassin_id, bassin_nom from bassin where circuit_eau_id = :id 
-			order by bassin_nom";
+		$sql = "select bassin_id, bassin_nom, bassin_description, actif
+				,bassin_usage_libelle, bassin_zone_libelle, bassin_type_libelle
+				from bassin
+				left outer join bassin_usage using (bassin_usage_id)
+				left outer join bassin_zone using (bassin_zone_id)
+				left outer join bassin_type using (bassin_type_id)
+				where circuit_eau_id = :id 
+				order by bassin_nom";
 		return $this->getListeParamAsPrepared($sql, array("id" => $circuitId));
 	}
 	/**
@@ -255,7 +261,7 @@ class Bassin extends ObjetBDD
 	 *        	: parametres de recherche des bassins
 	 * @return array
 	 */
-	function getRecapAlim($data, $search):array
+	function getRecapAlim($data, $search): array
 	{
 		if (isset($data["dateDebut"]) && isset($data["dateFin"])) {
 			$dateDebut = $this->formatDateLocaleVersDB($data["dateDebut"]);

@@ -83,6 +83,7 @@ class Sonde extends ObjetBDD
                     $header[$i] = $sheet->getCell($col . "1")->getValue();
                     $i++;
                 }
+                $header[$i] = $sheet->getCell($highestColumn . "1")->getValue();
                 /**
                  * Recuperation du tableau contenant les donnees
                  */
@@ -92,6 +93,7 @@ class Sonde extends ObjetBDD
                     for ($col = 'A'; $col != $highestColumn; ++$col) {
                         $drow[$header[$i]] = $sheet->getCell($col . $row)->getFormattedValue();
                         $i++;
+                        $drow[$header[$i]] = $sheet->getCell($highestColumn . $row)->getFormattedValue();
                     }
                     $data[] = $drow;
                 }
@@ -127,7 +129,7 @@ class Sonde extends ObjetBDD
             /**
              * Verification que les données fournies ne sont pas anormales
              */
-            if ( (strlen($row["value"] > 0) and ! in_array($row["value"], $param["abnormalvalues"]))) {
+            if ( (!empty($row["value"]) and ! in_array($row["value"], $param["abnormalvalues"]))) {
                 /**
                  * Extraction du nom du circuit d'eau
                  */
@@ -161,7 +163,7 @@ class Sonde extends ObjetBDD
                      * Recherche de l'attribut correspondant au critère analysé
                      */
                     $attribut = $param["attributs"][substr($drank[1],0, 1)];
-                    if (strlen($attribut)>0) {
+                    if (!empty($attribut)) {
                     $listeAnalyse[$circuit_id] [$row["date"]] [$attribut] = $row["value"];
                     } else {
                         throw new SondeException(sprintf(_("La valeur analysée %s n'est pas décrite dans le fichier de paramétrage"),$drank[1]));

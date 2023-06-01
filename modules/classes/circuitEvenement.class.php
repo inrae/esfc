@@ -52,7 +52,7 @@ class CircuitEvenement extends ObjetBDD
 	function getListeBycircuit(int $circuit_eau_id)
 	{
 		$sql = "select * from circuit_evenement
-					join circuit_evenement_type using (evenement_type_id)
+					join circuit_evenement_type using (circuit_evenement_type_id)
 					where circuit_eau_id = :id
 					order by circuit_evenement_date desc";
 		return $this->getListeParamAsPrepared($sql, array("id" => $circuit_eau_id));

@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "alpaca": "^1.5.27",
+    "c3": "^0.7.20",
     "combobox": "^1.0.1",
     "commander": "^7.1.0",
     "datatables": "^1.10.18",

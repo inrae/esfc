@@ -62,6 +62,11 @@ class SearchParam {
 					$this->param [$key] = $data [$key];
 				}
 			}
+			/**
+		 * Gestion de l'indicateur de recherche
+		 */
+		if ($data ["isSearch"] == 1)
+			$this->isSearch = 1;
 		} else {
 			/*
 			 * Une donnee unique est fournie
@@ -74,11 +79,6 @@ class SearchParam {
 				$this->param [$data] = $valeur;
 			}
 		}
-		/*
-		 * Gestion de l'indicateur de recherche
-		 */
-		if ($data ["isSearch"] == 1)
-			$this->isSearch = 1;
 	}
 	/**
 	 * Retourne les parametres existants
@@ -329,4 +329,3 @@ class AlimJuv extends SearchParam {
 		parent::__construct ();
 	}
 }
-?>

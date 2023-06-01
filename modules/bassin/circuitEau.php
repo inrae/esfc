@@ -39,6 +39,7 @@ switch ($t_module["param"]) {
 		require_once 'modules/classes/site.class.php';
 		$site = new Site($bdd, $ObjetBDDParam);
 		$vue->set( $site->getListe(2), "site");
+		$_SESSION["bassinParentModule"] = "circuitEauList";
 		break;
 	case "display":
 		/*

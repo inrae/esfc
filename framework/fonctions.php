@@ -485,7 +485,7 @@ function apiCall($method, $url, $certificate_path = "", $data = array(), $modeDe
 /**
  * Fonction permettant de reorganiser les donnees des fichiers telecharges,
  * pour une utilisation directe en tableau
- * @return multitype:multitype:NULL  unknown
+ * @return array
  */
 function formatFiles($attributName = "documentName")
 {

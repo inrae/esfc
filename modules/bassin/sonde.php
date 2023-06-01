@@ -33,9 +33,9 @@ switch ($t_module["param"]) {
         $files = formatFiles("sondeFileName");
         try {
             $result = $dataClass->importData($_REQUEST["sonde_id"], $files);
-            if (is_numeric($_REQUEST["sonde_id"])) {
+            /*if (is_numeric($_REQUEST["sonde_id"])) {
                 $vue->set($_REQUEST["sonde_id"], "sonde_id");
-            }
+            }*/
             $message->set($result . " analyses d'eau créées");
             $module_coderetour = 1;
         } catch (Exception $e) {
