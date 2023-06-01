@@ -4,14 +4,12 @@
 Nouveau...
 </a>
 {/if}
-<script>
 
-</script>
 <table class="table table-bordered table-hover datatable" id="cbassinUsageList" class="tableliste">
 <thead>
 <tr>
 <th>{t}libellé{/t}</th>
-<th>{t}Catégorie<br>d'alimentation{/t}</th>
+<th>{t}Catégorie d'alimentation{/t}</th>
 </tr>
 </thead>
 <tbody>

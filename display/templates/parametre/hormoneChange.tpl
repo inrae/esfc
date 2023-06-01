@@ -1,6 +1,6 @@
 <h2>{t}Modification d'une hormone{/t}</h2>
 
-<a href="index.php?module=hormoneList">Retour à la liste</a>
+<a href="index.php?module=hormoneList">{t}Retour à la liste{/t}</a>
 <div class="formSaisie">
 <div>
 
@@ -30,7 +30,7 @@ Nom de l'hormone <span class="red">*</span> :
 
 <div class="form-group center">
 <button type="submit" class="btn btn-primary button-valid">{t}Valider{/t}</button>
-<button class="btn btn-danger btn-delete">{t}Supprimer{/t}</button>
+<button class="btn btn-danger button-delete">{t}Supprimer{/t}</button>
 </form>
 </div>
 </div>
@@ -48,7 +48,7 @@ Nom de l'hormone <span class="red">*</span> :
 </div>
 <div class="form-group center">
 <button type="submit" class="btn btn-primary button-valid">{t}Valider{/t}</button>
-<button class="btn btn-danger btn-delete">{t}Supprimer{/t}</button>
+<button class="btn btn-danger button-delete">{t}Supprimer{/t}</button>
 </form>
 </div>
 </div>

@@ -1,6 +1,4 @@
-<script>
 
-</script>
 <table class="table table-bordered table-hover datatable" id="cparenteList" class="tableliste">
 <thead>
 <tr>

@@ -103,7 +103,7 @@
 <div class="form-group center">
 <button type="submit" class="btn btn-primary button-valid">{t}Valider{/t}</button>
 {if $data.repart_template_id > 0 &&$droits["bassinAdmin"] == 1}
-<button class="btn btn-danger btn-delete">{t}Supprimer{/t}</button>
+<button class="btn btn-danger button-delete">{t}Supprimer{/t}</button>
 {/if}
 </div>
 </form>

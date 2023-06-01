@@ -58,7 +58,7 @@ $(document).ready(function() {
 	} );
 } );
 </script>
-<a href="index.php?module=repartitionList">Retour à la liste</a>
+<a href="index.php?module=repartitionList">{t}Retour à la liste{/t}</a>
 <h2>{t}Saisie des restes{/t}</h2>
 <b>{$data.categorie_libelle}</b> <i>{$data.repartition_name}</i> - Période du <b>{$data.date_debut_periode}</b> au <b>{$data.date_fin_periode}</b>
 <div>
@@ -114,7 +114,7 @@ $(document).ready(function() {
 </table>
 <div class="form-group center">
 <button type="submit" class="btn btn-primary button-valid">{t}Valider{/t}</button>
-<button class="btn btn-danger btn-delete">{t}Supprimer{/t}</button>
+<button class="btn btn-danger button-delete">{t}Supprimer{/t}</button>
 </form>
 </div>
 </div>

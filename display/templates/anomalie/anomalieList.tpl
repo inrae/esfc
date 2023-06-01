@@ -1,6 +1,4 @@
-<script>
 
-</script>
 <form method="get" action="index.php">
 <input type="hidden" name="isSearch" value="1">
 <input type="hidden" name="module" value="anomalieList">

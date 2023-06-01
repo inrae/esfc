@@ -21,7 +21,7 @@ $(document).ready(function() {
 });
 </script>
 
-<a href="index.php?module=requeteList">Retour à la liste</a>
+<a href="index.php?module=requeteList">{t}Retour à la liste{/t}</a>
 &nbsp;
 <a href="index.php?module=getStructureDatabase" target="_blank">Structure de la base de données (fichier PDF)</a>
 <div class="formSaisie">
@@ -94,15 +94,13 @@ Description de la requête <span class="red">*</span> :
 </div>
 <div class="form-group center">
 <button type="submit" class="btn btn-primary button-valid">{t}Valider{/t}</button>
-<button class="btn btn-danger btn-delete">{t}Supprimer{/t}</button>
+<button class="btn btn-danger button-delete">{t}Supprimer{/t}</button>
 </form>
 </div>
 </div>
 </div>
 </div>
-<script>
 
-</script>
 
 {if count($result) > 0}
 <table id="crequeteList" class="tableliste">

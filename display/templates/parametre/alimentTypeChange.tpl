@@ -1,6 +1,6 @@
 <h2>{t}Modification d'un type d'aliment{/t}</h2>
 
-<a href="index.php?module=alimentTypeList">Retour à la liste</a>
+<a href="index.php?module=alimentTypeList">{t}Retour à la liste{/t}</a>
 
 <div class="row">
 <div class="col-md-6">
@@ -18,7 +18,7 @@
 <div class="form-group center">
 <button type="submit" class="btn btn-primary button-valid">{t}Valider{/t}</button>
 {if $data.aliment_type_id > 0 && $droits["paramAdmin"] == 1}
-<button class="btn btn-danger btn-delete">{t}Supprimer{/t}</button>
+<button class="btn btn-danger button-delete">{t}Supprimer{/t}</button>
 {/if}
 </div>
 </form>

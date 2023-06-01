@@ -39,7 +39,7 @@
 		<item module="default" label="Poissons" tooltip="Paramètres liés aux poissons" droits="consult">
 			<item module="pittagTypeList" label="Types de pittags" tooltip="Liste des types de pittags" droits="consult"/>
 			<item module="poissonStatutList" label="Statuts des poissons" tooltip="Liste des statuts des poissons" droits="consult"/>
-			<item module="genderMethodeListe" label="Méthodes de sexage" tooltip="Liste des méthode de sexage utilisées" droits="consult"/>
+			<item module="genderMethodeList" label="Méthodes de sexage" tooltip="Liste des méthode de sexage utilisées" droits="consult"/>
 			<item module="evenementTypeList" label="Types d'événements" tooltip="Liste des types d'événements" droits="consult"/>
 			<item module="pathologieTypeList" label="Types de pathologie" tooltip="Liste des types de pathologie" droits="consult"/>
 			<item module="mortaliteTypeList" label="Types de mortalités" tooltip="Liste des types de mortalités" droits="consult"/>

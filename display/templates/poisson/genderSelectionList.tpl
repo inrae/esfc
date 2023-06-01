@@ -1,6 +1,4 @@
-<script>
 
-</script>
 <table class="table table-bordered table-hover datatable" id="cgender_selectionList" class="tableliste">
 <thead>
 <tr>

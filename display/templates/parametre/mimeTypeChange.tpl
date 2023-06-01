@@ -1,6 +1,6 @@
 <h2>{t}Modification d'un type de fichier importable{/t}</h2>
 
-<a href="index.php?module=mimeTypeList">Retour à la liste</a>
+<a href="index.php?module=mimeTypeList">{t}Retour à la liste{/t}</a>
 <table class="tablesaisie">
 <div class="row">
 <div class="col-md-6">
@@ -27,7 +27,7 @@ Type de contenu (mime-Type) <span class="red">*</span> :{/t}</label>
 <input class="submit" type="submit" value="Enregistrer">
 <div class="form-group center">
 <button type="submit" class="btn btn-primary button-valid">{t}Valider{/t}</button>
-<button class="btn btn-danger btn-delete">{t}Supprimer{/t}</button>
+<button class="btn btn-danger button-delete">{t}Supprimer{/t}</button>
 </form>
 </div>
 </div>
@@ -43,7 +43,7 @@ Type de contenu (mime-Type) <span class="red">*</span> :{/t}</label>
 <input class="submit" type="submit" value="Supprimer">
 <div class="form-group center">
 <button type="submit" class="btn btn-primary button-valid">{t}Valider{/t}</button>
-<button class="btn btn-danger btn-delete">{t}Supprimer{/t}</button>
+<button class="btn btn-danger button-delete">{t}Supprimer{/t}</button>
 </form>
 </div>
 </div>

@@ -1,56 +1,45 @@
 <h2>{t}Modification d'un type d'événement{/t}</h2>
 
-<a href="index.php?module=evenementTypeList">Retour à la liste</a>
-<table class="tablesaisie">
+<a href="index.php?module=evenementTypeList">{t}Retour à la liste{/t}</a>
+
 <div class="row">
-<div class="col-md-6">
-<form class="form-horizontal" id="" method="post" action="index.php">
-<input type="hidden" name="action" value="Write">
-<input type="hidden" name="moduleBase" value=""> class="cmxform" id="evenementTypeForm" method="post" action="index.php?module=evenementTypeWrite">
-<input type="hidden" name="evenement_type_id" value="{$data.evenement_type_id}">
-<div class="form-group">
-                <label for="" class="control-label col-md-4">{t}
-Nom du type d'événement <span class="red">*</span> :{/t}</label>
+    <div class="col-md-6">
+        <form class="form-horizontal" id="evenementTypeForm" method="post" action="index.php">
+            <input type="hidden" name="action" value="Write">
+            <input type="hidden" name="moduleBase" value="evenementType">
+            <input type="hidden" name="evenement_type_id" value="{$data.evenement_type_id}">
+            <div class="form-group">
+                <label for="cevenement_type_libelle" class="control-label col-md-4">
+                    {t}Nom du type d'événement :{/t}<span class="red">*</span>
+                </label>
                 <div class="col-md-8">
-<input id="cevenement_type_libelle" name="evenement_type_libelle" type="text" value="{$data.evenement_type_libelle}" required autofocus/>
-</div>
-</div>
-<div class="form-group">
-                <label for="" class="control-label col-md-4">{t}
-Actif dans les sélections<span class="red">*</span> ?{/t}</label>
+                    <input id="cevenement_type_libelle" name="evenement_type_libelle" class="form-control" type="text"
+                        value="{$data.evenement_type_libelle}" required autofocus />
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="" class="control-label col-md-4">
+                    {t}Actif dans les sélections ?{/t}<span class="red">*</span>
+                </label>
                 <div class="col-md-8">
-<input type="radio" name="evenement_type_actif" value="0" {if $data.evenement_type_actif == 0}checked{/if} > non
-<br>
-<input type="radio" name="evenement_type_actif" value="1" {if $data.evenement_type_actif == 1}checked{/if} > oui
-</td>
-<tr>
-<td colspan="2"><div align="center">
-<input class="submit" type="submit" value="Enregistrer">
-<div class="form-group center">
-<button type="submit" class="btn btn-primary button-valid">{t}Valider{/t}</button>
-<button class="btn btn-danger btn-delete">{t}Supprimer{/t}</button>
-</form>
-</div>
+                    <label class="radio-inline">
+                        <input id="actif0" type="radio" name="evenement_type_actif" value="0" {if
+                            $data.evenement_type_actif==0}checked{/if}> {t}non{/t}
+                    </label>
+                    <label class="radio-inline">
+                        <input id="actif1" type="radio" name="evenement_type_actif" value="1" {if
+                            $data.evenement_type_actif==1}checked{/if}> {t}oui{/t}
+                    </label>
+                </div>
+            </div>
+            <div class="form-group center">
+                <button type="submit" class="btn btn-primary button-valid">{t}Valider{/t}</button>
+                {if $data.evenement_type_id > 0 &&$droits["paramAdmin"] == 1}
+                <button class="btn btn-danger button-delete">{t}Supprimer{/t}</button>
+                {/if}
+            </div>
+        </form>
+    </div>
 </div>
 
-{if $data.evenement_type_id > 0 &&$droits["paramAdmin"] == 1}
-<div class="row">
-<div class="col-md-6">
-<form class="form-horizontal" id="" method="post" action="index.php">
-<input type="hidden" name="action" value="Write">
-<input type="hidden" name="moduleBase" value=""> action="index.php" method="post" onSubmit='return confirmSuppression("Confirmez-vous la suppression ?")'>
-<input type="hidden" name="evenement_type_id" value="{$data.evenement_type_id}">
-<input type="hidden" name="module" value="evenementTypeDelete">
-<input class="submit" type="submit" value="Supprimer">
-<div class="form-group center">
-<button type="submit" class="btn btn-primary button-valid">{t}Valider{/t}</button>
-<button class="btn btn-danger btn-delete">{t}Supprimer{/t}</button>
-</form>
-</div>
-</div>
-{/if}
-</div>
-</div>
-</div>
-</table>
 <span class="red">*</span><span class="messagebas">Champ obligatoire</span>

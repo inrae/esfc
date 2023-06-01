@@ -1,4 +1,4 @@
-<a href="index.php?module=lotList">Retour à la liste</a>
+<a href="index.php?module=lotList">{t}Retour à la liste{/t}</a>
 <h2>{t}Détail d'un lot{/t}</h2>
 <div class="tableCell">
 {if $droits.reproGestion == 1}

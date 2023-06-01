@@ -4,9 +4,7 @@
 Nouveau...
 </a>
 {/if}
-<script>
 
-</script>
 <table class="table table-bordered table-hover datatable" id="csortieLieuList" class="tableliste">
 <thead>
 <tr>

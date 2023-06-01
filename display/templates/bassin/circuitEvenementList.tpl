@@ -1,6 +1,4 @@
-<script>
 
-</script>
 {if $droits["bassinGestion"] == 1}
 <a href="index.php?module=circuitEvenementChange&circuit_evenement_id=0&circuit_eau_id={$data.circuit_eau_id}">
 Nouvel événement...

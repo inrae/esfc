@@ -155,7 +155,7 @@ $(document).ready(function() {
 } ) ;
 </script>
 <h2>{t}Modification d'une répartion{/t}</h2>
-<a href="index.php?module=repartitionList">Retour à la liste</a>
+<a href="index.php?module=repartitionList">{t}Retour à la liste{/t}</a>
 <a href="index.php?module=repartitionPrint&repartition_id={$data.repartition_id}" id="repartitionPrint">Imprimer la répartition</a>
 <div class="formSaisie">
 <div>
@@ -301,7 +301,7 @@ dim <input type="checkbox" name="distribution_jour_soir_7_{$dataBassin[lst].bass
 
 <div class="form-group center">
 <button type="submit" class="btn btn-primary button-valid">{t}Valider{/t}</button>
-<button class="btn btn-danger btn-delete">{t}Supprimer{/t}</button>
+<button class="btn btn-danger button-delete">{t}Supprimer{/t}</button>
 </form>
 </div>
 </div>
@@ -318,7 +318,7 @@ dim <input type="checkbox" name="distribution_jour_soir_7_{$dataBassin[lst].bass
 <input class="submit" type="submit" value="Supprimer">
 <div class="form-group center">
 <button type="submit" class="btn btn-primary button-valid">{t}Valider{/t}</button>
-<button class="btn btn-danger btn-delete">{t}Supprimer{/t}</button>
+<button class="btn btn-danger button-delete">{t}Supprimer{/t}</button>
 </form>
 </div>
 </div>

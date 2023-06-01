@@ -1,6 +1,6 @@
 <h2>{t}Modification d'une catégorie d'aliment{/t}</h2>
 
-<a href="index.php?module=categorieList">Retour à la liste</a>
+<a href="index.php?module=categorieList">{t}Retour à la liste{/t}</a>
 
 <div class="row">
     <div class="col-md-6">
@@ -18,7 +18,7 @@
         <div class="form-group center">
         <button type="submit" class="btn btn-primary button-valid">{t}Valider{/t}</button>
         {if $data.categorie_id > 0 &&$droits["paramAdmin"] == 1}
-        <button class="btn btn-danger btn-delete">{t}Supprimer{/t}</button>
+        <button class="btn btn-danger button-delete">{t}Supprimer{/t}</button>
         {/if}
         </div>
         </form>

@@ -4,9 +4,7 @@
 <h2>{t}Liste des répartitions d'aliments{/t}</h2>
 {include file="aliment/repartitionSearch.tpl"}
 {if $isSearch == 1}
-<script>
 
-</script>
 <table class="table table-bordered table-hover datatable" class="tablemulticolonne">
 <tr>
 <td style="width:25%;">
