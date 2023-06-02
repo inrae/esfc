@@ -12,8 +12,7 @@ Retour à la congélation
 {include file="repro/poissonCampagneDetail.tpl"}
 
 <h2>{t}Modification d'une température relevée pendant la phase de congélation{/t}</h2>
-<div class="formSaisie">
-<div>
+
 <div class="row">
 <div class="col-md-6">
 <form class="form-horizontal" id="" method="post" action="index.php">
@@ -39,7 +38,10 @@ Retour à la congélation
 
 <div class="form-group center">
 <button type="submit" class="btn btn-primary button-valid">{t}Valider{/t}</button>
+
 <button class="btn btn-danger button-delete">{t}Supprimer{/t}</button>
+{/if}
+</div>
 </form>
 </div>
 </div>
@@ -58,7 +60,10 @@ Retour à la congélation
 <input class="submit" type="submit" value="Supprimer">
 <div class="form-group center">
 <button type="submit" class="btn btn-primary button-valid">{t}Valider{/t}</button>
+
 <button class="btn btn-danger button-delete">{t}Supprimer{/t}</button>
+{/if}
+</div>
 </form>
 </div>
 </div>

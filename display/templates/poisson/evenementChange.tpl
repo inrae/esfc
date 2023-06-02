@@ -76,8 +76,7 @@ Retour à la liste des poissons
  </a>
  {include file="poisson/poissonDetail.tpl"}
 <h2>{t}Modification d'un événément{/t}</h2>
-<div class="formSaisie">
-<div>
+
 <div class="row">
 <div class="col-md-6">
 <form class="form-horizontal" id="" method="post" action="index.php">
@@ -105,8 +104,8 @@ Retour à la liste des poissons
 <fieldset>
 <legend>{t}Données liées à l'événement lui-même{/t}</legend>
 <div class="form-group">
-<label for="" class="control-label col-md-4">{t}
-Type d'événement :{/t}<span class="red">*</span></label>
+<label for="" class="control-label col-md-4">
+{t}Type d'événement :{/t}<span class="red">*</span></label>
 <div class="col-md-8">
 <select id="" class="form-control" name="evenement_type_id">
 {section name=lst loop=$evntType}
@@ -586,7 +585,10 @@ Sélectionnez le type de mortalité...
 
 <div class="form-group center">
 <button type="submit" class="btn btn-primary button-valid">{t}Valider{/t}</button>
+
 <button class="btn btn-danger button-delete">{t}Supprimer{/t}</button>
+{/if}
+</div>
 </form>
 </div>
 </div>
@@ -605,7 +607,10 @@ Sélectionnez le type de mortalité...
 <input class="submit" type="submit" value="Supprimer">
 <div class="form-group center">
 <button type="submit" class="btn btn-primary button-valid">{t}Valider{/t}</button>
+
 <button class="btn btn-danger button-delete">{t}Supprimer{/t}</button>
+{/if}
+</div>
 </form>
 </div>
 </div>

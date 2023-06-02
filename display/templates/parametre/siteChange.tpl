@@ -1,8 +1,7 @@
 <h2>{t}Modification d'un site{/t}</h2>
 
 <a href="index.php?module=siteList">Retour à la liste des sites</a>
-<div class="formSaisie">
-<div>
+
 
 <div class="row">
 <div class="col-md-6">
@@ -11,9 +10,9 @@
 <input type="hidden" name="moduleBase" value=""> class="cmxform" id="site" method="post" action="index.php?module=siteWrite">
 <input type="hidden" name="site_id" value="{$data.site_id}">
 <div class="form-group">
-<label for="" class="control-label col-md-4">{t}
-Nom du site <span class="red">*</span> :
-{/t}</label>
+<label for="" class="control-label col-md-4">
+{t}Nom du site :{/t}<span class="red">*</span>
+</label>
 <div class="col-md-8">
 <input id="" class="form-control" name="site_name" type="text" value="{$data.site_name}" required autofocus/>
 
@@ -23,7 +22,10 @@ Nom du site <span class="red">*</span> :
 
 <div class="form-group center">
 <button type="submit" class="btn btn-primary button-valid">{t}Valider{/t}</button>
+
 <button class="btn btn-danger button-delete">{t}Supprimer{/t}</button>
+{/if}
+</div>
 </form>
 </div>
 </div>
@@ -41,7 +43,10 @@ Nom du site <span class="red">*</span> :
 </div>
 <div class="form-group center">
 <button type="submit" class="btn btn-primary button-valid">{t}Valider{/t}</button>
+
 <button class="btn btn-danger button-delete">{t}Supprimer{/t}</button>
+{/if}
+</div>
 </form>
 </div>
 </div>

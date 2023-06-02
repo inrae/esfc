@@ -20,8 +20,7 @@ $(document).ready(function() {
 <a href="index.php?module=lotDisplay&lot_id={$data.lot_id}">Retour au lot</a>
 {include file="repro/lotDetail.tpl"}
 <h2>{t}Mesures pour le lot{/t}</h2>
-<div class="formSaisie">
-<div>
+
 <div class="row">
 <div class="col-md-6">
 <form class="form-horizontal" id="" method="post" action="index.php">
@@ -61,7 +60,10 @@ $(document).ready(function() {
 
 <div class="form-group center">
 <button type="submit" class="btn btn-primary button-valid">{t}Valider{/t}</button>
+
 <button class="btn btn-danger button-delete">{t}Supprimer{/t}</button>
+{/if}
+</div>
 </form>
 </div>
 </div>
@@ -78,7 +80,10 @@ $(document).ready(function() {
 <input class="submit" type="submit" value="Supprimer">
 <div class="form-group center">
 <button type="submit" class="btn btn-primary button-valid">{t}Valider{/t}</button>
+
 <button class="btn btn-danger button-delete">{t}Supprimer{/t}</button>
+{/if}
+</div>
 </form>
 </div>
 </div>

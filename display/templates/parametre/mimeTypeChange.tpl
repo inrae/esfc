@@ -9,15 +9,15 @@
 <input type="hidden" name="moduleBase" value=""> id="mimeTypeForm" method="post" action="index.php?module=mimeTypeWrite">
 <input type="hidden" name="mime_type_id" value="{$data.mime_type_id}">
 <div class="form-group">
-                <label for="" class="control-label col-md-4">{t}
-Extension du fichier <span class="red">*</span> :{/t}</label>
+                <label for="" class="control-label col-md-4">
+{t}Extension du fichier <span class="red">*</span> :{/t}</label>
                 <div class="col-md-8">
 <input id="cextension" name="extension" type="text" value="{$data.extension}" required autofocus/>
 </div>
 </div>
 <div class="form-group">
-                <label for="" class="control-label col-md-4">{t}
-Type de contenu (mime-Type) <span class="red">*</span> :{/t}</label>
+                <label for="" class="control-label col-md-4">
+{t}Type de contenu (mime-Type) <span class="red">*</span> :{/t}</label>
                 <div class="col-md-8">
 <input id="ccontent_type" name="content_type" type="text" value="{$data.content_type}" required />
 </div>
@@ -27,7 +27,10 @@ Type de contenu (mime-Type) <span class="red">*</span> :{/t}</label>
 <input class="submit" type="submit" value="Enregistrer">
 <div class="form-group center">
 <button type="submit" class="btn btn-primary button-valid">{t}Valider{/t}</button>
+
 <button class="btn btn-danger button-delete">{t}Supprimer{/t}</button>
+{/if}
+</div>
 </form>
 </div>
 </div>
@@ -43,7 +46,10 @@ Type de contenu (mime-Type) <span class="red">*</span> :{/t}</label>
 <input class="submit" type="submit" value="Supprimer">
 <div class="form-group center">
 <button type="submit" class="btn btn-primary button-valid">{t}Valider{/t}</button>
+
 <button class="btn btn-danger button-delete">{t}Supprimer{/t}</button>
+{/if}
+</div>
 </form>
 </div>
 </div>

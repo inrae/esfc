@@ -24,8 +24,7 @@ $(document).ready(function() {
 <a href="index.php?module=requeteList">{t}Retour à la liste{/t}</a>
 &nbsp;
 <a href="index.php?module=getStructureDatabase" target="_blank">Structure de la base de données (fichier PDF)</a>
-<div class="formSaisie">
-<div>
+
 
 <div class="row">
 <div class="col-md-6">
@@ -35,9 +34,9 @@ $(document).ready(function() {
 <input type="hidden" id="module" name="module" value="requeteWrite">
 <input type="hidden" name="requete_id" value="{$data.requete_id}">
 <div class="form-group">
-<label for="" class="control-label col-md-4">{t}
-Description de la requête <span class="red">*</span> :
-{/t}</label>
+<label for="" class="control-label col-md-4">
+{t}Description de la requête :{/t}<span class="red">*</span>
+</label>
 <div class="col-md-8">
 <input id="" class="form-control" name="title" class="commentaire modif" type="text" value="{$data.title}" required autofocus/>
 
@@ -94,7 +93,10 @@ Description de la requête <span class="red">*</span> :
 </div>
 <div class="form-group center">
 <button type="submit" class="btn btn-primary button-valid">{t}Valider{/t}</button>
+
 <button class="btn btn-danger button-delete">{t}Supprimer{/t}</button>
+{/if}
+</div>
 </form>
 </div>
 </div>

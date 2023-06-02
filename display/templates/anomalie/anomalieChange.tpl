@@ -24,8 +24,7 @@ $(document).ready(function() {
 {else}
 <a href="index.php?module=anomalieList">Retour à la liste des anomalies</a>
 {/if}
-<div class="formSaisie">
-<div>
+
 <div class="row">
 <div class="col-md-6">
 <form class="form-horizontal" id="" method="post" action="index.php">
@@ -105,7 +104,10 @@ Anomalie levée
 
 <div class="form-group center">
 <button type="submit" class="btn btn-primary button-valid">{t}Valider{/t}</button>
+
 <button class="btn btn-danger button-delete">{t}Supprimer{/t}</button>
+{/if}
+</div>
 </form>
 </div>
 </div>
@@ -123,7 +125,10 @@ Anomalie levée
 <input class="submit" type="submit" value="Supprimer">
 <div class="form-group center">
 <button type="submit" class="btn btn-primary button-valid">{t}Valider{/t}</button>
+
 <button class="btn btn-danger button-delete">{t}Supprimer{/t}</button>
+{/if}
+</div>
 </form>
 </div>
 </div>
