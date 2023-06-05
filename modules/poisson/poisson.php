@@ -46,7 +46,7 @@ switch ($t_module["param"]) {
 			"echographie",
 			"anesthesie",
 			"ventilation",
-			"poissonRepro",
+			"poissonCampagne",
 			"dosageSanguin",
 			"genetique",
 			"parente",
@@ -54,7 +54,8 @@ switch ($t_module["param"]) {
 			"vieModele",
 			"sexe",
 			"pittagType",
-			"anomalie"
+			"anomalie",
+			"parentPoisson"
 		);
 		foreach ($classes as $classe) {
 			require_once "modules/classes/$classe.class.php";
@@ -102,7 +103,7 @@ switch ($t_module["param"]) {
 		/*
 		 * Recuperation des parents
 		 */
-		$parent = new Parent_poisson($bdd, $ObjetBDDParam);
+		$parent = new ParentPoisson($bdd, $ObjetBDDParam);
 		$vue->set($parent->getListParent($id), "dataParent");
 		/*
 		 * Recuperation des anomalies

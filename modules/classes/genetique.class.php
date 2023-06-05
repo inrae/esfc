@@ -71,7 +71,7 @@ class Genetique extends ObjetBDD
     function getListByPoisson(int $poisson_id, int $annee = 0)
     {
         $param = array("poisson_id" => $poisson_id);
-        $where = " where g.poisson_id = :poisson_id" . $poisson_id;
+        $where = " where g.poisson_id = :poisson_id";
         if ($annee > 0) {
             $where .= " and extract(year from genetique_date) = :annee";
             $param["annee"] = $annee;

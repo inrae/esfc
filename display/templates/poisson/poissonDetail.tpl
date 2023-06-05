@@ -1,30 +1,55 @@
 <div class="row">
-<div class="col-lg-8 form-display">
-<dl class="dl-horizontal">
-<dt>{t}
-(<span style="font-size:small;font-style:italic;">{$dataPoisson.poisson_id}</span>)
-<label>Matricule : </label>{$dataPoisson.matricule} {$dataPoisson.prenom}
-<br>
-<label>Sexe : </label>{$dataPoisson.sexe_libelle} - {$dataPoisson.categorie_libelle} {$dataPoisson.poisson_statut_libelle}
-<br>
-<label>(Pit)tag : </label>{$dataPoisson.pittag_valeur}
-<br>
-<label>Cohorte : </label>{$dataPoisson.cohorte}
-{if strlen($dataPoisson.capture_date) > 0} - <label>capturé le </label>{$dataPoisson.capture_date}{/if}
-{if strlen($dataPoisson.date_naissance) > 0} - <label>né le </label>{$dataPoisson.date_naissance}{/if}
-{if $dataPoisson.poisson_statut_id != 3 and $dataPoisson.poisson_statut_id != 4}
-<br>
-<label>Bassin : </label>
-<a href="index.php?module=bassinDisplay&bassin_id={$dataPoisson.bassin_id}" style="display:inline;">
-{$dataPoisson.bassin_nom}
-</a>
-<label>Site : </label>{$dataPoisson.site_name}
-{/if}
-{if strlen($dataPoisson.commentaire) > 0 }
-<br>
-<label>Commentaire</label> : {$dataPoisson.commentaire}
-{/if}
-</dd>
-</dl>
-</div>
+    <div class="col-md-6 form-display">
+        <dl class="dl-horizontal">
+            <dt>{t}Matricule :{/t}</dt>
+            <dd>{$dataPoisson.matricule} {$dataPoisson.prenom}</dd>
+        </dl>
+        <dl class="dl-horizontal">
+            <dt>{t}Sexe :{/t}</dt>
+            <dd>{$dataPoisson.sexe_libelle} - {$dataPoisson.categorie_libelle} {$dataPoisson.poisson_statut_libelle}
+            </dd>
+        </dl>
+
+        <dl class="dl-horizontal">
+            <dt>{t}(Pit)tag :{/t}</dt>
+            <dd>{$dataPoisson.pittag_valeur}</dd>
+        </dl>
+        <dl class="dl-horizontal">
+            <dt>{t}Cohorte :{/t}</dt>
+            <dd>{$dataPoisson.cohorte}</dd>
+        </dl>
+
+        {if strlen($dataPoisson.capture_date) > 0}
+        <dl class="dl-horizontal">
+            <dt>{t}capturé le{/t}</dt>
+            <dd>{$dataPoisson.capture_date}</dd>
+        </dl>
+        {/if}
+        {if !empty($dataPoisson.date_naissance)}
+        <dl class="dl-horizontal">
+            <dt>{t}né le{/t}</dt>
+            <dd>{$dataPoisson.date_naissance}{/if}
+            </dd>
+        </dl>
+        {if $dataPoisson.poisson_statut_id != 3 and $dataPoisson.poisson_statut_id != 4}
+        <dl class="dl-horizontal">
+            <dt>{t}Bassin :{/t}</dt>
+            <dd>
+                <a href="index.php?module=bassinDisplay&bassin_id={$dataPoisson.bassin_id}">
+                    {$dataPoisson.bassin_nom}
+                </a>
+            </dd>
+        </dl>
+        <dl class="dl-horizontal">
+            <dt>{t}Site :{/t}</dt>
+            <dd>{$dataPoisson.site_name}</dd>
+        </dl>
+        {/if}
+        {if !empty($dataPoisson.commentaire) }
+        <dl class="dl-horizontal">
+            <dt>{t}Commentaire{/t}</dt>
+            <dd>{$dataPoisson.commentaire}</dd>
+        </dl>
+        {/if}
+    </div>
 </div>

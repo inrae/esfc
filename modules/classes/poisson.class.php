@@ -15,7 +15,7 @@
 class Poisson extends ObjetBDD
 {
     public Lot $lot;
-    public Parent_poisson $parent_poisson;
+    public ParentPoisson $parent_poisson;
     public Evenement $evenement;
     public DocumentLie $documentLie;
     public Pittag $pittag;
@@ -283,7 +283,7 @@ class Poisson extends ObjetBDD
              * Recherche des poissons "enfants"
              */
         if (!isset($this->parent_poisson)) {
-            $this->parent_poisson = $this->classInstanciate("Parent_poisson", "parent_poisson.class.php");
+            $this->parent_poisson = $this->classInstanciate("ParentPoisson", "parent_poisson.class.php");
         }
         $listeEnfant = $this->parent_poisson->lireEnfant($id);
         if (is_array($listeEnfant) == true && count($listeEnfant) > 0) {

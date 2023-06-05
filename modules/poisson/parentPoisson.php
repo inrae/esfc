@@ -7,7 +7,7 @@
  *  Creation 19 mars 2014
  */
 include_once 'modules/classes/parentPoisson.class.php';
-$dataClass = new Parent_poisson($bdd, $ObjetBDDParam);
+$dataClass = new ParentPoisson($bdd, $ObjetBDDParam);
 $keyName = "parent_poisson_id";
 $id = $_REQUEST[$keyName];
 

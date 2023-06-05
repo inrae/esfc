@@ -6,7 +6,7 @@
  * @author quinton
  *        
  */
-class Parent_poisson extends ObjetBDD
+class ParentPoisson extends ObjetBDD
 {
 
     /**
