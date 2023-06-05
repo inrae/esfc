@@ -1,5 +1,5 @@
 
-<table class="table table-bordered table-hover datatable" id="cparentList" class="tableliste">
+<table class="table table-bordered table-hover datatable-nopaging" id="cparentList" >
 <thead>
 <tr>
 {if $droits.poissonGestion == 1}

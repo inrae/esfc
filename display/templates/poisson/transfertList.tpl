@@ -1,9 +1,9 @@
 
-<table class="table table-bordered table-hover datatable" id="ctransfertList" class="tableliste">
+<table class="table table-bordered table-hover datatable" id="ctransfertList"  data-order='[[1,"desc"]]'>
 <thead>
 <tr>
 <th>{t}Événement associé{/t}</th>
-<th>{t}Date de<br>transfert{/t}</th>
+<th>{t}Date de transfert{/t}</th>
 <th>{t}Bassin d'origine{/t}</th>
 <th>{t}Bassin de destination{/t}</th>
 <th>{t}Commentaire{/t}</th>

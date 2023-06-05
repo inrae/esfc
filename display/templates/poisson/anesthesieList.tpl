@@ -1,5 +1,5 @@
 
-<table class="table table-bordered table-hover datatable" id="canesthesieList" class="tableliste">
+<table class="table table-bordered table-hover datatable" id="canesthesieList" data-order='[[1,"desc"]]'>
 <thead>
 <tr>
 <th>{t}Événement associé{/t}</th>

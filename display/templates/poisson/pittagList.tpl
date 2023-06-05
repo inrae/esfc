@@ -1,5 +1,5 @@
 
-<table class="table table-bordered table-hover datatable" id="cpittagList" class="tableliste">
+<table class="table table-bordered table-hover datatable-nopaging" id="cpittagList"  data-order='[[2,"desc"]]'>
 <thead>
 <tr>
 <th>{t}Valeur{/t}</th>

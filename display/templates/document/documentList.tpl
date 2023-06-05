@@ -37,7 +37,7 @@
 {/if}
 <div class="col-lg-12">
 	<div class="row">
-		<table class="table table-bordered table-hover datatable" id="documentList">
+		<table class="table table-bordered table-hover datatable" id="documentList" data-order='[[4,"desc"]]'>
 			<thead>
 				<tr>
 					<th>{t}Vignette{/t}</th>

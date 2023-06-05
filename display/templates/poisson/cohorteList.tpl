@@ -1,10 +1,10 @@
 
-<table class="table table-bordered table-hover datatable" id="ccohorteList" class="tableliste">
+<table class="table table-bordered table-hover datatable-nopaging" id="ccohorteList" class="tableliste" data-order='[[3,"desc"]]'>
 <thead>
 <tr>
 <th>{t}Événement associé{/t}</th>
-<th>{t}Type de<br>détermination{/t}</th>
-<th>{t}Cohorte<br>déterminée{/t}</th>
+<th>{t}Type de détermination{/t}</th>
+<th>{t}Cohorte déterminée{/t}</th>
 <th>{t}Date{/t}</th>
 <th>{t}Commentaire{/t}</th>
 </tr>

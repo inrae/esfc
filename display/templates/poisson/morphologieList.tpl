@@ -1,13 +1,13 @@
 
-<table class="table table-bordered table-hover datatable" id="cmorphologieList" class="tableliste">
+<table class="table table-bordered table-hover datatable" id="cmorphologieList"  data-order='[[1,"desc"]]'>
 <thead>
 <tr>
 <th>{t}Événement associé{/t}</th>
 <th>{t}Date de mesure{/t}</th>
-<th>{t}Longueur<br>à la fourche (cm){/t}</th>
-<th>{t}Longueur<br>totale (cm){/t}</th>
+<th>{t}Longueur à la fourche (cm){/t}</th>
+<th>{t}Longueur totale (cm){/t}</th>
 <th>{t}Masse (g){/t}</th>
-<th>{t}Circon<br>férence (cm){/t}</th>
+<th>{t}Circonférence (cm){/t}</th>
 <th>{t}Commentaire{/t}</th>
 </tr>
 </thead>
