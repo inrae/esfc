@@ -1,109 +1,177 @@
 <script>
-$(document).ready(function() { 
-/*	$("select").change(function () {
-		$("#search").submit();
-	} );
-*/
-	$("#search").submit(function( event ) { 
-		var retour = false;
-		if ($("#texte").val().length > 1)
-			retour = true;
-		if ($("#categorie").val() > 0)
-			retour = true;
-		if ($("#statut").val() > 0)
-			retour = true;
-		if ($("#sexe").val() > 0 )
-			retour = true;
-		if (retour === false)
-			event.preventDefault();
+	$(document).ready(function () {
+		/*	$("select").change(function () {
+				$("#search").submit();
+			} );
+		*/
+		$("#search").submit(function (event) {
+			var retour = false;
+			if ($("#texte").val().length > 1)
+				retour = true;
+			if ($("#categorie").val() > 0)
+				retour = true;
+			if ($("#statut").val() > 0)
+				retour = true;
+			if ($("#sexe").val() > 0)
+				retour = true;
+			if (retour === false)
+				event.preventDefault();
+		});
 	});
-} ) ;
 </script>
-<form method="get" action="index.php" id="search">
-<input type="hidden" name="isSearch" value="1">
-<input type="hidden" name="module" value="poissonList">
-<div class="tab-content col-md-6 form-horizontal" id="tableaffichage">
-<div class="row">
+<form method="get" action="index.php" id="search" class="col-lg-12 form-horizontal">
+	<input type="hidden" name="isSearch" value="1">
+	<input type="hidden" name="module" value="poissonList">
+	<div class="row">
+		<div class="form-group">
+			<label class="control-label col-md-2" for="texte">
+				{t}Libellé à rechercher (id, tag, prenom, matricule, cohorte) :{/t}
+			</label>
+			<div class="col-md-2">
+				<input id="texte" class="form-control" name="texte" value="{$poissonSearch.texte}">
+			</div>
+
+			<label class="control-label col-md-2" for="site_id">
+				{t}Site :{/t}
+			</label>
+			<div class="col-md-2">
+				<select name="site_id" class="form-control">
+					<option value="" {if $poissonSearch.site_id=="" }selected{/if}>
+						{t}Sélectionnez le site...{/t}
+					</option>
+					{section name=lst loop=$site}
+					<option value="{$site[lst].site_id}" {if $poissonSearch.site_id==$site[lst].site_id}selected{/if}>
+						{$site[lst].site_name}
+					</option>
+					{/section}
+				</select>
+			</div>
+
+		</div>
+		<div class="row">
+			<div class="form-group">
+				<label for="categorie" class="control-label col-md-2">
+					{t}Catégorie :{/t}
+				</label>
+				<div class="col-md-2">
+					<select id="categorie" name="categorie" id="categorie" class="form-control">
+						<option value="" {if $categorie[lst].categorie_id=="" }selected{/if}>
+							{t}Sélectionnez la catégorie...{/t}
+						</option>
+						{section name=lst loop=$categorie}
+						<option value="{$categorie[lst].categorie_id}" {if
+							$poissonSearch.categorie==$categorie[lst].categorie_id}selected{/if}>
+							{$categorie[lst].categorie_libelle}
+						</option>
+						{/section}
+					</select>
+				</div>
+				<label class="control-label col-md-2" for="statut">
+					{t}Statut de l'animal :{/t}
+				</label>
+				<div class="col-md-2">
+					<select id="statut" name="statut" id="statut" class="form-control">
+						<option value="" {if $poissonSearch.statut=="" }selected{/if}>
+							{t}Sélectionnez le statut...{/t}
+						</option>
+						{section name=lst loop=$statut}
+						<option value="{$statut[lst].poisson_statut_id}" {if
+							$poissonSearch.statut==$statut[lst].poisson_statut_id}selected{/if}>
+							{$statut[lst].poisson_statut_libelle}
+						</option>
+						{/section}
+					</select>
+				</div>
+				<label for="sexe" class="control-label col-md-1">
+					{t}Sexe :{/t}
+				</label>
+				<div class="col-md-2">
+					<select id="sexe" name="sexe" class="form-control">
+						<option value="" {if $poissonSearch.sexe=="" }selected{/if}>
+							{t}Sélectionnez le sexe...{/t}
+						</option>
+						{section name=lst loop=$sexe}
+						<option value="{$sexe[lst].sexe_id}" {if $poissonSearch.sexe==$sexe[lst].sexe_id}selected{/if}>
+							{$sexe[lst].sexe_libelle}
+						</option>
+						{/section}
+					</select>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group">
+				<label for="displayMorpho0" class="control-label col-md-2">
+					{t}Afficher : les données morphologiques ?{/t}
+				</label>
+				<div class="col-md-2">
+					<label class="radio-inline ">
+						<input type="radio" id="displayMorpho0" name="displayMorpho" value="0" {if
+							$poissonSearch.displayMorpho==0}checked{/if}>
+						{t}non{/t}
+					</label>
+					<label class="radio-inline ">
+						<input type="radio" name="displayMorpho" value="1" {if
+							$poissonSearch.displayMorpho==1}checked{/if}>
+						{t}oui{/t}
+					</label>
+				</div>
+
+				<label for="displayBassin0" class="control-label col-md-2">
+					{t}le bassin ?{/t}
+				</label>
+				<div class="col-md-2">
+					<label class="radio-inline ">
+						<input type="radio" name="displayBassin" value="0" {if
+							$poissonSearch.displayBassin==0}checked{/if}>
+						{t}non{/t}
+					</label>
+					<label class="radio-inline ">
+						<input type="radio" name="displayBassin" value="1" {if
+							$poissonSearch.displayBassin==1}checked{/if}>
+						{t}oui{/t}
+					</label>
+				</div>
+
+				<div class="col-md-2 center">
+					<input type="submit" id="samplesearch_button" class="btn btn-success" value="{t}Rechercher{/t}">
+				</div>
+
+			</div>
+		</div>
+		<div class="row">
 			<div class="form-group">
 
-Libellé à rechercher (id, tag, prenom, matricule, cohorte) : 
-<input id="texte" name="texte" value="{$poissonSearch.texte}" size="40" maxlength="40">
-
-
-Site :
-<select name="site_id">
-<option value="" {if $poissonSearch.site_id == ""}selected{/if}>Sélectionnez le site...</option>
-{section name=lst loop=$site}
-<option value="{$site[lst].site_id}" {if $poissonSearch.site_id == $site[lst].site_id}selected{/if}>
-{$site[lst].site_name}
-</option>
-{/section}
-</select>
-
-</div>
-<div class="row">
-			<div class="form-group">
-
-Catégorie :
-<select id="categorie" name="categorie" id="categorie">
-<option value="" {if $categorie[lst].categorie_id == ""}selected{/if}>Sélectionnez la catégorie...</option>
-{section name=lst loop=$categorie}
-<option value="{$categorie[lst].categorie_id}" {if $poissonSearch.categorie == $categorie[lst].categorie_id}selected{/if}>
-{$categorie[lst].categorie_libelle}
-</option>
-{/section}
-</select>
- Statut de l'animal : 
-<select id="statut" name="statut" id="statut">
-<option value="" {if $poissonSearch.statut==""}selected{/if}>Sélectionnez le statut...</option>
-{section name=lst loop=$statut}
-<option value="{$statut[lst].poisson_statut_id}" {if $poissonSearch.statut == $statut[lst].poisson_statut_id}selected{/if}>
-{$statut[lst].poisson_statut_libelle}
-</option>
-{/section}
-</select>
-
-
- Sexe : 
- <select id="sexe" name="sexe">
- <option value="" {if $poissonSearch.sexe == ""}selected{/if}>Sélectionnez le sexe...</option>
-{section name=lst loop=$sexe}
-<option value="{$sexe[lst].sexe_id}" {if $poissonSearch.sexe == $sexe[lst].sexe_id}selected{/if}>
-{$sexe[lst].sexe_libelle}
-</option>
-{/section}
- </select>
-
-</div>
-<div class="row">
-			<div class="form-group">
-Afficher : <label>les données morphologiques ?</label>
-<input type="radio" name="displayMorpho" value="0" {if $poissonSearch.displayMorpho == 0}checked{/if}> non
-<input type="radio" name="displayMorpho" value="1" {if $poissonSearch.displayMorpho == 1}checked{/if}> oui
-<label>&nbsp;le bassin ?</label>
-<input type="radio" name="displayBassin" value="0" {if $poissonSearch.displayBassin == 0}checked{/if}> non
-<input type="radio" name="displayBassin" value="1" {if $poissonSearch.displayBassin == 1}checked{/if}> oui
-
-
-
-<div>
-<input type="submit" value="Rechercher">
-</div>
-
-</div>
-<div class="row">
-			<div class="form-group">
-<td colspan = "2">
-Afficher : <label>le cumul des températures ? </label>
-<input type="radio" name="displayCumulTemp" value="0" {if $poissonSearch.displayCumulTemp == 0}checked{/if}> non
-<input type="radio" name="displayCumulTemp" value="1" {if $poissonSearch.displayCumulTemp == 1}checked{/if}> oui
-(du 
-<input class="date" name="dateDebutTemp" value="{$poissonSearch.dateDebutTemp}">
-au 
-<input class="date" name="dateFinTemp" value="{$poissonSearch.dateFinTemp}">
-- calcul long...)
-
-<div class="row">
-			<div class="form-group">
-</table>
+				<label for="displayCumulTemp0" class="control-label col-md-2">
+					{t}Afficher : le cumul des températures (calcul long) ?{/t}
+				</label>
+				<div class="col-md-1">
+					<label class="radio-inline ">
+					<input id="displayCumulTemp0" type="radio" name="displayCumulTemp" value="0" {if
+						$poissonSearch.displayCumulTemp==0}checked{/if}>
+					{t}non{/t}
+				</label>
+				<label class="radio-inline ">
+					<input type="radio" name="displayCumulTemp" value="1" {if
+						$poissonSearch.displayCumulTemp==1}checked{/if}>
+					{t}oui{/t}
+				</label>
+				</div>
+				<label class="col-md-1 control-label" for="dateDebutTemp">
+					{t}du :{/t}
+				</label>
+				<div class="col-md-1">
+					<input id="dateDebutTemp" class="datepicker form-control" name="dateDebutTemp"
+						value="{$poissonSearch.dateDebutTemp}">
+				</div>
+				<label class="col-md-1 control-label" for="dateFinTemp">
+					{t}au :{/t}
+				</label>
+				<div class="col-md-1">
+					<input id="dateFinTemp" class="datepicker form-control" name="dateFinTemp"
+						value="{$poissonSearch.dateFinTemp}">
+				</div>
+			</div>
+		</div>
+	</div>
 </form>

@@ -11,9 +11,12 @@
 /*
  * Gestion des variables de recherche
  */
-$searchPoisson->setParam($_REQUEST);
-$dataSearch = $searchPoisson->getParam();
-if ($searchPoisson->isSearch() == 1) {
+if (!isset($_SESSION["searchPoisson"])) {
+	$_SESSION["searchPoisson"] = new SearchPoisson();
+}
+$_SESSION["searchPoisson"]->setParam($_REQUEST);
+$dataSearch = $_SESSION["searchPoisson"]->getParam();
+if ($_SESSION["searchPoisson"]->isSearch() == 1) {
 	$vue->set(1, "isSearch");
 }
 $vue->set($dataSearch, "poissonSearch");

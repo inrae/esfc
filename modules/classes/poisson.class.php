@@ -364,7 +364,7 @@ class Poisson extends ObjetBDD
          * Recherche des bassins frequentes
          */
         $sql = "select pb.* from v_poisson_bassins pb
-            where (:date_debut, :date_fi) overlaps 
+            where (:date_debut, :date_fin) overlaps 
                 (date_debut, case when date_fin is null then '2050-12-31' else date_fin end)
 				and poisson_id = :poisson_id
 				order by date_debut, date_fin";

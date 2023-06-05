@@ -14,7 +14,7 @@ $id = $_REQUEST[$keyName];
 switch ($t_module["param"]) {
 	case "list":
 		include "modules/poisson/poissonSearch.php";
-		if ($searchPoisson->isSearch() == 1) {
+		if ($_SESSION["searchPoisson"]->isSearch() == 1) {
 			$data = $dataClass->getListeSearch($dataSearch);
 			$vue->set($data, "data");
 		}

@@ -415,7 +415,7 @@ switch ($t_module["param"]) {
 		 */
         require_once 'modules/classes/export.class.php';
         $export = new Export();
-        $data = $dataClass->getAllEvenements($searchPoisson->getParam());
+        $data = $dataClass->getAllEvenements($_SESSION["searchPoisson"]->getParam());
         if (is_array($data)) {
             $export->exportCSVinit("sturio-evenements", "tab");
             /*
