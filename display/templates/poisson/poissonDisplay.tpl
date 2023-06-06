@@ -85,6 +85,13 @@
 				{t}Génétique et parentée{/t}
 			</a>
 		</li>
+		<li class="nav-item">
+			<a class="nav-link" id="tab-anomalie" href="#nav-anomalie" data-toggle="tab" role="tab"
+				aria-controls="nav-anomalie" aria-selected="false">
+				<img src="display/images/anomalie.svg" height="25">
+				{t}Anomalies dans les données{/t}
+			</a>
+		</li>
 	</ul>
 	<div class="tab-content" id="nav-tabContent">
 		<div class="tab-pane active in" id="nav-detail" role="tabpanel" aria-labelledby="tab-detail">

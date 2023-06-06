@@ -15,9 +15,12 @@ switch ($t_module["param"]) {
 		/*
 		 * Display the list of all records of the table
 		 */
-		$searchAnomalie->setParam($_REQUEST);
-		$dataAnomalie = $searchAnomalie->getParam();
-		if ($searchAnomalie->isSearch() == 1) {
+		if (!isset($_SESSION["searchAnomalie"])) {
+			$_SESSION["searchAnomalie"] = new SearchAnomalie();
+		}
+		$_SESSION["searchAnomalie"]->setParam($_REQUEST);
+		$dataAnomalie = $_SESSION["searchAnomalie"]->getParam();
+		if ($_SESSION["searchAnomalie"]->isSearch() == 1) {
 			$vue->set($dataClass->getListeSearch($dataAnomalie), "dataAnomalie");
 			$vue->set(1, "isSearch");
 		}
@@ -44,10 +47,21 @@ switch ($t_module["param"]) {
 		 * $_REQUEST["idParent"] contains the identifiant of the parent record
 		 */
 		$data = dataRead($dataClass, $id, "anomalie/anomalieChange.tpl");
+		if ($_REQUEST["poisson_id"] > 0) {
+			test();
+			/**
+			 * Recuperation des informations generales sur le poisson
+			 */
+			include_once 'modules/classes/poisson.class.php';
+			$poisson = new Poisson($bdd, $ObjetBDDParam);
+			$vue->set($dataPoisson = $poisson->getDetail($_REQUEST["poisson_id"]), "dataPoisson");
+		}
 		if ($id == 0) {
 			if ($_REQUEST["poisson_id"] > 0) {
-				$data["poisson_id"] = $_REQUEST["poisson_id"];
-				$vue->set($data, "data");
+				$data["poisson_id"] = $dataPoisson["poisson_id"];
+				$data["matricule"] = $dataPoisson["matricule"];
+				$data["prenom"] = $dataPoisson["prenom"];
+				$data["pittag_valeur"] = $dataPoisson["pittag_valeur"];
 			}
 		}
 		/*
@@ -57,16 +71,10 @@ switch ($t_module["param"]) {
 		require_once "modules/classes/anomalie_db_type.class.php";
 		$anomalieType = new Anomalie_db_type($bdd, $ObjetBDDParam);
 		$vue->set($anomalieType->getListe(), "anomalieType");
-		if ($_REQUEST["poisson_id"] > 0) {
-			/*
-			 * Recuperation des informations generales sur le poisson
-			 */
-			include_once 'modules/classes/poisson.class.php';
-			$poisson = new Poisson($bdd, $ObjetBDDParam);
-			$vue->set($poisson->getDetail($_REQUEST["poisson_id"]), "dataPoisson");
-		}
-		if ($_REQUEST["module_origine"] == "poissonDisplay")
+		if ($_REQUEST["module_origine"] == "poissonDisplay") {
 			$vue->set("poissonDisplay", "module_origine");
+		}
+		$vue->set($data, "data");
 		break;
 	case "write":
 		/*

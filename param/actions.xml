@@ -109,6 +109,7 @@
 	<anomalieWrite action="modules/anomalie/anomalie.php" param="write" droits="poissonAdmin" retourok="anomalieList" retourko="anomalieChange" modulebefore="anomalieChange" />
 	<anomalieDelete action="modules/anomalie/anomalie.php" param="delete" droits="poissonAdmin" retourok="anomalieList" retourko="anomalieChange"  modulebefore="anomalieChange"/>
 	<poissonAnomalieWrite action="modules/anomalie/anomalie.php" param="write" droits="poissonGestion" retourok="poissonDisplay" retourko="anomalieChange" modulebefore="anomalieChange" />
+	<poissonAnomalieDelete action="modules/anomalie/anomalie.php" param="delete" droits="poissonAdmin" retourok="poissonDisplay" retourko="anomalieChange"  modulebefore="anomalieChange"/>
 
 	<parentPoissonChange action="modules/poisson/parentPoisson.php" param="change" droits="poissonGestion" type="smarty" />
 	<parentPoissonWrite action="modules/poisson/parentPoisson.php" param="write" droits="poissonGestion" retourok="poissonDisplay" retourko="parentPoissonChange" modulebefore="parentPoissonChange" />

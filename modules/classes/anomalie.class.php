@@ -64,7 +64,7 @@ class Anomalie_db extends ObjetBDD
 
 		$sql = "select anomalie_db_id, anomalie_db_date, anomalie_db.poisson_id, anomalie_db_commentaire, 
 				anomalie_db_type_libelle, evenement_type_libelle, anomalie_db.evenement_id,
-					anomalie_db_statut, anomalie_db_date_traitement,
+					anomalie_db_statut, anomalie_db_date_traitement, anomalie_db_type_id,
 					matricule, prenom, pittag_valeur
 					from anomalie_db
 					left outer join poisson using (poisson_id)
@@ -74,7 +74,7 @@ class Anomalie_db extends ObjetBDD
 					left outer join evenement_type using (evenement_type_id)
 					where anomalie_db_id = :id";
 		$data = $this->lireParamAsPrepared($sql, array("id" => $id));
-		if (!empty($data)) {
+		if (empty($data)) {
 			$data = $this->getDefaultValue($parentValue);
 		}
 		return $data;
@@ -88,7 +88,7 @@ class Anomalie_db extends ObjetBDD
 	function getListByPoisson($poisson_id)
 	{
 		$sql = "select anomalie_db_id, anomalie_db.poisson_id, anomalie_db_date, anomalie_db_commentaire,
-					anomalie_db_type_libelle, 
+					anomalie_db_type_libelle, anomalie_db_type_id,
 					evenement_id, evenement_type_libelle, 
 					anomalie_db.evenement_id,
 					anomalie_db_statut, anomalie_db_date_traitement
@@ -107,9 +107,8 @@ class Anomalie_db extends ObjetBDD
 	 */
 	function getListeSearch($dataSearch)
 	{
-		$dataSearch = $this->encodeData($dataSearch);
 		$sql = "select anomalie_db_id, anomalie_db_date, anomalie_db.poisson_id, anomalie_db_commentaire, 
-				anomalie_db_type_libelle, 
+				anomalie_db_type_libelle, anomalie_db_type_id,
 				evenement_id, evenement_type_libelle, 
 				anomalie_db.evenement_id,
 					anomalie_db_statut, anomalie_db_date_traitement,
