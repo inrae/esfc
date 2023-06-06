@@ -70,7 +70,7 @@
 {/if}
 </div>
 </div>
-<span class="red">*</span><span class="messagebas">Champ obligatoire</span>
+<span class="red">*</span><span class="messagebas">{t}Champ obligatoire{/t}</span>
 <br>
 <a href="index.php?module=profilThermiqueNew&bassin_campagne_id={$data.bassin_campagne_id}">
 Nouvelle donnée...

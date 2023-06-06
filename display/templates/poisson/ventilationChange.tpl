@@ -78,4 +78,4 @@ Retour à la liste des poissons
 </div>
 </div>
 <span class="red">*</span>
-<span class="messagebas">Champ obligatoire</span>
+<span class="messagebas">{t}Champ obligatoire{/t}</span>

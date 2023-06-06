@@ -63,7 +63,7 @@ Retour au reproducteur
 {/if}
 </div>
 </div>
-<span class="red">*</span><span class="messagebas">Champ obligatoire</span>
+<span class="red">*</span><span class="messagebas">{t}Champ obligatoire{/t}</span>
 </fieldset>
 </td>
 <td>

@@ -172,4 +172,4 @@ Sélectionnez...
 <h3>Documents associés</h3>
 {include file="document/documentListOnly.tpl"}
 {/if}
-<span class="red">*</span><span class="messagebas">Champ obligatoire</span>
+<span class="red">*</span><span class="messagebas">{t}Champ obligatoire{/t}</span>

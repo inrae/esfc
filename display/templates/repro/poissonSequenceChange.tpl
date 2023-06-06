@@ -101,7 +101,7 @@ Accédez à la fiche du poisson pour réaliser la saisie
 {/if}
 </div>
 </div>
-<span class="red">*</span><span class="messagebas">Champ obligatoire</span>
+<span class="red">*</span><span class="messagebas">{t}Champ obligatoire{/t}</span>
 <br>
 
 {if $data.poisson_sequence_id > 0}

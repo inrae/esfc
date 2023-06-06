@@ -618,7 +618,7 @@ Sélectionnez le type de mortalité...
 {/if}
 </div>
 </div>
-<span class="red">*</span><span class="messagebas">Champ obligatoire</span>
+<span class="red">*</span><span class="messagebas">{t}Champ obligatoire{/t}</span>
 {if $data.evenement_id > 0}
 
 <h3>Documents associés</h3>

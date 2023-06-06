@@ -94,4 +94,4 @@ $( "#cpittag_date_pose" ).datepicker( { dateFormat: "dd/mm/yy" } );
 </div>
 </div>
 </table>
-<span class="red">*</span><span class="messagebas">Champ obligatoire</span>
+<span class="red">*</span><span class="messagebas">{t}Champ obligatoire{/t}</span>
