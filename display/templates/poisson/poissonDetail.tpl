@@ -56,9 +56,11 @@
             <legend>{t}Liste des parents{/t}</legend>
             {if $droits["poissonGestion"]==1}
             <div class="row">
-                <a href="index.php?module=parentPoissonChange&poisson_id={$dataPoisson.poisson_id}&parent_poisson_id=0">
+                <div class="col-lg-12">
+                   <a href="index.php?module=parentPoissonChange&poisson_id={$dataPoisson.poisson_id}&parent_poisson_id=0">
                     {t}Nouveau parent...{/t}
-                </a>
+                </a> 
+                </div>
             </div>
 
             {/if}
@@ -70,9 +72,11 @@
             <legend>{t}Liste des (pit)tags attribués{/t}</legend>
             {if $droits["poissonGestion"]==1}
             <div class="row">
-                <a href="index.php?module=pittagChange&poisson_id={$dataPoisson.poisson_id}&pittag_id=0">
+                <div class="col-lg-12">
+                    <a href="index.php?module=pittagChange&poisson_id={$dataPoisson.poisson_id}&pittag_id=0">
                     {t}Nouveau pittag ou étiquette...{/t}
                 </a>
+                </div>
             </div>
             {/if}
             {include file="poisson/pittagList.tpl"}

@@ -38,7 +38,8 @@ class DocumentSturio extends DocumentAttach
 		$param = array("id" => $id);
 		$sql = "delete from :tablename where document_id = :id";
 		foreach ($this->modules as $value) {
-			$param["tablename"] = $value . "_document";
+			$tablename = $value . "_document";
+			$sql = "delete from $tablename where document_id = :id";
 			$this->executeAsPrepared($sql, $param);
 		}
 		//return parent::supprimer($id);

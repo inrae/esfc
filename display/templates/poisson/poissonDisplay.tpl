@@ -22,7 +22,7 @@
 
 </script>
 
-<h2>{t}Détail du poisson{/t} {$dataPoisson.matricule} {$dataPoisson.categorie_libelle} {$dataPoisson.sexe_libelle}
+<h2>{t}Détail du poisson{/t} {$dataPoisson.matricule} {$dataPoisson.prenom} {$dataPoisson.pittag_valeur} {$dataPoisson.categorie_libelle} {$dataPoisson.sexe_libelle}
 	{$dataPoisson.poisson_statut_libelle} (id:{$dataPoisson.poisson_id})</h2>
 <a href="index.php?module={$poissonDetailParent}">Retour à la liste des poissons</a>
 

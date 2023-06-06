@@ -1,5 +1,5 @@
 
-<table class="table table-bordered table-hover datatable-nopaging" id="csortieList" >
+<table class="table table-bordered table-hover datatable-nopaging-nosearch" id="csortieList" >
 <thead>
 <tr>
 <th>{t}Événement associé{/t}</th>

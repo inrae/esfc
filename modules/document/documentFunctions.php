@@ -4,12 +4,12 @@
 /**
  * Fonction permettant de preparer les documents a afficher, en limitant le nombre envoye au navigateur
  * @param string $type : type de document recherche
- * @param int $id : cle du parent
+ * @param array|int $id : cle du parent
  * @param string|int $limit : nombre d'enregistrements a afficher
  * @param number $offset : numero du premier enregistrement a afficher
  * @return array
  */
-function getListeDocument($type, int $id, $limit = "", $offset = 0)
+function getListeDocument($type, array|int $id, $limit = "", $offset = 0)
 {
 	global $vue, $bdd, $ObjetBDDParam;
 	require_once 'modules/classes/documentSturio.class.php';

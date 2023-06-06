@@ -81,8 +81,9 @@ class PoissonCampagne extends ObjetBDD
 		if (!isset($this->morphologie)) {
 			$this->morphologie = $this->classInstanciate("Morphologie", "morphologie.class.php");
 		}
-		if (is_null($annee))
+		if (is_null($annee)) {
 			$annee = $this->getYear();
+		}
 		$masse_actuelle = $this->morphologie->getMasseBeforeRepro($poisson_id, $annee);
 		$result["masse_actuelle"] = $masse_actuelle["masse"];
 		$masse_anterieure = $this->morphologie->getMasseBeforeDate($poisson_id, $masse_actuelle["morphologie_date"]);
@@ -337,7 +338,15 @@ class PoissonCampagne extends ObjetBDD
 	function getAnnees()
 	{
 		$sql = "select distinct annee from poisson_campagne order by annee desc";
-		return $this->getListeParam($sql);
+		$data = $this->getListeParam($sql);
+		$years = array();
+		$current = date('Y');
+		if ($data[0]["annee"] < $current)
+			$years[] = $current;
+		foreach ($data as $v) {
+			$years[] = $v["annee"];
+		}
+		return $years;
 	}
 
 	/**
@@ -348,8 +357,8 @@ class PoissonCampagne extends ObjetBDD
 	 */
 	function lire($id, $getDefault = false, $parentValue = 0)
 	{
-
-		$sql = "select poisson_campagne_id, poisson_id, matricule, prenom, pittag_valeur, cohorte,
+		if ($id > 0) {
+			$sql = "select poisson_campagne_id, poisson_id, matricule, prenom, pittag_valeur, cohorte,
 				annee, tx_croissance_journalier, specific_growth_rate,
 				sexe_libelle, sexe_libelle_court, masse, sexe_id,
 				repro_statut_id, repro_statut_libelle,
@@ -361,7 +370,11 @@ class PoissonCampagne extends ObjetBDD
 				left outer join poisson_statut using (poisson_statut_id)
 				left outer join v_pittag_by_poisson using (poisson_id)
 				where poisson_campagne_id = :id";
-		return parent::lireParamAsPrepared($sql, array("id" => $id));
+			$data = parent::lireParamAsPrepared($sql, array("id" => $id));
+		} else {
+			$data = parent::getDefaultValue($parentValue);
+		}
+		return $data;
 	}
 	/**
 	 * Surcharge de la fonction ecrire, pour calculer les taux de croissance en cas de creation
@@ -383,6 +396,8 @@ class PoissonCampagne extends ObjetBDD
 					$data["specific_growth_rate"] = $result["sgr"];
 					$data["masse"] = $result["masse_actuelle"];
 				}
+			} else {
+				$data["poisson_campagne_id"] = $exist["poisson_campagne_id"];
 			}
 		}
 		return parent::ecrire($data);
@@ -431,7 +446,7 @@ class PoissonCampagne extends ObjetBDD
 	 */
 	function getTemperatures(int $poisson_id, int $annee, int $profil_thermique_type_id = 1)
 	{
-		$param = array("poisson_id" => $poisson_id, "annee=" => $annee);
+		$param = array("poisson_id" => $poisson_id, "annee" => $annee);
 		$this->colonnes["pf_datetime"]["type"] = 3;
 		if ($profil_thermique_type_id == 1) {
 			/*

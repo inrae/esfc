@@ -1,5 +1,5 @@
 
-<table class="table table-bordered table-hover datatable-nopaging" id="cparenteList" class="tableliste" data-order='[[2,"asc"]]'>
+<table class="table table-bordered table-hover datatable-nopaging-nosearch" id="cparenteList" class="tableliste" data-order='[[2,"asc"]]'>
 <thead>
 <tr>
 <th>{t}Événement associé{/t}</th>

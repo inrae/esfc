@@ -105,8 +105,8 @@ class Echographie extends ObjetBDD
 					left outer join evenement_type using (evenement_type_id) 
 					left outer join stade_oeuf using (stade_oeuf_id)
 					left outer join stade_gonade using (stade_gonade_id)
-                where extract(year from echographie_date) = :annee" . $annee . "
-					and e.poisson_id = :poisson_id" . $poisson_id . " 
+                where extract(year from echographie_date) = :annee
+					and e.poisson_id = :poisson_id
                 order by echographie_date desc";
         return $this->getListeParamAsPrepared($sql, array(
             "annee" => $annee,

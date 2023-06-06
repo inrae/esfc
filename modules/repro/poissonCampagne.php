@@ -18,10 +18,6 @@ include "modules/repro/setAnnee.php";
 if (isset($_SESSION["sequence_id"]))
 	$vue->set($_SESSION["sequence_id"], "sequence_id");
 
-if (isset($_REQUEST["annee"]) && !($_REQUEST["annee"] > 0)) {
-	$_REQUEST['annee'] = "";
-}
-
 switch ($t_module["param"]) {
 	case "list":
 		/*
@@ -33,7 +29,6 @@ switch ($t_module["param"]) {
 			$vue->set($dataClass->getListForDisplay($dataSearch), "data");
 		}
 		$vue->set($dataSearch, "dataSearch");
-		//$vue->set( , ""); ( "annees", $dataClass->getAnnees () );
 		$vue->set("repro/poissonCampagneList.tpl", "corps");
 		/*
 		 * Lecture de la liste des statuts
@@ -123,7 +118,7 @@ switch ($t_module["param"]) {
 		$vue->set($biopsie->getListeFromPoissonCampagne($id), "dataBiopsie");
 		$vue->set($poissonSequence->getListFromPoisson($id), "dataSequence");
 		$vue->set($psEvenement->getListeEvenementFromPoisson($id), "dataPsEvenement");
-		$vue->set($echographie->getListByYear($data["poisson_id"], $_SESSION["annee"]), "dataEcho");
+		$vue->set($dataEcho = $echographie->getListByYear($data["poisson_id"], $_SESSION["annee"]), "dataEcho");
 		$vue->set($injection->getListFromPoissonCampagne($id), "injections");
 		$vue->set($sperme->getListFromPoissonCampagne($id), "spermes");
 		$vue->set($transfert->getListByPoisson($data["poisson_id"], $_SESSION["annee"]), "dataTransfert");
@@ -148,7 +143,6 @@ switch ($t_module["param"]) {
 		}
 		require_once 'modules/document/documentFunctions.php';
 		$vue->set(getListeDocument("evenement", $a_id, $_REQUEST["document_limit"], $_REQUEST["document_offset"]), "dataDoc");
-
 		$vue->set("repro/poissonCampagneDisplay.tpl", "corps");
 		if (isset($_REQUEST["sequence_id"])) {
 			$vue->set($_REQUEST["sequence_id"], "sequence_id");
@@ -348,24 +342,27 @@ switch ($t_module["param"]) {
 		 * If is a new record, generate a new record with default value :
 		 * $_REQUEST["idParent"] contains the identifiant of the parent record
 		 */
-		dataRead($dataClass, $id, "repro/poissonCampagneChange.tpl", $_REQUEST["poisson_id"]);
+		$data = dataRead($dataClass, $id, "repro/poissonCampagneChange.tpl", $_REQUEST["poisson_id"]);
 		/*
 		 * Lecture des informations concernant le poisson
 		 */
 		require_once 'modules/classes/poisson.class.php';
 		$poisson = new Poisson($bdd, $ObjetBDDParam);
+		
 		$vue->set($poisson->getDetail($_REQUEST["poisson_id"]), "dataPoisson");
 		/*
 		 * Lecture de la table des statuts
 		 */
+		require_once 'modules/classes/reproStatut.class.php';
 		$reproStatut = new ReproStatut($bdd, $ObjetBDDParam);
 		$vue->set($reproStatut->getListe(1), "reproStatut");
 		/*
 		 * Calcul des annees de campagne potentielles
 		 */
 		$anneeCourante = date('Y');
+		$annees = array();
 		for ($i = $anneeCourante; $i > 1995; $i--) {
-			$annees[]["annee"] = $i;
+			$annees[] = $i;
 		}
 		$vue->set($annees, "annees");
 		/*

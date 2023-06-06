@@ -11,19 +11,22 @@
 if ($_REQUEST["annee"] > 0) {
 	$_SESSION["annee"] = $_REQUEST["annee"];
 }
-require_once 'modules/classes/poissonCampagne.class.php';
-$poissonCampagne = new PoissonCampagne($bdd, $ObjetBDDParam);
-$annees = $poissonCampagne->getAnnees();
-$thisannee = date('Y');
-if ($annees[0]["annee"] < $thisannee) {
-	$annees[]["annee"] = $thisannee;
-}
-$vue->set($annees, "annees");
-if (!isset($_SESSION["annee"])) {
-	$vue->set($annees, "annees");
-	$_SESSION["annee"] = $annees[0]["annee"];
+
+if (!isset($_SESSION["annees"])) {
+	require_once 'modules/classes/poissonCampagne.class.php';
+	$poissonCampagne = new PoissonCampagne($bdd, $ObjetBDDParam);
+	$annees = $poissonCampagne->getAnnees();
+	$thisannee = date('Y');
+	if ($annees[0] < $thisannee) {
+		$annees[] = $thisannee;
+		arsort($annees);
+	}
+	$_SESSION["annees"] = $annees;
 	if (!isset($_SESSION["annee"])) {
 		$_SESSION["annee"] = $thisannee;
 	}
 }
-$vue->set($_SESSION["annee"], "annee");
+if (isset($vue)) {
+	$vue->set($_SESSION["annees"], "annees");
+	$vue->set($_SESSION["annee"], "annee");
+}
