@@ -4,7 +4,7 @@
 </a>
 
 <a href="index.php?module=poissonDisplay&poisson_id={$dataPoisson.poisson_id}">
-    <img src="display/images/fish.svg" height="25">
+    <img src="display/images/sturio.png" height="25">
     {t}Retour au poisson{/t}
 </a>
 <h2>{t}Modification d'un (pit)tag pour le poisson{/t} {$dataPoisson.matricule} {$dataPoisson.categorie_libelle}

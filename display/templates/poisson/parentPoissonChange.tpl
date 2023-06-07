@@ -28,7 +28,7 @@
 </a>
 
 <a href="index.php?module=poissonDisplay&poisson_id={$dataPoisson.poisson_id}">
-	<img src="display/images/fish.svg" height="25">
+	<img src="display/images/sturio.png" height="25">
 	{t}Retour au poisson{/t}
 </a>
 

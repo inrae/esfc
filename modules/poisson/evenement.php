@@ -55,7 +55,7 @@ switch ($t_module["param"]) {
                 "echographie",
                 "anesthesie",
                 "ventilation",
-                "poissonRepro",
+                //"poissonCampagne",
                 "genetique",
                 "parente",
                 "lot",

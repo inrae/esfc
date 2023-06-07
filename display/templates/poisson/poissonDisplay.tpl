@@ -22,7 +22,8 @@
 
 </script>
 
-<h2>{t}Détail du poisson{/t} {$dataPoisson.matricule} {$dataPoisson.prenom} {$dataPoisson.pittag_valeur} {$dataPoisson.categorie_libelle} {$dataPoisson.sexe_libelle}
+<h2>{t}Détail du poisson{/t} {$dataPoisson.matricule} {$dataPoisson.prenom} {$dataPoisson.pittag_valeur}
+	{$dataPoisson.categorie_libelle} {$dataPoisson.sexe_libelle}
 	{$dataPoisson.poisson_statut_libelle} (id:{$dataPoisson.poisson_id})</h2>
 <a href="index.php?module={$poissonDetailParent}">Retour à la liste des poissons</a>
 
@@ -68,7 +69,7 @@
 			<a class="nav-link" id="tab-pathologie" href="#nav-pathologie" data-toggle="tab" role="tab"
 				aria-controls="nav-pathologie" aria-selected="false">
 				<img src="display/images/pathologie.svg" height="25">
-				{t}Pathologies et ventilation{/t}
+				{t}Pathologies{/t}
 			</a>
 		</li>
 		<li class="nav-item">
@@ -126,17 +127,8 @@
 		</div>
 		<div class="tab-pane fade" id="nav-pathologie" role="tabpanel" aria-labelledby="tab-pathologie">
 			<div class="col-md-6">
-				<fieldset>
-					<legend>{t}Pathologies{/t}</legend>
-					{include file="poisson/pathologieList.tpl"}
-				</fieldset>
+				{include file="poisson/pathologieList.tpl"}
 			</div>
-			<div class="col-md-6">
-				<fieldset>
-					<legend>{t}Ventilation{/t}</legend>
-					{include file="poisson/ventilationList.tpl"}
-			</div>
-			</fieldset>
 		</div>
 		<div class="tab-pane fade" id="nav-reproduction" role="tabpanel" aria-labelledby="tab-reproduction">
 			<div class="col-md-6">
@@ -159,14 +151,14 @@
 						<br>
 					</div>
 				</fieldset>
-			</div>
-			<div class="col-md-6">
 				<fieldset>
 					<legend>{t}Dosages sanguins{/t}</legend>
 					{include file="poisson/dosageSanguinList.tpl"}
 				</fieldset>
-			</div>
-			<div class="col-md-6">
+				<fieldset>
+					<legend>{t}Ventilation{/t}</legend>
+					{include file="poisson/ventilationList.tpl"}
+				</fieldset>
 				<fieldset>
 					<legend>{t}Anesthésies{/t}</legend>
 					<div>
@@ -174,7 +166,7 @@
 						<br>
 					</div>
 				</fieldset>
-			</div>
+			</div>		
 		</div>
 		<div class="tab-pane fade" id="nav-genetique" role="tabpanel" aria-labelledby="tab-genetique">
 			<div class="col-md-6">
@@ -215,12 +207,12 @@
 		<div class="tab-pane fade" id="nav-anomalie" role="tabpanel" aria-labelledby="tab-anomalie">
 			<div class="col-md-6">
 				{if $droits["poissonGestion"] == 1}
-			<a
-				href="index.php?module=anomalieChange&poisson_id={$dataPoisson.poisson_id}&anomalie_db_id=0&module_origine=poissonDisplay">
-				{t}Créer une anomalie manuellement{/t}
-			</a>
-			{/if}
-			{include file="poisson/anomalieDbList.tpl"}
+				<a
+					href="index.php?module=anomalieChange&poisson_id={$dataPoisson.poisson_id}&anomalie_db_id=0&module_origine=poissonDisplay">
+					{t}Créer une anomalie manuellement{/t}
+				</a>
+				{/if}
+				{include file="poisson/anomalieDbList.tpl"}
 			</div>
 		</div>
 	</div>

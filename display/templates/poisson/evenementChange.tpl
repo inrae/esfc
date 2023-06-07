@@ -1,626 +1,812 @@
- <script>
- 
-$(document).ready(function() { 
-	/*
-	* Affichage ou masquage des différentes zones
-	*/
-	var afficher = $.cookie("evenementChangeAfficher");
-	if (isNaN(afficher)) afficher = 1;
-	if (afficher == 1) {
-		$("#afficher").text("Masquer tous les éléments");
-	} else {
-		$("#afficher").text("Afficher tous les éléments");
-		$ ("fieldset > .masquage").hide("");
-	}
-	$ ("fieldset legend").click(function() {
-		if ($(this).nextAll(".masquage") .is (":visible") == true ) {
-			$(this).nextAll(".masquage").hide("10");
-			$(this).next( ".icone").attr("src", "display/images/arrow_down.png");
-		} else {
-			$(this).nextAll(".masquage").show ("10");
-		}
-	} );
-	$("#afficher").click(function() {
-		if (afficher == 0) {
-			$( this ).text("Masquer tous les éléments") ;
-			afficher = 1 ;
-			$ ("fieldset > .masquage").show("");
-		} else {
-			$ (this ).text ("Afficher tous les éléments") ;
-			afficher = 0;
-			$ ("fieldset > .masquage").hide("");
-		}
-		$.cookie("evenementChangeAfficher", afficher);
-	} );
-$( "#cevenement_date" ).datepicker( { dateFormat: "dd/mm/yy" } );
-$( "#bassin_origine").change( function() {
-	/*
-	* On verifie si le dernier bassin connu correspond à celui indiqué
-	* l'anomalie est positionnée à 1 (valeur de la table anomalie_db_type) en cas d'erreur
-	*/
-	var db = $("#dernier_bassin_connu").val();
-	var bo = $("#bassin_origine").val();
-	if (db > 0 && bo != db && bo > 0 ) {
-		$( this ).next(".erreur").show().text( "Le bassin d'origine indiqué ne correspond pas au dernier bassin connu dans la base (" + 
-				$( "#dernier_bassin_connu_libelle").val() + ")");
-		$( "#anomalie_flag" ).val("1");
-		$( "#anomalie_db_commentaire").val("Dernier bassin connu : " + $( "#dernier_bassin_connu_libelle").val());
-	} else {
-		$( this ).next(".erreur").hide();
-		$( "#anomalie_flag" ).val("0");
-	}
-} ) ;
-$( "#evenementForm" ).submit(function() {
-	valid=true;
-	var bd = $("#bassin_destination").val();
-	var bo = $("#bassin_origine").val();
-	if (bd > 0 && bd == bo) {
-		valid = false;
-		$("#bassin_destination").next(".erreur").show().text("Le bassin de destination ne peut être égal au bassin d'origine");
-	} else {
-		$("#bassin_destination").css("border_color", "initial");
-		$("#bassin_destination").next(".erreur").hide();
-	};
-	return valid;
-	} );
-$(".commentaire").attr("size","30");
+<script>
 
- } );
+	$(document).ready(function () {
+		/**
+				   * Management of tabs
+				   */
+		var moduleName = "eventChange";
+		var localStorage = window.localStorage;
+		try {
+			activeTab = localStorage.getItem(moduleName + "Tab");
+		} catch (Exception) {
+			activeTab = "";
+		}
+		try {
+			if (activeTab.length > 0) {
+				$("#" + activeTab).tab('show');
+			}
+		} catch (Exception) { }
+		$('a[data-toggle="tab"]').on('shown.bs.tab', function () {
+			localStorage.setItem(moduleName + "Tab", $(this).attr("id"));
+		});
+
+		$("#bassin_origine").change(function () {
+			/*
+			* On verifie si le dernier bassin connu correspond à celui indiqué
+			* l'anomalie est positionnée à 1 (valeur de la table anomalie_db_type) en cas d'erreur
+			*/
+			var db = $("#dernier_bassin_connu").val();
+			var bo = $("#bassin_origine").val();
+			if (db > 0 && bo != db && bo > 0) {
+				$(this).next(".erreur").show().text("{t}Le bassin d'origine indiqué ne correspond pas au dernier bassin connu dans la base{/t} ()" +
+					$("#dernier_bassin_connu_libelle").val() + ")");
+				$("#anomalie_flag").val("1");
+				$("#anomalie_db_commentaire").val("{t}Dernier bassin connu :{/t} " + $("#dernier_bassin_connu_libelle").val());
+			} else {
+				$(this).next(".erreur").hide();
+				$("#anomalie_flag").val("0");
+			}
+		});
+		$("#evenementForm").submit(function () {
+			valid = true;
+			var bd = $("#bassin_destination").val();
+			var bo = $("#bassin_origine").val();
+			if (bd > 0 && bd == bo) {
+				valid = false;
+				$("#bassin_destination").next(".erreur").show().text("{t}Le bassin de destination ne peut être égal au bassin d'origine{/t}");
+			} else {
+				$("#bassin_destination").css("border_color", "initial");
+				$("#bassin_destination").next(".erreur").hide();
+			};
+			return valid;
+		});
+		const ok = new Map();
+		ok.set("oktransfert", ["bassin_origine", "bassin_destination"]);
+		for (const [key, value] of ok) {
+			for (const v of value) {
+				if ($("#"+v).val()) {
+					$("#"+key).show();
+				}
+			};
+			
+		}
+	});
 </script>
 <a href="index.php?module={$poissonDetailParent}">
-Retour à la liste des poissons
+	<img src="display/images/display.png" height="25">
+	{t}Retour à la liste des poissons{/t}
 </a>
- > 
- <a href="index.php?module=poissonDisplay&poisson_id={$dataPoisson.poisson_id}">
- Retour au poisson
- </a>
- {include file="poisson/poissonDetail.tpl"}
+
+<a href="index.php?module=poissonDisplay&poisson_id={$dataPoisson.poisson_id}">
+	<img src="display/images/sturio.png" height="25">
+	{t}Retour au poisson{/t} {$dataPoisson.matricule} {$dataPoisson.prenom} {$dataPoisson.pittag_valeur} 
+    {$dataPoisson.categorie_libelle}
+    {$dataPoisson.sexe_libelle}
+    {$dataPoisson.poisson_statut_libelle} (id:{$dataPoisson.poisson_id})
+</a>
 <h2>{t}Modification d'un événément{/t}</h2>
 
-<div class="row">
-<div class="col-md-6">
-<form class="form-horizontal" id="" method="post" action="index.php">
-<input type="hidden" name="action" value="Write">
-<input type="hidden" name="moduleBase" value=""> id="evenementForm" method="post" action="index.php?module=evenementWrite" enctype="multipart/form-data">
-<input type="hidden" name="evenement_id" value="{$data.evenement_id}">
-<input type="hidden" name="poisson_id" value="{$data.poisson_id}">
-<input type="hidden" name="morphologie_id" value="{$dataMorpho.morphologie_id}">
-<input type="hidden" name="pathologie_id" value="{$dataPatho.pathologie_id}">
-<input type="hidden" name="gender_selection_id" value="{$dataGender.gender_selection_id}">
-<input type="hidden" name="transfert_id" value="{$dataTransfert.transfert_id}">
-<input type="hidden" name="dernier_bassin_connu" id="dernier_bassin_connu" value="{$dataTransfert.dernier_bassin_connu}">
-<input type="hidden" name="dernier_bassin_connu_libelle" id="dernier_bassin_connu_libelle" value="{$dataTransfert.dernier_bassin_connu_libelle}">
-<input type="hidden" name="anomalie_flag" id="anomalie_flag" value="0">
-<input type="hidden" name="anomalie_db_commentaire" id="anomalie_db_commentaire" value="">
-<input type="hidden" name="mortalite_id" id="mortalite_id" value="{$dataMortalite.mortalite_id}" >
-<input type="hidden" name="cohorte_id" id="cohorte_id" value="{$dataCohorte.cohorte_id}" >
-<input type="hidden" name="sortie_id" id="sortie_id" value="{$dataSortie.sortie_id}">
-<input type="hidden" name="echographie_id" id="echographie_id" value="{$dataEcho.echographie_id}">
-<input type="hidden" name="anesthesie_id" id="anesthesie_id" value="{$dataAnesthesie.anesthesie_id}">
-<input type="hidden" name="dosage_sanguin_id" id="dosage_sanguin_id" value="{$dataDosageSanguin.dosage_sanguin_id}">
-<input type="hidden" name="genetique_id" id="genetique_id" value="{$dataGenetique.genetique_id}">
-<input type="hidden" name="document_id" value="0">
 
-<fieldset>
-<legend>{t}Données liées à l'événement lui-même{/t}</legend>
-<div class="form-group">
-<label for="" class="control-label col-md-4">
-{t}Type d'événement :{/t}<span class="red">*</span></label>
-<div class="col-md-8">
-<select id="" class="form-control" name="evenement_type_id">
-{section name=lst loop=$evntType}
-<option value="{$evntType[lst].evenement_type_id}" {if $evntType[lst].evenement_type_id == $data.evenement_type_id}selected{/if}>
-{$evntType[lst].evenement_type_libelle}
-</option>
-{/section}
-</select>
+<form id="evenementForm" method="post" action="index.php" enctype="multipart/form-data">
+	<input type="hidden" name="action" value="Write">
+	<input type="hidden" name="moduleBase" value="evenement">
+	<input type="hidden" name="evenement_id" value="{$data.evenement_id}">
+	<input type="hidden" name="poisson_id" value="{$data.poisson_id}">
+	<input type="hidden" name="morphologie_id" value="{$dataMorpho.morphologie_id}">
+	<input type="hidden" name="pathologie_id" value="{$dataPatho.pathologie_id}">
+	<input type="hidden" name="gender_selection_id" value="{$dataGender.gender_selection_id}">
+	<input type="hidden" name="transfert_id" value="{$dataTransfert.transfert_id}">
+	<input type="hidden" name="dernier_bassin_connu" id="dernier_bassin_connu"
+		value="{$dataTransfert.dernier_bassin_connu}">
+	<input type="hidden" name="dernier_bassin_connu_libelle" id="dernier_bassin_connu_libelle"
+		value="{$dataTransfert.dernier_bassin_connu_libelle}">
+	<input type="hidden" name="anomalie_flag" id="anomalie_flag" value="0">
+	<input type="hidden" name="anomalie_db_commentaire" id="anomalie_db_commentaire" value="">
+	<input type="hidden" name="mortalite_id" id="mortalite_id" value="{$dataMortalite.mortalite_id}">
+	<input type="hidden" name="cohorte_id" id="cohorte_id" value="{$dataCohorte.cohorte_id}">
+	<input type="hidden" name="sortie_id" id="sortie_id" value="{$dataSortie.sortie_id}">
+	<input type="hidden" name="echographie_id" id="echographie_id" value="{$dataEcho.echographie_id}">
+	<input type="hidden" name="anesthesie_id" id="anesthesie_id" value="{$dataAnesthesie.anesthesie_id}">
+	<input type="hidden" name="dosage_sanguin_id" id="dosage_sanguin_id" value="{$dataDosageSanguin.dosage_sanguin_id}">
+	<input type="hidden" name="genetique_id" id="genetique_id" value="{$dataGenetique.genetique_id}">
+	<input type="hidden" name="document_id" value="0">
 
-</div>
-</div>
-<div class="form-group">
-<label for="" class="control-label col-md-4">{t}Date :{/t}<span class="red">*</span></label>
-<div class="col-md-8">
-<input id="" class="form-control" class="date" name="evenement_date" id="cevenement_date" required size="10" maxlength="10" value="{$data.evenement_date}">
+	<div class="row">
+		<div class="col-md-6 form-horizontal">
+			<div class="form-group">
+				<label for="evenement_type_id" class="control-label col-md-4">
+					{t}Type d'événement :{/t}<span class="red">*</span>
+				</label>
+				<div class="col-md-8">
+					<select id="evenement_type_id" class="form-control" name="evenement_type_id">
+						{section name=lst loop=$evntType}
+						<option value="{$evntType[lst].evenement_type_id}" {if
+							$evntType[lst].evenement_type_id==$data.evenement_type_id}selected{/if}>
+							{$evntType[lst].evenement_type_libelle}
+						</option>
+						{/section}
+					</select>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="cevenement_date" class="control-label col-md-4">
+					{t}Date :{/t}
+					<span class="red">*</span>
+				</label>
+				<div class="col-md-8">
+					<input class="form-control datepicker" name="evenement_date" id="cevenement_date" required
+						value="{$data.evenement_date}">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="evenement_commentaire" class="control-label col-md-4">
+					{t}Commentaire général :{/t}
+				</label>
+				<div class="col-md-8">
+					<input id="evenement_commentaire" class="form-control" name="evenement_commentaire"
+						value="{$data.evenement_commentaire}">
+				</div>
+			</div>
+			<div class="form-group center">
+				<button type="submit" class="btn btn-primary button-valid">{t}Valider{/t}</button>
+				{if $data.evenement_id > 0 &&$droits["poissonAdmin"] == 1}
+				<button class="btn btn-danger button-delete">{t}Supprimer{/t}</button>
+				{/if}
+			</div>
+		</div>
+	</div>
+	<div class="row">&nbsp;</div>
+	<div class="row">
+		<div class="col-xs-12">
+			<ul class="nav nav-tabs" id="myTab" role="tablist">
+				<li class="nav-item active">
+					<a class="nav-link" id="tab-transfert" href="#nav-transfert" data-toggle="tab" role="tab"
+						aria-controls="nav-transfert" aria-selected="false">
+						<img src="display/images/movement.png" height="25">
+						{t}Transferts{/t}
+						<img id="oktransfert" class="ok" src="display/images/ok_icon.png" height="15" hidden >
+					</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" id="tab-morphologie" href="#nav-morphologie" data-toggle="tab" role="tab"
+						aria-controls="nav-morphologie" aria-selected="false">
+						<img src="display/images/balance.svg" height="25">
+						{t}Morphologie{/t}
+						<img id="okmorpho" class="ok" src="display/images/ok_icon.png" height="15" hidden >
+					</a>
+					
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" id="tab-pathologie" href="#nav-pathologie" data-toggle="tab" role="tab"
+						aria-controls="nav-pathologie" aria-selected="false">
+						<img src="display/images/pathologie.svg" height="25">
+						{t}Pathologies{/t}
+					</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" id="tab-echographie" href="#nav-echographie" data-toggle="tab" role="tab"
+						aria-controls="nav-echographie" aria-selected="false">
+						<img src="display/images/scanner.png" height="25">
+						{t}Échographie{/t}
+					</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" id="tab-sanguin" href="#nav-sanguin" data-toggle="tab" role="tab"
+						aria-controls="nav-sanguin" aria-selected="false">
+						<img src="display/images/syringe.svg" height="25">
+						{t}Dosage sanguin{/t}
+					</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" id="tab-anesthesie" href="#nav-anesthesie" data-toggle="tab" role="tab"
+						aria-controls="nav-anesthesie" aria-selected="false">
+						<img src="display/images/anesthesie.svg" height="25">
+						{t}Anesthésie{/t}
+					</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" id="tab-genetique" href="#nav-genetique" data-toggle="tab" role="tab"
+						aria-controls="nav-genetique" aria-selected="false">
+						<img src="display/images/genetic.svg" height="25">
+						{t}Génétique et parentée{/t}
+					</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" id="tab-sortie" href="#nav-sortie" data-toggle="tab" role="tab"
+						aria-controls="nav-sortie" aria-selected="false">
+						<img src="display/images/mortalite.svg" height="25">
+						{t}Sortie et mortalité{/t}
+					</a>
+				</li>
+			</ul>
+			<div class="tab-content" id="nav-tabContent">
+				<div class="tab-pane  active in" id="nav-transfert" role="tabpanel" aria-labelledby="tab-transfert">
+					{$bselect = 0}
+					{if $dataTransfert.bassin_origine > 0}
+					{$bselect = $dataTransfert.bassin_origine}
+					{/if}
+					<div class="row">
+						<div class="col-md-6 form-horizontal">
+							<div class="form-group">
+								<label for="bassin_origine" class="control-label col-md-4">
+									{t}Bassin d'origine :{/t}<span class="red">*</span>
+								</label>
+								<div class="col-md-8">
+									<select class="form-control" name="bassin_origine" id="bassin_origine">
+										<option value="" {if $bselect==0} selected {/if}>
+											{t}Sélectionnez le bassin d'origine...{/t}
+										</option>
+										{section name=lst loop=$bassinList}
+										<option value="{$bassinList[lst].bassin_id}" {if
+											$bassinList[lst].bassin_id==$bselect} selected {/if}>
+											{$bassinList[lst].bassin_nom}
+										</option>
+										{/section}
+									</select>
+									<span class="erreur"></span>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="bassin_destination" class="control-label col-md-4">
+									{t}Bassin de destination :{/t}<span class="red">*</span>
+								</label>
+								<div class="col-md-8">
+									<select class="form-control" name="bassin_destination" id="bassin_destination">
+										<option value="" {if $dataTransfert.bassin_destination=="" } selected {/if}>
+											{t}Sélectionnez le bassin de destination...{/t}
+										</option>
+										{section name=lst loop=$bassinListActif}
+										<option value="{$bassinListActif[lst].bassin_id}" {if
+											$bassinListActif[lst].bassin_id==$dataTransfert.bassin_destination} selected
+											{/if}>
+											{$bassinListActif[lst].bassin_nom}
+										</option>
+										{/section}
+									</select>
+									<span class="erreur"></span>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="" class="control-label col-md-4">{t}Commentaire :{/t}</label>
+								<div class="col-md-8">
+									<input id="" class="form-control" name="transfert_commentaire"
+										value="{$dataTransfert.transfert_commentaire}" size="40">
 
-</div>
-</div>
-<div class="form-group">
-<label for="" class="control-label col-md-4">{t}Commentaire général :{/t}</label>
-<div class="col-md-8">
-<input id="" class="form-control" class="commentaire" name="evenement_commentaire" value="{$data.evenement_commentaire}">
-</div>
-</fieldset>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="tab-pane fade" id="nav-morphologie" role="tabpanel" aria-labelledby="tab-morphologie">
+					<div class="row">
+						<div class="col-md-6 form-horizontal">
+							<div class="form-group">
+								<label for="clongueur_fourche" class="control-label col-md-4">
+									{t}Longueur à la fourche (cm) :{/t}
+								</label>
+								<div class="col-md-8">
+									<input class="form-control taux" name="longueur_fourche" id="clongueur_fourche"
+										value="{$dataMorpho.longueur_fourche}">
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="clongueur_totale" class="control-label col-md-4">
+									{t}Longueur totale (cm) :{/t}
+								</label>
+								<div class="col-md-8">
+									<input class="form-control taux" name="longueur_totale" id="clongueur_totale"
+										value="{$dataMorpho.longueur_totale}">
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="cmasse" class="control-label col-md-4">
+									{t}Masse (g) :{/t}
+								</label>
+								<div class="col-md-8">
+									<input class="form-control nombre" name="masse" id="cmasse"
+										value="{$dataMorpho.masse}">
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="circonference" class="control-label col-md-4">
+									{t}Circonférence (cm) :{/t}
+								</label>
+								<div class="col-md-8">
+									<input class="form-control taux" name="circonference" id="circonference"
+										value="{$dataMorpho.circonference}">
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="cmorphologie_commentaire" class="control-label col-md-4">
+									{t}Commentaire:{/t}
+								</label>
+								<div class="col-md-8">
+									<input class="form-control" name="morphologie_commentaire"
+										id="cmorphologie_commentaire" value="{$dataMorpho.morphologie_commentaire}">
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="tab-pane fade" id="nav-pathologie" role="tabpanel" aria-labelledby="tab-pathologie">
+					<div class="row">
+						<div class="col-md-6 form-horizontal">
+							<div class="form-group">
+								<label for="pathologie_type_id" class="control-label col-md-4">
+									{t}Type de pathologie :{/t}
+									<span class="red">*</span>
+								</label>
+								<div class="col-md-8">
+									<select id="pathologie_type_id" class="form-control" name="pathologie_type_id">
+										<option value="" {if $dataPatho.pathologie_type_id=="" }selected{/if}>
+											{t}Sélectionnez la pathologie...{/t}
+										</option>
+										{section name=lst loop=$pathoType}
+										<option value="{$pathoType[lst].pathologie_type_id}" {if
+											$pathoType[lst].pathologie_type_id==$dataPatho.pathologie_type_id}selected{/if}>
+											{$pathoType[lst].pathologie_type_libelle}
+										</option>
+										{/section}
+									</select>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="cpathologie_valeur" class="control-label col-md-4">
+									{t}Valeur numérique associée :{/t}
+								</label>
+								<div class="col-md-8">
+									<input class="form-control taux" name="pathologie_valeur" id="cpathologie_valeur"
+										value="{$dataPatho.pathologie_valeur}">
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="cpathologie_commentaire" class="control-label col-md-4">
+									{t}Commentaire :{/t}
+								</label>
+								<div class="col-md-8">
+									<input class="form-control" name="pathologie_commentaire"
+										id="cpathologie_commentaire" value="{$dataPatho.pathologie_commentaire}">
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="tab-pane fade" id="nav-echographie" role="tabpanel" aria-labelledby="tab-echographie">
+					<div class="row">
+						<div class="col-md-6 form-horizontal">
+							<div class="form-group">
+								<div class="form-group">
+									<label for="stade_gonade_id" class="control-label col-md-4">
+										{t}Stade des gonades :{/t}
+									</label>
+									<div class="col-md-8">
+										<select id="stade_gonade_id" class="form-control" name="stade_gonade_id">
+											<option value="" {if $dataEcho.stade_gonade_id=="" }selected{/if}>
+												{t}Sélectionnez...{/t}
+											</option>
+											{section name=lst loop=$gonades}
+											<option value="{$gonades[lst].stade_gonade_id}" {if
+												$dataEcho.stade_gonade_id==$gonades[lst].stade_gonade_id}selected{/if}>
+												{$gonades[lst].stade_gonade_libelle}
+											</option>
+											{/section}
+										</select>
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="stade_oeuf_id" class="control-label col-md-4">
+										{t}Stade des œufs :{/t}
+									</label>
+									<div class="col-md-8">
+										<select id="stade_oeuf_id" class="form-control" name="stade_oeuf_id">
+											<option value="" {if $dataEcho.stade_oeuf_id=="" }selected{/if}>
+												Sélectionnez...</option>
+											{section name=lst loop=$oeufs}
+											<option value="{$oeufs[lst].stade_oeuf_id}" {if
+												$dataEcho.stade_oeuf_id==$oeufs[lst].stade_oeuf_id}selected{/if}>
+												{$oeufs[lst].stade_oeuf_libelle}
+											</option>
+											{/section}
+										</select>
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="echographie_commentaire" class="control-label col-md-4">
+										{t}Résultat qualitatif de l'échographie :{/t}
+										<span class="red">*</span>
+									</label>
+									<div class="col-md-8">
+										<input id="echographie_commentaire" class="form-control"
+											name="echographie_commentaire" value="{$dataEcho.echographie_commentaire}">
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="documentName" class="control-label col-md-4">
+										{t}Images(s) à importer :{/t}
+										<br>(doc, jpg, png, pdf, xls, xlsx, docx, odt, ods, csv)
+									</label>
+									<div class="col-md-8">
+										<input type="file" class="form-control" name="documentName[]" multiple>
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="document_description" class="control-label col-md-4">{t}Description
+										des images :{/t}</label>
+									<div class="col-md-8">
+										<input id="document_description" class="form-control" type="text"
+											name="document_description" value="">
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="document_date_creation" class="control-label col-md-4">
+										{t}Date de création (ou de prise de vue) :{/t}
+									</label>
+									<div class="col-md-8">
+										<input id="document_date_creation" class="form-control datepicker"
+											name="document_date_creation" value="{$data.document_date_creation}">
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
 
-<div id="afficher" class="masquageText">Afficher tous les éléments</div>
 
-<fieldset class="fsMasquable">
-<legend>{t}Données morphologiques{/t}</legend>
-<div class="masquage">
-<div class="form-group">
-<label for="" class="control-label col-md-4">{t}Longueur à la fourche (cm) :{/t}</label>
-<div class="col-md-8">
-<input id="" class="form-control" name="longueur_fourche" id="clongueur_fourche" value="{$dataMorpho.longueur_fourche}" size="10" maxlength="10" title="Valeur numérique" pattern="[0-9]+(\.[0-9]+)?">
+				</div>
+				<div class="tab-pane fade" id="nav-sanguin" role="tabpanel" aria-labelledby="tab-sanguin">
+					<div class="row">
+						<div class="col-md-6 form-horizontal">
+							<div class="form-group">
+								<label for="tx_e2" class="control-label col-md-4">
+									{t}Taux E2 :{/t}
+								</label>
+								<div class="col-md-8">
+									<input id="tx_e2" class="form-control" class="taux" name="tx_e2"
+										value="{$dataDosageSanguin.tx_e2}">
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="tx_e2_texte" class="control-label col-md-4">
+									{t}Taux E2 (forme textuelle) :{/t}
+								</label>
+								<div class="col-md-8">
+									<input id="tx_e2_texte" class="form-control" name="tx_e2_texte" size="20"
+										value="{$dataDosageSanguin.tx_e2_texte}">
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="tx_calcium" class="control-label col-md-4">
+									{t}Taux de calcium :{/t}
+								</label>
+								<div class="col-md-8">
+									<input id="tx_calcium" class="form-control" class="taux" name="tx_calcium"
+										value="{$dataDosageSanguin.tx_calcium}">
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="tx_hematocrite" class="control-label col-md-4">
+									{t}Taux d'hématocrite :{/t}
+								</label>
+								<div class="col-md-8">
+									<input id="tx_hematocrite" class="form-control" class="taux" name="tx_hematocrite"
+										value="{$dataDosageSanguin.tx_hematocrite}">
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="dosage_sanguin_commentaire" class="control-label col-md-4">
+									{t}Commentaires :{/t}
+								</label>
+								<div class="col-md-8">
+									<input id="dosage_sanguin_commentaire" class="form-control"
+										name="dosage_sanguin_commentaire"
+										value="{$dataDosageSanguin.dosage_sanguin_commentaire}">
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="tab-pane fade" id="nav-anesthesie" role="tabpanel" aria-labelledby="tab-anesthesie">
+					<div class="row">
+						<div class="col-md-6 form-horizontal">
+							<div class="form-group">
+								<label for="anesthesie_produit_id" class="control-label col-md-4">
+									{t}Produit utilisé :{/t}
+									<span class="red">*</span>
+								</label>
+								<div class="col-md-8">
+									<select id="anesthesie_produit_id" class="form-control"
+										name="anesthesie_produit_id">
+										<option value="" {if $dataAnesthesie.anesthesie_produit_id=="" }selected{/if}>
+											{t}Sélectionnez le produit{/t}
+										</option>
+										{section name=lst loop=$produit}
+										<option value="{$produit[lst].anesthesie_produit_id}" {if
+											$produit[lst].anesthesie_produit_id==$dataAnesthesie.anesthesie_produit_id}selected{/if}>
+											{$produit[lst].anesthesie_produit_libelle}
+										</option>
+										{/section}
+									</select>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="anesthesie_dosage" class="control-label col-md-4">
+									{t}Dosage (mg/l) :{/t}
+								</label>
+								<div class="col-md-8">
+									<input id="anesthesie_dosage" class="form-control" class="taux"
+										name="anesthesie_dosage" value="{$dataAnesthesie.anesthesie_dosage}">
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="anesthesie_commentaire" class="control-label col-md-4">
+									{t}Commentaire :{/t}
+								</label>
+								<div class="col-md-8">
+									<input id="anesthesie_commentaire" class="form-control"
+										name="anesthesie_commentaire" value="{$dataAnesthesie.anesthesie_commentaire}">
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="tab-pane fade" id="nav-genetique" role="tabpanel" aria-labelledby="tab-genetique">
+					<div class="row">
+						<div class="col-md-6 form-horizontal">
+							<fieldset>
+								<legend>{t}Prélèvement génétique{/t}</legend>
 
-</div>
-</div>
-<div class="form-group">
-<label for="" class="control-label col-md-4">{t}Longueur totale (cm) :{/t}</label>
-<div class="col-md-8">
-<input id="" class="form-control" name="longueur_totale" id="clongueur_totale" value="{$dataMorpho.longueur_totale}" size="10" maxlength="10" title="Valeur numérique" pattern="[0-9]+(\.[0-9]+)?">
+								<div class="form-group"><label for="genetique_reference" class="control-label col-md-4">
+										{t}Référence du prélèvement:{/t}
+										<span class="red">*</span>
+									</label>
+									<div class="col-md-8">
+										<input id="genetique_reference" class="form-control" name="genetique_reference"
+											value="{$dataGenetique.genetique_reference}">
+									</div>
+								</div>
+								<div class="form-group"><label for="nageoire_id" class="control-label col-md-4">
+										{t}Nageoire :{/t}
+									</label>
+									<div class="col-md-8">
+										<select id="nageoire_id" class="form-control" name="nageoire_id">
+											<option value="" {if $dataGenetique.nageoire_id=="" }selected{/if}>
+												{t}Sélectionnez...{/t}
+											</option>
+											{section name=lst loop=$nageoire}
+											<option value="{$nageoire[lst].nageoire_id}" {if
+												$dataGenetique.nageoire_id==$nageoire[lst].nageoire_id}selected{/if}>
+												{$nageoire[lst].nageoire_libelle}
+											</option>
+											{/section}
+										</select>
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="genetique_commentaire" class="control-label col-md-4">
+										{t}Commentaire :{/t}
+									</label>
+									<div class="col-md-8">
+										<input id="genetique_commentaire" class="form-control"
+											name="genetique_commentaire" value="{$dataGenetique.genetique_commentaire}">
+									</div>
+								</div>
+							</fieldset>
+						</div>
+						<div class="col-md-6 form-horizontal">
+							<fieldset>
+								<legend>{t}Détermination du sexe{/t}</legend>
 
-</div>
-</div>
-<div class="form-group">
-<label for="" class="control-label col-md-4">{t}Masse (g) :{/t}</label>
-<div class="col-md-8">
-<input id="" class="form-control" name="masse" id="cmasse" value="{$dataMorpho.masse}" size="10" maxlength="10" title="Valeur numérique" pattern="[0-9]+(\.[0-9]+)?">
+								<div class="form-group">
 
-</div>
-</div>
-<div class="form-group">
-<label for="" class="control-label col-md-4">{t}Circonférence (cm) :{/t}</label>
-<div class="col-md-8">
-<input id="" class="form-control" name="circonference" id="circonference" value="{$dataMorpho.circonference}" size="10" maxlength="10" title="Valeur numérique" pattern="[0-9]+(\.[0-9]+)?">
+									<label for="gender_methode_id" class="control-label col-md-4">
+										{t}Méthode utilisée :{/t}
+									</label>
+									<div class="col-md-8">
+										<select id="gender_methode_id" class="form-control" name="gender_methode_id">
+											<option value="" {if $dataGender.gender_methode_id=="" }selected{/if}>
+												Sélectionnez la méthode...
+											</option>
+											{section name=lst loop=$genderMethode}
+											<option value="{$genderMethode[lst].gender_methode_id}" {if
+												$genderMethode[lst].gender_methode_id==$dataGender.gender_methode_id}selected{/if}>
+												{$genderMethode[lst].gender_methode_libelle}
+											</option>
+											{/section}
+										</select>
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="sexe_id" class="control-label col-md-4">
+										{t}Sexe déterminé :{/t}
+										<span class="red">*</span>
+									</label>
+									<div class="col-md-8">
+										<select id="sexe_id" class="form-control" name="sexe_id">
+											<option value="" {if $dataGender.sexe_id=="" }selected{/if}>
+												{t}Sélectionnez le sexe...{/t}
+											</option>
+											{section name=lst loop=$sexe}
+											<option value="{$sexe[lst].sexe_id}" {if
+												$sexe[lst].sexe_id==$dataGender.sexe_id}selected{/if}>
+												{$sexe[lst].sexe_libelle}
+											</option>
+											{/section}
+										</select>
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="cgender_selection_commentaire"
+										class="control-label col-md-4">{t}Commentaire :{/t}</label>
+									<div class="col-md-8">
+										<input class="form-control" name="gender_selection_commentaire"
+											id="cgender_selection_commentaire"
+											value="{$dataGender.gender_selection_commentaire}">
+									</div>
+								</div>
+							</fieldset>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-6 form-horizontal">
+							<fieldset>
+								<legend>{t}Détermination de la cohorte{/t}</legend>
+								<div class="form-group">
+									<label for="cohorte_type_id" class="control-label col-md-4">
+										{t}Type de détermination :{/t}
+										<span class="red">*</span>
+									</label>
+									<div class="col-md-8">
+										<select class="form-control" name="cohorte_type_id" id="cohorte_type_id">
+											<option value="" {if $dataCohorte.cohorte_type_id=="" } selected {/if}>
+												{t}Sélectionnez le type de détermination...{/t}
+											</option>
+											{section name=lst loop=$cohorteType}
+											<option value="{$cohorteType[lst].cohorte_type_id}" {if
+												$cohorteType[lst].cohorte_type_id==$dataCohorte.cohorte_type_id}
+												selected {/if}>
+												{$cohorteType[lst].cohorte_type_libelle}
+											</option>
+											{/section}
+										</select>
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="" class="control-label col-md-4">
+										{t}Détermination effectuée :{/t}
+									</label>
+									<div class="col-md-8">
+										<input id="cohorte_determination" class="form-control"
+											name="cohorte_determination" value="{$dataCohorte.cohorte_determination}">
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="cohorte_commentaire" class="control-label col-md-4">
+										{t}Commentaire : {/t}
+									</label>
+									<div class="col-md-8">
+										<input id="cohorte_commentaire" class="form-control" name="cohorte_commentaire"
+											value="{$dataCohorte.cohorte_commentaire}">
 
-</div>
-</div>
-<div class="form-group">
-<label for="" class="control-label col-md-4">{t}Commentaire :{/t}</label>
-<div class="col-md-8">
-<input id="" class="form-control" name="morphologie_commentaire" id="cmorphologie_commentaire" value="{$dataMorpho.morphologie_commentaire}" size="40">
+									</div>
+								</div>
+							</fieldset>
+						</div>
+						<div class="col-md-6 form-horizontal">
+							<fieldset>
+								<legend>{t}Détermination de la parenté{/t}</legend>
+								<div class="form-group">
+									<label for="" class="control-label col-md-4">
+										{t}Type de détermination :{/t}
+										<span class="red">*</span>
+									</label>
+									<div class="col-md-8">
+										<select id="" class="form-control" name="determination_parente_id"
+											id="determination_parente_id">
+											<option value="" {if $dataParente.determination_parente_id=="" } selected
+												{/if}>
+												{t}Sélectionnez le type de détermination...{/t}
+											</option>
+											{section name=lst loop=$determinationParente}
+											<option value="{$determinationParente[lst].determination_parente_id}" {if
+												$determinationParente[lst].determination_parente_id==$dataParente.determination_parente_id}
+												selected {/if}>
+												{$determinationParente[lst].determination_parente_libelle}
+											</option>
+											{/section}
+										</select>
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="parente_commentaire" class="control-label col-md-4">
+										{t}Commentaire :{/t}
+									</label>
+									<div class="col-md-8">
+										<input id="parente_commentaire" class="form-control" name="parente_commentaire"
+											value="{$dataParente.parente_commentaire}">
+									</div>
+								</div>
+							</fieldset>
+						</div>
+					</div>
+				</div>
+				<div class="tab-pane fade" id="nav-anomalie" role="tabpanel" aria-labelledby="tab-anomalie">
+				</div>
+				<div class="tab-pane fade" id="nav-sortie" role="tabpanel" aria-labelledby="tab-sortie">
+					<div class="row">
+						<div class="col-md-6 form-horizontal">
+							<fieldset>
+								<legend>{t}Sortie du stock{/t}</legend>
 
-</div>
-</div>
-</fieldset>
-
-<fieldset class="fsMasquable">
-<legend>{t}Pathologie{/t}</legend>
-<div class="masquage">
-<div class="form-group">
-<label for="" class="control-label col-md-4">{t}Type de pathologie :{/t}<span class="red">*</span></label>
-<div class="col-md-8">
-<select id="" class="form-control" name="pathologie_type_id">
-<option value="" {if $dataPatho.pathologie_type_id == ""}selected{/if}>
-Sélectionnez la pathologie...
-</option>
-{section name=lst loop=$pathoType}
-<option value="{$pathoType[lst].pathologie_type_id}" {if $pathoType[lst].pathologie_type_id == $dataPatho.pathologie_type_id}selected{/if}>
-{$pathoType[lst].pathologie_type_libelle}
-</option>
-{/section}
-</select>
-
-</div>
-</div>
-<div class="form-group">
-<label for="" class="control-label col-md-4">{t}Valeur numérique associée :{/t}</label>
-<div class="col-md-8">
-<input id="" class="form-control" name="pathologie_valeur" id="cpathologie_valeur" value="{$dataPatho.pathologie_valeur}" title="Valeur numérique" size="10" pattern="[0-9]+(\.[0-9]+)?">
-
-</div>
-</div>
-<div class="form-group">
-<label for="" class="control-label col-md-4">{t}Commentaire :{/t}</label>
-<div class="col-md-8">
-<input id="" class="form-control" name="pathologie_commentaire" id="cpathologie_commentaire" value="{$dataPatho.pathologie_commentaire}" size="40">
-
-</div>
-</div>
-</fieldset>
-<fieldset class="fsMasquable">
-<legend>{t}Changement de bassin{/t}</legend>
-<div class="masquage">
-{$bselect = 0}
-{if $dataTransfert.bassin_origine > 0}
-{$bselect = $dataTransfert.bassin_origine}
-{/if}
-<div class="form-group">
-<label for="" class="control-label col-md-4">{t}Bassin d'origine <span class="red">*</span> : {/t}</label>
-<div class="col-md-8">
-<select id="" class="form-control" name="bassin_origine" id="bassin_origine">
-<option value="" {if $bselect == 0} selected {/if}>
-Sélectionnez le bassin d'origine...
-</option>
-{section name=lst loop=$bassinList}
-<option value="{$bassinList[lst].bassin_id}" {if $bassinList[lst].bassin_id == $bselect} selected {/if}>
-{$bassinList[lst].bassin_nom}
-</option>
-{/section}
-</select>
-<span class="erreur"></span>
-
-</div>
-</div>
-<div class="form-group">
-<label for="" class="control-label col-md-4">{t}Bassin de destination <span class="red">*</span> : {/t}</label>
-<div class="col-md-8">
-<select id="" class="form-control" name="bassin_destination" id="bassin_destination">
-<option value="" {if $dataTransfert.bassin_destination == ""} selected {/if}>
-Sélectionnez le bassin de destination...
-</option>
-{section name=lst loop=$bassinListActif}
-<option value="{$bassinListActif[lst].bassin_id}" {if $bassinListActif[lst].bassin_id == $dataTransfert.bassin_destination} selected {/if}>
-{$bassinListActif[lst].bassin_nom}
-</option>
-{/section}
-</select>
-<span class="erreur"style="display:none; color:red;"></span>
-
-</div>
-</div>
-<div class="form-group">
-<label for="" class="control-label col-md-4">{t}Commentaire :{/t}</label>
-<div class="col-md-8">
-<input id="" class="form-control" name="transfert_commentaire" value="{$dataTransfert.transfert_commentaire}" size="40">
-
-</div>
-</div>
-</fieldset>
-<fieldset class="fsMasquable">
-<legend>{t}Échographie{/t}</legend>
-<div class="masquage">
-<div class="form-group">
-<div class="form-group">
-<label for="" class="control-label col-md-4">{t}Stade des gonades :{/t}</label>
-<div class="col-md-8">
-<select id="" class="form-control" name="stade_gonade_id">
-<option value="" {if $dataEcho.stade_gonade_id == ""}selected{/if}>Sélectionnez...</option>
-{section name=lst loop=$gonades}
-<option value="{$gonades[lst].stade_gonade_id}" {if $dataEcho.stade_gonade_id == $gonades[lst].stade_gonade_id}selected{/if}>
-{$gonades[lst].stade_gonade_libelle}
-</option>
-{/section}
-</select>
-
-</div>
-
-<div class="form-group">
-<label for="" class="control-label col-md-4">{t}Stade des œufs :{/t}</label>
-<div class="col-md-8">
-<select id="" class="form-control" name="stade_oeuf_id">
-<option value="" {if $dataEcho.stade_oeuf_id == ""}selected{/if}>Sélectionnez...</option>
-{section name=lst loop=$oeufs}
-<option value="{$oeufs[lst].stade_oeuf_id}" {if $dataEcho.stade_oeuf_id == $oeufs[lst].stade_oeuf_id}selected{/if}>
-{$oeufs[lst].stade_oeuf_libelle}
-</option>
-{/section}
-</select>
-
-</div>
-
-<label for="" class="control-label col-md-4">{t}Résultat qualitatif de l'échographie :{/t}<span class="red">*</span></label>
-<div class="col-md-8">
-<input id="" class="form-control" name="echographie_commentaire" value="{$dataEcho.echographie_commentaire}" size="40">
-
-</div>
-</div>
-<div class="form-group">
-<label for="" class="control-label col-md-4">{t}Images(s) à importer :
-<br>(doc, jpg, png, pdf, xls, xlsx, docx, odt, ods, csv)
-{/t}</label>
-<label for="" class="control-label col-md-4">{t}<input type="file" name="documentName[]" size="40" multiple>{/t}</label>
-</div>
-</div>
-<div class="form-group">
-<label for="" class="control-label col-md-4">{t}Description des images :{/t}</label>
-<div class="col-md-8">
-<input id="" class="form-control" type="text" name="document_description" value="" size="40">
-
-</div>
-</div>
-<div class="form-group">
-<label for="" class="control-label col-md-4">{t}Date de création (ou de prise de vue) :{/t}</label>
-<div class="col-md-8">
-<input id="" class="form-control" name="document_date_creation" class="date" value="{$data.document_date_creation}">
-
-</div>
-</div>
-</fieldset>
-
-<fieldset class="fsMasquable">
-<legend>{t}Anesthésie{/t}</legend>
-<div class="masquage">
-<div class="form-group">
-
-<label for="" class="control-label col-md-4">{t}Produit utilisé :{/t}<span class="red">*</span></label>
-<div class="col-md-8">
-<select id="" class="form-control" name="anesthesie_produit_id">
-<option value="" {if $dataAnesthesie.anesthesie_produit_id==""}selected{/if}>Sélectionnez le produit</option>
-{section name=lst loop=$produit}
-<option value="{$produit[lst].anesthesie_produit_id}" {if $produit[lst].anesthesie_produit_id == $dataAnesthesie.anesthesie_produit_id}selected{/if}>
-{$produit[lst].anesthesie_produit_libelle}
-</option>
-{/section}
-</select>
-
-<label for="" class="control-label col-md-4">{t}Dosage (mg/l) : {/t}</label>
-<div class="col-md-8">
-<input id="" class="form-control" class="taux" name="anesthesie_dosage" value="{$dataAnesthesie.anesthesie_dosage}">
-
-</div>
-</div>
-<div class="form-group">
-<label for="" class="control-label col-md-4">{t}Commentaire :{/t}</label>
-<div class="col-md-8">
-<input id="" class="form-control" class="commentaire" name="anesthesie_commentaire" value="{$dataAnesthesie.anesthesie_commentaire}">
-
-</div>
-
-</div>
-</fieldset>
-
-<fieldset class="fsMasquable">
-<legend>{t}Dosage sanguin{/t}</legend>
-<div class="form-group">
-<label for="" class="control-label col-md-4">{t}Taux E2 :{/t}</label>
-<div class="col-md-8">
-<input id="" class="form-control" class="taux" name="tx_e2" value="{$dataDosageSanguin.tx_e2}">
-
-</div>
-</div>
-<div class="form-group">
-<label for="" class="control-label col-md-4">{t}Taux E2 (forme textuelle) :{/t}</label>
-<div class="col-md-8">
-<input id="" class="form-control" name="tx_e2_texte" size="20" value="{$dataDosageSanguin.tx_e2_texte}">
-
-</div>
-</div>
-<div class="form-group">
-<label for="" class="control-label col-md-4">{t}Taux de calcium :{/t}</label>
-<div class="col-md-8">
-<input id="" class="form-control" class="taux" name="tx_calcium" value="{$dataDosageSanguin.tx_calcium}">
-
-</div>
-</div>
-<div class="form-group">
-<label for="" class="control-label col-md-4">{t}Taux d'hématocrite :{/t}</label>
-<div class="col-md-8">
-<input id="" class="form-control" class="taux" name="tx_hematocrite" value="{$dataDosageSanguin.tx_hematocrite}">
-
-</div>
-</div>
-<div class="form-group">
-<label for="" class="control-label col-md-4">{t}Commentaires :{/t}</label>
-<div class="col-md-8">
-<input id="" class="form-control" name="dosage_sanguin_commentaire" class="commentaire" value="{$dataDosageSanguin.dosage_sanguin_commentaire}">
-</div>
-</fieldset>
-<fieldset class="fsMasquable">
-<legend>{t}Prélèvement génétique{/t}</legend>
-<div class="masquage">
-<div class="form-group"><label for="" class="control-label col-md-4">{t}Référence du prélèvement:{/t}<span class="red">*</span></label>
-<div class="col-md-8">
-<input id="" class="form-control" class="commentaire" name="genetique_reference" value="{$dataGenetique.genetique_reference}">
-</div>
-</div>
-<div class="form-group"><label for="" class="control-label col-md-4">{t}Nageoire :{/t}</label>
-<div class="col-md-8">
-<select id="" class="form-control" name="nageoire_id">
-<option value="" {if $dataGenetique.nageoire_id == ""}selected{/if}>Sélectionnez...</option>
-{section name=lst loop=$nageoire}
-<option value="{$nageoire[lst].nageoire_id}" {if $dataGenetique.nageoire_id == $nageoire[lst].nageoire_id}selected{/if}>
-{$nageoire[lst].nageoire_libelle}
-</option>
-{/section}
-</select>
-</div>
-</div>
-<div class="form-group">
-<label for="" class="control-label col-md-4">{t}Commentaire :{/t}</label>
-<div class="col-md-8">
-<input id="" class="form-control" name="genetique_commentaire" class="commentaire" value="{$dataGenetique.genetique_commentaire}">
-
-</div>
-</div>
-</fieldset>
-<fieldset class="fsMasquable">
-<legend>{t}Détermination du sexe{/t}</legend>
-<div class="masquage">
-<div class="form-group">
-
-<label for="" class="control-label col-md-4">{t}Méthode utilisée :{/t}</label>
-<div class="col-md-8">
-<select id="" class="form-control" name="gender_methode_id">
-<option value="" {if $dataGender.gender_methode_id == ""}selected{/if}>
-Sélectionnez la méthode...
-</option>
-{section name=lst loop=$genderMethode}
-<option value="{$genderMethode[lst].gender_methode_id}" {if $genderMethode[lst].gender_methode_id == $dataGender.gender_methode_id}selected{/if}>
-{$genderMethode[lst].gender_methode_libelle}
-</option>
-{/section}
-</select>
-
-</div>
-</div>
-<div class="form-group">
-<label for="" class="control-label col-md-4">{t}Sexe déterminé :{/t}<span class="red">*</span></label>
-<div class="col-md-8">
-<select id="" class="form-control" name="sexe_id" >
-<option value="" {if $dataGender.sexe_id == ""}selected{/if}>
-Sélectionnez le sexe...
-</option>
-{section name=lst loop=$sexe}
-<option value="{$sexe[lst].sexe_id}" {if $sexe[lst].sexe_id == $dataGender.sexe_id}selected{/if}>
-{$sexe[lst].sexe_libelle}
-</option>
-{/section}
-</select>
-
-</div>
-</div>
-<div class="form-group">
-<label for="" class="control-label col-md-4">{t}Commentaire :{/t}</label>
-<div class="col-md-8">
-<input id="" class="form-control" name="gender_selection_commentaire" id="cgender_selection_commentaire" value="{$dataGender.gender_selection_commentaire}" size="40">
-
-</div>
-</div>
-</fieldset>
-
-<fieldset class="fsMasquable">
-<legend>{t}Détermination de la cohorte{/t}</legend>
-<div class="masquage">
-<div class="form-group">
-<label for="" class="control-label col-md-4">{t}Type de détermination <span class="red">*</span> : {/t}</label>
-<div class="col-md-8">
-<select id="" class="form-control" name="cohorte_type_id" id="cohorte_type_id">
-<option value="" {if $dataCohorte.cohorte_type_id == ""} selected {/if}>
-Sélectionnez le type de détermination...
-</option>
-{section name=lst loop=$cohorteType}
-<option value="{$cohorteType[lst].cohorte_type_id}" {if $cohorteType[lst].cohorte_type_id == $dataCohorte.cohorte_type_id} selected {/if}>
-{$cohorteType[lst].cohorte_type_libelle}
-</option>
-{/section}
-</select>
-
-</div>
-</div>
-<div class="form-group">
-<label for="" class="control-label col-md-4">{t}Détermination effectuée :{/t}</label>
-<div class="col-md-8">
-<input id="" class="form-control" name="cohorte_determination" value="{$dataCohorte.cohorte_determination}">
-</div>
-</div>
-<div class="form-group">
-<label for="" class="control-label col-md-4">{t}Commentaire : {/t}</label>
-<div class="col-md-8">
-<input id="" class="form-control" name="cohorte_commentaire" value="{$dataCohorte.cohorte_commentaire}" size="40">
-
-</div>
-</div>
-</fieldset>
-
-<fieldset class="fsMasquable">
-<legend>{t}Sortie du stock{/t}</legend>
-<div class="masquage">
-<div class="form-group">
-<label for="" class="control-label col-md-4">{t}Lieu de lâcher/destination :{/t}<span class="red">*</span></label>
-<div class="col-md-8">
-<select id="" class="form-control" name="sortie_lieu_id" id="sortie_lieu_id">
-<option value="" {if $dataSortie.sortie_lieu_id == ""} selected{/if}>
-Sélectionnez le lieu de lâcher/destination...
-</option>
-{section name=lst loop=$sortieLieu}
-<option value={$sortieLieu[lst].sortie_lieu_id} {if $sortieLieu[lst].sortie_lieu_id == $dataSortie.sortie_lieu_id}selected{/if}>
-{$sortieLieu[lst].localisation}
-</option>
-{/section}
-</select>
-
-</div>
-</div>
-<div class="form-group">
-<label for="" class="control-label col-md-4">{t}Informations de nourriture/sevrage :{/t}</label>
-<div class="col-md-8">
-<input id="" class="form-control" name="sevre" value="{$dataSortie.sevre}" size="40">
-
-</div>
-</div>
-<div class="form-group">
-<label for="" class="control-label col-md-4">{t}Commentaires :{/t}</label>
-<div class="col-md-8">
-<input id="" class="form-control" name="sortie_lieu_commentaire" value="{$dataSortie.sortie_commentaire}" size="40">
-
-</div>
-</div>
-</fieldset>
-
-<fieldset class="fsMasquable">
-<legend>{t}Détermination de la parenté{/t}</legend>
-<div class="masquage">
-<div class="form-group">
-<label for="" class="control-label col-md-4">{t}Type de détermination <span class="red">*</span> : {/t}</label>
-<div class="col-md-8">
-<select id="" class="form-control" name="determination_parente_id" id="determination_parente_id">
-<option value="" {if $dataParente.determination_parente_id == ""} selected {/if}>
-Sélectionnez le type de détermination...
-</option>
-{section name=lst loop=$determinationParente}
-<option value="{$determinationParente[lst].determination_parente_id}" {if $determinationParente[lst].determination_parente_id == $dataParente.determination_parente_id} selected {/if}>
-{$determinationParente[lst].determination_parente_libelle}
-</option>
-{/section}
-</select>
-
-</div>
-</div>
-<div class="form-group">
-<label for="" class="control-label col-md-4">{t}Commentaire : {/t}</label>
-<div class="col-md-8">
-<input id="" class="form-control" name="parente_commentaire" value="{$dataParente.parente_commentaire}" size="40">
-
-</div>
-</div>
-</fieldset>
-
-<fieldset class="fsMasquable">
-<legend>{t}Mortalité{/t}</legend>
-<div class="masquage">
-<div class="form-group">
-<label for="" class="control-label col-md-4">{t}Type de mortalité <span class="red">*</span> : {/t}</label>
-<div class="col-md-8">
-<select id="" class="form-control" name="mortalite_type_id" id="mortalite_type_id">
-<option value="" {if $dataMortalite.mortalite_type_id == ""} selected {/if}>
-Sélectionnez le type de mortalité...
-</option>
-{section name=lst loop=$mortaliteType}
-<option value="{$mortaliteType[lst].mortalite_type_id}" {if $mortaliteType[lst].mortalite_type_id == $dataMortalite.mortalite_type_id} selected {/if}>
-{$mortaliteType[lst].mortalite_type_libelle}
-</option>
-{/section}
-</select>
-
-</div>
-</div>
-<div class="form-group">
-<label for="" class="control-label col-md-4">{t}Commentaire : {/t}</label>
-<div class="col-md-8">
-<input id="" class="form-control" name="mortalite_commentaire" value="{$dataMortalite.mortalite_commentaire}" size="40">
-
-</div>
-</div>
-</fieldset>
-
-<div class="form-group center">
-<button type="submit" class="btn btn-primary button-valid">{t}Valider{/t}</button>
-
-<button class="btn btn-danger button-delete">{t}Supprimer{/t}</button>
-{/if}
-</div>
+								<div class="form-group">
+									<label for="sortie_lieu_id" class="control-label col-md-4">
+										{t}Lieu de lâcher/destination :{/t}<span class="red">*</span>
+									</label>
+									<div class="col-md-8">
+										<select class="form-control" name="sortie_lieu_id" id="sortie_lieu_id">
+											<option value="" {if $dataSortie.sortie_lieu_id=="" } selected{/if}>
+												{t}Sélectionnez le lieu de
+												lâcher/destination...{/t}
+											</option>
+											{section name=lst loop=$sortieLieu}
+											<option value={$sortieLieu[lst].sortie_lieu_id} {if
+												$sortieLieu[lst].sortie_lieu_id==$dataSortie.sortie_lieu_id}selected{/if}>
+												{$sortieLieu[lst].localisation}
+											</option>
+											{/section}
+										</select>
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="sevre" class="control-label col-md-4">
+										{t}Informations de nourriture/sevrage :{/t}</label>
+									<div class="col-md-8">
+										<input id="sevre" class="form-control" name="sevre" value="{$dataSortie.sevre}">
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="sortie_lieu_commentaire" class="control-label col-md-4">
+										{t}Commentaires :{/t}
+									</label>
+									<div class="col-md-8">
+										<input id="sortie_lieu_commentaire" class="form-control"
+											name="sortie_lieu_commentaire" value="{$dataSortie.sortie_commentaire}">
+									</div>
+								</div>
+							</fieldset>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-6 form-horizontal">
+							<fieldset>
+								<legend>{t}Mortalité{/t}</legend>
+								<div class="form-group">
+									<label for="mortalite_type_id" class="control-label col-md-4">
+										{t}Type de mortalité :{/t}<span class="red">*</span>
+									</label>
+									<div class="col-md-8">
+										<select class="form-control" name="mortalite_type_id" id="mortalite_type_id">
+											<option value="" {if $dataMortalite.mortalite_type_id=="" } selected {/if}>
+												{t}Sélectionnez le type de mortalité...{/t}
+											</option>
+											{section name=lst loop=$mortaliteType}
+											<option value="{$mortaliteType[lst].mortalite_type_id}" {if
+												$mortaliteType[lst].mortalite_type_id==$dataMortalite.mortalite_type_id}
+												selected {/if}>
+												{$mortaliteType[lst].mortalite_type_libelle}
+											</option>
+											{/section}
+										</select>
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="" class="control-label col-md-4">
+										{t}Commentaire : {/t}
+									</label>
+									<div class="col-md-8">
+										<input id="" class="form-control" name="mortalite_commentaire"
+											value="{$dataMortalite.mortalite_commentaire}" size="40">
+									</div>
+								</div>
+							</fieldset>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </form>
-</div>
-</div>
 
-
-{if $data.evenement_id > 0 &&$droits["poissonAdmin"] == 1}
-<div class="formBouton">
 <div class="row">
-<div class="col-md-6">
-<form class="form-horizontal" id="" method="post" action="index.php">
-<input type="hidden" name="action" value="Write">
-<input type="hidden" name="moduleBase" value=""> action="index.php" method="post" onSubmit='return confirmSuppression("Confirmez-vous la suppression ?")'>
-<input type="hidden" name="evenement_id" value="{$data.evenement_id}">
-<input type="hidden" name="poisson_id" value="{$data.poisson_id}">
-<input type="hidden" name="module" value="evenementDelete">
-<input class="submit" type="submit" value="Supprimer">
-<div class="form-group center">
-<button type="submit" class="btn btn-primary button-valid">{t}Valider{/t}</button>
-
-<button class="btn btn-danger button-delete">{t}Supprimer{/t}</button>
-{/if}
+	<div class="col-lg-12">
+		<span class="red">*</span><span class="messagebas">{t}Champ obligatoire{/t}</span>
+	</div>
 </div>
-</form>
-</div>
-</div>
-</div>
-{/if}
-</div>
-</div>
-<span class="red">*</span><span class="messagebas">{t}Champ obligatoire{/t}</span>
-{if $data.evenement_id > 0}
-
-<h3>Documents associés</h3>
-{include file="document/documentList.tpl"}
-{/if}

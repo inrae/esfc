@@ -23,7 +23,7 @@
 </a>
 
 <a href="index.php?module=poissonDisplay&poisson_id={$dataPoisson.poisson_id}">
-	<img src="display/images/fish.svg" height="25">
+	<img src="display/images/sturio.png" height="25">
 	{t}Retour au poisson{/t} {$dataPoisson.matricule} {$dataPoisson.prenom} {$dataPoisson.pittag_valeur} {$dataPoisson.categorie_libelle} {$dataPoisson.sexe_libelle}
 	{$dataPoisson.poisson_statut_libelle} (id:{$dataPoisson.poisson_id})
 </a>
