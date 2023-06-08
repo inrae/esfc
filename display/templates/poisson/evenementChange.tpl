@@ -50,7 +50,7 @@
 			};
 			return valid;
 		});
-		const ok = new Map();
+		/*const ok = new Map();
 		ok.set("oktransfert", ["bassin_origine", "bassin_destination"]);
 		for (const [key, value] of ok) {
 			for (const v of value) {
@@ -59,7 +59,17 @@
 				}
 			};
 			
-		}
+		}*/
+		$(".ok").each(function (i, e) {
+			if($(this).val()) {
+				$("#"+$(this).data("tabicon")).show();
+			}
+		});
+		$(".ok").change(function() {
+			if($(this).val()) {
+				$("#"+$(this).data("tabicon")).show();
+			}
+		});
 	});
 </script>
 <a href="index.php?module={$poissonDetailParent}">
@@ -171,6 +181,7 @@
 						aria-controls="nav-pathologie" aria-selected="false">
 						<img src="display/images/pathologie.svg" height="25">
 						{t}Pathologies{/t}
+						<img id="okpathologie" class="ok" src="display/images/ok_icon.png" height="15" hidden >
 					</a>
 				</li>
 				<li class="nav-item">
@@ -178,6 +189,7 @@
 						aria-controls="nav-echographie" aria-selected="false">
 						<img src="display/images/scanner.png" height="25">
 						{t}Échographie{/t}
+						<img id="okechographie" class="ok" src="display/images/ok_icon.png" height="15" hidden >
 					</a>
 				</li>
 				<li class="nav-item">
@@ -185,6 +197,7 @@
 						aria-controls="nav-sanguin" aria-selected="false">
 						<img src="display/images/syringe.svg" height="25">
 						{t}Dosage sanguin{/t}
+						<img id="oksanguin" class="ok" src="display/images/ok_icon.png" height="15" hidden >
 					</a>
 				</li>
 				<li class="nav-item">
@@ -192,6 +205,7 @@
 						aria-controls="nav-anesthesie" aria-selected="false">
 						<img src="display/images/anesthesie.svg" height="25">
 						{t}Anesthésie{/t}
+						<img id="okanesthesie" class="ok" src="display/images/ok_icon.png" height="15" hidden >
 					</a>
 				</li>
 				<li class="nav-item">
@@ -199,6 +213,7 @@
 						aria-controls="nav-genetique" aria-selected="false">
 						<img src="display/images/genetic.svg" height="25">
 						{t}Génétique et parentée{/t}
+						<img id="okgenetique" class="ok" src="display/images/ok_icon.png" height="15" hidden >
 					</a>
 				</li>
 				<li class="nav-item">
@@ -206,6 +221,7 @@
 						aria-controls="nav-sortie" aria-selected="false">
 						<img src="display/images/mortalite.svg" height="25">
 						{t}Sortie et mortalité{/t}
+						<img id="oksortie" class="ok" src="display/images/ok_icon.png" height="15" hidden >
 					</a>
 				</li>
 			</ul>
@@ -222,7 +238,7 @@
 									{t}Bassin d'origine :{/t}<span class="red">*</span>
 								</label>
 								<div class="col-md-8">
-									<select class="form-control" name="bassin_origine" id="bassin_origine">
+									<select class="form-control ok" name="bassin_origine" id="bassin_origine" data-tabicon="oktransfert">
 										<option value="" {if $bselect==0} selected {/if}>
 											{t}Sélectionnez le bassin d'origine...{/t}
 										</option>
@@ -241,7 +257,7 @@
 									{t}Bassin de destination :{/t}<span class="red">*</span>
 								</label>
 								<div class="col-md-8">
-									<select class="form-control" name="bassin_destination" id="bassin_destination">
+									<select class="form-control ok" name="bassin_destination" id="bassin_destination" data-tabicon="oktransfert">
 										<option value="" {if $dataTransfert.bassin_destination=="" } selected {/if}>
 											{t}Sélectionnez le bassin de destination...{/t}
 										</option>
@@ -275,7 +291,7 @@
 									{t}Longueur à la fourche (cm) :{/t}
 								</label>
 								<div class="col-md-8">
-									<input class="form-control taux" name="longueur_fourche" id="clongueur_fourche"
+									<input class="form-control taux ok" name="longueur_fourche" id="clongueur_fourche" data-tabicon="okmorpho"
 										value="{$dataMorpho.longueur_fourche}">
 								</div>
 							</div>
@@ -284,7 +300,7 @@
 									{t}Longueur totale (cm) :{/t}
 								</label>
 								<div class="col-md-8">
-									<input class="form-control taux" name="longueur_totale" id="clongueur_totale"
+									<input class="form-control taux ok" name="longueur_totale" id="clongueur_totale" data-tabicon="okmorpho"
 										value="{$dataMorpho.longueur_totale}">
 								</div>
 							</div>
@@ -293,7 +309,7 @@
 									{t}Masse (g) :{/t}
 								</label>
 								<div class="col-md-8">
-									<input class="form-control nombre" name="masse" id="cmasse"
+									<input class="form-control nombre ok" name="masse" id="cmasse" data-tabicon="okmorpho"
 										value="{$dataMorpho.masse}">
 								</div>
 							</div>
@@ -302,7 +318,7 @@
 									{t}Circonférence (cm) :{/t}
 								</label>
 								<div class="col-md-8">
-									<input class="form-control taux" name="circonference" id="circonference"
+									<input class="form-control taux ok" name="circonference" id="circonference" data-tabicon="okmorpho"
 										value="{$dataMorpho.circonference}">
 								</div>
 							</div>
@@ -327,7 +343,7 @@
 									<span class="red">*</span>
 								</label>
 								<div class="col-md-8">
-									<select id="pathologie_type_id" class="form-control" name="pathologie_type_id">
+									<select id="pathologie_type_id" class="form-control ok" name="pathologie_type_id" data-tabicon="okpathologie">
 										<option value="" {if $dataPatho.pathologie_type_id=="" }selected{/if}>
 											{t}Sélectionnez la pathologie...{/t}
 										</option>
@@ -370,7 +386,7 @@
 										{t}Stade des gonades :{/t}
 									</label>
 									<div class="col-md-8">
-										<select id="stade_gonade_id" class="form-control" name="stade_gonade_id">
+										<select id="stade_gonade_id" class="form-control ok" name="stade_gonade_id" data-tabicon="okechographie">
 											<option value="" {if $dataEcho.stade_gonade_id=="" }selected{/if}>
 												{t}Sélectionnez...{/t}
 											</option>
@@ -388,7 +404,7 @@
 										{t}Stade des œufs :{/t}
 									</label>
 									<div class="col-md-8">
-										<select id="stade_oeuf_id" class="form-control" name="stade_oeuf_id">
+										<select id="stade_oeuf_id" class="form-control ok" name="stade_oeuf_id" data-tabicon="okechographie">
 											<option value="" {if $dataEcho.stade_oeuf_id=="" }selected{/if}>
 												Sélectionnez...</option>
 											{section name=lst loop=$oeufs}
@@ -450,7 +466,7 @@
 									{t}Taux E2 :{/t}
 								</label>
 								<div class="col-md-8">
-									<input id="tx_e2" class="form-control" class="taux" name="tx_e2"
+									<input id="tx_e2" class="form-control" class="taux ok" name="tx_e2"  data-tabicon="oksanguin"
 										value="{$dataDosageSanguin.tx_e2}">
 								</div>
 							</div>
@@ -459,7 +475,7 @@
 									{t}Taux E2 (forme textuelle) :{/t}
 								</label>
 								<div class="col-md-8">
-									<input id="tx_e2_texte" class="form-control" name="tx_e2_texte" size="20"
+									<input id="tx_e2_texte" class="form-control ok" name="tx_e2_texte" size="20" data-tabicon="oksanguin"
 										value="{$dataDosageSanguin.tx_e2_texte}">
 								</div>
 							</div>
@@ -468,7 +484,7 @@
 									{t}Taux de calcium :{/t}
 								</label>
 								<div class="col-md-8">
-									<input id="tx_calcium" class="form-control" class="taux" name="tx_calcium"
+									<input id="tx_calcium" class="form-control" class="taux ok" name="tx_calcium" data-tabicon="oksanguin"
 										value="{$dataDosageSanguin.tx_calcium}">
 								</div>
 							</div>
@@ -477,7 +493,7 @@
 									{t}Taux d'hématocrite :{/t}
 								</label>
 								<div class="col-md-8">
-									<input id="tx_hematocrite" class="form-control" class="taux" name="tx_hematocrite"
+									<input id="tx_hematocrite" class="form-control" class="taux ok" name="tx_hematocrite" data-tabicon="oksanguin"
 										value="{$dataDosageSanguin.tx_hematocrite}">
 								</div>
 							</div>
@@ -503,8 +519,8 @@
 									<span class="red">*</span>
 								</label>
 								<div class="col-md-8">
-									<select id="anesthesie_produit_id" class="form-control"
-										name="anesthesie_produit_id">
+									<select id="anesthesie_produit_id" class="form-control ok"
+										name="anesthesie_produit_id" data-tabicon="okanesthesie">
 										<option value="" {if $dataAnesthesie.anesthesie_produit_id=="" }selected{/if}>
 											{t}Sélectionnez le produit{/t}
 										</option>
@@ -549,7 +565,7 @@
 										<span class="red">*</span>
 									</label>
 									<div class="col-md-8">
-										<input id="genetique_reference" class="form-control" name="genetique_reference"
+										<input id="genetique_reference" class="form-control ok" name="genetique_reference" data-tabicon="okgenetique"
 											value="{$dataGenetique.genetique_reference}">
 									</div>
 								</div>
@@ -557,7 +573,7 @@
 										{t}Nageoire :{/t}
 									</label>
 									<div class="col-md-8">
-										<select id="nageoire_id" class="form-control" name="nageoire_id">
+										<select id="nageoire_id" class="form-control ok" name="nageoire_id" data-tabicon="okgenetique">
 											<option value="" {if $dataGenetique.nageoire_id=="" }selected{/if}>
 												{t}Sélectionnez...{/t}
 											</option>
@@ -591,7 +607,7 @@
 										{t}Méthode utilisée :{/t}
 									</label>
 									<div class="col-md-8">
-										<select id="gender_methode_id" class="form-control" name="gender_methode_id">
+										<select id="gender_methode_id" class="form-control ok" name="gender_methode_id" data-tabicon="okgenetique">
 											<option value="" {if $dataGender.gender_methode_id=="" }selected{/if}>
 												Sélectionnez la méthode...
 											</option>
@@ -610,7 +626,7 @@
 										<span class="red">*</span>
 									</label>
 									<div class="col-md-8">
-										<select id="sexe_id" class="form-control" name="sexe_id">
+										<select id="sexe_id" class="form-control ok" name="sexe_id" data-tabicon="okgenetique">
 											<option value="" {if $dataGender.sexe_id=="" }selected{/if}>
 												{t}Sélectionnez le sexe...{/t}
 											</option>
@@ -645,7 +661,7 @@
 										<span class="red">*</span>
 									</label>
 									<div class="col-md-8">
-										<select class="form-control" name="cohorte_type_id" id="cohorte_type_id">
+										<select class="form-control ok" name="cohorte_type_id" id="cohorte_type_id" data-tabicon="okgenetique">
 											<option value="" {if $dataCohorte.cohorte_type_id=="" } selected {/if}>
 												{t}Sélectionnez le type de détermination...{/t}
 											</option>
@@ -664,7 +680,7 @@
 										{t}Détermination effectuée :{/t}
 									</label>
 									<div class="col-md-8">
-										<input id="cohorte_determination" class="form-control"
+										<input id="cohorte_determination" class="form-control ok"  data-tabicon="okgenetique"
 											name="cohorte_determination" value="{$dataCohorte.cohorte_determination}">
 									</div>
 								</div>
@@ -689,7 +705,7 @@
 										<span class="red">*</span>
 									</label>
 									<div class="col-md-8">
-										<select id="" class="form-control" name="determination_parente_id"
+										<select id="" class="form-control ok" name="determination_parente_id" data-tabicon="okgenetique"
 											id="determination_parente_id">
 											<option value="" {if $dataParente.determination_parente_id=="" } selected
 												{/if}>
@@ -718,8 +734,6 @@
 						</div>
 					</div>
 				</div>
-				<div class="tab-pane fade" id="nav-anomalie" role="tabpanel" aria-labelledby="tab-anomalie">
-				</div>
 				<div class="tab-pane fade" id="nav-sortie" role="tabpanel" aria-labelledby="tab-sortie">
 					<div class="row">
 						<div class="col-md-6 form-horizontal">
@@ -731,7 +745,7 @@
 										{t}Lieu de lâcher/destination :{/t}<span class="red">*</span>
 									</label>
 									<div class="col-md-8">
-										<select class="form-control" name="sortie_lieu_id" id="sortie_lieu_id">
+										<select class="form-control ok" name="sortie_lieu_id" id="sortie_lieu_id" data-tabicon="oksortie">
 											<option value="" {if $dataSortie.sortie_lieu_id=="" } selected{/if}>
 												{t}Sélectionnez le lieu de
 												lâcher/destination...{/t}
@@ -773,7 +787,7 @@
 										{t}Type de mortalité :{/t}<span class="red">*</span>
 									</label>
 									<div class="col-md-8">
-										<select class="form-control" name="mortalite_type_id" id="mortalite_type_id">
+										<select class="form-control ok" name="mortalite_type_id" id="mortalite_type_id" data-tabicon="oksortie">
 											<option value="" {if $dataMortalite.mortalite_type_id=="" } selected {/if}>
 												{t}Sélectionnez le type de mortalité...{/t}
 											</option>
