@@ -18,6 +18,19 @@
 		$('a[data-toggle="tab"]').on('shown.bs.tab', function () {
 			localStorage.setItem(moduleName + "Tab", $(this).attr("id"));
 		});
+		$.fn.rowCount = function() {
+		    return $('tr', $(this).find('tbody')).length;
+		};
+		$(".ok").each(function (i, e) {
+			try {
+			//if ($(this).dataTable().data().count()) {
+			//if($(this).rowCount()) {
+			if ($.fn.dataTable.Api(this).data().count()) {
+					console.log($(this).attr("id"));
+				$("#"+$(this).data("tabicon")).show();
+			}
+		} catch {};
+		});
 	});
 
 </script>
@@ -41,6 +54,7 @@
 				aria-selected="false">
 				<img src="display/images/event.png" height="25">
 				{t}Événements{/t}
+				<img id="okevent" src="display/images/ok_icon.png" height="15" hidden >
 			</a>
 		</li>
 		<li class="nav-item">
@@ -48,6 +62,7 @@
 				aria-controls="nav-transfert" aria-selected="false">
 				<img src="display/images/movement.png" height="25">
 				{t}Transferts{/t}
+				<img id="oktransfert" src="display/images/ok_icon.png" height="15" hidden >
 			</a>
 		</li>
 		<li class="nav-item">
@@ -55,6 +70,7 @@
 				aria-controls="nav-morphologie" aria-selected="false">
 				<img src="display/images/balance.svg" height="25">
 				{t}Morphologie{/t}
+				<img id="okmorphologie" src="display/images/ok_icon.png" height="15" hidden >
 			</a>
 		</li>
 
@@ -63,6 +79,7 @@
 				aria-selected="false">
 				<img src="display/images/files.png" height="25">
 				{t}Documents{/t}
+				<img id="okdocument" src="display/images/ok_icon.png" height="15" hidden >
 			</a>
 		</li>
 		<li class="nav-item">
@@ -70,6 +87,7 @@
 				aria-controls="nav-pathologie" aria-selected="false">
 				<img src="display/images/pathologie.svg" height="25">
 				{t}Pathologies{/t}
+				<img id="okpathologie"  src="display/images/ok_icon.png" height="15" hidden >
 			</a>
 		</li>
 		<li class="nav-item">
@@ -77,6 +95,7 @@
 				aria-controls="nav-reproduction" aria-selected="false">
 				<img src="display/images/repro.png" height="25">
 				{t}Reproduction{/t}
+				<img id="okreproduction" src="display/images/ok_icon.png" height="15" hidden >
 			</a>
 		</li>
 		<li class="nav-item">
@@ -84,6 +103,7 @@
 				aria-controls="nav-genetique" aria-selected="false">
 				<img src="display/images/genetic.svg" height="25">
 				{t}Génétique et parentée{/t}
+				<img id="okgenetique" src="display/images/ok_icon.png" height="15" hidden >
 			</a>
 		</li>
 		<li class="nav-item">
@@ -91,6 +111,7 @@
 				aria-controls="nav-anomalie" aria-selected="false">
 				<img src="display/images/anomalie.svg" height="25">
 				{t}Anomalies dans les données{/t}
+				<img id="okanomalie" src="display/images/ok_icon.png" height="15" hidden >
 			</a>
 		</li>
 	</ul>

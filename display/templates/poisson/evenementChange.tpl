@@ -28,7 +28,7 @@
 			var db = $("#dernier_bassin_connu").val();
 			var bo = $("#bassin_origine").val();
 			if (db > 0 && bo != db && bo > 0) {
-				$(this).next(".erreur").show().text("{t}Le bassin d'origine indiqué ne correspond pas au dernier bassin connu dans la base{/t} ()" +
+				$(this).next(".erreur").show().text("{t}Le bassin indiqué ne correspond pas au dernier bassin connu dans la base{/t} (" +
 					$("#dernier_bassin_connu_libelle").val() + ")");
 				$("#anomalie_flag").val("1");
 				$("#anomalie_db_commentaire").val("{t}Dernier bassin connu :{/t} " + $("#dernier_bassin_connu_libelle").val());
@@ -249,7 +249,7 @@
 										</option>
 										{/section}
 									</select>
-									<span class="erreur"></span>
+									<span class="red erreur"></span>
 								</div>
 							</div>
 							<div class="form-group">

@@ -1,5 +1,5 @@
 
-<table class="table table-bordered table-hover datatable" id="creproList" data-order='[[0,"desc"]]'>
+<table class="table table-bordered table-hover datatable ok" id="creproList" data-order='[[0,"desc"]]'  data-tabicon="okreproduction">
 <thead>
 <tr>
 <th>{t}Année{/t}</th>

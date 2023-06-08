@@ -126,7 +126,7 @@
 		$( '.datatable-nopaging-nosearching' ).DataTable( {
 			"language": dataTableLanguage,
 			"searching": false,
-			"paging": false
+			"paging": false,
 		} );
 		$( '.datatable-searching' ).DataTable( {
 			"language": dataTableLanguage,
@@ -200,7 +200,7 @@
 		} );
 		/* Initialisation for paging datatables */
 		$( ".datatable, .datatable-export-paging, .datatable-searching, .datatable-nosort" ).DataTable().page.len( pageLength ).draw();
-
+		$(".datatable-nopaging-nosearching").DataTable().draw();
 		$( '.taux,nombre' ).attr( 'title', '{t}Valeur numérique...{/t}' );
 		$( '.taux' ).attr( {
 			'pattern': '-?[0-9]+(\.[0-9]+)?',

@@ -1,5 +1,5 @@
 
-<table class="table table-bordered table-hover datatable-nopaging-nosearch" id="cmortaliteList" data-order='[[2,"desc"]]'>
+<table class="table table-bordered table-hover datatable-nopaging-nosearching ok" id="cmortaliteList" data-order='[[2,"desc"]]'  data-tabicon="oksortie">
 <thead>
 <tr>
 <th>{t}Événement associé{/t}</th>

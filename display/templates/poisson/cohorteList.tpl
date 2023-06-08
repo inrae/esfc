@@ -1,5 +1,5 @@
 
-<table class="table table-bordered table-hover datatable-nopaging-nosearch" id="ccohorteList" class="tableliste" data-order='[[3,"desc"]]'>
+<table class="table table-bordered table-hover datatable-nopaging-nosearching ok" id="ccohorteList" data-order='[[3,"desc"]]'  data-tabicon="okgenetique">
 <thead>
 <tr>
 <th>{t}Événement associé{/t}</th>

@@ -1,4 +1,4 @@
-<table class="table table-bordered table-hover datatable-nopaging-nosearch" id="canomalie_dbList">
+<table class="table table-bordered table-hover datatable-nopaging-nosearching ok" id="canomalie_dbList" data-tabicon="okanomalie">
     <thead>
         <tr>
             {if $droits["poissonAdmin"] == 1}

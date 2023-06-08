@@ -1,5 +1,5 @@
 
-<table class="table table-bordered table-hover datatable" id="cmorphologieList"  data-order='[[1,"desc"]]'>
+<table class="table table-bordered table-hover datatable ok" id="cmorphologieList"  data-order='[[1,"desc"]]'  data-tabicon="okmorphologie">
 <thead>
 <tr>
 <th>{t}Événement associé{/t}</th>

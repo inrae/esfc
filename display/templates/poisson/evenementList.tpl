@@ -1,5 +1,5 @@
 
-<table class="table table-bordered table-hover datatable" id="cevenementList"  data-order='[[1,"desc"]]'>
+<table class="table table-bordered table-hover datatable ok" id="cevenementList"  data-order='[[1,"desc"]]'  data-tabicon="okevent">
 <thead>
 <tr>
 <th>{t}Nature{/t}</th>

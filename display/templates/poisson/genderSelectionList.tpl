@@ -1,5 +1,5 @@
 
-<table class="table table-bordered table-hover datatable-nopaging-nosearch" id="cgender_selectionList"  data-order='[[1,"desc"]]'>
+<table class="table table-bordered table-hover datatable-nopaging-nosearching ok" id="cgender_selectionList"  data-order='[[1,"desc"]]'  data-tabicon="okgenetique">
 <thead>
 <tr>
 <th>{t}Événement associé{/t}</th>

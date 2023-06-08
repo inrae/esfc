@@ -1,5 +1,5 @@
 
-<table class="table table-bordered table-hover datatable-nopaging-nosearch" id="csortieList" >
+<table class="table table-bordered table-hover datatable-nopaging-nosearching ok" id="csortieList"  data-tabicon="oksortie" >
 <thead>
 <tr>
 <th>{t}Événement associé{/t}</th>

@@ -74,8 +74,8 @@ switch ($t_module["param"]) {
             $sexe = new Sexe($bdd, $ObjetBDDParam);
             $vue->set($sexe->getListe(1), "sexe");
             $bassin = new Bassin($bdd, $ObjetBDDParam);
-            $vue->set($bassin->getListe(), "bassinList");
-            $vue->set($bassin->getListe(1), "bassinListActif");
+            $vue->set($bassin->getListe("bassin_nom"), "bassinList");
+            $vue->set($bassin->getListe("bassin_nom"), "bassinListActif");
             $mortalite_type = new Mortalite_type($bdd, $ObjetBDDParam);
             $vue->set($mortalite_type->getListe(2), "mortaliteType");
             $cohorte_type = new Cohorte_type($bdd, $ObjetBDDParam);
