@@ -101,7 +101,7 @@ class RepartTemplate extends ObjetBDD
 	 */
 	function getListActifFromCategorie($categorie_id)
 	{
-		$sql = "select * from repart_aliment
+		$sql = "select * from repart_template
 					where actif = 1 
 					and categorie_id = :id
 					order by repart_template_libelle";

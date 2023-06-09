@@ -6,7 +6,7 @@
  * @license http://www.cecill.info/licences/Licence_CeCILL-C_V1-fr.html LICENCE DE LOGICIEL LIBRE CeCILL-C
  *  Creation 21 mars 2014
  */
-include_once 'modules/classes/aliment.class.php';
+include_once 'modules/classes/repartition.class.php';
 $dataClass = new Repartition($bdd, $ObjetBDDParam);
 $keyName = "repartition_id";
 $id = $_REQUEST[$keyName];
@@ -18,19 +18,22 @@ switch ($t_module["param"]) {
 		/*
 		 * Gestion des variables de recherche
 		 */
-		$searchRepartition->setParam($_REQUEST);
-		$dataSearch = $searchRepartition->getParam();
+		if (!isset($_SESSION["searchRepartition"])) {
+			$_SESSION["searchRepartition"] = new SearchRepartition();
+		}
+		$_SESSION["searchRepartition"]->setParam($_REQUEST);
+		$dataSearch = $_SESSION["searchRepartition"]->getParam();
 		if ($_REQUEST["next"] > 0) {
 			$dataSearch["offset"] = $dataSearch["offset"] + $dataSearch["limit"];
-			$searchRepartition->setParam("offset", $dataSearch["offset"]);
+			$_SESSION["searchRepartition"]->setParam("offset", $dataSearch["offset"]);
 		}
 		if ($_REQUEST["previous"] > 0) {
 			$dataSearch["offset"] = $dataSearch["offset"] - $dataSearch["limit"];
 			if ($dataSearch["offset"] < 0)
 				$dataSearch["offset"] = 0;
-			$searchRepartition->setParam("offset", $dataSearch["offset"]);
+			$_SESSION["searchRepartition"]->setParam("offset", $dataSearch["offset"]);
 		}
-		if ($searchRepartition->isSearch() == 1) {
+		if ($_SESSION["searchRepartition"]->isSearch() == 1) {
 			$vue->set(1, "isSearch");
 			$dataList = $dataClass->getListSearch($dataSearch);
 			/*
@@ -71,6 +74,7 @@ switch ($t_module["param"]) {
 		/*
 		 * Recherche de la categorie
 		 */
+		include_once "modules/classes/categorie.class.php";
 		$categorie = new Categorie($bdd, $ObjetBDDParam);
 		$vue->set($categorie->getListeSansLot(), "categorie");
 		break;
@@ -84,6 +88,7 @@ switch ($t_module["param"]) {
 		/*
 		 * Recherche de la categorie
 		 */
+		include_once "modules/classes/categorie.class.php";
 		$categorie = new Categorie($bdd, $ObjetBDDParam);
 		$vue->set($categorie->getListe(2), "categorie");
 		require_once 'modules/classes/site.class.php';
@@ -93,11 +98,13 @@ switch ($t_module["param"]) {
 		 * Recuperation des bassins associes et des distributions
 		 */
 		if ($data["categorie_id"] > 0) {
+			include_once "modules/classes/distribution.class.php";
 			$distribution = new Distribution($bdd, $ObjetBDDParam);
 			$vue->set($distribution->getFromRepartitionWithBassin($id, $data["categorie_id"], $data["site_id"]));
 			/*
 			 * Recuperation des modèles de distribution actifs
 			 */
+			include_once "modules/classes/repartTemplate.class.php";
 			$template = new RepartTemplate($bdd, $ObjetBDDParam);
 			$vue->set($template->getListActifFromCategorie($data["categorie_id"]), "dataTemplate");
 		}
