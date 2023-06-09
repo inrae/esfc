@@ -18,15 +18,10 @@
 		$('a[data-toggle="tab"]').on('shown.bs.tab', function () {
 			localStorage.setItem(moduleName + "Tab", $(this).attr("id"));
 		});
-		$.fn.rowCount = function() {
-		    return $('tr', $(this).find('tbody')).length;
-		};
+
 		$(".ok").each(function (i, e) {
 			try {
-			//if ($(this).dataTable().data().count()) {
-			//if($(this).rowCount()) {
 			if ($.fn.dataTable.Api(this).data().count()) {
-					console.log($(this).attr("id"));
 				$("#"+$(this).data("tabicon")).show();
 			}
 		} catch {};
@@ -47,6 +42,7 @@
 				aria-selected="true" href="#nav-detail">
 				<img src="display/images/zoom.png" height="25">
 				{t}Détails{/t}
+				<img id="oksortie" src="display/images/ok_icon.png" height="15" hidden >
 			</a>
 		</li>
 		<li class="nav-item">
