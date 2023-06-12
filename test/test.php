@@ -1,7 +1,7 @@
 <?php
 /**
  * @author Eric Quinton
- * 11 août 2009
+ * 11 aoï¿½t 2009
  */
 
 

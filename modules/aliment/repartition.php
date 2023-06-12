@@ -100,7 +100,8 @@ switch ($t_module["param"]) {
 		if ($data["categorie_id"] > 0) {
 			include_once "modules/classes/distribution.class.php";
 			$distribution = new Distribution($bdd, $ObjetBDDParam);
-			$vue->set($distribution->getFromRepartitionWithBassin($id, $data["categorie_id"], $data["site_id"]));
+			$vue->set($rep = $distribution->getFromRepartitionWithBassin($id, $data["categorie_id"], $data["site_id"]));
+			printA($rep);
 			/*
 			 * Recuperation des modèles de distribution actifs
 			 */
@@ -208,11 +209,12 @@ switch ($t_module["param"]) {
 		}
 		break;
 	case "resteChange":
-		$vue->set($dataClass->lireWithCategorie($id), "data");
+		$vue->set($data = $dataClass->lireWithCategorie($id), "data");
 		$vue->set("aliment/repartitionResteChange.tpl", "corps");
 		/*
 		 * preparation de la saisie des restes
 		 */
+		require_once "modules/classes/distribution.class.php";
 		$distribution = new Distribution($bdd, $ObjetBDDParam);
 		$dataBassin = $distribution->getFromRepartition($id);
 
@@ -275,6 +277,7 @@ switch ($t_module["param"]) {
 					$data[$val[0]][$nom] = $value;
 				}
 			}
+			include_once "modules/classes/distribution.class.php";
 			$distribution = new Distribution($bdd, $ObjetBDDParam);
 			/*
 			 * Traitement de chaque bassin
