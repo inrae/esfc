@@ -6,7 +6,7 @@
  * @license http://www.cecill.info/licences/Licence_CeCILL-C_V1-fr.html LICENCE DE LOGICIEL LIBRE CeCILL-C
  *  Creation 11 mars 2014
  */
-include_once 'modules/classes/analyseEau.class.php';
+require_once 'modules/classes/analyseEau.class.php';
 $dataClass = new AnalyseEau($bdd, $ObjetBDDParam);
 $keyName = "analyse_eau_id";
 $id = $_REQUEST[$keyName];

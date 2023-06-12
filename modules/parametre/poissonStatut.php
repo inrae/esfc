@@ -6,7 +6,7 @@
  * @license http://www.cecill.info/licences/Licence_CeCILL-C_V1-fr.html LICENCE DE LOGICIEL LIBRE CeCILL-C
  *  Creation 18 févr. 2014
  */
-include_once 'modules/classes/poissonStatut.class.php';
+require_once 'modules/classes/poissonStatut.class.php';
 $dataClass = new Poisson_statut($bdd, $ObjetBDDParam);
 $keyName = "poisson_statut_id";
 $id = $_REQUEST[$keyName];

@@ -6,7 +6,7 @@
  * Encoding : UTF-8
  * Copyright 2016 - All rights reserved
  */
-include_once 'modules/classes/spermeCongelation.class.php';
+require_once 'modules/classes/spermeCongelation.class.php';
 $dataClass = new SpermeCongelation($bdd, $ObjetBDDParam);
 $keyName = "sperme_congelation_id";
 $id = $_REQUEST[$keyName];

@@ -6,7 +6,7 @@
  * @license http://www.cecill.info/licences/Licence_CeCILL-C_V1-fr.html LICENCE DE LOGICIEL LIBRE CeCILL-C
  *  Creation 9 mars 2015
  */
-include_once 'modules/classes/poissonSequence.class.php';
+require_once 'modules/classes/poissonSequence.class.php';
 $dataClass = new PoissonSequence($bdd, $ObjetBDDParam);
 $keyName = "poisson_sequence_id";
 $id = $_REQUEST[$keyName];

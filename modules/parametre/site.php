@@ -1,5 +1,5 @@
 <?php
-include_once 'modules/classes/site.class.php';
+require_once 'modules/classes/site.class.php';
 $dataClass = new Site($bdd, $ObjetBDDParam);
 $keyName = "site_id";
 $id = $_REQUEST[$keyName];

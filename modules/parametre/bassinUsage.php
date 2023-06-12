@@ -6,7 +6,7 @@
  * @license http://www.cecill.info/licences/Licence_CeCILL-C_V1-fr.html LICENCE DE LOGICIEL LIBRE CeCILL-C
  *  Creation 4 mars 2014
  */
-include_once 'modules/classes/bassinUsage.class.php';
+require_once 'modules/classes/bassinUsage.class.php';
 $dataClass = new Bassin_usage($bdd, $ObjetBDDParam);
 $keyName = "bassin_usage_id";
 $id = $_REQUEST[$keyName];
@@ -28,7 +28,7 @@ switch ($t_module["param"]) {
 		/*
 		 * Lecture de la categorie d'alimentation
 		 */
-		include_once 'modules/classes/categorie.class.php';
+		require_once 'modules/classes/categorie.class.php';
 		$categorie = new Categorie($bdd, $ObjetBDDParam);
 		$vue->set($categorie->getListe(1), "categorie");
 		break;

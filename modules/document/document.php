@@ -6,7 +6,7 @@
  * @license http://www.cecill.info/licences/Licence_CeCILL-C_V1-fr.html LICENCE DE LOGICIEL LIBRE CeCILL-C
  *  Creation 7 avr. 2014
  */
-include_once 'modules/classes/documentSturio.class.php';
+require_once 'modules/classes/documentSturio.class.php';
 require_once 'modules/document/documentFunctions.php';
 $dataClass = new DocumentSturio($bdd, $ObjetBDDParam);
 $keyName = "document_id";
@@ -59,7 +59,7 @@ switch ($t_module["param"]) {
 						/**
 						 * Ecriture de l'enregistrement en table liee
 						 */
-						include_once "modules/classes/documentLie.class.php";
+						require_once "modules/classes/documentLie.class.php";
 						$documentLie = new DocumentLie($bdd, $ObjetBDDParam, $_REQUEST["parentType"]);
 						$data = array(
 							"document_id" => $id,

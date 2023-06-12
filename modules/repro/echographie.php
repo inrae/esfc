@@ -7,7 +7,7 @@
  *  Creation 11 mars 2015
  */
 
-include_once 'modules/classes/echographie.class.php';
+require_once 'modules/classes/echographie.class.php';
 $dataClass = new Echographie($bdd, $ObjetBDDParam);
 $keyName = "echographie_id";
 $id = $_REQUEST[$keyName];
@@ -41,7 +41,7 @@ switch ($t_module["param"]) {
 		$vue->set("echographie", "parentType");
 		$vue->set("echographie_id", "parentIdName");
 		$vue->set($id, "parent_id");
-		include_once "modules/classes/documentSturio.class.php";
+		require_once "modules/classes/documentSturio.class.php";
 		require_once 'modules/document/documentFunctions.php';
 		$vue->set(getListeDocument("echographie", $id, $_REQUEST["document_limit"], $_REQUEST["document_offset"]), "dataDoc");
 

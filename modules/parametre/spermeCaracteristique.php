@@ -6,7 +6,7 @@
  * @encoding : UTF-8
  * (c) 2016 - All rights reserved
  */
-include_once 'modules/classes/spermeCaracteristique.class.php';
+require_once 'modules/classes/spermeCaracteristique.class.php';
 $dataClass = new SpermeCaracteristique($bdd, $ObjetBDDParam);
 $keyName = "sperme_caracteristique_id";
 $id = $_REQUEST[$keyName];

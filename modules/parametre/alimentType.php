@@ -6,7 +6,7 @@
  * @license http://www.cecill.info/licences/Licence_CeCILL-C_V1-fr.html LICENCE DE LOGICIEL LIBRE CeCILL-C
  *  Creation 19 mars 2014
  */
-include_once 'modules/classes/alimentType.class.php';
+require_once 'modules/classes/alimentType.class.php';
 $dataClass = new AlimentType($bdd, $ObjetBDDParam);
 $keyName = "aliment_type_id";
 $id = $_REQUEST[$keyName];

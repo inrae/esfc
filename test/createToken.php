@@ -1,5 +1,5 @@
 <?php
-include_once '../framework/identification/token.class.php';
+require_once '../framework/identification/token.class.php';
 /**
  * Pseudo-fonction pour demontrer la verification du login
  * @param string $login

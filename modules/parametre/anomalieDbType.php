@@ -6,7 +6,7 @@
  * @license http://www.cecill.info/licences/Licence_CeCILL-C_V1-fr.html LICENCE DE LOGICIEL LIBRE CeCILL-C
  *  Creation 31 mars 2014
  */
-include_once 'modules/classes/anomalie.class.php';
+require_once 'modules/classes/anomalie.class.php';
 $dataClass = new Anomalie_db_type($bdd, $ObjetBDDParam);
 $keyName = "anomalie_db_type_id";
 $id = $_REQUEST[$keyName];

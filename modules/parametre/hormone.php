@@ -7,7 +7,7 @@
  *  Creation 25 mars 2015
  */
 
-include_once 'modules/classes/hormone.class.php';
+require_once 'modules/classes/hormone.class.php';
 $dataClass = new Hormone($bdd, $ObjetBDDParam);
 $keyName = "hormone_id";
 $id = $_REQUEST[$keyName];

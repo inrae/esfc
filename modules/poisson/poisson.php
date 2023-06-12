@@ -6,14 +6,14 @@
  * @license http://www.cecill.info/licences/Licence_CeCILL-C_V1-fr.html LICENCE DE LOGICIEL LIBRE CeCILL-C
  *  Creation 25 févr. 2014
  */
-include_once 'modules/classes/poisson.class.php';
+require_once 'modules/classes/poisson.class.php';
 $dataClass = new Poisson($bdd, $ObjetBDDParam);
 $keyName = "poisson_id";
 $id = $_REQUEST[$keyName];
 
 switch ($t_module["param"]) {
 	case "list":
-		include "modules/poisson/poissonSearch.php";
+		require "modules/poisson/poissonSearch.php";
 		if ($_SESSION["searchPoisson"]->isSearch() == 1) {
 			$data = $dataClass->getListeSearch($dataSearch);
 			$vue->set($data, "data");

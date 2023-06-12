@@ -5,7 +5,7 @@
  * @license http://www.cecill.info/licences/Licence_CeCILL-C_V1-fr.html LICENCE DE LOGICIEL LIBRE CeCILL-C
  *  Creation 3 mars 2014
  *  code permettant de preparer l'affichage de la fenetre de recherche des bassins
- *  a utiliser avec la commande : include "modules/bassin/bassinSearch.php"
+ *  a utiliser avec la commande : require "modules/bassin/bassinSearch.php"
  */
 /*
  * Gestion des variables de recherche
@@ -22,6 +22,6 @@ $vue->set( $dataSearch, "bassinSearch");
 /*
  * Integration des tables necessaires pour la  recherche
 */
-include 'modules/bassin/bassinParamAssocie.php';
+require 'modules/bassin/bassinParamAssocie.php';
 $_SESSION["bassinParentModule"] = "bassinListniv2";
 require_once 'modules/classes/site.class.php';

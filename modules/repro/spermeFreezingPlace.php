@@ -6,7 +6,7 @@
  * Encoding : UTF-8
  * Copyright 2017 - All rights reserved
  */
-include_once 'modules/classes/spermeFreezingPlace.class.php';
+require_once 'modules/classes/spermeFreezingPlace.class.php';
 $dataClass = new SpermeFreezingPlace($bdd, $ObjetBDDParam);
 $keyName = "sperme_freezing_place_id";
 $id = $_REQUEST[$keyName];

@@ -6,7 +6,7 @@
  * @encoding : UTF-8
  * (c) 2016 - All rights reserved
  */
-include_once 'modules/classes/circuitEvenementType.class.php';
+require_once 'modules/classes/circuitEvenementType.class.php';
 $dataClass = new circuitEvenementType($bdd, $ObjetBDDParam);
 $keyName = "circuit_evenement_type_id";
 $id = $_REQUEST[$keyName];

@@ -6,7 +6,7 @@
  * @encoding : UTF-8
  * (c) 2016 - All rights reserved
  */
-include_once 'modules/classes/spermeConservateur.class.php';
+require_once 'modules/classes/spermeConservateur.class.php';
 $dataClass = new SpermeConservateur($bdd, $ObjetBDDParam);
 $keyName = "sperme_conservateur_id";
 $id = $_REQUEST[$keyName];

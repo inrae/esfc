@@ -6,7 +6,7 @@
  * @license http://www.cecill.info/licences/Licence_CeCILL-C_V1-fr.html LICENCE DE LOGICIEL LIBRE CeCILL-C
  *  Creation 20 mars 2014
  */
-include_once 'modules/classes/repartTemplate.class.php';
+require_once 'modules/classes/repartTemplate.class.php';
 $dataClass = new RepartTemplate($bdd, $ObjetBDDParam);
 $keyName = "repart_template_id";
 $id = $_REQUEST[$keyName];

@@ -6,7 +6,7 @@
  * @license http://www.cecill.info/licences/Licence_CeCILL-C_V1-fr.html LICENCE DE LOGICIEL LIBRE CeCILL-C
  *  Creation 24 févr. 2014
  */
-include_once 'modules/classes/evenementType.class.php';
+require_once 'modules/classes/evenementType.class.php';
 $dataClass = new Evenement_type($bdd, $ObjetBDDParam);
 $keyName = "evenement_type_id";
 $id = $_REQUEST[$keyName];

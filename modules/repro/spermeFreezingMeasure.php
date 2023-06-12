@@ -5,7 +5,7 @@
  * Creator : quinton
  * Encoding : UTF-8
  * Copyright 2017 - All rights reserved
- */ include_once 'modules/classes/spermeFreezingMeasure.class.php';
+ */ require_once 'modules/classes/spermeFreezingMeasure.class.php';
 $dataClass = new SpermeFreezingMeasure($bdd, $ObjetBDDParam);
 $keyName = "sperme_freezing_measure_id";
 $id = $_REQUEST[$keyName];

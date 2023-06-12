@@ -7,7 +7,7 @@
  *  Creation 16 avr. 2014
  *  gestion de la table sortie_lieu
  */
-include_once 'modules/classes/sortieLieu.class.php';
+require_once 'modules/classes/sortieLieu.class.php';
 $dataClass = new SortieLieu($bdd, $ObjetBDDParam);
 $keyName = "sortie_lieu_id";
 $id = $_REQUEST[$keyName];
@@ -28,7 +28,7 @@ switch ($t_module["param"]) {
 		/*
 		 * Lecture des statuts de poissons
 		 */
-		include_once "modules/classes/poissonStatut.class.php";
+		require_once "modules/classes/poissonStatut.class.php";
 		$poissonStatut = new Poisson_statut($bdd, $ObjetBDDParam);
 		$vue->set($poissonStatut->getListe(1), "poissonStatut");
 		dataRead($dataClass, $id, "parametre/sortieLieuChange.tpl");

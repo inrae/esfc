@@ -7,7 +7,7 @@
  *  Creation 25 mars 2015
  */
 
-include_once 'modules/classes/sperme.class.php';
+require_once 'modules/classes/sperme.class.php';
 $dataClass = new Sperme($bdd, $ObjetBDDParam);
 $keyName = "sperme_id";
 $id = $_REQUEST[$keyName];

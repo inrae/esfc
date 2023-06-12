@@ -317,7 +317,7 @@ class Poisson extends ObjetBDD
              * Documents
              */
             if (isset($this->documentLie)) {
-                include_once $this->classpath . "/documentLie.class.php";
+                require_once $this->classpath . "/documentLie.class.php";
                 $this->documentLie = new DocumentLie($this->connection, $this->paramori, "poisson");
             }
             if (!isset($this->documentSturio)) {

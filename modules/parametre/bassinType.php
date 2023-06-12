@@ -6,7 +6,7 @@
  * @license http://www.cecill.info/licences/Licence_CeCILL-C_V1-fr.html LICENCE DE LOGICIEL LIBRE CeCILL-C
  *  Creation 4 mars 2014
  */
-include_once 'modules/classes/bassinType.class.php';
+require_once 'modules/classes/bassinType.class.php';
 $dataClass = new Bassin_type($bdd, $ObjetBDDParam);
 $keyName = "bassin_type_id";
 $id = $_REQUEST[$keyName];

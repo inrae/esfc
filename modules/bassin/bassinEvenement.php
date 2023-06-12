@@ -6,7 +6,7 @@
  * @license http://www.cecill.info/licences/Licence_CeCILL-C_V1-fr.html LICENCE DE LOGICIEL LIBRE CeCILL-C
  *  Creation 2 avr. 2014
  */
-include_once 'modules/classes/bassinEvenement.class.php';
+require_once 'modules/classes/bassinEvenement.class.php';
 $dataClass = new BassinEvenement($bdd, $ObjetBDDParam);
 $keyName = "bassin_evenement_id";
 $id = $_REQUEST[$keyName];
@@ -28,7 +28,7 @@ switch ($t_module["param"]) {
 		/*
 		 * Lecture du bassin
 		 */
-		include_once "modules/classes/bassin.class.php";
+		require_once "modules/classes/bassin.class.php";
 		$bassin = new Bassin($bdd, $ObjetBDDParam);
 		$vue->set($bassin->getDetail($_REQUEST["bassin_id"]), "dataBassin");
 		$vue->set($_SESSION["bassinParentModule"], "bassinParentModule");

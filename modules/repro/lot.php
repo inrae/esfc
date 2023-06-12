@@ -6,12 +6,12 @@
  * @license http://www.cecill.info/licences/Licence_CeCILL-C_V1-fr.html LICENCE DE LOGICIEL LIBRE CeCILL-C
  *  Creation 13 mars 2015
  */
-include_once 'modules/classes/lot.class.php';
+require_once 'modules/classes/lot.class.php';
 $dataClass = new Lot($bdd, $ObjetBDDParam);
 $keyName = "lot_id";
 $id = $_REQUEST[$keyName];
 
-include "modules/repro/setAnnee.php";
+require "modules/repro/setAnnee.php";
 
 switch ($t_module["param"]) {
 	case "list":

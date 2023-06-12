@@ -55,6 +55,6 @@ $classes = array(
 );
 
 foreach ($classes as $classe => $value) {
-    include_once "modules/classes/" . $value["name"];
+    require_once "modules/classes/" . $value["name"];
     $$classe =  new $value["classname"]($bdd, $ObjetBDDParam);
 }

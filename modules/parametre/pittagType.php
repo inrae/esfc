@@ -8,7 +8,7 @@
  *  Gestion de la table pittag_type
  */
 
-include_once 'modules/classes/pittagType.class.php';
+require_once 'modules/classes/pittagType.class.php';
 $dataClass = new Pittag_type($bdd, $ObjetBDDParam);
 $keyName = "pittag_type_id";
 $id = $_REQUEST[$keyName];

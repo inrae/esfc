@@ -6,14 +6,14 @@
  * @encoding : UTF-8
  * (c) 2016 - All rights reserved
  */
-include_once 'modules/classes/devenir.class.php';
+require_once 'modules/classes/devenir.class.php';
 $dataClass = new Devenir($bdd, $ObjetBDDParam);
 $keyName = "devenir_id";
 $id = $_REQUEST[$keyName];
 
 switch ($t_module["param"]) {
 	case "list":
-		include "modules/repro/setAnnee.php";
+		require "modules/repro/setAnnee.php";
 		$vue->set($dataClass->getListeFull($_SESSION["annee"]), "dataDevenir");
 		$vue->set("repro/devenirCampagneList.tpl", "corps");
 		break;

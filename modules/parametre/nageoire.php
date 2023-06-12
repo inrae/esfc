@@ -6,7 +6,7 @@
  * @encoding : UTF-8
  * (c) 2016 - All rights reserved
  */
-include_once 'modules/classes/naageoire.class.php';
+require_once 'modules/classes/naageoire.class.php';
 $dataClass = new Nageoire($bdd, $ObjetBDDParam);
 $keyName = "nageoire_id";
 $id = $_REQUEST[$keyName];

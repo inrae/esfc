@@ -6,7 +6,7 @@
  * @license http://www.cecill.info/licences/Licence_CeCILL-C_V1-fr.html LICENCE DE LOGICIEL LIBRE CeCILL-C
  *  Creation 17 mars 2014
  */
-include_once 'modules/classes/anomalie.class.php';
+require_once 'modules/classes/anomalie.class.php';
 $dataClass = new Anomalie_db($bdd, $ObjetBDDParam);
 $keyName = "anomalie_db_id";
 $id = $_REQUEST[$keyName];
@@ -52,7 +52,7 @@ switch ($t_module["param"]) {
 			/**
 			 * Recuperation des informations generales sur le poisson
 			 */
-			include_once 'modules/classes/poisson.class.php';
+			require_once 'modules/classes/poisson.class.php';
 			$poisson = new Poisson($bdd, $ObjetBDDParam);
 			$vue->set($dataPoisson = $poisson->getDetail($_REQUEST["poisson_id"]), "dataPoisson");
 		}

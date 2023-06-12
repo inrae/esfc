@@ -6,7 +6,7 @@
  * @license http://www.cecill.info/licences/Licence_CeCILL-C_V1-fr.html LICENCE DE LOGICIEL LIBRE CeCILL-C
  *  Creation 11 mars 2015
  */
-include_once 'modules/classes/salinite.class.php';
+require_once 'modules/classes/salinite.class.php';
 $dataClass = new Salinite($bdd, $ObjetBDDParam);
 $keyName = "salinite_id";
 $id = $_REQUEST[$keyName];

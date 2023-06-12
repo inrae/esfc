@@ -5,7 +5,7 @@
  * @license http://www.cecill.info/licences/Licence_CeCILL-C_V1-fr.html LICENCE DE LOGICIEL LIBRE CeCILL-C
  *  Creation 4 mars 2014
  */
-include_once 'modules/classes/circuitEau.class.php';
+require_once 'modules/classes/circuitEau.class.php';
 $dataClass = new CircuitEau($bdd,$ObjetBDDParam);
 $keyName = "circuit_eau_id";
 $id = $_REQUEST[$keyName];
@@ -30,7 +30,7 @@ switch ($t_module["param"]) {
 			 * Recuperation des donnees d'analyse
 			 */
 			if ($_REQUEST["circuit_eau_id"] > 0) {
-				include_once "modules/classes/analyseEau.class.php";
+				require_once "modules/classes/analyseEau.class.php";
 				$analyseEau = new AnalyseEau($bdd, $ObjetBDDParam);
 				$vue->set($analyseEau->getDetailByCircuitEau($_REQUEST["circuit_eau_id"], $dataSearch["analyse_eau_date"]) , "dataAnalyse");
 			}

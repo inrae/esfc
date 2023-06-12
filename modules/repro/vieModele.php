@@ -6,12 +6,12 @@
  * @license http://www.cecill.info/licences/Licence_CeCILL-C_V1-fr.html LICENCE DE LOGICIEL LIBRE CeCILL-C
  *  Creation 1 avr. 2015
  */
-include_once 'modules/classes/vieModele.class.php';
+require_once 'modules/classes/vieModele.class.php';
 $dataClass = new VieModele($bdd, $ObjetBDDParam);
 $keyName = "vie_modele_id";
 $id = $_REQUEST[$keyName];
 
-include "modules/repro/setAnnee.php";
+require "modules/repro/setAnnee.php";
 
 switch ($t_module["param"]) {
 	case "list":

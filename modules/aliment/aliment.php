@@ -5,7 +5,7 @@
  * @license http://www.cecill.info/licences/Licence_CeCILL-C_V1-fr.html LICENCE DE LOGICIEL LIBRE CeCILL-C
  *  Creation 19 mars 2014
  */
-include_once 'modules/classes/aliment.class.php';
+require_once 'modules/classes/aliment.class.php';
 $dataClass = new Aliment ( $bdd, $ObjetBDDParam );
 $keyName = "aliment_id";
 $id = $_REQUEST [$keyName];
@@ -27,18 +27,18 @@ switch ($t_module ["param"]) {
 		/*
 		 * Recuperation des types d'aliment
 		 */
-		include_once "modules/classes/alimentType.class.php";
+		require_once "modules/classes/alimentType.class.php";
 		$alimentType = new AlimentType ( $bdd, $ObjetBDDParam );
 		$vue->set( $alimentType->getListe ( 1 ) , "alimentType");
 		/*
 		 * Recuperation des categories
 		 */
-		include_once "modules/classes/categorie.class.php";
+		require_once "modules/classes/categorie.class.php";
 		$categorie = new Categorie ( $bdd, $ObjetBDDParam );
 		$dataCategorie = $categorie->getListe ( 2 );
 		/*
 		 * Recuperation des categories actuellement associees
-		 */include_once "modules/classes/alimentCategorie.class.php";
+		 */require_once "modules/classes/alimentCategorie.class.php";
 		$alimentCategorie = new AlimentCategorie ( $bdd, $ObjetBDDParam );
 		$dataAC = $alimentCategorie->getListeFromAliment ( $id );
 		/*

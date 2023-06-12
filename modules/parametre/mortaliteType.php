@@ -6,7 +6,7 @@
  * @license http://www.cecill.info/licences/Licence_CeCILL-C_V1-fr.html LICENCE DE LOGICIEL LIBRE CeCILL-C
  *  Creation 13 mars 2014
  */
-include_once 'modules/classes/mortaliteType.class.php';
+require_once 'modules/classes/mortaliteType.class.php';
 $dataClass = new Mortalite_type($bdd, $ObjetBDDParam);
 $keyName = "mortalite_type_id";
 $id = $_REQUEST[$keyName];

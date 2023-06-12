@@ -3,7 +3,7 @@
 /**
  * Gestion de l'importation des données de sonde sur les circuits d'eau
  */
-include_once 'modules/classes/sonde.class.php';
+require_once 'modules/classes/sonde.class.php';
 $dataClass = new Sonde($bdd, $ObjetBDDParam);
 $keyName = "sonde_id";
 $id = $_REQUEST[$keyName];

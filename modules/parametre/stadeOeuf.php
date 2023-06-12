@@ -6,7 +6,7 @@
  * Encoding : UTF-8
  * Copyright 2017 - All rights reserved
  */
-include_once 'modules/classes/stadeOeuf.class.php';
+require_once 'modules/classes/stadeOeuf.class.php';
 $dataClass = new StadeOeuf($bdd, $ObjetBDDParam);
 $keyName = "stade_oeuf_id";
 $id = $_REQUEST[$keyName];

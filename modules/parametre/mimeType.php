@@ -6,7 +6,7 @@
  * @license http://www.cecill.info/licences/Licence_CeCILL-C_V1-fr.html LICENCE DE LOGICIEL LIBRE CeCILL-C
  *  Creation 13 mars 2014
  */
-include_once 'modules/classes/mimeType.class.php';
+require_once 'modules/classes/mimeType.class.php';
 $dataClass = new MimeType($bdd, $ObjetBDDParam);
 $keyName = "mime_type_id";
 $id = $_REQUEST[$keyName];

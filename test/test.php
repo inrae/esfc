@@ -6,7 +6,7 @@
 
 
 
-include ("test/testclass.php");
+require ("test/testclass.php");
 $param = array ("debug_mode"=>1);
 $test = new Test($bdd,$param);
 //$test->setDebugMode($OBJETBDD_debugmode);

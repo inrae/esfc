@@ -6,7 +6,7 @@
  * @encoding : UTF-8
  * (c) 2016 - All rights reserved
  */
-include_once 'modules/classes/anesthesieProduit.class.php';
+require_once 'modules/classes/anesthesieProduit.class.php';
 $dataClass = new Anesthesie_produit($bdd, $ObjetBDDParam);
 $keyName = "anesthesie_produit_id";
 $id = $_REQUEST[$keyName];

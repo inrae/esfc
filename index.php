@@ -1,3 +1,3 @@
 <?php
 
-include "framework/controller.php";
+require "framework/controller.php";

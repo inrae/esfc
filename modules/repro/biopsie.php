@@ -6,7 +6,7 @@
  * @license http://www.cecill.info/licences/Licence_CeCILL-C_V1-fr.html LICENCE DE LOGICIEL LIBRE CeCILL-C
  *  Creation 6 mars 2015
  */
-include_once 'modules/classes/biopsie.class.php';
+require_once 'modules/classes/biopsie.class.php';
 $dataClass = new Biopsie($bdd, $ObjetBDDParam);
 $keyName = "biopsie_id";
 $id = $_REQUEST[$keyName];

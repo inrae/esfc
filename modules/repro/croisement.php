@@ -7,7 +7,7 @@
  *  Creation 12 mars 2015
  */
 
-include_once 'modules/classes/croisement.class.php';
+require_once 'modules/classes/croisement.class.php';
 $dataClass = new Croisement($bdd, $ObjetBDDParam);
 $keyName = "croisement_id";
 $id = $_REQUEST[$keyName];

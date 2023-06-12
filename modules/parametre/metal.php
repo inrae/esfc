@@ -6,7 +6,7 @@
  * @license http://www.cecill.info/licences/Licence_CeCILL-C_V1-fr.html LICENCE DE LOGICIEL LIBRE CeCILL-C
  *  Creation 6 mai 2015
  */
-include_once 'modules/classes/metal.class.php';
+require_once 'modules/classes/metal.class.php';
 $dataClass = new Metal($bdd, $ObjetBDDParam);
 $keyName = "metal_id";
 $id = $_REQUEST[$keyName];

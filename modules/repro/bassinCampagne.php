@@ -7,7 +7,7 @@
  *  Creation 10 mars 2015
  */
 
-include_once 'modules/classes/bassinCampagne.class.php';
+require_once 'modules/classes/bassinCampagne.class.php';
 $dataClass = new BassinCampagne($bdd, $ObjetBDDParam);
 $keyName = "bassin_campagne_id";
 $id = $_REQUEST[$keyName];
@@ -75,7 +75,7 @@ switch ($t_module["param"]) {
 		/*
 		 * Recuperation de la liste des poissons presents
 		 */
-		include_once 'modules/classes/transfert.class.php';
+		require_once 'modules/classes/transfert.class.php';
 		$transfert = new Transfert($bdd, $ObjetBDDParam);
 		$vue->set($transfert->getListPoissonPresentByBassin($data["bassin_id"]), "dataPoisson");
 		/*

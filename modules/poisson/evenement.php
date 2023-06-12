@@ -6,7 +6,7 @@
  * @license http://www.cecill.info/licences/Licence_CeCILL-C_V1-fr.html LICENCE DE LOGICIEL LIBRE CeCILL-C
  *  Creation 25 févr. 2014
  */
-include_once 'modules/classes/evenement.class.php';
+require_once 'modules/classes/evenement.class.php';
 $dataClass = new Evenement($bdd, $ObjetBDDParam);
 $keyName = "evenement_id";
 $id = $_REQUEST[$keyName];
@@ -183,8 +183,8 @@ switch ($t_module["param"]) {
             /*
              * Ecriture des informations complementaires
              */
-            include_once 'modules/classes/poisson.class.php';
-            include_once 'modules/classes/bassin.class.php';
+            require_once 'modules/classes/poisson.class.php';
+            require_once 'modules/classes/bassin.class.php';
             /*
              * Morphologie
              */
@@ -385,7 +385,7 @@ switch ($t_module["param"]) {
              * Creation d'une nouvelle anomalie a traiter en cas de souci
              */
             if ($_REQUEST["anomalie_flag"] > 0) {
-                include_once "modules/classes/anomalie.class.php";
+                require_once "modules/classes/anomalie.class.php";
                 $anomalie = new Anomalie_db($bdd, $ObjetBDDParam);
                 $_REQUEST["anomalie_id"] = 0;
                 $_REQUEST["anomalie_db_date"] = $_REQUEST["evenement_date"];
@@ -404,8 +404,8 @@ switch ($t_module["param"]) {
         /*
 		 * delete record
 		 */
-        include_once "modules/classes/poisson.class.php";
-        include_once 'modules/classes/anomalie.class.php';
+        require_once "modules/classes/poisson.class.php";
+        require_once 'modules/classes/anomalie.class.php';
         dataDelete($dataClass, $id);
         break;
     case "getAllCSV":

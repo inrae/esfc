@@ -6,7 +6,7 @@
  * @license http://www.cecill.info/licences/Licence_CeCILL-C_V1-fr.html LICENCE DE LOGICIEL LIBRE CeCILL-C
  *  Creation 21 mars 2014
  */
-include_once 'modules/classes/repartition.class.php';
+require_once 'modules/classes/repartition.class.php';
 $dataClass = new Repartition($bdd, $ObjetBDDParam);
 $keyName = "repartition_id";
 $id = $_REQUEST[$keyName];
@@ -74,7 +74,7 @@ switch ($t_module["param"]) {
 		/*
 		 * Recherche de la categorie
 		 */
-		include_once "modules/classes/categorie.class.php";
+		require_once "modules/classes/categorie.class.php";
 		$categorie = new Categorie($bdd, $ObjetBDDParam);
 		$vue->set($categorie->getListeSansLot(), "categorie");
 		break;
@@ -88,7 +88,7 @@ switch ($t_module["param"]) {
 		/*
 		 * Recherche de la categorie
 		 */
-		include_once "modules/classes/categorie.class.php";
+		require_once "modules/classes/categorie.class.php";
 		$categorie = new Categorie($bdd, $ObjetBDDParam);
 		$vue->set($categorie->getListe(2), "categorie");
 		require_once 'modules/classes/site.class.php';
@@ -98,14 +98,14 @@ switch ($t_module["param"]) {
 		 * Recuperation des bassins associes et des distributions
 		 */
 		if ($data["categorie_id"] > 0) {
-			include_once "modules/classes/distribution.class.php";
+			require_once "modules/classes/distribution.class.php";
 			$distribution = new Distribution($bdd, $ObjetBDDParam);
 			$vue->set($rep = $distribution->getFromRepartitionWithBassin($id, $data["categorie_id"], $data["site_id"]));
 			printA($rep);
 			/*
 			 * Recuperation des modèles de distribution actifs
 			 */
-			include_once "modules/classes/repartTemplate.class.php";
+			require_once "modules/classes/repartTemplate.class.php";
 			$template = new RepartTemplate($bdd, $ObjetBDDParam);
 			$vue->set($template->getListActifFromCategorie($data["categorie_id"]), "dataTemplate");
 		}
@@ -185,7 +185,7 @@ switch ($t_module["param"]) {
 		 * Imprime le tableau de répartition
 		 */
 		if ($id > 0) {
-			include_once 'modules/classes/tableauRepartition.class.php';
+			require_once 'modules/classes/tableauRepartition.class.php';
 			$data = $dataClass->lire($id);
 			$distribution = new Distribution($bdd, $ObjetBDDParam);
 			/*
@@ -277,7 +277,7 @@ switch ($t_module["param"]) {
 					$data[$val[0]][$nom] = $value;
 				}
 			}
-			include_once "modules/classes/distribution.class.php";
+			require_once "modules/classes/distribution.class.php";
 			$distribution = new Distribution($bdd, $ObjetBDDParam);
 			/*
 			 * Traitement de chaque bassin

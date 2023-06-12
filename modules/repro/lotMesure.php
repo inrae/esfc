@@ -7,7 +7,7 @@
  *  Creation 13 mars 2015
  */
 
-include_once 'modules/classes/lot.class.php';
+require_once 'modules/classes/lot.class.php';
 $dataClass = new LotMesure($bdd, $ObjetBDDParam);
 $keyName = "lot_mesure_id";
 $id = $_REQUEST[$keyName];

@@ -6,7 +6,7 @@
  * @license http://www.cecill.info/licences/Licence_CeCILL-C_V1-fr.html LICENCE DE LOGICIEL LIBRE CeCILL-C
  *  Creation 26 févr. 2014
  */
-include_once 'modules/classes/pittag.class.php';
+require_once 'modules/classes/pittag.class.php';
 $dataClass = new Pittag($bdd, $ObjetBDDParam);
 $keyName = "pittag_id";
 $id = $_REQUEST[$keyName];
@@ -22,13 +22,13 @@ switch ($t_module["param"]) {
 		/*
 		 * Recuperation de la liste des types de pittag
 		 */
-		include_once "modules/classes/pittagType.class.php";
+		require_once "modules/classes/pittagType.class.php";
 		$pittagType = new Pittag_type($bdd, $ObjetBDDParam);
 		$vue->set($pittagType->getListe(), "pittagType");
 		/*
 		 * Lecture du poisson
 		*/
-		include_once "modules/classes/poisson.class.php";
+		require_once "modules/classes/poisson.class.php";
 		$poisson = new Poisson($bdd, $ObjetBDDParam);
 		$vue->set($poisson->getDetail($_REQUEST["poisson_id"]), "dataPoisson");
 		break;

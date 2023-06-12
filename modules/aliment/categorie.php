@@ -5,7 +5,7 @@
  * @license http://www.cecill.info/licences/Licence_CeCILL-C_V1-fr.html LICENCE DE LOGICIEL LIBRE CeCILL-C
  *  Creation 19 mars 2014
  */
-include_once 'modules/classes/categorie.class.php';
+require_once 'modules/classes/categorie.class.php';
 $dataClass = new Categorie($bdd,$ObjetBDDParam);
 $keyName = "categorie_id";
 $id = $_REQUEST[$keyName];

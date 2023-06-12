@@ -6,7 +6,7 @@
  * @encoding : UTF-8
  * (c) 2016 - All rights reserved
  */
-include_once 'modules/classes/ventilation.class.php';
+require_once 'modules/classes/ventilation.class.php';
 $dataClass = new Ventilation($bdd, $ObjetBDDParam);
 $keyName = "ventilation_id";
 $id = $_REQUEST[$keyName];
@@ -29,7 +29,7 @@ switch ($t_module["param"]) {
 		/*
 		 * Lecture du poisson
 		*/
-		include_once "modules/classes/poisson.class.php";
+		require_once "modules/classes/poisson.class.php";
 		$poisson = new Poisson($bdd, $ObjetBDDParam);
 		$vue->set($poisson->getDetail($_REQUEST["poisson_id"]), "dataPoisson");
 		if (isset($_REQUEST["poisson_campagne_id"]) && is_numeric($_REQUEST["poisson_campagne_id"]))

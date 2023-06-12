@@ -7,7 +7,7 @@
  *  Creation 7 mai 2015
  */
 
-include_once 'modules/classes/bassin.class.php';
+require_once 'modules/classes/bassin.class.php';
 $dataClass = new BassinLot($bdd, $ObjetBDDParam);
 $keyName = "bassin_lot_id";
 $id = $_REQUEST[$keyName];

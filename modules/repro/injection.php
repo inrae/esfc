@@ -7,7 +7,7 @@
  *  Creation 23 mars 2015
  */
 
-include_once 'modules/classes/injection.class.php';
+require_once 'modules/classes/injection.class.php';
 $dataClass = new Injection($bdd, $ObjetBDDParam);
 $keyName = "injection_id";
 $id = $_REQUEST[$keyName];

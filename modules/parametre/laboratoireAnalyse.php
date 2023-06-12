@@ -6,7 +6,7 @@
  * @license http://www.cecill.info/licences/Licence_CeCILL-C_V1-fr.html LICENCE DE LOGICIEL LIBRE CeCILL-C
  *  Creation 2 avr. 2014
  */
-include_once 'modules/classes/laboratoireAnalyse.class.php';
+require_once 'modules/classes/laboratoireAnalyse.class.php';
 $dataClass = new LaboratoireAnalyse($bdd, $ObjetBDDParam);
 $keyName = "laboratoire_analyse_id";
 $id = $_REQUEST[$keyName];

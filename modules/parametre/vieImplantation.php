@@ -7,7 +7,7 @@
  *  Creation 1 avr. 2015
  */
 
-include_once 'modules/classes/vieImplantation.class.php';
+require_once 'modules/classes/vieImplantation.class.php';
 $dataClass = new VieImplantation($bdd, $ObjetBDDParam);
 $keyName = "vie_implantation_id";
 $id = $_REQUEST[$keyName];

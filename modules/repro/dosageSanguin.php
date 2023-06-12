@@ -7,7 +7,7 @@
  *  Creation 6 mars 2015
  */
 
-include_once 'modules/classes/dosageSanguin.class.php';
+require_once 'modules/classes/dosageSanguin.class.php';
 require_once 'modules/classes/poissonCampagne.class.php';
 $dataClass = new DosageSanguin($bdd, $ObjetBDDParam);
 $keyName = "dosage_sanguin_id";

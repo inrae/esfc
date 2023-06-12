@@ -6,14 +6,14 @@
  * @license http://www.cecill.info/licences/Licence_CeCILL-C_V1-fr.html LICENCE DE LOGICIEL LIBRE CeCILL-C
  *  Creation 5 mars 2015
  */
-include_once 'modules/classes/poissonCampagne.class.php';
+require_once 'modules/classes/poissonCampagne.class.php';
 $dataClass = new PoissonCampagne($bdd, $ObjetBDDParam);
 $keyName = "poisson_campagne_id";
 $id = $_REQUEST[$keyName];
 /*
  * Prepositionnement de l'annee
  */
-include "modules/repro/setAnnee.php";
+require "modules/repro/setAnnee.php";
 
 if (isset($_SESSION["sequence_id"]))
 	$vue->set($_SESSION["sequence_id"], "sequence_id");

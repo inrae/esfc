@@ -6,7 +6,7 @@
  * @encoding : UTF-8
  * (c) 2016 - All rights reserved
  */
-include_once 'modules/classes/spermeDilueur.class.php';
+require_once 'modules/classes/spermeDilueur.class.php';
 $dataClass = new SpermeDilueur($bdd, $ObjetBDDParam);
 $keyName = "sperme_dilueur_id";
 $id = $_REQUEST[$keyName];

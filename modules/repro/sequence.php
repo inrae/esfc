@@ -6,7 +6,7 @@
  * @license http://www.cecill.info/licences/Licence_CeCILL-C_V1-fr.html LICENCE DE LOGICIEL LIBRE CeCILL-C
  *  Creation 5 mars 2015
  */
-include_once 'modules/classes/sequence.class.php';
+require_once 'modules/classes/sequence.class.php';
 $dataClass = new Sequence($bdd, $ObjetBDDParam);
 $keyName = "sequence_id";
 $id = $_REQUEST[$keyName];
@@ -14,7 +14,7 @@ $id = $_REQUEST[$keyName];
 /*
  * Prepositionnement de l'annee
 */
-include "modules/repro/setAnnee.php";
+require "modules/repro/setAnnee.php";
 switch ($t_module["param"]) {
 	case "list":
 		$vue->set($dataClass->getListeByYear($_SESSION["annee"], $_REQUEST["site_id"]), "data");

@@ -6,7 +6,7 @@
  * @license http://www.cecill.info/licences/Licence_CeCILL-C_V1-fr.html LICENCE DE LOGICIEL LIBRE CeCILL-C
  *  Creation 19 mars 2014
  */
-include_once 'modules/classes/parentPoisson.class.php';
+require_once 'modules/classes/parentPoisson.class.php';
 $dataClass = new ParentPoisson($bdd, $ObjetBDDParam);
 $keyName = "parent_poisson_id";
 $id = $_REQUEST[$keyName];
@@ -33,7 +33,7 @@ switch ($t_module["param"]) {
 		/*
 		 * Lecture du poisson
 		*/
-		include_once "modules/classes/poisson.class.php";
+		require_once "modules/classes/poisson.class.php";
 		$poisson = new Poisson($bdd, $ObjetBDDParam);
 		$vue->set($poisson->getDetail($_REQUEST["poisson_id"]), "dataPoisson");
 		break;

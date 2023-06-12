@@ -6,7 +6,7 @@
  * Encoding : UTF-8
  * Copyright 2017 - All rights reserved
  */
-include_once 'modules/classes/stadeGonade.class.php';
+require_once 'modules/classes/stadeGonade.class.php';
 $dataClass = new StadeGonade($bdd, $ObjetBDDParam);
 $keyName = "stade_gonade_id";
 $id = $_REQUEST[$keyName];

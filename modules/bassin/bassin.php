@@ -6,7 +6,7 @@
  * @license http://www.cecill.info/licences/Licence_CeCILL-C_V1-fr.html LICENCE DE LOGICIEL LIBRE CeCILL-C
  *  Creation 4 mars 2014
  */
-include_once 'modules/classes/bassin.class.php';
+require_once 'modules/classes/bassin.class.php';
 $dataClass = new Bassin($bdd, $ObjetBDDParam);
 $keyName = "bassin_id";
 if (isset($_REQUEST[$keyName])) {
@@ -21,7 +21,7 @@ switch ($t_module["param"]) {
 		/*
 		 * Display the list of all records of the table
 		 */
-		include "modules/bassin/bassinSearch.php";
+		require "modules/bassin/bassinSearch.php";
 		if ($_SESSION["searchBassin"]->isSearch() == 1) {
 			$vue->set($dataClass->getListeSearch($dataSearch), "data");
 		}
@@ -47,7 +47,7 @@ switch ($t_module["param"]) {
 		/*
 		 * Recuperation de la liste des poissons presents
 		 */
-		include_once 'modules/classes/transfert.class.php';
+		require_once 'modules/classes/transfert.class.php';
 		$transfert = new Transfert($bdd, $ObjetBDDParam);
 		$vue->set($transfert->getListPoissonPresentByBassin($id), "dataPoisson");
 		/*
@@ -59,7 +59,7 @@ switch ($t_module["param"]) {
 		/*
 		 * Recuperation des aliments consommés sur la période déterminée
 		 */
-		include_once 'modules/classes/distribQuotidien.class.php';
+		require_once 'modules/classes/distribQuotidien.class.php';
 		$distribQuotidien = new DistribQuotidien($bdd, $ObjetBDDParam);
 		/*
 		 * Dates de recherche
@@ -79,7 +79,7 @@ switch ($t_module["param"]) {
 		$vue->set("bassin", "parentType");
 		$vue->set("bassin_id", "parentIdName");
 		$vue->set($id, "parent_id");
-		include_once 'modules/document/documentFunctions.php';
+		require_once 'modules/document/documentFunctions.php';
 		$vue->set(getListeDocument("bassin", $id, $_REQUEST["document_limit"], $_REQUEST["document_offset"]), "dataDoc");
 		/*
 		 * Affichage
@@ -99,7 +99,7 @@ switch ($t_module["param"]) {
 		/*
 		 * Integration des tables de parametres
 		 */
-		include 'modules/bassin/bassinParamAssocie.php';
+		require 'modules/bassin/bassinParamAssocie.php';
 		$vue->set($_SESSION["bassinParentModule"], "bassinParentModule");
 		require_once 'modules/classes/site.class.php';
 		$site = new Site($bdd, $ObjetBDDParam);
@@ -121,7 +121,7 @@ switch ($t_module["param"]) {
 		dataDelete($dataClass, $id);
 		break;
 	case "calculMasseAjax":
-		include_once 'modules/classes/poisson.class.php';
+		require_once 'modules/classes/poisson.class.php';
 		if ($_REQUEST["bassin_id"] > 0) {
 			$masse = $dataClass->calculMasse($_REQUEST["bassin_id"]);
 			$vue->set(array("val" => $masse));
