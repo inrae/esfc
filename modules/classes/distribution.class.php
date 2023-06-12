@@ -156,7 +156,7 @@ class Distribution extends ObjetBDD
 				$this->distribQuotidien = $this->classInstanciate("DistribQuotidien", "distribQuotidien.class.php");
 			}
 			if (!isset($this->alimentQuotidien)) {
-				$this->alimentQuotidien = $this->classInstanciate("AlimQuotidien", "alimQuotidien.class.php");
+				$this->alimentQuotidien = $this->classInstanciate("AlimentQuotidien", "alimentQuotidien.class.php");
 			}
 			/*
 			 * Mise en forme facile a utiliser

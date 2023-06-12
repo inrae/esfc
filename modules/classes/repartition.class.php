@@ -10,6 +10,7 @@ class Repartition extends ObjetBDD
 	 * @param PDO $bdd        	
 	 * @param array $param        	
 	 */
+	private Distribution $distribution;
 	function __construct($bdd, $param = array())
 	{
 		$this->table = "repartition";
@@ -123,11 +124,13 @@ class Repartition extends ObjetBDD
 				/*
 					 * Gestion des bassins rattaches
 					 */
-				$distribution = new Distribution($this->connection, $this->paramori);
+					if (!isset($this->distribution)) {
+						$this->distribution = $this->classInstanciate("Distribution", "distribution.class.php");
+					}
 				/*
 					 * Recuperation de la liste des bassins rattaches a l'ancienne répartition
 					 */
-				$dataDist = $distribution->getFromRepartition($id);
+				$dataDist = $this->distribution->getFromRepartition($id);
 				foreach ($dataDist as $key => $value) {
 					/*
 						 * On ne traite que les bassins actifs et ceux de la même catégorie
@@ -146,11 +149,11 @@ class Repartition extends ObjetBDD
 						/*
 							 * Ecriture des nouvelles distributions
 							 */
-						$idDistribution = $distribution->ecrire($data);
+						$idDistribution = $this->distribution->ecrire($data);
 						if (!$idDistribution > 0) {
 							$this->errorData[] = array(
 								"code" => 0,
-								"valeur" => $distribution->getErrorData(0)
+								"valeur" => $this->distribution->getErrorData(0)
 							);
 							$err = -1;
 						}
@@ -179,8 +182,10 @@ class Repartition extends ObjetBDD
 			/*
 			 * Suppression des enregistrements lies dans distribution
 			 */
-			$distribution = new Distribution($this->connection, $this->paramori);
-			$distribution->supprimerChamp($id, "repartition_id");
+			if (!isset($this->distribution)) {
+				$this->distribution = $this->classInstanciate("Distribution", "distribution.class.php");
+			}
+			$this->distribution->supprimerChamp($id, "repartition_id");
 			return (parent::supprimer($id));
 		}
 	}

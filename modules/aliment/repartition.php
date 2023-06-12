@@ -100,8 +100,7 @@ switch ($t_module["param"]) {
 		if ($data["categorie_id"] > 0) {
 			require_once "modules/classes/distribution.class.php";
 			$distribution = new Distribution($bdd, $ObjetBDDParam);
-			$vue->set($rep = $distribution->getFromRepartitionWithBassin($id, $data["categorie_id"], $data["site_id"]));
-			printA($rep);
+			$vue->set($distribution->getFromRepartitionWithBassin($id, $data["categorie_id"], $data["site_id"]), "dataBassin");
 			/*
 			 * Recuperation des modèles de distribution actifs
 			 */
@@ -156,6 +155,7 @@ switch ($t_module["param"]) {
 			/*
 			 * Mise en table des données de bassins
 			 */
+			require_once "modules/classes/distribution.class.php";
 			$distribution = new Distribution($bdd, $ObjetBDDParam);
 			$error = 0;
 			foreach ($data as $key => $value) {
@@ -187,6 +187,7 @@ switch ($t_module["param"]) {
 		if ($id > 0) {
 			require_once 'modules/classes/tableauRepartition.class.php';
 			$data = $dataClass->lire($id);
+			require_once "modules/classes/distribution.class.php";
 			$distribution = new Distribution($bdd, $ObjetBDDParam);
 			/*
 			 * Recuperation de la liste des aliments utilises
