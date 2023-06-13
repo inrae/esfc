@@ -59,8 +59,8 @@ class DistribQuotidien extends ObjetBDD
 	{
 		if (strlen($date) > 0 && $bassin_id > 0) {
 			$sql = "delete from distrib_quotidien
-					where distrib_quotidien_date = :dqd '" . $date . "'
-					and bassin_id = :id" . $bassin_id;
+					where distrib_quotidien_date = :dqd
+					and bassin_id = :id";
 			return $this->executeAsPrepared($sql, array("dqd" => $date, "id" => $bassin_id), true);
 		} else {
 			return false;

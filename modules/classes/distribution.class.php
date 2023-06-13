@@ -11,6 +11,7 @@ class Distribution extends ObjetBDD
 	public RepartAliment $repartAliment;
 	public DistribQuotidien $distribQuotidien;
 	public AlimentQuotidien $alimentQuotidien;
+	public Repartition $repartition;
 
 	/**
 	 * Constructeur de la classe
@@ -136,8 +137,10 @@ class Distribution extends ObjetBDD
 			/*
 			 * Ecriture de la repartition quotidienne des aliments
 			 */
-			$repartition = new Repartition($this->connection, $this->paramori);
-			$dataRepartition = $repartition->lire($data["repartition_id"]);
+			if (!isset($this->repartition)) {
+				$this->repartition = $this->classInstanciate("Repartition", "repartition.class.php");
+			}
+			$dataRepartition = $this->repartition->lire($data["repartition_id"]);
 			$dateDebut = DateTime::createFromFormat('d/m/Y', $dataRepartition['date_debut_periode']);
 			$dateFin = DateTime::createFromFormat('d/m/Y', $dataRepartition["date_fin_periode"]);
 			$dateDiff = date_diff($dateDebut, $dateFin, true);

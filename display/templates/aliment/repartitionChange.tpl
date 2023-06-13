@@ -13,6 +13,15 @@
 		$(".date").change(function () {
 			$(this).next(".message").show().text("{t}Veuillez enregistrer la fiche avant de poursuivre votre saisie{/t}");
 		});
+		function setRation(cle, ration) {
+			var ration_id = "#total_distribue_" + cle;
+			$(ration_id).val(ration);
+			if (ration > 0) {
+				$("#ok"+cle).show();
+			} else {
+				$("#ok"+cle).hide();
+			}
+		}
 		$(".evol").change(function () {
 			/*
 			* Recalcul du nouveau taux de nourrissage
@@ -42,7 +51,8 @@
 			var masse = parseFloat($(masse_id).val());
 			if (isNaN(masse)) masse = 0;
 			var ration_id = "#total_distribue_" + cle;
-			$(ration_id).val(parseInt(masse * valeur / 100));
+			var ration = parseInt(masse * valeur / 100);
+			setRation(cle, ration);
 		});
 		$(".masse").change(function () {
 			/*
@@ -55,7 +65,8 @@
 			var valeur = parseFloat($(taux_id).val());
 			if (isNaN(valeur)) valeur = 0;
 			var ration_id = "#total_distribue_" + cle;
-			$(ration_id).val(parseInt(masse * valeur / 100));
+			var ration = parseInt(masse * valeur / 100);
+			setRation(cle, ration);
 		});
 		$(".calcul").on("click keyup", function () {
 			/*
@@ -69,6 +80,21 @@
 				$(masse_id).trigger("change");
 			});
 		});
+		$(".ration").change(function () {
+			var ration = parseInt($(this).val());
+			var cle = $(this).data("cle");
+			if (ration > 0) {
+				$("#ok" + cle).show();
+				var masse = parseFloat($("#distribution_masse_" + cle).val());
+				if (!isNaN(masse)) {
+					var taux = ration / masse * 10000;
+					$("#taux_nourrissage_" + cle).val(parseInt(taux) / 100);
+				}
+			} else {
+				$("#ok" + cle).hide();
+			}
+		});
+
 		$("#repartitionForm").submit(function () {
 			/*
 			* Verification que le modele de distribution est renseigne si ration > 0
@@ -98,6 +124,13 @@
 			}
 			return valid;
 		});
+		$(".ration").each(function () {
+			var ration = $(this).val();
+			if (ration > 0) {
+				var cle = $(this).data("cle");
+				$("#ok" + cle).show();
+			}
+		});
 	});
 </script>
 <a href="index.php?module=repartitionList">
@@ -116,7 +149,7 @@
 	<div class="col-lg-12">
 		<div class="col-lg-2 col-md-4">
 			<div class="row">
-				<h2>{t}Modification d'une répartion{/t}</h2>
+				<h2>{t}Modification d'une répartition{/t}</h2>
 			</div>
 
 			<div class="row">
@@ -186,11 +219,11 @@
 						{$i=0}
 						{section name=lst loop=$dataBassin}
 						<li class="nav-item {if $i==0}active{/if}">
-							<a class="nav-link" id="tab-{$dataBassin[lst].bassin_id}" href="#nav-{$dataBassin[lst].bassin_id}"
-								data-toggle="tab" role="tab" aria-controls="nav-{$dataBassin[lst].bassin_id}"
-								aria-selected="false">
+							<a class="nav-link" id="tab-{$dataBassin[lst].bassin_id}"
+								href="#nav-{$dataBassin[lst].bassin_id}" data-toggle="tab" role="tab"
+								aria-controls="nav-{$dataBassin[lst].bassin_id}" aria-selected="false">
 								{$dataBassin[lst].bassin_nom}
-								<img id="ok{$dataBassin.bassin_id}" src="display/images/ok_icon.png" height="15" hidden>
+								<img id="ok{$dataBassin[lst].bassin_id}" src="display/images/ok_icon.png" height="15" hidden>
 							</a>
 						</li>
 						{$i = $i + 1}
@@ -353,7 +386,7 @@
 												{t}Ration distribuée :{/t}
 											</label>
 											<div class="col-md-2">
-												<input class="form-control" class="num10 ration"
+												<input class="form-control nombre ration"
 													name="total_distribue_{$dataBassin[lst].bassin_id}"
 													id="total_distribue_{$dataBassin[lst].bassin_id}"
 													data-cle="{$dataBassin[lst].bassin_id}"
