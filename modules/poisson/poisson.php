@@ -73,7 +73,7 @@ switch ($t_module["param"]) {
 		/*
 		 * Recuperation du sexage
 		 */
-		$gender_selection = new Gender_selection($bdd, $ObjetBDDParam);
+		$gender_selection = new GenderSelection($bdd, $ObjetBDDParam);
 		$vue->set($gender_selection->getListByPoisson($id), "dataGender");
 		/*
 		 * Recuperation des pathologies

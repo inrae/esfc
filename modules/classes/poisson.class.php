@@ -210,6 +210,19 @@ class Poisson extends ObjetBDD
         }
     }
 
+    function getPoissonIdFromTag($pittag) {
+        $sql = "select poisson_id 
+        from poisson
+        join pittag using (poisson_id)
+        where upper(pittag_valeur) = upper(:pittag)";
+        $data = $this->lireParamAsPrepared($sql, array ("pittag"=>$pittag));
+        if ($data["poisson_id"] > 0) {
+            return $data["poisson_id"];
+        } else {
+            return 0;
+        }
+    }
+
     /**
      * Surcharge de la fonction ecrire pour generer les parents et la date de naissance
      * si indication du modele de marque VIE utilise

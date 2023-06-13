@@ -10,7 +10,7 @@ $classes = array(
     ),
     "gender_selection" => array(
         "name" => "genderSelection.class.php",
-        "classname" => "Gender_selection"
+        "classname" => "GenderSelection"
     ), "pathologie" => array(
         "name" => "pathologie.class.php",
         "classname" => "Pathologie"

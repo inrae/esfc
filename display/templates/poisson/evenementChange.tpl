@@ -50,16 +50,6 @@
 			};
 			return valid;
 		});
-		/*const ok = new Map();
-		ok.set("oktransfert", ["bassin_origine", "bassin_destination"]);
-		for (const [key, value] of ok) {
-			for (const v of value) {
-				if ($("#"+v).val()) {
-					$("#"+key).show();
-				}
-			};
-			
-		}*/
 		$(".ok").each(function (i, e) {
 			if($(this).val()) {
 				$("#"+$(this).data("tabicon")).show();
@@ -68,6 +58,14 @@
 		$(".ok").change(function() {
 			if($(this).val()) {
 				$("#"+$(this).data("tabicon")).show();
+			}
+		});
+		$("#newtag").change(function() {
+			if ($(this).val().length > 0) {
+				$("#newtagButton").removeAttr("disabled");
+				$("#evenementForm").submit();
+			} else {
+				$("#newtagButton").attr("disabled", true);
 			}
 		});
 	});
@@ -152,6 +150,21 @@
 				{if $data.evenement_id > 0 &&$droits["poissonAdmin"] == 1}
 				<button class="btn btn-danger button-delete">{t}Supprimer{/t}</button>
 				{/if}
+			</div>
+		</div>
+		<div class="col-md-4 form-horizontal">
+			<div class="form-group">
+				<label for="newtag" class="control-label col-md-4">
+					{t}Pittag du poisson suivant :{/t}
+				</label>
+				<div class="col-md-8">
+					<input id="newtag" name="newtag" class="form-control">
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-md-12 center">
+					<button class="btn btn-primary" id="newtagButton" disabled>{t}Valider et nouvel événement pour le poisson indiqué{/t}</button>
+				</div>
 			</div>
 		</div>
 	</div>

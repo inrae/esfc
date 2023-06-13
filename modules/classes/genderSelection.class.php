@@ -6,7 +6,7 @@
  * @author quinton
  *        
  */
-class Gender_selection extends ObjetBDD
+class GenderSelection extends ObjetBDD
 {
     public Poisson $poisson;
     /**

@@ -33,7 +33,16 @@
 <h2>{t}Détail du poisson{/t} {$dataPoisson.matricule} {$dataPoisson.prenom} {$dataPoisson.pittag_valeur}
 	{$dataPoisson.categorie_libelle} {$dataPoisson.sexe_libelle}
 	{$dataPoisson.poisson_statut_libelle} (id:{$dataPoisson.poisson_id})</h2>
-<a href="index.php?module={$poissonDetailParent}">Retour à la liste des poissons</a>
+<a href="index.php?module={$poissonDetailParent}">
+	<img src="display/images/list.png" height="25">
+	{t}Retour à la liste des poissons{/t}
+</a>
+{if $droits.poissonGestion == 1}
+<a href="index.php?module=evenementChange&poisson_id={$dataPoisson.poisson_id}&evenement_id=0">
+	<img src="display/images/event.png" height="25">
+	{t}Nouvel événement...{/t}
+</a>
+{/if}
 
 <div class="col-xs-12">
 	<ul class="nav nav-tabs" id="myTab" role="tablist">

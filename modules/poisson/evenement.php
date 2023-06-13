@@ -10,6 +10,48 @@ require_once 'modules/classes/evenement.class.php';
 $dataClass = new Evenement($bdd, $ObjetBDDParam);
 $keyName = "evenement_id";
 $id = $_REQUEST[$keyName];
+/**
+ * Lecture des tables de parametres necessaires a la saisie
+ */
+$classes = array(
+    "poisson",
+    "bassin",
+    "dosageSanguin",
+    "evenementType",
+    "pathologieType",
+    "genderMethod",
+    "sexe",
+    "mortaliteType",
+    "cohorteType",
+    "sortieLieu",
+    "anesthesieProduit",
+    "nageoire",
+    "determinationParente",
+    "stadeGonade",
+    "stadeOeuf",
+    "categorie",
+    "poissonStatut",
+    "morphologie",
+    "genderSelection",
+    "pathologie",
+    "pittag",
+    "transfert",
+    "mortalite",
+    "cohorte",
+    "sortie",
+    "echographie",
+    "anesthesie",
+    "ventilation",
+    //"poissonCampagne",
+    "genetique",
+    "parente",
+    "lot",
+    "vieModele",
+    "transfert",
+);
+foreach ($classes as $classe) {
+    require_once "modules/classes/$classe.class.php";
+}
 switch ($t_module["param"]) {
     case "list":
         break;
@@ -22,49 +64,6 @@ switch ($t_module["param"]) {
              * Passage en parametre de la liste parente
              */
             $vue->set($_SESSION["poissonDetailParent"], "poissonDetailParent");
-
-            /*
-             * Lecture des tables de parametres necessaires a la saisie
-             */
-            $classes = array(
-                "poisson",
-                "bassin",
-                "dosageSanguin",
-                "evenementType",
-                "pathologieType",
-                "genderMethod",
-                "sexe",
-                "mortaliteType",
-                "cohorteType",
-                "sortieLieu",
-                "anesthesieProduit",
-                "nageoire",
-                "determinationParente",
-                "stadeGonade",
-                "stadeOeuf",
-                "categorie",
-                "poissonStatut",
-                "morphologie",
-                "genderSelection",
-                "pathologie",
-                "pittag",
-                "transfert",
-                "mortalite",
-                "cohorte",
-                "sortie",
-                "echographie",
-                "anesthesie",
-                "ventilation",
-                //"poissonCampagne",
-                "genetique",
-                "parente",
-                "lot",
-                "vieModele",
-                "transfert",
-            );
-            foreach ($classes as $classe) {
-                require_once "modules/classes/$classe.class.php";
-            }
             $evenement_type = new Evenement_type($bdd, $ObjetBDDParam);
             $vue->set($evenement_type->getListe(2), "evntType");
             $pathologie_type = new Pathologie_type($bdd, $ObjetBDDParam);
@@ -112,7 +111,7 @@ switch ($t_module["param"]) {
                 $vue->set($morphologie->getDataByEvenement($id), "dataMorpho");
                 $pathologie = new Pathologie($bdd, $ObjetBDDParam);
                 $vue->set($pathologie->getDataByEvenement($id), "dataPatho");
-                $genderSelection = new Gender_selection($bdd, $ObjetBDDParam);
+                $genderSelection = new GenderSelection($bdd, $ObjetBDDParam);
                 $vue->set($genderSelection->getDataByEvenement($id), "dataGender");
                 $mortalite = new Mortalite($bdd, $ObjetBDDParam);
                 $vue->set($mortalite->getDataByEvenement($id), "dataMortalite");
@@ -215,7 +214,7 @@ switch ($t_module["param"]) {
              * Sexage
              */
             if ($_REQUEST["gender_methode_id"] > 0 && $_REQUEST["sexe_id"] > 0) {
-                $genderSelection = new Gender_selection($bdd, $ObjetBDDParam);
+                $genderSelection = new GenderSelection($bdd, $ObjetBDDParam);
                 $_REQUEST["gender_selection_date"] = $_REQUEST["evenement_date"];
                 $gender_id = $genderSelection->ecrire($_REQUEST);
                 if (!$gender_id > 0) {
@@ -396,6 +395,23 @@ switch ($t_module["param"]) {
                     $message->set($anomalie->getErrorData());
                     $message->set(_("Une erreur est survenue pendant l'écriture dans la base de données"), true);
                     $module_coderetour = -1;
+                }
+            }
+            /**
+             * Gestion de la redirection vers un nouvel evenement pour un autre poisson
+             */
+            if ($module_coderetour == 1 && !empty($_POST["newtag"])) {
+                if (!isset($poisson)) {
+                    $poisson = new Poisson($bdd, $ObjetBDDParam);
+                }
+                $poissonId = $poisson->getPoissonIdFromTag($_POST["newtag"]);
+                if ($poissonId > 0) {
+                    $_REQUEST["poisson_id"] = $poissonId;
+                    $t_module["retourok"] = "evenementChange";
+                    $_REQUEST["evenement_id"] = 0;
+                } else {
+                    $message->set(sprintf(_("Aucun poisson ne correspond au pittag %s"), $_POST["newtag"]), true);
+                    $t_module["retourok"] = $_SESSION["poissonDetailParent"];
                 }
             }
         }
