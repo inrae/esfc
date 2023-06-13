@@ -13,13 +13,25 @@
 		$(".date").change(function () {
 			$(this).next(".message").show().text("{t}Veuillez enregistrer la fiche avant de poursuivre votre saisie{/t}");
 		});
-		function setRation(cle, ration) {
-			var ration_id = "#total_distribue_" + cle;
+		function setRation(id, ration) {
+			var ration_id = "#total_distribue_" + id;
 			$(ration_id).val(ration);
 			if (ration > 0) {
-				$("#ok"+cle).show();
+				$("#ok" + id).show();
+				var modele_id = "#repart_template_id_" + id;
+				var modele_val = $(modele_id).val();
+
+				if (isNaN(modele_val)) {
+					modele_val = 0;
+				}
+				if (modele_val == 0) {
+					$("#error" + id).show();
+				} else {
+					$("#error" + id).hide();
+				}
 			} else {
-				$("#ok"+cle).hide();
+				$("#ok" + id).hide();
+				$("#error" + id).hide();
 			}
 		}
 		$(".evol").change(function () {
@@ -68,6 +80,23 @@
 			var ration = parseInt(masse * valeur / 100);
 			setRation(cle, ration);
 		});
+		$(".modele").change(function () {
+			var cle = $(this).data("cle");
+			var ration = $("#total_distribue_" + cle).val();
+			if (isNaN(ration)) {
+				ration = 0;
+			}
+			var modele = $(this).val();
+			if (isNaN(modele)) {
+				modele = 0;
+			}
+			if (modele == 0 && ration > 0) {
+				$("#error" + cle).show();
+			} else {
+				$("#error" + cle).hide();
+			}
+		});
+
 		$(".calcul").on("click keyup", function () {
 			/*
 			* Recalcul de la masse dans le bassin
@@ -90,8 +119,20 @@
 					var taux = ration / masse * 10000;
 					$("#taux_nourrissage_" + cle).val(parseInt(taux) / 100);
 				}
+				var modele_id = "#repart_template_id_" + cle;
+				var modele_val = $(modele_id).val();
+
+				if (isNaN(modele_val)) {
+					modele_val = 0;
+				}
+				if (modele_val == 0) {
+					$("#error" + id).show();
+				} else {
+					$("#error" + id).hide();
+				}
 			} else {
 				$("#ok" + cle).hide();
+				$("#error" + cle).hide();
 			}
 		});
 
@@ -114,13 +155,15 @@
 					if (modele_val == 0) {
 						valid = false;
 						$(modele_id).next(".erreur").show().text("{t}Le modèle de répartition doit être renseigné{/t}");
+						$("#error" + cle).show();
 					} else {
 						$(modele_id).next(".erreur").hide();
+						$("#error" + cle).hide();
 					}
 				}
 			});
 			if (valid == false) {
-				alert("{t}Une ou plusieurs anomalies ont été détectées : vérifiez votre saisie (anomalies marquées en rouge){/t}");
+				alert("{t}Une ou plusieurs anomalies ont été détectées : vérifiez votre saisie{/t}");
 			}
 			return valid;
 		});
@@ -223,7 +266,10 @@
 								href="#nav-{$dataBassin[lst].bassin_id}" data-toggle="tab" role="tab"
 								aria-controls="nav-{$dataBassin[lst].bassin_id}" aria-selected="false">
 								{$dataBassin[lst].bassin_nom}
-								<img id="ok{$dataBassin[lst].bassin_id}" src="display/images/ok_icon.png" height="15" hidden>
+								<img id="ok{$dataBassin[lst].bassin_id}" src="display/images/ok_icon.png" height="15"
+									hidden>
+								<img id="error{$dataBassin[lst].bassin_id}" src="display/images/cross.png" height="15"
+									hidden>
 							</a>
 						</li>
 						{$i = $i + 1}
@@ -250,9 +296,9 @@
 										</label>
 										<div class="col-md-8">
 											<select id="repart_template_id_{$dataBassin[lst].bassin_id}"
-												class="form-control"
+												class="form-control modele"
 												name="repart_template_id_{$dataBassin[lst].bassin_id}"
-												id="repart_template_id_{$dataBassin[lst].bassin_id}">
+												data-cle="{$dataBassin[lst].bassin_id}">
 												<option value="0" {if
 													$dataBassin[lst].repart_template_id==0}selected{/if}>
 													Sélectionnez le modèle...</option>
@@ -263,7 +309,7 @@
 												</option>
 												{/section}
 											</select>
-											<div class="erreur"></div>
+											<div class="erreur red"></div>
 										</div>
 									</div>
 									<div class="form-group">
