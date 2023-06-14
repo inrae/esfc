@@ -30,6 +30,7 @@
 	<poissonWrite action="modules/poisson/poisson.php" param="write" droits="poissonGestion" retourok="poissonDisplay" retourko="poissonChange" modulebefore="poissonChange" />
 	<poissonDelete action="modules/poisson/poisson.php" param="delete" droits="poissonAdmin" retourok="poissonList" retourko="poissonChange"  modulebefore="poissonChange"/>
 	<poissonSearchAjax action="modules/poisson/poisson.php" param="getListeAjaxJson" droits="consult" type="ajax"/>
+	<poissonGetFromTag action="modules/poisson/poisson.php" param="getPoissonFromTag" droits="consult" retourok="poissonDisplay" retourko="poissonDisplay"/>
 	
 	<evenementChange action="modules/poisson/evenement.php" param="change" droits="poissonGestion" type="smarty" />
 	<evenementWrite action="modules/poisson/evenement.php" param="write" droits="poissonGestion"  retourok="poissonDisplay" retourko="evenementChange" modulebefore="evenementChange" />

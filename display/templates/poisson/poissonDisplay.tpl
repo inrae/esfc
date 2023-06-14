@@ -21,28 +21,58 @@
 
 		$(".ok").each(function (i, e) {
 			try {
-			if ($.fn.dataTable.Api(this).data().count()) {
-				$("#"+$(this).data("tabicon")).show();
+				if ($.fn.dataTable.Api(this).data().count()) {
+					$("#" + $(this).data("tabicon")).show();
+				}
+			} catch { };
+		});
+		$("#newtag").change(function() {
+			if ($(this).val().length > 0) {
+				$("#newtagButton").removeAttr("disabled");
+				$("#poissonNew").submit();
+			} else {
+				$("#newtagButton").attr("disabled", true);
 			}
-		} catch {};
 		});
 	});
 
 </script>
 
-<h2>{t}Détail du poisson{/t} {$dataPoisson.matricule} {$dataPoisson.prenom} {$dataPoisson.pittag_valeur}
-	{$dataPoisson.categorie_libelle} {$dataPoisson.sexe_libelle}
-	{$dataPoisson.poisson_statut_libelle} (id:{$dataPoisson.poisson_id})</h2>
-<a href="index.php?module={$poissonDetailParent}">
-	<img src="display/images/list.png" height="25">
-	{t}Retour à la liste des poissons{/t}
-</a>
-{if $droits.poissonGestion == 1}
-<a href="index.php?module=evenementChange&poisson_id={$dataPoisson.poisson_id}&evenement_id=0">
-	<img src="display/images/event.png" height="25">
-	{t}Nouvel événement...{/t}
-</a>
-{/if}
+<div class="row">
+	<div class="col-md-7">
+		<h2>{t}Détail du poisson{/t} {$dataPoisson.matricule} {$dataPoisson.prenom} {$dataPoisson.pittag_valeur}
+			{$dataPoisson.categorie_libelle} {$dataPoisson.sexe_libelle}
+			{$dataPoisson.poisson_statut_libelle} (id:{$dataPoisson.poisson_id})</h2>
+		<a href="index.php?module={$poissonDetailParent}">
+			<img src="display/images/list.png" height="25">
+			{t}Retour à la liste des poissons{/t}
+		</a>
+		{if $droits.poissonGestion == 1}
+		<a href="index.php?module=evenementChange&poisson_id={$dataPoisson.poisson_id}&evenement_id=0">
+			<img src="display/images/event.png" height="25">
+			{t}Nouvel événement...{/t}
+		</a>
+		{/if}
+	</div>
+	<div class="col-md-4 form-horizontal">
+		<form id="poissonNew" method="post" action="index.php">
+			<input type="hidden" name="module" value="poissonGetFromTag">
+			<input type="hidden" name="poisson_id" value="{$dataPoisson.poisson_id}">
+			<div class="form-group">
+			<label for="newtag" class="control-label col-md-4">
+				{t}Pittag du poisson suivant :{/t}
+			</label>
+			<div class="col-md-5">
+				<input id="newtag" name="newtag" class="form-control">
+			</div>
+			<div class="col-md-2 center">
+				<button type="submit" class="btn btn-primary" id="newtagButton" disabled>{t}Rechercher{/t}</button>
+			</div>
+		</div>
+		</form>
+	</div>
+</div>
+
 
 <div class="col-xs-12">
 	<ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -51,7 +81,7 @@
 				aria-selected="true" href="#nav-detail">
 				<img src="display/images/zoom.png" height="25">
 				{t}Détails{/t}
-				<img id="oksortie" src="display/images/ok_icon.png" height="15" hidden >
+				<img id="oksortie" src="display/images/ok_icon.png" height="15" hidden>
 			</a>
 		</li>
 		<li class="nav-item">
@@ -59,7 +89,7 @@
 				aria-selected="false">
 				<img src="display/images/event.png" height="25">
 				{t}Événements{/t}
-				<img id="okevent" src="display/images/ok_icon.png" height="15" hidden >
+				<img id="okevent" src="display/images/ok_icon.png" height="15" hidden>
 			</a>
 		</li>
 		<li class="nav-item">
@@ -67,7 +97,7 @@
 				aria-controls="nav-transfert" aria-selected="false">
 				<img src="display/images/movement.png" height="25">
 				{t}Transferts{/t}
-				<img id="oktransfert" src="display/images/ok_icon.png" height="15" hidden >
+				<img id="oktransfert" src="display/images/ok_icon.png" height="15" hidden>
 			</a>
 		</li>
 		<li class="nav-item">
@@ -75,7 +105,7 @@
 				aria-controls="nav-morphologie" aria-selected="false">
 				<img src="display/images/balance.svg" height="25">
 				{t}Morphologie{/t}
-				<img id="okmorphologie" src="display/images/ok_icon.png" height="15" hidden >
+				<img id="okmorphologie" src="display/images/ok_icon.png" height="15" hidden>
 			</a>
 		</li>
 
@@ -84,7 +114,7 @@
 				aria-selected="false">
 				<img src="display/images/files.png" height="25">
 				{t}Documents{/t}
-				<img id="okdocument" src="display/images/ok_icon.png" height="15" hidden >
+				<img id="okdocument" src="display/images/ok_icon.png" height="15" hidden>
 			</a>
 		</li>
 		<li class="nav-item">
@@ -92,7 +122,7 @@
 				aria-controls="nav-pathologie" aria-selected="false">
 				<img src="display/images/pathologie.svg" height="25">
 				{t}Pathologies{/t}
-				<img id="okpathologie"  src="display/images/ok_icon.png" height="15" hidden >
+				<img id="okpathologie" src="display/images/ok_icon.png" height="15" hidden>
 			</a>
 		</li>
 		<li class="nav-item">
@@ -100,7 +130,7 @@
 				aria-controls="nav-reproduction" aria-selected="false">
 				<img src="display/images/repro.png" height="25">
 				{t}Reproduction{/t}
-				<img id="okreproduction" src="display/images/ok_icon.png" height="15" hidden >
+				<img id="okreproduction" src="display/images/ok_icon.png" height="15" hidden>
 			</a>
 		</li>
 		<li class="nav-item">
@@ -108,7 +138,7 @@
 				aria-controls="nav-genetique" aria-selected="false">
 				<img src="display/images/genetic.svg" height="25">
 				{t}Génétique et parentée{/t}
-				<img id="okgenetique" src="display/images/ok_icon.png" height="15" hidden >
+				<img id="okgenetique" src="display/images/ok_icon.png" height="15" hidden>
 			</a>
 		</li>
 		<li class="nav-item">
@@ -116,7 +146,7 @@
 				aria-controls="nav-anomalie" aria-selected="false">
 				<img src="display/images/anomalie.svg" height="25">
 				{t}Anomalies dans les données{/t}
-				<img id="okanomalie" src="display/images/ok_icon.png" height="15" hidden >
+				<img id="okanomalie" src="display/images/ok_icon.png" height="15" hidden>
 			</a>
 		</li>
 	</ul>
@@ -192,7 +222,7 @@
 						<br>
 					</div>
 				</fieldset>
-			</div>		
+			</div>
 		</div>
 		<div class="tab-pane fade" id="nav-genetique" role="tabpanel" aria-labelledby="tab-genetique">
 			<div class="col-md-6">

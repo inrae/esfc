@@ -253,4 +253,16 @@ switch ($t_module["param"]) {
 			$vue->set($dataClass->getListPoissonFromName($_REQUEST["libelle"]));
 		}
 		break;
+		case "getPoissonFromTag":
+			if (!empty($_POST["newtag"])) {
+				$poissonId = $dataClass->getPoissonIdFromTag($_POST["newtag"]);
+                if ($poissonId > 0) {
+                    $_REQUEST["poisson_id"] = $poissonId;
+					$module_coderetour = 1;
+                } else {
+                    $message->set(sprintf(_("Aucun poisson ne correspond au pittag %s"), $_POST["newtag"]), true);
+					$module_coderetour = -1;
+                }
+			}
+			break;
 }
