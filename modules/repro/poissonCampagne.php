@@ -23,9 +23,14 @@ switch ($t_module["param"]) {
 		/*
 		 * Display the list of all records of the table
 		 */
-		$searchRepro->setParam($_REQUEST);
-		$dataSearch = $searchRepro->getParam();
-		if ($searchRepro->isSearch() == 1) {
+		$vue->htmlVars[] = "massex";
+		$vue->htmlVars[] = "massey";
+		if (!isset($_SESSION["searchRepro"])) {
+			$_SESSION["searchRepro"] = new SearchRepro();
+		}
+		$_SESSION["searchRepro"]->setParam($_REQUEST);
+		$dataSearch = $_SESSION["searchRepro"]->getParam();
+		if ($_SESSION["searchRepro"]->isSearch() == 1) {
 			$vue->set($dataClass->getListForDisplay($dataSearch), "data");
 		}
 		$vue->set($dataSearch, "dataSearch");
@@ -33,6 +38,7 @@ switch ($t_module["param"]) {
 		/*
 		 * Lecture de la liste des statuts
 		 */
+		require_once "modules/classes/reproStatut.class.php";
 		$reproStatut = new ReproStatut($bdd, $ObjetBDDParam);
 		$vue->set($reproStatut->getListe(1), "dataReproStatut");
 		/*

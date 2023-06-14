@@ -67,6 +67,9 @@ body {
 	font-size: small;
 	font-style: italic;
 }
+.selected {
+	background-color: #009EE0;
+}
 h2 {
 	font-size:large;
 }
