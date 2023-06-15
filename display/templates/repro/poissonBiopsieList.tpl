@@ -1,9 +1,4 @@
-{if $droits.reproGestion == 1}
-<a href="index.php?module=biopsieChange&biopsie_id=0&poisson_campagne_id={$dataPoisson.poisson_campagne_id}">
-    {t}Nouvelle biopsie...{/t}
-</a>
-{/if}
-<table class="table table-bordered table-hover datatable" id="cbiopsie" class="tableliste">
+<table class="table table-bordered table-hover datatable-nopaging-nosearching ok" id="cbiopsie" data-tabicon="okbiopsie">
     <thead>
         <tr>
             <th>{t}Date{/t}</th>

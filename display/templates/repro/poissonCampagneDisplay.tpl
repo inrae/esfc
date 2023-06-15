@@ -1,6 +1,6 @@
-<link href="display/javascript/c3/c3.css" rel="stylesheet" type="text/css">
-<script src="display/javascript/c3/d3.min.js" charset="utf-8"></script>
-<script src="display/javascript/c3/c3.min.js"></script>
+<link href="display/node_modules/c3/c3.min.css" rel="stylesheet" type="text/css">
+<script src="display/node_modules/d3/dist/d3.min.js" charset="utf-8"></script>
+<script src="display/node_modules/c3/c3.min.js"></script>
 <script>
 	$(document).ready(function () {
 		/**
@@ -20,6 +20,16 @@
 		} catch (Exception) { }
 		$('a[data-toggle="tab"]').on('shown.bs.tab', function () {
 			localStorage.setItem(moduleName + "Tab", $(this).attr("id"));
+		});
+		/*
+		 * Display the presence of data in tabs
+		 */
+		 $(".ok").each(function (i, e) {
+			try {
+				if ($.fn.dataTable.Api(this).data().count()) {
+					$("#" + $(this).data("tabicon")).show();
+				}
+			} catch { };
 		});
 		var graphicsEnabled = "{$graphicsEnabled}";
 		if (graphicsEnabled == 1) {
@@ -135,12 +145,12 @@
 						},
 						xFormat: '%d/%m/%Y',
 						columns: [
-							[{ $opix }],
-							[{ $opiy }],
-							[{ $t50x }],
-							[{ $t50y }],
-							[{ $diamx }],
-							[{ $diamy }]
+							[{$opix }],
+							[{$opiy }],
+							[{$t50x }],
+							[{$t50y }],
+							[{$diamx }],
+							[{$diamy }]
 						],
 
 						axes: {
@@ -201,7 +211,7 @@
 					aria-controls="nav-detail" aria-selected="false">
 					<img src="display/images/zoom.png" height="25">
 					{t}Détails du poisson{/t}
-					<img id="okdetail" class="ok" src="display/images/ok_icon.png" height="15" hidden >
+					<img id="okdetail" src="display/images/ok_icon.png" height="15" hidden >
 				</a>
 			</li>
 			<li class="nav-item">
@@ -216,7 +226,7 @@
 					aria-controls="nav-echographie" aria-selected="false">
 					<img src="display/images/scanner.png" height="25">
 					{t}Échographies de l'année{/t}
-					<img id="okechographie" class="ok" src="display/images/ok_icon.png" height="15" hidden >
+					<img id="okechographie" src="display/images/ok_icon.png" height="15" hidden >
 				</a>
 			</li>
 			<li class="nav-item">
@@ -224,7 +234,7 @@
 					aria-controls="nav-sanguin" aria-selected="false">
 					<img src="display/images/syringe.svg" height="25">
 					{t}Analyses sanguines{/t}
-					<img id="oksanguin" class="ok" src="display/images/ok_icon.png" height="15" hidden >
+					<img id="oksanguin" src="display/images/ok_icon.png" height="15" hidden >
 				</a>
 			</li>
 
@@ -234,7 +244,7 @@
 					aria-controls="nav-sperme" aria-selected="false">
 					<img src="display/images/eprouvette.png" height="25">
 					{t}Prélèvements de sperme{/t}
-					<img id="oksperme" class="ok" src="display/images/ok_icon.png" height="15" hidden >
+					<img id="oksperme" src="display/images/ok_icon.png" height="15" hidden >
 				</a>
 			</li>
 			{/if}
@@ -244,7 +254,7 @@
 					aria-controls="nav-transfert" aria-selected="false">
 					<img src="display/images/movement.png" height="25">
 					{t}Transferts de l'année{/t}
-					<img id="oktransfert" class="ok" src="display/images/ok_icon.png" height="15" hidden >
+					<img id="oktransfert" src="display/images/ok_icon.png" height="15" hidden >
 				</a>
 			</li>
 
@@ -270,7 +280,7 @@
 				<a class="nav-link" id="tab-injection" href="#nav-injection" data-toggle="tab" role="tab" aria-controls="nav-injection"
 					aria-selected="false">
 					<img src="display/images/injection.png" height="25">
-					{t}Événements liés aux séquences{/t}
+					{t}Injections{/t}
 					<img id="okinjection" src="display/images/ok_icon.png" height="15" hidden>
 				</a>
 			</li>
@@ -308,112 +318,92 @@
 					<div id="profilThermique"></div>
 				</fieldset>
 			</div>
-
-
-A SUIVRE...
-
-
-		<div class="tab-pane fade" id="nav-event" role="tabpanel" aria-labelledby="tab-event">
-			{if $droits["poissonGestion"]==1}
-			<div class="row">
-				<a href="index.php?module=evenementChange&poisson_id={$dataPoisson.poisson_id}&evenement_id=0">
-					Nouvel événement...
-				</a>
-			</div>
-			{include file="poisson/evenementList.tpl"}
-			{/if}
-		</div>
-				{include file="poisson/poissonDetail.tpl"}
-			</div>
-			<div class="tab-pane fade" id="nav-event" role="tabpanel" aria-labelledby="tab-event">
-				{if $droits["poissonGestion"]==1}
+			<div class="tab-pane fade" id="nav-reproduction" role="tabpanel" aria-labelledby="tab-reproduction">
+				{if $droits["reproGestion"]==1}
 				<div class="row">
-					<a href="index.php?module=evenementChange&poisson_id={$dataPoisson.poisson_id}&evenement_id=0">
-						Nouvel événement...
+					<a href="index.php?module=sequenceChange&poisson_id={$dataPoisson.poisson_id}&evenement_id=0">
+						{t}Rattacher une nouvelle séquence...{/t}
 					</a>
 				</div>
-				{include file="poisson/evenementList.tpl"}
 				{/if}
+				{include file="repro/poissonSequenceList.tpl"}
 			</div>
+			<div class="tab-pane fade" id="nav-echographie" role="tabpanel" aria-labelledby="tab-echographie">
+				{if $droits["reproGestion"]==1}
+				<div class="row">
+					<a href="index.php?module=echographieChange&poisson_id={$dataPoisson.poisson_id}&echographie_id=0">
+						{t}Nouvelle échographie (nouvel événement)...{/t}
+					</a>
+				</div>
+				{/if}
+				<div class="row">
+					{include file="repro/echographieList.tpl"}
+				</div>
+				<div class="row">
+					{include file="document/documentListOnly.tpl"}
+				</div>
+			</div>
+			{if $dataPoisson.sexe_libelle_court == "m"}
+			<div class="tab-pane fade" id="nav-sperme" role="tabpanel" aria-labelledby="tab-sperme">
+				{if $droits["reproGestion"]==1}
+				<div class="row">
+					<a href="index.php?module=spermeChange&poisson_id={$dataPoisson.poisson_id}&sperme_id=0">
+						{t}Nouveau prélèvement de sperme...{/t}
+					</a>
+				</div>
+				{/if}
+				{include file="repro/spermeList.tpl"}
+			</div>
+			{/if}
+
+			<div class="tab-pane fade" id="nav-sanguin" role="tabpanel" aria-labelledby="tab-sanguin">
+				{if $droits["reproGestion"]==1}
+				<div class="row">
+					<a href="index.php?module=xxxChange&poisson_id={$dataPoisson.poisson_id}&xxx_id=0">
+						{t}Nouvelle analyse...{/t}
+					</a>
+				</div>
+				{/if}
+				{include file="repro/poissonSanguinList.tpl"}
+			</div>
+			<div class="tab-pane fade" id="nav-transfert" role="tabpanel" aria-labelledby="tab-transfert">
+				{include file="poisson/transfertList.tpl"}
+			</div>
+			<div class="tab-pane fade" id="nav-event" role="tabpanel" aria-labelledby="tab-event">
+				{include file="repro/psEvenementList.tpl"}
+			</div>
+			<div class="tab-pane fade" id="nav-ventilation" role="tabpanel" aria-labelledby="tab-ventilation">
+				{if $droits["reproGestion"]==1}
+				<div class="row">
+					<a href="index.php?module=xxxChange&poisson_id={$dataPoisson.poisson_id}&xxx_id=0">
+						{t}Nouvelle mesure...{/t}
+					</a>
+				</div>
+				{/if}
+				{include file="repro/ventilationList.tpl"}
+			</div>
+			<div class="tab-pane fade" id="nav-injection" role="tabpanel" aria-labelledby="tab-injection">
+				{if $droits["reproGestion"]==1}
+				<div class="row">
+					<a href="index.php?module=evenementChange&poisson_id={$dataPoisson.poisson_id}&evenement_id=0">
+						{t}Nouvelle injection...{/t}
+					</a>
+				</div>
+				{/if}
+				{include file="repro/injectionList.tpl"}
+			</div>
+			{if $dataPoisson.sexe_libelle_court == "f"}
+			<div class="tab-pane fade" id="nav-biopsie" role="tabpanel" aria-labelledby="tab-biopsie">
+				{if $droits["reproGestion"]==1}
+				<div class="row">
+					<a href="index.php?module=biopsieChange&poisson_id={$dataPoisson.poisson_id}&biopsie_id=0">
+						{t}Nouvelle biopsie...{/t}
+					</a>
+				</div>
+				{/if}
+				{include file="repro/poissonBiopsieList.tpl"}
+			</div>
+			{/if}
 		</div>
 	</div>
 </div>
-
-
-
-
-
-
-
-
-
-<table class="tablemulticolonne">
-	<tr>
-		<td colspan="2">
-			{include file="repro/poissonCampagneDetail.tpl"}
-		</td>
-	</tr>
-	<tr>
-		<td>
-			<fieldset>
-				<legend>{t}Séquences de reproduction{/t}</legend>
-				{include file="repro/poissonSequenceList.tpl"}
-			</fieldset>
-			<br>
-			<fieldset>
-				<legend>{t}Échographies de l'année{/t}</legend>
-				{if $droits.reproGestion == 1}
-				<a href="index.php?module=evenementChange&evenement_id=0&poisson_id={$dataPoisson.poisson_id}">
-					Nouvelle échographie (nouvel événement)...
-				</a>
-				{/if}
-				{include file="poisson/echographieList.tpl"}
-				<br>
-				{include file="document/documentListOnly.tpl"}
-			</fieldset>
-			<br>
-			<fieldset>
-				<legend>{t}Analyses sanguines{/t}</legend>
-				{include file="repro/poissonSanguinList.tpl"}
-			</fieldset>
-			{if $dataPoisson.sexe_libelle_court == "m"}
-			<br>
-			<fieldset>
-				<legend>{t}Prélèvements de sperme{/t}</legend>
-				{include file="repro/spermeList.tpl"}
-			</fieldset>
-			{/if}
-		</td>
-		<td>
-			<fieldset>
-				<legend>{t}Transferts de l'année{/t}</legend>
-				{include file="poisson/transfertList.tpl"}
-			</fieldset>
-			<fieldset>
-				<legend>{t}Événements liés aux séquences{/t}</legend>
-				{include file="repro/psEvenementList.tpl"}
-			</fieldset>
-			<br>
-			<fieldset>
-				<legend>{t}Mesures de ventilation{/t}</legend>
-				{include file="poisson/ventilationList.tpl"}
-			</fieldset>
-			<br>
-			<fieldset>
-				<legend>{t}Injections{/t}</legend>
-				{include file="repro/injectionList.tpl"}
-			</fieldset>
-		</td>
-	</tr>
-	{if $dataPoisson.sexe_libelle_court == "f"}
-	<tr>
-		<td colspan="2">
-			<fieldset>
-				<legend>{t}Biopsies{/t}</legend>
-				{include file="repro/poissonBiopsieList.tpl"}
-			</fieldset>
-		</td>
-	</tr>
-	{/if}
-
-</table>

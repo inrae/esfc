@@ -120,13 +120,13 @@ switch ($t_module["param"]) {
 		$transfert = new Transfert($bdd, $ObjetBDDParam);
 		$ventilation = new Ventilation($bdd, $ObjetBDDParam);
 
-		$vue->set($dosageSanguin->getListeFromPoissonCampagne($id), "dataSanguin");
-		$vue->set($biopsie->getListeFromPoissonCampagne($id), "dataBiopsie");
-		$vue->set($poissonSequence->getListFromPoisson($id), "dataSequence");
+		$vue->set($dosages = $dosageSanguin->getListeFromPoissonCampagne($id), "dataSanguin");
+		$vue->set($biopsies = $biopsie->getListeFromPoissonCampagne($id), "dataBiopsie");
+		$vue->set($sequences = $poissonSequence->getListFromPoisson($id), "dataSequence");
 		$vue->set($psEvenement->getListeEvenementFromPoisson($id), "dataPsEvenement");
 		$vue->set($dataEcho = $echographie->getListByYear($data["poisson_id"], $_SESSION["annee"]), "dataEcho");
-		$vue->set($injection->getListFromPoissonCampagne($id), "injections");
-		$vue->set($sperme->getListFromPoissonCampagne($id), "spermes");
+		$vue->set($injections = $injection->getListFromPoissonCampagne($id), "injections");
+		$vue->set($spermes = $sperme->getListFromPoissonCampagne($id), "spermes");
 		$vue->set($transfert->getListByPoisson($data["poisson_id"], $_SESSION["annee"]), "dataTransfert");
 		$vue->set($ventilation->getListByPoisson($data["poisson_id"], $_SESSION["annee"]), "dataVentilation");
 		if (is_numeric($id)) {
@@ -179,6 +179,8 @@ switch ($t_module["param"]) {
 			}
 			$vue->set($x, "pfx" . $i);
 			$vue->set($y, "pfy" . $i);
+			$vue->htmlVars[] = "pfx" . $i;
+			$vue->htmlVars[] = "pfy" . $i;
 		}
 		$vue->set(1, "graphicsEnabled");
 		// }
@@ -313,7 +315,31 @@ switch ($t_module["param"]) {
 				}
 			}
 		}
-
+		$graphVars = array(
+			"e2x",
+			"e2y",
+			"cax",
+			"cay",
+			"thx",
+			"thy",
+			"e2hy",
+			"cahy",
+			"ix",
+			"iy",
+			"expx",
+			"expy",
+			"opix",
+			"opiy",
+			"t50x",
+			"t50y",
+			"diamx",
+			"diamy"
+		);
+		foreach ($graphVars as $gv) {
+			$vue->set($$gv, $gv);
+			$vue->htmlVars[] = $gv;
+		}
+		/*
 		$vue->set($e2x, "e2x");
 		$vue->set($e2y, "e2y");
 		$vue->set($cax, "cax");
@@ -332,6 +358,7 @@ switch ($t_module["param"]) {
 		$vue->set($t50y, "t50y");
 		$vue->set($diamx, "diamx");
 		$vue->set($diamy, "diamy");
+		*/
 		/*
 		 * Ajout de 3 jours aux bornes des graphiques
 		 */
@@ -340,7 +367,8 @@ switch ($t_module["param"]) {
 		date_add($dateMaxi, $interval);
 		$vue->set(date_format($dateMini, 'd/m/Y'), "dateMini");
 		$vue->set(date_format($dateMaxi, 'd/m/Y'), "dateMaxi");
-
+		$vue->htmlVars[] ="dateMini";
+		$vue->htmlVars[] = "dateMaxi";
 		break;
 	case "change":
 		/*
@@ -354,7 +382,7 @@ switch ($t_module["param"]) {
 		 */
 		require_once 'modules/classes/poisson.class.php';
 		$poisson = new Poisson($bdd, $ObjetBDDParam);
-		
+
 		$vue->set($poisson->getDetail($_REQUEST["poisson_id"]), "dataPoisson");
 		/*
 		 * Lecture de la table des statuts
