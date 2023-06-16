@@ -67,6 +67,7 @@ switch ($t_module["param"]) {
 			require_once "modules/classes/poisson.class.php";
 			$poisson = new Poisson($bdd, $ObjetBDDParam);
 			$dataPoisson = $poisson->lire($_REQUEST["graphique_id"]);
+			$vue->set($_REQUEST["graphique_id"],"graphique_id");
 			/*
 			 * Preparation des donnees pour le graphique
 			 */

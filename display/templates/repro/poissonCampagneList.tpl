@@ -178,7 +178,7 @@
 					<td class="center">{$data[lst].cohorte}</td>
 					<td class="center">{$data[lst].sexe_libelle_court}</td>
 					<td class="right">{$data[lst].masse}</td>
-					<td class="center  {if $poisson_nom == $data[lst].matricule} selected{/if}">
+					<td class="center  {if $graphique_id == $data[lst].poisson_id} selected{/if}">
 						<a href="index.php?module=poissonCampagneList&graphique_id={$data[lst].poisson_id}">
 							<img src="display/images/chart.png" height="25">
 						</a>

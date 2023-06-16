@@ -30,7 +30,8 @@ class Echographie extends ObjetBDD
             ),
             "echographie_date" => array(
                 "type" => 2,
-                "requis" => 1
+                "requis" => 1,
+                "defaultValue"=>"getDateJour"
             ),
             "echographie_commentaire" => array(
                 "type" => 0

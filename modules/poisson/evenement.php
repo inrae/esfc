@@ -88,6 +88,9 @@ switch ($t_module["param"]) {
             $vue->set($nageoire->getListe(1), "nageoire");
             $determinationParente = new DeterminationParente($bdd, $ObjetBDDParam);
             $vue->set($determinationParente->getListe(1), "determinationParente");
+            if (isset($_REQUEST["poisson_campagne_id"])) {
+                $vue->set($_REQUEST["poisson_campagne_id"],"poisson_campagne_id");
+            }
 
             /*
              * Tables des stades de maturation des oeufs ou gonades
@@ -296,6 +299,7 @@ switch ($t_module["param"]) {
                      * Preparation de files
                      */
                     $files = formatFiles();
+                    require_once 'modules/classes/documentSturio.class.php';
                     $documentSturio = new DocumentSturio($bdd, $ObjetBDDParam);
                     foreach ($files as $file) {
                         $document_id = $documentSturio->ecrire($file, $_REQUEST["document_description"]);

@@ -82,9 +82,14 @@
     {$dataPoisson.sexe_libelle}
     {$dataPoisson.poisson_statut_libelle} (id:{$dataPoisson.poisson_id})
 </a>
+{if $poisson_campagne_id > 0}
+<a href="index.php?module=poissonCampagneDisplay&poisson_campagne_id={$poisson_campagne_id}">
+    <img src="display/images/fish.svg" height="25">
+    {t}Retour au reproducteur{/t}
+</a>
+{/if}
+
 <h2>{t}Modification d'un événément{/t}</h2>
-
-
 <form id="evenementForm" method="post" action="index.php" enctype="multipart/form-data">
 	<input type="hidden" name="action" value="Write">
 	<input type="hidden" name="moduleBase" value="evenement">
@@ -437,6 +442,23 @@
 									<div class="col-md-8">
 										<input id="echographie_commentaire" class="form-control"
 											name="echographie_commentaire" value="{$dataEcho.echographie_commentaire}">
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="cliche_nb" class="control-label col-md-4">
+										{t}Nombre de clichés :{/t}
+									</label>
+									<div class="col-md-8">
+										<input id="cliche_nb" class="form-control nombre" name="cliche_nb" value="{$data.cliche_nb}">
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="cliche_ref" class="control-label col-md-4">
+										{t}Référence des clichés :{/t}
+									</label>
+									<div class="col-md-8">
+										<input id="cliche_ref" class="form-control" class="commentaire" name="cliche_ref"
+											value="{$data.cliche_ref}">
 									</div>
 								</div>
 								<div class="form-group">

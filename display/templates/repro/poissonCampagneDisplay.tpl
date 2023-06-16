@@ -6,7 +6,7 @@
 		/**
 				   * Management of tabs
 				   */
-				   var moduleName = "poissonCampagneDisplay";
+		var moduleName = "poissonCampagneDisplay";
 		var localStorage = window.localStorage;
 		try {
 			activeTab = localStorage.getItem(moduleName + "Tab");
@@ -24,7 +24,7 @@
 		/*
 		 * Display the presence of data in tabs
 		 */
-		 $(".ok").each(function (i, e) {
+		$(".ok").each(function (i, e) {
 			try {
 				if ($.fn.dataTable.Api(this).data().count()) {
 					$("#" + $(this).data("tabicon")).show();
@@ -191,14 +191,6 @@
 	<img src="display/images/list.png" height="25">
 	{t}Retour à la liste des poissons{/t}
 </a>
-{if $droits["reproGestion"]==1}
-&nbsp;
-<a
-	href="index.php?module=poissonCampagneChange&poisson_campagne_id={$dataPoisson.poisson_campagne_id}&poisson_id={$dataPoisson.poisson_id}">
-	<img src="display/images/edit.gif" height="25">
-	{t}Modifier les informations générales...{/t}
-</a>
-{/if}
 <h2>{t}Détail du reproducteur{/t} {$dataPoisson.matricule} {$dataPoisson.prenom} {$dataPoisson.pittag_valeur} -
 	{$dataPoisson.sexe_libelle}
 	{if $dataPoisson.poisson_statut_id != 1}- {$dataPoisson.poisson_statut_libelle}{/if}</h2>
@@ -211,7 +203,7 @@
 					aria-controls="nav-detail" aria-selected="false">
 					<img src="display/images/zoom.png" height="25">
 					{t}Détails du poisson{/t}
-					<img id="okdetail" src="display/images/ok_icon.png" height="15" hidden >
+					<img id="okdetail" src="display/images/ok_icon.png" height="15" hidden>
 				</a>
 			</li>
 			<li class="nav-item">
@@ -221,12 +213,12 @@
 					{t}Séquences de reproduction{/t}
 					<img id="okreproduction" src="display/images/ok_icon.png" height="15" hidden>
 				</a>
-				<li class="nav-item">
+			<li class="nav-item">
 				<a class="nav-link" id="tab-echographie" href="#nav-echographie" data-toggle="tab" role="tab"
 					aria-controls="nav-echographie" aria-selected="false">
 					<img src="display/images/scanner.png" height="25">
 					{t}Échographies de l'année{/t}
-					<img id="okechographie" src="display/images/ok_icon.png" height="15" hidden >
+					<img id="okechographie" src="display/images/ok_icon.png" height="15" hidden>
 				</a>
 			</li>
 			<li class="nav-item">
@@ -234,7 +226,7 @@
 					aria-controls="nav-sanguin" aria-selected="false">
 					<img src="display/images/syringe.svg" height="25">
 					{t}Analyses sanguines{/t}
-					<img id="oksanguin" src="display/images/ok_icon.png" height="15" hidden >
+					<img id="oksanguin" src="display/images/ok_icon.png" height="15" hidden>
 				</a>
 			</li>
 
@@ -244,7 +236,7 @@
 					aria-controls="nav-sperme" aria-selected="false">
 					<img src="display/images/eprouvette.png" height="25">
 					{t}Prélèvements de sperme{/t}
-					<img id="oksperme" src="display/images/ok_icon.png" height="15" hidden >
+					<img id="oksperme" src="display/images/ok_icon.png" height="15" hidden>
 				</a>
 			</li>
 			{/if}
@@ -254,13 +246,13 @@
 					aria-controls="nav-transfert" aria-selected="false">
 					<img src="display/images/movement.png" height="25">
 					{t}Transferts de l'année{/t}
-					<img id="oktransfert" src="display/images/ok_icon.png" height="15" hidden >
+					<img id="oktransfert" src="display/images/ok_icon.png" height="15" hidden>
 				</a>
 			</li>
 
 			<li class="nav-item">
-				<a class="nav-link" id="tab-event" href="#nav-event" data-toggle="tab" role="tab" aria-controls="nav-event"
-					aria-selected="false">
+				<a class="nav-link" id="tab-event" href="#nav-event" data-toggle="tab" role="tab"
+					aria-controls="nav-event" aria-selected="false">
 					<img src="display/images/event.png" height="25">
 					{t}Événements liés aux séquences{/t}
 					<img id="okevent" src="display/images/ok_icon.png" height="15" hidden>
@@ -268,8 +260,8 @@
 			</li>
 
 			<li class="nav-item">
-				<a class="nav-link" id="tab-ventilation" href="#nav-ventilation" data-toggle="tab" role="tab" aria-controls="nav-ventilation"
-					aria-selected="false">
+				<a class="nav-link" id="tab-ventilation" href="#nav-ventilation" data-toggle="tab" role="tab"
+					aria-controls="nav-ventilation" aria-selected="false">
 					<img src="display/images/chronometre.svg" height="25">
 					{t}Mesures de ventilation{/t}
 					<img id="okventilation" src="display/images/ok_icon.png" height="15" hidden>
@@ -277,8 +269,8 @@
 			</li>
 
 			<li class="nav-item">
-				<a class="nav-link" id="tab-injection" href="#nav-injection" data-toggle="tab" role="tab" aria-controls="nav-injection"
-					aria-selected="false">
+				<a class="nav-link" id="tab-injection" href="#nav-injection" data-toggle="tab" role="tab"
+					aria-controls="nav-injection" aria-selected="false">
 					<img src="display/images/injection.png" height="25">
 					{t}Injections{/t}
 					<img id="okinjection" src="display/images/ok_icon.png" height="15" hidden>
@@ -287,8 +279,8 @@
 
 			{if $dataPoisson.sexe_libelle_court == "f"}
 			<li class="nav-item">
-				<a class="nav-link" id="tab-biopsie" href="#nav-biopsie" data-toggle="tab" role="tab" aria-controls="nav-biopsie"
-					aria-selected="false">
+				<a class="nav-link" id="tab-biopsie" href="#nav-biopsie" data-toggle="tab" role="tab"
+					aria-controls="nav-biopsie" aria-selected="false">
 					<img src="display/images/biopsie.svg" height="25">
 					{t}Biopsies{/t}
 					<img id="okbiopsie" src="display/images/ok_icon.png" height="15" hidden>
@@ -298,30 +290,38 @@
 		</ul>
 		<div class="tab-content" id="nav-tabContent">
 			<div class="tab-pane active in" id="nav-detail" role="tabpanel" aria-labelledby="tab-detail">
-				<div class="row">
-					{include file="repro/poissonCampagneDetail.tpl"}
-				</div>
-				<fieldset>
-					<legend>{t}Taux sanguins, injections et expulsions{/t}</legend>
-					<div id="tauxSanguin"></div>
-				</fieldset>
-				{if $dataPoisson.sexe_libelle_court == "f"}
-				<br>
-				<fieldset>
-					<legend>{t}Valeurs de biopsie{/t}</legend>
-					<div id="biopsie"></div>
-				</fieldset>
+				{if $droits["reproGestion"]==1}
+				<a
+					href="index.php?module=poissonCampagneChange&poisson_campagne_id={$dataPoisson.poisson_campagne_id}&poisson_id={$dataPoisson.poisson_id}">
+					<img src="display/images/edit.gif" height="25">
+					{t}Modifier les informations générales...{/t}
+				</a>
 				{/if}
-				<br>
-				<fieldset>
-					<legend>{t}Profil thermique du poisson{/t}</legend>
-					<div id="profilThermique"></div>
-				</fieldset>
+				{include file="repro/poissonCampagneDetail.tpl"}
+				<div class="row">
+					<fieldset>
+						<legend>{t}Taux sanguins, injections et expulsions{/t}</legend>
+						<div id="tauxSanguin"></div>
+					</fieldset>
+					{if $dataPoisson.sexe_libelle_court == "f"}
+					<br>
+					<fieldset>
+						<legend>{t}Valeurs de biopsie{/t}</legend>
+						<div id="biopsie"></div>
+					</fieldset>
+					{/if}
+					<br>
+					<fieldset>
+						<legend>{t}Profil thermique du poisson{/t}</legend>
+						<div id="profilThermique"></div>
+					</fieldset>
+				</div>
 			</div>
 			<div class="tab-pane fade" id="nav-reproduction" role="tabpanel" aria-labelledby="tab-reproduction">
 				{if $droits["reproGestion"]==1}
 				<div class="row">
-					<a href="index.php?module=sequenceChange&poisson_id={$dataPoisson.poisson_id}&evenement_id=0">
+					<a
+						href="index.php?module=poissonSequenceChange&poisson_campagne_id={$dataPoisson.poisson_campagne_id}&poisson_sequence_id=0&sequence_id=0">
 						{t}Rattacher une nouvelle séquence...{/t}
 					</a>
 				</div>
@@ -331,7 +331,8 @@
 			<div class="tab-pane fade" id="nav-echographie" role="tabpanel" aria-labelledby="tab-echographie">
 				{if $droits["reproGestion"]==1}
 				<div class="row">
-					<a href="index.php?module=echographieChange&poisson_id={$dataPoisson.poisson_id}&echographie_id=0">
+					<a
+						href="index.php?module=echographieChange&poisson_id={$dataPoisson.poisson_id}&poisson_campagne_id={$dataPoisson.poisson_campagne_id}&echographie_id=0">
 						{t}Nouvelle échographie (nouvel événement)...{/t}
 					</a>
 				</div>

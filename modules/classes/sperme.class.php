@@ -207,7 +207,7 @@ class Sperme extends ObjetBDD
             $sql = "select sperme_id from sperme where poisson_campagne_id = :poissonCampagneId
 					and sequence_id = :sequence_id";
             $data = $this->lireParamAsPrepared($sql, array(
-                "poissonCampagne_id"=>$poissonCampagneId, 
+                "poissonCampagneId"=>$poissonCampagneId, 
                 "sequence_id"=>$sequenceId
             ));
             $data["sperme_id"] > 0 ? $id = $data["sperme_id"] : $id = 0;
@@ -219,7 +219,7 @@ class Sperme extends ObjetBDD
      *
      * @see ObjetBDD::lire()
      */
-    function lire($id, $getDefault = false, $defaultValue = "")
+    function lire($id, $getDefault = false, $defaultValue = 0)
     {
         $data = parent::lire($id, $getDefault, $defaultValue);
         if ($data["sperme_id"] > 0) {

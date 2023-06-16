@@ -42,7 +42,7 @@ Retour au reproducteur
 <label for="" class="control-label col-md-4">{t}Hormone utilisée :{/t}</label>
 <div class="col-md-8">
 <select id="" class="form-control" name="hormone_id">
-<option value="" {if $data.hormone_id==""}selected{/if}>Sélectionnez...</option>
+<option value="" {if $data.hormone_id==""}selected{/if}{t}Sélectionnez...{/t}/option>
 {section name=lst loop=$hormones}
 <option value="{$hormones[lst].hormone_id}" {if $data.hormone_id == $hormones[lst].hormone_id}selected{/if}>
 {$hormones[lst].hormone_nom} - unité : {$hormones[lst].hormone_unite}

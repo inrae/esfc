@@ -26,7 +26,7 @@
 <label for="" class="control-label col-md-4">{t}Destination parente :{/t}</label>
 <div class="col-md-8">
 <select id="" class="form-control" name="parent_devenir_id">
-<option value ="" {if $data.parent_devenir_id = ""}selected{/if}>Sélectionnez...</option>
+<option value ="" {if $data.parent_devenir_id = ""}selected{/if}{t}Sélectionnez...{/t}/option>
 {section name=lst loop=$devenirParent}
 <option value="{$devenirParent[lst].devenir_id}" {if $devenirParent[lst].devenir_id == $data.devenir_id}selected{/if}>
 {$devenirParent[lst].devenir_date} {$devenirParent[lst].devenir_type_libelle} {$devenirParent[lst].categorie_libelle}

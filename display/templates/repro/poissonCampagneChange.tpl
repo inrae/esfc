@@ -8,6 +8,13 @@
     {t}Retour au poisson{/t}
 </a>
 
+{if $data.poisson_campagne_id > 0}
+<a href="index.php?module=poissonCampagneDisplay&poisson_campagne_id={$data.poisson_campagne_id}">
+    <img src="display/images/fish.svg" height="25">
+    {t}Retour au reproducteur{/t}
+</a>
+{/if}
+
 <h2>{t}Sélectionner le poisson pour une campagne de reproduction{/t} {$dataPoisson.matricule}
     {$dataPoisson.categorie_libelle}
     {$dataPoisson.sexe_libelle}

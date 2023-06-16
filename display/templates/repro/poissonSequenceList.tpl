@@ -13,13 +13,13 @@
         <tr>
             <td>
                 <a
-                    href="index.php?module=poissonSequenceChange&poisson_sequence_id={$dataSequence[lst].poisson_sequence_id}&sequence_id={$dataSequence[lst].sequence_id}">
+                    href="index.php?module=poissonSequenceChange&poisson_sequence_id={$dataSequence[lst].poisson_sequence_id}&sequence_id={$dataSequence[lst].sequence_id}&poisson_campagne_id={$dataSequence[lst].poisson_campagne_id}">
                     {$dataSequence[lst].sequence_date_debut}
                 </a>
             </td>
             <td>
                 <a
-                    href="index.php?module=poissonSequenceChange&poisson_sequence_id={$dataSequence[lst].poisson_sequence_id}&sequence_id={$dataSequence[lst].sequence_id}">
+                    href="index.php?module=poissonSequenceChange&poisson_sequence_id={$dataSequence[lst].poisson_sequence_id}&sequence_id={$dataSequence[lst].sequence_id}&poisson_campagne_id={$dataSequence[lst].poisson_campagne_id}">
                     {$dataSequence[lst].sequence_nom}
                 </a>
             </td>

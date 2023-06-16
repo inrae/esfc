@@ -13,9 +13,12 @@ require_once 'modules/classes/spermeQualite.class.php';
 require_once 'modules/classes/spermeCongelation.class.php';
 require_once 'modules/classes/spermeMesure.class.php';
 
-function initSpermeChange($sperme_id)
+function initSpermeChange($sperme_id = 0)
 {
 	global $bdd, $ObjetBDDParam, $vue;
+	if (is_null($sperme_id)) {
+		$sperme_id = 0;
+	}
 	/*
 	 * Lecture de sperme_qualite
 	 */

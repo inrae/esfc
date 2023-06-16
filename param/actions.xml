@@ -227,7 +227,7 @@
 	<documentChange action="modules/document/document.php" param="change" droits="bassinGestion,poissonGestion,reproGestion" type="smarty" />
 	<documentWrite action="modules/document/document.php" param="write" droits="bassinGestion,poissonGestion,reproGestion" retourok="documentList" retourko="documentChange"  />
 	<documentDelete action="modules/document/document.php" param="delete" droits="bassinGestion,poissonGestion,reproGestion" retourok="documentList" retourko="documentChange" />
-	<documentGet action="modules/document/document.php" param="get" droits="consult" ajax="1"/>
+	<documentGet action="modules/document/document.php" param="get" droits="consult" type="ajax"/>
 	<documentChangeData action="modules/document/document.php" param="changeData" droits="bassinGestion,poissonGestion,reproGestion" />
 	<documentWriteData action="modules/document/document.php" param="writeData" droits="bassinGestion,poissonGestion,reproGestion" retourok="documentList" retourko="documentChange"  />
 	

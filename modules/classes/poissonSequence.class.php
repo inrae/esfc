@@ -27,7 +27,8 @@ class PoissonSequence extends ObjetBDD
 			),
 			"sequence_id" => array(
 				"type" => 1,
-				"requis" => 1
+				"requis" => 1,
+				"defaultValue"=>0
 			),
 
 			"ovocyte_masse" => array(
@@ -105,11 +106,10 @@ class PoissonSequence extends ObjetBDD
 	 * Retourne la liste des poissons concernes par une sequence
 	 *
 	 * @param int $sequence_id        	
-	 * @return tableau|NULL
+	 * @return array
 	 */
 	function getListFromSequence($sequence_id)
 	{
-		if ($sequence_id > 0 && is_numeric($sequence_id)) {
 			$sql = "select poisson_campagne_id, poisson_sequence_id, sequence_id,
 					ovocyte_masse, ovocyte_expulsion_date,
 					matricule, prenom, pittag_valeur,
@@ -121,11 +121,9 @@ class PoissonSequence extends ObjetBDD
 					left outer join sexe using (sexe_id)
 					left outer join v_pittag_by_poisson using (poisson_id)
 					left outer join ps_statut using (ps_statut_id)
-					where sequence_id = " . $sequence_id . "
+					where sequence_id = :id
 					order by sexe_libelle_court, prenom, matricule";
-			return $this->getListeParam($sql);
-		} else
-			return null;
+			return $this->getListeParamAsPrepared($sql, array("id"=>$sequence_id));
 	}
 
 	/**

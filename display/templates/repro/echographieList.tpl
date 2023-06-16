@@ -15,7 +15,7 @@
             <td>
                 {if $droits["poissonGestion"]==1||$droits.reproGestion==1}
                 <a
-                    href="index.php?module=evenementChange&poisson_id={$dataEcho[lst].poisson_id}&evenement_id={$dataEcho[lst].evenement_id}">
+                    href="index.php?module=evenementChange&poisson_id={$dataEcho[lst].poisson_id}&evenement_id={$dataEcho[lst].evenement_id}&poisson_campagne_id={$dataPoisson.poisson_campagne_id}">
                     {$dataEcho[lst].evenement_type_libelle}
                 </a>
                 {else}

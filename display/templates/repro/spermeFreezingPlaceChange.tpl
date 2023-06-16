@@ -45,7 +45,7 @@ Retour à la congélation
 <label for="" class="control-label col-md-4">{t}Position du canister :{/t}</label>
 <div class="col-md-8">
 <select id="" class="form-control" name="position_canister">
-<option value="" {if $data.position_canister == ""}selected{/if}>Sélectionnez...</option>
+<option value="" {if $data.position_canister == ""}selected{/if}{t}Sélectionnez...{/t}/option>
 <option value="1" {if $data.position_canister == "1"}selected{/if}>Bas</option>
 <option value="2" {if $data.position_canister == "2"}selected{/if}>Haut</option>
 </select>

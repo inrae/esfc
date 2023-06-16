@@ -60,7 +60,7 @@ Retour à la séquence
 <label for="" class="control-label col-md-4">{t}Qualité génétique du croisement :{/t}</label>
 <div class="col-md-8">
 <select id="" class="form-control" name="croisement_qualite_id" >
-<option value="" {if $data.croisement_qualite_id == ''}selected{/if}>Sélectionnez...</option>
+<option value="" {if $data.croisement_qualite_id == ''}selected{/if}{t}Sélectionnez...{/t}/option>
 {section name=lst loop=$croisementQualite}
 <option value="{$croisementQualite[lst].croisement_qualite_id}" {if $data.croisement_qualite_id == $croisementQualite[lst].croisement_qualite_id}selected{/if}>
 {$croisementQualite[lst].croisement_qualite_libelle}

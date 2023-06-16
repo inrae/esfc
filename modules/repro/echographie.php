@@ -23,8 +23,8 @@ switch ($t_module["param"]) {
 		 */
 		require_once 'modules/classes/poissonCampagne.class.php';
 		$poissonCampagne = new PoissonCampagne($bdd, $ObjetBDDParam);
-		$data = dataRead($dataClass, $id, "repro/echographieChange.tpl", $_REQUEST["poisson_campagne_id"]);
-		$vue->set($poissonCampagne->lire($data["poisson_campagne_id"]), "dataPoisson");
+		$data = dataRead($dataClass, $id, "repro/echographieChange.tpl", $_REQUEST["poisson_id"]);
+		$vue->set($poissonCampagne->lire($_REQUEST["poisson_campagne_id"]), "dataPoisson");
 		/*
 		 * Tables des stades
 		 */
