@@ -59,7 +59,7 @@
 <link rel="stylesheet" type="text/css" href="display/node_modules/jquery-ui-dist/jquery-ui.theme.min.css" />
 <link rel="stylesheet" type="text/css"
 	href="display/javascript/jquery-timepicker-addon/jquery-ui-timepicker-addon.min.css" />
-	<link rel="stylesheet" type="text/css" href="display/CSS/bootstrap-prototypephp.css">
+<link rel="stylesheet" type="text/css" href="display/CSS/bootstrap-prototypephp.css">
 <script type="text/javascript" charset="utf-8" src="display/javascript/jquery-ui-custom/combobox.js"></script>
 
 <!-- Affichage des photos -->
@@ -103,64 +103,64 @@
 			}
 		}
 	};
-	$( document ).ready( function () {
-		var pageLength = Cookies.get( "pageLength" );
-		if ( !pageLength ) {
+	$(document).ready(function () {
+		var pageLength = Cookies.get("pageLength");
+		if (!pageLength) {
 			pageLength = 10;
 		}
 		var locale = "{$LANG['date']['locale']}";
-		$.fn.dataTable.ext.order.intl( locale, { "sensitivity": "base" } );
-		$.fn.dataTable.ext.order.htmlIntl( locale, { "sensitivity": "base" } );
-		$.fn.dataTable.moment( '{$LANG["date"]["formatdatetime"]}' );
-		$.fn.dataTable.moment( '{$LANG["date"]["formatdate"]}' );
-		$( '.datatable' ).DataTable( {
+		$.fn.dataTable.ext.order.intl(locale, { "sensitivity": "base" });
+		$.fn.dataTable.ext.order.htmlIntl(locale, { "sensitivity": "base" });
+		$.fn.dataTable.moment('{$LANG["date"]["formatdatetime"]}');
+		$.fn.dataTable.moment('{$LANG["date"]["formatdate"]}');
+		$('.datatable').DataTable({
 			"language": dataTableLanguage,
 			"searching": false,
 			dom: 'Bfrtip',
 			"pageLength": pageLength,
-			"lengthMenu": [ [ 10, 25, 50, 100, 500, -1 ], [ 10, 25, 50, 100, 500, "All" ] ],
+			"lengthMenu": [[10, 25, 50, 100, 500, -1], [10, 25, 50, 100, 500, "All"]],
 			buttons: [
 				"pageLength"
 			]
-		} );
-		$( '.datatable-nopaging-nosearching' ).DataTable( {
+		});
+		$('.datatable-nopaging-nosearching').DataTable({
 			"language": dataTableLanguage,
 			"searching": false,
 			"paging": false,
-		} );
-		$( '.datatable-searching' ).DataTable( {
+		});
+		$('.datatable-searching').DataTable({
 			"language": dataTableLanguage,
 			"searching": true,
 			dom: 'Bfrtip',
 			"pageLength": pageLength,
-			"lengthMenu": [ [ 10, 25, 50, 100, 500, -1 ], [ 10, 25, 50, 100, 500, "All" ] ],
+			"lengthMenu": [[10, 25, 50, 100, 500, -1], [10, 25, 50, 100, 500, "All"]],
 			buttons: [
 				"pageLength"
 			]
-		} );
-		$( '.datatable-nopaging' ).DataTable( {
+		});
+		$('.datatable-nopaging').DataTable({
 			"language": dataTableLanguage,
 			"paging": false,
 			"searching": true
-		} );
-		$( '.datatable-nopaging-nosort' ).DataTable( {
+		});
+		$('.datatable-nopaging-nosort').DataTable({
 			"language": dataTableLanguage,
 			"paging": false,
 			"searching": false,
 			"ordering": false
-		} );
-		$( '.datatable-nosort' ).DataTable( {
+		});
+		$('.datatable-nosort').DataTable({
 			"language": dataTableLanguage,
 			"searching": false,
 			"ordering": false,
 			dom: 'Bfrtip',
 			"pageLength": pageLength,
-			"lengthMenu": [ [ 10, 25, 50, 100, 500, -1 ], [ 10, 25, 50, 100, 500, "All" ] ],
+			"lengthMenu": [[10, 25, 50, 100, 500, -1], [10, 25, 50, 100, 500, "All"]],
 			buttons: [
 				"pageLength"
 			]
-		} );
-		$( '.datatable-export' ).DataTable( {
+		});
+		$('.datatable-export').DataTable({
 			dom: 'Bfrtip',
 			"language": dataTableLanguage,
 			"paging": false,
@@ -175,14 +175,14 @@
 				 },*/
 				'print'
 			]
-		} );
-		$( '.datatable-export-paging' ).DataTable( {
+		});
+		$('.datatable-export-paging').DataTable({
 			dom: 'Bfrtip',
 			"language": dataTableLanguage,
 			"paging": true,
 			"searching": true,
 			"pageLength": pageLength,
-			"lengthMenu": [ [ 10, 25, 50, 100, 500, -1 ], [ 10, 25, 50, 100, 500, "All" ] ],
+			"lengthMenu": [[10, 25, 50, 100, 500, -1], [10, 25, 50, 100, 500, "All"]],
 			buttons: [
 				'pageLength',
 				'copyHtml5',
@@ -193,92 +193,107 @@
 				},
 				'print'
 			]
-		} );
-
-		$( ".datatable, .datatable-export-paging, .datatable-searching, .datatable-nosort" ).on( 'length.dt', function ( e, settings, len ) {
-			Cookies.set( 'pageLength', len, { expires: 180, secure: true } );
-		} );
+		});
+		var localStorage = window.localStorage;
+		$(".datatable, .datatable-export-paging, .datatable-searching, .datatable-nosort").on('length.dt', function (e, settings, len) {
+			try {
+				var tableId = $(this).attr("id");
+				localStorage.setItem(tableId + "Length", len);
+			} catch (Exception) {
+			}
+		});
 		/* Initialisation for paging datatables */
-		$( ".datatable, .datatable-export-paging, .datatable-searching, .datatable-nosort" ).DataTable().page.len( pageLength ).draw();
+			$(".datatable, .datatable-export-paging, .datatable-searching, .datatable-nosort").each(function () { 
+				try {
+				var tableId = $(this).attr("id");
+				var pageLength = localStorage.getItem(tableId + "Length");
+					if (isNaN(pageLength)) {
+						pageLength = 10;
+					}
+				} catch (Exception) {
+					pageLength = 10;
+				}
+				$(this).DataTable().page.len( pageLength ).draw();
+			});
 		$(".datatable-nopaging-nosearching").DataTable().draw();
-		$( '.taux,nombre' ).attr( 'title', '{t}Valeur numérique...{/t}' );
-		$( '.taux' ).attr( {
+		$('.taux,.nombre,.number,.decimal').attr('title', '{t}Valeur numérique...{/t}');
+		$('.taux,.decimal').attr({
 			'pattern': '-?[0-9]+(\.[0-9]+)?',
 			'maxlength': "10"
-		} );
-		$( '.nombre' ).attr( {
+		});
+		$('.nombre,.number').attr({
 			'pattern': '-?[0-9]+',
 			'maxlength': "10"
-		} );
-		{literal}
-		$( '.uuid' ).attr( {
+		});
+		{literal }
+		$('.uuid').attr({
 			'pattern': '^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$',
 			'maxlength': "36"
-		} );
+		});
 		{/literal}
 
-			$( ".date" ).datepicker( $.datepicker.regional[ '{$LANG["date"]["locale"]}' ] );
-			$( ".datepicker" ).datepicker( $.datepicker.regional[ '{$LANG["date"]["locale"]}' ] );
-			$.datepicker.setDefaults( $.datepicker.regional[ '{$LANG["date"]["locale"]}' ] );
-			$( ".timepicker" ).timepicker( {
+			$(".date").datepicker($.datepicker.regional['{$LANG["date"]["locale"]}']);
+			$(".datepicker").datepicker($.datepicker.regional['{$LANG["date"]["locale"]}']);
+			$.datepicker.setDefaults($.datepicker.regional['{$LANG["date"]["locale"]}']);
+			$(".timepicker").timepicker({
 				timeFormat: 'HH:mm:ss'
-			} );
-			$( '.timepicker' ).attr( 'pattern', '[0-9][0-9]\:[0-9][0-9]\:[0-9][0-9]' );
-			$.timepicker.setDefaults( $.timepicker.regional[ '{$LANG["date"]["locale"]}' ] );
-			$( '.datetimepicker' ).datetimepicker( {
+			});
+			$('.timepicker').attr('pattern', '[0-9][0-9]\:[0-9][0-9]\:[0-9][0-9]');
+			$.timepicker.setDefaults($.timepicker.regional['{$LANG["date"]["locale"]}']);
+			$('.datetimepicker').datetimepicker({
 				dateFormat: '{$LANG["date"]["formatdatecourt"]}',
 				timeFormat: 'HH:mm:ss',
 				timeInput: true
-			} );
-			$( '.date, .datepicker, .timepicker, .datetimepicker' ).attr( 'autocomplete', 'off' );
+			});
+			$('.date, .datepicker, .timepicker, .datetimepicker').attr('autocomplete', 'off');
 
 			var lib = "{t}Confirmez-vous la suppression ?{/t}";
-			$( '.button-delete' ).keypress( function () {
-				if ( confirm( lib ) == true ) {
-					$( this.form ).find( "input[name='action']" ).val( "Delete" );
-					$( this.form ).submit();
+			$('.button-delete').keypress(function () {
+				if (confirm(lib) == true) {
+					$(this.form).find("input[name='action']").val("Delete");
+					$(this.form).submit();
 				} else
 					return false;
-			} );
-			$( ".button-delete" ).click( function () {
-				if ( confirm( lib ) == true ) {
-					$( this.form ).find( "input[name='action']" ).val( "Delete" );
-					$( this.form ).submit();
+			});
+			$(".button-delete").click(function () {
+				if (confirm(lib) == true) {
+					$(this.form).find("input[name='action']").val("Delete");
+					$(this.form).submit();
 				} else {
 					return false;
 				}
-			} );
+			});
 			/*
 			 * Initialisation des combobox
 			 */
-			$( ".combobox" ).combobox();
+			$(".combobox").combobox();
 			/**
 			 * Get a confirmation
 			 */
-			 $(".confirm").on("click keydown", function(event) {
-				 if (confirm("{t}Confirmez-vous l'opération ?{/t}") == false) {
-					 event.preventDefault();
-				 }
-			 });
+			$(".confirm").on("click keydown", function (event) {
+				if (confirm("{t}Confirmez-vous l'opération ?{/t}") == false) {
+					event.preventDefault();
+				}
+			});
 			/**
 			 * Add support of tabulation in textarea
 			 */
-			 $(".textarea-edit").keydown(function(event) {
-				if(event.keyCode===9){
-					var v=this.value,s=this.selectionStart,e=this.selectionEnd;
-					this.value=v.substring(0, s)+'\t'+v.substring(e);
-					this.selectionStart=this.selectionEnd=s+1;
+			$(".textarea-edit").keydown(function (event) {
+				if (event.keyCode === 9) {
+					var v = this.value, s = this.selectionStart, e = this.selectionEnd;
+					this.value = v.substring(0, s) + '\t' + v.substring(e);
+					this.selectionStart = this.selectionEnd = s + 1;
 					return false;
-					}
-			 });
+				}
+			});
 		});
-	function encodeHtml( rawStr ) {
-		if ( rawStr && rawStr.length > 0 ) {
+	function encodeHtml(rawStr) {
+		if (rawStr && rawStr.length > 0) {
 			try {
-				var encodedStr = rawStr.replace( /[\u00A0-\u9999<>\&]/gim, function ( i ) {
-					return '&#' + i.charCodeAt( 0 ) + ';';
-				} );
-			} catch ( Exception ) { }
+				var encodedStr = rawStr.replace(/[\u00A0-\u9999<>\&]/gim, function (i) {
+					return '&#' + i.charCodeAt(0) + ';';
+				});
+			} catch (Exception) { }
 			return encodedStr;
 		} else {
 			return "";
@@ -289,53 +304,53 @@
 	 * the field must have a class lexical and the attribute data-lexical with
 	 * the value to found
 	 */
-	$( document ).ready( function () {
+	$(document).ready(function () {
 		var lexicalDelay = 1000, lexicalTimer, tooltipContent;
-		$( ".lexical" ).mouseenter( function () {
-			var objet = $( this );
-			lexicalTimer = setTimeout( function () {
-				var entry = objet.data( "lexical" );
-				if ( entry.length > 0 ) {
+		$(".lexical").mouseenter(function () {
+			var objet = $(this);
+			lexicalTimer = setTimeout(function () {
+				var entry = objet.data("lexical");
+				if (entry.length > 0) {
 					var url = "index.php";
 					var data = {
 						"module": "lexicalGet",
 						"lexical": entry
 					}
-					$.ajax( { url: url, data: data } )
-						.done( function ( d ) {
-							if ( d ) {
-								d = JSON.parse( d );
-								if ( d.lexical ) {
-									var content = d.lexical.split( " " );
+					$.ajax({ url: url, data: data })
+						.done(function (d) {
+							if (d) {
+								d = JSON.parse(d);
+								if (d.lexical) {
+									var content = d.lexical.split(" ");
 									var length = 0;
 									tooltipContent = "";
-									content.forEach( function ( word ) {
-										if ( length > 40 ) {
+									content.forEach(function (word) {
+										if (length > 40) {
 											tooltipContent += "<br>";
 											length = 0;
 										}
 										tooltipContent += word + " ";
 										length += word.length + 1;
-									} );
-									tooltipDisplay( objet );
+									});
+									tooltipDisplay(objet);
 								}
 							}
-						} );
+						});
 				}
-			}, lexicalDelay );
-		} ).mouseleave( function () {
-			clearTimeout( lexicalTimer );
-			if($(this).is(':ui-tooltip')) {
+			}, lexicalDelay);
+		}).mouseleave(function () {
+			clearTimeout(lexicalTimer);
+			if ($(this).is(':ui-tooltip')) {
 				$(this).tooltip("close");
 			}
-		} );
-		function tooltipDisplay( object ) {
-			$(object).tooltip( {
+		});
+		function tooltipDisplay(object) {
+			$(object).tooltip({
 				content: tooltipContent
-			} );
+			});
 			//object.tooltip("option", "content", tooltipContent);
-			$(object).attr( "title", tooltipContent );
-			$(object).tooltip( "open" );
+			$(object).attr("title", tooltipContent);
+			$(object).tooltip("open");
 		}
-	} );
+	});
 </script>
