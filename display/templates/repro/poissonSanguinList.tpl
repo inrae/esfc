@@ -13,7 +13,7 @@
         <tr>
             <td>
                 {if $droits.reproGestion == 1}
-                <a href="index.php?module=dosageSanguinChange&dosage_sanguin_id={$dataSanguin[lst].dosage_sanguin_id}">
+                <a href="index.php?module=dosageSanguinChange&dosage_sanguin_id={$dataSanguin[lst].dosage_sanguin_id}&poisson_campagne_id={$dataPoisson.poisson_campagne_id}">
                     {$dataSanguin[lst].dosage_sanguin_date}
                 </a>
                 {else}

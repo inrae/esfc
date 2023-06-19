@@ -360,8 +360,8 @@
 			<div class="tab-pane fade" id="nav-sanguin" role="tabpanel" aria-labelledby="tab-sanguin">
 				{if $droits["reproGestion"]==1}
 				<div class="row">
-					<a href="index.php?module=xxxChange&poisson_id={$dataPoisson.poisson_id}&xxx_id=0">
-						{t}Nouvelle analyse...{/t}
+					<a href="index.php?module=dosageSanguinChange&poisson_id={$dataPoisson.poisson_id}&dosage_sanguin_id=0&poisson_campagne_id={$dataPoisson.poisson_campagne_id}">
+						{t}Nouveau dosage sanguin...{/t}
 					</a>
 				</div>
 				{/if}
@@ -376,7 +376,7 @@
 			<div class="tab-pane fade" id="nav-ventilation" role="tabpanel" aria-labelledby="tab-ventilation">
 				{if $droits["reproGestion"]==1}
 				<div class="row">
-					<a href="index.php?module=xxxChange&poisson_id={$dataPoisson.poisson_id}&xxx_id=0">
+					<a href="index.php?module=xxxChange&poisson_id={$dataPoisson.poisson_id}&xxx_id=0&poisson_campagne_id={$dataPoisson.poisson_campagne_id}">
 						{t}Nouvelle mesure...{/t}
 					</a>
 				</div>
@@ -386,7 +386,7 @@
 			<div class="tab-pane fade" id="nav-injection" role="tabpanel" aria-labelledby="tab-injection">
 				{if $droits["reproGestion"]==1}
 				<div class="row">
-					<a href="index.php?module=evenementChange&poisson_id={$dataPoisson.poisson_id}&evenement_id=0">
+					<a href="index.php?module=evenementChange&poisson_id={$dataPoisson.poisson_id}&evenement_id=0&poisson_campagne_id={$dataPoisson.poisson_campagne_id}">
 						{t}Nouvelle injection...{/t}
 					</a>
 				</div>

@@ -12,9 +12,12 @@ require_once 'modules/classes/poissonCampagne.class.php';
 $dataClass = new DosageSanguin($bdd, $ObjetBDDParam);
 $keyName = "dosage_sanguin_id";
 $id = $_REQUEST[$keyName];
-if (isset($_SESSION["sequence_id"]))
-	$vue->set($_SESSION["sequence_id"], "sequence_id");
-$vue->set($_SESSION["poissonDetailParent"], "poissonDetailParent");
+if (isset($vue)) {
+	if (isset($_SESSION["sequence_id"])) {
+		$vue->set($_SESSION["sequence_id"], "sequence_id");
+	}
+	$vue->set($_SESSION["poissonDetailParent"], "poissonDetailParent");
+}
 switch ($t_module["param"]) {
 	case "change":
 		/*
