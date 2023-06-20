@@ -26,7 +26,7 @@
 				</div>
 				<div class="col-md-2 center">
 					<a href=index.php?module=poissonDisplay&poisson_id={$dataPoisson.poisson_id}>
-						<img src="display/images/fish.png" height="25"
+						<img src="display/images/sturio.png" height="25"
 							title="{t}Accéder à la fiche détaillée du poisson{/t}">
 					</a>
 				</div>

@@ -7,6 +7,7 @@
  */
 class Biopsie extends \ObjetBDD
 {
+	public DocumentSturio $documentSturio;
 
 	/**
 	 *
@@ -110,6 +111,24 @@ class Biopsie extends \ObjetBDD
 		$sql = "select poisson_id from biopsie
 					 join poisson_campagne using (poisson_campagne_id)
 					where biopsie_id = :id";
-		return $this->lireParamAsPrepared($sql, array("id" => $id));
+		$data = $this->lireParamAsPrepared($sql, array("id" => $id));
+		return $data["poisson_id"];
+	}
+
+	function supprimer($id)
+	{
+		/**
+		 * Search for the associated documents
+		 */
+		if (!isset($this->documentSturio)) {
+			$this->documentSturio = $this->classInstanciate("DocumentSturio", "documentSturio.class.php");
+		}
+		$sql = "select document_id from biopsie_document
+				where biopsie_id = :id";
+				$docs = $this->getListeParamAsPrepared($sql, array("id" => $id) );
+				foreach ($docs as $doc) {
+					$this->documentSturio->supprimer($doc["document_id"]);
+				}
+		return parent::supprimer($id);
 	}
 }

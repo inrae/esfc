@@ -113,7 +113,7 @@ function dataWrite($dataClass, $data, $isPartOfTransaction = false)
  */
 function dataDelete($dataClass, $id, $isPartOfTransaction = false)
 {
-  global $message, $module_coderetour, $log, $OBJETBDD_debugmode;
+  global $message, $module_coderetour, $log;
   $module_coderetour = -1;
   $ok = true;
   if (is_array($id)) {

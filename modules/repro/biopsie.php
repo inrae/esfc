@@ -10,9 +10,12 @@ require_once 'modules/classes/biopsie.class.php';
 $dataClass = new Biopsie($bdd, $ObjetBDDParam);
 $keyName = "biopsie_id";
 $id = $_REQUEST[$keyName];
-if (isset($_SESSION["sequence_id"]))
-	$vue->set($_SESSION["sequence_id"], "sequence_id");
-$vue->set($_SESSION["poissonDetailParent"], "poissonDetailParent");
+if (isset($vue)) {
+	if (isset($_SESSION["sequence_id"])) {
+		$vue->set($_SESSION["sequence_id"], "sequence_id");
+	}
+	$vue->set($_SESSION["poissonDetailParent"], "poissonDetailParent");
+}
 switch ($t_module["param"]) {
 	case "change":
 		/*
@@ -51,7 +54,7 @@ switch ($t_module["param"]) {
 		/*
 		 * Traitement des photos a importer
 		 */
-		if ($id > 0 && isset($_FILES["documentName"])) {
+		if ($id > 0 && !empty($_FILES["documentName"])) {
 			/*
 			 * Preparation de files
 			 */
@@ -67,27 +70,32 @@ switch ($t_module["param"]) {
 						'size' => $fdata['size'][$i]
 					);
 				}
-			} else
+			} else {
 				$files[] = $fdata;
-			$documentSturio = new DocumentSturio($bdd, $ObjetBDDParam);
-			foreach ($files as $file) {
-				$document_id = $documentSturio->ecrire($file, "Calcul du diamètre moyen de l'ovocyte - " . $_REQUEST["biopsie_date"]);
-				if ($document_id > 0) {
-					/*
+			}
+			if ($files[0]["error"] == 0) {
+				require_once "modules/classes/documentSturio.class.php";
+				$documentSturio = new DocumentSturio($bdd, $ObjetBDDParam);
+				require_once "modules/classes/documentLie.class.php";
+				$documentLie = new DocumentLie($bdd, $ObjetBDDParam, 'biopsie');
+				foreach ($files as $file) {
+					$document_id = $documentSturio->ecrire($file, _("Calcul du diamètre moyen de l'ovocyte - ") . $_REQUEST["biopsie_date"]);
+					if ($document_id > 0) {
+						/*
 					 * Ecriture de l'enregistrement en table liee
 					 */
-					$documentLie = new DocumentLie($bdd, $ObjetBDDParam, 'biopsie');
-					$data = array(
-						"document_id" => $document_id,
-						"biopsie_id" => $id
-					);
-					$documentLie->ecrire($data);
-					/*
+						$data = array(
+							"document_id" => $document_id,
+							"biopsie_id" => $id
+						);
+						$documentLie->ecrire($data);
+						/*
 					 * Ajout de l'information pour le poisson
 					 */
-					$documentPoisson = new DocumentLie($bdd, $ObjetBDDParam, "poisson");
-					$data["poisson_id"] = $dataClass->getPoissonId($id);
-					$documentPoisson->ecrire($data);
+						$documentPoisson = new DocumentLie($bdd, $ObjetBDDParam, "poisson");
+						$data["poisson_id"] = $dataClass->getPoissonId($id);
+						$documentPoisson->ecrire($data);
+					}
 				}
 			}
 		}

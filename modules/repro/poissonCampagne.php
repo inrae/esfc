@@ -133,7 +133,6 @@ switch ($t_module["param"]) {
 		if (is_numeric($id)) {
 			$vue->set($id, "poisson_campagne_id");
 		}
-
 		/*
 		 * Recuperation des photos associees aux evenements
 		 */

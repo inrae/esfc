@@ -195,6 +195,7 @@
 			]
 		});
 		/* Initialisation for paging datatables */
+		var localStorage = window.localStorage;
 		$(".datatable, .datatable-export-paging, .datatable-searching, .datatable-nosort").each(function () {
 			try {
 				var tableId = $(this).attr("id");
@@ -207,7 +208,6 @@
 			}
 			$(this).DataTable().page.len(pageLength).draw();
 		});
-		var localStorage = window.localStorage;
 		$(".datatable, .datatable-export-paging, .datatable-searching, .datatable-nosort").on('length.dt', function (e, settings, len) {
 			try {
 				var tableId = $(this).attr("id");

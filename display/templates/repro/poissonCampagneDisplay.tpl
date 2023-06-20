@@ -376,7 +376,7 @@
 			<div class="tab-pane fade" id="nav-ventilation" role="tabpanel" aria-labelledby="tab-ventilation">
 				{if $droits["reproGestion"]==1}
 				<div class="row">
-					<a href="index.php?module=xxxChange&poisson_id={$dataPoisson.poisson_id}&xxx_id=0&poisson_campagne_id={$dataPoisson.poisson_campagne_id}">
+					<a href="index.php?module=ventilationChange&poisson_id={$dataPoisson.poisson_id}&ventilation_id=0&poisson_campagne_id={$dataPoisson.poisson_campagne_id}">
 						{t}Nouvelle mesure...{/t}
 					</a>
 				</div>
@@ -397,7 +397,7 @@
 			<div class="tab-pane fade" id="nav-biopsie" role="tabpanel" aria-labelledby="tab-biopsie">
 				{if $droits["reproGestion"]==1}
 				<div class="row">
-					<a href="index.php?module=biopsieChange&poisson_id={$dataPoisson.poisson_id}&biopsie_id=0">
+					<a href="index.php?module=biopsieChange&poisson_id={$dataPoisson.poisson_id}&biopsie_id=0&poisson_campagne_id={$dataPoisson.poisson_campagne_id}">
 						{t}Nouvelle biopsie...{/t}
 					</a>
 				</div>

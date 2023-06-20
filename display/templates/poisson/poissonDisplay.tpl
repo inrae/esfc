@@ -26,7 +26,7 @@
 				}
 			} catch { };
 		});
-		$("#newtag").change(function() {
+		$("#newtag").change(function () {
 			if ($(this).val().length > 0) {
 				$("#newtagButton").removeAttr("disabled");
 				$("#poissonNew").submit();
@@ -59,16 +59,16 @@
 			<input type="hidden" name="module" value="poissonGetFromTag">
 			<input type="hidden" name="poisson_id" value="{$dataPoisson.poisson_id}">
 			<div class="form-group">
-			<label for="newtag" class="control-label col-md-4">
-				{t}Pittag du poisson suivant :{/t}
-			</label>
-			<div class="col-md-5">
-				<input id="newtag" name="newtag" class="form-control">
+				<label for="newtag" class="control-label col-md-4">
+					{t}Pittag du poisson suivant :{/t}
+				</label>
+				<div class="col-md-5">
+					<input id="newtag" name="newtag" class="form-control">
+				</div>
+				<div class="col-md-2 center">
+					<button type="submit" class="btn btn-primary" id="newtagButton" disabled>{t}Rechercher{/t}</button>
+				</div>
 			</div>
-			<div class="col-md-2 center">
-				<button type="submit" class="btn btn-primary" id="newtagButton" disabled>{t}Rechercher{/t}</button>
-			</div>
-		</div>
 		</form>
 	</div>
 </div>
@@ -187,89 +187,97 @@
 			</div>
 		</div>
 		<div class="tab-pane fade" id="nav-reproduction" role="tabpanel" aria-labelledby="tab-reproduction">
-			<div class="col-md-6">
-				<fieldset>
-					<legend>{t}Campagnes de reproduction{/t}</legend>
-					{if $droits.reproGestion == 1}
-					<a
-						href="index.php?module=poissonCampagneChange&poisson_id={$dataPoisson.poisson_id}&poisson_campagne_id=0">
-						{t}Pré-sélectionner le poisson pour une campagne de reproduction{/t}
-					</a>
-					{/if}
-					{include file="poisson/poissonCampagneList.tpl"}
-				</fieldset>
+			<div class="row">
+				<div class="col-md-6">
+					<fieldset>
+						<legend>{t}Campagnes de reproduction{/t}</legend>
+						{if $droits.reproGestion == 1}
+						<a
+							href="index.php?module=poissonCampagneChange&poisson_id={$dataPoisson.poisson_id}&poisson_campagne_id=0">
+							{t}Pré-sélectionner le poisson pour une campagne de reproduction{/t}
+						</a>
+						{/if}
+						{include file="poisson/poissonCampagneList.tpl"}
+					</fieldset>
+				</div>
+				<div class="col-md-6">
+					<fieldset>
+						<legend>{t}Échographies{/t}</legend>
+						<div>
+							{include file="poisson/echographieList.tpl"}
+							<br>
+						</div>
+					</fieldset>
+				</div>
 			</div>
-			<div class="col-md-6">
-				<fieldset>
-					<legend>{t}Échographies{/t}</legend>
-					<div>
-						{include file="poisson/echographieList.tpl"}
-						<br>
-					</div>
-				</fieldset>
-				<fieldset>
-					<legend>{t}Dosages sanguins{/t}</legend>
-					{include file="poisson/dosageSanguinList.tpl"}
-				</fieldset>
-				<fieldset>
-					<legend>{t}Ventilation{/t}</legend>
-					{include file="poisson/ventilationList.tpl"}
-				</fieldset>
-				<fieldset>
-					<legend>{t}Anesthésies{/t}</legend>
-					<div>
-						{include file="poisson/anesthesieList.tpl"}
-						<br>
-					</div>
-				</fieldset>
-			</div>
-		</div>
-		<div class="tab-pane fade" id="nav-genetique" role="tabpanel" aria-labelledby="tab-genetique">
-			<div class="col-md-6">
-				<fieldset>
-					<legend>{t}Prélèvements génétiques{/t}</legend>
-					<div>
-						{include file="poisson/genetiqueList.tpl"}
-					</div>
-				</fieldset>
-			</div>
-			<div class="col-md-6">
-				<fieldset>
-					<legend>{t}Détermination de la parenté{/t}</legend>
-					<div>
-						{include file="poisson/parenteList.tpl"}
-					</div>
-				</fieldset>
-			</div>
-			<div class="col-md-6">
-				<fieldset>
-					<legend>{t}Détermination de la cohorte{/t}</legend>
-					<div>
-						{include file="poisson/cohorteList.tpl"}
-						<br>
-					</div>
-				</fieldset>
-			</div>
-			<div class="col-md-6">
-				<fieldset>
-					<legend>{t}Détermination du sexe{/t}</legend>
-					<div>
-						{include file="poisson/genderSelectionList.tpl"}
-						<br>
-					</div>
-				</fieldset>
-			</div>
-		</div>
-		<div class="tab-pane fade" id="nav-anomalie" role="tabpanel" aria-labelledby="tab-anomalie">
-			<div class="col-md-6">
-				{if $droits["poissonGestion"] == 1}
-				<a
-					href="index.php?module=anomalieChange&poisson_id={$dataPoisson.poisson_id}&anomalie_db_id=0&module_origine=poissonDisplay">
-					{t}Créer une anomalie manuellement{/t}
-				</a>
-				{/if}
-				{include file="poisson/anomalieDbList.tpl"}
+			<div class="row">
+				<div class="col-md-6">
+					<fieldset>
+						<legend>{t}Dosages sanguins{/t}</legend>
+						{include file="poisson/dosageSanguinList.tpl"}
+					</fieldset>
+					<fieldset>
+						<legend>{t}Anesthésies{/t}</legend>
+						<div>
+							{include file="poisson/anesthesieList.tpl"}
+						</div>
+					</fieldset>
+				</div>
+				<div class="col-md-6">
+					<fieldset>
+						<legend>{t}Ventilation{/t}</legend>
+						{include file="poisson/ventilationList.tpl"}
+					</fieldset>
+				</div>
 			</div>
 		</div>
 	</div>
+	<div class="tab-pane fade" id="nav-genetique" role="tabpanel" aria-labelledby="tab-genetique">
+		<div class="col-md-6">
+			<fieldset>
+				<legend>{t}Prélèvements génétiques{/t}</legend>
+				<div>
+					{include file="poisson/genetiqueList.tpl"}
+				</div>
+			</fieldset>
+		</div>
+		<div class="col-md-6">
+			<fieldset>
+				<legend>{t}Détermination de la parenté{/t}</legend>
+				<div>
+					{include file="poisson/parenteList.tpl"}
+				</div>
+			</fieldset>
+		</div>
+		<div class="col-md-6">
+			<fieldset>
+				<legend>{t}Détermination de la cohorte{/t}</legend>
+				<div>
+					{include file="poisson/cohorteList.tpl"}
+					<br>
+				</div>
+			</fieldset>
+		</div>
+		<div class="col-md-6">
+			<fieldset>
+				<legend>{t}Détermination du sexe{/t}</legend>
+				<div>
+					{include file="poisson/genderSelectionList.tpl"}
+					<br>
+				</div>
+			</fieldset>
+		</div>
+	</div>
+	<div class="tab-pane fade" id="nav-anomalie" role="tabpanel" aria-labelledby="tab-anomalie">
+		<div class="col-md-6">
+			{if $droits["poissonGestion"] == 1}
+			<a
+				href="index.php?module=anomalieChange&poisson_id={$dataPoisson.poisson_id}&anomalie_db_id=0&module_origine=poissonDisplay">
+				{t}Créer une anomalie manuellement{/t}
+			</a>
+			{/if}
+			{include file="poisson/anomalieDbList.tpl"}
+		</div>
+	</div>
+</div>
 </div>

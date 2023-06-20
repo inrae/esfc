@@ -13,7 +13,9 @@ $id = $_REQUEST[$keyName];
 /*
  * Passage en parametre de la liste parente
  */
-$vue->set($_SESSION["poissonDetailParent"], "poissonDetailParent");
+if (isset ($vue)){
+	$vue->set($_SESSION["poissonDetailParent"], "poissonDetailParent");
+}
 
 switch ($t_module["param"]) {
 	case "change":
@@ -23,9 +25,6 @@ switch ($t_module["param"]) {
 		 * $_REQUEST["idParent"] contains the identifiant of the parent record
 		 */
 		$data = dataRead($dataClass, $id, "poisson/ventilationChange.tpl", $_REQUEST["poisson_id"]);
-		/*
-		 * Recuperation de la liste des types de pittag
-		*/
 		/*
 		 * Lecture du poisson
 		*/
