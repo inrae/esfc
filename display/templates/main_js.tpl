@@ -194,6 +194,19 @@
 				'print'
 			]
 		});
+		/* Initialisation for paging datatables */
+		$(".datatable, .datatable-export-paging, .datatable-searching, .datatable-nosort").each(function () {
+			try {
+				var tableId = $(this).attr("id");
+				var pageLength = localStorage.getItem(tableId + "Length");
+				if (isNaN(pageLength)) {
+					pageLength = 10;
+				}
+			} catch (Exception) {
+				pageLength = 10;
+			}
+			$(this).DataTable().page.len(pageLength).draw();
+		});
 		var localStorage = window.localStorage;
 		$(".datatable, .datatable-export-paging, .datatable-searching, .datatable-nosort").on('length.dt', function (e, settings, len) {
 			try {
@@ -202,19 +215,6 @@
 			} catch (Exception) {
 			}
 		});
-		/* Initialisation for paging datatables */
-			$(".datatable, .datatable-export-paging, .datatable-searching, .datatable-nosort").each(function () { 
-				try {
-				var tableId = $(this).attr("id");
-				var pageLength = localStorage.getItem(tableId + "Length");
-					if (isNaN(pageLength)) {
-						pageLength = 10;
-					}
-				} catch (Exception) {
-					pageLength = 10;
-				}
-				$(this).DataTable().page.len( pageLength ).draw();
-			});
 		$(".datatable-nopaging-nosearching").DataTable().draw();
 		$('.taux,.nombre,.number,.decimal').attr('title', '{t}Valeur numérique...{/t}');
 		$('.taux,.decimal').attr({
