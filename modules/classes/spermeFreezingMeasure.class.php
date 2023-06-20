@@ -20,7 +20,8 @@ class SpermeFreezingMeasure extends ObjetBDD
             ),
             "measure_date" => array(
                 "type" => 3,
-                "requis" => 1
+                "requis" => 1,
+                "defaultValue"=>"getdateheure"
             ),
             "measure_temp" => array(
                 "type" => 0,

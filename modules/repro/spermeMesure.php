@@ -6,7 +6,7 @@
  * Encoding : UTF-8
  * Copyright 2017 - All rights reserved
  */
-require_once 'modules/classes/sperme.class.php';
+require_once 'modules/classes/spermeMesure.class.php';
 $dataClass = new SpermeMesure($bdd, $ObjetBDDParam);
 $keyName = "sperme_mesure_id";
 $id = $_REQUEST[$keyName];
@@ -34,14 +34,14 @@ switch ($t_module["param"]) {
         require_once 'modules/classes/poissonCampagne.class.php';
         $poissonCampagne = new PoissonCampagne($bdd, $ObjetBDDParam);
         $vue->set($poissonCampagne->lire($dataSperme["poisson_campagne_id"]), "dataPoisson");
-        $vue->set($poissonCampagne->getListSequence($_REQUEST["poisson_campagne_id"], $_SESSION["annee"]), "sequences");
+        $vue->set($poissonCampagne->getListSequence($dataSperme["poisson_campagne_id"], $_SESSION["annee"]), "sequences");
 
         require_once "modules/classes/spermeQualite.class.php";
         $qualite = new SpermeQualite($bdd, $ObjetBDDParam);
         $vue->set($qualite->getListe(1), "spermeQualite");
         require_once "modules/classes/spermeCaracteristique.class.php";
         $caract = new SpermeCaracteristique($bdd, $ObjetBDDParam);
-        $vue->set($caract->getFromSperme($sperme_id), "spermeCaract");
+        $vue->set($caract->getFromSperme($_REQUEST["sperme_id"]), "spermeCaract");
         break;
     case "write":
         /*

@@ -13,7 +13,9 @@ $id = $_REQUEST[$keyName];
 /*
  * Passage en parametre de la liste parente
  */
-$vue->set($_SESSION["poissonDetailParent"], "poissonDetailParent");
+if (isset($vue)) {
+    $vue->set($_SESSION["poissonDetailParent"], "poissonDetailParent");
+}
 switch ($t_module["param"]) {
     case "change":
         /*
@@ -61,6 +63,8 @@ switch ($t_module["param"]) {
         }
         $vue->set($x, "mx");
         $vue->set($y, "my");
+        $vue->htmlVars[] = "mx";
+        $vue->htmlVars[] = "my";
         /*
          * Donnees du poisson
          */
@@ -71,6 +75,7 @@ switch ($t_module["param"]) {
         /*
          * Recherche des mesures de qualite rattachees
          */
+        require_once "modules/classes/spermeMesure.class.php";
         $sm = new SpermeMesure($bdd, $ObjetBDDParam);
         $vue->set($sm->getListFromCongelation($id), "dataMesure");
 

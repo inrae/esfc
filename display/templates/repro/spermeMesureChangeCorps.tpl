@@ -28,14 +28,15 @@
         </select>
     </div>
 </div>
-<div class="form-group"><label for="" class="control-label col-md-4">
-        {t}Nbre de paillettes utilisées pour l'analyse :{/t}
+{if $data.sperme_congelation_id > 0}
+<div class="form-group"><label for="nb_paillette_utilise" class="control-label col-md-4">
+        {t}Nbre de paillettes utilisées pour l'analyse :{/t}<span class="red">*</span>
     </label>
     <div class="col-md-8">
-        <input class="nombre form-control" name="nb_paillette_utilise" value="{$data.nb_paillette_utilise}">
+        <input id="nb_paillette_utilise" class="nombre form-control" name="nb_paillette_utilise" value="{$data.nb_paillette_utilise}" required>
     </div>
 </div>
-
+{/if}
 <div class="form-group">
     <label for="motilite_initiale" class="control-label col-md-4">
         {t}Motilité initiale (1 à 5) :{/t}
@@ -50,7 +51,7 @@
         {t}Taux de survie initial (en %) :{/t}
     </label>
     <div class="col-md-8">
-        <input id="tx_survie_initial" class="taux" name="tx_survie_initial" value="{$data.tx_survie_initial}">
+        <input id="tx_survie_initial" class="taux form-control" name="tx_survie_initial" value="{$data.tx_survie_initial}">
     </div>
 </div>
 <div class="form-group">

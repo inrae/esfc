@@ -13,7 +13,7 @@
 		{t}Volume prélevé (en ml) :{/t}
 	</label>
 	<div class="col-md-8">
-		<input class="taux" name="sperme_volume" value="{$data.sperme_volume}">
+		<input class="taux form-control" name="sperme_volume" value="{$data.sperme_volume}">
 	</div>
 </div>
 <div class="form-group">
@@ -56,7 +56,7 @@
 		{t}Dilueur utilisé : {/t}
 	</label>
 	<div class="col-md-8">
-		<select name="sperme_dilueur_id" id="sperme_dilueur_id">
+		<select name="sperme_dilueur_id" id="sperme_dilueur_id" class="form-control">
 			<option value="" {if $data.sperme_dilueur_id=="" }selected{/if}>
 				{t}Choisissez...{/t}
 			</option>

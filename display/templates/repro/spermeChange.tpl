@@ -9,7 +9,8 @@
 <h2>{t}Modification d'un prélèvement de sperme{/t} {$dataPoisson.matricule}
     {$dataPoisson.categorie_libelle}
     {$dataPoisson.sexe_libelle}
-    {$dataPoisson.poisson_statut_libelle} (id:{$dataPoisson.poisson_id})</h2>
+    {$dataPoisson.poisson_statut_libelle} (id:{$dataPoisson.poisson_id})
+</h2>
 
 
 <div class="row">

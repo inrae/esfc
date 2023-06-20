@@ -12,7 +12,9 @@ $id = $_REQUEST[$keyName];
 /*
  * Passage en parametre de la liste parente
  */
-$vue->set($_SESSION["poissonDetailParent"], "poissonDetailParent");
+if (isset($vue)) {
+    $vue->set($_SESSION["poissonDetailParent"], "poissonDetailParent");
+}
 
 switch ($t_module["param"]) {
     case "change":
