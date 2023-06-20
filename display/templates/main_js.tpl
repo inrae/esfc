@@ -200,7 +200,7 @@
 			try {
 				var tableId = $(this).attr("id");
 				var pageLength = localStorage.getItem(tableId + "Length");
-				if (isNaN(pageLength)) {
+				if (isNaN(pageLength) || !pageLength) {
 					pageLength = 10;
 				}
 			} catch (Exception) {
@@ -211,6 +211,9 @@
 		$(".datatable, .datatable-export-paging, .datatable-searching, .datatable-nosort").on('length.dt', function (e, settings, len) {
 			try {
 				var tableId = $(this).attr("id");
+				if (isNaN(len) || !len) {
+					len = 10;
+				}
 				localStorage.setItem(tableId + "Length", len);
 			} catch (Exception) {
 			}
