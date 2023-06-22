@@ -14,6 +14,7 @@
 if (!isset($_SESSION["searchPoisson"])) {
 	$_SESSION["searchPoisson"] = new SearchPoisson();
 }
+$vue->set($_SESSION["searchPoisson"]->getSearchByEvent(), "eventSearchs");
 $_SESSION["searchPoisson"]->setParam($_REQUEST);
 $dataSearch = $_SESSION["searchPoisson"]->getParam();
 if ($_SESSION["searchPoisson"]->isSearch() == 1) {

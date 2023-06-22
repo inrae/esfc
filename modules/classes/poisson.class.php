@@ -85,16 +85,16 @@ class Poisson extends ObjetBDD
     function getListeSearch($dataSearch)
     {
 
-        $sql = "select poisson_id, sexe_id, matricule, prenom, cohorte, capture_date, 
-                sexe_libelle, sexe_libelle_court, poisson_statut_libelle,commentaire,
+        $sql = "select poisson_id, s.sexe_id, matricule, prenom, cohorte, capture_date, 
+                s.sexe_libelle, s.sexe_libelle_court, poisson_statut_libelle,commentaire,
 					pittag_valeur,
-					mortalite_date,
+					m.mortalite_date,
 					categorie_id, categorie_libelle";
         $from = " from poisson 
-                    join sexe using (sexe_id)
+                    join sexe s using (sexe_id)
 					join poisson_statut using (poisson_statut_id)
 					join categorie using (categorie_id)
-					left outer join mortalite using (poisson_id)					  
+					left outer join mortalite m using (poisson_id)					  
 					left outer join v_pittag_by_poisson using (poisson_id)";
         if ($dataSearch["displayMorpho"] == 1) {
             $sql .= ", longueur_fourche, longueur_totale, masse";
@@ -148,6 +148,15 @@ class Poisson extends ObjetBDD
             $where .= $and . " site_id = :site_id ";
             $param["site_id"] = $dataSearch["site_id"];
             $and = " and ";
+        }
+        if (strlen($dataSearch["eventSearch"]) > 0) {
+            if (key_exists($dataSearch["eventSearch"], $_SESSION["searchPoisson"]->getSearchByEvent())) {
+                $from .= " join " . $dataSearch["eventSearch"] . " es using (poisson_id)";
+                $where .= $and . "es." . $dataSearch["eventSearch"] . "_date" . " between :dateFromEvent and :dateToEvent";
+                $param["dateFromEvent"] = $this->formatDateLocaleVersDB($dataSearch["dateFromEvent"]);
+                $param["dateToEvent"] =  $this->formatDateLocaleVersDB($dataSearch["dateToEvent"]);
+                $and = " and ";
+            }
         }
         if (strlen($where) > 7) {
             $this->colonnes["mortalite_date"] = array("type" => 2);
@@ -210,12 +219,13 @@ class Poisson extends ObjetBDD
         }
     }
 
-    function getPoissonIdFromTag($pittag) {
+    function getPoissonIdFromTag($pittag)
+    {
         $sql = "select poisson_id 
         from poisson
         join pittag using (poisson_id)
         where upper(pittag_valeur) = upper(:pittag)";
-        $data = $this->lireParamAsPrepared($sql, array ("pittag"=>$pittag));
+        $data = $this->lireParamAsPrepared($sql, array("pittag" => $pittag));
         if ($data["poisson_id"] > 0) {
             return $data["poisson_id"];
         } else {

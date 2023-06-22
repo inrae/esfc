@@ -3,7 +3,7 @@
 CAUTION: Do not modify this file unless you know what you are doing.
  Unexpected results may occur if the code is changed deliberately.
 -->
-<dbmodel pgmodeler-ver="1.0.0-beta1" use-changelog="false" author="Eric Quinton" last-position="0,420" last-zoom="1" max-obj-count="170"
+<dbmodel pgmodeler-ver="1.0.4" use-changelog="false" author="Eric Quinton" last-position="173,1025" last-zoom="0.7" max-obj-count="170"
 	 default-owner="postgres"
 	 layers="Default layer"
 	 active-layers="0"
@@ -1831,7 +1831,7 @@ Le premier chiffre correspond au lundi]]> </comment>
 	<role name="quinton"/>
 	<comment> <![CDATA[Méthodes de détermination du sexe]]> </comment>
 	<tag name="poisson"/>
-	<position x="380" y="1940"/>
+	<position x="0" y="1840"/>
 	<column name="gender_methode_id" not-null="true" sequence="public.gender_methode_gender_methode_id_seq">
 		<type name="integer" length="0"/>
 	</column>
@@ -5726,9 +5726,9 @@ Le premier chiffre correspond au lundi]]> </comment>
 	 dst-table="public.devenir" reference-fk="devenir_devenir_fk"
 	 src-required="false" dst-required="false">
 	<line>
-		<position x="332.879" y="1100.24"/>
-	<position x="332.879" y="987"/>
-	<position x="206.586" y="987"/>
+		<position x="330.926" y="1097.24"/>
+	<position x="330.926" y="987"/>
+	<position x="205.284" y="987"/>
 	</line>
 </relationship>
 

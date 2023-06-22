@@ -14,6 +14,9 @@
 				retour = true;
 			if ($("#sexe").val() > 0)
 				retour = true;
+			if ($("#eventSearch").val().length > 0) {
+				retour = true;
+			}
 			if (retour === false)
 				event.preventDefault();
 		});
@@ -31,7 +34,7 @@
 				<input id="texte" class="form-control" name="texte" value="{$poissonSearch.texte}">
 			</div>
 
-			<label class="control-label col-md-2" for="site_id">
+			<label class="control-label col-md-1" for="site_id">
 				{t}Site :{/t}
 			</label>
 			<div class="col-md-2">
@@ -66,7 +69,7 @@
 						{/section}
 					</select>
 				</div>
-				<label class="control-label col-md-2" for="statut">
+				<label class="control-label col-md-1" for="statut">
 					{t}Statut de l'animal :{/t}
 				</label>
 				<div class="col-md-2">
@@ -96,6 +99,37 @@
 						</option>
 						{/section}
 					</select>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group">
+				<label for="eventSearch" class="control-label col-md-2">
+					{t}Recherche par événement enregistré :{/t}
+				</label>
+				<div class="col-md-2">
+					<select id="eventSearch" name="eventSearch" class="form-control">
+						<option value="" {if $poissonSearch.eventSearch == ""}selected{/if}>
+							{t}Sélectionnez...{/t}
+						</option>
+						{foreach $eventSearchs as $k => $l}
+						<option value="{$k}" {if $poissonSearch.eventSearch == $k}selected{/if}>
+						{$l}
+						</option>
+						{/foreach}
+					</select>
+				</div>
+				<label for="dateFromEvent" class="control-label col-md-1">
+					{t}Entre le :{/t}
+				</label>
+				<div class="col-md-2">
+					<input class="datepicker form-control" id="dateFromEvent" name="dateFromEvent" value="{$poissonSearch.dateFromEvent}">
+				</div>
+				<label for="dateToEvent" class="control-label col-md-1">
+					{t}et le :{/t}
+				</label>
+				<div class="col-md-2">
+					<input class="datepicker form-control" id="dateToEvent" name="dateToEvent" value="{$poissonSearch.dateToEvent}">
 				</div>
 			</div>
 		</div>
