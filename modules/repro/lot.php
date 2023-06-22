@@ -12,7 +12,6 @@ $keyName = "lot_id";
 $id = $_REQUEST[$keyName];
 
 require "modules/repro/setAnnee.php";
-
 switch ($t_module["param"]) {
 	case "list":
 		/*
@@ -21,9 +20,6 @@ switch ($t_module["param"]) {
 		if (!isset($_SESSION["alimJuv"])) {
 			$_SESSION["alimJuv"] = new AlimJuv();
 		}
-		require_once 'modules/classes/poissonCampagne.class.php';
-		$poissonCampagne = new PoissonCampagne($bdd, $ObjetBDDParam);
-		$vue->set($poissonCampagne->getAnnees(), "annees");
 		$vue->set($dataClass->getLotByAnnee($_SESSION["annee"]), "lots");
 		$vue->set("repro/lotSearch.tpl", "corps");
 		$vue->set($_SESSION["alimJuv"]->getParam(), "dataAlim");

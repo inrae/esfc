@@ -99,10 +99,9 @@ class Devenir extends ObjetBDD
 			$param["lot_id"] = $lot_id;
 		}
 		if ($annee > 0) {
-			$where = " and extract(year from d1.devenir_date) = :annee";
+			$where .= " and extract(year from d1.devenir_date) = :annee";
 			$param["annee"] = $annee;
 		}
-		$where = " and extract(year from d1.devenir_date) = " . $annee;
 		$this->colonnes["devenir_date_parent"]["type"] = 2;
 		return $this->getListeParamAsPrepared($this->sql . $where . $this->sqlOrder, $param);
 	}

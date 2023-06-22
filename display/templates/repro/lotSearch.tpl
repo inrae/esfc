@@ -22,9 +22,9 @@
 				</label>
 				<div class="col-md-3">
 					<select name="annee" id="annee" class="form-control">
-						{foreach $annees as $annee}
-						<option value="{$annee}" {if $annee==$dataSearch.annee}selected{/if}>
-							{$annee}
+						{foreach $annees as $year}
+						<option value="{$year}" {if $annee==$year}selected{/if}>
+							{$year}
 						</option>
 						{/foreach}
 					</select>

@@ -29,7 +29,9 @@
             </td>
             <td class="center">{$dataMesure[lst].nb_jour}</td>
             <td class="right">{$dataMesure[lst].lot_mortalite}</td>
+            {if $dataMesure[lst].lot_mortalite > 0}
             {assign var=mortalite value=$mortalite + $dataMesure[lst].lot_mortalite}
+            {/if}
             <td class="right">{$mortalite}</td>
             <td class="right">{$dataMesure[lst].lot_mesure_masse}</td>
             <td class="right">{$dataMesure[lst].lot_mesure_masse_indiv}</td>

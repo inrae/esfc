@@ -34,6 +34,7 @@ switch ($t_module["param"]) {
 		require_once 'modules/classes/sortieLieu.class.php';
 		$sortie = new SortieLieu($bdd, $ObjetBDDParam);
 		$vue->set($sortie->getListe(2), "sorties");
+		require_once "modules/classes/devenirType.class.php";
 		$devenirType = new DevenirType($bdd, $ObjetBDDParam);
 		$vue->set($devenirType->getListe(1), "devenirType");
 		/*

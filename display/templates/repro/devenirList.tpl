@@ -26,7 +26,7 @@
             {if $droits["reproGestion"] == 1}
             <td class="center">
                 <a
-                    href="index.php?module=devenir{$devenirOrigine}Change&devenir_id={$dataDevenir[lst].devenir_id}&devenirOrigine={$devenirOrigine}">
+                    href="index.php?module=devenir{$devenirOrigine}Change&devenir_id={$dataDevenir[lst].devenir_id}&devenirOrigine={$devenirOrigine}&lot_id={$dataDevenir[lst].lot_id}">
                     <img src="display/images/edit.gif" height="25">
                 </a>
             </td>

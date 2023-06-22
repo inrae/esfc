@@ -17,7 +17,7 @@
         <tr>
             <td class="center">
                 {if $droits["reproGestion"] == 1}
-                <a href="index.php?module=bassinLotChange&bassin_lot_id={$bassinLot[lst].bassin_lot_id}">
+                <a href="index.php?module=bassinLotChange&bassin_lot_id={$bassinLot[lst].bassin_lot_id}&lot_id={$dataLot.lot_id}">
                     {$bassinLot[lst].bl_date_arrivee}
                 </a>
                 {else}

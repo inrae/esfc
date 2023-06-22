@@ -101,10 +101,10 @@ class BassinLot extends ObjetBDD
 	function getPrecedentBassin(int $lot_id, $bl_date_arrivee)
 	{
 		if ($lot_id > 0 && strlen($bl_date_arrivee) > 0) {
-			$bl_date_arrivee = $this->formatDateLocaleVersDB($this->encodeData($bl_date_arrivee));
+			$bl_date_arrivee = $this->formatDateLocaleVersDB($bl_date_arrivee);
 			$sql = "select * from bassin_lot
-				where bl_date_arrivee < :date_arrivee'" . $bl_date_arrivee . "' 
-						and lot_id = :lot_id" . $lot_id . "
+				where bl_date_arrivee < :date_arrivee
+						and lot_id = :lot_id
 				order by bl_date_arrivee desc
 				limit 1";
 			return $this->lireParamAsPrepared($sql, array(
@@ -135,9 +135,9 @@ class BassinLot extends ObjetBDD
 						and lot_id = :lot_id
 					order by bl_date_arrivee desc
 					limit 1";
-			return $this->lireParamAsPrepared($sql,array(
+			return $this->lireParamAsPrepared($sql, array(
 				"date_arrivee" => $date,
-				"lot_id"=>$lot_id
+				"lot_id" => $lot_id
 			));
 		} else {
 			return array();
