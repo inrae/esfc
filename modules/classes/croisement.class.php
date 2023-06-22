@@ -230,7 +230,7 @@ class Croisement extends ObjetBDD
 				 */
 			$sql = "select poisson_campagne_id 
 						from poisson_croisement
-						where croisement_id = :croisement_id" . $croisement_id;
+						where croisement_id = :croisement_id";
 			$poissonCroisement = $this->getListeParamAsPrepared($sql, array("croisement_id" => $croisement_id));
 			foreach ($data as $key => $value) {
 				foreach ($poissonCroisement as $value1) {
@@ -252,7 +252,7 @@ class Croisement extends ObjetBDD
 	{
 		$sql = "select * from croisement
 					left outer join croisement_qualite using (croisement_qualite_id)";
-		$where = " where croisement_id = :id " . $id;
+		$where = " where croisement_id = :id ";
 		$data = $this->lireParamAsPrepared($sql . $where, array("id" => $id));
 		$data["parents"] = $this->getParentsFromCroisement($id);
 		return $data;

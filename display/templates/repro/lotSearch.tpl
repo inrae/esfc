@@ -1,45 +1,44 @@
-<script>
-$(document).ready(function() {
-	$('select').change(function () { 
-		this.form.submit();
-	});
-});
-</script>
-<table class="tablemulticolonne">
+<h2>{t}Affichage de la liste des lots de poissons issus de la reproduction{/t}</h2>
 <div class="row">
+	<div class="col-md-6 col-lg-6 form-horizontal">
+		<form method="get" action="index.php" id="search">
+			<input type="hidden" name="module" value="lotList">
 			<div class="form-group">
-<fieldset>
-<legend>{t}Afficher les lots{/t}</legend>
-<form method="get" action="index.php" id="search">
-<input type="hidden" name="module" value="lotList">
-Année : 
-<select name="annee">
-{section name=lst loop=$annees}
-<option value="{$annees[lst].annee}" {if $annees[lst].annee == $annee}selected{/if}>
-{$annees[lst].annee}
-</option>
-{/section}
-</select>
-Site : 
-<select id="site" name="site_id">
-<option value="" {if $site_id == ""}selected{/if}>Sélectionnez le site...</option>
-{section name=lst loop=$site}
-<option value="{$site[lst].site_id}"} {if $site[lst].site_id == $site_id}selected{/if}>
-{$site[lst].site_name}
-</option>
-{/section}
-</select>
+				<label for="site_id" class="control-label col-md-2">
+					{t}Site :{/t}
+				</label>
+				<div class="col-md-3">
+					<select id="site_id" name="site_id" class="form-control">
+						{section name=lst loop=$site}
+						<option value="{$site[lst].site_id}" } {if
+							$site[lst].site_id==$dataSearch.site_id}selected{/if}>
+							{$site[lst].site_name}
+						</option>
+						{/section}
+					</select>
+				</div>
+				<label for="annee" class="control-label col-md-2">
+					{t}Année :{/t}
+				</label>
+				<div class="col-md-3">
+					<select name="annee" id="annee" class="form-control">
+						{foreach $annees as $annee}
+						<option value="{$annee}" {if $annee==$dataSearch.annee}selected{/if}>
+							{$annee}
+						</option>
+						{/foreach}
+					</select>
+				</div>
 
-<input type="submit" value="Rechercher">
-
-</form>
-</fieldset>
-
+				<div class="col-md-2 center">
+					<input type="submit" class="btn btn-success" value="{t}Rechercher{/t}">
+				</div>
+			</div>
+		</form>
+	</div>
 </div>
 <div class="row">
-			<div class="form-group">
-
-{include file="repro/lotList.tpl"}
-
+	<div class="col-lg-12">
+		{include file="repro/lotList.tpl"}
+	</div>
 </div>
-</table>

@@ -30,12 +30,9 @@
 				</label>
 				<div class="col-md-3">
 					<select id="site_id" name="site_id" class="form-control">
-						<option value="" {if $site_id=="" }selected{/if}>
-							{t}Sélectionnez le site...{/t}
-						</option>
 						{section name=lst loop=$site}
 						<option value="{$site[lst].site_id}" } {if
-							$site[lst].site_id==$dataSearch.site_id}selected{/if}>
+							$site[lst].site_id==$site_id}selected{/if}>
 							{$site[lst].site_name}
 						</option>
 						{/section}
@@ -46,9 +43,9 @@
 				</label>
 				<div class="col-md-3">
 					<select name="annee" id="annee" class="form-control">
-						{foreach $annees as $annee}
-						<option value="{$annee}" {if $annee==$dataSearch.annee}selected{/if}>
-							{$annee}
+						{foreach $annees as $year}
+						<option value="{$year}" {if $annee==$year}selected{/if}>
+							{$year}
 						</option>
 						{/foreach}
 					</select>
@@ -118,9 +115,9 @@
 							</label>
 							<div class="col-md-4">
 								<select id="campagneAnnee" name="annee" class="form-control">
-									{foreach $annees as $annee}
-									<option value="{$annee}" {if $dataSearch.annee==$annee}selected{/if}>
-										{$annee}
+									{foreach $annees as $year}
+									<option value="{$year}" {if $year==$annee}selected{/if}>
+										{$year}
 									</option>
 									{/foreach}
 								</select>
@@ -130,6 +127,11 @@
 							<div class="col-md-12 center">
 								<input type="submit" class="btn btn-warning"
 									value="{t}Initialiser la liste des bassins pour la campagne{/t}">
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="text-info center">
+								{t}L'initialisation porte sur les bassins fléchés pour la reproduction, en activité{/t}
 							</div>
 						</div>
 					</div>

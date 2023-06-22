@@ -7,7 +7,7 @@
  *  Creation 13 mars 2015
  */
 
-require_once 'modules/classes/lot.class.php';
+require_once 'modules/classes/lotMesure.class.php';
 $dataClass = new LotMesure($bdd, $ObjetBDDParam);
 $keyName = "lot_mesure_id";
 $id = $_REQUEST[$keyName];
@@ -23,6 +23,7 @@ switch ($t_module["param"]) {
 		/*
 		 * Lecture du lot
 		 */
+		require_once "modules/classes/lot.class.php";
 		$lot = new Lot($bdd, $ObjetBDDParam);
 		$vue->set($lot->getDetail($data["lot_id"]), "dataLot");
 		break;

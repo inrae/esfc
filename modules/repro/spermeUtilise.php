@@ -6,11 +6,13 @@
  * @encoding : UTF-8
  * (c) 2016 - All rights reserved
  */
-require_once 'modules/classes/sperme.class.php';
+require_once 'modules/classes/spermeUtilise.class.php';
 $dataClass = new SpermeUtilise($bdd, $ObjetBDDParam);
 $keyName = "sperme_utilise_id";
 $id = $_REQUEST[$keyName];
-$vue->set($_SESSION["poissonDetailParent"], "poissonDetailParent");
+if (isset($vue)) {
+	$vue->set($_SESSION["poissonDetailParent"], "poissonDetailParent");
+}
 
 switch ($t_module["param"]) {
 	case "change":

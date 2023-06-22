@@ -69,7 +69,7 @@ switch ($t_module["param"]) {
 		 * If is a new record, generate a new record with default value :
 		 * $_REQUEST["idParent"] contains the identifiant of the parent record
 		 */
-		$data = dataRead($dataClass, $id, "repro/sequenceChange.tpl", $_REQUEST["idParent"]);
+		$data = dataRead($dataClass, $id, "repro/sequenceChange.tpl");
 		if ($id == 0) {
 			/*
 			 * Positionnement correct de la session par rapport à l'année courante

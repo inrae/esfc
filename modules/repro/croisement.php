@@ -29,7 +29,7 @@ switch ($t_module["param"]) {
 		/*
 		 * Recherche des spermes utilises
 		 */
-		require_once 'modules/classes/sperme.class.php';
+		require_once 'modules/classes/spermeUtilise.class.php';
 		$spermeUtilise = new SpermeUtilise($bdd, $ObjetBDDParam);
 		$vue->set($spermeUtilise->getListFromCroisement($id), "spermesUtilises");
 
@@ -76,6 +76,7 @@ switch ($t_module["param"]) {
 			/*
 			 * Mise a jour du statut dans poisson_sequence
 			 */
+			require_once "modules/classes/poissonSequence.class.php";
 			$poissonSequence = new PoissonSequence($bdd, $objetBDDParam);
 			foreach ($_REQUEST["poisson_campagne_id"] as $key => $value) {
 				$poissonSequence->updateStatutFromPoissonCampagne($value, $_REQUEST["sequence_id"], 5);

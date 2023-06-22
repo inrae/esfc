@@ -34,7 +34,7 @@
             <td class="center">
                 <a class="confirmation"
                     href="index.php?module=bassinCampagneDelete&bassin_campagne_id={$bassins[lst].bassin_campagne_id}">
-                    <img src="display/images/cross.png" height="25">
+                    <img src="display/images/cross.png" height="15">
                 </a>
             </td>
         </tr>

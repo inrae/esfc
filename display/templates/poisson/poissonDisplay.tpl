@@ -205,7 +205,6 @@
 						<legend>{t}Échographies{/t}</legend>
 						<div>
 							{include file="poisson/echographieList.tpl"}
-							<br>
 						</div>
 					</fieldset>
 				</div>
@@ -231,53 +230,52 @@
 				</div>
 			</div>
 		</div>
+		<div class="tab-pane fade" id="nav-genetique" role="tabpanel" aria-labelledby="tab-genetique">
+			<div class="col-md-6">
+				<fieldset>
+					<legend>{t}Prélèvements génétiques{/t}</legend>
+					<div>
+						{include file="poisson/genetiqueList.tpl"}
+					</div>
+				</fieldset>
+			</div>
+			<div class="col-md-6">
+				<fieldset>
+					<legend>{t}Détermination de la parenté{/t}</legend>
+					<div>
+						{include file="poisson/parenteList.tpl"}
+					</div>
+				</fieldset>
+			</div>
+			<div class="col-md-6">
+				<fieldset>
+					<legend>{t}Détermination de la cohorte{/t}</legend>
+					<div>
+						{include file="poisson/cohorteList.tpl"}
+						<br>
+					</div>
+				</fieldset>
+			</div>
+			<div class="col-md-6">
+				<fieldset>
+					<legend>{t}Détermination du sexe{/t}</legend>
+					<div>
+						{include file="poisson/genderSelectionList.tpl"}
+						<br>
+					</div>
+				</fieldset>
+			</div>
+		</div>
+		<div class="tab-pane fade" id="nav-anomalie" role="tabpanel" aria-labelledby="tab-anomalie">
+			<div class="col-md-6">
+				{if $droits["poissonGestion"] == 1}
+				<a
+					href="index.php?module=anomalieChange&poisson_id={$dataPoisson.poisson_id}&anomalie_db_id=0&module_origine=poissonDisplay">
+					{t}Créer une anomalie manuellement{/t}
+				</a>
+				{/if}
+				{include file="poisson/anomalieDbList.tpl"}
+			</div>
+		</div>
 	</div>
-	<div class="tab-pane fade" id="nav-genetique" role="tabpanel" aria-labelledby="tab-genetique">
-		<div class="col-md-6">
-			<fieldset>
-				<legend>{t}Prélèvements génétiques{/t}</legend>
-				<div>
-					{include file="poisson/genetiqueList.tpl"}
-				</div>
-			</fieldset>
-		</div>
-		<div class="col-md-6">
-			<fieldset>
-				<legend>{t}Détermination de la parenté{/t}</legend>
-				<div>
-					{include file="poisson/parenteList.tpl"}
-				</div>
-			</fieldset>
-		</div>
-		<div class="col-md-6">
-			<fieldset>
-				<legend>{t}Détermination de la cohorte{/t}</legend>
-				<div>
-					{include file="poisson/cohorteList.tpl"}
-					<br>
-				</div>
-			</fieldset>
-		</div>
-		<div class="col-md-6">
-			<fieldset>
-				<legend>{t}Détermination du sexe{/t}</legend>
-				<div>
-					{include file="poisson/genderSelectionList.tpl"}
-					<br>
-				</div>
-			</fieldset>
-		</div>
-	</div>
-	<div class="tab-pane fade" id="nav-anomalie" role="tabpanel" aria-labelledby="tab-anomalie">
-		<div class="col-md-6">
-			{if $droits["poissonGestion"] == 1}
-			<a
-				href="index.php?module=anomalieChange&poisson_id={$dataPoisson.poisson_id}&anomalie_db_id=0&module_origine=poissonDisplay">
-				{t}Créer une anomalie manuellement{/t}
-			</a>
-			{/if}
-			{include file="poisson/anomalieDbList.tpl"}
-		</div>
-	</div>
-</div>
 </div>

@@ -18,13 +18,15 @@ switch ($t_module["param"]) {
 		/*
 		 * Display the list of all records of the table
 		 */
-
+		if (!isset($_SESSION["alimJuv"])) {
+			$_SESSION["alimJuv"] = new AlimJuv();
+		}
 		require_once 'modules/classes/poissonCampagne.class.php';
 		$poissonCampagne = new PoissonCampagne($bdd, $ObjetBDDParam);
 		$vue->set($poissonCampagne->getAnnees(), "annees");
 		$vue->set($dataClass->getLotByAnnee($_SESSION["annee"]), "lots");
 		$vue->set("repro/lotSearch.tpl", "corps");
-		$vue->set($alimJuv->getParam(), "dataAlim");
+		$vue->set($_SESSION["alimJuv"]->getParam(), "dataAlim");
 		/**
 		 * Site
 		 */
@@ -66,9 +68,14 @@ switch ($t_module["param"]) {
 		 * If is a new record, generate a new record with default value :
 		 * $_REQUEST["idParent"] contains the identifiant of the parent record
 		 */
-		dataRead($dataClass, $id, "repro/lotChange.tpl", $_REQUEST["sequence_id"]);
+		dataRead($dataClass, $id, "repro/lotChange.tpl");
+		if (isset($_REQUEST["sequence_id"])) {
+			require_once "modules/classes/sequence.class.php";
+			$sequence = new Sequence($bdd, $ObjetBDDParam);
+			$vue->set($sequence->lire($_REQUEST["sequence_id"]), "sequence");
+		}
 		/*
-		 * Lecture de la liste des sequences
+		 * Lecture de la liste des croisements
 		 */
 		require_once 'modules/classes/croisement.class.php';
 		$croisement = new Croisement($bdd, $ObjetBDDParam);

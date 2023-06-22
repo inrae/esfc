@@ -2,7 +2,7 @@
     <img src="display/images/list.png" height="25">
     {t}Retour à la liste des séquences{/t}
 </a>
-<h2>{t}Modification d'une séquence{/t}</h2>
+<h2>{t}Modification de la séquence{/t}</h2>
 
 <div class="row">
     <div class="col-md-6">
@@ -16,8 +16,7 @@
                     {t}Année :{/t}<span class="red">*</span>
                 </label>
                 <div class="col-md-8">
-                    <input id="annee" class="form-control" name="annee" readonly size="10" maxlength="10"
-                        value="{$data.annee}">
+                    <input id="annee" class="form-control" name="annee" readonly value="{$data.annee}">
                 </div>
             </div>
             <div class="form-group">
