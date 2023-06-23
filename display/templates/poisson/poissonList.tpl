@@ -10,8 +10,8 @@
         {t}Liste de tous les événements pour les poissons sélectionnés au format CSV{/t}
     </a>
 </div>
-
-<table class="table table-bordered table-hover datatable-export-paging" id="cpoissonList" class="tableliste">
+<table class="table table-bordered table-hover datatable-export-paging" id="cpoissonList" {if
+    strlen($poissonSearch.eventSearch)>0} data-order='[[2,"asc"],[7,"asc"]]'{else} data-order='[[2,"asc"]]'{/if}>
     <thead>
         <tr>
             <th>{t}Id{/t}</th>
@@ -21,6 +21,9 @@
             <th>{t}Sexe{/t}</th>
             <th>{t}Statut{/t}</th>
             <th>{t}Cohorte{/t}</th>
+            {if strlen($poissonSearch.eventSearch)>0}
+            <th>{$eventSearchs[$poissonSearch.eventSearch]}</th>
+            {/if}
             <th>{t}Date de capture /naissance{/t}</th>
             <th>{t}Date de mortalité{/t}</th>
             {if $poissonSearch.displayBassin == 1}
@@ -39,28 +42,54 @@
     <tbody>
         {section name=lst loop=$data}
         <tr>
-            <td><a href="index.php?module=poissonDisplay&poisson_id={$data[lst].poisson_id}">
+            <td>
+                {if $data[lst].poisson_id!=$data[lst.index_prev].poisson_id}
+                <a href="index.php?module=poissonDisplay&poisson_id={$data[lst].poisson_id}">
                     {$data[lst].poisson_id}
                 </a>
+                {/if}
             </td>
             <td>
+                {if $data[lst].poisson_id!=$data[lst.index_prev].poisson_id}
                 <a href="index.php?module=poissonDisplay&poisson_id={$data[lst].poisson_id}">
                     {$data[lst].pittag_valeur}
                 </a>
+                {/if}
             </td>
             <td>
+                {if $data[lst].poisson_id!=$data[lst.index_prev].poisson_id}
                 <a href="index.php?module=poissonDisplay&poisson_id={$data[lst].poisson_id}">
                     {$data[lst].matricule}
                 </a>
+                {else}
+                <span class="text-muted">{$data[lst].matricule}</span>
+                {/if}
             </td>
             <td>
+                {if $data[lst].poisson_id!=$data[lst.index_prev].poisson_id}
                 <a href="index.php?module=poissonDisplay&poisson_id={$data[lst].poisson_id}">
                     {$data[lst].prenom}
                 </a>
+                {/if}
             </td>
-            <td class="center">{$data[lst].sexe_libelle_court}</td>
-            <td>{$data[lst].categorie_libelle} {$data[lst].poisson_statut_libelle}</td>
-            <td class="center">{$data[lst].cohorte}</td>
+            <td class="center">
+                {if $data[lst].poisson_id!=$data[lst.index_prev].poisson_id}
+                {$data[lst].sexe_libelle_court}
+                {/if}
+            </td>
+            <td>
+                {if $data[lst].poisson_id!=$data[lst.index_prev].poisson_id}
+                {$data[lst].categorie_libelle} {$data[lst].poisson_statut_libelle}
+                {/if}
+            </td>
+            <td class="center">
+                {if $data[lst].poisson_id!=$data[lst.index_prev].poisson_id}
+                {$data[lst].cohorte}
+                {/if}
+            </td>
+            {if strlen($poissonSearch.eventSearch)>0}
+            <td>{$data[lst].event_date}</td>
+            {/if}
             <td class="center">{$data[lst].capture_date}{$data[lst].date_naissance}</td>
             <td class="center">{$data[lst].mortalite_date}</td>
             {if $poissonSearch.displayBassin == 1}
