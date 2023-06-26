@@ -41,6 +41,7 @@ switch ($t_module["param"]) {
 		/*
 		 * Recuperation des emplacements d'implantation des marques vie
 		 */
+		require_once "modules/classes/vieImplantation.class.php";
 		$vieImplantation = new VieImplantation($bdd, $ObjetBDDParam);
 		$vue->set($vieImplantation->getListe(2), "implantations");
 
