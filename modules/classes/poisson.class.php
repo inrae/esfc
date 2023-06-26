@@ -155,7 +155,7 @@ class Poisson extends ObjetBDD
                 $where .= $and . "es." . $dataSearch["eventSearch"] . "_date" . " between :dateFromEvent and :dateToEvent";
                 $param["dateFromEvent"] = $this->formatDateLocaleVersDB($dataSearch["dateFromEvent"]);
                 $param["dateToEvent"] =  $this->formatDateLocaleVersDB($dataSearch["dateToEvent"]);
-                $sql .= "," . $dataSearch["eventSearch"] . "_date as event_date";
+                $sql .= ",es." . $dataSearch["eventSearch"] . "_date as event_date";
                 $and = " and ";
                 $this->colonnes["event_date"] = array("type" => 2);
                 $order .= ",event_date";

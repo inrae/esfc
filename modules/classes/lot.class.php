@@ -7,6 +7,9 @@
  *  Creation 13 mars 2015
  */
 
+class lotException extends Exception
+{
+}
 /**
  * ORM  de gestion de la table Lot
  * @author quinton
@@ -211,7 +214,8 @@ class Lot extends ObjetBDD
 		return $this->getListeParamAsPrepared($sql, array(
 			"date_debut" => $dateDebut,
 			"annee" => substr($dateDebut, 0, 4)
-		));
+		)
+		);
 	}
 
 	/**
@@ -229,8 +233,9 @@ class Lot extends ObjetBDD
 			if ($i > 1) {
 				$liste .= ", ";
 			}
-			$liste .= "lot" . $i;
+			$liste .= ":lot" . $i;
 			$param["lot" . $i] = $value;
+			$i++;
 		}
 		if ($i > 1) {
 			$sql = "select lot_id, lot_nom, croisement_id, nb_larve_initial, eclosion_date,

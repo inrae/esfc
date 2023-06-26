@@ -11,11 +11,13 @@
 /*
  * Recuperation des parametres pour l'alimentation
  */
-$alimJuv->setParam ( $_REQUEST );
-$paramAlim = $alimJuv->getParam ();
-if (! $paramAlim ["densite"] > 0)
-	$paramAlim ["densite"] = 1;
-	/*
+
+$_SESSION["alimJuv"]->setParam($_REQUEST);
+$paramAlim = $_SESSION["alimJuv"]->getParam();
+if (!$paramAlim["densite"] > 0) {
+	$paramAlim["densite"] = 1;
+}
+/*
  * Recherche des lots à traiter
  */
 require_once 'modules/classes/lot.class.php';
@@ -27,16 +29,15 @@ require_once "modules/classes/lotRepartTemplate.class.php";
 require_once 'modules/classes/tableauRepartition.class.php';
 require_once "modules/classes/repartition.class.php";
 require_once "modules/classes/repartitionJuvenileLot.class.php";
-$lot = new Lot ( $bdd, $ObjetBDDParam );
-$bassinLot = new BassinLot ( $bdd, $ObjetBDDParam );
-$lotMesure = new LotMesure ( $bdd, $ObjetBDDParam );
-$alimentQuotidien = new AlimentQuotidien ( $bdd, $ObjetBDDParam );
-$distribQuotidien = new DistribQuotidien ( $bdd, $ObjetBDDParam );
-$lotRepartTempate = new LotRepartTemplate ( $bdd, $ObjetBDDParam );
-$repartition = new Repartition ( $bdd, $ObjetBDDParam );
-//$lots = $lot->getListAfterDate ( $paramAlim ["date_debut_alim"] );
-$lots = $lot->getDataFromListe($_REQUEST["lots"]);
-$date = DateTime::createFromFormat ( "d/m/Y", $paramAlim ["date_debut_alim"] );
+$lotClass = new Lot($bdd, $ObjetBDDParam);
+$bassinLot = new BassinLot($bdd, $ObjetBDDParam);
+$lotMesure = new LotMesure($bdd, $ObjetBDDParam);
+$alimentQuotidien = new AlimentQuotidien($bdd, $ObjetBDDParam);
+$distribQuotidien = new DistribQuotidien($bdd, $ObjetBDDParam);
+$lotRepartTempate = new LotRepartTemplate($bdd, $ObjetBDDParam);
+$repartition = new Repartition($bdd, $ObjetBDDParam);
+$lots = $lotClass->getDataFromListe($_REQUEST["lots"]);
+$date = DateTime::createFromFormat("d/m/Y", $paramAlim["date_debut_alim"]);
 
 /**
  * $bassins[$bassin_nom] = array("artemia"=>Qté artémies, "chironome"=>masse chironome,
@@ -44,129 +45,139 @@ $date = DateTime::createFromFormat ( "d/m/Y", $paramAlim ["date_debut_alim"] );
  * "lots" => liste des lots presents,
  * "bassin_nom"=> nom du bassin);
  */
-$bassins = array ();
+$bassins = array();
 $artemiaFlag = false;
+$error = false;
 /*
  * Traitement de chaque lot
  */
-foreach ( $lots as $key => $value ) {
+try {
+foreach ($lots as $lot) {
 	/*
 	 * Recuperation du bassin
 	 */
-	$dataBassin = $bassinLot->getBassin ( $value ["lot_id"], $paramAlim ["date_debut_alim"] );
-	if (strlen ( $dataBassin ["bassin_nom"] ) == 0) {
-		$dataBassin ["bassin_nom"] = "Inconnu";
-	}
-	/*
-	 * Affectation du nom du lot au bassin
-	 */
-	if (strlen ( $bassins [$dataBassin ["bassin_nom"]] ["lot_nom"] ) > 0)
-		$bassins [$dataBassin ["bassin_nom"]] ["lot_nom"] .= " ,";
-	$bassins [$dataBassin ["bassin_nom"]] ["lot_nom"] = $value ["sequence_nom"] . "-" . $value ["lot_nom"];
-	$bassins [$dataBassin ["bassin_nom"]] ["bassin_nom"] = $dataBassin ["bassin_nom"];
-	$bassins [$dataBassin ["bassin_nom"]] ["bassin_id"] = $dataBassin ["bassin_id"];
-	/*
-	 * Calcul du nombre de poissons presents et de la masse des poissons du lot
-	 */
-	$dataLotMesure = $lotMesure->getMesureAtDate ( $value ["lot_id"], $paramAlim ["date_debut_alim"] );
-	$nbPoisson = $value ["nb_larve_initial"] - $dataLotMesure ["lot_mortalite"];
-	if (! $nbPoisson > 0)
-		$nbPoisson = 0;
-	$massePoisson = $nbPoisson * $dataLotMesure ["masse_indiv"];
-	/*
-	 * Calcul du nombre de jours ecoules depuis la naissance
-	 */
-	$dateNaissance = DateTime::createFromFormat ( "d/m/Y", $value ["eclosion_date"] );
-	$intervalle = date_diff ( $dateNaissance, $date );
-	$nbJour = $intervalle->format ( '%a' );
-	if ($nbJour > 0) {
+	$dataBassin = $bassinLot->getBassin($lot["lot_id"], $paramAlim["date_debut_alim"]);
+	if (empty($dataBassin)) {
+		$message->set(sprintf(_("Le lot %s n'est pas affecté à un bassin, la génération de l'alimentation n'est pas possible"), $lot["lot_nom"]), true);
+		$error = true;
+	} else {
 		/*
-		 * Forcage de l'age le plus grand, si deux lots dans le même bassin
+		 * Affectation du nom du lot au bassin
 		 */
-		if ($nbJour > $bassins [$dataBassin ["bassin_nom"]] ["age"] || is_null ( $bassins [$dataBassin ["bassin_nom"]] ["age"] ))
-			$bassins [$dataBassin ["bassin_nom"]] ["age"] = $nbJour;
+		if (strlen($bassins[$dataBassin["bassin_nom"]]["lot_nom"]) > 0) {
+			$bassins[$dataBassin["bassin_nom"]]["lot_nom"] .= " ,";
+		}
+		$bassins[$dataBassin["bassin_nom"]]["lot_nom"] = $lot["sequence_nom"] . "-" . $lot["lot_nom"];
+		$bassins[$dataBassin["bassin_nom"]]["bassin_nom"] = $dataBassin["bassin_nom"];
+		$bassins[$dataBassin["bassin_nom"]]["bassin_id"] = $dataBassin["bassin_id"];
+		/*
+		 * Calcul du nombre de poissons presents et de la masse des poissons du lot
+		 */
+		$dataLotMesure = $lotMesure->getMesureAtDate($lot["lot_id"], $paramAlim["date_debut_alim"]);
+		$nbPoisson = $lot["nb_larve_initial"] - $dataLotMesure["lot_mortalite"];
+		if (!$nbPoisson > 0) {
+			$nbPoisson = 0;
+		}
+		$massePoisson = $nbPoisson * $dataLotMesure["masse_indiv"];
+		/*
+		 * Calcul du nombre de jours ecoules depuis la naissance
+		 */
+		$dateNaissance = DateTime::createFromFormat("d/m/Y", $lot["eclosion_date"]);
+		$intervalle = date_diff($dateNaissance, $date);
+		$nbJour = $intervalle->format('%a');
+		if ($nbJour > 0) {
 			/*
-		 * Recuperation de la quantite a distribuer
-		 */
-		$repart = $lotRepartTempate->getFromAge ( $nbJour );
-		/*
-		 * Calcul du nombre d'artemies a distribuer
-		 */
-		if ($repart ["artemia"] > 0) {
-			$bassins [$dataBassin ["bassin_nom"]] ["artemia"] = + $nbPoisson * $repart ["artemia"];
-			$artemiaFlag = true;
-		}
-		/*
-		 * Calcul de la masse de chironomes a distribuer
-		 */
-		if ($repart ["chironome"] > 0) {
-			$bassins [$dataBassin ["bassin_nom"]] ["chironome"] = + intval ( $massePoisson * $repart ["chironome"] / 100 );
+			 * Forcage de l'age le plus grand, si deux lots dans le même bassin
+			 */
+			if ($nbJour > $bassins[$dataBassin["bassin_nom"]]["age"] || is_null($bassins[$dataBassin["bassin_nom"]]["age"]))
+				$bassins[$dataBassin["bassin_nom"]]["age"] = $nbJour;
+			/*
+			 * Recuperation de la quantite a distribuer
+			 */
+			$repart = $lotRepartTempate->getFromAge($nbJour);
+			/*
+			 * Calcul du nombre d'artemies a distribuer
+			 */
+			if ($repart["artemia"] > 0) {
+				$bassins[$dataBassin["bassin_nom"]]["artemia"] = +$nbPoisson * $repart["artemia"];
+				$artemiaFlag = true;
+			}
+			/*
+			 * Calcul de la masse de chironomes a distribuer
+			 */
+			if ($repart["chironome"] > 0) {
+				$bassins[$dataBassin["bassin_nom"]]["chironome"] = +intval($massePoisson * $repart["chironome"] / 100);
+			}
 		}
 	}
+}
+if ($error) {
+	throw New lotException(_("Certains lots ne sont pas affectés dans des bassins"));
 }
 
 /*
  * Calcul de la quantite d'artemia a distribuer (en ml, en fonction de la densite)
  */
 if ($artemiaFlag == true) {
-	foreach ( $bassins as $key => $value ) {
-		if ($value ["artemia"] > 0) {
-			$bassins [$key] ["volumeArtemia"] = intval ( $value ["artemia"] / $paramAlim ["densite"] );
+	foreach ($bassins as $key => $value) {
+		if ($value["artemia"] > 0) {
+			$bassins[$key]["volumeArtemia"] = intval($value["artemia"] / $paramAlim["densite"]);
 		}
 	}
 }
 /*
  * Ecriture de l'alimentation en base
  */
-if ($artemiaFlag == true)
-	$paramAlim ["duree"] = 1;
+if ($artemiaFlag == true) {
+	$paramAlim["duree"] = 1;
+}
 
-$jour = new DateInterval ( "P1D" );
-foreach ( $bassins as $key => $bassin ) {
-	if ($bassin ["artemia"] > 0 || $bassin ["chironome"] > 0) {
+$jour = new DateInterval("P1D");
+foreach ($bassins as $bassin) {
+	if ($bassin["artemia"] > 0 || $bassin["chironome"] > 0) {
 		/*
 		 * Traitement de chaque jour
 		 */
-		$dateCalcul = DateTime::createFromFormat ( "d/m/Y", $paramAlim ["date_debut_alim"] );
-		for($i = 0; $i < $paramAlim ["duree"]; $i ++) {
+		$dateCalcul = DateTime::createFromFormat("d/m/Y", $paramAlim["date_debut_alim"]);
+		for ($i = 0; $i < $paramAlim["duree"]; $i++) {
 			if ($i > 0)
-				$dateCalcul->add ( $jour );
-				/*
+				$dateCalcul->add($jour);
+			/*
 			 * Suppression des donnees du bassin
 			 */
-			$alimentQuotidien->deleteFromDateBassin ( $dateCalcul->format ( "Y-m-d" ), $bassin ["bassin_id"] );
+			$alimentQuotidien->deleteFromDateBassin($dateCalcul->format("Y-m-d"), $bassin["bassin_id"]);
 			/*
 			 * Creation des donnees d'alimentation
 			 */
-			$dataQuotidien = array (
-					"bassin_id" => $bassin ["bassin_id"],
-					"distrib_quotidien_date" => $dateCalcul->format ( "d/m/Y" ) 
+			$dataQuotidien = array(
+				"bassin_id" => $bassin["bassin_id"],
+				"distrib_quotidien_date" => $dateCalcul->format("d/m/Y")
 			);
-			$idDataQuotidien = $distribQuotidien->ecrireFromBassinDate ( $dataQuotidien );
+			$idDataQuotidien = $distribQuotidien->ecrireFromBassinDate($dataQuotidien);
 			if ($idDataQuotidien > 0) {
 				/*
 				 * Traitement des artemia
 				 */
-				if ($bassin ["artemia"] > 0) {
-					$dataAlim = array (
-							"aliment_quotidien_id" => 0,
-							"aliment_id" => 25,
-							"distrib_quotidien_id" => $idDataQuotidien,
-							"quantite" => $bassin ["artemia"] 
+				if ($bassin["artemia"] > 0) {
+					$dataAlim = array(
+						"aliment_quotidien_id" => 0,
+						"aliment_id" => 25,
+						"distrib_quotidien_id" => $idDataQuotidien,
+						"quantite" => $bassin["artemia"]
 					);
-					$alimentQuotidien->ecrire ( $dataAlim );
+					$alimentQuotidien->ecrire($dataAlim);
 				}
 				/*
 				 * Traitement des chironomes
 				 */
-				if ($bassin ["chironome"] > 0) {
-					$dataAlim = array (
-							"aliment_quotidien_id" => 0,
-							"aliment_id" => 1,
-							"distrib_quotidien_id" => $idDataQuotidien,
-							"quantite" => $bassin ["chironome"] 
+				if ($bassin["chironome"] > 0) {
+					$dataAlim = array(
+						"aliment_quotidien_id" => 0,
+						"aliment_id" => 1,
+						"distrib_quotidien_id" => $idDataQuotidien,
+						"quantite" => $bassin["chironome"]
 					);
-					$alimentQuotidien->ecrire ( $dataAlim );
+					$alimentQuotidien->ecrire($dataAlim);
 				}
 			}
 		}
@@ -175,29 +186,34 @@ foreach ( $bassins as $key => $bassin ) {
 /*
  * Ecriture de la repartition
  */
-$dateFin = DateTime::createFromFormat ( "d/m/Y", $paramAlim ["date_debut_alim"] );
-if ($paramAlim ["duree"] > 1) {
-	$jour = new DateInterval ( "P" . ($paramAlim ["duree"] - 1) . "D" );
-	$dateFin->add ( $jour );
+$dateFin = DateTime::createFromFormat("d/m/Y", $paramAlim["date_debut_alim"]);
+if ($paramAlim["duree"] > 1) {
+	$jour = new DateInterval("P" . ($paramAlim["duree"] - 1) . "D");
+	$dateFin->add($jour);
 }
 
-$dataRepartition = array (
-		"repartition_id" => 0,
-		"categorie_id" => 3,
-		"date_debut_periode" => $paramAlim ["date_debut_alim"],
-		"date_fin_periode" => $dateFin->format ( "d/m/Y" ),
-		"densite_artemia" => $paramAlim ["densite"] 
+$dataRepartition = array(
+	"repartition_id" => 0,
+	"categorie_id" => 3,
+	"date_debut_periode" => $paramAlim["date_debut_alim"],
+	"date_fin_periode" => $dateFin->format("d/m/Y"),
+	"densite_artemia" => $paramAlim["densite"]
 );
-$repartition->ecrireFromDateCategorie ( $dataRepartition );
+$repartition->ecrireFromDateCategorie($dataRepartition);
 
 /*
  * Tri du bassin
  */
-ksort ( $bassins );
+ksort($bassins);
 /*
  * Fin du traitement des donnees
  * Declenchement de la generation du PDF
  */
-$pdf = new RepartitionJuvenileLot ();
-$pdf->setData ( $dataRepartition, $bassins, $artemiaFlag );
-$pdf->exec ();
+$pdf = new RepartitionJuvenileLot();
+$pdf->setData($dataRepartition, $bassins, $artemiaFlag);
+$pdf->exec();
+} catch (lotException $le) {
+	$module_coderetour = -1;
+	$message->set($le->getMessage());
+	$message->set(_("La génération de la fiche d'alimentation a échoué"), true);
+}

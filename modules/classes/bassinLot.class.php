@@ -131,14 +131,15 @@ class BassinLot extends ObjetBDD
 					bassin_nom
 					from bassin_lot
 					join bassin using (bassin_id)
-					where bl_date_arrivee < :date_arrivee
+					where bl_date_arrivee <= :date_arrivee
 						and lot_id = :lot_id
 					order by bl_date_arrivee desc
 					limit 1";
-			return $this->lireParamAsPrepared($sql, array(
+					$param =  array(
 				"date_arrivee" => $date,
 				"lot_id" => $lot_id
-			));
+					);
+			return $this->lireParamAsPrepared($sql,$param);
 		} else {
 			return array();
 		}

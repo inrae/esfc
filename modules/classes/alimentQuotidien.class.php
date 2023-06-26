@@ -49,7 +49,6 @@ class AlimentQuotidien extends ObjetBDD
 	function deleteFromDateBassin($date, $bassin_id)
 	{
 		if (strlen($date) > 0 && $bassin_id > 0 && is_numeric($bassin_id)) {
-			$date = $this->encodeData($date);
 			$sql = "delete from aliment_quotidien
 					using distrib_quotidien
 					where distrib_quotidien.distrib_quotidien_id = aliment_quotidien.distrib_quotidien_id

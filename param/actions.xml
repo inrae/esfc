@@ -339,7 +339,7 @@
 	<bassinLotWrite action="modules/repro/bassinLot.php" param="write" droits="reproGestion" modulebefore="bassinLotChange" retourok="lotDisplay" retourko="bassinLotChange"/>
 	<bassinLotDelete action="modules/repro/bassinLot.php" param="delete" droits="reproGestion" modulebefore="bassinLotChange" retourok="lotDisplay" retourko="bassinLotChange"/>
 
-	<lotalimGenerate action="modules/repro/lotAlim.php" droits="reproGestion,bassinGestion"  type="ajax" modulebefore="lotList"/>
+	<lotalimGenerate action="modules/repro/lotAlim.php" droits="reproGestion,bassinGestion"  type="pdf" modulebefore="lotList" retourko="lotList"/>
 
 	<devenirList action="modules/repro/devenir.php" param="list" retourlogin="1" droits="reproConsult"  type="smarty"/>
 	<devenirChange action="modules/repro/devenir.php" param="change" droits="reproGestion" type="smarty" />
