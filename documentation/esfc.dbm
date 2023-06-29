@@ -3,7 +3,7 @@
 CAUTION: Do not modify this file unless you know what you are doing.
  Unexpected results may occur if the code is changed deliberately.
 -->
-<dbmodel pgmodeler-ver="1.0.4" use-changelog="false" author="Eric Quinton" last-position="173,1025" last-zoom="0.7" max-obj-count="170"
+<dbmodel pgmodeler-ver="1.0.4" use-changelog="false" author="Eric Quinton" last-position="171,1023" last-zoom="0.7" max-obj-count="170"
 	 default-owner="postgres"
 	 layers="Default layer"
 	 active-layers="0"
@@ -2983,15 +2983,15 @@ Le premier chiffre correspond au lundi]]> </comment>
 	<role name="quinton"/>
 </sequence>
 
-<table name="requete" layers="0" collapse-mode="1" max-obj-count="8" z-value="0">
+<table name="request" layers="0" collapse-mode="1" max-obj-count="8" z-value="0">
 	<schema name="public"/>
 	<role name="quinton"/>
 	<comment> <![CDATA[Table des requêtes dans la base de données]]> </comment>
 	<position x="20" y="2920"/>
-	<column name="requete_id" not-null="true" sequence="public.requete_requete_id_seq">
+	<column name="request_id" not-null="true" sequence="public.requete_requete_id_seq">
 		<type name="integer" length="0"/>
 	</column>
-	<column name="creation_date" not-null="true">
+	<column name="create_date" not-null="true">
 		<type name="timestamp" length="0"/>
 		<comment> <![CDATA[Date de création de la requête]]> </comment>
 	</column>
@@ -3015,8 +3015,8 @@ Le premier chiffre correspond au lundi]]> </comment>
 		<type name="character varying" length="0"/>
 		<comment> <![CDATA[Liste des champs de type date utilisés dans la requête, séparés par une virgule, pour formatage en sortie]]> </comment>
 	</column>
-	<constraint name="requete_pk" type="pk-constr" table="public.requete">
-		<columns names="requete_id" ref-type="src-columns"/>
+	<constraint name="requete_pk" type="pk-constr" table="public.request">
+		<columns names="request_id" ref-type="src-columns"/>
 	</constraint>
 </table>
 

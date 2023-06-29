@@ -370,4 +370,5 @@
 	<siteWrite action="modules/parametre/site.php" param="write" droits="paramAdmin" modulebefore="siteChange" retourok="siteList" retourko="siteChange"/>
 	<siteDelete action="modules/parametre/site.php" param="delete" droits="paramAdmin" modulebefore="siteChange" retourok="siteList" retourko="siteChange"/>
 
+	<dbstructureSchema action="framework/utils/structure.php" param="schema" realfilename="documentation/esfc.png" generatedfilename="esfc-database.png" retourlogin="1" type="binaire" droits="requeteAdmin" maxCountByHour="60" maxCountByDay="600" />
 </navigation>
