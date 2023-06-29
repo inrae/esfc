@@ -102,7 +102,7 @@ $SMARTY_param = array(
  * Variables de base de l'application
  */
 $APPLI_mail = "proto@proto.com";
-$APPLI_nom = "Prototype d'application";
+$APPLI_nom = "ESFC";
 $APPLI_code = 'proto';
 $APPLI_fds = "display/CSS/blue.css";
 $APPLI_address = "http://localhost/proto";

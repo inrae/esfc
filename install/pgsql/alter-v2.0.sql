@@ -44,6 +44,10 @@ COMMENT ON TABLE "dbversion" IS 'Table of database versions';
 COMMENT ON COLUMN "dbversion"."dbversion_number" IS 'Version number';
 COMMENT ON COLUMN "dbversion"."dbversion_date" IS 'Version date';
 
+alter table requete rename to request;
+alter table request rename column requete_id to request_id;
+alter table request rename column creation_date to create_date;
+update request set body = 'select ' || body;
 
 ALTER SEQUENCE "dbversion_dbversion_id_seq" OWNED BY "dbversion"."dbversion_id";
 

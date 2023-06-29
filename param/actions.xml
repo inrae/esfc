@@ -356,16 +356,14 @@
 	<ventilationCampagneWrite action="modules/poisson/ventilation.php" param="write" droits="reproGestion,poissonGestion" modulebefore="ventilationChange" retourok="poissonCampagneDisplay" retourko="ventilationChange"/>
 	<ventilationCampagneDelete action="modules/poisson/ventilation.php" param="delete" droits="reproGestion,poissonGestion" modulebefore="ventilationChange" retourok="poissonCampagneDisplay" retourko="ventilationChange"/>
 
-	<requeteList action="modules/parametre/requete.php" param="list" retourlogin="1" droits="requete" type="smarty" />
-	<requeteChange action="modules/parametre/requete.php" param="change" droits="requeteAdmin"  type="smarty"/>
-	<requeteWrite action="modules/parametre/requete.php" param="write" droits="requeteAdmin" modulebefore="requeteChange,requeteCopy" retourok="requeteChange" retourko="requeteChange"/>
-	<requeteDelete action="modules/parametre/requete.php" param="delete" droits="requeteAdmin" modulebefore="requeteChange,requeteExec,requeteWriteExec,requeteExecList" retourok="requeteList" retourko="requeteChange"/>
-	<requeteExec action="modules/parametre/requete.php" param="exec" droits="requete" />
-	<requeteExecList action="modules/parametre/requete.php" param="execListe" droits="requete"  type="smarty"/>
-	<requeteWriteExec action="modules/parametre/requete.php" param="write" droits="requeteAdmin" modulebefore="requeteChange,requeteExec,requeteWriteExec" retourok="requeteExec" retourko="requeteChange"/>
-	<requeteCopy action="modules/parametre/requete.php" param="copy" droits="requeteAdmin" type="smarty" />
-	<getStructureDatabase action="doc/getFilePdf.php" param="database/esfc-v1.8.html" droits="requete"  type="file"/>
-	<getSchemaDatabase action="doc/getFilePdf.php" param="database/esfc_schema.png" droits="requete" type="file"/>
+	<requestList action="framework/request/request.php" param="list" retourlogin="1" droits="requete" type="smarty" />
+	<requestChange action="framework/request/request.php" param="change" droits="requeteAdmin" type="smarty" />
+	<requestWrite action="framework/request/request.php" param="write" droits="requeteAdmin" modulebefore="requestChange,requestCopy,requestExec,requestWriteExec" retourok="requestChange" retourko="requestChange" />
+	<requestDelete action="framework/request/request.php" param="delete" droits="requeteAdmin" modulebefore="requestChange,requestExec,requestWriteExec,requestExecList" retourok="requestList" retourko="requestChange" />
+	<requestExec action="framework/request/request.php" param="exec" droits="requete" type="html" />
+	<requestExecList action="framework/request/request.php" param="execList" droits="requete" type="html" />
+	<requestWriteExec action="framework/request/request.php" param="write" droits="requeteAdmin" modulebefore="requestChange,requestExec,requestWriteExec,requestExecList" retourok="requestExec" retourko="requestChange" />
+	<requestCopy action="framework/request/request.php" param="copy" droits="requeteAdmin" type="smarty" />
 
 	<siteList action="modules/parametre/site.php" param="list" retourlogin="1" droits="consult" type="smarty" />
 	<siteChange action="modules/parametre/site.php" param="change" droits="paramAdmin"  type="smarty"/>
