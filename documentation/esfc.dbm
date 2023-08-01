@@ -3,7 +3,7 @@
 CAUTION: Do not modify this file unless you know what you are doing.
  Unexpected results may occur if the code is changed deliberately.
 -->
-<dbmodel pgmodeler-ver="1.0.4" use-changelog="false" author="Eric Quinton" last-position="171,1023" last-zoom="0.7" max-obj-count="170"
+<dbmodel pgmodeler-ver="1.0.5" use-changelog="false" author="Eric Quinton" last-position="170,0" last-zoom="0.7" max-obj-count="170"
 	 default-owner="postgres"
 	 layers="Default layer"
 	 active-layers="0"
@@ -781,7 +781,7 @@ where longitude_start is not null and latitude_start is not null and geom_point 
 	<role name="quinton"/>
 </sequence>
 
-<table name="bassin" layers="0" collapse-mode="1" max-obj-count="16" z-value="0">
+<table name="bassin" layers="0" collapse-mode="1" max-obj-count="18" z-value="0">
 	<schema name="public"/>
 	<role name="quinton"/>
 	<comment> <![CDATA[Description des bassins]]> </comment>
@@ -836,6 +836,11 @@ where longitude_start is not null and latitude_start is not null and geom_point 
 	</column>
 	<column name="site_id">
 		<type name="integer" length="0"/>
+	</column>
+	<column name="mode_calcul_masse" default-value="0">
+		<type name="smallint" length="0"/>
+		<comment> <![CDATA[0: masse globale connue
+1: par échantillonnage par rapport à la dernière date de mesure]]> </comment>
 	</column>
 	<constraint name="bassin_pk" type="pk-constr" table="public.bassin">
 		<columns names="bassin_id" ref-type="src-columns"/>

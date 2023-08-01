@@ -49,6 +49,10 @@ alter table request rename column requete_id to request_id;
 alter table request rename column creation_date to create_date;
 update request set body = 'select ' || body;
 
+alter table bassin add column mode_calcul_masse smallint DEFAULT 0;
+COMMENT ON COLUMN public.bassin.mode_calcul_masse IS E'0: masse globale connue\n1: par échantillonnage par rapport à la dernière date de mesure';
+
+
 ALTER SEQUENCE "dbversion_dbversion_id_seq" OWNED BY "dbversion"."dbversion_id";
 
 insert into dbversion(dbversion_number, dbversion_date) values ('2.0', '2023-01-16');

@@ -164,6 +164,20 @@
                 </div>
             </div>
 
+            <div class="form-group">
+                <label for="cmode" class="control-label col-md-4">{t}Mode de calcul de la masse :{/t}</label>
+                <div class="col-md-8">
+                    <label class="radio-inline">
+                        <input type="radio" id="cmode_0" name="mode_calcul_masse" value="0" {if $data.mode_calcul_masse==0}
+                            checked{/if}>{t}Calcul global{/t}
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" id="cmode_1" name="mode_calcul_masse" value="1" {if $data.mode_calcul_masse==1}
+                            checked{/if}>{t}Calcul par échantillonnage{/t}
+                    </label>
+                </div>
+            </div>
+
             <div class="form-group center">
                 <button type="submit" class="btn btn-primary button-valid">{t}Valider{/t}</button>
                 {if $data.bassin_id > 0 &&$droits["bassinAdmin"] == 1}

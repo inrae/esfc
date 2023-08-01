@@ -72,7 +72,8 @@ class Bassin extends ObjetBDD
 				"type" => 1,
 				"defaultValue" => 1
 			),
-			"site_id" => array("type" => 1)
+			"site_id" => array("type" => 1),
+			"mode_calcul_masse" => array("type" => 1, "defaultValue" => 0)
 		);
 		parent::__construct($bdd, $param);
 	}
@@ -87,7 +88,7 @@ class Bassin extends ObjetBDD
 			$sql = "select bassin_id, bassin_nom, bassin_description, actif,
 					bassin_type_libelle, bassin_usage_libelle, bassin_zone_libelle, 
 					bassin.circuit_eau_id, circuit_eau_libelle,
-					longueur, largeur_diametre, surface, hauteur_eau, volume,
+					longueur, largeur_diametre, surface, hauteur_eau, volume, mode_calcul_masse,
 					site.site_id, site_name
 					from bassin
 					left outer join bassin_type using (bassin_type_id)
@@ -127,7 +128,8 @@ class Bassin extends ObjetBDD
 			$and = " and ";
 		}
 		if ($dataSearch["bassin_usage"] > 0) {
-			$this->where .= $and . " bassin_usage_id = :bassin_usage";;
+			$this->where .= $and . " bassin_usage_id = :bassin_usage";
+			;
 			$this->dataRequest["bassin_usage"] = $dataSearch["bassin_usage"];
 			$and = " and ";
 		}
@@ -168,7 +170,7 @@ class Bassin extends ObjetBDD
 		$sql = "select bassin_id, bassin_nom, bassin_description, actif,
 					bassin_type_libelle, bassin_usage_libelle, bassin_zone_libelle, 
 					bassin.circuit_eau_id, circuit_eau_libelle,
-					bassin.site_id, site_name
+					bassin.site_id, site_name, mode_calcul_masse
 					from bassin
 					left outer join bassin_type using (bassin_type_id)
 					left outer join bassin_usage using (bassin_usage_id)
@@ -218,7 +220,7 @@ class Bassin extends ObjetBDD
 	function getListeByCircuitEau($circuitId)
 	{
 		$sql = "select bassin_id, bassin_nom, bassin_description, actif
-				,bassin_usage_libelle, bassin_zone_libelle, bassin_type_libelle
+				,bassin_usage_libelle, bassin_zone_libelle, bassin_type_libelle, mode_calcul_masse
 				from bassin
 				left outer join bassin_usage using (bassin_usage_id)
 				left outer join bassin_zone using (bassin_zone_id)
@@ -236,8 +238,8 @@ class Bassin extends ObjetBDD
 	function calculMasse(int $bassinId)
 	{
 		/*
-			 * Recuperation de la liste des poissons
-			 */
+		 * Recuperation de la liste des poissons
+		 */
 		if (!isset($this->transfert)) {
 			$this->transfert = $this->classInstanciate("Transfert", "transfert.class.php");
 		}
@@ -246,9 +248,42 @@ class Bassin extends ObjetBDD
 		}
 		$listePoisson = $this->transfert->getListPoissonPresentByBassin($bassinId);
 		$masse = 0;
-		foreach ($listePoisson as $value) {
-			$data = $this->morphologie->getMasseLast($value["poisson_id"]);
-			$masse += $data["masse"];
+		$dbassin = $this->lire($bassinId);
+		if ($dbassin["mode_calcul_masse"] == 0) {
+			foreach ($listePoisson as $value) {
+				$data = $this->morphologie->getMasseLast($value["poisson_id"]);
+				$masse += $data["masse"];
+			}
+		} else if ($dbassin["mode_calcul_masse"] == 1) {
+			$nbPoissonTotal = count($listePoisson);
+			if ($nbPoissonTotal > 0) {
+				/**
+				 * Format the list of fish
+				 */
+				$comma = "";
+				$ids = "";
+				foreach ($listePoisson as $poisson) {
+					$ids .= $comma . $poisson["poisson_id"];
+					$comma = ",";
+				}
+				/**
+				 * Get the last date of measure of the mass from fish
+				 */
+				$sql = "select max(morphologie_date) as date_max from morphologie where poisson_id in ($ids)";
+				$this->auto_date = 0;
+				$dataMax = $this->lireParam($sql);
+				$date_max = $dataMax["date_max"];
+				/**
+				 * get the mass of fish
+				 */
+				$sql = "select count(*) as nb, sum(masse) as masse from morphologie
+					where poisson_id in ($ids)
+					and morphologie_date = '$date_max'";
+				$dataMasse = $this->lireParam($sql);
+				if ($dataMasse["nb"] > 0) {
+					$masse = intval($dataMasse["masse"] * ($nbPoissonTotal / $dataMasse["nb"]));
+				}
+			}
 		}
 		return ($masse);
 	}

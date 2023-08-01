@@ -45,6 +45,7 @@
                 <th>{t}dimensions (longueur x largeur x hauteur d'eau){/t}</th>
                 <th>{t}Surface - volume d'eau{/t}</th>
                 <th>{t}Utilisé actuellement ?{/t}</th>
+                <th>{t}Mode de calcul de la masse{/t}</th>
                 </tr>
             </thead>
             <tbody>
@@ -68,8 +69,15 @@
                 <td>{$data[lst].surface} - {$data[lst].volume}</td>
                 <td>
                 <div class="center">
-                {if $data[lst].actif == 1}oui{elseif $data[lst].actif == 0}non{/if}
+                {if $data[lst].actif == 1}{t}oui{/t}{elseif $data[lst].actif == 0}{t}non{/t}{/if}
                 </div>
+                </td>
+                <td>
+                    {if $data[lst].mode_calcul_masse == 0}
+                    {t}Calcul global{/t}
+                    {else}
+                    {t}Calcul par échantillonnage{/t}
+                    {/if}
                 </td>
                 </tr>
             {/section}

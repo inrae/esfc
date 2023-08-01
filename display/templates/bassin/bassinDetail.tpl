@@ -47,5 +47,11 @@
                 {if $dataBassin.actif == 1}{t}Bassin en activité{/t}{else}{t}Bassin non utilisé ou réformé{/t}{/if}
             </dd>
         </dl>
+        <dl class="dl-horizontal">
+            <dt><label>{t}Mode de calcul de la masse :{/t}</label></dt>
+            <dd>
+                {if $dataBassin.mode_calcul_masse == 0}{t}Calcul global{/t}{else}{t}Calcul par échantillonnage{/t}{/if}
+            </dd>
+        </dl>
     </div>
 </div>
