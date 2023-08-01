@@ -132,14 +132,15 @@ class Poisson extends ObjetBDD
             $and = " and ";
         }
         if (strlen($dataSearch["texte"]) > 0) {
-            $texte = "%" . mb_strtoupper($dataSearch["texte"], 'UTF-8') . "%";
+            $ftexte = "%" . mb_strtoupper($dataSearch["texte"], 'UTF-8') . "%";
             $where .= $and . " (upper(matricule) like :texte
 						or upper(prenom) like :texte
 						or cohorte like :texte
 						or upper(pittag_valeur) like :texte";
-            $param["texte"] = $texte;
+            $param["texte"] = $ftexte;
             if (is_numeric($dataSearch["texte"])) {
-                $where .= " or poisson_id = :texte";
+                $where .= " or poisson_id = :poisson_id";
+                $param["poisson_id"] = $dataSearch["texte"];
             }
             $where .= ")";
             $and = " and ";

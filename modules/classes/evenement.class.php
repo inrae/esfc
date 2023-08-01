@@ -177,9 +177,8 @@ class Evenement extends ObjetBDD
             "evenement_document"
         );
         $param = array("id" => $id);
-        $sql = "delete from :table where evenement_id = :id";
         foreach ($tables as $table) {
-            $param["table"] = $table;
+            $sql = "delete from $table where evenement_id = :id";
             $this->executeAsPrepared($sql, $param);
         }
         /**

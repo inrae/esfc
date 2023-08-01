@@ -41,13 +41,23 @@ $LOG_duree = 365;
  * LemonLdap, par exemple)
  */
 $ident_header_vars = array(
-	"radical" => "MELLON",
 	"login" => "MELLON_MAIL",
 	"mail" => "MELLON_MAIL",
-	"cn" => "MELLON_CN",
-	"organization" => "MELLON_SHACHOMEORGANIZATION",
+	"name" => "MELLON_cn",
+	"firstname"=>"MELLON_givenname",
+	"lastname" => "MELLON_sn",
+	"organization" => "MELLON_supannentiteaffectationprincipale",
 	"organizationGranted" => array(),
-	"createUser" => true
+	"createUser" => true,
+	"groupAttribute" => "MELLON_supannentiteaffectation",
+	"groupsGranted" => array()
+);
+$user_attributes = array (
+	"mail" => "mail",
+	"firstname"=>"givenName",
+	"lastname"=>"sn",
+	"name"=>"cn",
+	"groups"=>"supannentiteaffectation"
 );
 $ident_header_logout_address = "";
 $ident_type = "BDD";

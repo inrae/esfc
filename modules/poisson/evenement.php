@@ -216,7 +216,7 @@ switch ($t_module["param"]) {
             /*
              * Sexage
              */
-            if ($_REQUEST["gender_methode_id"] > 0 && $_REQUEST["sexe_id"] > 0) {
+            if ( $_REQUEST["sexe_id"] > 0) {
                 $genderSelection = new GenderSelection($bdd, $ObjetBDDParam);
                 $_REQUEST["gender_selection_date"] = $_REQUEST["evenement_date"];
                 $gender_id = $genderSelection->ecrire($_REQUEST);
