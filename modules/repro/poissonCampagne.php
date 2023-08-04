@@ -73,7 +73,7 @@ switch ($t_module["param"]) {
 			 */
 			$x = "'x'";
 			$y = "'data1'";
-			foreach ($dataMorpho as $key => $value) {
+			foreach ($dataMorpho as $value) {
 				$x .= ",'" . $value["morphologie_date"] . "'";
 				$y .= "," . $value["masse"];
 			}
@@ -144,7 +144,7 @@ switch ($t_module["param"]) {
 		 * Generation de la liste des evenements issus des echographies
 		 */
 		$a_id = array();
-		foreach ($dataEcho as $key => $value) {
+		foreach ($dataEcho as $value) {
 			$a_id[] = $value["evenement_id"];
 		}
 		require_once 'modules/document/documentFunctions.php';
@@ -163,11 +163,11 @@ switch ($t_module["param"]) {
 			$datapf = $dataClass->getTemperatures($data["poisson_id"], $_SESSION["annee"], $i);
 			$x = "'x" . $i . "'";
 			if ($i == 1) {
-				$y = "'constaté'";
+				$y = "'"._("constaté")."'";
 			} else {
-				$y = "'prévu'";
+				$y = "'"._('prévu')."'";
 			}
-			foreach ($datapf as $key => $value) {
+			foreach ($datapf as $value) {
 				$x .= ",'" . $value["pf_datetime"] . "'";
 				$y .= "," . $value["pf_temperature"];
 				$datetime = explode(" ", $value["pf_datetime"]);

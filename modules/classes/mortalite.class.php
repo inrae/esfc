@@ -107,4 +107,38 @@ class Mortalite extends ObjetBDD
         $sql = "select * from mortalite where evenement_id = :id";
         return $this->lireParamAsPrepared($sql, array("id" => $evenement_id));
     }
+    /**
+     * Get the cumulative mortality by type on the last year
+     *
+     * @param integer $type: 1 : by category, 2 - by cohort
+     * @param string $lastDate : last date of the period
+     * @param string $duration : duration of the search of mortality
+     * @return array
+     */
+    function getCumulativeMortality(int $type = 1, string $lastDate = '', string $duration = "1 year"): array
+    {
+        if (empty($lastDate)) {
+            $lastDate = date("Y-m-d");
+        }
+        if ($type == 1) {
+            $col = "categorie_libelle";
+        } else {
+            $col = "cohorte";
+        }
+        $sql = "with req as (
+            select $col, mortalite_date, row_number() over (order by mortalite_date) as nombre_cumule
+            from mortalite
+            join poisson using (poisson_id)
+            join categorie using (categorie_id)
+            where mortalite_date >= (date(:lastdate) - interval '$duration')
+            )
+            select distinct $col as typology, mortalite_date, max(nombre_cumule) over (partition by $col, mortalite_date) as nombre_cumule
+            from req
+            order by $col, mortalite_date";
+
+        $param = array(
+            "lastdate" => $lastDate
+        );
+        return $this->getListeParamAsPrepared($sql, $param);
+    }
 }

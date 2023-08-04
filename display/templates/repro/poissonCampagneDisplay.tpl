@@ -37,8 +37,8 @@
 				bindto: '#profilThermique',
 				data: {
 					xs: {
-						'constaté': 'x1',
-						'prévu': 'x2'
+						'{t}constaté{/t}': 'x1',
+						'{t}prévu{/t}': 'x2'
 					},
 					//	    x: 'x',
 					xFormat: '%d/%m/%Y %H:%M:%S', // 'xFormat' can be used as custom format of 'x'
