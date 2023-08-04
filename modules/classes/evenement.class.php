@@ -66,6 +66,24 @@ class Evenement extends ObjetBDD
                 where poisson_id = :id order by evenement_date desc";
         return $this->getListeParamAsPrepared($sql, array("id" => $poisson_id));
     }
+    /**
+     * Get the id of an event occurred on a fish at a date
+     *
+     * @param integer $poisson_id
+     * @param string $date
+     * @return integer
+     */
+    function getEvenementIdByPoissonDate(int $poisson_id, string $date): int
+    {
+        $sql = "select evenement_id from evenement
+                where poisson_id = $poisson_id and evenement_date = :date";
+        $data = $this->lireParamAsPrepared($sql, array("poisson_id" => $poisson_id, "date" => $date));
+        if ($data["evenement_id"] > 0) {
+            return $data["evenement_id"];
+        } else {
+            return 0;
+        }
+    }
 
     /**
      * Retourne l'ensemble des données d'événement pour les poissons répondant aux critères fournis
