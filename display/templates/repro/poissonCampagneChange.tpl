@@ -67,8 +67,9 @@
                 <legend>{t}Indicateurs de croissance (calculés automatiquement en cas de nouvelle sélection){/t}
                 </legend>
                 <div class="form-group">
-                    <label for="tx_croissance_journalier" class="control-label col-md-4">{t}Taux de croissance
-                        journalier :{/t}</label>
+                    <label for="tx_croissance_journalier" class="control-label col-md-4">
+                        {t}Taux de croissance journalier :{/t}
+                    </label>
                     <div class="col-md-8">
                         <input id="tx_croissance_journalier" class="form-control taux" name="tx_croissance_journalier"
                             value="{$data.tx_croissance_journalier}">

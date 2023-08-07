@@ -173,7 +173,7 @@ switch ($t_module["param"]) {
 			"salinite" => _("Salinité"),
 			"ph" => _("pH"),
 			"nh4" => _("Oxyde d'ammoniac NH4+"),
-			'n_nh4' => _("Azone ammoniacal N-NH4"),
+			'n_nh4' => _("Azote ammoniacal N-NH4"),
 			"no2" => _("Oxyde nitrite NO2"),
 			"n_no2" => _("Ion nitrite N-NO2"),
 			"no3" => _("Oxyde nitrate NO3"),
