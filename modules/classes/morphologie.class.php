@@ -69,7 +69,7 @@ class Morphologie extends ObjetBDD
 					from morphologie m
 					left outer join evenement using (evenement_id)
 					left outer join evenement_type using (evenement_type_id)
-					where m.poisson_id = :id order by morphologie_date desc";
+					where m.poisson_id = :id order by morphologie_date";
         return $this->getListeParamAsPrepared($sql, array("id" => $poisson_id));
     }
 
@@ -165,5 +165,69 @@ class Morphologie extends ObjetBDD
     {
         $sql = "select * from morphologie where evenement_id = :id";
         return $this->lireParamAsPrepared($sql, array("id" => $evenement_id));
+    }
+
+    function generateGraphAsJson(array $data = array()):array{
+        $result = array();
+        $dc = array();
+        $max = array(0=>0, 1=>0);
+        if ($_SESSION["FORMATDATE"] = "fr") {
+			$dateFormat = "%d/%m/%Y";
+		} else {
+			$dateFormat = "/%Y%/m%/d";
+		}
+        $k = array(
+            _("masse"),
+            _("longueur fourche"),
+            _("longueur totale")
+        );
+        $vdate = array();
+        $vval = array();
+        for ($i =  0; $i < 3; $i++) {
+            $dc["xs"][$k[$i]] = "x".$i + 1 ;
+            $vdate[$i] = array("x".$i + 1);
+            $vval[$i] = array($k[$i]);
+            $max[$i] = 0;
+        }
+		foreach ($data as $row) {
+            if (!empty($row["masse"])) {
+                $vdate[0][] = $row["morphologie_date"];
+                $vval[0][] = $row["masse"];
+                if ($row["masse"] > $max[0]) {
+                    $max[0] = $row["masse"];
+                }
+            }
+            if (!empty($row["longueur_fourche"])) {
+                $vdate[1][] = $row["morphologie_date"];
+                $vval[1][] = $row["longueur_fourche"];
+                if ($row["longueur_fourche"] > $max[1]) {
+                    $max[1] = $row["longueur_fourche"];
+                }
+            }
+            if (!empty($row["longueur_totale"])) {
+                $vdate[2][] = $row["morphologie_date"];
+                $vval[2][] = $row["longueur_totale"];
+                if ($row["longueur_totale"] > $max[1]) {
+                    $max[1] = $row["longueur_totale"];
+                }
+            }
+            $lastdate = $row["morphologie_date"];
+        }
+        for ($i =  0; $i < 3; $i++) {
+            $dc["columns"][] = $vdate[$i];
+            $dc["columns"][] = $vval[$i];
+        }
+        $dc["axes"][$k[0]] = 'y';
+        $dc["axes"][$k[1]] = 'y2';
+        $dc["axes"][$k[2]] = 'y2';
+        $dc["xFormat"] = $dateFormat;
+        $result["data"] = json_encode($dc);
+        $result["maxweight"] = $max[0];
+        $result["maxlength"] = $max[1];
+        $result["firstdate"] = $data[0]["morphologie_date"];
+        $result["lastdate"] = $lastdate;
+        $result["dateFormat"] = $dateFormat;
+
+        return $result;
     }
 }

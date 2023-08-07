@@ -64,7 +64,20 @@ switch ($t_module["param"]) {
 		 * Recuperation des morphologies
 		 */
 		$morphologie = new Morphologie($bdd, $ObjetBDDParam);
-		$vue->set($morphologie->getListeByPoisson($id), "dataMorpho");
+		$vue->set($dmorpho = $morphologie->getListeByPoisson($id), "dataMorpho");
+		/**
+		 * Generation des donnees pour le graphique
+		 */
+		if (!empty($dmorpho)) {
+			$dataGraph = $morphologie->generateGraphAsJson($dmorpho);
+			$vue->set($dataGraph["data"], "dataMorphoGraph");
+			$vue->set($dataGraph["maxweight"], "maxy");
+			$vue->set($dataGraph["maxlength"], "maxy2");
+			$vue->set($dataGraph["firstdate"], "firstdate");
+			$vue->set($dataGraph["lastdate"], "lastdate");
+			$vue->set($dataGraph["dateFormat"], "dateFormat");
+			$vue->htmlVars[] = "dataMorphoGraph";
+		}
 		/*
 		 * Recuperation des événements
 		 */
@@ -97,7 +110,7 @@ switch ($t_module["param"]) {
 		$vue->set($mortalite->getListByPoisson($id), "dataMortalite");
 		/*
 		 * Recuperation des cohortes
-		*/
+		 */
 		$cohorte = new Cohorte($bdd, $ObjetBDDParam);
 		$vue->set($cohorte->getListByPoisson($id), "dataCohorte");
 		/*
@@ -155,7 +168,7 @@ switch ($t_module["param"]) {
 
 		/*
 		 * Gestion des documents associes
-		*/
+		 */
 		$vue->set("poissonDisplay", "moduleParent");
 		$vue->set("poisson", "parentType");
 		$vue->set("poisson_id", "parentIdName");
@@ -203,12 +216,12 @@ switch ($t_module["param"]) {
 		$vue->set($vieModele->getAllModeles(), "modeles");
 		/*
 		 * Passage en parametre de la liste parente
-		*/
+		 */
 		$vue->set($_SESSION["poissonDetailParent"], "poissonDetailParent");
 
 		/*
 		 * Recuperation de la liste des types de pittag
-		*/
+		 */
 		$pittagType = new Pittag_type($bdd, $ObjetBDDParam);
 		$vue->set($pittagType->getListe(2), "pittagType");
 		/*
@@ -253,16 +266,16 @@ switch ($t_module["param"]) {
 			$vue->set($dataClass->getListPoissonFromName($_REQUEST["libelle"]));
 		}
 		break;
-		case "getPoissonFromTag":
-			if (!empty($_POST["newtag"])) {
-				$poissonId = $dataClass->getPoissonIdFromTag($_POST["newtag"]);
-                if ($poissonId > 0) {
-                    $_REQUEST["poisson_id"] = $poissonId;
-					$module_coderetour = 1;
-                } else {
-                    $message->set(sprintf(_("Aucun poisson ne correspond au pittag %s"), $_POST["newtag"]), true);
-					$module_coderetour = -1;
-                }
+	case "getPoissonFromTag":
+		if (!empty($_POST["newtag"])) {
+			$poissonId = $dataClass->getPoissonIdFromTag($_POST["newtag"]);
+			if ($poissonId > 0) {
+				$_REQUEST["poisson_id"] = $poissonId;
+				$module_coderetour = 1;
+			} else {
+				$message->set(sprintf(_("Aucun poisson ne correspond au pittag %s"), $_POST["newtag"]), true);
+				$module_coderetour = -1;
 			}
-			break;
+		}
+		break;
 }
