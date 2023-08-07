@@ -85,6 +85,9 @@ switch ($t_module["param"]) {
 		 * $_REQUEST["idParent"] contains the identifiant of the parent record
 		 */
 		$data = dataRead($dataClass, $id, "aliment/repartitionChange.tpl");
+		if (empty($data["site_id"])) {
+			$data["site_id"] = 1;
+		}
 		/*
 		 * Recherche de la categorie
 		 */
