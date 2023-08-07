@@ -1,16 +1,17 @@
 <?php
-require_once 'modules/classes/morphologie.class.php';
+require_once 'modules/classes/morphologieImport.class.php';
 $import = new MorphologieImport($bdd, $ObjetBDDParam);
 $header = array("pittag", "date", "weight", "length", "fork_length");
 switch ($t_module["param"]) {
     case "import":
+        unset($_SESSION["filename"]);
         $vue->set("poisson/morphologieImport.tpl", "corps");
         break;
     case "control":
-/*
+        /**
          * Lancement des controles
          */
-        unset($_SESSION["filename"]);
+        $vue->set("poisson/morphologieImport.tpl", "corps");
         if (file_exists($_FILES['upfile']['tmp_name'])) {
             /*
              * Lancement du controle
@@ -24,6 +25,7 @@ switch ($t_module["param"]) {
                      */
                     $vue->set(1, "erreur");
                     $vue->set($resultat, "erreurs");
+                    $module_coderetour = -1;
                 } else {
                     /*
                      * Deplacement du fichier dans le dossier temporaire
@@ -49,6 +51,7 @@ switch ($t_module["param"]) {
         $vue->set($_REQUEST["utf8_encode"], "utf8_encode");
         break;
     case "exec":
+        $module_coderetour = -1;
         if (isset($_SESSION["filename"])) {
             if (file_exists($_SESSION["filename"])) {
                 try {
@@ -56,7 +59,7 @@ switch ($t_module["param"]) {
                      * Demarrage d'une transaction
                      */
                     $bdd->beginTransaction();
-                    $import->initFile($_SESSION["filename"], $_SESSION["separator"], $_SESSION["utf8_encode"]);
+                    $import->initFile($_SESSION["filename"], $_SESSION["separator"], $header, $_SESSION["utf8_encode"]);
                     $import->importAll();
                     $message->set(sprintf(_("Import effectué. %s lignes traitées"), $import->nbTreated));
                     $message->set(sprintf(_("Premier événement généré : %s"), $import->minevent));
@@ -68,15 +71,12 @@ switch ($t_module["param"]) {
                     $bdd->rollBack();
                     $message->set(_("Une erreur s'est produite pendant l'importation."), true);
                     $message->set($ie->getMessage(), true);
-                    $module_coderetour = -1;
                 } catch (Exception $e) {
                     $bdd->rollBack();
                     $message->set(_("Une erreur s'est produite pendant l'importation."), true);
                     $message->set($e->getMessage(), true);
-                    $module_coderetour = -1;
                 }
             }
         }
-        unset($_SESSION["filename"]);
         break;
 }

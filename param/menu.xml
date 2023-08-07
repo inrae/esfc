@@ -9,9 +9,8 @@
 		<item module="poissonList" label="Poissons" tooltip="Liste des poissons" />
 		<item module="anomalieList" label="Anomalies" tooltip="Liste des anomalies détectées" droits="gestion"/>
 		<item divider="1" droits="requete"/>
-		<item module="requestList" label="Requêtes SQL" tooltip="Exécution de requêtes SQL dans la base de données" droits="requete"/>
+		<item module="morphologieImport" droits="gestion" label="Import des mesures" tooltip="Importation des morphologies à partir d'un fichier CSV"/>
 	</item>
-
 	<item module="bassinList" label="Bassins" tooltip="Liste des bassins" droits="consult">
 		<item module="bassinList" label="Bassins" tooltip="Liste des bassins"/>
 		<item module="circuitEauList" label="Circuits d'eau" tooltip="Liste des circuits d'eau"/>
@@ -46,7 +45,7 @@
 			<item module="cohorteTypeList" label="Détermination des cohortes" tooltip="Méthodes de détermination des cohortes" droits="consult"/>
 			<item module="sortieLieuList" label="Lieux de lâcher" tooltip="Liste des lieux de lâcher" droits="consult"/>
 			<item module="nageoireList" label="Nageoires" tooltip="Liste des nageoires (prélévements génétiques)" droits="consult"/>
-		</item >
+		</item>
 		
 		<item module="default" label="Sites et bassins" tooltip="Paramètres concernant les sites et les bassins" droits="consult">
 			<item module="siteListe" label="Sites" tooltip="Liste des sites" droits="consult"/>

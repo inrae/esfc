@@ -76,7 +76,7 @@ class Evenement extends ObjetBDD
     function getEvenementIdByPoissonDate(int $poisson_id, string $date): int
     {
         $sql = "select evenement_id from evenement
-                where poisson_id = $poisson_id and evenement_date = :date";
+                where poisson_id = :poisson_id and evenement_date = :date";
         $data = $this->lireParamAsPrepared($sql, array("poisson_id" => $poisson_id, "date" => $date));
         if ($data["evenement_id"] > 0) {
             return $data["evenement_id"];

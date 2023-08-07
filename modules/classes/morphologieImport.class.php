@@ -89,21 +89,36 @@ class MorphologieImport
         }
     }
 
+    /**
+     * Reecrit une ligne, en placant les bonnes valeurs en fonction de l'entete
+     *
+     * @param array $data
+     * @return array[]
+     */
+    function prepareLine($data)
+    {
+        $nb = count($data);
+        $values = array();
+        for ($i = 0; $i < $nb; $i++) {
+            $values[$this->fileColumn[$i]] = $data[$i];
+        }
+        return ($values);
+    }
+
     function importAll()
     {
-        $date = date("Y-m-d H:i:s");
         $num = 0;
         /**
          * Inhibition du traitement des dates par la classe
          */
         if (!isset($this->poisson)) {
-            $this->classInstanciate("Poisson", "poisson.class.php");
+            $this->poisson = $this->classInstanciate("Poisson", "poisson.class.php");
         }
         if (!isset($this->evenement)) {
-            $this->classInstanciate("Evenement", "evernement.class.php");
+            $this->evenement = $this->classInstanciate("Evenement", "evenement.class.php");
         }
         if (!isset($this->morphologie)) {
-            $this->classInstanciate("Morphologie", "morphologie.class.php");
+            $this->morphologie = $this->classInstanciate("Morphologie", "morphologie.class.php");
         }
         $this->evenement->auto_date = 0;
         $this->morphologie->auto_date = 0;
@@ -111,6 +126,7 @@ class MorphologieImport
          * Traitement du fichier
          */
         while (($line = $this->readLine()) !== false) {
+            $line = $this->prepareLine($line);
 
             $num++;
             /**
@@ -125,27 +141,31 @@ class MorphologieImport
              * Debut d'ecriture en table
              */
             try {
-                $dpoisson = $this->poisson->getPoissonIdFromTag($line["pittag"]);
+                $poisson_id = $this->poisson->getPoissonIdFromTag($line["pittag"]);
                 $line["date"] = $this->formatDate($line["date"]);
                 /**
                  * Search from event
                  */
-                $evenement_id = $this->evenement->getEvenementIdByPoissonDate($dpoisson["poisson_id"], $line["date"]);
+                $evenement_id = $this->evenement->getEvenementIdByPoissonDate($poisson_id, $line["date"]);
                 if ($evenement_id == 0) {
-                    $devenement = array("evenement_id"=>0,
-                    "poisson_id"=>$dpoisson["poisson_id"],
-                    "evenement_date"=>$line["date"],
-                    "evenement_type_id"=> 15);
+                    $devenement = array(
+                        "evenement_id" => 0,
+                        "poisson_id" => $poisson_id,
+                        "evenement_date" => $line["date"],
+                        "evenement_type_id" => 15
+                    );
                     $evenement_id = $this->evenement->ecrire($devenement);
                 }
+               
                 /**
                  * Search from preexistent morphologie
                  */
                 $dmorphologie = $this->morphologie->getDataByEvenement($evenement_id);
-                if (!empty($dmorphologie["morphologie_id"])) {
-                    $dmorphologie ["morphologie_id"] = 0;
+                if (empty($dmorphologie["morphologie_id"])) {
+                    $dmorphologie["morphologie_id"] = 0;
                     $dmorphologie["evenement_id"] = $evenement_id;
-                    $dmorphologie["poisson_id"] = $dpoisson["poisson_id"];
+                    $dmorphologie["poisson_id"] = $poisson_id;
+                    $dmorphologie["morphologie_date"] = $line["date"];
                 }
                 if (!empty($line["weight"])) {
                     $dmorphologie["masse"] = $line["weight"];
@@ -162,13 +182,13 @@ class MorphologieImport
                  * Mise a jour des bornes de l'uid
                  */
                 if ($evenement_id < $this->minevent) {
-                    $$this->minevent = $evenement_id;
+                    $this->minevent = $evenement_id;
                 }
                 if ($evenement_id > $this->maxevent) {
                     $this->maxevent = $evenement_id;
                 }
             } catch (Exception $pe) {
-                throw new ImportMorphologieException("Line $num : error when import sample - " . $pe->getMessage());
+                throw new ImportMorphologieException(sprintf(_("Ligne %s : une erreur est survenue lors de l'enregistrement"),$num)." - " . $pe->getMessage());
             }
             $this->nbTreated++;
         }
@@ -182,6 +202,7 @@ class MorphologieImport
         $num = 1;
         $retour = array();
         while (($line = $this->readLine()) !== false) {
+            $line = $this->prepareLine($line);
             $num++;
             $controle = $this->controlLine($line);
             if (!$controle["code"]) {
@@ -211,8 +232,8 @@ class MorphologieImport
          * Search the fish from pittag
          */
         if (!empty($data["pittag"])) {
-            $res = $this->poisson->getPoissonIdFromTag($data["pittag"]);
-            if (!$res["poisson_id"] > 0) {
+            $poisson_id = $this->poisson->getPoissonIdFromTag($data["pittag"]);
+            if (!$poisson_id > 0) {
                 $retour["code"] = false;
                 $retour["message"] = sprintf(_("Le pittag %s ne correspond à aucun poisson"), $data["pittag"]);
                 $ok = false;

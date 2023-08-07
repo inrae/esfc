@@ -79,12 +79,13 @@
             {t}Il n'accepte que des fichiers au format CSV. La ligne d'entête doit comprendre exclusivement les colonnes suivantes :{/t}
             <br>
             <ul>
-                <li><b>pittag</b> : {t}PITTAG du poisson{/t}</li>
-                <li><b>date</b> : {t}Date de mesure (format dd/mm/yyyy){/t}</li>
+                <li><b>pittag</b><span class="red">*</span> : {t}PITTAG du poisson{/t}</li>
+                <li><b>date</b><span class="red">*</span> : {t}Date de mesure (format dd/mm/yyyy){/t}</li>
                 <li><b>length</b> : {t}Longueur totale mesurée, en cm{/t}</li>
                 <li><b>fork_length</b> : {t}Longueur fourche mesurée, en cm{/t}</li>
                 <li><b>weight</b> : {t}Poids mesuré, en grammes{/t}</li>
             </ul>
+            <span class="red">*</span><span class="messagebas">{t}Champ obligatoire{/t}</span>
         </div>
     </div>
 </div>
