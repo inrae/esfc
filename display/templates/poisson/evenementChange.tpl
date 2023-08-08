@@ -471,8 +471,9 @@
 									</div>
 								</div>
 								<div class="form-group">
-									<label for="document_description" class="control-label col-md-4">{t}Description
-										des images :{/t}</label>
+									<label for="document_description" class="control-label col-md-4">
+										{t}Description des images :{/t}
+									</label>
 									<div class="col-md-8">
 										<input id="document_description" class="form-control" type="text"
 											name="document_description" value="">
@@ -782,8 +783,7 @@
 									<div class="col-md-8">
 										<select class="form-control ok" name="sortie_lieu_id" id="sortie_lieu_id" data-tabicon="oksortie">
 											<option value="" {if $dataSortie.sortie_lieu_id=="" } selected{/if}>
-												{t}Sélectionnez le lieu de
-												lâcher/destination...{/t}
+												{t}Sélectionnez le lieu de lâcher/destination...{/t}
 											</option>
 											{section name=lst loop=$sortieLieu}
 											<option value={$sortieLieu[lst].sortie_lieu_id} {if

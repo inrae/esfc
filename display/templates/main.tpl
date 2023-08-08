@@ -11,10 +11,12 @@
         });
     });
 </script>
-<h1>{t}Gestion de l'élevage{/t}</h1>
+<div class="center">
+   <h1><i>ESFC</i> <span class="red">E</span>x <span class="red">S</span>itu <span class="red">F</span>ish <span class="red">C</span>onservation</h1> 
+</div>
 
 {if $displayMortality == 1}
-<div class="col-md-12 col-lg-6">
+<div class="col-md-12 col-lg-6 col-lg-offset-3">
     <fieldset>
         <legend>
             {t}Mortalité cumulée{/t}
@@ -81,4 +83,8 @@
     }
     );
 </script>
+{else}
+<div class="center">
+    <img src="display/images/sturio_release.jpg" title="{t}Photo : © Marie-Laure Acolas - 2012 - lâcher d'esturgeons en Dordogne{/t}" width="640">
+</div>
 {/if}

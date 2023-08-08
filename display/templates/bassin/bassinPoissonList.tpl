@@ -3,8 +3,8 @@
 <thead>
 <tr>
 <th>{t}Bassin{/t}</th>
-<th>{t}Date<br>d'arrivée{/t}</th>
-<th>{t}Date de<br>départ{/t}</th>
+<th>{t}Date d'arrivée{/t}</th>
+<th>{t}Date de départ{/t}</th>
 </tr>
 </thead>
 <tbody>

@@ -114,8 +114,9 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<label for="anomalie_db_date_traitement" class="control-label col-md-4">{t}Date de traitement de
-					l'anomalie :{/t}</label>
+				<label for="anomalie_db_date_traitement" class="control-label col-md-4">
+					{t}Date de traitement de l'anomalie :{/t}
+				</label>
 				<div class="col-md-8">
 					<input id="" class="form-control datepicker" name="anomalie_db_date_traitement"
 						id="anomalie_db_date_traitement" value="{$data.anomalie_db_date_traitement}">

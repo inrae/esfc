@@ -16,9 +16,9 @@ Nouvelle requête...
 <th>{t}Date création{/t}</th>
 <th>{t}Date dernière<br>exécution{/t}</th>
 <th>{t}Créateur (login){/t}</th>
-<th>{t}<img src="display/images/exec.png" height="25">{/t}</th>
+<th><img src="display/images/exec.png" height="25"></th>
 {if $droits["paramAdmin"] == 1}
-<th>{t}<img src="display/images/copy.png" height="25">{/t}</th>
+<th><img src="display/images/copy.png" height="25"></th>
 {/if}
 </tr>
 </thead>

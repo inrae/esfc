@@ -77,8 +77,9 @@
             </div>
 
             <div class="form-group">
-                <label for="cbassin_zone_id" class="control-label col-md-4">{t}Zone d'implantation du bassin
-                    :{/t}</label>
+                <label for="cbassin_zone_id" class="control-label col-md-4">
+                    {t}Zone d'implantation du bassin :{/t}
+                </label>
                 <div class="col-md-8">
                     <select class="form-control" id="cbassin_zone_id" name="bassin_zone_id">
                         <option value="" {if $bassin_zone[lst].bassin_zone_id=="" }selected{/if}>
@@ -119,8 +120,9 @@
             </div>
 
             <div class="form-group">
-                <label for="clargeur_diametre" class="control-label col-md-4">{t}Largeur ou diamètre (en cm)
-                    :{/t}</label>
+                <label for="clargeur_diametre" class="control-label col-md-4">
+                    {t}Largeur ou diamètre (en cm):{/t}
+                </label>
                 <div class="col-md-8">
                     <input id="clargeur_diametre" class="form-control nombre" name="largeur_diametre"
                         value="{$data.largeur_diametre}">
@@ -128,9 +130,9 @@
             </div>
 
             <div class="form-group">
-                <label for="csurface" class="control-label col-md-4">{t}
-                    Surface (en cm2) :
-                    {/t}</label>
+                <label for="csurface" class="control-label col-md-4">
+                    {t}Surface (en cm2) :/t}
+                </label>
                 <div class="col-md-8">
                     <input class="form-control nombre" id="csurface" name="surface" value="{$data.surface}">
                 </div>

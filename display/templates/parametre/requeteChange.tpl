@@ -43,7 +43,7 @@ $(document).ready(function() {
 </div>
 </div>
 <div class="form-group">
-<label for="" class="control-label col-md-4">{t}Code SQL <span class="red">*</span> : <b>SELECT</b>{/t}</label>
+<label for="" class="control-label col-md-4">{t}Code SQL{/t}<span class="red">*</span></label>
 <dd>
 <textarea class="modif" name="body" cols="70" rows="10" wrap="soft" required>{$data.body}</textarea>
 

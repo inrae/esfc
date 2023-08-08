@@ -2,8 +2,9 @@
 
 <a href="index.php?module=circuitEauList">{t}Retour à la liste des circuits d'eau{/t}</a>
 {if $data.circuit_eau_id > 0 }
-> <a href="index.php?module=circuitEauDisplay&circuit_eau_id={$data.circuit_eau_id}">{t}Retour au détail du circuit
-    d'eau{/t}</a>
+> <a href="index.php?module=circuitEauDisplay&circuit_eau_id={$data.circuit_eau_id}">
+    {t}Retour au détail du circuit d'eau{/t}
+</a>
 {/if}
 
 <div class="row">

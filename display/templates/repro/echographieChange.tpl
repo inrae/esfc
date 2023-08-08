@@ -96,8 +96,9 @@
                 </div>
             </div>
             <div class="form-group">
-                <label for="document_description" class="control-label col-md-4">{t}Description
-                    des images :{/t}</label>
+                <label for="document_description" class="control-label col-md-4">
+                    {t}Description des images :{/t}
+                </label>
                 <div class="col-md-8">
                     <input id="document_description" class="form-control" type="text"
                         name="document_description" value="">

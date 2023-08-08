@@ -7,30 +7,30 @@
 <div class="row">
     <div class="col-lg-8 form-display">
         <dl class="dl-horizontal">
-            <dt>{t}Circuit d'eau : {/t}</dt>
+            <dt>{t}Circuit d'eau :{/t}</dt>
             <dd>{$dataAnalyse.circuit_eau_libelle}</dd>
             <dl class="dl-horizontal">
-                <dt>{t}Date d'analyse : {/t}</dt>
+                <dt>{t}Date d'analyse :{/t}</dt>
                 <dd>{$dataAnalyse.analyse_eau_date}</dd>
             </dl>
             <dl class="dl-horizontal">
-                <dt>{t}Température : {/t}</dt>
+                <dt>{t}Température :{/t}</dt>
                 <dd>{$dataAnalyse.temperature}</dd>
             </dl>
             <dl class="dl-horizontal">
-                <dt>{t}Oxygène (mg/l) : {/t}</dt>
+                <dt>{t}Oxygène (mg/l) :{/t}</dt>
                 <dd>{$dataAnalyse.oxygene}</dd>
             </dl>
             <dl class="dl-horizontal">
-                <dt>{t}Oxygène (% sat): {/t}</dt>
+                <dt>{t}Oxygène (% sat):{/t}</dt>
                 <dd>{$dataAnalyse.o2_pc}</dd>
             </dl>
             <dl class="dl-horizontal">
-                <dt>{t}salinité : {/t}</dt>
+                <dt>{t}salinité :{/t}</dt>
                 <dd>{$dataAnalyse.salinite}</dd>
             </dl>
             <dl class="dl-horizontal">
-                <dt>{t}pH : {/t}</dt>
+                <dt>{t}pH :{/t}</dt>
                 <dd>{$dataAnalyse.ph}</dd>
             </dl>
             {if $dataAnalyse.laboratoire_analyse_id > 0}
@@ -79,7 +79,7 @@
                 <dd>{if $dataAnalyse.backwash_mecanique == 1}{t}Oui{/t}{else}{t}Non{/t}{/if}</dd>
             </dl>
             <dl class="dl-horizontal">
-                <dt>{t}Backwash biologique : {/t}</dt>
+                <dt>{t}Backwash biologique :{/t}</dt>
                 <dd>{if $dataAnalyse.backwash_biologique == 1}{t}Oui{/t}{else}{t}Non{/t}{/if}</dd>
             </dl>
 

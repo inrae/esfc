@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: \n"
+"Project-Id-Version: ESFC\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-08-07 16:15+0200\n"
+"POT-Creation-Date: 2023-08-08 14:58+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -10,6 +10,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Poedit 3.3.2\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
@@ -490,7 +491,7 @@ msgstr "Sperm characteristics"
 #. (itstool) path: item/item@tooltip
 #: ../../../param/menu.xml:66
 msgid "Liste des caractéristiques potentielles du sperme"
-msgstr "List of sperm potential characteristics "
+msgstr "List of sperm potential characteristics"
 
 #. (itstool) path: item/item@label
 #: ../../../param/menu.xml:67
@@ -845,7 +846,7 @@ msgid ""
 "administrateurs pour son activation"
 msgstr ""
 "Your account has been created, but is inactive. An e-mail has been sent to "
-"the administrators to activate it."
+"the administrators to activate it"
 
 #: ../../../framework/identification/loginGestion.class.php:173
 msgid ""
@@ -996,7 +997,7 @@ msgstr ""
 
 #: ../../../framework/identification/totp.php:39
 msgid "La double authentification est maintenant activée."
-msgstr "Dual authentication is now enabled"
+msgstr "Dual authentication is now enabled."
 
 #: ../../../framework/identification/totp.php:48
 msgid "Le code fourni n'a pu être vérifié"
@@ -1062,7 +1063,7 @@ msgid ""
 "persiste, contactez l'administrateur de l'application."
 msgstr ""
 "An error has been detected during screen creation. If the problem persists, "
-"please contact the application administrator"
+"please contact the application administrator."
 
 #: ../../../framework/vue.class.php:655
 #, fuzzy
@@ -1070,9 +1071,9 @@ msgid "Problème rencontré lors de l'ouverture de finfo"
 msgstr "Problem when saving ..."
 
 #: ../../../framework/log/log.class.php:285
-#, php-format
-msgid "Collec-Science - %s - Compte bloqué"
-msgstr ""
+#, fuzzy, php-format
+msgid "%s - Compte bloqué"
+msgstr "Account blocked"
 
 #: ../../../framework/log/log.class.php:316
 msgid ""
@@ -1086,8 +1087,8 @@ msgstr ""
 
 #: ../../../framework/log/log.class.php:318
 #, php-format
-msgid "Collec-Science - %s - Trop d'accès à un module"
-msgstr ""
+msgid "%s - Trop d'accès à un module"
+msgstr "%s - Too many accesses to a module"
 
 #: ../../../framework/fonctions.php:44
 msgid "Erreur de lecture des informations dans la base de données"
@@ -1612,7 +1613,7 @@ msgid "Détermination des parents"
 msgstr "Determination of parents"
 
 #: ../../../modules/classes/search.class.php:157
-#: ../../../display/templates/poisson/evenementChange.tpl:637
+#: ../../../display/templates/poisson/evenementChange.tpl:638
 #: ../../../display/templates/poisson/poissonDisplay.tpl:261
 msgid "Détermination du sexe"
 msgstr "Sexe determination"
@@ -1732,7 +1733,7 @@ msgstr "No file loaded"
 
 #: ../../../modules/classes/documentAttach.class.php:344
 msgid "Unable to read the document"
-msgstr ""
+msgstr "Unable to read the document"
 
 #: ../../../display/templates/main_en.tpl:1
 #, fuzzy
@@ -2007,7 +2008,7 @@ msgstr "Glossary of terms used in the software"
 #: ../../../display/templates/repro/echographieChange.tpl:62
 #: ../../../display/templates/repro/spermeMesureChangeCorps.tpl:20
 #: ../../../display/templates/poisson/evenementChange.tpl:409
-#: ../../../display/templates/poisson/evenementChange.tpl:613
+#: ../../../display/templates/poisson/evenementChange.tpl:614
 #: ../../../display/templates/poisson/poissonSearch.tpl:113
 msgid "Sélectionnez..."
 msgstr "Choose..."
@@ -2053,7 +2054,7 @@ msgstr "in"
 #: ../../../display/templates/repro/biopsieChange.tpl:161
 #: ../../../display/templates/repro/dosageSanguinChange.tpl:68
 #: ../../../display/templates/repro/echographieChange.tpl:32
-#: ../../../display/templates/poisson/evenementChange.tpl:537
+#: ../../../display/templates/poisson/evenementChange.tpl:538
 #: ../../../display/templates/poisson/evenementChange.tpl:806
 #: ../../../display/templates/bassin/circuitEvenementChange.tpl:32
 #: ../../../display/templates/bassin/bassinEvenementChange.tpl:35
@@ -2072,7 +2073,7 @@ msgstr "Main comment:"
 #: ../../../display/templates/repro/biopsieChange.tpl:179
 #: ../../../display/templates/repro/spermeCongelationChange.tpl:186
 #: ../../../display/templates/repro/sequenceChange.tpl:56
-#: ../../../display/templates/repro/poissonCampagneChange.tpl:89
+#: ../../../display/templates/repro/poissonCampagneChange.tpl:90
 #: ../../../display/templates/repro/spermeFreezingPlaceChange.tpl:77
 #: ../../../display/templates/repro/saliniteChange.tpl:39
 #: ../../../display/templates/repro/saliniteChange.tpl:60
@@ -2092,7 +2093,7 @@ msgstr "Main comment:"
 #: ../../../display/templates/repro/devenirChange.tpl:113
 #: ../../../display/templates/repro/spermeUtiliseChange.tpl:89
 #: ../../../display/templates/repro/dosageSanguinChange.tpl:77
-#: ../../../display/templates/repro/echographieChange.tpl:116
+#: ../../../display/templates/repro/echographieChange.tpl:117
 #: ../../../display/templates/repro/spermeMesureChange.tpl:30
 #: ../../../display/templates/repro/bassinLotChange.tpl:57
 #: ../../../display/templates/parametre/spermeConservateurChange.tpl:23
@@ -2141,8 +2142,8 @@ msgstr "Main comment:"
 #: ../../../display/templates/bassin/circuitEvenementChange.tpl:40
 #: ../../../display/templates/bassin/circuitEvenementChange.tpl:62
 #: ../../../display/templates/bassin/bassinEvenementChange.tpl:44
-#: ../../../display/templates/bassin/bassinChange.tpl:182
-#: ../../../display/templates/bassin/circuitEauChange.tpl:55
+#: ../../../display/templates/bassin/bassinChange.tpl:184
+#: ../../../display/templates/bassin/circuitEauChange.tpl:56
 #: ../../../display/templates/document/documentChange.tpl:26
 #: ../../../display/templates/aliment/repartitionResteChange.tpl:132
 #: ../../../display/templates/aliment/repartitionChange.tpl:201
@@ -2156,7 +2157,7 @@ msgstr "Main comment:"
 #: ../../../display/templates/framework/dbparamListChange.tpl:24
 #: ../../../display/templates/framework/droits/acoChange.tpl:16
 #: ../../../display/templates/framework/droits/groupChange.tpl:13
-#: ../../../display/templates/framework/droits/otpCreate.tpl:32
+#: ../../../display/templates/framework/droits/otpCreate.tpl:29
 #: ../../../display/templates/framework/droits/appliChange.tpl:25
 #: ../../../display/templates/framework/droits/loginChange.tpl:29
 msgid "Valider"
@@ -2165,7 +2166,7 @@ msgstr "Save and return"
 #: ../../../display/templates/repro/biopsieChange.tpl:181
 #: ../../../display/templates/repro/spermeCongelationChange.tpl:188
 #: ../../../display/templates/repro/sequenceChange.tpl:58
-#: ../../../display/templates/repro/poissonCampagneChange.tpl:91
+#: ../../../display/templates/repro/poissonCampagneChange.tpl:92
 #: ../../../display/templates/repro/spermeFreezingPlaceChange.tpl:79
 #: ../../../display/templates/repro/saliniteChange.tpl:41
 #: ../../../display/templates/repro/saliniteChange.tpl:62
@@ -2185,7 +2186,7 @@ msgstr "Save and return"
 #: ../../../display/templates/repro/devenirChange.tpl:115
 #: ../../../display/templates/repro/spermeUtiliseChange.tpl:91
 #: ../../../display/templates/repro/dosageSanguinChange.tpl:79
-#: ../../../display/templates/repro/echographieChange.tpl:118
+#: ../../../display/templates/repro/echographieChange.tpl:119
 #: ../../../display/templates/repro/spermeMesureChange.tpl:32
 #: ../../../display/templates/repro/bassinLotChange.tpl:59
 #: ../../../display/templates/parametre/spermeConservateurChange.tpl:25
@@ -2233,8 +2234,8 @@ msgstr "Save and return"
 #: ../../../display/templates/bassin/circuitEvenementChange.tpl:42
 #: ../../../display/templates/bassin/circuitEvenementChange.tpl:64
 #: ../../../display/templates/bassin/bassinEvenementChange.tpl:46
-#: ../../../display/templates/bassin/bassinChange.tpl:184
-#: ../../../display/templates/bassin/circuitEauChange.tpl:57
+#: ../../../display/templates/bassin/bassinChange.tpl:186
+#: ../../../display/templates/bassin/circuitEauChange.tpl:58
 #: ../../../display/templates/document/documentList.tpl:49
 #: ../../../display/templates/aliment/repartitionChange.tpl:205
 #: ../../../display/templates/aliment/categorieChange.tpl:21
@@ -2251,7 +2252,7 @@ msgstr "Delete"
 
 #: ../../../display/templates/repro/biopsieChange.tpl:189
 msgid "Documents associés"
-msgstr "Associated documents:"
+msgstr "Associated documents"
 
 #: ../../../display/templates/repro/biopsieChange.tpl:196
 #: ../../../display/templates/repro/spermeCongelationChange.tpl:192
@@ -2270,7 +2271,7 @@ msgstr "Associated documents:"
 #: ../../../display/templates/repro/devenirChange.tpl:122
 #: ../../../display/templates/repro/spermeUtiliseChange.tpl:98
 #: ../../../display/templates/repro/dosageSanguinChange.tpl:86
-#: ../../../display/templates/repro/echographieChange.tpl:125
+#: ../../../display/templates/repro/echographieChange.tpl:126
 #: ../../../display/templates/repro/spermeMesureChange.tpl:39
 #: ../../../display/templates/repro/bassinLotChange.tpl:65
 #: ../../../display/templates/parametre/spermeConservateurChange.tpl:32
@@ -2311,8 +2312,8 @@ msgstr "Associated documents:"
 #: ../../../display/templates/bassin/analyseEauChange.tpl:256
 #: ../../../display/templates/bassin/circuitEvenementChange.tpl:74
 #: ../../../display/templates/bassin/bassinEvenementChange.tpl:52
-#: ../../../display/templates/bassin/bassinChange.tpl:192
-#: ../../../display/templates/bassin/circuitEauChange.tpl:65
+#: ../../../display/templates/bassin/bassinChange.tpl:194
+#: ../../../display/templates/bassin/circuitEauChange.tpl:66
 #: ../../../display/templates/aliment/repartitionChange.tpl:559
 #: ../../../display/templates/aliment/categorieChange.tpl:28
 #: ../../../display/templates/aliment/repartTemplateChange.tpl:113
@@ -2567,10 +2568,10 @@ msgstr "Number of straws used in reproduction:"
 #: ../../../display/templates/poisson/poissonChange.tpl:178
 #: ../../../display/templates/poisson/evenementChange.tpl:294
 #: ../../../display/templates/poisson/evenementChange.tpl:388
-#: ../../../display/templates/poisson/evenementChange.tpl:582
-#: ../../../display/templates/poisson/evenementChange.tpl:626
-#: ../../../display/templates/poisson/evenementChange.tpl:679
-#: ../../../display/templates/poisson/evenementChange.tpl:761
+#: ../../../display/templates/poisson/evenementChange.tpl:583
+#: ../../../display/templates/poisson/evenementChange.tpl:627
+#: ../../../display/templates/poisson/evenementChange.tpl:680
+#: ../../../display/templates/poisson/evenementChange.tpl:762
 #: ../../../display/templates/poisson/ventilationChange.tpl:48
 #: ../../../display/templates/anomalie/anomalieChange.tpl:86
 msgid "Commentaire :"
@@ -2727,20 +2728,19 @@ msgid ""
 "sélection)"
 msgstr "Growth indicators (automatically calculated if selected again)"
 
-#: ../../../display/templates/repro/poissonCampagneChange.tpl:70
-msgid ""
-"Taux de croissance\n"
-"                        journalier :"
-msgstr ""
+#: ../../../display/templates/repro/poissonCampagneChange.tpl:71
+#, fuzzy
+msgid "Taux de croissance journalier :"
+msgstr "Daily/specific growth rate:"
 
-#: ../../../display/templates/repro/poissonCampagneChange.tpl:79
+#: ../../../display/templates/repro/poissonCampagneChange.tpl:80
 msgid "Taux de croissance spécifique :"
-msgstr ""
+msgstr "Specific growth rate:"
 
 #: ../../../display/templates/repro/spermeFreezingPlaceChange.tpl:13
 #: ../../../display/templates/repro/spermeFreezingMeasureChange.tpl:13
 msgid "Retour au sperme prélevé"
-msgstr ""
+msgstr "Back to the sperm collected"
 
 #: ../../../display/templates/repro/spermeFreezingPlaceChange.tpl:18
 #: ../../../display/templates/repro/spermeFreezingMeasureChange.tpl:18
@@ -2750,7 +2750,7 @@ msgstr "Back to the list of applications"
 
 #: ../../../display/templates/repro/spermeFreezingPlaceChange.tpl:20
 msgid "Modification d'un emplacement de stockage du sperme congelé"
-msgstr ""
+msgstr "Change of storage location for frozen sperm"
 
 #: ../../../display/templates/repro/spermeFreezingPlaceChange.tpl:39
 #, fuzzy
@@ -2759,7 +2759,7 @@ msgstr "Last name :"
 
 #: ../../../display/templates/repro/spermeFreezingPlaceChange.tpl:47
 msgid "Nombre de visiotubes :"
-msgstr ""
+msgstr "Number of visiotubes:"
 
 #: ../../../display/templates/repro/spermeFreezingPlaceChange.tpl:56
 #, fuzzy
@@ -2768,20 +2768,20 @@ msgstr "New Password:"
 
 #: ../../../display/templates/repro/spermeFreezingPlaceChange.tpl:65
 msgid "Position du canister :"
-msgstr ""
+msgstr "Canister position:"
 
 #: ../../../display/templates/repro/spermeFreezingPlaceChange.tpl:70
 msgid "Bas"
-msgstr ""
+msgstr "Down"
 
 #: ../../../display/templates/repro/spermeFreezingPlaceChange.tpl:71
 msgid "Haut"
-msgstr ""
+msgstr "Up"
 
 #: ../../../display/templates/repro/saliniteChange.tpl:4
 #: ../../../display/templates/repro/profilThermiqueChange.tpl:4
 msgid "profil thermique du bassin"
-msgstr ""
+msgstr "basin thermal profile"
 
 #: ../../../display/templates/repro/saliniteChange.tpl:16
 #: ../../../display/templates/repro/profilThermiqueChange.tpl:16
@@ -2791,44 +2791,44 @@ msgstr "Date:"
 
 #: ../../../display/templates/repro/saliniteChange.tpl:23
 msgid "Taux de salinité :"
-msgstr ""
+msgstr "Salinity rate:"
 
 #: ../../../display/templates/repro/saliniteChange.tpl:30
 #: ../../../display/templates/repro/profilThermiqueChange.tpl:30
 msgid "Type :"
-msgstr ""
+msgstr "Type:"
 
 #: ../../../display/templates/repro/lotMesureList.tpl:10
 msgid "Nbre de jours"
-msgstr ""
+msgstr "Number of days"
 
 #: ../../../display/templates/repro/lotMesureList.tpl:11
 #: ../../../display/templates/poisson/poissonDetail.tpl:96
 #: ../../../display/templates/poisson/evenementChange.tpl:819
 msgid "Mortalité"
-msgstr ""
+msgstr "Mortality"
 
 #: ../../../display/templates/repro/lotMesureList.tpl:12
-#: ../../../display/templates/main.tpl:20
-#: ../../../display/templates/main.tpl:65
+#: ../../../display/templates/main.tpl:22
+#: ../../../display/templates/main.tpl:67
 msgid "Mortalité cumulée"
-msgstr ""
+msgstr "Cumulative mortality"
 
 #: ../../../display/templates/repro/lotMesureList.tpl:13
 msgid "Masse globale"
-msgstr ""
+msgstr "Global weight"
 
 #: ../../../display/templates/repro/lotMesureList.tpl:14
 msgid "Masse individuelle"
-msgstr ""
+msgstr "Individual weight"
 
 #: ../../../display/templates/repro/spermeDisplay.tpl:6
 msgid "Détail d'un prélèvement de sperme"
-msgstr ""
+msgstr "Detail of a sperm sample"
 
 #: ../../../display/templates/repro/spermeDisplay.tpl:46
 msgid "Congélation"
-msgstr ""
+msgstr "Freezing"
 
 #: ../../../display/templates/repro/injectionChange.tpl:12
 #, fuzzy
@@ -2847,11 +2847,11 @@ msgstr "Login used:"
 
 #: ../../../display/templates/repro/injectionChange.tpl:56
 msgid "Dose injectée :"
-msgstr ""
+msgstr "Injected dose:"
 
 #: ../../../display/templates/repro/bassinCampagneDisplay.tpl:68
 msgid "Détail d'un bassin"
-msgstr ""
+msgstr "Detail of a basin"
 
 #: ../../../display/templates/repro/bassinCampagneDisplay.tpl:73
 #, fuzzy
@@ -2860,109 +2860,109 @@ msgstr "Authentication successful!"
 
 #: ../../../display/templates/repro/bassinCampagneDisplay.tpl:92
 msgid "Événements survenus"
-msgstr ""
+msgstr "Events"
 
 #: ../../../display/templates/repro/bassinCampagneDisplay.tpl:108
 msgid "Profil thermique - températures prévues et relevés des analyses d'eau"
-msgstr ""
+msgstr "Thermal profile - forecast temperatures and water analysis readings"
 
 #: ../../../display/templates/repro/bassinCampagneDisplay.tpl:121
 msgid ""
 "Évolution de la salinité - salinités prévues et relevés des analyses d'eau"
-msgstr ""
+msgstr "Salinity trends - forecast salinities and water analysis data"
 
 #: ../../../display/templates/repro/poissonBiopsieList.tpl:5
 msgid "Diam. moyen (écart-type)"
-msgstr ""
+msgstr "Mean diameter (standard deviation)"
 
 #: ../../../display/templates/repro/poissonBiopsieList.tpl:6
 msgid "Taux OPI"
-msgstr ""
+msgstr "OPI rate"
 
 #: ../../../display/templates/repro/poissonBiopsieList.tpl:7
 msgid "Taux color normale"
-msgstr ""
+msgstr "Normal colour rate"
 
 #: ../../../display/templates/repro/poissonBiopsieList.tpl:8
 msgid "Taux éclatement"
-msgstr ""
+msgstr "Taux éclatement"
 
 #: ../../../display/templates/repro/poissonBiopsieList.tpl:9
 msgid "Ringer T50"
-msgstr ""
+msgstr "Ringer T50"
 
 #: ../../../display/templates/repro/poissonBiopsieList.tpl:10
 msgid "Ringer Tmax"
-msgstr ""
+msgstr "Ringer Tmax"
 
 #: ../../../display/templates/repro/poissonBiopsieList.tpl:11
 msgid "Ringer commentaire"
-msgstr ""
+msgstr "Ringer comment"
 
 #: ../../../display/templates/repro/poissonBiopsieList.tpl:12
 msgid "Leib T50"
-msgstr ""
+msgstr "Leib T50"
 
 #: ../../../display/templates/repro/poissonBiopsieList.tpl:13
 msgid "Leib Tmax"
-msgstr ""
+msgstr "Leib Tmax"
 
 #: ../../../display/templates/repro/poissonBiopsieList.tpl:14
 msgid "Leib commentaire"
-msgstr ""
+msgstr "Leib comment"
 
 #: ../../../display/templates/repro/poissonBiopsieList.tpl:15
 msgid "Commentaire général"
-msgstr ""
+msgstr "General comment"
 
 #: ../../../display/templates/repro/bassinLotList.tpl:10
 msgid "Date de début d'utilisation"
-msgstr ""
+msgstr "Start date of use"
 
 #: ../../../display/templates/repro/bassinLotList.tpl:11
 msgid "Nom du bassin"
-msgstr ""
+msgstr "Basin name"
 
 #: ../../../display/templates/repro/bassinLotList.tpl:12
 msgid "Date de fin d'utilisation"
-msgstr ""
+msgstr "End date of use"
 
 #: ../../../display/templates/repro/poissonCampagneDisplay.tpl:174
 msgid "Tx OPI (%) et heures (fractions décimales)"
-msgstr ""
+msgstr "OPI Tx (%) and hours (decimal fractions)"
 
 #: ../../../display/templates/repro/poissonCampagneDisplay.tpl:180
 msgid "Diamètre - mm"
-msgstr ""
+msgstr "Diameter - mm"
 
 #: ../../../display/templates/repro/poissonCampagneDisplay.tpl:194
 msgid "Détail du reproducteur"
-msgstr ""
+msgstr "Details of the breeder"
 
 #: ../../../display/templates/repro/poissonCampagneDisplay.tpl:205
 msgid "Détails du poisson"
-msgstr ""
+msgstr "Detail of the fish"
 
 #: ../../../display/templates/repro/poissonCampagneDisplay.tpl:220
 msgid "Échographies de l'année"
-msgstr ""
+msgstr "Ultrasound scans of the year"
 
 #: ../../../display/templates/repro/poissonCampagneDisplay.tpl:228
 msgid "Analyses sanguines"
-msgstr ""
+msgstr "Blood tests"
 
 #: ../../../display/templates/repro/poissonCampagneDisplay.tpl:238
 #: ../../../display/templates/repro/poissonSequenceChange.tpl:80
 msgid "Prélèvements de sperme"
-msgstr ""
+msgstr "Sperm samplings"
 
 #: ../../../display/templates/repro/poissonCampagneDisplay.tpl:248
 msgid "Transferts de l'année"
-msgstr ""
+msgstr "Transfers of the year"
 
 #: ../../../display/templates/repro/poissonCampagneDisplay.tpl:257
 msgid "Événements liés aux séquences"
-msgstr ""
+msgstr "Sequence events"
 
 #: ../../../display/templates/repro/poissonCampagneDisplay.tpl:266
 #, fuzzy
@@ -2971,39 +2971,39 @@ msgstr "Application modules"
 
 #: ../../../display/templates/repro/poissonCampagneDisplay.tpl:275
 msgid "Injections"
-msgstr ""
+msgstr "Injections"
 
 #: ../../../display/templates/repro/poissonCampagneDisplay.tpl:285
 msgid "Biopsies"
-msgstr ""
+msgstr "Biopsies"
 
 #: ../../../display/templates/repro/poissonCampagneDisplay.tpl:297
 msgid "Modifier les informations générales..."
-msgstr ""
+msgstr "Change general information..."
 
 #: ../../../display/templates/repro/poissonCampagneDisplay.tpl:303
 msgid "Taux sanguins, injections et expulsions"
-msgstr ""
+msgstr "Blood levels, injections and expulsions"
 
 #: ../../../display/templates/repro/poissonCampagneDisplay.tpl:309
 msgid "Valeurs de biopsie"
-msgstr ""
+msgstr "Biopsy values"
 
 #: ../../../display/templates/repro/poissonCampagneDisplay.tpl:315
 msgid "Profil thermique du poisson"
-msgstr ""
+msgstr "Thermal profile of fish"
 
 #: ../../../display/templates/repro/poissonCampagneDisplay.tpl:325
 msgid "Rattacher une nouvelle séquence..."
-msgstr ""
+msgstr "Attach a new sequence..."
 
 #: ../../../display/templates/repro/poissonCampagneDisplay.tpl:336
 msgid "Nouvelle échographie (nouvel événement)..."
-msgstr ""
+msgstr "New ultrasound scan (new event)..."
 
 #: ../../../display/templates/repro/poissonCampagneDisplay.tpl:352
 msgid "Nouveau prélèvement de sperme..."
-msgstr ""
+msgstr "New sperm sampling..."
 
 #: ../../../display/templates/repro/poissonCampagneDisplay.tpl:364
 #, fuzzy
@@ -3012,7 +3012,7 @@ msgstr "New login"
 
 #: ../../../display/templates/repro/poissonCampagneDisplay.tpl:380
 msgid "Nouvelle mesure..."
-msgstr ""
+msgstr "New measure..."
 
 #: ../../../display/templates/repro/poissonCampagneDisplay.tpl:390
 #, fuzzy
@@ -3031,26 +3031,26 @@ msgstr "Edit the group and its attachments to the logins"
 
 #: ../../../display/templates/repro/spermeChange.tpl:49
 msgid "Analyses réalisées"
-msgstr ""
+msgstr "Analyses performed"
 
 #: ../../../display/templates/repro/spermeChange.tpl:54
 msgid "Congélations"
-msgstr ""
+msgstr "Freezings"
 
 #: ../../../display/templates/repro/poissonSanguinList.tpl:5
 #: ../../../display/templates/poisson/dosageSanguinList.tpl:6
 msgid "Taux E2"
-msgstr ""
+msgstr "E2 rate"
 
 #: ../../../display/templates/repro/poissonSanguinList.tpl:6
 #: ../../../display/templates/poisson/dosageSanguinList.tpl:7
 msgid "Taux calcium"
-msgstr ""
+msgstr "Calcium rate"
 
 #: ../../../display/templates/repro/poissonSanguinList.tpl:7
 #: ../../../display/templates/poisson/dosageSanguinList.tpl:8
 msgid "Taux hématocrite"
-msgstr ""
+msgstr "Haematocrit rate"
 
 #: ../../../display/templates/repro/lotDisplay.tpl:3
 #: ../../../display/templates/repro/lotMesureChange.tpl:3
@@ -3063,7 +3063,7 @@ msgstr "Back to the list of logins"
 
 #: ../../../display/templates/repro/lotDisplay.tpl:5
 msgid "Détail du lot"
-msgstr ""
+msgstr "Batch detail"
 
 #: ../../../display/templates/repro/lotDisplay.tpl:9
 #, fuzzy
@@ -3072,11 +3072,11 @@ msgstr "Edit"
 
 #: ../../../display/templates/repro/lotDisplay.tpl:18
 msgid "Devenir du lot"
-msgstr ""
+msgstr "Batch destiny"
 
 #: ../../../display/templates/repro/lotDisplay.tpl:27
 msgid "Comptages et mesures"
-msgstr ""
+msgstr "Counts and measurements"
 
 #: ../../../display/templates/repro/lotDisplay.tpl:33
 #, fuzzy
@@ -3085,23 +3085,23 @@ msgstr "Login used:"
 
 #: ../../../display/templates/repro/spermeFreezingMeasureChange.tpl:20
 msgid "Modification d'une température relevée pendant la phase de congélation"
-msgstr ""
+msgstr "Modification of a temperature recorded during the freezing phase"
 
 #: ../../../display/templates/repro/spermeFreezingMeasureChange.tpl:38
 msgid "Date/heure:"
-msgstr ""
+msgstr "Date/time:"
 
 #: ../../../display/templates/repro/spermeFreezingMeasureChange.tpl:48
 msgid "Temperature relevée:"
-msgstr ""
+msgstr "Temperature recorded:"
 
 #: ../../../display/templates/repro/sequenceDisplay.tpl:36
 msgid "Modifier les informations générales de la séquence..."
-msgstr ""
+msgstr "Modifying general sequence information..."
 
 #: ../../../display/templates/repro/sequenceDisplay.tpl:39
 msgid "Détail de la séquence"
-msgstr ""
+msgstr "Sequence detail"
 
 #: ../../../display/templates/repro/sequenceDisplay.tpl:49
 #, fuzzy
@@ -3110,11 +3110,11 @@ msgstr "Logins attached"
 
 #: ../../../display/templates/repro/sequenceDisplay.tpl:57
 msgid "Croisements réalisés"
-msgstr ""
+msgstr "Cross-breedings made"
 
 #: ../../../display/templates/repro/sequenceDisplay.tpl:65
 msgid "Lots issus des croisements"
-msgstr ""
+msgstr "Lots resulting from cross-breeding"
 
 #: ../../../display/templates/repro/vieModeleChange.tpl:3
 #: ../../../display/templates/parametre/spermeConservateurChange.tpl:3
@@ -3163,70 +3163,71 @@ msgstr "Edit login (rights management module)"
 
 #: ../../../display/templates/repro/vieModeleChange.tpl:15
 msgid "Couleur de la marque :"
-msgstr ""
+msgstr "Color of the mark:"
 
 #: ../../../display/templates/repro/vieModeleChange.tpl:24
 msgid "Premier emplacement :"
-msgstr ""
+msgstr "First location:"
 
 #: ../../../display/templates/repro/vieModeleChange.tpl:39
 msgid "Second emplacement :"
-msgstr ""
+msgstr "Second location:"
 
 #: ../../../display/templates/repro/profilThermiqueChange.tpl:23
 #: ../../../display/templates/bassin/analyseEauChange.tpl:72
+#: ../../../display/templates/bassin/analyseEauDetail.tpl:17
 msgid "Température :"
-msgstr ""
+msgstr "Temperature:"
 
 #: ../../../display/templates/repro/poissonSequenceList.tpl:4
 #: ../../../display/templates/aliment/repartitionList.tpl:14
 msgid "Date début"
-msgstr ""
+msgstr "Start date"
 
 #: ../../../display/templates/repro/poissonSequenceList.tpl:5
 #: ../../../display/templates/repro/bassinCampagneList.tpl:14
 #: ../../../display/templates/bassin/bassinList.tpl:39
 #: ../../../display/templates/aliment/repartitionList.tpl:13
 msgid "Nom"
-msgstr ""
+msgstr "Name"
 
 #: ../../../display/templates/repro/poissonSequenceList.tpl:6
 #: ../../../display/templates/repro/croisementList.tpl:13
 msgid "Masse des ovocytes"
-msgstr ""
+msgstr "Oocyte mass"
 
 #: ../../../display/templates/repro/poissonSequenceList.tpl:7
 msgid "Date d'expulsion"
-msgstr ""
+msgstr "Date of expulsion"
 
 #: ../../../display/templates/repro/poissonSequenceList.tpl:8
 msgid "Statut du poisson pour la séquence"
-msgstr ""
+msgstr "Fish status for the sequence"
 
 #: ../../../display/templates/repro/poissonSequenceChange.tpl:10
 msgid "Données du poisson pour la séquence considérée"
-msgstr ""
+msgstr "Fish data for the sequence in question"
 
 #: ../../../display/templates/repro/poissonSequenceChange.tpl:41
 msgid "Statut du poisson pour la séquence :"
-msgstr ""
+msgstr "Fish status for the sequence:"
 
 #: ../../../display/templates/repro/poissonSequenceChange.tpl:59
 msgid "Date de l'expulsion des ovocytes :"
-msgstr ""
+msgstr "Date of oocyte expulsion:"
 
 #: ../../../display/templates/repro/poissonSequenceChange.tpl:70
 msgid "Masse totale des ovocytes (grammes) :"
-msgstr ""
+msgstr "Total mass of oocytes (grams):"
 
 #: ../../../display/templates/repro/poissonSequenceChange.tpl:82
 msgid "Accédez à la fiche du poisson pour réaliser la saisie"
-msgstr ""
+msgstr "Go to the fish file to enter data"
 
 #: ../../../display/templates/repro/poissonSequenceChange.tpl:102
 #: ../../../display/templates/poisson/poissonDisplay.tpl:53
 msgid "Nouvel événement..."
-msgstr ""
+msgstr "New event..."
 
 #: ../../../display/templates/repro/spermeFreezingPlaceList.tpl:4
 #, fuzzy
@@ -3235,28 +3236,28 @@ msgstr "New application"
 
 #: ../../../display/templates/repro/spermeFreezingPlaceList.tpl:10
 msgid "Cuve"
-msgstr ""
+msgstr "Tank"
 
 #: ../../../display/templates/repro/spermeFreezingPlaceList.tpl:11
 msgid "Numéro canister"
-msgstr ""
+msgstr "Canister number"
 
 #: ../../../display/templates/repro/spermeFreezingPlaceList.tpl:12
 msgid "Position canister"
-msgstr ""
+msgstr "Canister position"
 
 #: ../../../display/templates/repro/spermeFreezingPlaceList.tpl:13
 #: ../../../display/templates/repro/spermeCongelationList.tpl:14
 msgid "Nb visiotubes"
-msgstr ""
+msgstr "Number of visiotubes"
 
 #: ../../../display/templates/repro/spermeFreezingPlaceList.tpl:32
 msgid "bas"
-msgstr ""
+msgstr "bottom"
 
 #: ../../../display/templates/repro/spermeFreezingPlaceList.tpl:33
 msgid "haut"
-msgstr ""
+msgstr "top"
 
 #: ../../../display/templates/repro/echographieList.tpl:5
 #: ../../../display/templates/poisson/anesthesieList.tpl:5
@@ -3274,44 +3275,44 @@ msgstr ""
 #: ../../../display/templates/poisson/sortieList.tpl:5
 #: ../../../display/templates/anomalie/anomalieList.tpl:61
 msgid "Événement associé"
-msgstr ""
+msgstr "Associated event"
 
 #: ../../../display/templates/repro/echographieList.tpl:7
 #: ../../../display/templates/poisson/echographieList.tpl:7
 msgid "Stade gonade"
-msgstr ""
+msgstr "Gonad stage"
 
 #: ../../../display/templates/repro/echographieList.tpl:8
 #: ../../../display/templates/poisson/echographieList.tpl:8
 msgid "Stade œufs"
-msgstr ""
+msgstr "Eggs stage"
 
 #: ../../../display/templates/repro/sequenceDetail.tpl:4
 msgid "Année / séquence :"
-msgstr ""
+msgstr "Year / sequence:"
 
 #: ../../../display/templates/repro/sequenceDetail.tpl:8
 msgid "Date de début :"
-msgstr ""
+msgstr "Start date:"
 
 #: ../../../display/templates/repro/croisementChange.tpl:15
 #: ../../../display/templates/repro/spermeUtiliseChange.tpl:36
 msgid "Retour au croisement"
-msgstr ""
+msgstr "Back to crossbreeding"
 
 #: ../../../display/templates/repro/croisementChange.tpl:105
 msgid "Poissons utilisés pour la reproduction :"
-msgstr ""
+msgstr "Fish used for reproduction:"
 
 #: ../../../display/templates/repro/croisementChange.tpl:109
 #: ../../../display/templates/repro/spermeUtiliseList.tpl:9
 #: ../../../display/templates/anomalie/anomalieList.tpl:60
 msgid "Poisson"
-msgstr ""
+msgstr "Fish"
 
 #: ../../../display/templates/repro/croisementChange.tpl:111
 msgid "Sélectionné"
-msgstr ""
+msgstr "Selected"
 
 #: ../../../display/templates/repro/lotMesureChange.tpl:8
 #: ../../../display/templates/repro/devenirChange.tpl:8
@@ -3322,7 +3323,7 @@ msgstr "Back to"
 
 #: ../../../display/templates/repro/lotMesureChange.tpl:10
 msgid "Mesures pour le lot"
-msgstr ""
+msgstr "Batch measures"
 
 #: ../../../display/templates/repro/lotMesureChange.tpl:20
 #: ../../../display/templates/repro/psEvenementChange.tpl:24
@@ -3337,66 +3338,66 @@ msgstr "Date:"
 #: ../../../display/templates/repro/lotMesureChange.tpl:29
 msgid ""
 "Nombre de jours depuis l'éclosion (valeur calculée à l'enregistrement) :"
-msgstr ""
+msgstr "Number of days since hatching (value calculated on registration):"
 
 #: ../../../display/templates/repro/lotMesureChange.tpl:37
 msgid "Nbre d'individus morts :"
-msgstr ""
+msgstr "Number of dead individuals:"
 
 #: ../../../display/templates/repro/lotMesureChange.tpl:46
 msgid "Masse globale (en grammes) :"
-msgstr ""
+msgstr "Global mass (in grams):"
 
 #: ../../../display/templates/repro/lotMesureChange.tpl:55
 msgid "Masse individuelle (en grammes) :"
-msgstr ""
+msgstr "Individual mass (in grams):"
 
 #: ../../../display/templates/repro/ventilationList.tpl:6
 #: ../../../display/templates/poisson/ventilationList.tpl:9
 msgid "Nombre de battements/s"
-msgstr ""
+msgstr "Number of beats/s"
 
 #: ../../../display/templates/repro/spermeChangeCorps.tpl:13
 msgid "Volume prélevé (en ml) :"
-msgstr ""
+msgstr "Volume taken (in ml):"
 
 #: ../../../display/templates/repro/spermeChangeCorps.tpl:21
 msgid "Aspect :"
-msgstr ""
+msgstr "Appearance:"
 
 #: ../../../display/templates/repro/spermeChangeCorps.tpl:39
 msgid "Caractéristiques particulières :"
-msgstr ""
+msgstr "Particular characteristics:"
 
 #: ../../../display/templates/repro/spermeChangeCorps.tpl:82
 msgid "Analyse réalisée au prélèvement"
-msgstr ""
+msgstr "Analysis performed on sample"
 
 #: ../../../display/templates/repro/spermeList.tpl:4
 msgid "Date/heure du prélèvement"
-msgstr ""
+msgstr "Date/time of sampling"
 
 #: ../../../display/templates/repro/spermeList.tpl:6
 msgid "Aspect / Qualité estimée"
-msgstr ""
+msgstr "Appearance/Estimated quality"
 
 #: ../../../display/templates/repro/spermeList.tpl:11
 msgid "Temps survie à 5% (en sec.)"
-msgstr ""
+msgstr "Survival time at 5% (sec.)"
 
 #: ../../../display/templates/repro/spermeList.tpl:13
 msgid "Date mesure"
-msgstr ""
+msgstr "Measure date"
 
 #: ../../../display/templates/repro/spermeList.tpl:14
 msgid "Date congélation"
-msgstr ""
+msgstr "Frozen date"
 
 #: ../../../display/templates/repro/spermeList.tpl:15
 #: ../../../display/templates/repro/injectionList.tpl:9
 #: ../../../display/templates/repro/spermeCongelationList.tpl:18
 msgid "Remarque"
-msgstr ""
+msgstr "Remark"
 
 #: ../../../display/templates/repro/injectionList.tpl:5
 #, fuzzy
@@ -3405,15 +3406,15 @@ msgstr "Application Settings"
 
 #: ../../../display/templates/repro/injectionList.tpl:6
 msgid "Séquence correspondante"
-msgstr ""
+msgstr "Corresponding sequence"
 
 #: ../../../display/templates/repro/injectionList.tpl:7
 msgid "Hormone"
-msgstr ""
+msgstr "Hormone"
 
 #: ../../../display/templates/repro/injectionList.tpl:8
 msgid "Dosage"
-msgstr ""
+msgstr "Dosing"
 
 #: ../../../display/templates/repro/spermeCongelationList.tpl:4
 #, fuzzy
@@ -3423,35 +3424,35 @@ msgstr "New application"
 #: ../../../display/templates/repro/spermeCongelationList.tpl:10
 #: ../../../display/templates/repro/spermeUtiliseList.tpl:11
 msgid "Date de congélation"
-msgstr ""
+msgstr "Date of freezing"
 
 #: ../../../display/templates/repro/spermeCongelationList.tpl:11
 msgid "Volume total (ml)"
-msgstr ""
+msgstr "Total volume (ml)"
 
 #: ../../../display/templates/repro/spermeCongelationList.tpl:12
 msgid "Volume sperme (ml)"
-msgstr ""
+msgstr "Sperm volume (ml)"
 
 #: ../../../display/templates/repro/spermeCongelationList.tpl:13
 msgid "Nb paillettes"
-msgstr ""
+msgstr "No. of sequins"
 
 #: ../../../display/templates/repro/spermeCongelationList.tpl:15
 msgid "Dilueur"
-msgstr ""
+msgstr "Thinner"
 
 #: ../../../display/templates/repro/spermeCongelationList.tpl:16
 msgid "Conservateur"
-msgstr ""
+msgstr "Preservative"
 
 #: ../../../display/templates/repro/spermeCongelationList.tpl:17
 msgid "Nb paillettes utilisées"
-msgstr ""
+msgstr "Number of used sequins"
 
 #: ../../../display/templates/repro/psEvenementChange.tpl:32
 msgid "Libellé :"
-msgstr ""
+msgstr "Name:"
 
 #: ../../../display/templates/repro/vieModeleList.tpl:33
 #, fuzzy
@@ -3460,27 +3461,27 @@ msgstr "Value"
 
 #: ../../../display/templates/repro/vieModeleList.tpl:34
 msgid "Marque 1"
-msgstr ""
+msgstr "Mark 1"
 
 #: ../../../display/templates/repro/vieModeleList.tpl:35
 msgid "Marque 2"
-msgstr ""
+msgstr "Mark 2"
 
 #: ../../../display/templates/repro/spermeFreezingMeasureList.tpl:4
 msgid "Nouvelle mesure de température..."
-msgstr ""
+msgstr "New measure of temperature..."
 
 #: ../../../display/templates/repro/lotChange.tpl:16
 msgid "Retour au détail du lot"
-msgstr ""
+msgstr "Back to batch detail"
 
 #: ../../../display/templates/repro/lotChange.tpl:19
 msgid "Caractéristiques du lot"
-msgstr ""
+msgstr "Characteristics of the batch"
 
 #: ../../../display/templates/repro/lotChange.tpl:29
 msgid "Croisement d'origine :"
-msgstr ""
+msgstr "Origin crossbreeding:"
 
 #: ../../../display/templates/repro/lotChange.tpl:44
 #, fuzzy
@@ -3489,7 +3490,7 @@ msgstr "Name of the group:"
 
 #: ../../../display/templates/repro/lotChange.tpl:61
 msgid "Nombre de larves estimé :"
-msgstr ""
+msgstr "Estimated number of larvae:"
 
 #: ../../../display/templates/repro/lotChange.tpl:70
 #, fuzzy
@@ -3498,15 +3499,15 @@ msgstr "Number of logins declared"
 
 #: ../../../display/templates/repro/lotChange.tpl:78
 msgid "Marquage VIE"
-msgstr ""
+msgstr "VIE marking"
 
 #: ../../../display/templates/repro/lotChange.tpl:81
 msgid "Date du marquage :"
-msgstr ""
+msgstr "Date of marking:"
 
 #: ../../../display/templates/repro/lotChange.tpl:90
 msgid "Modèle de marquage VIE utilisé :"
-msgstr ""
+msgstr "Model of VIE mark used:"
 
 #: ../../../display/templates/repro/devenirChange.tpl:15
 #, fuzzy
@@ -3515,23 +3516,23 @@ msgstr "Back to the list of applications"
 
 #: ../../../display/templates/repro/devenirChange.tpl:18
 msgid "Saisie de la destination d'une reproduction"
-msgstr ""
+msgstr "Enter the destination of a reproduction"
 
 #: ../../../display/templates/repro/devenirChange.tpl:39
 msgid "Destination parente :"
-msgstr ""
+msgstr "Parental destination:"
 
 #: ../../../display/templates/repro/devenirChange.tpl:58
 msgid "Nature:"
-msgstr ""
+msgstr "Nature:"
 
 #: ../../../display/templates/repro/devenirChange.tpl:73
 msgid "Stade biologique :"
-msgstr ""
+msgstr "Biological stage:"
 
 #: ../../../display/templates/repro/devenirChange.tpl:88
 msgid "Lieu de lâcher :"
-msgstr ""
+msgstr "Release location:"
 
 #: ../../../display/templates/repro/devenirChange.tpl:104
 #, fuzzy
@@ -3540,11 +3541,11 @@ msgstr "Number of logins declared"
 
 #: ../../../display/templates/repro/spermeUtiliseChange.tpl:38
 msgid "Modification du sperme utilisé pour le croisement"
-msgstr ""
+msgstr "Modification of the sperm used for cross-breeding"
 
 #: ../../../display/templates/repro/spermeUtiliseChange.tpl:52
 msgid "Sperme:"
-msgstr ""
+msgstr "Sperm:"
 
 #: ../../../display/templates/repro/spermeUtiliseChange.tpl:71
 #, fuzzy
@@ -3553,7 +3554,7 @@ msgstr "Login used:"
 
 #: ../../../display/templates/repro/spermeUtiliseChange.tpl:80
 msgid "Nbre de paillettes utilisées :"
-msgstr ""
+msgstr "Number of straws used:"
 
 #: ../../../display/templates/repro/croisementList.tpl:10
 #, fuzzy
@@ -3562,39 +3563,39 @@ msgstr "Name of the group"
 
 #: ../../../display/templates/repro/croisementList.tpl:11
 msgid "Date/heure de fécondation"
-msgstr ""
+msgstr "Date/time of fertilisation"
 
 #: ../../../display/templates/repro/croisementList.tpl:14
 msgid "Nbre d'ovocytes par gramme"
-msgstr ""
+msgstr "Number of oocytes per gram"
 
 #: ../../../display/templates/repro/croisementList.tpl:15
 msgid "Nbre total d'ovocytes"
-msgstr ""
+msgstr "Total number of oocytes"
 
 #: ../../../display/templates/repro/croisementList.tpl:16
 msgid "Taux de fécondation"
-msgstr ""
+msgstr "Fertilisation rate"
 
 #: ../../../display/templates/repro/croisementList.tpl:17
 msgid "Nbre d'oeufs calculé"
-msgstr ""
+msgstr "Calculated eggs number"
 
 #: ../../../display/templates/repro/croisementList.tpl:18
 msgid "Taux de survie estimé"
-msgstr ""
+msgstr "Estimated survival rate"
 
 #: ../../../display/templates/repro/croisementList.tpl:19
 msgid "Nbre de larves théorique"
-msgstr ""
+msgstr "Theoretical number of larvae"
 
 #: ../../../display/templates/repro/croisementList.tpl:20
 msgid "Nbre de larves compté"
-msgstr ""
+msgstr "Number of larvae counted"
 
 #: ../../../display/templates/repro/croisementList.tpl:21
 msgid "Qualité génétique du croisement"
-msgstr ""
+msgstr "Genetic quality of the crossbreeding"
 
 #: ../../../display/templates/repro/spermeUtiliseList.tpl:3
 #: ../../../display/templates/bassin/circuitEauList.tpl:9
@@ -3604,7 +3605,7 @@ msgstr "New login"
 
 #: ../../../display/templates/repro/spermeUtiliseList.tpl:10
 msgid "Date de la semence"
-msgstr ""
+msgstr "Seed date"
 
 #: ../../../display/templates/repro/spermeUtiliseList.tpl:12
 #, fuzzy
@@ -3613,29 +3614,30 @@ msgstr "Login used:"
 
 #: ../../../display/templates/repro/spermeUtiliseList.tpl:13
 msgid "Nb de paillettes utilisées"
-msgstr ""
+msgstr "Number of straws used"
 
 #: ../../../display/templates/repro/poissonCampagneList.tpl:7
 msgid "Confirmez-vous la suppression du reproducteur pour l'année considérée ?"
 msgstr ""
+"Can you confirm that the breeder has been withdrawn for the year in question?"
 
 #: ../../../display/templates/repro/poissonCampagneList.tpl:10
 msgid "Confirmez-vous le changement de statut pour les poissons sélectionnés ?"
-msgstr ""
+msgstr "Can you confirm the change in status for the fish selected?"
 
 #: ../../../display/templates/repro/poissonCampagneList.tpl:13
 msgid "Confirmez-vous le rajout de tous les adultes vivants dans la liste ?"
-msgstr ""
+msgstr "Can you confirm that all living adults have been added to the list?"
 
 #: ../../../display/templates/repro/poissonCampagneList.tpl:72
 msgid "Statut de reproduction :"
-msgstr ""
+msgstr "Reproduction status:"
 
 #: ../../../display/templates/repro/poissonCampagneList.tpl:77
 #: ../../../display/templates/repro/poissonCampagneList.tpl:208
 #: ../../../display/templates/poisson/poissonSearch.tpl:78
 msgid "Sélectionnez le statut..."
-msgstr ""
+msgstr "Select status..."
 
 #: ../../../display/templates/repro/poissonCampagneList.tpl:93
 #: ../../../display/templates/poisson/poissonSearch.tpl:43
@@ -3643,18 +3645,18 @@ msgstr ""
 #: ../../../display/templates/bassin/analyseGraph.tpl:25
 #: ../../../display/templates/bassin/bassinChange.tpl:52
 #: ../../../display/templates/bassin/bassinSearch.tpl:95
-#: ../../../display/templates/bassin/circuitEauChange.tpl:30
+#: ../../../display/templates/bassin/circuitEauChange.tpl:31
 #: ../../../display/templates/aliment/repartitionSearch.tpl:29
 msgid "Sélectionnez le site..."
-msgstr ""
+msgstr "Select site..."
 
 #: ../../../display/templates/repro/poissonCampagneList.tpl:133
 msgid "Ajouter tous les adultes vivants à la campagne..."
-msgstr ""
+msgstr "Add all adults living to the campaign..."
 
 #: ../../../display/templates/repro/poissonCampagneList.tpl:147
 msgid "Données d'élevage"
-msgstr ""
+msgstr "Livestock data"
 
 #: ../../../display/templates/repro/poissonCampagneList.tpl:148
 #, fuzzy
@@ -3663,43 +3665,43 @@ msgstr "Authentication failed"
 
 #: ../../../display/templates/repro/poissonCampagneList.tpl:149
 msgid "Statut de reproduction"
-msgstr ""
+msgstr "Reproduction status"
 
 #: ../../../display/templates/repro/poissonCampagneList.tpl:150
 #: ../../../display/templates/poisson/poissonList.tpl:23
 #: ../../../display/templates/poisson/parentPoissonList.tpl:10
 #: ../../../display/templates/bassin/bassinPoissonPresent.tpl:9
 msgid "Cohorte"
-msgstr ""
+msgstr "Cohort"
 
 #: ../../../display/templates/repro/poissonCampagneList.tpl:152
 msgid "Masse actuelle"
-msgstr ""
+msgstr "Actual mass"
 
 #: ../../../display/templates/repro/poissonCampagneList.tpl:153
 msgid "Croissance"
-msgstr ""
+msgstr "Growth"
 
 #: ../../../display/templates/repro/poissonCampagneList.tpl:154
 msgid "Tx de croissance journalier"
-msgstr ""
+msgstr "Daily growth raite"
 
 #: ../../../display/templates/repro/poissonCampagneList.tpl:155
 #: ../../../display/templates/poisson/poissonCampagneList.tpl:9
 msgid "Specific growth rate"
-msgstr ""
+msgstr "Specific growth rate"
 
 #: ../../../display/templates/repro/poissonCampagneList.tpl:156
 msgid "Années de croisement"
-msgstr ""
+msgstr "Crossbreeding years"
 
 #: ../../../display/templates/repro/poissonCampagneList.tpl:158
 msgid "Sélection"
-msgstr ""
+msgstr "Select"
 
 #: ../../../display/templates/repro/poissonCampagneList.tpl:205
 msgid "Pour les poissons sélectionnés :"
-msgstr ""
+msgstr "For fish selected:"
 
 #: ../../../display/templates/repro/poissonCampagneList.tpl:223
 #: ../../../display/templates/parametre/anomalieDbTypeList.tpl:12
@@ -3713,28 +3715,28 @@ msgid "Modification d'un dosage sanguin"
 msgstr "Edit the group and its attachments to the logins"
 
 #: ../../../display/templates/repro/dosageSanguinChange.tpl:34
-#: ../../../display/templates/poisson/evenementChange.tpl:501
+#: ../../../display/templates/poisson/evenementChange.tpl:502
 msgid "Taux E2 :"
-msgstr ""
+msgstr "E2 rate:"
 
 #: ../../../display/templates/repro/dosageSanguinChange.tpl:42
 msgid "Taux E2 (forme textuelle, pour des fourchettes ou des tendances) :"
-msgstr ""
+msgstr "E2 rate (text form, for ranges or trends):"
 
 #: ../../../display/templates/repro/dosageSanguinChange.tpl:50
-#: ../../../display/templates/poisson/evenementChange.tpl:519
+#: ../../../display/templates/poisson/evenementChange.tpl:520
 msgid "Taux de calcium :"
-msgstr ""
+msgstr "Calcium level:"
 
 #: ../../../display/templates/repro/dosageSanguinChange.tpl:59
-#: ../../../display/templates/poisson/evenementChange.tpl:528
+#: ../../../display/templates/poisson/evenementChange.tpl:529
 msgid "Taux d'hématocrite :"
-msgstr ""
+msgstr "Haematocrit rate:"
 
 #: ../../../display/templates/repro/bassinCampagneList.tpl:12
 #: ../../../display/templates/aliment/repartTemplateChange.tpl:20
 msgid "Données générales"
-msgstr ""
+msgstr "General data"
 
 #: ../../../display/templates/repro/bassinCampagneList.tpl:15
 #: ../../../display/templates/bassin/bassinList.tpl:43
@@ -3744,7 +3746,7 @@ msgstr "User"
 
 #: ../../../display/templates/repro/bassinCampagneList.tpl:24
 msgid "Données générales du bassin"
-msgstr ""
+msgstr "General data on basin"
 
 #: ../../../display/templates/repro/echographieChange.tpl:9
 #, fuzzy
@@ -3753,17 +3755,17 @@ msgstr "Add / edit an account"
 
 #: ../../../display/templates/repro/echographieChange.tpl:23
 msgid "Date de l'échographie :"
-msgstr ""
+msgstr "Date of ultrasound:"
 
 #: ../../../display/templates/repro/echographieChange.tpl:41
 #: ../../../display/templates/poisson/evenementChange.tpl:404
 msgid "Stade des gonades :"
-msgstr ""
+msgstr "Gonad stage:"
 
 #: ../../../display/templates/repro/echographieChange.tpl:58
 #: ../../../display/templates/poisson/evenementChange.tpl:422
 msgid "Stade des œufs :"
-msgstr ""
+msgstr "Egg stage:"
 
 #: ../../../display/templates/repro/echographieChange.tpl:74
 #: ../../../display/templates/poisson/evenementChange.tpl:449
@@ -3774,77 +3776,78 @@ msgstr "Number of logins declared"
 #: ../../../display/templates/repro/echographieChange.tpl:82
 #: ../../../display/templates/poisson/evenementChange.tpl:457
 msgid "Référence des clichés :"
-msgstr ""
+msgstr "Photograph reference:"
 
 #: ../../../display/templates/repro/echographieChange.tpl:91
 #: ../../../display/templates/poisson/evenementChange.tpl:466
 msgid "Images(s) à importer :"
-msgstr ""
+msgstr "Image(s) to import:"
 
-#: ../../../display/templates/repro/echographieChange.tpl:99
-msgid ""
-"Description\n"
-"                    des images :"
-msgstr ""
+#: ../../../display/templates/repro/echographieChange.tpl:100
+#: ../../../display/templates/poisson/evenementChange.tpl:475
+#, fuzzy
+msgid "Description des images :"
+msgstr "Description:"
 
-#: ../../../display/templates/repro/echographieChange.tpl:108
-#: ../../../display/templates/poisson/evenementChange.tpl:483
+#: ../../../display/templates/repro/echographieChange.tpl:109
+#: ../../../display/templates/poisson/evenementChange.tpl:484
 msgid "Date de création (ou de prise de vue) :"
-msgstr ""
+msgstr "Date of creation (or of shooting):"
 
 #: ../../../display/templates/repro/spermeMesureChange.tpl:16
 msgid "Modification de l'analyse du prélèvement"
-msgstr ""
+msgstr "Modification of sample analysis"
 
 #: ../../../display/templates/repro/spermeMesureChangeCorps.tpl:6
 msgid "Date/heure de la mesure :"
-msgstr ""
+msgstr "Date/time of measurement:"
 
 #: ../../../display/templates/repro/spermeMesureChangeCorps.tpl:15
 msgid "Qualité globale :"
-msgstr ""
+msgstr "Global quality:"
 
 #: ../../../display/templates/repro/spermeMesureChangeCorps.tpl:33
 msgid "Nbre de paillettes utilisées pour l'analyse :"
-msgstr ""
+msgstr "Number of straws used for analysis:"
 
 #: ../../../display/templates/repro/spermeMesureChangeCorps.tpl:42
 msgid "Motilité initiale (1 à 5) :"
-msgstr ""
+msgstr "Initial motility (1-5):"
 
 #: ../../../display/templates/repro/spermeMesureChangeCorps.tpl:51
 msgid "Taux de survie initial (en %) :"
-msgstr ""
+msgstr "Initial survival rate (%):"
 
 #: ../../../display/templates/repro/spermeMesureChangeCorps.tpl:59
 msgid "Motilité à 60\" (1 à 5):"
-msgstr ""
+msgstr "Motility at 60\" (1-5):"
 
 #: ../../../display/templates/repro/spermeMesureChangeCorps.tpl:67
 msgid "taux de survie à 60\" (en %) :"
-msgstr ""
+msgstr "survival rate at 60\" (%):"
 
 #: ../../../display/templates/repro/spermeMesureChangeCorps.tpl:75
 msgid "Temps de survie à 5% (en secondes) :"
-msgstr ""
+msgstr "Survival time at 5% (in seconds):"
 
 #: ../../../display/templates/repro/spermeMesureChangeCorps.tpl:83
 #: ../../../display/templates/bassin/analyseEauChange.tpl:97
+#: ../../../display/templates/bassin/analyseEauDetail.tpl:33
 msgid "pH :"
-msgstr ""
+msgstr "pH:"
 
 #: ../../../display/templates/repro/bassinLotChange.tpl:10
 msgid "Modification de l'attribution d'un bassin"
-msgstr ""
+msgstr "Change of basin allocation"
 
 #: ../../../display/templates/repro/bassinLotChange.tpl:24
 msgid "Date de début d'utilisation :"
-msgstr ""
+msgstr "Start date of use:"
 
 #: ../../../display/templates/repro/bassinLotChange.tpl:33
 #: ../../../display/templates/poisson/poissonDetail.tpl:35
 msgid "Bassin :"
-msgstr ""
+msgstr "Basin:"
 
 #: ../../../display/templates/repro/bassinLotChange.tpl:48
 #, fuzzy
@@ -3918,7 +3921,7 @@ msgstr "Show _MENU_ entries"
 
 #: ../../../display/templates/main_js.tpl:102
 msgid "Tout afficher"
-msgstr ""
+msgstr "Display all"
 
 #: ../../../display/templates/main_js.tpl:222
 msgid "Valeur numérique..."
@@ -3941,11 +3944,11 @@ msgstr ""
 
 #: ../../../display/templates/entete.tpl:32
 msgid "Activer la double authentification pour votre compte"
-msgstr ""
+msgstr "Activate dual authentication for your account"
 
 #: ../../../display/templates/entete.tpl:32
 msgid "Activer la double authentification"
-msgstr ""
+msgstr "Activate dual authentification"
 
 #: ../../../display/templates/entete.tpl:35
 msgid "Mot de passe"
@@ -3973,11 +3976,11 @@ msgstr "Name of the group:"
 
 #: ../../../display/templates/parametre/hormoneChange.tpl:22
 msgid "Unité utilisée pour quantifier les injections :"
-msgstr ""
+msgstr "Unit used to quantify injections:"
 
 #: ../../../display/templates/parametre/vieImplantationChange.tpl:1
 msgid "Modification de l'endroit d'implantation d'une marque VIE"
-msgstr ""
+msgstr "Changing the location of a VIE mark"
 
 #: ../../../display/templates/parametre/vieImplantationChange.tpl:13
 #, fuzzy
@@ -3986,7 +3989,7 @@ msgstr "Name of the application:"
 
 #: ../../../display/templates/parametre/pittagTypeList.tpl:1
 msgid "Types de pittag"
-msgstr ""
+msgstr "Pittag types"
 
 #: ../../../display/templates/parametre/pittagTypeList.tpl:11
 #: ../../../display/templates/parametre/pathologieTypeList.tpl:11
@@ -4008,7 +4011,7 @@ msgstr ""
 #: ../../../display/templates/bassin/circuitEauList.tpl:20
 #: ../../../display/templates/aliment/alimentList.tpl:12
 msgid "libellé"
-msgstr ""
+msgstr "name"
 
 #: ../../../display/templates/parametre/siteList.tpl:11
 #, fuzzy
@@ -4033,7 +4036,7 @@ msgstr "Edit login (rights management module)"
 
 #: ../../../display/templates/parametre/cohorteTypeChange.tpl:13
 msgid "Méthode de détermination de la cohorte :"
-msgstr ""
+msgstr "Method of determining the cohort:"
 
 #: ../../../display/templates/parametre/requeteList.tpl:1
 #, fuzzy
@@ -4044,7 +4047,7 @@ msgstr "List of groups of logins"
 #: ../../../display/templates/poisson/poissonList.tpl:17
 #: ../../../display/templates/framework/request/requestList.tpl:9
 msgid "Id"
-msgstr ""
+msgstr "Id"
 
 #: ../../../display/templates/parametre/requeteList.tpl:15
 #: ../../../display/templates/bassin/circuitEauDisplay.tpl:77
@@ -4064,24 +4067,16 @@ msgstr "Description"
 
 #: ../../../display/templates/parametre/requeteList.tpl:17
 msgid "Date dernière<br>exécution"
-msgstr ""
+msgstr "Date last<br>performed"
 
 #: ../../../display/templates/parametre/requeteList.tpl:18
 #: ../../../display/templates/framework/request/requestList.tpl:13
 msgid "Créateur (login)"
-msgstr ""
-
-#: ../../../display/templates/parametre/requeteList.tpl:19
-msgid "<img src=\"display/images/exec.png\" height=\"25\">"
-msgstr ""
-
-#: ../../../display/templates/parametre/requeteList.tpl:21
-msgid "<img src=\"display/images/copy.png\" height=\"25\">"
-msgstr ""
+msgstr "Creator (login)"
 
 #: ../../../display/templates/parametre/hormoneList.tpl:1
 msgid "Hormones utilisées pour la reproduction"
-msgstr ""
+msgstr "Hormones used for reproduction"
 
 #: ../../../display/templates/parametre/hormoneList.tpl:11
 #, fuzzy
@@ -4090,15 +4085,15 @@ msgstr "Name of the group"
 
 #: ../../../display/templates/parametre/hormoneList.tpl:12
 msgid "Unité utilisée pour l'injection"
-msgstr ""
+msgstr "Unit used for injection"
 
 #: ../../../display/templates/parametre/stadeGonadeChange.tpl:1
 msgid "Modification d'une stadeGonade (prélèvements génétiques)"
-msgstr ""
+msgstr "Modification of a gonade stage (genetic samples)"
 
 #: ../../../display/templates/parametre/stadeGonadeChange.tpl:14
 msgid "Nom du stade de maturation de la gonade :"
-msgstr ""
+msgstr "Name of the stage of maturation of the gonad:"
 
 #: ../../../display/templates/parametre/genderMethodeChange.tpl:1
 #, fuzzy
@@ -4107,19 +4102,19 @@ msgstr "Edit login (rights management module)"
 
 #: ../../../display/templates/parametre/genderMethodeChange.tpl:12
 msgid "Nom de la méthode de détermination du sexe :"
-msgstr ""
+msgstr "Name of sex determination method:"
 
 #: ../../../display/templates/parametre/pathologieTypeList.tpl:1
 msgid "Types de pathologies"
-msgstr ""
+msgstr "Pathology types"
 
 #: ../../../display/templates/parametre/bassinZoneList.tpl:1
 msgid "Zones d'implantation des bassins"
-msgstr ""
+msgstr "Areas where the basins are located"
 
 #: ../../../display/templates/parametre/genderMethodeList.tpl:1
 msgid "Méthodes de détermination du sexe"
-msgstr ""
+msgstr "Sex determination methods"
 
 #: ../../../display/templates/parametre/pathologieTypeChange.tpl:1
 #, fuzzy
@@ -4128,7 +4123,7 @@ msgstr "Edit the group and its attachments to the logins"
 
 #: ../../../display/templates/parametre/pathologieTypeChange.tpl:13
 msgid "Nom du type de pathologie :"
-msgstr ""
+msgstr "Name of the pathology type:"
 
 #: ../../../display/templates/parametre/mimeTypeChange.tpl:1
 #, fuzzy
@@ -4137,31 +4132,31 @@ msgstr "Edit the group and its attachments to the logins"
 
 #: ../../../display/templates/parametre/mimeTypeChange.tpl:13
 msgid "Extension du fichier <span class=\"red\">*</span> :"
-msgstr ""
+msgstr "File extension <span class=\"red\">*</span> :"
 
 #: ../../../display/templates/parametre/mimeTypeChange.tpl:20
 msgid "Type de contenu (mime-Type) <span class=\"red\">*</span> :"
-msgstr ""
+msgstr "Content type (mime-Type)<span class=\"red\">*</span>:"
 
 #: ../../../display/templates/parametre/bassinUsageList.tpl:1
 msgid "Utilisations des bassins"
-msgstr ""
+msgstr "Basin uses"
 
 #: ../../../display/templates/parametre/bassinUsageList.tpl:12
 msgid "Catégorie d'alimentation"
-msgstr ""
+msgstr "Feeding category"
 
 #: ../../../display/templates/parametre/cohorteTypeList.tpl:1
 msgid "Méthodes de détermination de la cohorte"
-msgstr ""
+msgstr "Cohort determination methods"
 
 #: ../../../display/templates/parametre/anomalieDbTypeList.tpl:1
 msgid "Types d'anomalie_dbs"
-msgstr ""
+msgstr "Anomaly dbs types"
 
 #: ../../../display/templates/parametre/mortaliteTypeList.tpl:1
 msgid "Types de mortalité"
-msgstr ""
+msgstr "Mortality types"
 
 #: ../../../display/templates/parametre/mortaliteTypeChange.tpl:1
 #, fuzzy
@@ -4170,15 +4165,15 @@ msgstr "Edit the group and its attachments to the logins"
 
 #: ../../../display/templates/parametre/mortaliteTypeChange.tpl:13
 msgid "Type de mortalite :"
-msgstr ""
+msgstr "Mortality types:"
 
 #: ../../../display/templates/parametre/circuitEvenementTypeList.tpl:1
 msgid "Types d'événements survenant dans les circuits d'eau"
-msgstr ""
+msgstr "Types of events occurring in water circuits"
 
 #: ../../../display/templates/parametre/spermeCaracteristiqueList.tpl:1
 msgid "Caractéristiques particulières du sperme"
-msgstr ""
+msgstr "Specific characteristics of sperm"
 
 #: ../../../display/templates/parametre/requeteChange.tpl:38
 #: ../../../display/templates/framework/request/requestChange.tpl:45
@@ -4187,28 +4182,28 @@ msgid "Description de la requête :"
 msgstr "Description:"
 
 #: ../../../display/templates/parametre/requeteChange.tpl:46
-msgid "Code SQL <span class=\"red\">*</span> : <b>SELECT</b>"
-msgstr ""
+msgid "Code SQL"
+msgstr "SQL code"
 
 #: ../../../display/templates/parametre/requeteChange.tpl:53
 #: ../../../display/templates/framework/request/requestChange.tpl:58
 msgid "Champs dates de la requête (séparés par une virgule) :"
-msgstr ""
+msgstr "Date fields of the request (separated by a comma):"
 
 #: ../../../display/templates/parametre/requeteChange.tpl:59
 #: ../../../display/templates/framework/request/requestChange.tpl:64
 msgid "date de création :"
-msgstr ""
+msgstr "creation date:"
 
 #: ../../../display/templates/parametre/requeteChange.tpl:66
 #: ../../../display/templates/framework/request/requestChange.tpl:70
 msgid "par :"
-msgstr ""
+msgstr "by:"
 
 #: ../../../display/templates/parametre/requeteChange.tpl:73
 #: ../../../display/templates/framework/request/requestChange.tpl:76
 msgid "Date de dernière exécution :"
-msgstr ""
+msgstr "Last execution date:"
 
 #: ../../../display/templates/parametre/poissonStatutChange.tpl:1
 #, fuzzy
@@ -4231,7 +4226,7 @@ msgstr "Edit the group and its attachments to the logins"
 #: ../../../display/templates/bassin/circuitEvenementChange.tpl:13
 #: ../../../display/templates/bassin/bassinEvenementChange.tpl:14
 msgid "Type d'événement :"
-msgstr ""
+msgstr "Event type:"
 
 #: ../../../display/templates/parametre/anesthesieProduitChange.tpl:1
 #, fuzzy
@@ -4267,9 +4262,9 @@ msgstr "Active"
 #: ../../../display/templates/bassin/circuitEauDisplay.tpl:97
 #: ../../../display/templates/bassin/circuitEauSearch.tpl:40
 #: ../../../display/templates/bassin/bassinList.tpl:72
-#: ../../../display/templates/bassin/bassinChange.tpl:158
+#: ../../../display/templates/bassin/bassinChange.tpl:160
 #: ../../../display/templates/bassin/bassinSearch.tpl:15
-#: ../../../display/templates/bassin/circuitEauChange.tpl:48
+#: ../../../display/templates/bassin/circuitEauChange.tpl:49
 #: ../../../display/templates/aliment/repartTemplateList.tpl:36
 #: ../../../display/templates/aliment/repartTemplateChange.tpl:52
 #: ../../../display/templates/aliment/alimentChange.tpl:38
@@ -4294,9 +4289,9 @@ msgstr "yes"
 #: ../../../display/templates/bassin/circuitEauList.tpl:37
 #: ../../../display/templates/bassin/circuitEauSearch.tpl:45
 #: ../../../display/templates/bassin/bassinList.tpl:72
-#: ../../../display/templates/bassin/bassinChange.tpl:162
+#: ../../../display/templates/bassin/bassinChange.tpl:164
 #: ../../../display/templates/bassin/bassinSearch.tpl:19
-#: ../../../display/templates/bassin/circuitEauChange.tpl:51
+#: ../../../display/templates/bassin/circuitEauChange.tpl:52
 #: ../../../display/templates/aliment/repartTemplateList.tpl:36
 #: ../../../display/templates/aliment/repartTemplateChange.tpl:55
 #: ../../../display/templates/aliment/alimentChange.tpl:41
@@ -4307,7 +4302,7 @@ msgstr "no"
 
 #: ../../../display/templates/parametre/stadeGonadeList.tpl:1
 msgid "Stades de maturation des gonades"
-msgstr ""
+msgstr "Gonad maturation stages"
 
 #: ../../../display/templates/parametre/nageoireChange.tpl:1
 #, fuzzy
@@ -4321,32 +4316,32 @@ msgstr "Last name :"
 
 #: ../../../display/templates/parametre/sortieLieuList.tpl:1
 msgid "Lieux de lâchers/destination des poissons"
-msgstr ""
+msgstr "Places of release/destination of fish"
 
 #: ../../../display/templates/parametre/sortieLieuList.tpl:11
 #: ../../../display/templates/poisson/sortieList.tpl:6
 msgid "Lieu"
-msgstr ""
+msgstr "Place"
 
 #: ../../../display/templates/parametre/sortieLieuList.tpl:12
 msgid "Longitude"
-msgstr ""
+msgstr "Longitude"
 
 #: ../../../display/templates/parametre/sortieLieuList.tpl:13
 msgid "Latitude"
-msgstr ""
+msgstr "Latitude"
 
 #: ../../../display/templates/parametre/sortieLieuList.tpl:14
 msgid "Statut<br>correspondant"
-msgstr ""
+msgstr "Status"
 
 #: ../../../display/templates/parametre/stadeOeufList.tpl:1
 msgid "Stades de maturation des œufs"
-msgstr ""
+msgstr "Egg maturation stages"
 
 #: ../../../display/templates/parametre/vieImplantationList.tpl:1
 msgid "Emplacements d'implantation des marques VIE"
-msgstr ""
+msgstr "Locations for VIE marks"
 
 #: ../../../display/templates/parametre/vieImplantationList.tpl:11
 #, fuzzy
@@ -4370,26 +4365,26 @@ msgstr "User"
 #: ../../../display/templates/aliment/repartTemplateChange.tpl:36
 #: ../../../display/templates/aliment/repartTemplateSearch.tpl:7
 msgid "Catégorie d'alimentation :"
-msgstr ""
+msgstr "Feeding category:"
 
 #: ../../../display/templates/parametre/bassinUsageChange.tpl:28
 #: ../../../display/templates/poisson/poissonSearch.tpl:62
 #: ../../../display/templates/aliment/repartitionSearch.tpl:13
 #: ../../../display/templates/aliment/repartTemplateSearch.tpl:10
 msgid "Sélectionnez la catégorie..."
-msgstr ""
+msgstr "Select the category..."
 
 #: ../../../display/templates/parametre/mimeTypeList.tpl:1
 msgid "Types de fichiers importables"
-msgstr ""
+msgstr "Importable file types"
 
 #: ../../../display/templates/parametre/mimeTypeList.tpl:11
 msgid "extension"
-msgstr ""
+msgstr "extension"
 
 #: ../../../display/templates/parametre/mimeTypeList.tpl:12
 msgid "type mime"
-msgstr ""
+msgstr "mime type"
 
 #: ../../../display/templates/parametre/siteChange.tpl:1
 #, fuzzy
@@ -4408,7 +4403,7 @@ msgstr "Error reading information in the database"
 
 #: ../../../display/templates/parametre/anomalieDbTypeChange.tpl:13
 msgid "Type d'anomalieDb :"
-msgstr ""
+msgstr "DB anomaly type:"
 
 #: ../../../display/templates/parametre/stadeOeufChange.tpl:1
 #, fuzzy
@@ -4417,15 +4412,15 @@ msgstr "Edit login (rights management module)"
 
 #: ../../../display/templates/parametre/stadeOeufChange.tpl:14
 msgid "Nom du stade de maturation de l'œuf :"
-msgstr ""
+msgstr "Name of egg maturation stage:"
 
 #: ../../../display/templates/parametre/laboratoireAnalyseList.tpl:1
 msgid "Laboratoires d'analyse"
-msgstr ""
+msgstr "Analysis laboratories"
 
 #: ../../../display/templates/parametre/metalChange.tpl:1
 msgid "Modification d'un métal analysé"
-msgstr ""
+msgstr "Modification of an analysed metal"
 
 #: ../../../display/templates/parametre/metalChange.tpl:12
 #, fuzzy
@@ -4434,11 +4429,11 @@ msgstr "Last name :"
 
 #: ../../../display/templates/parametre/metalChange.tpl:21
 msgid "Unité utilisée pour quantifier les analyses :"
-msgstr ""
+msgstr "Unit used to quantify analyses:"
 
 #: ../../../display/templates/parametre/bassinEvenementTypeList.tpl:1
 msgid "Types d'événements survenant dans les bassins"
-msgstr ""
+msgstr "Types of events occurring in the basins"
 
 #: ../../../display/templates/parametre/bassinTypeChange.tpl:1
 #, fuzzy
@@ -4465,23 +4460,23 @@ msgstr "Name of the group:"
 
 #: ../../../display/templates/parametre/laboratoireAnalyseChange.tpl:20
 msgid "Sollicité actuellement ?"
-msgstr ""
+msgstr "Currently in demand?"
 
 #: ../../../display/templates/parametre/evenementTypeChange.tpl:1
 msgid "Modification d'un type d'événement"
-msgstr ""
+msgstr "Modifying an event type"
 
 #: ../../../display/templates/parametre/evenementTypeChange.tpl:13
 msgid "Nom du type d'événement :"
-msgstr ""
+msgstr "Name of event type:"
 
 #: ../../../display/templates/parametre/evenementTypeChange.tpl:22
 msgid "Actif dans les sélections ?"
-msgstr ""
+msgstr "Active in selection?"
 
 #: ../../../display/templates/parametre/spermeDilueurList.tpl:1
 msgid "Dilueurs du sperme utilisés pour la congélation"
-msgstr ""
+msgstr "Semen thinners used for freezing"
 
 #: ../../../display/templates/parametre/spermeDilueurList.tpl:11
 #, fuzzy
@@ -4500,19 +4495,19 @@ msgstr "Name of the group:"
 
 #: ../../../display/templates/parametre/circuitEvenementTypeChange.tpl:1
 msgid "Modification d'un type d'événement survenant dans les circuits d'eau"
-msgstr ""
+msgstr "Modification of a type of event occurring in water circuits"
 
 #: ../../../display/templates/parametre/spermeConservateurList.tpl:1
 msgid "Conservateurs du sperme utilisés pour la congélation"
-msgstr ""
+msgstr "Semen preservatives used for freezing"
 
 #: ../../../display/templates/parametre/spermeConservateurList.tpl:11
 msgid "Nom du produit conservateur"
-msgstr ""
+msgstr "Preservative product name"
 
 #: ../../../display/templates/parametre/anesthesieProduitList.tpl:1
 msgid "Produits utilisés pour l'anesthésie"
-msgstr ""
+msgstr "Products used for anaesthesia"
 
 #: ../../../display/templates/parametre/anesthesieProduitList.tpl:11
 #, fuzzy
@@ -4522,7 +4517,7 @@ msgstr "Name of the group"
 #: ../../../display/templates/parametre/anesthesieProduitList.tpl:12
 #: ../../../display/templates/bassin/bassinList.tpl:47
 msgid "Utilisé actuellement ?"
-msgstr ""
+msgstr "Currently used?"
 
 #: ../../../display/templates/parametre/metalList.tpl:11
 #, fuzzy
@@ -4536,7 +4531,7 @@ msgstr "Account used for web service"
 
 #: ../../../display/templates/parametre/spermeCaracteristiqueChange.tpl:1
 msgid "Modification d'une caractéristique du sperme"
-msgstr ""
+msgstr "Modification of a sperm characteristic"
 
 #: ../../../display/templates/parametre/spermeCaracteristiqueChange.tpl:14
 #, fuzzy
@@ -4555,19 +4550,19 @@ msgstr "Name of the group:"
 
 #: ../../../display/templates/parametre/sortieLieuChange.tpl:22
 msgid "Longitude (coord. décimales, WGS84) :"
-msgstr ""
+msgstr "Longitude (decimal coord., WGS84) :"
 
 #: ../../../display/templates/parametre/sortieLieuChange.tpl:30
 msgid "Latitude (coord. décimales, WGS84) :"
-msgstr ""
+msgstr "Latitude (decimal coord., WGS84) :"
 
 #: ../../../display/templates/parametre/sortieLieuChange.tpl:38
 msgid "Statut pris par le poisson :"
-msgstr ""
+msgstr "Fish status:"
 
 #: ../../../display/templates/parametre/sortieLieuChange.tpl:53
 msgid "Lieu actuellement utilisé ?"
-msgstr ""
+msgstr "Place currently used?"
 
 #: ../../../display/templates/parametre/alimentTypeChange.tpl:1
 #, fuzzy
@@ -4577,11 +4572,11 @@ msgstr "Edit the group and its attachments to the logins"
 #: ../../../display/templates/parametre/alimentTypeChange.tpl:12
 #: ../../../display/templates/aliment/alimentChange.tpl:23
 msgid "Type d'aliment :"
-msgstr ""
+msgstr "Type of feed:"
 
 #: ../../../display/templates/parametre/nageoireList.tpl:1
 msgid "Nageoires (prélèvements génétiques)"
-msgstr ""
+msgstr "Fins (genetic samplings)"
 
 #: ../../../display/templates/parametre/pittagTypeChange.tpl:1
 #, fuzzy
@@ -4590,34 +4585,34 @@ msgstr "Edit the group and its attachments to the logins"
 
 #: ../../../display/templates/parametre/pittagTypeChange.tpl:13
 msgid "Nom du type de pittag :"
-msgstr ""
+msgstr "Pittag type name:"
 
 #: ../../../display/templates/poisson/poissonDetail.tpl:4
 msgid "Matricule :"
-msgstr ""
+msgstr "Personnel number:"
 
 #: ../../../display/templates/poisson/poissonDetail.tpl:8
 #: ../../../display/templates/poisson/poissonChange.tpl:76
 #: ../../../display/templates/poisson/poissonSearch.tpl:89
 msgid "Sexe :"
-msgstr ""
+msgstr "Sex:"
 
 #: ../../../display/templates/poisson/poissonDetail.tpl:13
 msgid "(Pit)tag :"
-msgstr ""
+msgstr "pittag:"
 
 #: ../../../display/templates/poisson/poissonDetail.tpl:17
 #: ../../../display/templates/poisson/poissonChange.tpl:149
 msgid "Cohorte :"
-msgstr ""
+msgstr "Cohort:"
 
 #: ../../../display/templates/poisson/poissonDetail.tpl:23
 msgid "capturé le"
-msgstr ""
+msgstr "caught on"
 
 #: ../../../display/templates/poisson/poissonDetail.tpl:29
 msgid "né le"
-msgstr ""
+msgstr "born on"
 
 #: ../../../display/templates/poisson/poissonDetail.tpl:56
 #, fuzzy
@@ -4631,7 +4626,7 @@ msgstr "New right"
 
 #: ../../../display/templates/poisson/poissonDetail.tpl:72
 msgid "Liste des (pit)tags attribués"
-msgstr ""
+msgstr "List of attributed pittags"
 
 #: ../../../display/templates/poisson/poissonDetail.tpl:77
 #, fuzzy
@@ -4639,9 +4634,9 @@ msgid "Nouveau pittag ou étiquette..."
 msgstr "New root group"
 
 #: ../../../display/templates/poisson/poissonDetail.tpl:87
-#: ../../../display/templates/poisson/evenementChange.tpl:776
+#: ../../../display/templates/poisson/evenementChange.tpl:777
 msgid "Sortie du stock"
-msgstr ""
+msgstr "Out of stock"
 
 #: ../../../display/templates/poisson/anesthesieList.tpl:7
 #, fuzzy
@@ -4650,35 +4645,35 @@ msgstr "Login used:"
 
 #: ../../../display/templates/poisson/anesthesieList.tpl:8
 msgid "Dosage (mg/l)"
-msgstr ""
+msgstr "Dosage (mg/l)"
 
 #: ../../../display/templates/poisson/morphologieList.tpl:10
 msgid "Date de mesure"
-msgstr ""
+msgstr "Measurement date"
 
 #: ../../../display/templates/poisson/morphologieList.tpl:11
 msgid "Longueur à la fourche (cm)"
-msgstr ""
+msgstr "Fork length (cm)"
 
 #: ../../../display/templates/poisson/morphologieList.tpl:12
 msgid "Longueur totale (cm)"
-msgstr ""
+msgstr "Total length (cm)"
 
 #: ../../../display/templates/poisson/morphologieList.tpl:13
 msgid "Masse (g)"
-msgstr ""
+msgstr "Mass (g)"
 
 #: ../../../display/templates/poisson/morphologieList.tpl:14
 msgid "Circonférence (cm)"
-msgstr ""
+msgstr "Circumference (cm)"
 
 #: ../../../display/templates/poisson/morphologieList.tpl:60
 msgid "Poids en grammes"
-msgstr ""
+msgstr "Weight in grams"
 
 #: ../../../display/templates/poisson/morphologieList.tpl:65
 msgid "Taille en cm"
-msgstr ""
+msgstr "Size in cm"
 
 #: ../../../display/templates/poisson/pittagChange.tpl:10
 #, fuzzy
@@ -4687,17 +4682,17 @@ msgstr "Edit the group and its attachments to the logins"
 
 #: ../../../display/templates/poisson/pittagChange.tpl:23
 msgid "Valeur de la marque :"
-msgstr ""
+msgstr "Mark value:"
 
 #: ../../../display/templates/poisson/pittagChange.tpl:28
 #: ../../../display/templates/poisson/poissonChange.tpl:100
 msgid "Nombre hexadécimal ou numérique"
-msgstr ""
+msgstr "Hexadecimal or numeric number"
 
 #: ../../../display/templates/poisson/pittagChange.tpl:33
 #: ../../../display/templates/poisson/poissonChange.tpl:105
 msgid "Type de marque :"
-msgstr ""
+msgstr "Mark type:"
 
 #: ../../../display/templates/poisson/pittagChange.tpl:51
 #: ../../../display/templates/poisson/poissonChange.tpl:123
@@ -4712,7 +4707,7 @@ msgstr "Value"
 
 #: ../../../display/templates/poisson/pittagList.tpl:6
 msgid "Type de pittag"
-msgstr ""
+msgstr "Pittag type"
 
 #: ../../../display/templates/poisson/pittagList.tpl:7
 #, fuzzy
@@ -4721,25 +4716,27 @@ msgstr "Password"
 
 #: ../../../display/templates/poisson/pathologieList.tpl:7
 msgid "Type de pathologie"
-msgstr ""
+msgstr "Pathology type"
 
 #: ../../../display/templates/poisson/parentPoissonChange.tpl:35
 msgid "Attribution d'un parent au poisson"
-msgstr ""
+msgstr "Assigning a parent to the fish"
 
 #: ../../../display/templates/poisson/parentPoissonChange.tpl:47
 msgid "Parent :"
-msgstr ""
+msgstr "Parent:"
 
 #: ../../../display/templates/poisson/parentPoissonChange.tpl:49
 msgid "texte à rechercher"
-msgstr ""
+msgstr "text to search"
 
 #: ../../../display/templates/poisson/poissonChange.tpl:11
 msgid ""
 "Le pittag doit être renseigné, à défaut le matricule ou le prénom pour les "
 "anciens poissons"
 msgstr ""
+"The pittag must be filled in, failing that the registration number or first "
+"name for former fish"
 
 #: ../../../display/templates/poisson/poissonChange.tpl:38
 #, fuzzy
@@ -4749,36 +4746,36 @@ msgstr "Add / edit an account"
 #: ../../../display/templates/poisson/poissonChange.tpl:48
 #: ../../../display/templates/anomalie/anomalieChange.tpl:96
 msgid "Statut :"
-msgstr ""
+msgstr "Status:"
 
 #: ../../../display/templates/poisson/poissonChange.tpl:62
 #: ../../../display/templates/poisson/poissonSearch.tpl:57
 msgid "Catégorie :"
-msgstr ""
+msgstr "Category:"
 
 #: ../../../display/templates/poisson/poissonChange.tpl:90
 msgid "Pittag"
-msgstr ""
+msgstr "Pittag"
 
 #: ../../../display/templates/poisson/poissonChange.tpl:93
 msgid "Numéro de pittag :"
-msgstr ""
+msgstr "Pittag number:"
 
 #: ../../../display/templates/poisson/poissonChange.tpl:100
 msgid "01AB2C ou 12345"
-msgstr ""
+msgstr "01AB2C or 12345"
 
 #: ../../../display/templates/poisson/poissonChange.tpl:110
 msgid "Sélectionnez le type de marque..."
-msgstr ""
+msgstr "Select the mark type..."
 
 #: ../../../display/templates/poisson/poissonChange.tpl:128
 msgid "Date de pose de la marque"
-msgstr ""
+msgstr "Date of application of the mark"
 
 #: ../../../display/templates/poisson/poissonChange.tpl:135
 msgid "Matricule:"
-msgstr ""
+msgstr "Personnel number:"
 
 #: ../../../display/templates/poisson/poissonChange.tpl:143
 #: ../../../display/templates/framework/ident/loginsaisie.tpl:102
@@ -4787,7 +4784,7 @@ msgstr "First name:"
 
 #: ../../../display/templates/poisson/poissonChange.tpl:157
 msgid "Date de capture :"
-msgstr ""
+msgstr "Catch date:"
 
 #: ../../../display/templates/poisson/poissonChange.tpl:168
 #, fuzzy
@@ -4796,7 +4793,7 @@ msgstr "Password:"
 
 #: ../../../display/templates/poisson/poissonChange.tpl:186
 msgid "Marquage VIE au stade juvénile - lot"
-msgstr ""
+msgstr "VIE marking at juvenile stage - batch"
 
 #: ../../../display/templates/poisson/poissonChange.tpl:188
 msgid ""
@@ -4804,6 +4801,8 @@ msgid ""
 "de la date de naissance, de la cohorte et des parents à partir des données "
 "de reproduction"
 msgstr ""
+"Selecting the VIE tagging model automatically updates the date of birth, "
+"cohort and parents from the reproduction data"
 
 #: ../../../display/templates/poisson/poissonChange.tpl:192
 #, fuzzy
@@ -4812,36 +4811,38 @@ msgstr "Password:"
 
 #: ../../../display/templates/poisson/poissonChange.tpl:198
 msgid "Sélectionnez pour générer les parents..."
-msgstr ""
+msgstr "Select to generate parents..."
 
 #: ../../../display/templates/poisson/cohorteList.tpl:6
 msgid "Type de détermination"
-msgstr ""
+msgstr "Determination type"
 
 #: ../../../display/templates/poisson/cohorteList.tpl:7
 msgid "Cohorte déterminée"
-msgstr ""
+msgstr "Determined cohort"
 
 #: ../../../display/templates/poisson/genetiqueList.tpl:7
 msgid "Référence"
-msgstr ""
+msgstr "Reference"
 
 #: ../../../display/templates/poisson/genetiqueList.tpl:8
 msgid "Nageoire"
-msgstr ""
+msgstr "Fin"
 
 #: ../../../display/templates/poisson/evenementChange.tpl:31
 msgid ""
 "Le bassin indiqué ne correspond pas au dernier bassin connu dans la base"
 msgstr ""
+"The basin indicated does not correspond to the last known basin in the "
+"database"
 
 #: ../../../display/templates/poisson/evenementChange.tpl:34
 msgid "Dernier bassin connu :"
-msgstr ""
+msgstr "Last basin known:"
 
 #: ../../../display/templates/poisson/evenementChange.tpl:46
 msgid "Le bassin de destination ne peut être égal au bassin d'origine"
-msgstr ""
+msgstr "The basin of destination cannot be equal to the basin of origin"
 
 #: ../../../display/templates/poisson/evenementChange.tpl:92
 #, fuzzy
@@ -4851,74 +4852,74 @@ msgstr "Add / edit an account"
 #: ../../../display/templates/poisson/evenementChange.tpl:163
 #: ../../../display/templates/poisson/poissonDisplay.tpl:63
 msgid "Pittag du poisson suivant :"
-msgstr ""
+msgstr "Pittag of next fish:"
 
 #: ../../../display/templates/poisson/evenementChange.tpl:171
 msgid "Valider et nouvel événement pour le poisson indiqué"
-msgstr ""
+msgstr "Validate and new event for the fish indicated"
 
 #: ../../../display/templates/poisson/evenementChange.tpl:184
 #: ../../../display/templates/poisson/poissonDisplay.tpl:99
 msgid "Transferts"
-msgstr ""
+msgstr "Transfers"
 
 #: ../../../display/templates/poisson/evenementChange.tpl:201
 #: ../../../display/templates/poisson/poissonDisplay.tpl:124
 msgid "Pathologies"
-msgstr ""
+msgstr "Pathologies"
 
 #: ../../../display/templates/poisson/evenementChange.tpl:233
 #: ../../../display/templates/poisson/poissonDisplay.tpl:140
 msgid "Génétique et parentée"
-msgstr ""
+msgstr "Genetics and parenting"
 
 #: ../../../display/templates/poisson/evenementChange.tpl:241
 msgid "Sortie et mortalité"
-msgstr ""
+msgstr "Output and mortality"
 
 #: ../../../display/templates/poisson/evenementChange.tpl:256
 msgid "Bassin d'origine :"
-msgstr ""
+msgstr "Origin basin:"
 
 #: ../../../display/templates/poisson/evenementChange.tpl:261
 msgid "Sélectionnez le bassin d'origine..."
-msgstr ""
+msgstr "Select the origin basin..."
 
 #: ../../../display/templates/poisson/evenementChange.tpl:275
 msgid "Bassin de destination :"
-msgstr ""
+msgstr "Destination basin:"
 
 #: ../../../display/templates/poisson/evenementChange.tpl:280
 msgid "Sélectionnez le bassin de destination..."
-msgstr ""
+msgstr "Select the destination basin..."
 
 #: ../../../display/templates/poisson/evenementChange.tpl:309
 msgid "Longueur à la fourche (cm) :"
-msgstr ""
+msgstr "Fork length (cm):"
 
 #: ../../../display/templates/poisson/evenementChange.tpl:318
 msgid "Longueur totale (cm) :"
-msgstr ""
+msgstr "Total length (cm):"
 
 #: ../../../display/templates/poisson/evenementChange.tpl:327
 msgid "Masse (g) :"
-msgstr ""
+msgstr "Mass (g):"
 
 #: ../../../display/templates/poisson/evenementChange.tpl:336
 msgid "Circonférence (cm) :"
-msgstr ""
+msgstr "Circumference (cm)"
 
 #: ../../../display/templates/poisson/evenementChange.tpl:345
 msgid "Commentaire:"
-msgstr ""
+msgstr "Comment:"
 
 #: ../../../display/templates/poisson/evenementChange.tpl:360
 msgid "Type de pathologie :"
-msgstr ""
+msgstr "Pathology type:"
 
 #: ../../../display/templates/poisson/evenementChange.tpl:366
 msgid "Sélectionnez la pathologie..."
-msgstr ""
+msgstr "Select the pathology..."
 
 #: ../../../display/templates/poisson/evenementChange.tpl:379
 #, fuzzy
@@ -4927,108 +4928,101 @@ msgstr "Numerical value..."
 
 #: ../../../display/templates/poisson/evenementChange.tpl:439
 msgid "Résultat qualitatif de l'échographie :"
-msgstr ""
+msgstr "Qualitative results of the ultrasound:"
 
-#: ../../../display/templates/poisson/evenementChange.tpl:474
-msgid ""
-"Description\n"
-"\t\t\t\t\t\t\t\t\t\tdes images :"
-msgstr ""
-
-#: ../../../display/templates/poisson/evenementChange.tpl:510
+#: ../../../display/templates/poisson/evenementChange.tpl:511
 msgid "Taux E2 (forme textuelle) :"
-msgstr ""
+msgstr "E2 rate (textual form):"
 
-#: ../../../display/templates/poisson/evenementChange.tpl:553
+#: ../../../display/templates/poisson/evenementChange.tpl:554
 #, fuzzy
 msgid "Produit utilisé :"
 msgstr "Login used:"
 
-#: ../../../display/templates/poisson/evenementChange.tpl:560
+#: ../../../display/templates/poisson/evenementChange.tpl:561
 msgid "Sélectionnez le produit"
-msgstr ""
+msgstr "Select the product"
 
-#: ../../../display/templates/poisson/evenementChange.tpl:573
+#: ../../../display/templates/poisson/evenementChange.tpl:574
 msgid "Dosage (mg/l) :"
-msgstr ""
+msgstr "Dose (mg/l):"
 
-#: ../../../display/templates/poisson/evenementChange.tpl:596
+#: ../../../display/templates/poisson/evenementChange.tpl:597
 msgid "Prélèvement génétique"
-msgstr ""
+msgstr "Genetics sampling"
 
-#: ../../../display/templates/poisson/evenementChange.tpl:599
+#: ../../../display/templates/poisson/evenementChange.tpl:600
 msgid "Référence du prélèvement:"
-msgstr ""
+msgstr "Sampling reference:"
 
-#: ../../../display/templates/poisson/evenementChange.tpl:608
+#: ../../../display/templates/poisson/evenementChange.tpl:609
 msgid "Nageoire :"
-msgstr ""
+msgstr "Fin:"
 
-#: ../../../display/templates/poisson/evenementChange.tpl:642
+#: ../../../display/templates/poisson/evenementChange.tpl:643
 #, fuzzy
 msgid "Méthode utilisée :"
 msgstr "Login used:"
 
-#: ../../../display/templates/poisson/evenementChange.tpl:660
+#: ../../../display/templates/poisson/evenementChange.tpl:661
 msgid "Sexe déterminé :"
-msgstr ""
+msgstr "Determined sex:"
 
-#: ../../../display/templates/poisson/evenementChange.tpl:666
+#: ../../../display/templates/poisson/evenementChange.tpl:667
 #: ../../../display/templates/poisson/poissonSearch.tpl:94
 msgid "Sélectionnez le sexe..."
-msgstr ""
+msgstr "Select the sex..."
 
-#: ../../../display/templates/poisson/evenementChange.tpl:692
+#: ../../../display/templates/poisson/evenementChange.tpl:693
 #: ../../../display/templates/poisson/poissonDisplay.tpl:252
 msgid "Détermination de la cohorte"
-msgstr ""
+msgstr "Cohort determination"
 
-#: ../../../display/templates/poisson/evenementChange.tpl:695
-#: ../../../display/templates/poisson/evenementChange.tpl:739
+#: ../../../display/templates/poisson/evenementChange.tpl:696
+#: ../../../display/templates/poisson/evenementChange.tpl:740
 msgid "Type de détermination :"
-msgstr ""
+msgstr "Determination type:"
 
-#: ../../../display/templates/poisson/evenementChange.tpl:701
-#: ../../../display/templates/poisson/evenementChange.tpl:747
+#: ../../../display/templates/poisson/evenementChange.tpl:702
+#: ../../../display/templates/poisson/evenementChange.tpl:748
 msgid "Sélectionnez le type de détermination..."
-msgstr ""
+msgstr "Select the type of determination..."
 
-#: ../../../display/templates/poisson/evenementChange.tpl:715
+#: ../../../display/templates/poisson/evenementChange.tpl:716
 #, fuzzy
 msgid "Détermination effectuée :"
 msgstr "Deletion done"
 
-#: ../../../display/templates/poisson/evenementChange.tpl:724
+#: ../../../display/templates/poisson/evenementChange.tpl:725
 #: ../../../display/templates/poisson/evenementChange.tpl:841
 msgid "Commentaire : "
-msgstr ""
+msgstr "Comment: "
 
-#: ../../../display/templates/poisson/evenementChange.tpl:736
+#: ../../../display/templates/poisson/evenementChange.tpl:737
 #: ../../../display/templates/poisson/poissonDisplay.tpl:244
 msgid "Détermination de la parenté"
-msgstr ""
+msgstr "Determination of parentage"
 
-#: ../../../display/templates/poisson/evenementChange.tpl:780
+#: ../../../display/templates/poisson/evenementChange.tpl:781
 msgid "Lieu de lâcher/destination :"
-msgstr ""
+msgstr "Place of release/destination:"
 
-#: ../../../display/templates/poisson/evenementChange.tpl:785
-msgid ""
-"Sélectionnez le lieu de\n"
-"\t\t\t\t\t\t\t\t\t\t\t\tlâcher/destination..."
-msgstr ""
+#: ../../../display/templates/poisson/evenementChange.tpl:786
+#, fuzzy
+msgid "Sélectionnez le lieu de lâcher/destination..."
+msgstr "Select the destination basin..."
 
 #: ../../../display/templates/poisson/evenementChange.tpl:799
 msgid "Informations de nourriture/sevrage :"
-msgstr ""
+msgstr "Feed/weaning information:"
 
 #: ../../../display/templates/poisson/evenementChange.tpl:822
 msgid "Type de mortalité :"
-msgstr ""
+msgstr "Mortality type:"
 
 #: ../../../display/templates/poisson/evenementChange.tpl:827
 msgid "Sélectionnez le type de mortalité..."
-msgstr ""
+msgstr "Select the type of mortality..."
 
 #: ../../../display/templates/poisson/anomalieDbList.tpl:5
 #: ../../../display/templates/poisson/parentPoissonList.tpl:6
@@ -5042,101 +5036,101 @@ msgstr "Edit"
 #: ../../../display/templates/poisson/anomalieDbList.tpl:8
 #: ../../../display/templates/anomalie/anomalieList.tpl:62
 msgid "Type d'anomalie"
-msgstr ""
+msgstr "Anomaly type"
 
 #: ../../../display/templates/poisson/anomalieDbList.tpl:11
 #: ../../../display/templates/anomalie/anomalieList.tpl:65
 msgid "Date de traitement"
-msgstr ""
+msgstr "Treatment date"
 
 #: ../../../display/templates/poisson/anomalieDbList.tpl:12
 #: ../../../display/templates/anomalie/anomalieList.tpl:66
 msgid "État"
-msgstr ""
+msgstr "State"
 
 #: ../../../display/templates/poisson/transfertList.tpl:6
 msgid "Date de transfert"
-msgstr ""
+msgstr "Transfer date"
 
 #: ../../../display/templates/poisson/transfertList.tpl:7
 msgid "Bassin d'origine"
-msgstr ""
+msgstr "Basin of origin"
 
 #: ../../../display/templates/poisson/transfertList.tpl:8
 msgid "Bassin de destination"
-msgstr ""
+msgstr "Basin of destination"
 
 #: ../../../display/templates/poisson/poissonDisplay.tpl:43
 msgid "Détail du poisson"
-msgstr ""
+msgstr "Fish detail"
 
 #: ../../../display/templates/poisson/poissonDisplay.tpl:83
 #: ../../../display/templates/bassin/bassinDisplay.tpl:34
 #: ../../../display/templates/bassin/circuitEauDisplay.tpl:39
 msgid "Détails"
-msgstr ""
+msgstr "Details"
 
 #: ../../../display/templates/poisson/poissonDisplay.tpl:91
 #: ../../../display/templates/bassin/bassinDisplay.tpl:48
 #: ../../../display/templates/bassin/circuitEauDisplay.tpl:46
 msgid "Événements"
-msgstr ""
+msgstr "Events"
 
 #: ../../../display/templates/poisson/poissonDisplay.tpl:116
 msgid "Documents"
-msgstr ""
+msgstr "Documents"
 
 #: ../../../display/templates/poisson/poissonDisplay.tpl:148
 msgid "Anomalies dans les données"
-msgstr ""
+msgstr "Data anomalies"
 
 #: ../../../display/templates/poisson/poissonDisplay.tpl:158
 msgid "Modifier les informations..."
-msgstr ""
+msgstr "Modify information..."
 
 #: ../../../display/templates/poisson/poissonDisplay.tpl:193
 msgid "Campagnes de reproduction"
-msgstr ""
+msgstr "Breeding campaigns"
 
 #: ../../../display/templates/poisson/poissonDisplay.tpl:197
 msgid "Pré-sélectionner le poisson pour une campagne de reproduction"
-msgstr ""
+msgstr "Pre-selecting fish for a breeding campaign"
 
 #: ../../../display/templates/poisson/poissonDisplay.tpl:205
 msgid "Échographies"
-msgstr ""
+msgstr "Ultrasounds"
 
 #: ../../../display/templates/poisson/poissonDisplay.tpl:215
 msgid "Dosages sanguins"
-msgstr ""
+msgstr "Blood tests"
 
 #: ../../../display/templates/poisson/poissonDisplay.tpl:219
 msgid "Anesthésies"
-msgstr ""
+msgstr "Anaesthesia"
 
 #: ../../../display/templates/poisson/poissonDisplay.tpl:227
 msgid "Ventilation"
-msgstr ""
+msgstr "Ventilation"
 
 #: ../../../display/templates/poisson/poissonDisplay.tpl:236
 msgid "Prélèvements génétiques"
-msgstr ""
+msgstr "Genetics samplings"
 
 #: ../../../display/templates/poisson/poissonDisplay.tpl:274
 msgid "Créer une anomalie manuellement"
-msgstr ""
+msgstr "Create an anomay manually"
 
 #: ../../../display/templates/poisson/genderSelectionList.tpl:6
 msgid "Date de détermination"
-msgstr ""
+msgstr "Determination date"
 
 #: ../../../display/templates/poisson/genderSelectionList.tpl:7
 msgid "Méthode"
-msgstr ""
+msgstr "Method"
 
 #: ../../../display/templates/poisson/parenteList.tpl:6
 msgid "Type de parente"
-msgstr ""
+msgstr "Parent type"
 
 #: ../../../display/templates/poisson/poissonList.tpl:5
 #, fuzzy
@@ -5146,15 +5140,15 @@ msgstr "New login"
 #: ../../../display/templates/poisson/poissonList.tpl:10
 msgid ""
 "Liste de tous les événements pour les poissons sélectionnés au format CSV"
-msgstr ""
+msgstr "List of all events for the selected fish in CSV format"
 
 #: ../../../display/templates/poisson/poissonList.tpl:18
 msgid "(Pit)tag"
-msgstr ""
+msgstr "Pittag"
 
 #: ../../../display/templates/poisson/poissonList.tpl:19
 msgid "Matricule"
-msgstr ""
+msgstr "Personnel number"
 
 #: ../../../display/templates/poisson/poissonList.tpl:20
 #, fuzzy
@@ -5164,44 +5158,44 @@ msgstr "First name:"
 #: ../../../display/templates/poisson/poissonList.tpl:22
 #: ../../../display/templates/poisson/poissonCampagneList.tpl:6
 msgid "Statut"
-msgstr ""
+msgstr "Status"
 
 #: ../../../display/templates/poisson/poissonList.tpl:27
 msgid "Date de capture /naissance"
-msgstr ""
+msgstr "Date of catch/birth"
 
 #: ../../../display/templates/poisson/poissonList.tpl:28
 msgid "Date de mortalité"
-msgstr ""
+msgstr "Mortality date"
 
 #: ../../../display/templates/poisson/poissonList.tpl:33
 #: ../../../display/templates/bassin/bassinPoissonPresent.tpl:11
 msgid "Masse"
-msgstr ""
+msgstr "Mass"
 
 #: ../../../display/templates/poisson/poissonList.tpl:34
 msgid "Long fourche"
-msgstr ""
+msgstr "Fork length"
 
 #: ../../../display/templates/poisson/poissonList.tpl:35
 msgid "Long totale"
-msgstr ""
+msgstr "Total length"
 
 #: ../../../display/templates/poisson/poissonList.tpl:38
 msgid "Température cumulée (bassin)"
-msgstr ""
+msgstr "Cumulative temperature (basin)"
 
 #: ../../../display/templates/poisson/parentPoissonList.tpl:8
 msgid "Parent"
-msgstr ""
+msgstr "Parent"
 
 #: ../../../display/templates/poisson/poissonSearch.tpl:31
 msgid "Libellé à rechercher (id, tag, prenom, matricule, cohorte) :"
-msgstr ""
+msgstr "Name to search (i, tag, first name, personnel number, cohort):"
 
 #: ../../../display/templates/poisson/poissonSearch.tpl:73
 msgid "Statut de l'animal :"
-msgstr ""
+msgstr "Animal status:"
 
 #: ../../../display/templates/poisson/poissonSearch.tpl:108
 #, fuzzy
@@ -5210,48 +5204,48 @@ msgstr "Previous module: %s"
 
 #: ../../../display/templates/poisson/poissonSearch.tpl:123
 msgid "Entre le :"
-msgstr ""
+msgstr "Between :"
 
 #: ../../../display/templates/poisson/poissonSearch.tpl:129
 msgid "et le :"
-msgstr ""
+msgstr "and:"
 
 #: ../../../display/templates/poisson/poissonSearch.tpl:139
 msgid "Afficher : les données morphologiques ?"
-msgstr ""
+msgstr "Display: morphological data?"
 
 #: ../../../display/templates/poisson/poissonSearch.tpl:155
 msgid "le bassin ?"
-msgstr ""
+msgstr "basin?"
 
 #: ../../../display/templates/poisson/poissonSearch.tpl:180
 msgid "Afficher : le cumul des températures (calcul long) ?"
-msgstr ""
+msgstr "Display: cumulative temperatures (long calculation)?"
 
 #: ../../../display/templates/poisson/poissonSearch.tpl:195
 #: ../../../display/templates/bassin/bassinList.tpl:11
 #: ../../../display/templates/framework/logList.tpl:34
 msgid "du :"
-msgstr ""
+msgstr "from:"
 
 #: ../../../display/templates/poisson/poissonSearch.tpl:202
 #: ../../../display/templates/bassin/bassinList.tpl:15
 #: ../../../display/templates/bassin/analyseGraph.tpl:72
 #: ../../../display/templates/framework/logList.tpl:38
 msgid "au :"
-msgstr ""
+msgstr "to:"
 
 #: ../../../display/templates/poisson/evenementList.tpl:5
 msgid "Nature"
-msgstr ""
+msgstr "Nature"
 
 #: ../../../display/templates/poisson/poissonCampagneList.tpl:5
 msgid "Année"
-msgstr ""
+msgstr "Year"
 
 #: ../../../display/templates/poisson/poissonCampagneList.tpl:8
 msgid "Tx croissance journalier"
-msgstr ""
+msgstr "Daily growth rate"
 
 #: ../../../display/templates/poisson/ventilationChange.tpl:17
 #, fuzzy
@@ -5265,99 +5259,103 @@ msgstr "Password:"
 
 #: ../../../display/templates/poisson/ventilationChange.tpl:41
 msgid "Nb de battements/seconde :"
-msgstr ""
+msgstr "Number of beats/second:"
 
 #: ../../../display/templates/poisson/mortaliteList.tpl:6
 msgid "Type de mortalite"
-msgstr ""
+msgstr "Mortality type"
 
 #: ../../../display/templates/poisson/morphologieImport.tpl:1
 msgid "Importation de mesures de morphologie à partir d'un fichier CSV"
-msgstr ""
+msgstr "Importing morphology measurements from a CSV file"
 
 #: ../../../display/templates/poisson/morphologieImport.tpl:7
 msgid "Contrôles OK."
-msgstr ""
+msgstr "Controls OK."
 
 #: ../../../display/templates/poisson/morphologieImport.tpl:7
 msgid "Vous pouvez réaliser l'import du fichier (%1) :"
-msgstr ""
+msgstr "You can import the file (%1):"
 
 #: ../../../display/templates/poisson/morphologieImport.tpl:8
 msgid "Déclencher l'import"
-msgstr ""
+msgstr "Import the file"
 
 #: ../../../display/templates/poisson/morphologieImport.tpl:19
 msgid "N° de ligne"
-msgstr ""
+msgstr "Line number"
 
 #: ../../../display/templates/poisson/morphologieImport.tpl:20
 msgid "Anomalie(s) détectée(s)"
-msgstr ""
+msgstr "Detected anomalies"
 
 #: ../../../display/templates/poisson/morphologieImport.tpl:42
 msgid "Nom du fichier à importer (CSV) :"
-msgstr ""
+msgstr "Name of CSV file to import:"
 
 #: ../../../display/templates/poisson/morphologieImport.tpl:49
 msgid "Séparateur utilisé :"
-msgstr ""
+msgstr "Used separator:"
 
 #: ../../../display/templates/poisson/morphologieImport.tpl:52
 msgid "Virgule"
-msgstr ""
+msgstr "Comma"
 
 #: ../../../display/templates/poisson/morphologieImport.tpl:53
 msgid "Point-virgule"
-msgstr ""
+msgstr "Semi-comma"
 
 #: ../../../display/templates/poisson/morphologieImport.tpl:54
 msgid "Tabulation"
-msgstr ""
+msgstr "Tabulation"
 
 #: ../../../display/templates/poisson/morphologieImport.tpl:59
 msgid "Encodage du fichier :"
-msgstr ""
+msgstr "File encoding:"
 
 #: ../../../display/templates/poisson/morphologieImport.tpl:69
 msgid "Vérifier le fichier"
-msgstr ""
+msgstr "Verify the file"
 
 #: ../../../display/templates/poisson/morphologieImport.tpl:77
 msgid ""
 "Ce module permet d'importer des mesures réalisées sur les poissons à partir "
 "d'un fichier CSV, et crée les événements correspondants."
 msgstr ""
+"This module allows you to import measurements taken on fish from a CSV file, "
+"and create the corresponding events."
 
 #: ../../../display/templates/poisson/morphologieImport.tpl:79
 msgid ""
 "Il n'accepte que des fichiers au format CSV. La ligne d'entête doit "
 "comprendre exclusivement les colonnes suivantes :"
 msgstr ""
+"It only accepts files in CSV format. The header row must contain only the "
+"following columns:"
 
 #: ../../../display/templates/poisson/morphologieImport.tpl:82
 msgid "PITTAG du poisson"
-msgstr ""
+msgstr "Fish pittag"
 
 #: ../../../display/templates/poisson/morphologieImport.tpl:83
 msgid "Date de mesure (format dd/mm/yyyy)"
-msgstr ""
+msgstr "Measure date (format yyyy-mm-dd)"
 
 #: ../../../display/templates/poisson/morphologieImport.tpl:84
 msgid "Longueur totale mesurée, en cm"
-msgstr ""
+msgstr "Total measured length, in cm"
 
 #: ../../../display/templates/poisson/morphologieImport.tpl:85
 msgid "Longueur fourche mesurée, en cm"
-msgstr ""
+msgstr "Fork measured length, in cm"
 
 #: ../../../display/templates/poisson/morphologieImport.tpl:86
 msgid "Poids mesuré, en grammes"
-msgstr ""
+msgstr "Measured weight, in grams"
 
 #: ../../../display/templates/poisson/sortieList.tpl:8
 msgid "Sevrage/Commentaire"
-msgstr ""
+msgstr "Withdrawal/Comments"
 
 #: ../../../display/templates/anomalie/anomalieChange.tpl:33
 #, fuzzy
@@ -5366,28 +5364,28 @@ msgstr "Back to the list of logins"
 
 #: ../../../display/templates/anomalie/anomalieChange.tpl:36
 msgid "Traitement d'une anomalie"
-msgstr ""
+msgstr "Treatment of an anomaly"
 
 #: ../../../display/templates/anomalie/anomalieChange.tpl:49
 msgid "Date de détection de l'anomalie :"
-msgstr ""
+msgstr "Date of anomaly detection:"
 
 #: ../../../display/templates/anomalie/anomalieChange.tpl:58
 #: ../../../display/templates/anomalie/anomalieList.tpl:26
 msgid "Type d'anomalie :"
-msgstr ""
+msgstr "Anomaly type:"
 
 #: ../../../display/templates/anomalie/anomalieChange.tpl:72
 msgid "Poisson concerné :"
-msgstr ""
+msgstr "Fish concerned:"
 
 #: ../../../display/templates/anomalie/anomalieChange.tpl:106
 msgid "Anomalie non levée"
-msgstr ""
+msgstr "Anomaly not resolved"
 
 #: ../../../display/templates/anomalie/anomalieChange.tpl:109
 msgid "Anomalie levée"
-msgstr ""
+msgstr "Anomaly resolved"
 
 #: ../../../display/templates/anomalie/anomalieChange.tpl:117
 msgid ""
@@ -5397,20 +5395,20 @@ msgstr ""
 
 #: ../../../display/templates/anomalie/anomalieList.tpl:9
 msgid "Anomalies traitées ?"
-msgstr ""
+msgstr "Treated anomalies?"
 
 #: ../../../display/templates/anomalie/anomalieList.tpl:22
 #: ../../../display/templates/bassin/bassinSearch.tpl:23
 msgid "Indifférent"
-msgstr ""
+msgstr "Indifferent"
 
 #: ../../../display/templates/anomalie/anomalieList.tpl:31
 msgid "Sélectionnez le type d'anomalie..."
-msgstr ""
+msgstr "Select the type of anomaly..."
 
 #: ../../../display/templates/bassin/bassinAlimentConsomme.tpl:5
 msgid "Date de départ :"
-msgstr ""
+msgstr "Start date:"
 
 #: ../../../display/templates/bassin/bassinAlimentConsomme.tpl:9
 #, fuzzy
@@ -5425,55 +5423,57 @@ msgstr "Rights granted"
 
 #: ../../../display/templates/bassin/bassinAlimentConsomme.tpl:25
 msgid "Reste"
-msgstr ""
+msgstr "Remains"
 
 #: ../../../display/templates/bassin/bassinDisplay.tpl:24
 msgid "Détail du bassin"
-msgstr ""
+msgstr "Basin detail"
 
 #: ../../../display/templates/bassin/bassinDisplay.tpl:41
 msgid "Poissons présents"
-msgstr ""
+msgstr "Fishes present"
 
 #: ../../../display/templates/bassin/bassinDisplay.tpl:55
 msgid "Fichiers"
-msgstr ""
+msgstr "Files"
 
 #: ../../../display/templates/bassin/bassinPoissonList.tpl:6
-msgid "Date<br>d'arrivée"
-msgstr ""
+#: ../../../display/templates/bassin/bassinPoissonPresent.tpl:10
+msgid "Date d'arrivée"
+msgstr "Date of arrival"
 
 #: ../../../display/templates/bassin/bassinPoissonList.tpl:7
-msgid "Date de<br>départ"
-msgstr ""
+#, fuzzy
+msgid "Date de départ"
+msgstr "Start date:"
 
 #: ../../../display/templates/bassin/circuitEauList.tpl:1
 msgid "Circuits d'alimentation en eau"
-msgstr ""
+msgstr "Water supply circuits"
 
 #: ../../../display/templates/bassin/circuitEauList.tpl:21
 msgid "En service"
-msgstr ""
+msgstr "In use"
 
 #: ../../../display/templates/bassin/circuitEauList.tpl:23
 msgid "Nouvelles données"
-msgstr ""
+msgstr "New data"
 
 #: ../../../display/templates/bassin/circuitEauList.tpl:25
 msgid "Dernière analyse"
-msgstr ""
+msgstr "Last analysis"
 
 #: ../../../display/templates/bassin/circuitEauDisplay.tpl:23
 msgid "Données physico-chimiques du circuit d'eau"
-msgstr ""
+msgstr "Physico-chemical data for the water circuit"
 
 #: ../../../display/templates/bassin/circuitEauDisplay.tpl:24
 msgid "en service"
-msgstr ""
+msgstr "in use"
 
 #: ../../../display/templates/bassin/circuitEauDisplay.tpl:24
 msgid "hors service"
-msgstr ""
+msgstr "out of use"
 
 #: ../../../display/templates/bassin/circuitEauDisplay.tpl:28
 #: ../../../display/templates/bassin/analyseEauChange.tpl:50
@@ -5484,36 +5484,36 @@ msgstr "Back to the list of groups"
 
 #: ../../../display/templates/bassin/circuitEauDisplay.tpl:53
 msgid "Analyses"
-msgstr ""
+msgstr "Analyses"
 
 #: ../../../display/templates/bassin/circuitEauDisplay.tpl:67
 msgid "Modifier le nom ou l'activité du circuit d'eau..."
-msgstr ""
+msgstr "Change the name or activity of the water circuit..."
 
 #: ../../../display/templates/bassin/circuitEauDisplay.tpl:79
 msgid "Usage"
-msgstr ""
+msgstr "Usage"
 
 #: ../../../display/templates/bassin/circuitEauDisplay.tpl:80
 msgid "Zone"
-msgstr ""
+msgstr "Area"
 
 #: ../../../display/templates/bassin/circuitEauDisplay.tpl:81
 msgid "En activité"
-msgstr ""
+msgstr "In use"
 
 #: ../../../display/templates/bassin/circuitEauDisplay.tpl:119
 #: ../../../display/templates/bassin/circuitEauSearch.tpl:54
 msgid "Date de référence pour les analyses d'eau :"
-msgstr ""
+msgstr "Reference date for water analyses:"
 
 #: ../../../display/templates/bassin/circuitEauDisplay.tpl:128
 msgid "Nombre d'analyses à afficher :"
-msgstr ""
+msgstr "Analysis number to display:"
 
 #: ../../../display/templates/bassin/circuitEauDisplay.tpl:136
 msgid "Affichage à partir de l'enregistrement n° :"
-msgstr ""
+msgstr "Display from record no. :"
 
 #: ../../../display/templates/bassin/circuitEauDisplay.tpl:172
 #, fuzzy
@@ -5522,7 +5522,7 @@ msgstr "Previous"
 
 #: ../../../display/templates/bassin/circuitEauDisplay.tpl:177
 msgid "Tri de la requête par date descendante"
-msgstr ""
+msgstr "Sort query by descending date"
 
 #: ../../../display/templates/bassin/circuitEauDisplay.tpl:182
 #, fuzzy
@@ -5531,66 +5531,66 @@ msgstr "Next"
 
 #: ../../../display/templates/bassin/circuitEauDisplay.tpl:187
 msgid "Date d'analyse"
-msgstr ""
+msgstr "Analysis date"
 
 #: ../../../display/templates/bassin/circuitEauDisplay.tpl:188
 msgid "T°"
-msgstr ""
+msgstr "T°"
 
 #: ../../../display/templates/bassin/circuitEauDisplay.tpl:189
 msgid "O2 mg/l"
-msgstr ""
+msgstr "O2 mg/l"
 
 #: ../../../display/templates/bassin/circuitEauDisplay.tpl:190
 msgid "O2 % sat"
-msgstr ""
+msgstr "O2 % sat"
 
 #: ../../../display/templates/bassin/circuitEauDisplay.tpl:193
 msgid "Laboratoire"
-msgstr ""
+msgstr "Laboratory"
 
 #: ../../../display/templates/bassin/circuitEauDisplay.tpl:194
 #: ../../../display/templates/bassin/analyseEauDetail.tpl:52
 msgid "NH4"
-msgstr ""
+msgstr "NH4"
 
 #: ../../../display/templates/bassin/circuitEauDisplay.tpl:195
 #: ../../../display/templates/bassin/analyseEauDetail.tpl:60
 msgid "NO2"
-msgstr ""
+msgstr "NO2"
 
 #: ../../../display/templates/bassin/circuitEauDisplay.tpl:196
 #: ../../../display/templates/bassin/analyseEauDetail.tpl:68
 msgid "NO3"
-msgstr ""
+msgstr "NO3"
 
 #: ../../../display/templates/bassin/circuitEauDisplay.tpl:197
 msgid "Backwash mécanique"
-msgstr ""
+msgstr "Mechanical backwash"
 
 #: ../../../display/templates/bassin/circuitEauDisplay.tpl:198
 msgid "Backwash biologique"
-msgstr ""
+msgstr "Biological backwash"
 
 #: ../../../display/templates/bassin/circuitEauDisplay.tpl:199
 msgid "Commentaire backwash bio"
-msgstr ""
+msgstr "Biological backwash comments"
 
 #: ../../../display/templates/bassin/circuitEauDisplay.tpl:200
 msgid "Débit rivière"
-msgstr ""
+msgstr "River flow"
 
 #: ../../../display/templates/bassin/circuitEauDisplay.tpl:201
 msgid "Débit forage"
-msgstr ""
+msgstr "Drilling flow"
 
 #: ../../../display/templates/bassin/circuitEauDisplay.tpl:202
 msgid "Débit mer"
-msgstr ""
+msgstr "Sea flow"
 
 #: ../../../display/templates/bassin/circuitEauDisplay.tpl:204
 msgid "Observations"
-msgstr ""
+msgstr "Observations"
 
 #: ../../../display/templates/bassin/analyseEauChange.tpl:48
 #, fuzzy
@@ -5599,72 +5599,75 @@ msgstr "Add / edit an account"
 
 #: ../../../display/templates/bassin/analyseEauChange.tpl:53
 msgid "Retour au circuit d'eau"
-msgstr ""
+msgstr "Back to water circuit"
 
 #: ../../../display/templates/bassin/analyseEauChange.tpl:65
+#: ../../../display/templates/bassin/analyseEauDetail.tpl:13
 msgid "Date d'analyse :"
-msgstr ""
+msgstr "Analysis date:"
 
 #: ../../../display/templates/bassin/analyseEauChange.tpl:79
+#: ../../../display/templates/bassin/analyseEauDetail.tpl:21
 msgid "Oxygène (mg/l) :"
-msgstr ""
+msgstr "Oxygen (mg/l):"
 
 #: ../../../display/templates/bassin/analyseEauChange.tpl:85
 msgid "Oxygène (% sat) :"
-msgstr ""
+msgstr "Oxygen (% sat):"
 
 #: ../../../display/templates/bassin/analyseEauChange.tpl:91
+#: ../../../display/templates/bassin/analyseEauDetail.tpl:29
 msgid "salinité :"
-msgstr ""
+msgstr "salinity:"
 
 #: ../../../display/templates/bassin/analyseEauChange.tpl:104
 msgid "Laboratoire : "
-msgstr ""
+msgstr "Laboratory: "
 
 #: ../../../display/templates/bassin/analyseEauChange.tpl:107
 msgid "Sélectionnez le laboratoire..."
-msgstr ""
+msgstr "Select the laboratory..."
 
 #: ../../../display/templates/bassin/analyseEauChange.tpl:119
 msgid "NH4 : "
-msgstr ""
+msgstr "NH4 : "
 
 #: ../../../display/templates/bassin/analyseEauChange.tpl:125
 msgid "N-NH4 : "
-msgstr ""
+msgstr "N-NH4 : "
 
 #: ../../../display/templates/bassin/analyseEauChange.tpl:131
 msgid "NH4 - valeur seuil : "
-msgstr ""
+msgstr "NH4 - threshold value : "
 
 #: ../../../display/templates/bassin/analyseEauChange.tpl:137
 msgid "NO2 :"
-msgstr ""
+msgstr "NO2 :"
 
 #: ../../../display/templates/bassin/analyseEauChange.tpl:143
 msgid "N-NO2 :"
-msgstr ""
+msgstr "N-NO2 :"
 
 #: ../../../display/templates/bassin/analyseEauChange.tpl:149
 msgid "NO2 - valeur seuil :"
-msgstr ""
+msgstr "NO2 - threshold valu :"
 
 #: ../../../display/templates/bassin/analyseEauChange.tpl:155
 msgid "NO3 :"
-msgstr ""
+msgstr "NO3 :"
 
 #: ../../../display/templates/bassin/analyseEauChange.tpl:161
 msgid "N-NO3:"
-msgstr ""
+msgstr "N-NO3:"
 
 #: ../../../display/templates/bassin/analyseEauChange.tpl:167
 msgid "NO3 - valeur seuil :"
-msgstr ""
+msgstr "NO3 - threshold value :"
 
 #: ../../../display/templates/bassin/analyseEauChange.tpl:173
 #: ../../../display/templates/bassin/analyseEauDetail.tpl:78
 msgid "Backwash mécanique :"
-msgstr ""
+msgstr "Mechanical backwash:"
 
 #: ../../../display/templates/bassin/analyseEauChange.tpl:176
 #: ../../../display/templates/bassin/analyseEauChange.tpl:185
@@ -5683,108 +5686,105 @@ msgid "Non"
 msgstr "no"
 
 #: ../../../display/templates/bassin/analyseEauChange.tpl:182
+#: ../../../display/templates/bassin/analyseEauDetail.tpl:82
 msgid "Backwash biologique :"
-msgstr ""
+msgstr "Biological backwash:"
 
 #: ../../../display/templates/bassin/analyseEauChange.tpl:191
 #: ../../../display/templates/bassin/analyseEauDetail.tpl:87
 msgid "Commentaire backwash bio :"
-msgstr ""
+msgstr "Biological backwash comment:"
 
 #: ../../../display/templates/bassin/analyseEauChange.tpl:198
 msgid "Débit d'eau de rivière (l/mn) :"
-msgstr ""
+msgstr "River water flow rate (l/mn) :"
 
 #: ../../../display/templates/bassin/analyseEauChange.tpl:206
 msgid "Débit d'eau de forage (l/mn) : "
-msgstr ""
+msgstr "Drilling water flow rate (l/min) : "
 
 #: ../../../display/templates/bassin/analyseEauChange.tpl:214
 msgid "Débit d'eau de mer (l/mn) : "
-msgstr ""
+msgstr "Sea water flow rate (l/mn) : "
 
 #: ../../../display/templates/bassin/analyseEauChange.tpl:223
 msgid "Analyse des métaux lourds"
-msgstr ""
+msgstr "Heavy metal analysis"
 
 #: ../../../display/templates/bassin/analyseEauChange.tpl:240
 #: ../../../display/templates/bassin/analyseEauDetail.tpl:103
 msgid "Observations :"
-msgstr ""
+msgstr "Observations:"
 
 #: ../../../display/templates/bassin/circuitEauSearch.tpl:9
-#: ../../../display/templates/bassin/circuitEauChange.tpl:17
+#: ../../../display/templates/bassin/circuitEauChange.tpl:18
 #, fuzzy
 msgid "Nom du circuit d'eau :"
 msgstr "Name of the access right"
 
 #: ../../../display/templates/bassin/circuitEauSearch.tpl:34
-#: ../../../display/templates/bassin/circuitEauChange.tpl:43
+#: ../../../display/templates/bassin/circuitEauChange.tpl:44
 msgid "Circuit d'eau en service ?"
-msgstr ""
+msgstr "Water circuit in use?"
 
 #: ../../../display/templates/bassin/circuitEauSearch.tpl:50
 msgid "indifférent"
-msgstr ""
+msgstr "indifferent"
 
 #: ../../../display/templates/bassin/bassinPoissonPresent.tpl:5
 msgid "matricule"
-msgstr ""
+msgstr "personnel number"
 
 #: ../../../display/templates/bassin/bassinPoissonPresent.tpl:6
 msgid "tag(s)"
-msgstr ""
+msgstr "tags"
 
 #: ../../../display/templates/bassin/bassinPoissonPresent.tpl:7
 #, fuzzy
 msgid "prénom"
 msgstr "First name:"
 
-#: ../../../display/templates/bassin/bassinPoissonPresent.tpl:10
-msgid "Date d'arrivée"
-msgstr ""
-
 #: ../../../display/templates/bassin/sondeImport.tpl:1
 msgid ""
 "Importation des résultats d'analyse des circuits d'eau à partir des fichiers "
 "de sonde"
-msgstr ""
+msgstr "Import of water circuit analysis results from probe files"
 
 #: ../../../display/templates/bassin/sondeImport.tpl:8
 msgid "Modèle d'importation :"
-msgstr ""
+msgstr "Importation model:"
 
 #: ../../../display/templates/bassin/sondeImport.tpl:21
 msgid "Fichier(s) à importer :(xlsx, csv)"
-msgstr ""
+msgstr "Files to import (xslx, csv)"
 
 #: ../../../display/templates/bassin/sondeImport.tpl:30
 msgid "Importer les données de sonde"
-msgstr ""
+msgstr "Import the probe data"
 
 #: ../../../display/templates/bassin/bassinList.tpl:8
 msgid "Récapitulatif hebdomadaire des quantités d'aliments distribués :"
-msgstr ""
+msgstr "Weekly summary of feed quantities distributed:"
 
 #: ../../../display/templates/bassin/bassinList.tpl:20
 msgid "Générer le fichier (peut être long...)"
-msgstr ""
+msgstr "Generate the file (may take a while...)"
 
 #: ../../../display/templates/bassin/bassinList.tpl:41
 msgid "Zoned'implantation"
-msgstr ""
+msgstr "Location area"
 
 #: ../../../display/templates/bassin/bassinList.tpl:44
 msgid "Circuitd'eau"
-msgstr ""
+msgstr "Water circuit"
 
 #: ../../../display/templates/bassin/bassinList.tpl:45
 msgid "dimensions (longueur x largeur x hauteur d'eau)"
-msgstr ""
+msgstr "dimensions (length x width x water height)"
 
 #: ../../../display/templates/bassin/bassinList.tpl:46
 msgid "Surface - volume d'eau"
-msgstr ""
+msgstr "Surface area - volume of water"
 
 #: ../../../display/templates/bassin/bassinList.tpl:48
 #, fuzzy
@@ -5793,15 +5793,15 @@ msgstr "Change your password"
 
 #: ../../../display/templates/bassin/bassinList.tpl:77
 #: ../../../display/templates/bassin/bassinDetail.tpl:53
-#: ../../../display/templates/bassin/bassinChange.tpl:172
+#: ../../../display/templates/bassin/bassinChange.tpl:174
 msgid "Calcul global"
-msgstr ""
+msgstr "Global calculation"
 
 #: ../../../display/templates/bassin/bassinList.tpl:79
 #: ../../../display/templates/bassin/bassinDetail.tpl:53
-#: ../../../display/templates/bassin/bassinChange.tpl:176
+#: ../../../display/templates/bassin/bassinChange.tpl:178
 msgid "Calcul par échantillonnage"
-msgstr ""
+msgstr "Calculation by sampling"
 
 #: ../../../display/templates/bassin/bassinDetail.tpl:4
 #: ../../../display/templates/bassin/bassinChange.tpl:17
@@ -5811,35 +5811,36 @@ msgstr "Last name :"
 
 #: ../../../display/templates/bassin/bassinDetail.tpl:16
 msgid "Implantation :"
-msgstr ""
+msgstr "Location area :"
 
 #: ../../../display/templates/bassin/bassinDetail.tpl:30
 msgid "Utilisation actuelle :"
-msgstr ""
+msgstr "Actual use:"
 
 #: ../../../display/templates/bassin/bassinDetail.tpl:36
 #: ../../../display/templates/bassin/analyseGraph.tpl:36
-#: ../../../display/templates/bassin/bassinChange.tpl:98
+#: ../../../display/templates/bassin/bassinChange.tpl:99
 #: ../../../display/templates/bassin/bassinSearch.tpl:75
+#: ../../../display/templates/bassin/analyseEauDetail.tpl:10
 msgid "Circuit d'eau :"
-msgstr ""
+msgstr "Water circuit:"
 
 #: ../../../display/templates/bassin/bassinDetail.tpl:45
 msgid "État du bassin :"
-msgstr ""
+msgstr "Basin state:"
 
 #: ../../../display/templates/bassin/bassinDetail.tpl:47
 msgid "Bassin en activité"
-msgstr ""
+msgstr "Basin in use"
 
 #: ../../../display/templates/bassin/bassinDetail.tpl:47
 msgid "Bassin non utilisé ou réformé"
-msgstr ""
+msgstr "Basin not used or decommissioned"
 
 #: ../../../display/templates/bassin/bassinDetail.tpl:51
-#: ../../../display/templates/bassin/bassinChange.tpl:168
+#: ../../../display/templates/bassin/bassinChange.tpl:170
 msgid "Mode de calcul de la masse :"
-msgstr ""
+msgstr "Mass calculation method:"
 
 #: ../../../display/templates/bassin/bassinEvenementChange.tpl:1
 #: ../../../display/templates/bassin/bassinChange.tpl:3
@@ -5850,7 +5851,7 @@ msgstr "Back to the list of logins"
 #: ../../../display/templates/bassin/bassinEvenementChange.tpl:2
 #: ../../../display/templates/bassin/bassinChange.tpl:7
 msgid "Retour au bassin"
-msgstr ""
+msgstr "Back to basin"
 
 #: ../../../display/templates/bassin/bassinEvenementChange.tpl:3
 #, fuzzy
@@ -5859,28 +5860,28 @@ msgstr "Edit the group and its attachments to the logins"
 
 #: ../../../display/templates/bassin/analyseGraph.tpl:13
 msgid "Visualisation des analyses d'eau des circuits actifs"
-msgstr ""
+msgstr "Viewing water analyses of active circuits"
 
 #: ../../../display/templates/bassin/analyseGraph.tpl:41
 msgid "Tous circuits d'eau actifs"
-msgstr ""
+msgstr "All active water circuits"
 
 #: ../../../display/templates/bassin/analyseGraph.tpl:53
 msgid "Mesure à afficher :"
-msgstr ""
+msgstr "Measure to display:"
 
 #: ../../../display/templates/bassin/analyseGraph.tpl:65
 msgid "Période du :"
-msgstr ""
+msgstr "From:"
 
 #: ../../../display/templates/bassin/analyseGraph.tpl:79
 msgid "Générer le graphique"
-msgstr ""
+msgstr "Generate the graph"
 
 #: ../../../display/templates/bassin/circuitEvenementList.tpl:10
 #: ../../../display/templates/bassin/bassinEvenementList.tpl:10
 msgid "Évenement"
-msgstr ""
+msgstr "Event"
 
 #: ../../../display/templates/bassin/bassinChange.tpl:1
 #, fuzzy
@@ -5896,118 +5897,86 @@ msgstr "Description:"
 #: ../../../display/templates/bassin/bassinChange.tpl:36
 #: ../../../display/templates/bassin/bassinSearch.tpl:34
 msgid "Sélectionnez le type de bassin..."
-msgstr ""
+msgstr "Select the basin type..."
 
 #: ../../../display/templates/bassin/bassinChange.tpl:49
-#: ../../../display/templates/bassin/circuitEauChange.tpl:26
+#: ../../../display/templates/bassin/circuitEauChange.tpl:27
 msgid "Site d'implantation :"
-msgstr ""
+msgstr "Site of implantation:"
 
 #: ../../../display/templates/bassin/bassinChange.tpl:63
 msgid "Utilisation du bassin :"
-msgstr ""
+msgstr "Basin usage:"
 
 #: ../../../display/templates/bassin/bassinChange.tpl:67
 msgid "Sélectionnez l'utilisation du bassin..."
-msgstr ""
+msgstr "Select the basin usage..."
 
-#: ../../../display/templates/bassin/bassinChange.tpl:80
-msgid ""
-"Zone d'implantation du bassin\n"
-"                    :"
-msgstr ""
+#: ../../../display/templates/bassin/bassinChange.tpl:81
+#, fuzzy
+msgid "Zone d'implantation du bassin :"
+msgstr "Areas where the basins are located"
 
-#: ../../../display/templates/bassin/bassinChange.tpl:85
+#: ../../../display/templates/bassin/bassinChange.tpl:86
 msgid "Sélectionnez la zone d'implantation du bassin..."
-msgstr ""
+msgstr "Select the area where the basin is to be installed..."
 
-#: ../../../display/templates/bassin/bassinChange.tpl:102
+#: ../../../display/templates/bassin/bassinChange.tpl:103
 #: ../../../display/templates/bassin/bassinSearch.tpl:79
 msgid "Sélectionnez le circuit d'eau..."
-msgstr ""
+msgstr "Select the water circuit..."
 
-#: ../../../display/templates/bassin/bassinChange.tpl:115
+#: ../../../display/templates/bassin/bassinChange.tpl:116
 msgid "Longueur (en cm) :"
-msgstr ""
+msgstr "Length (in cm):"
 
-#: ../../../display/templates/bassin/bassinChange.tpl:122
-msgid ""
-"Largeur ou diamètre (en cm)\n"
-"                    :"
-msgstr ""
+#: ../../../display/templates/bassin/bassinChange.tpl:124
+#, fuzzy
+msgid "Largeur ou diamètre (en cm):"
+msgstr "Standard deviation of mean diameter:"
 
-#: ../../../display/templates/bassin/bassinChange.tpl:131
-msgid ""
-"\n"
-"                    Surface (en cm2) :\n"
-"                    "
-msgstr ""
-
-#: ../../../display/templates/bassin/bassinChange.tpl:140
+#: ../../../display/templates/bassin/bassinChange.tpl:142
 msgid "Hauteur d'eau (en cm) :"
-msgstr ""
+msgstr "Water heigh (in cm):"
 
-#: ../../../display/templates/bassin/bassinChange.tpl:147
+#: ../../../display/templates/bassin/bassinChange.tpl:149
 msgid "Volume (en litres) :"
-msgstr ""
+msgstr "Volume (in liters):"
 
-#: ../../../display/templates/bassin/bassinChange.tpl:154
+#: ../../../display/templates/bassin/bassinChange.tpl:156
 msgid "Bassin en activité :"
-msgstr ""
+msgstr "Basin used:"
 
 #: ../../../display/templates/bassin/bassinSearch.tpl:8
 #: ../../../display/templates/aliment/repartitionChange.tpl:229
 #: ../../../display/templates/aliment/repartitionCreate.tpl:38
 msgid "Nom :"
-msgstr ""
+msgstr "Name:"
 
 #: ../../../display/templates/bassin/bassinSearch.tpl:12
 msgid "Bassin en activité ?"
-msgstr ""
+msgstr "Basin in use?"
 
 #: ../../../display/templates/bassin/bassinSearch.tpl:44
 msgid "Usage :"
-msgstr ""
+msgstr "Usage:"
 
 #: ../../../display/templates/bassin/bassinSearch.tpl:49
 msgid "Sélectionnez l'usage du bassin..."
-msgstr ""
+msgstr "Select the usage of the basin..."
 
 #: ../../../display/templates/bassin/bassinSearch.tpl:66
 msgid "Sélectionnez la zone d'implantation..."
-msgstr ""
-
-#: ../../../display/templates/bassin/analyseEauDetail.tpl:10
-msgid "Circuit d'eau : "
-msgstr ""
-
-#: ../../../display/templates/bassin/analyseEauDetail.tpl:13
-msgid "Date d'analyse : "
-msgstr ""
-
-#: ../../../display/templates/bassin/analyseEauDetail.tpl:17
-msgid "Température : "
-msgstr ""
-
-#: ../../../display/templates/bassin/analyseEauDetail.tpl:21
-msgid "Oxygène (mg/l) : "
-msgstr ""
+msgstr "Select the implantation zone..."
 
 #: ../../../display/templates/bassin/analyseEauDetail.tpl:25
-msgid "Oxygène (% sat): "
-msgstr ""
-
-#: ../../../display/templates/bassin/analyseEauDetail.tpl:29
-msgid "salinité : "
-msgstr ""
-
-#: ../../../display/templates/bassin/analyseEauDetail.tpl:33
-msgid "pH : "
-msgstr ""
+#, fuzzy
+msgid "Oxygène (% sat):"
+msgstr "Oxygen (% sat):"
 
 #: ../../../display/templates/bassin/analyseEauDetail.tpl:38
 msgid "Laboratoire :"
-msgstr ""
+msgstr "Laboratory:"
 
 #: ../../../display/templates/bassin/analyseEauDetail.tpl:45
 #, fuzzy
@@ -6024,35 +5993,30 @@ msgstr "Value"
 msgid "Valeur seuil"
 msgstr "Value"
 
-#: ../../../display/templates/bassin/analyseEauDetail.tpl:82
-msgid "Backwash biologique : "
-msgstr ""
-
 #: ../../../display/templates/bassin/analyseEauDetail.tpl:91
 msgid "Débit d'eau de rivière :"
-msgstr ""
+msgstr "River water flow :"
 
 #: ../../../display/templates/bassin/analyseEauDetail.tpl:95
 msgid "Débit d'eau de forage :"
-msgstr ""
+msgstr "Drilling water flow:"
 
 #: ../../../display/templates/bassin/analyseEauDetail.tpl:99
 msgid "Débit d'eau de mer :"
-msgstr ""
+msgstr "Water sea flow:"
 
 #: ../../../display/templates/bassin/analyseEauDetail.tpl:109
 msgid "Métaux analysés"
-msgstr ""
+msgstr "Analyzed metals"
 
 #: ../../../display/templates/bassin/circuitEauChange.tpl:1
 msgid "Modification du nom d'un circuit d'eau"
-msgstr ""
+msgstr "Renaming a water circuit"
 
-#: ../../../display/templates/bassin/circuitEauChange.tpl:5
-msgid ""
-"Retour au détail du circuit\n"
-"    d'eau"
-msgstr ""
+#: ../../../display/templates/bassin/circuitEauChange.tpl:6
+#, fuzzy
+msgid "Retour au détail du circuit d'eau"
+msgstr "Back to water circuit"
 
 #: ../../../display/templates/enpied.tpl:3
 #, fuzzy
@@ -6070,7 +6034,7 @@ msgstr "For any problem:"
 #: ../../../display/templates/document/documentListOnly.tpl:26
 #: ../../../display/templates/document/documentList.tpl:43
 msgid "Vignette"
-msgstr ""
+msgstr "Thumbnail"
 
 #: ../../../display/templates/document/documentListOnly.tpl:27
 #: ../../../display/templates/document/documentList.tpl:44
@@ -6081,17 +6045,17 @@ msgstr "Name of the group"
 #: ../../../display/templates/document/documentListOnly.tpl:29
 #: ../../../display/templates/document/documentList.tpl:46
 msgid "Taille"
-msgstr ""
+msgstr "Size"
 
 #: ../../../display/templates/document/documentListOnly.tpl:30
 #: ../../../display/templates/document/documentList.tpl:47
 msgid "Date d'import"
-msgstr ""
+msgstr "Importation date"
 
 #: ../../../display/templates/document/documentChange.tpl:13
 msgid ""
 "Fichier(s) à importer : (doc, jpg, png, pdf, xls, xlsx, docx, odt, ods, csv)"
-msgstr ""
+msgstr "File to import  (doc, jpg, png, pdf, xls, xlsx, docx, odt, ods, csv):"
 
 #: ../../../display/templates/aliment/repartitionList.tpl:1
 #, fuzzy
@@ -6102,7 +6066,7 @@ msgstr "List of groups of logins"
 #: ../../../display/templates/aliment/repartTemplateList.tpl:18
 #: ../../../display/templates/aliment/categorieList.tpl:11
 msgid "Catégorie"
-msgstr ""
+msgstr "Category"
 
 #: ../../../display/templates/aliment/repartitionList.tpl:15
 #, fuzzy
@@ -6111,35 +6075,35 @@ msgstr "Date:"
 
 #: ../../../display/templates/aliment/repartitionList.tpl:17
 msgid "Saisir les restes"
-msgstr ""
+msgstr "Recording leftovers"
 
 #: ../../../display/templates/aliment/repartitionList.tpl:18
 msgid "Dupliquer"
-msgstr ""
+msgstr "Duplicate"
 
 #: ../../../display/templates/aliment/repartitionResteChange.tpl:61
 msgid "Saisie des restes"
-msgstr ""
+msgstr "Leftovers recording"
 
 #: ../../../display/templates/aliment/repartitionResteChange.tpl:62
 msgid "Période du"
-msgstr ""
+msgstr "From"
 
 #: ../../../display/templates/aliment/repartitionResteChange.tpl:63
 msgid "au"
-msgstr ""
+msgstr "to"
 
 #: ../../../display/templates/aliment/repartitionResteChange.tpl:83
 msgid "Total reste"
-msgstr ""
+msgstr "Total leftovers"
 
 #: ../../../display/templates/aliment/repartitionResteChange.tpl:86
 msgid "Taux de reste"
-msgstr ""
+msgstr "Leftover rate"
 
 #: ../../../display/templates/aliment/repartTemplateList.tpl:1
 msgid "Modèles de répartion des aliments"
-msgstr ""
+msgstr "Food distribution models"
 
 #: ../../../display/templates/aliment/repartTemplateList.tpl:7
 #, fuzzy
@@ -6149,29 +6113,29 @@ msgstr "New application"
 #: ../../../display/templates/aliment/repartTemplateList.tpl:17
 #: ../../../display/templates/framework/request/requestList.tpl:11
 msgid "Date de création"
-msgstr ""
+msgstr "Date of creation"
 
 #: ../../../display/templates/aliment/repartitionChange.tpl:9
 msgid ""
 "L impression ne peut pas être déclenchée : des modifications ont été "
 "apportées dans le formulaire"
-msgstr ""
+msgstr "Printing cannot be triggered: changes have been made to the form"
 
 #: ../../../display/templates/aliment/repartitionChange.tpl:14
 msgid "Veuillez enregistrer la fiche avant de poursuivre votre saisie"
-msgstr ""
+msgstr "Please save the form before continuing"
 
 #: ../../../display/templates/aliment/repartitionChange.tpl:157
 msgid "Le modèle de répartition doit être renseigné"
-msgstr ""
+msgstr "The distribution model must be completed"
 
 #: ../../../display/templates/aliment/repartitionChange.tpl:166
 msgid "Une ou plusieurs anomalies ont été détectées : vérifiez votre saisie"
-msgstr ""
+msgstr "One or more anomalies have been detected: check your entries"
 
 #: ../../../display/templates/aliment/repartitionChange.tpl:185
 msgid "Imprimer la répartition"
-msgstr ""
+msgstr "Print distribution"
 
 #: ../../../display/templates/aliment/repartitionChange.tpl:195
 #, fuzzy
@@ -6192,35 +6156,35 @@ msgstr "Date:"
 
 #: ../../../display/templates/aliment/repartitionChange.tpl:256
 msgid "Répartition des aliments par bassin"
-msgstr ""
+msgstr "Distribution of feed by basin"
 
 #: ../../../display/templates/aliment/repartitionChange.tpl:295
 msgid "Modèle de distribution utilisé :"
-msgstr ""
+msgstr "Distribution used model:"
 
 #: ../../../display/templates/aliment/repartitionChange.tpl:318
 msgid "Masse (poids) des poissons dans le bassin (en grammes) :"
-msgstr ""
+msgstr "Mass (weight) of fish in the basin (in grams) :"
 
 #: ../../../display/templates/aliment/repartitionChange.tpl:329
 msgid "Recalcul..."
-msgstr ""
+msgstr "Recalculate..."
 
 #: ../../../display/templates/aliment/repartitionChange.tpl:334
 msgid "Nourrissage des jours précédents (même nbre de jours) :"
-msgstr ""
+msgstr "Feeding on previous days (same number of days) :"
 
 #: ../../../display/templates/aliment/repartitionChange.tpl:339
 msgid "Taux :"
-msgstr ""
+msgstr "Rate :"
 
 #: ../../../display/templates/aliment/repartitionChange.tpl:350
 msgid "Qté :"
-msgstr ""
+msgstr "Qty:"
 
 #: ../../../display/templates/aliment/repartitionChange.tpl:359
 msgid " soit global :"
-msgstr ""
+msgstr " either overall:"
 
 #: ../../../display/templates/aliment/repartitionChange.tpl:370
 #, fuzzy
@@ -6229,15 +6193,15 @@ msgstr "Date:"
 
 #: ../../../display/templates/aliment/repartitionChange.tpl:383
 msgid "% reste :"
-msgstr ""
+msgstr "leftovers %:"
 
 #: ../../../display/templates/aliment/repartitionChange.tpl:404
 msgid "Taux de nourrissage :"
-msgstr ""
+msgstr "Feeding rate:"
 
 #: ../../../display/templates/aliment/repartitionChange.tpl:409
 msgid "Évolution :"
-msgstr ""
+msgstr "Evolution:"
 
 #: ../../../display/templates/aliment/repartitionChange.tpl:420
 #, fuzzy
@@ -6246,25 +6210,25 @@ msgstr "New Password:"
 
 #: ../../../display/templates/aliment/repartitionChange.tpl:432
 msgid "Ration distribuée :"
-msgstr ""
+msgstr "Distributed ration:"
 
 #: ../../../display/templates/aliment/repartitionChange.tpl:446
 msgid "Consignes de distribution :"
-msgstr ""
+msgstr "Distribution instructions:"
 
 #: ../../../display/templates/aliment/repartitionChange.tpl:457
 msgid "Jours de distribution :"
-msgstr ""
+msgstr "Days of distribution:"
 
 #: ../../../display/templates/aliment/repartitionChange.tpl:459
 #: ../../../display/templates/aliment/repartitionChange.tpl:506
 msgid "lun"
-msgstr ""
+msgstr "mon"
 
 #: ../../../display/templates/aliment/repartitionChange.tpl:465
 #: ../../../display/templates/aliment/repartitionChange.tpl:512
 msgid "mar"
-msgstr ""
+msgstr "tue"
 
 #: ../../../display/templates/aliment/repartitionChange.tpl:471
 #: ../../../display/templates/aliment/repartitionChange.tpl:518
@@ -6275,34 +6239,34 @@ msgstr "First"
 #: ../../../display/templates/aliment/repartitionChange.tpl:477
 #: ../../../display/templates/aliment/repartitionChange.tpl:524
 msgid "jeu"
-msgstr ""
+msgstr "thu"
 
 #: ../../../display/templates/aliment/repartitionChange.tpl:483
 #: ../../../display/templates/aliment/repartitionChange.tpl:530
 msgid "ven"
-msgstr ""
+msgstr "fry"
 
 #: ../../../display/templates/aliment/repartitionChange.tpl:489
 #: ../../../display/templates/aliment/repartitionChange.tpl:536
 msgid "sam"
-msgstr ""
+msgstr "sat"
 
 #: ../../../display/templates/aliment/repartitionChange.tpl:495
 #: ../../../display/templates/aliment/repartitionChange.tpl:542
 msgid "dim"
-msgstr ""
+msgstr "sun"
 
 #: ../../../display/templates/aliment/repartitionChange.tpl:503
 msgid "1/2 ration le soir uniquement :"
-msgstr ""
+msgstr "1/2 ration in the evening only:"
 
 #: ../../../display/templates/aliment/categorieList.tpl:1
 msgid "Catégories d'aliments (types de poissons nourris)"
-msgstr ""
+msgstr "Feed categories (types of fish fed)"
 
 #: ../../../display/templates/aliment/repartitionCreate.tpl:42
 msgid "Élevage, repro..."
-msgstr ""
+msgstr "Rearing, breeding,..."
 
 #: ../../../display/templates/aliment/categorieChange.tpl:1
 #, fuzzy
@@ -6311,11 +6275,11 @@ msgstr "Edit the group and its attachments to the logins"
 
 #: ../../../display/templates/aliment/categorieChange.tpl:12
 msgid "Type de poisson nourri :"
-msgstr ""
+msgstr "Type of fish fed:"
 
 #: ../../../display/templates/aliment/repartitionSearch.tpl:45
 msgid "Date à partir de laquelle sont affichées les répartitions :"
-msgstr ""
+msgstr "Date from which breakdowns are displayed:"
 
 #: ../../../display/templates/aliment/repartTemplateChange.tpl:6
 #, fuzzy
@@ -6345,49 +6309,49 @@ msgstr "Rights granted"
 
 #: ../../../display/templates/aliment/repartTemplateChange.tpl:68
 msgid "Pourcentage de la ration :"
-msgstr ""
+msgstr "Ration percentage:"
 
 #: ../../../display/templates/aliment/repartTemplateChange.tpl:71
 msgid ""
 "Taux de répartition de l'aliment (le total de tous les aliments doit faire "
 "100)"
-msgstr ""
+msgstr "Feed distribution rate (total of all feeds must equal 100)"
 
 #: ../../../display/templates/aliment/repartTemplateChange.tpl:78
 msgid "Répartition quotidienne, en pourcentage :"
-msgstr ""
+msgstr "Daily percentage distribution :"
 
 #: ../../../display/templates/aliment/repartTemplateChange.tpl:82
 msgid "Matin :"
-msgstr ""
+msgstr "Morning:"
 
 #: ../../../display/templates/aliment/repartTemplateChange.tpl:84
 msgid "Midi :"
-msgstr ""
+msgstr "Midi:"
 
 #: ../../../display/templates/aliment/repartTemplateChange.tpl:86
 msgid "Soir :"
-msgstr ""
+msgstr "Evening:"
 
 #: ../../../display/templates/aliment/repartTemplateChange.tpl:88
 msgid "Nuit :"
-msgstr ""
+msgstr "Night:"
 
 #: ../../../display/templates/aliment/repartTemplateChange.tpl:92
 msgid "Consignes :"
-msgstr ""
+msgstr "Instructions:"
 
 #: ../../../display/templates/aliment/alimentList.tpl:14
 msgid "Nom court pour éditions"
-msgstr ""
+msgstr "Short name for editions"
 
 #: ../../../display/templates/aliment/alimentList.tpl:16
 msgid "Type d'aliment"
-msgstr ""
+msgstr "Feed type"
 
 #: ../../../display/templates/aliment/alimentList.tpl:18
 msgid "Actuellement utilisé ?"
-msgstr ""
+msgstr "In use ?"
 
 #: ../../../display/templates/aliment/alimentChange.tpl:1
 #, fuzzy
@@ -6401,19 +6365,19 @@ msgstr "Name of the application:"
 
 #: ../../../display/templates/aliment/alimentChange.tpl:17
 msgid "Nom court (pour éditions) :"
-msgstr ""
+msgstr "Short name (for editions):"
 
 #: ../../../display/templates/aliment/alimentChange.tpl:35
 msgid "Aliment actuellement utilisé ?"
-msgstr ""
+msgstr "Feed currently in use?"
 
 #: ../../../display/templates/aliment/alimentChange.tpl:46
 msgid "Catégories de poissons nourris"
-msgstr ""
+msgstr "Categories of fish fed"
 
 #: ../../../display/templates/aliment/repartTemplateSearch.tpl:23
 msgid "Modèle de répartition actuellement utilisable ?"
-msgstr ""
+msgstr "Distribution model currently in use?"
 
 #: ../../../display/templates/framework/logList.tpl:9
 #, fuzzy
@@ -6427,11 +6391,11 @@ msgstr "Login used:"
 
 #: ../../../display/templates/framework/logList.tpl:52
 msgid "Module"
-msgstr ""
+msgstr "Module"
 
 #: ../../../display/templates/framework/logList.tpl:53
 msgid "Commentaires"
-msgstr ""
+msgstr "Comments"
 
 #: ../../../display/templates/framework/logList.tpl:54
 #: ../../../display/templates/framework/ident/loginliste.tpl:31
@@ -6452,21 +6416,21 @@ msgstr "Error reading information in the database"
 
 #: ../../../display/templates/framework/ident/loginChangePassword.tpl:7
 msgid "Le pire"
-msgstr ""
+msgstr "The worst"
 
 #: ../../../display/templates/framework/ident/loginChangePassword.tpl:7
 #: ../../../display/templates/framework/ident/loginChangePassword.tpl:8
 #: ../../../display/templates/framework/ident/loginChangePassword.tpl:9
 msgid "Ajoutez un mot ou deux. Les mots inconnus sont meilleurs."
-msgstr ""
+msgstr "Add a word or two. Unknown words are better."
 
 #: ../../../display/templates/framework/ident/loginChangePassword.tpl:8
 msgid "Mauvais"
-msgstr ""
+msgstr "Poor"
 
 #: ../../../display/templates/framework/ident/loginChangePassword.tpl:9
 msgid "Faible"
-msgstr ""
+msgstr "Weak"
 
 #: ../../../display/templates/framework/ident/loginChangePassword.tpl:10
 #, fuzzy
@@ -6478,10 +6442,12 @@ msgid ""
 "Ajoutez un ou deux autres mots. Les mots peu communs sont meilleurs, les "
 "mots inversés ne sont pas beaucoup plus difficiles à deviner."
 msgstr ""
+"Add one or two other words. Uncommon words are best, inverted words are not "
+"much harder to guess."
 
 #: ../../../display/templates/framework/ident/loginChangePassword.tpl:11
 msgid "Robuste"
-msgstr ""
+msgstr "Rugged"
 
 #: ../../../display/templates/framework/ident/loginChangePassword.tpl:30
 #, fuzzy
@@ -6504,7 +6470,7 @@ msgstr "The password is too short (minimum: 10 characters)"
 #: ../../../display/templates/framework/ident/loginsaisie.tpl:19
 #: ../../../display/templates/framework/ident/loginsaisie.tpl:183
 msgid "caractères"
-msgstr ""
+msgstr "letters"
 
 #: ../../../display/templates/framework/ident/loginChangePassword.tpl:57
 #: ../../../display/templates/framework/ident/loginsaisie.tpl:22
@@ -6575,26 +6541,28 @@ msgstr "Sign in"
 
 #: ../../../display/templates/framework/ident/login.tpl:69
 msgid "ou :"
-msgstr ""
+msgstr "or:"
 
 #: ../../../display/templates/framework/ident/login.tpl:71
 msgid "Se connecter avec l'identification centralisée"
-msgstr ""
+msgstr "Logging in with centralised identification"
 
 #: ../../../display/templates/framework/ident/totp.tpl:1
 msgid "Vérification du compte avec la double authentification"
-msgstr ""
+msgstr "Account verification with dual authentication"
 
 #: ../../../display/templates/framework/ident/totp.tpl:5
 msgid ""
 "Pour vérifier votre identification, veuillez taper le code TOTP que vous "
 "avez configuré dans votre smartphone"
 msgstr ""
+"To check your identification, please enter the TOTP code you have set on "
+"your smartphone"
 
 #: ../../../display/templates/framework/ident/totp.tpl:15
-#: ../../../display/templates/framework/droits/otpCreate.tpl:26
+#: ../../../display/templates/framework/droits/otpCreate.tpl:23
 msgid "Code généré par le logiciel TOTP :"
-msgstr ""
+msgstr "Code generated by the TOTP software:"
 
 #: ../../../display/templates/framework/ident/loginsaisie.tpl:78
 msgid "Saisie/modification d'un compte"
@@ -6635,7 +6603,7 @@ msgstr "Reset ..."
 msgid ""
 "Le compte est verrouillé, le mot de passe n'a pas été changé après 3 "
 "connexions"
-msgstr ""
+msgstr "Account locked, password not changed after 3 logins"
 
 #: ../../../display/templates/framework/ident/loginsaisie.tpl:169
 msgid "Générez un mot de passe aléatoire"
@@ -6656,7 +6624,7 @@ msgstr "Repeat password:"
 
 #: ../../../display/templates/framework/ident/loginsaisie.tpl:183
 msgid "Longueur minimale : "
-msgstr ""
+msgstr "Minimum length: "
 
 #: ../../../display/templates/framework/ident/loginsaisie.tpl:184
 #, fuzzy
@@ -6686,7 +6654,7 @@ msgstr "Active"
 
 #: ../../../display/templates/framework/ident/loginsaisie.tpl:207
 msgid "Essais de connexion infructueux et date du dernier essai :"
-msgstr ""
+msgstr "Unsuccessful connection attempts and date of last attempt :"
 
 #: ../../../display/templates/framework/ident/loginsaisie.tpl:233
 #: ../../../display/templates/framework/droits/acoChange.tpl:47
@@ -6718,19 +6686,19 @@ msgstr "Account used for web service"
 
 #: ../../../display/templates/framework/ident/loginliste.tpl:36
 msgid "Mot de passe en attente de changement"
-msgstr ""
+msgstr "Password awaiting change"
 
 #: ../../../display/templates/framework/ident/loginliste.tpl:37
 msgid "Nombre d'essais de connexion infructueux"
-msgstr ""
+msgstr "Number of unsuccessful connection attempts"
 
 #: ../../../display/templates/framework/ident/loginliste.tpl:38
 msgid "Heure du dernier essai infructueux"
-msgstr ""
+msgstr "Time of last unsuccessful attempt"
 
 #: ../../../display/templates/framework/ident/loginliste.tpl:50
 msgid "Compte bloqué"
-msgstr ""
+msgstr "Account blocked"
 
 #: ../../../display/templates/framework/ident/loginliste.tpl:67
 #, fuzzy
@@ -6753,13 +6721,15 @@ msgstr "Receive a recovery email"
 #: ../../../display/templates/framework/mail/noRights.tpl:1
 #: ../../../display/templates/framework/mail/accountBlocked.tpl:1
 msgid "Problème potentiel de sécurité"
-msgstr ""
+msgstr "Potential safety problem"
 
 #: ../../../display/templates/framework/mail/maxAccessToModule.tpl:2
 msgid ""
 "Le compte %1 a essayé d'accéder au module %2 le %3 en dépassant le nombre "
 "autorisé soit en une heure, soit en une journée."
 msgstr ""
+"Account %1 tried to access module %2 on %3, exceeding the authorized number "
+"in either one hour or one day."
 
 #: ../../../display/templates/framework/mail/maxAccessToModule.tpl:5
 #: ../../../display/templates/framework/mail/noRights.tpl:5
@@ -6767,36 +6737,43 @@ msgstr ""
 msgid ""
 "Vous recevez ce message parce que vous êtes administrateur de l'application"
 msgstr ""
+"You are receiving this message because you are the administrator of the "
+"application"
 
 #: ../../../display/templates/framework/mail/noRights.tpl:2
 msgid ""
 "Le compte %1 a essayé d'accéder au module %2 le %3 sans disposer des droits "
 "adéquats."
 msgstr ""
+"Account %1 tried to access module %2 on %3 without having the appropriate "
+"rights."
 
 #: ../../../display/templates/framework/mail/accountActivate.tpl:1
 msgid "Activation ou réactivation de votre compte"
-msgstr ""
+msgstr "Activate or reactivate your account"
 
 #: ../../../display/templates/framework/mail/accountActivate.tpl:2
 #: ../../../display/templates/framework/mail/passwordLost.tpl:2
 #: ../../../display/templates/framework/mail/passwordChanged.tpl:2
 msgid "Bonjour %1 %2,"
-msgstr ""
+msgstr "Hello %1 %2,"
 
 #: ../../../display/templates/framework/mail/accountActivate.tpl:4
 msgid "Votre compte vient d'être activé ou réactivé dans l'application %1"
 msgstr ""
+"Your account has just been activated or reactivated in the application %1"
 
 #: ../../../display/templates/framework/mail/accountActivate.tpl:7
 msgid ""
 "Si vous n'êtes pas à l'origine de cette demande, veuillez contacter le "
 "responsable de l'application."
 msgstr ""
+"If you did not initiate this request, please contact the person responsible "
+"for the application."
 
 #: ../../../display/templates/framework/mail/mail.tpl:44
 msgid "Ne répondez pas à ce mail, qui est généré automatiquement"
-msgstr ""
+msgstr "Do not reply to this e-mail, which is generated automatically"
 
 #: ../../../display/templates/framework/mail/passwordLost.tpl:4
 #, fuzzy
@@ -6811,15 +6788,15 @@ msgstr ""
 msgid ""
 "Pour réinitaliser votre mot de passe, recopiez le lien suivant dans votre "
 "navigateur :"
-msgstr ""
+msgstr "To reset your password, copy the following link into your browser:"
 
 #: ../../../display/templates/framework/mail/passwordLost.tpl:10
 msgid "Le lien restera valable jusqu'au %1."
-msgstr ""
+msgstr "The link will remain valid until %1."
 
 #: ../../../display/templates/framework/mail/accountBlocked.tpl:2
 msgid "Le compte %1 a été bloqué le %2 après trop de tentatives de connexion."
-msgstr ""
+msgstr "Account %1 was blocked on %2 after too many connection attempts."
 
 #: ../../../display/templates/framework/mail/passwordChanged.tpl:4
 #, fuzzy
@@ -6831,29 +6808,34 @@ msgid ""
 "Si vous n'êtes pas à l'origine de cette opération, veuillez contacter le "
 "responsable de l'application."
 msgstr ""
+"If you did not initiate this operation, please contact the person "
+"responsible for the application."
 
 #: ../../../display/templates/framework/mail/newUser.tpl:2
 msgid ""
 "%2 a créé son compte avec le login %1 dans l'application %3. Le compte est "
 "actuellement inactif."
 msgstr ""
+"%2 has created an account with login %1 in application %3. The account is "
+"currently inactive."
 
 #: ../../../display/templates/framework/mail/newUser.tpl:5
 msgid "La personne est rattachée à l'organisation %1."
-msgstr ""
+msgstr "The person is attached to the %1 organisation."
 
 #: ../../../display/templates/framework/mail/newUser.tpl:8
 msgid "Pour activer le compte, connectez-vous à l'application :"
-msgstr ""
+msgstr "To activate the account, log in to the :"
 
 #: ../../../display/templates/framework/mail/newUser.tpl:14
 msgid ""
 "Vous recevez ce message parce que vous êtes administrateur de l'application."
 msgstr ""
+"You are receiving this message because you are the application administrator."
 
 #: ../../../display/templates/framework/lastConnections.tpl:1
 msgid "Dernières connexions enregistrées"
-msgstr ""
+msgstr "Last recorded connections"
 
 #: ../../../display/templates/framework/dbparamListChange.tpl:2
 msgid "Paramètres pérennes de l'application"
@@ -6920,7 +6902,7 @@ msgstr "Name of the group:"
 
 #: ../../../display/templates/framework/droits/groupChange.tpl:26
 msgid "Groupe de rattachement"
-msgstr ""
+msgstr "Affiliated group"
 
 #: ../../../display/templates/framework/droits/groupChange.tpl:42
 msgid "Logins rattachés"
@@ -6928,19 +6910,30 @@ msgstr "Logins attached"
 
 #: ../../../display/templates/framework/droits/otpCreate.tpl:1
 msgid "Activation de la double authentification"
-msgstr ""
+msgstr "Activation of dual authentication"
 
 #: ../../../display/templates/framework/droits/otpCreate.tpl:5
 msgid ""
 "La double identification limite les risques d'usurpation de votre compte."
-msgstr ""
+msgstr "Dual identification reduces the risk of your account being stolen."
 
 #: ../../../display/templates/framework/droits/otpCreate.tpl:7
 msgid ""
 "Pour l'activer, vous devrez installer dans votre smartphone une application "
-"compatible avec l'identification\n"
-"      TOTP, par exemple FreeOTP, Google Authenticator, etc."
+"compatible avec l'identificationTOTP, par exemple FreeOTP, Google "
+"Authenticator, etc."
 msgstr ""
+"To activate it, you will need to install an application on your smartphone "
+"that supports TOTP identification, such as FreeOTP, Google Authenticator, "
+"etc."
+
+#: ../../../display/templates/framework/droits/otpCreate.tpl:9
+msgid ""
+"Une fois l'application installée, scannez le QRCODE, puis tapez le code "
+"généré par l'application pour valider votre double identification."
+msgstr ""
+"Once the application has been installed, scan the QRCODE, then enter the "
+"code generated by the application to validate your dual identification."
 
 #: ../../../display/templates/framework/droits/appliChange.tpl:2
 msgid "Modification d'une application (module de gestion des droits)"
@@ -6964,7 +6957,7 @@ msgstr "Login used:"
 
 #: ../../../display/templates/framework/droits/loginChange.tpl:23
 msgid "Désactiver l'identification à double facteur :"
-msgstr ""
+msgstr "Disable two-factor identification :"
 
 #: ../../../display/templates/framework/droits/loginChange.tpl:41
 msgid "Droits attribués"
@@ -7026,15 +7019,15 @@ msgstr "New right"
 
 #: ../../../display/templates/framework/request/requestList.tpl:12
 msgid "Date de dernière exécution"
-msgstr ""
+msgstr "Last execution date"
 
 #: ../../../display/templates/framework/request/requestList.tpl:31
 msgid "Exécuter la requête"
-msgstr ""
+msgstr "Run the query"
 
 #: ../../../display/templates/framework/request/requestList.tpl:36
 msgid "Dupliquer la requête"
-msgstr ""
+msgstr "Duplicate the query"
 
 #: ../../../display/templates/framework/request/requestChange.tpl:4
 #, fuzzy
@@ -7043,7 +7036,7 @@ msgstr "Do you confirm the deletion?"
 
 #: ../../../display/templates/framework/request/requestChange.tpl:52
 msgid "Code SQL :"
-msgstr ""
+msgstr "SQL code:"
 
 #: ../../../display/templates/framework/request/requestChange.tpl:84
 msgid "Enregistrer"
@@ -7056,39 +7049,43 @@ msgstr "Saved"
 
 #: ../../../display/templates/framework/request/requestChange.tpl:87
 msgid "Exécuter"
-msgstr ""
+msgstr "Run"
 
 #: ../../../display/templates/framework/request/requestChange.tpl:119
 msgid "Aucun résultat n'a été retourné par la requête"
-msgstr ""
+msgstr "No results were returned by the query"
 
 #: ../../../display/templates/framework/backup.tpl:2
 msgid ""
 "Ce module est destiné à réaliser une sauvegarde exceptionnelle de la base de "
 "données"
-msgstr ""
+msgstr "This module is designed to make an exceptional backup of the database"
 
 #: ../../../display/templates/framework/backup.tpl:3
 msgid ""
 "En aucun cas, il se substitue à la procédure de sauvegarde automatique qui "
 "doit avoir été implémentée dans le serveur"
 msgstr ""
+"Under no circumstances does it replace the automatic backup procedure, which "
+"must have been implemented in the server"
 
 #: ../../../display/templates/framework/backup.tpl:4
 msgid ""
 "La sauvegarde peut échouer si la taille de la base de données est trop "
 "importante."
-msgstr ""
+msgstr "The backup may fail if the size of the database is too large."
 
 #: ../../../display/templates/framework/backup.tpl:5
 msgid ""
 "Après avoir récupéré le fichier généré, assurez-vous qu'il contient bien les "
 "informations (fichier .sql dans le fichier compressé au format gzip)"
 msgstr ""
+"Once you have retrieved the generated file, check that it contains the "
+"information (.sql file in gzip compressed format)"
 
 #: ../../../display/templates/framework/backup.tpl:12
 msgid "Déclencher la sauvegarde"
-msgstr ""
+msgstr "Trigger the backup"
 
 #: ../../../display/templates/framework/news.tpl:1
 #, fuzzy
@@ -7102,32 +7099,38 @@ msgstr "Last name :"
 
 #: ../../../display/templates/framework/utils/system.tpl:9
 msgid "Contenu"
-msgstr ""
+msgstr "Contents"
 
 #: ../../../display/templates/documentation/quoideneuf.tpl:1
 #, fuzzy
 msgid "Les nouveautés..."
 msgstr "What's new?"
 
-#: ../../../display/templates/main.tpl:14
-msgid "Gestion de l'élevage"
-msgstr ""
-
-#: ../../../display/templates/main.tpl:27
+#: ../../../display/templates/main.tpl:29
 msgid "Affichage par catégorie"
-msgstr ""
+msgstr "Display by category"
 
-#: ../../../display/templates/main.tpl:33
+#: ../../../display/templates/main.tpl:35
 msgid "Affichage par cohorte"
-msgstr ""
-
-#: ../../../display/templates/main.tpl:36
-msgid "Nombre d'années à afficher :"
-msgstr ""
+msgstr "Display by cohort"
 
 #: ../../../display/templates/main.tpl:38
+msgid "Nombre d'années à afficher :"
+msgstr "Number of years to display:"
+
+#: ../../../display/templates/main.tpl:40
 msgid "Afficher"
-msgstr ""
+msgstr "Display"
+
+#: ../../../display/templates/main.tpl:88
+msgid "Photo : © Marie-Laure Acolas - 2012 - lâcher d'esturgeons en Dordogne"
+msgstr "Photo: © Marie-Laure Acolas - 2012 - Sturgeon release in the Dordogne"
+
+#~ msgid "Circuit d'eau : "
+#~ msgstr "Water circuit : "
+
+#~ msgid "Date d'analyse : "
+#~ msgstr "Analysis date : "
 
 #~ msgid "Gestion"
 #~ msgstr "Modules"
