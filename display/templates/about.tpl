@@ -1,11 +1,10 @@
-<<h2>{t}About &lt;APPLI&gt;
-{/t}</h2>
+<h2>{t}À propos de ESFC{/t}</h2>
 <p>
-Version {$version} du {$versiondate}.
+{t 1=$version 2=$versiondate}Version %1 du %2.{/t}
 </p>
 
 
-    <h3>Copyright © 2006-2022 - Eric Quinton</h3>
+    <h3>Copyright © 2014-2023 - Eric Quinton - EABX - INRAE</h3>
 <p>
 
 <br>

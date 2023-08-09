@@ -4,7 +4,7 @@ $_SESSION["MASKDATELONG"] = "m-d-Y H:i:s";
 $_SESSION["MASKDATE"] = "m-d-Y";
 $_SESSION["MASKDATEEXPORT"] = 'Y-m-d';
 
-$LANG= array();
+$LANG= array("locale"=>"en");
 $LANG["date"]["locale"] = "en";
 $LANG["date"]["formatdate"] = "MM-DD-YYYY";
 $LANG["date"]["formatdatetime"] = "MM-DD-YYYY HH:mm:ss";
