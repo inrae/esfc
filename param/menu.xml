@@ -74,6 +74,9 @@
 		<item divider="1" droits="consult"/>
 		<item module="anomalieTypeList" label="Types d'anomalies" tooltip="Liste des types d'anomalies détectés dans la base de données" droits="consult"/>
 		<item module="mimeTypeList" label="Types de fichiers" tooltip="Liste des types de fichiers importables" droits="consult"/>
+		<item divider="1" droits="gestion"/>
+		<item module="dbstructureSchema" droits="gestion,admin" label="Schéma de la base de données" tooltip="Schéma de la base de données"/>
+		<item module="dbstructureHtml" droits='gestion,admin' label="Structure de la base de données (HTML)" tooltip="Liste des tables et des colonnes"/>
 
 	</item>
 
@@ -84,9 +87,6 @@
 		<item module="groupList" droits="admin" label="ACL - groupes de logins" tooltip="Groupes de logins et logins rattachés aux groupes"/>
 		<item module="dbparamList" droits="admin" label="Paramètres de l'application" tooltip="Liste des paramètres pérennes de l'application" />
 		<item divider='1'/>
-		<item module="dbstructureSchema" droits="admin" label="Schéma de la base de données" tooltip="Schéma de la base de données"/>
-		<item module="dbstructureHtml" droits='admin' label="Structure de la base de données (HTML)" tooltip="Liste des tables et des colonnes"/>
-		<item module="dbstructureLatex" droits='admin' label="Structure de la base de données (Latex)" tooltip="Liste des tables et des colonnes sous forme de tableaux Latex"/>
 		<item module="dbstructureGacl" droits="admin" label="Structure de la base de données des droits (HTML)" tooltip="Liste des tables et des colonnes de la base de données de gestion des droits"/>
 		<item module="phpinfo" droits="admin" label="PHP info" tooltip="configuration générale du serveur PHP"/>
         <item divider="1"/>

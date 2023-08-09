@@ -54,7 +54,6 @@ if ($_SESSION["droits"]["gestion"] == 1) {
         $dc["columns"] [] = $vval;
         $i ++;
     }
-    printA($dc);
     $vue->set(json_encode($dc), "data");
     $vue->htmlVars[] = "data";
     $vue->set($dateFormat, "dateFormat");

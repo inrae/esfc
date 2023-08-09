@@ -178,12 +178,7 @@ function setlanguage($langue)
      * Initialisation des parametres pour gettext
      */
 
-     if ($langue == "us") {
-      $locale = "en";
-     } else {
-      $locale = $langue;
-     }
-  initGettext($locale);
+  initGettext($langue);
 
   /*
      * Chargement de la langue par defaut
