@@ -8,6 +8,7 @@ Nouveautés :
 - ajout d'un mode de calcul de la masse des poissons présents dans un bassin par échantillonnage
 - ajout d'une fonction d'importation des mesures des poissons à partir d'un fichier CSV
 - en consultation d'un poisson, affichage d'un graphique permettant de visualiser l'évolution de sa croissance
+- support de l'anglais et de l'américain (formatage des dates)
 
 Version 1.8 du 18 février 2018
 -------------------------------

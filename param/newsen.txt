@@ -8,6 +8,7 @@ What's new?
 - addition of a method for calculating the mass of fish present in a pond by sampling
 - addition of a function for importing fish measurements from a CSV file
 - when viewing a fish, a graph is displayed showing its growth rate
+- support for English and American (date formatting)
 
 Version 1.8 dated 18 February 2018
 -------------------------------
@@ -274,3 +275,5 @@ Production version, including the following corrections:
 Version 1.0 of 6 May 2014
 -------------------------
 Initial pre-production version
+
+Translated with Deepl Traduction

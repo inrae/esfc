@@ -1,13 +1,13 @@
 <?php
 $_SESSION["FORMATDATE"]="en";
-$_SESSION["MASKDATELONG"] = "m-d-Y H:i:s";
-$_SESSION["MASKDATE"] = "m-d-Y";
+$_SESSION["MASKDATELONG"] = "d/m/Y H:i:s";
+$_SESSION["MASKDATE"] = "d/m/Y";
 $_SESSION["MASKDATEEXPORT"] = 'Y-m-d';
 
 $LANG= array("locale"=>"en");
 $LANG["date"]["locale"] = "en";
-$LANG["date"]["formatdate"] = "MM-DD-YYYY";
-$LANG["date"]["formatdatetime"] = "MM-DD-YYYY HH:mm:ss";
-$LANG["date"]["formatdatecourt"] = "mm-dd-yy";
+$LANG["date"]["formatdate"] = "DD/MM/YYYY";
+$LANG["date"]["formatdatetime"] = "DD/MM/YYYY HH:mm:ss";
+$LANG["date"]["formatdatecourt"] = "dd/mm/yy";
 
 ?>

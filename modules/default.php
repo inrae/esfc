@@ -20,7 +20,7 @@ if ($_SESSION["droits"]["gestion"] == 1) {
     } else {
         $years = $nbyears ." years";
     }
-    $data = $mortalite->getCumulativeMortality($type, date('d/m/Y'), $years);
+    $data = $mortalite->getCumulativeMortality($type, date('Y-m-d'), $years);
     $di = array();
     $max = 0;
     foreach ($data as $row) {
@@ -32,10 +32,10 @@ if ($_SESSION["droits"]["gestion"] == 1) {
             $max = $row["nombre_cumule"];
         }
     }
-    if ($_SESSION["FORMATDATE"] = "fr") {
+    if ($_SESSION["FORMATDATE"] == "fr" || $_SESSION["FORMATDATE"] == "en") {
         $dateFormat = "%d/%m/%Y";
-    } else {
-        $dateFormat = "/%Y%/m%/d";
+    } else  if ($_SESSION["FORMATDATE"] == "us"){
+        $dateFormat = "%m/%d/%Y";
     }
     $dc = array("xFormat" => $dateFormat);
     $i = 1;
@@ -54,6 +54,7 @@ if ($_SESSION["droits"]["gestion"] == 1) {
         $dc["columns"] [] = $vval;
         $i ++;
     }
+    printA($dc);
     $vue->set(json_encode($dc), "data");
     $vue->htmlVars[] = "data";
     $vue->set($dateFormat, "dateFormat");

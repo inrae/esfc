@@ -29,6 +29,9 @@
 	<setlanguage action='framework/setlanguage.php' param="" retourlogin="1" type="smarty" retourok="default" />
 	<setlanguagefr action='framework/setlanguage.php' param="fr" retourlogin="1" type="smarty" retourok="default" />
 	<setlanguageen action='framework/setlanguage.php' param="en" retourlogin="1" type="smarty" retourok="default" />
+	<setlanguageus action='framework/setlanguage.php' param="us" retourlogin="1" type="smarty" retourok="default" />
+	
+
 
 
 	<exampleList action="modules/example/example.php" param="list" droits="consult" type="smarty" />

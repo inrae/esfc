@@ -111,5 +111,6 @@
 		<item module="quoideneuf" label="Nouveautés" tooltip="Quoi de neuf dans l'application ?"/>
 		<item module="setlanguagefr" label="Français" tooltip="Libellés en français"/>
 		<item module="setlanguageen" label="English" tooltip="Labels in English"/>
+		<item module="setlanguageus" label="English US" tooltip="Labels in English/US"/>
 	</item>
 </menu>

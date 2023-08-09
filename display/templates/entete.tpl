@@ -28,7 +28,11 @@
 								src='display/images/drapeau_anglais.png#refresh180313' width='16'  border='0'>
 								English
 							</a> </li>
-{if $isConnected}
+
+{if $isConnected} <li><a href='index.php?module=setlanguage&langue=us'> <img
+								src='display/images/usa.webp' width='16'  border='0'>
+								English US
+							</a> </li>
 						<li><a href="index.php?module=totpCreate" title="{t}Activer la double authentification pour votre compte{/t}">{t}Activer la double authentification{/t}</a></li>
 				    <li><a href='index.php?module=loginChangePassword' title="{t}Modifier le mot de passe{/t}"> <img
 								src='display/images/key.png' width='16' border='0' title="{t}Modifier le mot de passe{/t}">
