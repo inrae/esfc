@@ -91,6 +91,8 @@
 		<item module="phpinfo" droits="admin" label="PHP info" tooltip="configuration générale du serveur PHP"/>
         <item divider="1"/>
         <item module="logList" droits="admin" label="Logs" tooltip="Consultation des logs enregistrées"/>
+		<item module="systemShowServer" droits="admin" label="Variables SERVER" tooltip="Affichage des variables fournies par le serveur"/>
+		<item module="systemShowSession" droits="admin" label="Variables SESSION" tooltip="Affichage des variables de session"/>
         <item module="backupDisplay" droits="admin" label="Backup" tooltip="Sauvegarde de la base de données"/>
 	</item>
     <item module="documentation_fr" label="documentation" tooltip="Documentations en ligne en français" language="fr">
@@ -107,7 +109,6 @@
 	<item module="aide" label="?" tooltip="Aide">
 		<item module="apropos" label="A propos" tooltip="A propos de Collec-Science"/>
 		<item module="quoideneuf" label="Nouveautés" tooltip="Quoi de neuf dans l'application ?"/>
-		<item module="lexique" label="Lexique" tooltip="Lexique des termes utilisés dans le logiciel" />
 		<item module="setlanguagefr" label="Français" tooltip="Libellés en français"/>
 		<item module="setlanguageen" label="English" tooltip="Labels in English"/>
 	</item>

@@ -19,7 +19,8 @@
 	<test action="test/test.php" retourko="" type="smarty"></test>
 	<connexion loginrequis="1" type="smarty" />
 	<disconnect action="framework/identification/disconnect.php" type="smarty" retourok="default" retourko="default" />
-	<apropos action="framework/apropos.php" type="smarty" />
+	<apropos action="framework/utils/about.php" type="smarty" />
+	<about action="framework/utils/about.php" type="smarty" />
 	<phpinfo action="framework/phpinfo.php" droits="admin" retourlogin="1" type="smarty" />
 	<quoideneuf action="framework/utils/news.php" retourlogin="1" type="smarty" />
 	<news action="framework/utils/news.php" retourlogin="1" type="smarty" />
