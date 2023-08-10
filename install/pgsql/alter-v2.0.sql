@@ -55,5 +55,5 @@ COMMENT ON COLUMN public.bassin.mode_calcul_masse IS E'0: masse globale connue\n
 
 ALTER SEQUENCE "dbversion_dbversion_id_seq" OWNED BY "dbversion"."dbversion_id";
 
-insert into dbversion(dbversion_number, dbversion_date) values ('2.0', '2023-01-16');
+insert into dbversion(dbversion_number, dbversion_date) values ('2.0', '2023-08-10');
 

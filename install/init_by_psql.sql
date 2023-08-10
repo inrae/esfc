@@ -1,5 +1,5 @@
 /*
- * COLLEC-SCIENCE - 2018-07-03
+ * esf
  * Script de creation des tables destinees a recevoir les donnees de l'application
  * database creation script
  * 
@@ -16,49 +16,50 @@
  * 
  * dans la configuration de postgresql : / postgresql configuration:
  * /etc/postgresql/version/main/pg_hba.conf
- * inserez les lignes suivantes (connexion avec uniquement le compte collec en local) :
- * insert theses lines (connection only with the account collec on local server):
- * host    collec             collec             127.0.0.1/32            md5
- * host    all            collec                  0.0.0.0/0               reject
+ * inserez les lignes suivantes (connexion avec uniquement le compte esfc en local) :
+ * insert theses lines (connection only with the account esfc on local server):
+ * host    esfc             esfc             127.0.0.1/32            md5
+ * host    all            esfc                  0.0.0.0/0               reject
  */
  
  /*
   * Creation du compte de connexion et de la base de donnees
   * creation of connection account
   */
-CREATE USER collec WITH
+CREATE USER esfc WITH
   LOGIN
   NOSUPERUSER
   INHERIT
   NOCREATEDB
   NOCREATEROLE
   NOREPLICATION
- PASSWORD 'collecPassword'
+ PASSWORD 'esfcPassword'
 ;
 
 /*
  * Database creation
  */
-create database collec owner collec;
-\c "dbname=collec"
+create database esfc owner esfc;
+\c "dbname=esfc"
  create extension if not exists btree_gin schema pg_catalog;
  create extension if not exists pg_trgm schema pg_catalog;
  create extension if not exists postgis schema public;
  create extension if not exists  pgcrypto schema public;
  -- object: grant_95c2183ced | type: PERMISSION --
 GRANT CREATE,CONNECT,TEMPORARY
-   ON DATABASE collec
-   TO collec;
+   ON DATABASE esfc
+   TO esfc;
 -- ddl-end --
 
 /*
- * connexion a la base collec, avec l'utilisateur collec, en localhost,
+ * connexion a la base esfc, avec l'utilisateur esfc, en localhost,
  * depuis psql
- * Connection to collec database with user collec on localhost server
+ * Connection to esfc database with user esfc on localhost server
  */
-\c "dbname=collec user=collec password=collecPassword host=localhost"
+\c "dbname=esfc user=esfc password=esfcPassword host=localhost"
 
 /**
  * create structure
  */
-\ir pgsql/collec_create.sql
+\ir pgsql/esfc_create.sql
+\ir pgsql/gacl_create.sql

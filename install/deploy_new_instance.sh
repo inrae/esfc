@@ -2,11 +2,12 @@
 # install a new instance into a server
 # must be executed with login root
 # creation : Eric Quinton - 2017-05-04
-VERSION=2.3.1
-PHPVER=7.3
+VERSION=2.0.0
+PHPVER=8.2
+DOWNLOADPATH="https://github.com/inrae/esfc/archive/refs/heads/main.zip"
 PHPINIFILE="/etc/php/$PHPVER/apache2/php.ini"
-echo "Installation of Collec-Science version " $VERSION
-echo "this script will install apache server and php, postgresql and deploy the current version of Collec-Science"
+echo "Installation of ESFC version " $VERSION
+echo "this script will install apache server and php, postgresql and deploy the current version of ESFC"
 read -p "Do you want to continue [y/n]?" response
 if [ "$response" = "y" ]
 then
@@ -26,7 +27,7 @@ echo "deb https://packages.sury.org/php/ $DISTRIBCODE main" | tee /etc/apt/sourc
 fi
 apt-get update
 # installing packages
-apt-get -y install unzip apache2 libapache2-mod-evasive libapache2-mod-php$PHPVER php$PHPVER php$PHPVER-ldap php$PHPVER-pgsql php$PHPVER-mbstring php$PHPVER-xml php$PHPVER-zip php$PHPVER-imagick php$PHPVER-gd fop postgresql postgresql-client
+apt-get -y install unzip apache2 libapache2-mod-evasive libapache2-mod-php$PHPVER php$PHPVER php$PHPVER-ldap php$PHPVER-pgsql php$PHPVER-mbstring php$PHPVER-xml php$PHPVER-zip php$PHPVER-imagick php$PHPVER-gd php$PHPVER-curl postgresql postgresql-client
 a2enmod ssl
 a2enmod headers
 a2enmod rewrite
@@ -37,28 +38,28 @@ a2ensite 000-default
 
 # creation of directory
 cd /var/www/html
-mkdir collec-science
-cd collec-science
+mkdir esfc
+cd esfc
 
 # download software
 echo "download software"
-wget https://github.com/Irstea/collec/archive/master.zip
-unzip master.zip
-mv collec-master collec-$VERSION
-ln -s collec-$VERSION collec
+wget $DOWNLOADPATH
+unzip main.zip
+mv esfc-main esfc-$VERSION
+ln -s esfc-$VERSION esfc
 
 # update rights on files
 chmod -R 755 .
 
 # create param.inc.php file
-mv collec/param/param.inc.php.dist collec/param/param.inc.php
+mv esfc/param/param.inc.php.dist esfc/param/param.inc.php
 # creation of database
 echo "creation of the database"
-cd collec/install
+cd esfc/install
 su postgres -c "psql -f init_by_psql.sql"
 cd ../..
 echo "you may verify the configuration of access to postgresql"
-echo "look at /etc/postgresql/9.6/main/pg_hba.conf (verify your version). Only theses lines must be activate:"
+echo "look at /etc/postgresql/14/main/pg_hba.conf (verify your version). Only theses lines must be activate:"
 echo '# "local" is for Unix domain socket connections only
 local   all             all                                     peer
 # IPv4 local connections:
@@ -71,7 +72,7 @@ read -p "Enter to continue" answer
 # install backup program
 echo "backup configuration - dump at 20:00 into /var/lib/postgresql/backup"
 echo "please, set up a data transfert mechanism to deport them to another medium"
-cp collec/install/pgsql/backup.sh /var/lib/postgresql/
+cp esfc/install/pgsql/backup.sh /var/lib/postgresql/
 chown postgres /var/lib/postgresql/backup.sh
 line="0 20 * * * /var/lib/postgresql/backup.sh"
 #(crontab -u postgres -l; echo "$line" ) | crontab -u postgres -
@@ -79,16 +80,16 @@ echo "$line" | crontab -u postgres -
 
 # update rights to specific software folders
 chmod -R 750 .
-mkdir collec/display/templates_c
+mkdir esfc/display/templates_c
 chgrp -R www-data .
-chmod -R 770 collec/display/templates_c
-chmod -R 770 collec/temp
+chmod -R 770 esfc/display/templates_c
+chmod -R 770 esfc/temp
 
 # generate rsa key for encrypted tokens
 echo "generate encryption keys for identification tokens"
-openssl genpkey -algorithm rsa -out collec/param/id_collec -pkeyopt rsa_keygen_bits:2048
-openssl rsa -in collec/param/id_collec -pubout -out collec/param/id_collec.pub
-chown www-data collec/param/id_collec
+openssl genpkey -algorithm rsa -out esfc/param/id_esfc -pkeyopt rsa_keygen_bits:2048
+openssl rsa -in esfc/param/id_esfc -pubout -out esfc/param/id_esfc.pub
+chown www-data esfc/param/id_esfc
 
 # adjust php.ini values
 upload_max_filesize="=100M"
@@ -109,9 +110,9 @@ cp /tmp/policy.xml /etc/ImageMagick-6/
 
 # creation of virtual host
 echo "creation of virtual site"
-cp collec/install/apache2/collec-science.conf /etc/apache2/sites-available/
-a2ensite collec-science
-echo "you must modify the file /etc/apache2/sites-available/collec-science.conf"
+cp esfc/install/apache2/esfc.conf /etc/apache2/sites-available/
+a2ensite esfc
+echo "you must modify the file /etc/apache2/sites-available/esfc.conf"
 echo "address of your instance, ssl parameters),"
 echo "then run this command:"
 echo "service apache2 reload"
