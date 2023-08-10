@@ -8,7 +8,7 @@
 
 include_once 'framework/droits/droits.class.php';
 require_once "framework/droits/aclgroup.class.php";
-$dataClass = new Aclgroup($bdd_gacl,$ObjetBDDParam);
+$dataClass = new Aclgroup($bdd_gacl, $ObjetBDDParam);
 $keyName = "aclgroup_id";
 $id = $_REQUEST[$keyName];
 
@@ -17,15 +17,15 @@ switch ($t_module["param"]) {
 		/*
 		 * Display the list of all records of the table
 		 */
-		$vue->set($dataClass->getGroups() , "data");
-		$vue->set("framework/droits/groupList.tpl" , "corps");
+		$vue->set($dataClass->getGroups(), "data");
+		$vue->set("framework/droits/groupList.tpl", "corps");
 		break;
 	case "display":
 		/*
 		 * Display the detail of the record
 		 */
-		$vue->set( $dataClass->lire($id), "data");
-		$vue->set("framework/droits/groupDisplay.tpl" , "corps");
+		$vue->set($dataClass->lire($id), "data");
+		$vue->set("framework/droits/groupDisplay.tpl", "corps");
 		break;
 	case "change":
 		/*
@@ -39,7 +39,7 @@ switch ($t_module["param"]) {
 		 */
 		include_once "framework/droits/acllogin.class.php";
 		$acllogin = new Acllogin($bdd_gacl, $ObjetBDDParam);
-		$vue->set($acllogin->getAllFromGroup($id) , "logins");
+		$vue->set($acllogin->getAllFromGroup($id), "logins");
 		/**
 		 * Get the list of the groups
 		 */
@@ -61,4 +61,3 @@ switch ($t_module["param"]) {
 		dataDelete($dataClass, $id);
 		break;
 }
-?>
