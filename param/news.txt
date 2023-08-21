@@ -1,5 +1,12 @@
 Nouveautés
 ==========
+Version 2.0.1 du 21 août 2023
+-----------------------------
+Corrections de bugs :
+- la modification des bassins ne fonctionnait pas
+- la modification des poissons rattachés aux séquences, ainsi que la saisie des événements, ne fonctionnait pas
+- diverses anomalies impactaient les saisies des prélèvements de sperme
+
 Version 2.0 du 9 août 2023
 --------------------------
 Nouveautés :

@@ -1,5 +1,12 @@
 News
 ==========
+Version 2.0.1 of 21 August 2023
+-----------------------------
+Bug fixes :
+- modifying pools did not work
+- modifying the fish attached to sequences and entering events did not work
+- various anomalies were affecting the entry of sperm samples
+
 Version 2.0 of 9 August 2023
 --------------------------
 What's new?

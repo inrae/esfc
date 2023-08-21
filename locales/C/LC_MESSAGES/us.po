@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ESFC\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-08-09 11:58+0200\n"
+"POT-Creation-Date: 2023-08-21 16:09+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -784,8 +784,8 @@ msgid "Labels in English/US"
 msgstr "Labels in English/US"
 
 #: ../../../param/param.default.inc.php:12
-msgid "10/08/2023"
-msgstr "08/10/2023"
+msgid "21/08/2023"
+msgstr "08/21/2023"
 
 #: ../../../framework/ldap/ldap.class.php:74
 msgid "Impossible de se connecter au serveur LDAP"
@@ -1046,22 +1046,22 @@ msgstr ""
 msgid "%s - Trop d'accès à un module"
 msgstr "%s - Too many accesses to a module"
 
-#: ../../../framework/fonctions.php:44
+#: ../../../framework/fonctions.php:46
 msgid "Erreur de lecture des informations dans la base de données"
 msgstr "Error reading information in the database"
 
 #. traduction: conserver inchangée la chaîne %s
-#: ../../../framework/fonctions.php:58
+#: ../../../framework/fonctions.php:60
 #, php-format
 msgid "Erreur: type d'affichage non défini pour le module demandé : %s"
 msgstr "Error: display type not defined for the requested module: %s"
 
-#: ../../../framework/fonctions.php:78
+#: ../../../framework/fonctions.php:80
 #: ../../../framework/dbparam/dbparam.php:19
 msgid "Enregistrement effectué"
 msgstr "Saved"
 
-#: ../../../framework/fonctions.php:83
+#: ../../../framework/fonctions.php:87
 msgid ""
 "Un problème est survenu lors de l'enregistrement. Si le problème persiste, "
 "contactez votre support"
@@ -1069,43 +1069,43 @@ msgstr ""
 "A problem has occurred during registration. If the problem persists, please "
 "contact your support"
 
-#: ../../../framework/fonctions.php:84
+#: ../../../framework/fonctions.php:92
 msgid "La clé n'a pas été retournée lors de l'enregistrement dans "
 msgstr "The key was not returned during registration in "
 
-#: ../../../framework/fonctions.php:89
+#: ../../../framework/fonctions.php:99
 msgid ""
 "Un enregistrement portant déjà ce nom existe déjà dans la base de données."
 msgstr "A record with this name already exists in the database."
 
-#: ../../../framework/fonctions.php:98
+#: ../../../framework/fonctions.php:110
 msgid "Problème lors de l'enregistrement..."
 msgstr "Problem when saving ..."
 
-#: ../../../framework/fonctions.php:134
+#: ../../../framework/fonctions.php:146
 msgid "Suppression effectuée"
 msgstr "Deletion done"
 
-#: ../../../framework/fonctions.php:150
+#: ../../../framework/fonctions.php:161
 msgid ""
 "La suppression n'est pas possible : des informations sont référencées par "
 "cet enregistrement"
 msgstr "Deletion is not possible: information is referenced by this record"
 
-#: ../../../framework/fonctions.php:153
+#: ../../../framework/fonctions.php:166
 msgid "Problème lors de la suppression"
 msgstr "Problem when deleting"
 
-#: ../../../framework/fonctions.php:162
+#: ../../../framework/fonctions.php:175
 msgid ""
 "Suppression impossible : la clé n'est pas numérique ou n'a pas été fournie"
 msgstr "Deletion impossible: the key is not digital or has not been supplied"
 
-#: ../../../framework/fonctions.php:440
+#: ../../../framework/fonctions.php:462
 msgid "Impossible d'initialiser le composant curl"
 msgstr "Unable to initialize the CURL component"
 
-#: ../../../framework/fonctions.php:480
+#: ../../../framework/fonctions.php:504
 #, php-format
 msgid ""
 "Une erreur est survenue lors de l'exécution de la requête vers le serveur "
@@ -1139,25 +1139,25 @@ msgstr "You have been disconnected, your session has been open for too long"
 msgid "Problème rencontré lors de la lecture de la table des paramètres"
 msgstr "Problem encountered when reading the parameter table"
 
-#: ../../../framework/droits/aclgroup.class.php:95
+#: ../../../framework/droits/aclgroup.class.php:96
 msgid ""
 "L'identification dans l'annuaire LDAP a échoué pour la récupération des "
 "groupes de l'utilisateur"
 msgstr "LDAP directory identification failed to retrieve user groups"
 
-#: ../../../framework/droits/aclgroup.class.php:131
+#: ../../../framework/droits/aclgroup.class.php:133
 msgid "Connexion à l'annuaire LDAP impossible"
 msgstr "Cannot connect to LDAP directory"
 
-#: ../../../framework/droits/aclgroup.class.php:310
+#: ../../../framework/droits/aclgroup.class.php:318
 msgid "Un groupe ne peut être son propre parent"
 msgstr "A group cannot be its own parent"
 
-#: ../../../framework/droits/aclgroup.class.php:354
+#: ../../../framework/droits/aclgroup.class.php:362
 msgid "Suppression du groupe impossible : d'autres groupes lui sont rattachés"
 msgstr "Can not delete group: other groups are attached to it"
 
-#: ../../../framework/droits/aclgroup.class.php:370
+#: ../../../framework/droits/aclgroup.class.php:378
 msgid ""
 "La suppression du groupe a échoué. Consultez les logs pour en connaître la "
 "raison"
@@ -1179,15 +1179,14 @@ msgstr "Writing problem..."
 msgid "Vous n'êtes pas identifié."
 msgstr "You are not signed in."
 
-#: ../../../framework/controller.php:22
+#: ../../../framework/controller.php:23
 msgid ""
 "Problème dans les données fournies : l'encodage des caractères n'est pas "
 "celui attendu"
 msgstr ""
 "Problem in the provided data: the character encoding is not the one expected"
 
-#. traduction: bien conserver inchangées les chaînes %1$s, %2$s
-#: ../../../framework/controller.php:41
+#: ../../../framework/controller.php:46
 #, php-format
 msgid ""
 "La base de données n'est pas dans la version attendue (%1$s). Version "
@@ -1195,19 +1194,19 @@ msgid ""
 msgstr ""
 "The database is not in the expected version (%1$s). Current version: %2$s"
 
-#: ../../../framework/controller.php:48
+#: ../../../framework/controller.php:58
 msgid ""
 "Problème rencontré lors de la vérification de la version de la base de "
 "données"
 msgstr "Problem encountered when checking the database version"
 
 #. traduction: conserver inchangée la chaîne %s
-#: ../../../framework/controller.php:172
+#: ../../../framework/controller.php:182
 #, php-format
 msgid "Le module demandé n'existe pas (%s)"
 msgstr "The requested module does not exist (%s)"
 
-#: ../../../framework/controller.php:259
+#: ../../../framework/controller.php:275
 msgid ""
 "Message technique : la vue n'a pas été initialisée lors de la création de la "
 "page de login"
@@ -1215,24 +1214,23 @@ msgstr ""
 "Technical message: the view was not initialized when the login page was "
 "created"
 
-#: ../../../framework/controller.php:271
+#: ../../../framework/controller.php:289
 msgid "Veuillez utiliser le login qui vous a été fourni pour vous identifier"
 msgstr "Please use the login provided to identify yourself"
 
-#: ../../../framework/controller.php:344
+#: ../../../framework/controller.php:371
 msgid "Identification refusée"
 msgstr "Authentication failed"
 
-#: ../../../framework/controller.php:368
+#: ../../../framework/controller.php:395
 msgid "Identification réussie !"
 msgstr "Authentication successful!"
 
-#: ../../../framework/controller.php:379
+#: ../../../framework/controller.php:406
 msgid "Connexions précédentes récentes :"
 msgstr "Recent previous connections:"
 
-#. traduction: bien conserver inchangées les chaînes %1$s, %2$s...
-#: ../../../framework/controller.php:391
+#: ../../../framework/controller.php:419
 #, php-format
 msgid ""
 "Dernière connexion le %1$s depuis l'adresse IP %2$s. Si ce n'était pas vous, "
@@ -1242,12 +1240,12 @@ msgstr ""
 "your password or contact the administrator of the application."
 
 #. traduction: conserver inchangée la chaîne %s
-#: ../../../framework/controller.php:480
+#: ../../../framework/controller.php:516
 #, php-format
 msgid "Module précédent enregistré : %s"
 msgstr "Previous module: %s"
 
-#: ../../../framework/controller.php:547
+#: ../../../framework/controller.php:584
 msgid ""
 "L'accès au module demandé nécessite une ré-identification. Veuillez saisir "
 "votre login et votre mot de passe"
@@ -1255,17 +1253,16 @@ msgstr ""
 "Access to the requested module requires re-identification. Please enter your "
 "login and password"
 
-#: ../../../framework/controller.php:564
+#: ../../../framework/controller.php:602
 msgid "Erreur d'écriture dans le fichier de traces"
 msgstr "Error writing to the log file"
 
-#. traduction: bien conserver inchangées les chaînes %1$s, %2$s
-#: ../../../framework/controller.php:706
+#: ../../../framework/controller.php:747
 #, php-format
 msgid "Mode développement - base de données : %1$s - schema : %2$s"
 msgstr "Development mode - database: %1$s - schema: %2$s"
 
-#: ../../../framework/controller.php:742
+#: ../../../framework/controller.php:786
 msgid ""
 "Une erreur indéterminée s'est produite pendant le traitement de la requête. "
 "Si le problème persiste, consultez l'administrateur de l'application"
@@ -1325,7 +1322,7 @@ msgid ""
 "classe %s"
 msgstr "The database connection is not available to instantiate the class %s"
 
-#: ../../../framework/errorbefore.php:2
+#: ../../../framework/errorbefore.php:3
 msgid ""
 "L'accès au module que vous demandez ne respecte pas la cinématique de "
 "l'application. Peut-être avez-vous essayé de rafraîchir la page ?"
@@ -1693,7 +1690,7 @@ msgstr "New analysis..."
 #: ../../../display/templates/repro/lotMesureList.tpl:9
 #: ../../../display/templates/repro/poissonBiopsieList.tpl:4
 #: ../../../display/templates/repro/poissonSanguinList.tpl:4
-#: ../../../display/templates/repro/poissonSequenceChange.tpl:112
+#: ../../../display/templates/repro/poissonSequenceChange.tpl:113
 #: ../../../display/templates/repro/echographieList.tpl:6
 #: ../../../display/templates/repro/ventilationList.tpl:5
 #: ../../../display/templates/poisson/anesthesieList.tpl:6
@@ -1752,7 +1749,7 @@ msgstr "Number of spangles used"
 #: ../../../display/templates/repro/poissonEchographieList.tpl:6
 #: ../../../display/templates/repro/psEvenementList.tpl:7
 #: ../../../display/templates/repro/poissonSanguinList.tpl:8
-#: ../../../display/templates/repro/poissonSequenceChange.tpl:114
+#: ../../../display/templates/repro/poissonSequenceChange.tpl:115
 #: ../../../display/templates/repro/echographieList.tpl:9
 #: ../../../display/templates/repro/ventilationList.tpl:7
 #: ../../../display/templates/poisson/poissonDetail.tpl:49
@@ -2016,11 +2013,10 @@ msgstr "Main comment:"
 #: ../../../display/templates/repro/vieModeleChange.tpl:54
 #: ../../../display/templates/repro/profilThermiqueChange.tpl:39
 #: ../../../display/templates/repro/profilThermiqueChange.tpl:61
-#: ../../../display/templates/repro/poissonSequenceChange.tpl:88
+#: ../../../display/templates/repro/poissonSequenceChange.tpl:89
 #: ../../../display/templates/repro/croisementChange.tpl:26
 #: ../../../display/templates/repro/lotMesureChange.tpl:64
-#: ../../../display/templates/repro/psEvenementChange.tpl:46
-#: ../../../display/templates/repro/psEvenementChange.tpl:67
+#: ../../../display/templates/repro/psEvenementChange.tpl:35
 #: ../../../display/templates/repro/lotChange.tpl:109
 #: ../../../display/templates/repro/devenirChange.tpl:113
 #: ../../../display/templates/repro/spermeUtiliseChange.tpl:89
@@ -2109,11 +2105,10 @@ msgstr "Save and return"
 #: ../../../display/templates/repro/vieModeleChange.tpl:56
 #: ../../../display/templates/repro/profilThermiqueChange.tpl:41
 #: ../../../display/templates/repro/profilThermiqueChange.tpl:63
-#: ../../../display/templates/repro/poissonSequenceChange.tpl:90
+#: ../../../display/templates/repro/poissonSequenceChange.tpl:91
 #: ../../../display/templates/repro/croisementChange.tpl:28
 #: ../../../display/templates/repro/lotMesureChange.tpl:66
-#: ../../../display/templates/repro/psEvenementChange.tpl:48
-#: ../../../display/templates/repro/psEvenementChange.tpl:69
+#: ../../../display/templates/repro/psEvenementChange.tpl:37
 #: ../../../display/templates/repro/lotChange.tpl:111
 #: ../../../display/templates/repro/devenirChange.tpl:115
 #: ../../../display/templates/repro/spermeUtiliseChange.tpl:91
@@ -2195,10 +2190,9 @@ msgstr "Associated documents"
 #: ../../../display/templates/repro/spermeFreezingMeasureChange.tpl:66
 #: ../../../display/templates/repro/vieModeleChange.tpl:63
 #: ../../../display/templates/repro/profilThermiqueChange.tpl:73
-#: ../../../display/templates/repro/poissonSequenceChange.tpl:141
+#: ../../../display/templates/repro/poissonSequenceChange.tpl:143
 #: ../../../display/templates/repro/croisementChange.tpl:135
 #: ../../../display/templates/repro/lotMesureChange.tpl:73
-#: ../../../display/templates/repro/psEvenementChange.tpl:79
 #: ../../../display/templates/repro/lotChange.tpl:118
 #: ../../../display/templates/repro/devenirChange.tpl:122
 #: ../../../display/templates/repro/spermeUtiliseChange.tpl:98
@@ -2390,7 +2384,7 @@ msgid "Nbre de larves estimé / compté :"
 msgstr "Estimated number of larvae / counted:"
 
 #: ../../../display/templates/repro/psEvenementList.tpl:6
-#: ../../../display/templates/repro/poissonSequenceChange.tpl:113
+#: ../../../display/templates/repro/poissonSequenceChange.tpl:114
 #: ../../../display/templates/parametre/spermeCaracteristiqueList.tpl:11
 #: ../../../display/templates/parametre/nageoireList.tpl:11
 msgid "Libellé"
@@ -2485,7 +2479,7 @@ msgstr "Number of straws used in reproduction:"
 #: ../../../display/templates/repro/spermeCongelationChange.tpl:177
 #: ../../../display/templates/repro/injectionChange.tpl:61
 #: ../../../display/templates/repro/spermeChangeCorps.tpl:74
-#: ../../../display/templates/repro/psEvenementChange.tpl:39
+#: ../../../display/templates/repro/psEvenementChange.tpl:27
 #: ../../../display/templates/poisson/pittagChange.tpl:60
 #: ../../../display/templates/poisson/poissonChange.tpl:178
 #: ../../../display/templates/poisson/evenementChange.tpl:294
@@ -2932,11 +2926,11 @@ msgstr "New biopsy..."
 msgid "Modification d'un prélèvement de sperme"
 msgstr "Edit of a sperm sample"
 
-#: ../../../display/templates/repro/spermeChange.tpl:49
+#: ../../../display/templates/repro/spermeChange.tpl:51
 msgid "Analyses réalisées"
 msgstr "Analyses performed"
 
-#: ../../../display/templates/repro/spermeChange.tpl:54
+#: ../../../display/templates/repro/spermeChange.tpl:59
 msgid "Congélations"
 msgstr "Freezings"
 
@@ -3117,11 +3111,11 @@ msgstr "Date of oocyte expulsion:"
 msgid "Masse totale des ovocytes (grammes) :"
 msgstr "Total mass of oocytes (grams):"
 
-#: ../../../display/templates/repro/poissonSequenceChange.tpl:82
+#: ../../../display/templates/repro/poissonSequenceChange.tpl:83
 msgid "Accédez à la fiche du poisson pour réaliser la saisie"
 msgstr "Go to the fish file to enter data"
 
-#: ../../../display/templates/repro/poissonSequenceChange.tpl:102
+#: ../../../display/templates/repro/poissonSequenceChange.tpl:103
 #: ../../../display/templates/poisson/poissonDisplay.tpl:53
 msgid "Nouvel événement..."
 msgstr "New event..."
@@ -3221,7 +3215,7 @@ msgid "Mesures pour le lot"
 msgstr "Batch measures"
 
 #: ../../../display/templates/repro/lotMesureChange.tpl:20
-#: ../../../display/templates/repro/psEvenementChange.tpl:24
+#: ../../../display/templates/repro/psEvenementChange.tpl:10
 #: ../../../display/templates/repro/devenirChange.tpl:30
 #: ../../../display/templates/poisson/evenementChange.tpl:136
 #: ../../../display/templates/bassin/circuitEvenementChange.tpl:26
@@ -3343,7 +3337,7 @@ msgstr "Preservative"
 msgid "Nb paillettes utilisées"
 msgstr "Number of used sequins"
 
-#: ../../../display/templates/repro/psEvenementChange.tpl:32
+#: ../../../display/templates/repro/psEvenementChange.tpl:18
 msgid "Libellé :"
 msgstr "Name:"
 
@@ -5713,6 +5707,10 @@ msgstr "Length (in cm):"
 #: ../../../display/templates/bassin/bassinChange.tpl:124
 msgid "Largeur ou diamètre (en cm):"
 msgstr "Standard deviation of mean diameter (cm):"
+
+#: ../../../display/templates/bassin/bassinChange.tpl:134
+msgid "Surface (en cm2) :"
+msgstr "Surface (in cm2):"
 
 #: ../../../display/templates/bassin/bassinChange.tpl:142
 msgid "Hauteur d'eau (en cm) :"
