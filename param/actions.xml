@@ -269,7 +269,7 @@
 
 	<psEvenementChange action="modules/repro/psEvenement.php" param="change" droits="reproGestion" retourok="poissonSequenceChange" type="smarty"/>
 	<psEvenementWrite action="modules/repro/psEvenement.php" param="write" droits="reproGestion" modulebefore="psEvenementChange,poissonSequenceChange" retourok="poissonSequenceChange" retourko="poissonSequenceChange"/>
-	<psEvenementDelete action="modules/repro/psEvenement.php" param="delete" droits="reproGestion" modulebefore="psEvenementChange" retourok="poissonSequenceChange" retourko="poissonSequenceChange"/>
+	<psEvenementDelete action="modules/repro/psEvenement.php" param="delete" droits="reproGestion" modulebefore="psEvenementChange,poissonSequenceChange" retourok="poissonSequenceChange" retourko="poissonSequenceChange"/>
 
 	<bassinCampagneDisplay action="modules/repro/bassinCampagne.php" param="display" droits="reproConsult" type="smarty"/>
 	<bassinCampagneDelete action="modules/repro/bassinCampagne.php" param="delete" droits="reproGestion" modulebefore="sequenceList" retourok="sequenceList" retourko="sequenceList"/>

@@ -8,6 +8,7 @@
  */
 class PsEvenement extends ObjetBDD
 {
+    public $poissonSequence;
     public function __construct($p_connection, $param = array())
     {
         $this->table = "ps_evenement";
@@ -65,8 +66,10 @@ class PsEvenement extends ObjetBDD
      */
     function getListeFromPoissonSequence($poisson_sequence_id)
     {
-        $sql = "select ps_evenement_id, poisson_sequence_id, ps_datetime, ps_libelle, ps_commentaire 
+        $sql = "select ps_evenement_id, poisson_sequence_id, ps_datetime, ps_libelle, ps_commentaire,
+                    poisson_campagne_id
 					from ps_evenement 
+                    join poisson_sequence using (poisson_sequence_id)
 					where poisson_sequence_id = :id
 					order by ps_datetime";
         return $this->getListeParamAsPrepared($sql, array("id" => $poisson_sequence_id));
@@ -80,7 +83,16 @@ class PsEvenement extends ObjetBDD
      */
     function lire($id, $getDefault = true, $parentValue = 0)
     {
-        $data = parent::lire($id, $getDefault, $parentValue);
+        if ($id == 0) {
+            $data = $this->getDefaultValue($parentValue);
+        } else {
+           $data = parent::lire($id, $getDefault, $parentValue); 
+        }
+        if (!isset($this->poissonSequence)) {
+            $this->poissonSequence = $this->classInstanciate("poissonSequence","poissonSequence.class.php");
+        }
+        $dps = $this->poissonSequence->lire($parentValue);
+        $data["poisson_campagne_id"] = $dps["poisson_campagne_id"];
         $date = explode(" ", $data["ps_datetime"]);
         $data["ps_date"] = $date[0];
         $data["ps_time"] = $date[1];

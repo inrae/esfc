@@ -79,6 +79,7 @@
             <fieldset>
                 <legend>{t}Prélèvements de sperme{/t}</legend>
                 <a href="index.php?module=poissonCampagneDisplay&poisson_campagne_id={$data.poisson_campagne_id}">
+                    <img src="display/images/eprouvette.png" height="18">
                     {t}Accédez à la fiche du poisson pour réaliser la saisie{/t}
                 </a>
             </fieldset>
@@ -97,7 +98,7 @@
         {if $data.poisson_sequence_id > 0}
         {if $droits.reproGestion == 1 }
         <a
-            href="index.php?module=psEvenementChange&ps_evenement_id=0&poisson_sequence_id={$data.poisson_sequence_id}&sequence_id={$data.sequence_id}">
+            href="index.php?module=psEvenementChange&ps_evenement_id=0&poisson_sequence_id={$data.poisson_sequence_id}&sequence_id={$data.sequence_id}&poisson_campagne_id={$data.poisson_campagne_id}">
             <img src="display/images/event.png" height="25">
             {t}Nouvel événement...{/t}
         </a>
@@ -120,7 +121,7 @@
                         <td>
                             {if $droits.reproGestion == 1}
                             <a
-                                href="index.php?module=psEvenementChange&ps_evenement_id={$evenements[lst].ps_evenement_id}&poisson_sequence_id={$data.poisson_sequence_id}&sequence_id={$data.sequence_id}">
+                                href="index.php?module=psEvenementChange&ps_evenement_id={$evenements[lst].ps_evenement_id}&poisson_sequence_id={$data.poisson_sequence_id}&sequence_id={$data.sequence_id}&poisson_campagne_id={$data.poisson_campagne_id}">
                                 {$evenements[lst].ps_datetime}
                             </a>
                             {else}
@@ -137,5 +138,6 @@
         {/if}
     </div>
 </div>
+
 
 <span class="red">*</span><span class="messagebas">{t}Champ obligatoire{/t}</span>

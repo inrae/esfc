@@ -11,10 +11,12 @@ require_once 'modules/classes/psEvenement.class.php';
 $dataClass = new PsEvenement($bdd, $ObjetBDDParam);
 $keyName = "ps_evenement_id";
 $id = $_REQUEST[$keyName];
-if (isset($_SESSION["sequence_id"])) {
-	$vue->set($_SESSION["sequence_id"], "sequence_id");
+if (isset($vue)) {
+	if (isset($_SESSION["sequence_id"])) {
+		$vue->set($_SESSION["sequence_id"], "sequence_id");
+	}
+	$vue->set($_SESSION["poissonDetailParent"], "poissonDetailParent");
 }
-$vue->set($_SESSION["poissonDetailParent"], "poissonDetailParent");
 switch ($t_module["param"]) {
 	case "change":
 		/*
@@ -22,14 +24,7 @@ switch ($t_module["param"]) {
 		 * If is a new record, generate a new record with default value :
 		 * $_REQUEST["idParent"] contains the identifiant of the parent record
 		 */
-		if ($id > 0) {
-			$dataPsEvenement = $dataClass->lire($id);
-			/*
-			 * Gestion des valeurs par defaut
-			*/
-		} else {
-			$dataPsEvenement = $dataClass->getDefaultValue($_REQUEST["poisson_sequence_id"]);
-		}
+		$dataPsEvenement = $dataClass->lire($id, true, $_REQUEST["poisson_sequence_id"]);
 		/*
 		 * Affectation des donnees a smarty
 		 */

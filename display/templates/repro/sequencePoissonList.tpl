@@ -18,7 +18,7 @@
                 </a>
             <td>
                 <a
-                    href="index.php?module=poissonSequenceChange&poisson_sequence_id={$dataPoissons[lst].poisson_sequence_id}&sequence_id={$dataPoissons[lst].sequence_id}">
+                    href="index.php?module=poissonSequenceChange&poisson_sequence_id={$dataPoissons[lst].poisson_sequence_id}&sequence_id={$dataPoissons[lst].sequence_id}&poisson_campagne_id={$dataPoissons[lst].poisson_campagne_id}">
                     {$dataPoissons[lst].matricule} {$dataPoissons[lst].prenom} {$dataPoissons[lst].pittag_valeur}
                 </a>
             </td>
