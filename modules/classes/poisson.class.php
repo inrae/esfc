@@ -307,7 +307,7 @@ class Poisson extends ObjetBDD
              * Recherche des poissons "enfants"
              */
         if (!isset($this->parent_poisson)) {
-            $this->parent_poisson = $this->classInstanciate("ParentPoisson", "parent_poisson.class.php");
+            $this->parent_poisson = $this->classInstanciate("ParentPoisson", "parentPoisson.class.php");
         }
         $listeEnfant = $this->parent_poisson->lireEnfant($id);
         if (is_array($listeEnfant) == true && count($listeEnfant) > 0) {
@@ -343,7 +343,7 @@ class Poisson extends ObjetBDD
             /*
              * Documents
              */
-            if (isset($this->documentLie)) {
+            if (!isset($this->documentLie)) {
                 require_once $this->classpath . "/documentLie.class.php";
                 $this->documentLie = new DocumentLie($this->connection, $this->paramori, "poisson");
             }
@@ -361,7 +361,7 @@ class Poisson extends ObjetBDD
             if (!isset($this->pittag)) {
                 $this->pittag = $this->classInstanciate("Pittag", "pittag.class.php");
             }
-            $pittag->supprimerChamp($id, "poisson_id");
+            $this->pittag->supprimerChamp($id, "poisson_id");
             /*
              * Suppression du poisson
              */
