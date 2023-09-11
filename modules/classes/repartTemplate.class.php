@@ -79,7 +79,7 @@ class RepartTemplate extends ObjetBDD
 		 * Verification que le modele n'a pas été utilisé
 		 */
 		$sql = "select count(*) as nb from distribution where repart_template_id = :id";
-		$rs = $this->getListeParamAsPrepared($sql, $id);
+		$rs = $this->getListeParamAsPrepared($sql, array("id"=>$id));
 		if ($rs[0]["nb"] == 0) {
 			/*
 			 * Suppression des répartitions d'aliments attachées
