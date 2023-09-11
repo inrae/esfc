@@ -348,7 +348,7 @@
 			<div class="tab-pane fade" id="nav-sperme" role="tabpanel" aria-labelledby="tab-sperme">
 				{if $droits["reproGestion"]==1}
 				<div class="row">
-					<a href="index.php?module=spermeChange&poisson_id={$dataPoisson.poisson_id}&sperme_id=0">
+					<a href="index.php?module=spermeChange&poisson_id={$dataPoisson.poisson_id}&sperme_id=0&poisson_campagne_id={$dataPoisson.poisson_campagne_id}">
 						{t}Nouveau prélèvement de sperme...{/t}
 					</a>
 				</div>
