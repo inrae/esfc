@@ -386,7 +386,7 @@
 			<div class="tab-pane fade" id="nav-injection" role="tabpanel" aria-labelledby="tab-injection">
 				{if $droits["reproGestion"]==1}
 				<div class="row">
-					<a href="index.php?module=evenementChange&poisson_id={$dataPoisson.poisson_id}&evenement_id=0&poisson_campagne_id={$dataPoisson.poisson_campagne_id}">
+					<a href="index.php?module=injectionChange&poisson_id={$dataPoisson.poisson_id}&injection_id=0&poisson_campagne_id={$dataPoisson.poisson_campagne_id}">
 						{t}Nouvelle injection...{/t}
 					</a>
 				</div>
