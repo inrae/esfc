@@ -74,7 +74,7 @@
 					</a>
 				</td>
 				<td>{$lots[lst].eclosion_date}</td>
-				<td class="center">{$lots[lst].age}</td>
+				<td class="center">{intval($lots[lst].age)}</td>
 				<td class="right">{$lots[lst].nb_larve_initial}</td>
 				<td class="right">{$lots[lst].nb_larve_compte}</td>
 				<td>
