@@ -310,7 +310,7 @@
 	<saliniteDelete action="modules/repro/salinite.php" param="delete" droits="reproGestion" modulebefore="saliniteChange" retourok="saliniteNew" retourko="saliniteChange"/>
 
 	<spermeDisplay action="modules/repro/sperme.php" param="display" droits="reproConsult"  type="smarty"/>
-	<spermeChange action="modules/repro/sperme.php" param="change" droits="reproGestion"  type="smarty"/>
+	<spermeChange action="modules/repro/sperme.php" param="change" droits="reproGestion"  type="smarty" retourko="poissonCampagneDisplay"/>
 	<spermeWrite action="modules/repro/sperme.php" param="write" droits="reproGestion" modulebefore="spermeChange" retourok="spermeChange" retourko="spermeChange"/>
 	<spermeDelete action="modules/repro/sperme.php" param="delete" droits="reproGestion" modulebefore="spermeChange" retourok="poissonCampagneDisplay" retourko="spermeChange"/>
 
