@@ -10,7 +10,9 @@
 		<item module="anomalieList" label="Anomalies" tooltip="Liste des anomalies détectées" droits="gestion"/>
 		<item divider="1" droits="requete"/>
 		<item module="morphologieImport" droits="gestion" label="Import des mesures" tooltip="Importation des morphologies à partir d'un fichier CSV"/>
+		<item module="requestList" droits="requete" label="Requêtes sur la base de données" tooltip="Exécuter des requêtes sur la base de données"/>
 	</item>
+
 	<item module="bassinList" label="Bassins" tooltip="Liste des bassins" droits="consult">
 		<item module="bassinList" label="Bassins" tooltip="Liste des bassins"/>
 		<item module="circuitEauList" label="Circuits d'eau" tooltip="Liste des circuits d'eau"/>
