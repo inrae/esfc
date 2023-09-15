@@ -85,7 +85,7 @@ class Poisson extends ObjetBDD
     function getListeSearch($dataSearch)
     {
 
-        $sql = "select poisson_id, s.sexe_id, matricule, prenom, cohorte, capture_date, 
+        $sql = "select poisson_id, s.sexe_id, matricule, prenom, cohorte, capture_date, date_naissance,
                 s.sexe_libelle, s.sexe_libelle_court, poisson_statut_libelle,commentaire,
 					pittag_valeur,
 					m.mortalite_date,
