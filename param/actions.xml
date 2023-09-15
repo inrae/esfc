@@ -96,6 +96,8 @@
 	<sondeExec action="modules/bassin/sonde.php" param="importExec" droits="bassinGestion" retourok="sondeImport" retourko="sondeImport"/>
 	<analyseGraph action="modules/bassin/analyseEau.php" param="graph" droits="bassinGestion" type="smarty"/>
 
+	<parametres action="framework/utils/submenu.php" param="parametres" type="smarty"/>
+
 	<mimeTypeList action="modules/parametre/mimeType.php" param="list" droits="consult" retourlogin="1"  type="smarty" />
 	<mimeTypeChange action="modules/parametre/mimeType.php" param="change" droits="paramAdmin" type="smarty" />
 	<mimeTypeWrite action="modules/parametre/mimeType.php" param="write" droits="paramAdmin" retourok="mimeTypeList" retourko="mimeTypeChange" modulebefore="mimeTypeChange" />
@@ -203,7 +205,7 @@
 	<spermeConservateurDelete action="modules/parametre/spermeConservateur.php" param="delete" droits="paramAdmin,reproAdmin" retourok="spermeConservateurList" retourko="spermeConservateurChange"  modulebefore="spermeConservateurChange"/>
 
 
-	<alimentation retourlogin="1"  type="smarty"/>
+	<alimentation retourlogin="1"  type="smarty" action="framework/utils/submenu.php" param="alimentation"/>
 
 	<alimentList action="modules/aliment/aliment.php" param="list" droits="consult" retourlogin="1"  type="smarty"/>
 	<alimentChange action="modules/aliment/aliment.php" param="change" droits="bassinAdmin"  type="smarty"/>
@@ -237,7 +239,7 @@
 	<documentChangeData action="modules/document/document.php" param="changeData" droits="bassinGestion,poissonGestion,reproGestion" />
 	<documentWriteData action="modules/document/document.php" param="writeData" droits="bassinGestion,poissonGestion,reproGestion" retourok="documentList" retourko="documentChange"  />
 	
-	
+	<reproduction action="framework/utils/submenu.php" param="reproduction" droits="reproConsult"  type="smarty"/>
 	<repro action="modules/repro/poissonCampagne.php" param="list" droits="reproConsult"  type="smarty"/>
 
 	<poissonCampagneList action="modules/repro/poissonCampagne.php" param="list" droits="reproConsult" type="smarty"/>
@@ -377,4 +379,6 @@
 	<siteDelete action="modules/parametre/site.php" param="delete" droits="paramAdmin" modulebefore="siteChange" retourok="siteList" retourko="siteChange"/>
 
 	<dbstructureSchema action="framework/utils/structure.php" param="schema" realfilename="documentation/esfc.png" generatedfilename="esfc-database.png" retourlogin="1" type="binaire" droits="requeteAdmin" maxCountByHour="60" maxCountByDay="600" />
+
+	<paramPoisson action="framework/utils/submenu.php" type="smarty"/>
 </navigation>

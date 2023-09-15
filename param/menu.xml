@@ -20,7 +20,7 @@
 		<item module="analyseGraph" label="Graphique des analyses" tooltip="Affichage des dernières analyses d'eau sous forme de graphique" droits="consult"/>
 	</item>
 
-	<item module="default" label="Alimentation" tooltip="Gestion de l'alimentation des poissons" droits="consult">
+	<item module="alimentation" label="Alimentation" tooltip="Gestion de l'alimentation des poissons" droits="consult">
 		<item module="repartitionList" label="Répartitions" tooltip="Répartition des aliments dans les bassins" droits="bassinGestion"/>
 		<item module="alimentList" label="Aliments" tooltip="Liste des aliments" droits="consult"/>
 		<item module="categorieList" label="Catégories d'aliments" tooltip="Liste des catégories d'aliments" droits="consult"/>
@@ -28,7 +28,7 @@
 		<item module="repartTemplateList" label="Modèles de répartition" tooltip="Liste des modèles de répartition" droits="bassinAdmin,poissonAdmin"/>
 	</item>
 
-	<item module="default" label="Reproduction" tooltip="Gestion de la reproduction" droits="reproConsult">
+	<item module="reproduction" label="Reproduction" tooltip="Gestion de la reproduction" droits="reproConsult">
 		<item module="poissonCampagneList" label="Poissons" tooltip="Liste des reproducteurs sélectionnés pour une campagne" droits="reproConsult"/>
 		<item module="sequenceList" label="Séquences et bassins" tooltip="Liste des séquences et des bassins pour une campagne" droits="reproConsult"/>
 		<item module="lotList" label="Lots de larves" tooltip="Liste des lots de larves pour une campagne" droits="reproConsult"/>
@@ -36,8 +36,8 @@
 		<item module="vieModeleList" label="Modèles de marquage VIE" tooltip="Liste des modèles de marquage VIE pour une campagne" droits="reproGestion"/>
 	</item>
 
-	<item module="default" label="Paramètres" tooltip="Paramètres généraux de l'application" droits="consult">
-		<item module="default" label="Poissons" tooltip="Paramètres liés aux poissons" droits="consult">
+	<item module="parametres" label="Paramètres" tooltip="Paramètres généraux de l'application" droits="consult">
+		<item module="paramPoisson" label="Poissons" tooltip="Paramètres liés aux poissons" droits="consult">
 			<item module="pittagTypeList" label="Types de pittags" tooltip="Liste des types de pittags" droits="consult"/>
 			<item module="poissonStatutList" label="Statuts des poissons" tooltip="Liste des statuts des poissons" droits="consult"/>
 			<item module="genderMethodeList" label="Méthodes de sexage" tooltip="Liste des méthode de sexage utilisées" droits="consult"/>

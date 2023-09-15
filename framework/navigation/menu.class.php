@@ -79,7 +79,7 @@ class Menu
         /**
          * Search for language
          */
-        if(isset($attributes["language"])&& $attributes["language"] != $_SESSION["FORMATDATE"]) {
+        if (isset($attributes["language"]) && $attributes["language"] != $_SESSION["FORMATDATE"]) {
             $ok = false;
         }
         if ($ok) {
@@ -96,7 +96,7 @@ class Menu
                 if ($level == 0) {
                     $level = 1;
                 }
-                $texte = '<li><a href="index.php?module=' . $attributes["module"] . '" title="' . gettext($attributes["tooltip"]) . '">' .  $label . '</a>';
+                $texte = '<li><a href="index.php?module=' . $attributes["module"] . '" title="' . gettext($attributes["tooltip"]) . '">' . $label . '</a>';
                 if (isset($valeur["item"])) {
                     /*
                      * Il s'agit d'un tableau imbrique
@@ -106,7 +106,7 @@ class Menu
                         $texte .= $this->lireItem($valeur["item"], $level);
                     } else {
                         foreach ($valeur["item"] as $value) {
-                            $texte .= $this->lireItem($value, $level ++);
+                            $texte .= $this->lireItem($value, $level++);
                         }
                     }
                     $texte .= "</ul>";
@@ -117,6 +117,32 @@ class Menu
         }
         return $texte;
     }
-}
+    function getSubmenu(string $moduleName)
+    {
+        $submenu = "";
+        $isfound = false;
+        foreach ($this->menuArray["item"] as $entry) {
+            if ($entry["@attributes"]["module"] == $moduleName) {
+                $isfound = true;
+                $submenu = "<h2><span title=".$entry["@attributes"]["tooltip"].">".$entry["@attributes"]["label"]."<span></h2>";
+                foreach ($entry["item"] as $value) {
+                    $submenu .= $this->lireItem($value, 0);
+                }
+            }
+            if (!$isfound && !empty ($entry["item"])) {
 
-?>
+            }
+        }
+        return $submenu;
+    }
+
+    function _getSubmenu( $entry, $moduleName) {
+        if ($entry["@attributes"]["module"] == $moduleName) {
+            $isfound = true;
+            $submenu = "<h2><span title=".$entry["@attributes"]["tooltip"].">".$entry["@attributes"]["label"]."<span></h2>";
+            foreach ($entry["item"] as $value) {
+                $submenu .= $this->lireItem($value, 0);
+            }
+        }
+    }
+}
