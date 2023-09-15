@@ -109,12 +109,12 @@
 				</label>
 				<div class="col-md-2">
 					<select id="eventSearch" name="eventSearch" class="form-control">
-						<option value="" {if $poissonSearch.eventSearch == ""}selected{/if}>
+						<option value="" {if $poissonSearch.eventSearch=="" }selected{/if}>
 							{t}Sélectionnez...{/t}
 						</option>
 						{foreach $eventSearchs as $k => $l}
-						<option value="{$k}" {if $poissonSearch.eventSearch == $k}selected{/if}>
-						{$l}
+						<option value="{$k}" {if $poissonSearch.eventSearch==$k}selected{/if}>
+							{$l}
 						</option>
 						{/foreach}
 					</select>
@@ -123,55 +123,40 @@
 					{t}Entre le :{/t}
 				</label>
 				<div class="col-md-2">
-					<input class="datepicker form-control" id="dateFromEvent" name="dateFromEvent" value="{$poissonSearch.dateFromEvent}">
+					<input class="datepicker form-control" id="dateFromEvent" name="dateFromEvent"
+						value="{$poissonSearch.dateFromEvent}">
 				</div>
 				<label for="dateToEvent" class="control-label col-md-1">
 					{t}et le :{/t}
 				</label>
 				<div class="col-md-2">
-					<input class="datepicker form-control" id="dateToEvent" name="dateToEvent" value="{$poissonSearch.dateToEvent}">
+					<input class="datepicker form-control" id="dateToEvent" name="dateToEvent"
+						value="{$poissonSearch.dateToEvent}">
 				</div>
 			</div>
 		</div>
 		<div class="row">
-			<div class="form-group">
-				<label for="displayMorpho0" class="control-label col-md-2">
-					{t}Afficher : les données morphologiques ?{/t}
-				</label>
-				<div class="col-md-2">
-					<label class="radio-inline ">
-						<input type="radio" id="displayMorpho0" name="displayMorpho" value="0" {if
-							$poissonSearch.displayMorpho==0}checked{/if}>
-						{t}non{/t}
-					</label>
-					<label class="radio-inline ">
-						<input type="radio" name="displayMorpho" value="1" {if
-							$poissonSearch.displayMorpho==1}checked{/if}>
-						{t}oui{/t}
-					</label>
-				</div>
-
-				<label for="displayBassin0" class="control-label col-md-2">
-					{t}le bassin ?{/t}
-				</label>
-				<div class="col-md-2">
-					<label class="radio-inline ">
-						<input type="radio" name="displayBassin" value="0" {if
-							$poissonSearch.displayBassin==0}checked{/if}>
-						{t}non{/t}
-					</label>
-					<label class="radio-inline ">
-						<input type="radio" name="displayBassin" value="1" {if
-							$poissonSearch.displayBassin==1}checked{/if}>
-						{t}oui{/t}
-					</label>
-				</div>
-
-				<div class="col-md-2 center">
-					<input type="submit" id="samplesearch_button" class="btn btn-success" value="{t}Rechercher{/t}">
-				</div>
-
+			<label for="bassin_id" class="control-label col-md-2">
+				{t}Recherche par bassin :{/t}
+			</label>
+			<div class="col-md-2">
+				<select class="form-control" id="bassin_id" name="bassin_id">
+					<option value="" {if $poissonSearch.bassin_id=="" }selected{/if}>
+						{t}Sélectionnez...{/t}
+					</option>
+					{foreach $bassins as $bassin}
+					<option value="{$bassin.bassin_id}" {if $poissonSearch.bassin_id==$bassin.bassin_id}selected{/if}>
+						{$bassin.bassin_nom} ({$bassin.site_name} - {$bassin.bassin_zone_libelle} -
+						{$bassin.bassin_type_libelle})
+					</option>
+					{/foreach}
+				</select>
 			</div>
+
+			<div class="col-md-2 center">
+				<input type="submit" id="samplesearch_button" class="btn btn-success" value="{t}Rechercher{/t}">
+			</div>
+
 		</div>
 		<div class="row">
 			<div class="form-group">
@@ -181,15 +166,15 @@
 				</label>
 				<div class="col-md-1">
 					<label class="radio-inline ">
-					<input id="displayCumulTemp0" type="radio" name="displayCumulTemp" value="0" {if
-						$poissonSearch.displayCumulTemp==0}checked{/if}>
-					{t}non{/t}
-				</label>
-				<label class="radio-inline ">
-					<input type="radio" name="displayCumulTemp" value="1" {if
-						$poissonSearch.displayCumulTemp==1}checked{/if}>
-					{t}oui{/t}
-				</label>
+						<input id="displayCumulTemp0" type="radio" name="displayCumulTemp" value="0" {if
+							$poissonSearch.displayCumulTemp==0}checked{/if}>
+						{t}non{/t}
+					</label>
+					<label class="radio-inline ">
+						<input type="radio" name="displayCumulTemp" value="1" {if
+							$poissonSearch.displayCumulTemp==1}checked{/if}>
+						{t}oui{/t}
+					</label>
 				</div>
 				<label class="col-md-1 control-label" for="dateDebutTemp">
 					{t}du :{/t}

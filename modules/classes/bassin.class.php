@@ -321,4 +321,36 @@ class Bassin extends ObjetBDD
 			return array();
 		}
 	}
+	function getListBassin(int $site_id = 0, int $is_actif = 1)
+	{
+		$param = array();
+		$sql = "select bassin_id, bassin_nom, bassin_zone_libelle, bassin_type_libelle, site_id, site_name
+			from bassin
+			left join site using (site_id)
+			left outer join bassin_zone using (bassin_zone_id)
+			left outer join bassin_type using (bassin_type_id)
+			";
+			$and = false;
+			$where = " where ";
+		if ($site_id > 0) {
+			$where .= " site_id = :site_id";
+			$param["site_id"] = $site_id;
+			$and = true;
+		}
+		if ($is_actif > -1) {
+			if ($and) {
+				$where .= " and ";
+			} else {
+				$and = true;
+			}
+			$where .= " actif = :is_actif";
+			$param ["is_actif"] = $is_actif;
+		}
+		if (!$and) {
+			$where = "";
+		}
+
+		$order = " order by site_name, bassin_nom";
+		return $this->getListeParamAsPrepared($sql.$where.$order, $param);
+	}
 }
