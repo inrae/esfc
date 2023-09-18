@@ -11,3 +11,5 @@ select * from devenir_type;
 insert into devenir_type (devenir_type_id, devenir_type_libelle)
 values
 (6, 'Création d''un lot dérivé');
+
+insert into dbversion(dbversion_number, dbversion_date) values ('23.1', '2023-09-19');

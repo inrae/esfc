@@ -1,5 +1,32 @@
 Nouveautés
 ==========
+Version 23.1.0 du 19 septembre 2023
+-----------------------------
+Corrections de bugs :
+- il était impossible de créer ou modifier une distribution d'aliments
+- il était impossible de supprimer un poisson
+- la saisie d'un nouveau prélèvement de sperme était en erreur
+- le module repro, séquences et bassins était parfois en erreur
+- dans le module repro, le rattachement d'un poisson à une séquence (poisson mort) ne fonctionnait pas
+- dans le module repro, le nombre d'heures où le pourcentage maxi de maturation était atteint ne pouvait pas dépasser 23
+- il n'était pas possible de saisir une nouvelle injection pour une femelle
+- l'accès au module d'exécution des requêtes n'était plus possible
+- dans la liste des croisements, seul le prénom était affiché
+- la saisie d'un prélèvement de sperme n'aboutissait pas dans certains cas
+- dans la liste des poissons, la date de naissance n'était pas affichée
+- en modification d'un poisson, le type de marque préalablement enregistré ne s'affichait pas
+- la création d'un nouvel aliment ne fonctionnait pas
+- les lots ne peuvent plus être créés s'il n'y a pas de reproducteurs pour l'année de reproduction considérée
+- lors de la création d'une nouvelle destination d'un lot, il est possible de créer un lot dérivé en indiquant le nombre de poissons de ce nouveau lot et en conservant les informations sur la reproduction
+
+Nouveautés :
+- dans le menu, les entrées qui renvoyaient vers la page d'accueil affichent maintenant les sous-menus correspondants
+- lors de la création d'un nouveau pittag, le matricule du poisson prend la valeur du pittag le plus récent
+- il est maintenant possible de rechercher les poissons par bassin
+- dans le module de recherche des poissons, il est maintenant possible de sélectionner n'importe quel libellé avec un mécanisme de recherche par colonne
+- la procédure d'importation des mesures à partir d'un fichier CSV a été adaptée pour utiliser les noms des colonnes existantes dans le fichier original
+
+
 Version 2.0.1 du 21 août 2023
 -----------------------------
 Corrections de bugs :
