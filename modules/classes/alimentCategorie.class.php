@@ -36,6 +36,8 @@ class AlimentCategorie extends ObjetBDD
 			$sql = "select * from " . $this->table . "
 				where aliment_id =  :aliment_id";
 			return $this->getListeParamAsPrepared($sql, array("aliment_id"=>$aliment_id));
+		} else {
+			return array();
 		}
 	}
 }

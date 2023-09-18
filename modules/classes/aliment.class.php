@@ -78,7 +78,7 @@ class Aliment extends ObjetBDD
 			/*
 			 * Suppression des rattachements aux catégories
 			 */
-			if (!is_object($this->alimentCategorie)) {
+			if (!isset($this->alimentCategorie)) {
 				$this->alimentCategorie = $this->classInstanciate("AlimentCategorie", "alimentCategorie.class.php");
 			} 
 			$this->alimentCategorie->supprimerChamp($id, "aliment_id");
