@@ -43,6 +43,7 @@
 				<th>{t}Nbre de larves comptées{/t}</th>
 				<th>{t}Marque VIE{/t}</th>
 				<th>{t}Date de marquage VIE{/t}</th>
+				<th>{t}Lot parent{/t}</th>
 				{if $droits.reproGestion == 1}
 				<th>{t}Fiche alim.{/t}
 					<div class="center">
@@ -83,6 +84,11 @@
 					{/if}
 				</td>
 				<td>{$lots[lst].vie_date_marquage}</td>
+				<td>
+					<a href="index.php?module=lotDisplay&lot_id={$lots[lst].parent_lot_id}">
+						{$lots[lst].parent_lot_nom}
+					</a>
+				</td>
 				{if $droits.reproGestion == 1}
 				<td class="center">
 					<input type="checkbox" class="check" name="lots[]" value="{$lots[lst].lot_id}" checked>

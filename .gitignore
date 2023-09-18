@@ -186,3 +186,4 @@ sympy-plots-for-*.tex/
 /param/id_esfc*
 /.vscode/launch.json
 /.scannerwork/*
+.vscode/settings.json

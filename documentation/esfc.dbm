@@ -3,7 +3,7 @@
 CAUTION: Do not modify this file unless you know what you are doing.
  Unexpected results may occur if the code is changed deliberately.
 -->
-<dbmodel pgmodeler-ver="1.0.5" use-changelog="false" author="Eric Quinton" last-position="0,0" last-zoom="0.35" max-obj-count="170"
+<dbmodel pgmodeler-ver="1.0.5" use-changelog="false" author="Eric Quinton" last-position="0,977" last-zoom="0.55" max-obj-count="171"
 	 default-owner="postgres"
 	 layers="Default layer"
 	 active-layers="0"
@@ -2075,7 +2075,7 @@ Le premier chiffre correspond au lundi]]> </comment>
 	<role name="quinton"/>
 </sequence>
 
-<table name="lot" layers="0" collapse-mode="1" max-obj-count="9" z-value="0">
+<table name="lot" layers="0" collapse-mode="1" max-obj-count="10" z-value="0">
 	<schema name="public"/>
 	<role name="quinton"/>
 	<comment> <![CDATA[Lots issus des croisements (au moins un lot par croisement réussi)]]> </comment>
@@ -2109,6 +2109,10 @@ Le premier chiffre correspond au lundi]]> </comment>
 	</column>
 	<column name="vie_modele_id">
 		<type name="integer" length="0"/>
+	</column>
+	<column name="parent_lot_id">
+		<type name="integer" length="0"/>
+		<comment> <![CDATA[Lot issued from an other]]> </comment>
 	</column>
 	<constraint name="lot_pk" type="pk-constr" table="public.lot">
 		<columns names="lot_id" ref-type="src-columns"/>
@@ -5107,6 +5111,12 @@ Le premier chiffre correspond au lundi]]> </comment>
 	<columns names="vie_modele_id" ref-type="dst-columns"/>
 </constraint>
 
+<constraint name="lot_parent_lot_id_fk" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.lot" table="public.lot">
+	<columns names="parent_lot_id" ref-type="src-columns"/>
+	<columns names="lot_id" ref-type="dst-columns"/>
+</constraint>
+
 <constraint name="lot_lot_mesure_fk" type="fk-constr" comparison-type="MATCH SIMPLE"
 	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.lot" table="public.lot_mesure">
 	<columns names="lot_id" ref-type="src-columns"/>
@@ -6236,6 +6246,17 @@ Le premier chiffre correspond au lundi]]> </comment>
 	 src-table="public.sortie_lieu"
 	 dst-table="public.poisson_statut" reference-fk="poisson_statut_sortie_lieu_fk"
 	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_lot_lot" type="relfk" layers="0"
+	 src-table="public.lot"
+	 dst-table="public.lot" reference-fk="lot_parent_lot_id_fk"
+	 src-required="false" dst-required="false">
+	<line>
+		<position x="780.6" y="2804.77"/>
+	<position x="780.6" y="2687"/>
+	<position x="631.733" y="2687"/>
+	</line>
+</relationship>
 
 <permission>
 	<object name="public.alim_populate(date,date,integer,double precision,double precision,double precision,double precision,double precision,double precision,double precision,double precision)" type="function"/>

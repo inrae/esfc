@@ -289,7 +289,7 @@
 
 	<lotList action="modules/repro/lot.php" param="list" retourlogin="1" droits="reproConsult"  type="smarty"/>
 	<lotDisplay action="modules/repro/lot.php" param="display" droits="reproConsult"  type="smarty"/>
-	<lotChange action="modules/repro/lot.php" param="change" droits="reproGestion"  type="smarty"/>
+	<lotChange action="modules/repro/lot.php" param="change" droits="reproGestion"  type="smarty" retourko="lotList"/>
 	<lotWrite action="modules/repro/lot.php" param="write" droits="reproGestion" modulebefore="lotChange" retourok="lotDisplay" retourko="lotChange"/>
 	<lotDelete action="modules/repro/lot.php" param="delete" droits="reproGestion" modulebefore="lotChange" retourok="lotList" retourko="lotChange"/>
 

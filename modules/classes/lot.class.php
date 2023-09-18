@@ -61,6 +61,9 @@ class Lot extends ObjetBDD
 			),
 			"vie_date_marquage" => array(
 				"type" => 2
+			),
+			"parent_lot_id" => array(
+				"type" => 1
 			)
 		);
 		parent::__construct($bdd, $param);
@@ -100,17 +103,20 @@ class Lot extends ObjetBDD
 	{
 		$data = array();
 		if (strlen($where) > 0) {
-			$sql = "select lot_id, lot_nom, croisement_id, nb_larve_initial, nb_larve_compte,
+			$sql = "select l.lot_id, l.lot_nom, l.croisement_id, l.nb_larve_initial, l.nb_larve_compte,
 					croisement_date,
-					sequence_id, s.annee, sequence_nom, croisement_nom, eclosion_date, vie_date_marquage,
-					vie_modele_id, couleur, vie_implantation_libelle, vie_implantation_libelle2,
-					 extract(epoch from age(eclosion_date))/86400 as age,
-					 site_id, site_name
-					from lot
-					join croisement using (croisement_id)
+					sequence_id, s.annee, sequence_nom, croisement_nom, l.eclosion_date, l.vie_date_marquage,
+					l.vie_modele_id, couleur, vie_implantation_libelle, vie_implantation_libelle2,
+					 extract(epoch from age(l.eclosion_date))/86400 as age,
+					 site_id, site_name,
+					 parent.lot_nom parent_lot_nom, l.parent_lot_id
+					from lot l
+					join croisement c on  (c.croisement_id = l.croisement_id)
 					join sequence s using (sequence_id)
 					left outer join site using (site_id)
-					left outer join v_vie_modele vm using (vie_modele_id) ";
+					left outer join v_vie_modele vm on (vm.vie_modele_id = l.vie_modele_id)
+					left outer join lot parent on (l.parent_lot_id = parent.lot_id)
+					";
 			$order = " order by sequence_nom, lot_nom";
 			$data = $this->getListeParamAsPrepared($sql . $where . $order, $param);
 			/*
@@ -145,13 +151,18 @@ class Lot extends ObjetBDD
 	 */
 	function getDetail($lot_id)
 	{
-		$where = "where lot_id = :lot_id";
+		$where = "where l.lot_id = :lot_id";
 		$data = $this->getDataParam($where, array("lot_id" => $lot_id));
 		if (is_array($data)) {
 			return $data[0];
 		} else {
 			return array();
 		}
+	}
+
+	function getDerivatedLots($lot_id) {
+		$where = " where l.parent_lot_id = :lot_id";
+		return $this->getDataParam($where, array("lot_id" => $lot_id));
 	}
 
 	/**
@@ -211,10 +222,12 @@ class Lot extends ObjetBDD
 				where eclosion_date < :date_debut
 					and extract(year from eclosion_date) = :annee
 				order by lot_nom";
-		return $this->getListeParamAsPrepared($sql, array(
-			"date_debut" => $dateDebut,
-			"annee" => substr($dateDebut, 0, 4)
-		)
+		return $this->getListeParamAsPrepared(
+			$sql,
+			array(
+				"date_debut" => $dateDebut,
+				"annee" => substr($dateDebut, 0, 4)
+			)
 		);
 	}
 
