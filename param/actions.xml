@@ -28,7 +28,8 @@
 	<pathologieTypeDelete action="modules/parametre/pathologieType.php" param="delete" droits="paramAdmin" retourok="pathologieTypeList" retourko="pathologieTypeChange"  modulebefore="pathologieTypeChange"/>
 
 	<morphologieImport action="modules/poisson/morphologie.php" param="import" droits="gestion" retourlogin="1" type="smarty"/>
-	<morphologieImportControl action="modules/poisson/morphologie.php" param="control" droits="gestion" modulebefore="morphologieImport,morphologieImportControl,morphologieImportExec" retourko="morphologieImport" type="smarty"/>
+	<morphologieImportMatching action="modules/poisson/morphologie.php" param="matching" droits="gestion" type="smarty" modulebefore="morphologieImport,morphologieImportMatching,morphologieImportControl" retourko="morphologieImport"/>
+	<morphologieImportControl action="modules/poisson/morphologie.php" param="control" droits="gestion" modulebefore="morphologieImportMatching,morphologieImportControl" retourko="morphologieImport" type="smarty"/>
 	<morphologieImportExec action="modules/poisson/morphologie.php" param="exec" droits="gestion" modulebefore="morphologieImportControl" retourok="morphologieImport" retourko="morphologieImport"/>
 	<poissonList action="modules/poisson/poisson.php" param="list" droits="consult"  retourlogin="1" type="smarty" />
 	<poissonDisplay action="modules/poisson/poisson.php" param="display" droits="consult" type="smarty" />
