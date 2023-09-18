@@ -49,7 +49,7 @@
 			<item module="nageoireList" label="Nageoires" tooltip="Liste des nageoires (prélévements génétiques)" droits="consult"/>
 		</item>
 		
-		<item module="default" label="Sites et bassins" tooltip="Paramètres concernant les sites et les bassins" droits="consult">
+		<item module="sites" label="Sites et bassins" tooltip="Paramètres concernant les sites et les bassins" droits="consult">
 			<item module="siteListe" label="Sites" tooltip="Liste des sites" droits="consult"/>
 			<item module="bassinTypeList" label="Types de bassins" tooltip="Liste des types de bassins" droits="consult"/>
 			<item module="bassinUsageList" label="Usages des bassins" tooltip="Liste des types d'usage des bassins" droits="consult"/>
@@ -60,7 +60,7 @@
 			<item module="circuitEvenementTypeList" label="Types d'événements sur les circuits d'eau" tooltip="Liste des types d'événements pouvant survenir sur les circuits d'eau" droits="consult"/>
 		</item>
 
-		<item module="default" label="Reproduction" tooltip="Paramètres associés à la reproduction" droits="consult">
+		<item module="reproduction" label="Reproduction" tooltip="Paramètres associés à la reproduction" droits="consult">
 			<item module="hormoneList" label="Hormones" tooltip="Liste des hormones utilisées" droits="consult"/>
 			<item module="anesthesieProduitList" label="Produits d'anesthésie" tooltip="Liste des produits d'anesthésie utilisés" droits="consult"/>
 			<item module="vieImplantationList" label="Implantation VIE" tooltip="Liste des emplacements d'implantation des marques VIE" droits="consult"/>			

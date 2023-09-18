@@ -117,32 +117,44 @@ class Menu
         }
         return $texte;
     }
-    function getSubmenu(string $moduleName)
+    /**
+     * Generate submenu to display on action framework/utils/submenu.php
+     *
+     * @param string $moduleName
+     * @return string
+     */
+    function getSubmenu(string $moduleName): string
     {
         $submenu = "";
         $isfound = false;
         foreach ($this->menuArray["item"] as $entry) {
             if ($entry["@attributes"]["module"] == $moduleName) {
                 $isfound = true;
-                $submenu = "<h2><span title=".$entry["@attributes"]["tooltip"].">".$entry["@attributes"]["label"]."<span></h2>";
+                $submenu = "<h2><span title=" . $entry["@attributes"]["tooltip"] . ">" . $entry["@attributes"]["label"] . "<span></h2>";
                 foreach ($entry["item"] as $value) {
                     $submenu .= $this->lireItem($value, 0);
                 }
             }
-            if (!$isfound && !empty ($entry["item"])) {
-
+            if (!$isfound && !empty($entry["item"])) {
+                foreach ($entry["item"] as $value) {
+                    if ($value["@attributes"]["module"] == $moduleName) {
+                        printA($entry["@attributes"]["module"]);
+                        $isfound = true;
+                        $submenu = "<h2>" .
+                            '<a href="index.php?module=' . $entry["@attributes"]["module"] .
+                            '" title="' . $entry["@attributes"]["tooltip"] . '">' .
+                            $entry["@attributes"]["label"] . "</a> > " .
+                            '<span title="' . $value["@attributes"]["tooltip"] . '">' . $value["@attributes"]["label"] .
+                            "<span>" .
+                            "</h2>";
+                        foreach ($value["item"] as $subvalue) {
+                            $submenu .= $this->lireItem($subvalue, 0);
+                        }
+                    }
+                }
             }
         }
         return $submenu;
     }
 
-    function _getSubmenu( $entry, $moduleName) {
-        if ($entry["@attributes"]["module"] == $moduleName) {
-            $isfound = true;
-            $submenu = "<h2><span title=".$entry["@attributes"]["tooltip"].">".$entry["@attributes"]["label"]."<span></h2>";
-            foreach ($entry["item"] as $value) {
-                $submenu .= $this->lireItem($value, 0);
-            }
-        }
-    }
 }
