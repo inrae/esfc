@@ -8,6 +8,7 @@
  */
 class Pittag extends ObjetBDD
 {
+    public Poisson $poisson;
 
     /**
      * Constructeur de la classe
@@ -70,5 +71,37 @@ class Pittag extends ObjetBDD
         } else {
             return $this->getListeParamAsPrepared($sql, $param);
         }
+    }
+    /**
+     * surround to set the matricule with the most recent pittag
+     *
+     * @param array $data
+     * @return integer
+     */
+    function ecrire($data): int
+    {
+        $id = parent::ecrire($data);
+        /**
+         * Search it the pittag is the most recent
+         */
+        $param = array("poisson_id" => $data["poisson_id"]);
+        $sql = "select pittag_id, pittag_date_pose, pittag_valeur, matricule
+                from pittag
+                join poisson using (poisson_id)
+                where poisson_id = :poisson_id
+                order by pittag_date_pose desc limit 1";
+        $last = $this->lireParamAsPrepared($sql, $param);
+        if ($last["pittag_id"] != $last["matricule"]) {
+            if (!isset($this->poisson)) {
+                $this->poisson = $this->classInstanciate("Poisson", "poisson.class.php");
+            }
+            $dpoisson = $this->poisson->lire($data["poisson_id"]);
+            if ($dpoisson["poisson_id"] > 0) {
+                $dpoisson["matricule"] = $last["pittag_valeur"];
+                $this->poisson->ecrire($dpoisson);
+            }
+        }
+        return $id;
+
     }
 }
