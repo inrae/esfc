@@ -58,7 +58,7 @@ class Pittag extends ObjetBDD
     {
         $param = array("poisson_id" => $poisson_id);
         $sql = "select pittag_id, poisson_id, pittag_date_pose, pittag_valeur, pittag_type_libelle,
-					pittag_commentaire
+					pittag_type_id, pittag_commentaire
 					from pittag
 					left outer join pittag_type using (pittag_type_id)
 					where poisson_id = :poisson_id order by pittag_date_pose desc, pittag_id desc";
