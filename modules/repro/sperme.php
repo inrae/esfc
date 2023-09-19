@@ -44,20 +44,25 @@ switch ($t_module["param"]) {
 		 * If is a new record, generate a new record with default value :
 		 * $_REQUEST["idParent"] contains the identifiant of the parent record
 		 */
-		$data = dataRead($dataClass, $id, "repro/spermeChange.tpl", $_REQUEST["poisson_campagne_id"]);
-		require_once 'modules/repro/spermeFunction.php';
-		initSpermeChange($id);
-		/*
-		 * Donnees du poisson
-		 */
-		if (!isset($_REQUEST["poisson_campagne_id"])) {
-			$_REQUEST["poisson_campagne_id"] = $data["poisson_campagne_id"];
-		}
 		require_once 'modules/classes/poissonCampagne.class.php';
 		$poissonCampagne = new PoissonCampagne($bdd, $ObjetBDDParam);
 		$vue->set($poissonCampagne->lire($_REQUEST["poisson_campagne_id"]), "dataPoisson");
-		$vue->set($poissonCampagne->getListSequence($_REQUEST["poisson_campagne_id"], $_SESSION["annee"]), "sequences");
-
+		$sequences = $poissonCampagne->getListSequence($_REQUEST["poisson_campagne_id"], $_SESSION["annee"]);
+		if (empty($sequences)) {
+			$module_coderetour = -1;
+			$message->set(_("Le poisson n'est rattaché à aucune séquence, la saisie d'un prélèvement de sperme n'est pas possible"), true);
+		} else {
+			$vue->set($sequences, "sequences");
+			$data = dataRead($dataClass, $id, "repro/spermeChange.tpl", $_REQUEST["poisson_campagne_id"]);
+			require_once 'modules/repro/spermeFunction.php';
+			initSpermeChange($id);
+			/*
+			 * Donnees du poisson
+			 */
+			if (!isset($_REQUEST["poisson_campagne_id"])) {
+				$_REQUEST["poisson_campagne_id"] = $data["poisson_campagne_id"];
+			}
+		}
 		break;
 	case "write":
 		/*

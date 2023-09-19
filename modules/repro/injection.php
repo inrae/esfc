@@ -30,6 +30,7 @@ switch ($t_module["param"]) {
 		/*
 		 * Lecture des hormones
 		 */
+		require_once "modules/classes/hormone.class.php";
 		$hormone = new Hormone($bdd, $ObjetBDDParam);
 		$vue->set($hormone->getListe(2), "hormones");
 		break;

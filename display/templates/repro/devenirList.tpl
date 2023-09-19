@@ -1,9 +1,3 @@
-{if $droits["reproGestion"] == 1}
-<a
-    href="index.php?module=devenir{$devenirOrigine}Change&devenir_id=0{if $dataLot.lot_id > 0}&lot_id={$dataLot.lot_id}{else}&lot_id=0{/if}&devenirOrigine={$devenirOrigine}">
-    {t}Nouvelle destination (lâcher, entrée dans le stock captif, etc.){/t}
-</a>
-{/if}
 
 <table class="table table-bordered table-hover datatable-nopaging-nosearching" id="devenirList" data-order='[[1,"asc"],[2,"asc"]]'>
     <thead>

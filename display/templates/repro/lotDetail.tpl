@@ -30,4 +30,14 @@
         <dt>{t}Nbre de larves estimé / compté :{/t}</dt>
         <dd>{$dataLot.nb_larve_initial} / {$dataLot.nb_larve_compte}</dd>
     </dl>
+    {if $dataLot.parent_lot_id > 0}
+    <dl class="dl-horizontal">
+        <dt>{t}Lot parent :{/t}</dt>
+        <dd>
+            <a href="index.php?module=lotDisplay&lot_id={$dataLot.parent_lot_id}">
+                {$dataLot.parent_lot_nom}
+            </a>
+        </dd>
+    </dl>
+    {/if}
 </div>

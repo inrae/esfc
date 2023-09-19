@@ -1,5 +1,32 @@
 News
 ==========
+Version 23.1.0 of 19 September 2023
+-----------------------------
+Bug fixes :
+- it was impossible to create or modify a food distribution
+- it was not possible to delete a fish
+- entering a new sperm sample was incorrect
+- the breeding, sequences and basins module sometimes contained errors
+- in the breeding module, attaching a fish to a sequence (dead fish) did not work
+- in the breeding module, the number of hours when the maximum maturation percentage was reached could not exceed 23
+- it was not possible to enter a new injection for a female fish
+- access to the query execution module was no longer possible
+- in the list of crossbreeds, only the first name was displayed
+- entering a sperm sample was not successful in some cases
+- in the fish list, the date of birth was not displayed
+- when modifying a fish, the type of pittag previously saved was not displayed
+- creating a new feed did not work
+- lots could no longer be created if there were no breeding stock for the breeding year in question
+- when creating a new destination for a lot, it is now possible to create a derived lot by indicating the number of fish in the new lot and retaining the breeding information.
+
+New features:
+- in the menu, entries that used to link to the home page now display the corresponding sub-menus
+- when a new pittag is created, the fish's matricule takes the value of the most recent pittag
+- it is now possible to search for fish by basin
+- in the fish search module, it is now possible to select any label using a column search mechanism
+- the procedure for importing measurements from a CSV file has been adapted to use the existing column names in the original file
+
+
 Version 2.0.1 of 21 August 2023
 -----------------------------
 Bug fixes :

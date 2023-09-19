@@ -26,15 +26,22 @@
         <!-- calculs -->
         {if $croisements[lst].ovocyte_masse > 0 && $croisements[lst].ovocyte_densite > 0}
         {assign var="ovocyte" value=intval($croisements[lst].ovocyte_masse * $croisements[lst].ovocyte_densite)}
+        {if !$ovocyte > 0}
+        {$ovocyte = 0}
+        {/if}
+        {if $croisements[lst].tx_fecondation > 0}
         {if $croisements[lst].tx_fecondation > 1}
         {assign var="oeuf" value=intval($croisements[lst].tx_fecondation * $ovocyte / 100)}
         {else}
         {assign var="oeuf" value=intval($croisements[lst].tx_fecondation * $ovocyte)}
         {/if}
+        {/if}
+        {if $croisements[lst].tx_survie_estime > 0}
         {if $croisements[lst].tx_survie_estime > 1}
         {assign var="larve" value=intval($oeuf * $croisements[lst].tx_survie_estime / 100)}
         {else}
         {assign var="larve" value=intval($oeuf * $croisements[lst].tx_survie_estime)}
+        {/if}
         {/if}
         {/if}
         <tr>

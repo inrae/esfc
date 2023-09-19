@@ -286,6 +286,15 @@ background-color:  rgba(0,158,224,0.2) !important;
 	border-radius: 0.5;
 }
 
+.submenu {
+	border-bottom: solid ;
+	border-right: solid ;
+	border-bottom-color: rgba(0,158,224);
+	border-right-color: rgba(0,158,224);
+	background-color: rgba(0,158,224, 0.1);
+	list-style: none;
+}
+
 .trashed {
 	background-color: rgba(213,19,23,0.5);
 }

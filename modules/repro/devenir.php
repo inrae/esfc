@@ -18,11 +18,6 @@ switch ($t_module["param"]) {
 		$vue->set("repro/devenirCampagneList.tpl", "corps");
 		break;
 	case "change":
-		/*
-		 * open the form to modify the record
-		 * If is a new record, generate a new record with default value :
-		 * $_REQUEST["idParent"] contains the identifiant of the parent record
-		 */
 		$data = dataRead($dataClass, $id, "repro/devenirChange.tpl", $_REQUEST["lot_id"]);
 		$vue->set($_REQUEST["devenirOrigine"], "devenirOrigine");
 		/*

@@ -131,24 +131,22 @@ class SearchPoisson extends SearchParam {
 				"sexe" => "",
 				"texte" => "",
 				"categorie" => 1,
-				"displayMorpho" => 0,
-				"displayBassin" => 0,
 				"displayCumulTemp" => 0,
 				"dateDebutTemp" => date("d/m/").(date("Y")-1),
 				"dateFinTemp" => date("d/m/Y"),
 				"site_id" => $_SESSION["site_id"],
 				"dateFromEvent" => date("d/m/").(date("Y")-1),
 				"dateToEvent" => date("d/m/Y"),
-				"eventSearch" =>""
+				"eventSearch" =>"",
+				"bassin_id" => 0
 		);
 		$this->paramNum = array (
 				"statut",
-				"displayMorpho",
-				"displayBassin",
 				"categorie",
 				"sexe",
 				"displayCumulTemp",
-				"site_id"
+				"site_id",
+				"bassin_id"
 		);
 		$this->searchByEvent = array (
 			"morphologie"=>_("Morphologie"),

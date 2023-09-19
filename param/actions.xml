@@ -28,7 +28,8 @@
 	<pathologieTypeDelete action="modules/parametre/pathologieType.php" param="delete" droits="paramAdmin" retourok="pathologieTypeList" retourko="pathologieTypeChange"  modulebefore="pathologieTypeChange"/>
 
 	<morphologieImport action="modules/poisson/morphologie.php" param="import" droits="gestion" retourlogin="1" type="smarty"/>
-	<morphologieImportControl action="modules/poisson/morphologie.php" param="control" droits="gestion" modulebefore="morphologieImport,morphologieImportControl,morphologieImportExec" retourko="morphologieImport" type="smarty"/>
+	<morphologieImportMatching action="modules/poisson/morphologie.php" param="matching" droits="gestion" type="smarty" modulebefore="morphologieImport,morphologieImportMatching,morphologieImportControl" retourko="morphologieImport"/>
+	<morphologieImportControl action="modules/poisson/morphologie.php" param="control" droits="gestion" modulebefore="morphologieImportMatching,morphologieImportControl" retourko="morphologieImport" type="smarty"/>
 	<morphologieImportExec action="modules/poisson/morphologie.php" param="exec" droits="gestion" modulebefore="morphologieImportControl" retourok="morphologieImport" retourko="morphologieImport"/>
 	<poissonList action="modules/poisson/poisson.php" param="list" droits="consult"  retourlogin="1" type="smarty" />
 	<poissonDisplay action="modules/poisson/poisson.php" param="display" droits="consult" type="smarty" />
@@ -203,8 +204,6 @@
 	<spermeConservateurDelete action="modules/parametre/spermeConservateur.php" param="delete" droits="paramAdmin,reproAdmin" retourok="spermeConservateurList" retourko="spermeConservateurChange"  modulebefore="spermeConservateurChange"/>
 
 
-	<alimentation retourlogin="1"  type="smarty"/>
-
 	<alimentList action="modules/aliment/aliment.php" param="list" droits="consult" retourlogin="1"  type="smarty"/>
 	<alimentChange action="modules/aliment/aliment.php" param="change" droits="bassinAdmin"  type="smarty"/>
 	<alimentWrite action="modules/aliment/aliment.php" param="write" droits="bassinAdmin" retourok="alimentList" retourko="alimentChange" modulebefore="alimentChange" />
@@ -236,7 +235,6 @@
 	<documentGet action="modules/document/document.php" param="get" droits="consult" type="ajax"/>
 	<documentChangeData action="modules/document/document.php" param="changeData" droits="bassinGestion,poissonGestion,reproGestion" />
 	<documentWriteData action="modules/document/document.php" param="writeData" droits="bassinGestion,poissonGestion,reproGestion" retourok="documentList" retourko="documentChange"  />
-	
 	
 	<repro action="modules/repro/poissonCampagne.php" param="list" droits="reproConsult"  type="smarty"/>
 
@@ -292,7 +290,7 @@
 
 	<lotList action="modules/repro/lot.php" param="list" retourlogin="1" droits="reproConsult"  type="smarty"/>
 	<lotDisplay action="modules/repro/lot.php" param="display" droits="reproConsult"  type="smarty"/>
-	<lotChange action="modules/repro/lot.php" param="change" droits="reproGestion"  type="smarty"/>
+	<lotChange action="modules/repro/lot.php" param="change" droits="reproGestion"  type="smarty" retourko="lotList"/>
 	<lotWrite action="modules/repro/lot.php" param="write" droits="reproGestion" modulebefore="lotChange" retourok="lotDisplay" retourko="lotChange"/>
 	<lotDelete action="modules/repro/lot.php" param="delete" droits="reproGestion" modulebefore="lotChange" retourok="lotList" retourko="lotChange"/>
 
@@ -310,7 +308,7 @@
 	<saliniteDelete action="modules/repro/salinite.php" param="delete" droits="reproGestion" modulebefore="saliniteChange" retourok="saliniteNew" retourko="saliniteChange"/>
 
 	<spermeDisplay action="modules/repro/sperme.php" param="display" droits="reproConsult"  type="smarty"/>
-	<spermeChange action="modules/repro/sperme.php" param="change" droits="reproGestion"  type="smarty"/>
+	<spermeChange action="modules/repro/sperme.php" param="change" droits="reproGestion"  type="smarty" retourko="poissonCampagneDisplay"/>
 	<spermeWrite action="modules/repro/sperme.php" param="write" droits="reproGestion" modulebefore="spermeChange" retourok="spermeChange" retourko="spermeChange"/>
 	<spermeDelete action="modules/repro/sperme.php" param="delete" droits="reproGestion" modulebefore="spermeChange" retourok="poissonCampagneDisplay" retourko="spermeChange"/>
 
@@ -377,4 +375,11 @@
 	<siteDelete action="modules/parametre/site.php" param="delete" droits="paramAdmin" modulebefore="siteChange" retourok="siteList" retourko="siteChange"/>
 
 	<dbstructureSchema action="framework/utils/structure.php" param="schema" realfilename="documentation/esfc.png" generatedfilename="esfc-database.png" retourlogin="1" type="binaire" droits="requeteAdmin" maxCountByHour="60" maxCountByDay="600" />
+
+	<!-- submenus -->
+	<parametres action="framework/utils/submenu.php" param="parametres" type="smarty" droits="consult"  retourlogin="1"/>
+	<paramPoisson action="framework/utils/submenu.php" type="smarty" retourlogin="1"/>
+	<sites action="framework/utils/submenu.php" type="smarty" retourlogin="1"/>
+	<reproduction action="framework/utils/submenu.php" type="smarty" droits="reproConsult"  retourlogin="1"/>
+	<alimentation retourlogin="1"  type="smarty" action="framework/utils/submenu.php" />
 </navigation>

@@ -20,7 +20,6 @@
 			if (pittag.length > 0 && $("#cmatricule").val().length == 0) {
 				$("#cmatricule").val(pittag);
 			}
-
 		});
 	});
 </script>
@@ -95,17 +94,15 @@
 					<div class="col-md-8">
 						<input id="pittag_id" class="form-control" name="pittag_id" type="hidden"
 							value="{$dataPittag.pittag_id}">
-						<input class="form-control" type="text" name="pittag_valeur" id="cpittag_valeur" size="20"
-							value="{$dataPittag.pittag_valeur}" pattern="(([A-F0-9][A-F0-9])*|[0-9]*)"
-							placeholder="{t}01AB2C ou 12345{/t}" title="{t}Nombre hexadécimal ou numérique{/t}"
-							autofocus>
+						<input class="form-control" type="text" name="pittag_valeur" id="cpittag_valeur"
+							value="{$dataPittag.pittag_valeur}" title="{t}Pittag complet{/t}" autofocus>
 					</div>
 				</div>
 				<div class="form-group">
-					<label for="" class="control-label col-md-4">{t}Type de marque :{/t}</label>
+					<label for="pittag_type_id" class="control-label col-md-4">{t}Type de marque :{/t}</label>
 					<span class="erreur"></span>
 					<div class="col-md-8">
-						<select name="pittag_type_id" class="form-control">
+						<select id="pittag_type_id" name="pittag_type_id" class="form-control">
 							<option value="" {if $pittagType.pittag_type_id=="" }selected{/if}>
 								{t}Sélectionnez le type de marque...{/t}
 							</option>
@@ -123,8 +120,7 @@
 						{t}Date de pose :{/t}
 					</label>
 					<div class="col-md-8">
-						<input id="pittag_date_pose" class="form-control" name="pittag_date_pose" class="datepicker"
-							id="cpittag_date_pose" value="{$dataPittag.pittag_date_pose}"
+						<input id="pittag_date_pose" class="form-control datepicker" name="pittag_date_pose" value="{$dataPittag.pittag_date_pose}"
 							title="{t}Date de pose de la marque{/t}">
 
 					</div>

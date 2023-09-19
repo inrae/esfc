@@ -36,3 +36,7 @@ $vue->set($categorie->getListe(1), "categorie");
 require_once 'modules/classes/site.class.php';
 $site = new Site($bdd, $ObjetBDDParam);
 $vue->set($site->getListe(2), "site");
+require_once "modules/classes/bassin.class.php";
+$bassin = new Bassin($bdd, $ObjetBDDParam);
+$dataSearch["site_id"] > 0 ? $site_id = $dataSearch["site_id"] : $site_id = 0;
+$vue->set($bassin->getListBassin($site_id), "bassins");
