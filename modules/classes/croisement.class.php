@@ -151,7 +151,7 @@ class Croisement extends ObjetBDD
 		$parents = "";
 		$new = true;
 		if ($croisement_id > 0 && is_numeric($croisement_id)) {
-			$sql = "select prenom, sexe_libelle_court
+			$sql = "select matricule, prenom, sexe_libelle_court
 						from poisson_croisement
 						join poisson_campagne using (poisson_campagne_id)
 						join poisson using (poisson_id)
@@ -160,12 +160,16 @@ class Croisement extends ObjetBDD
 						order by sexe_libelle_court, prenom";
 			$poissons = $this->getListeParamAsPrepared($sql, array("id" => $croisement_id));
 			foreach ($poissons as $value1) {
-				if ($new == false) {
-					$parents .= " ";
+				if (!$new ) {
+					$parents .= " / ";
 				} else {
 					$new = false;
 				}
-				$parents .= $value1["prenom"] . "(" . $value1["sexe_libelle_court"] . ")";
+				$parents .= $value1["matricule"];
+				if (!empty($value1["prenom"])) {
+					$parents .= " ".$value1["prenom"];
+				}
+				$parents .= " (" . $value1["sexe_libelle_court"] . ")";
 			}
 		}
 		return $parents;

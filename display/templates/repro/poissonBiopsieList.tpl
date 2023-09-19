@@ -6,11 +6,11 @@
             <th>{t}Taux OPI{/t}</th>
             <th>{t}Taux color normale{/t}</th>
             <th>{t}Taux éclatement{/t}</th>
-            <th>{t}Ringer T50{/t}</th>
-            <th>{t}Ringer Tmax{/t}</th>
+            <th>{t}Ringer T50 (heures){/t}</th>
+            <th>{t}Ringer Tmax en heures{/t}</th>
             <th>{t}Ringer commentaire{/t}</th>
-            <th>{t}Leib T50{/t}</th>
-            <th>{t}Leib Tmax{/t}</th>
+            <th>{t}Leib T50 (heures){/t}</th>
+            <th>{t}Leib Tmax en heures{/t}</th>
             <th>{t}Leib commentaire{/t}</th>
             <th>{t}Commentaire général{/t}</th>
         </tr>

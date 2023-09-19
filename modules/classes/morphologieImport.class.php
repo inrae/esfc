@@ -26,6 +26,7 @@ class MorphologieImport
     public array $ObjetBDDParam;
     private $poisson, $evenement, $morphologie;
     public $classpath = "modules/classes";
+    public array $headerLine;
 
     function __construct(PDO $bdd, array $ObjetBDDParam = array())
     {
@@ -33,7 +34,7 @@ class MorphologieImport
         $this->ObjetBDDParam = $ObjetBDDParam;
     }
 
-    function initFile($filename, $separator = ",", array $colonnes, $utf8_encode = false)
+    function initFile($filename, $separator = ",", array $colonnes, $utf8_encode = false, $headernumber = 1)
     {
         if ($separator == "tab") {
             $separator = "\t";
@@ -48,8 +49,11 @@ class MorphologieImport
             /**
              * Lecture de la premiere ligne et affectation des colonnes
              */
-            $data = $this->readLine();
-            $range = 0;
+            for ($i = 1; $i < $headernumber; $i++) {
+                $this->readLine();
+            }
+            $this->headerLine = $this->readLine();
+            /*$range = 0;
             for ($range = 0; $range < count($data); $range++) {
                 $value = $data[$range];
                 if (in_array($value, $this->colonnes)) {
@@ -57,9 +61,16 @@ class MorphologieImport
                 } else {
                     throw new HeaderException(sprintf(_('La colonne %1$s n\'est pas reconnue (%2$s)'), $range, $value));
                 }
-            }
+            }*/
         } else {
             throw new FichierException(sprintf(_("Le fichier %s n'a pas été trouvé ou n'est pas lisible"), $filename));
+        }
+    }
+
+    function setRealCols(array $translate)
+    {
+        for ($range = 0; $range < count($this->headerLine); $range++) {
+            $this->fileColumn[$range] = $translate[$this->headerLine[$range]];
         }
     }
     function readLine()
@@ -156,7 +167,7 @@ class MorphologieImport
                     );
                     $evenement_id = $this->evenement->ecrire($devenement);
                 }
-               
+
                 /**
                  * Search from preexistent morphologie
                  */
@@ -188,7 +199,7 @@ class MorphologieImport
                     $this->maxevent = $evenement_id;
                 }
             } catch (Exception $pe) {
-                throw new ImportMorphologieException(sprintf(_("Ligne %s : une erreur est survenue lors de l'enregistrement"),$num)." - " . $pe->getMessage());
+                throw new ImportMorphologieException(sprintf(_("Ligne %s : une erreur est survenue lors de l'enregistrement"), $num) . " - " . $pe->getMessage());
             }
             $this->nbTreated++;
         }

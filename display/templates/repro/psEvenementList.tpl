@@ -12,7 +12,7 @@
         <tr>
             <td>
                 <a
-                    href="index.php?module=poissonSequenceChange&poisson_sequence_id={$dataPsEvenement[lst].poisson_sequence_id}&sequence_id={$dataSequence[lst].sequence_id}">
+                    href="index.php?module=poissonSequenceChange&poisson_sequence_id={$dataPsEvenement[lst].poisson_sequence_id}&sequence_id={$dataSequence[lst].sequence_id}&poisson_campagne_id={$dataSequence[lst].poisson_campagne_id}">
                     {$dataPsEvenement[lst].sequence_nom}
                 </a>
             </td>

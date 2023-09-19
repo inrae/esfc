@@ -1,3 +1,10 @@
+<script src="display/javascript/jquery.inputmask.js"></script>
+
+<script>
+	$(document).ready(function() {
+		$(".duration").inputmask("99:99");
+	});
+</script>
 <a href="index.php?module={$poissonDetailParent}&sequence_id={$sequence_id}">
 	<img src="display/images/display.png" height="25">
 	{t}Retour à la liste des poissons{/t}
@@ -102,10 +109,10 @@
 				<legend>{t}Maturation Ringer{/t}</legend>
 				<div class="form-group">
 					<label for="ringer_t50" class="control-label col-md-4">
-						{t}T50 :{/t}
+						{t}T50 (heures) :{/t}
 					</label>
 					<div class="col-md-8">
-						<input id="ringer_t50" class="form-control time" name="ringer_t50" value="{$data.ringer_t50}">
+						<input id="ringer_t50" class="form-control duration" name="ringer_t50" value="{$data.ringer_t50}">
 					</div>
 				</div>
 				<div class="form-group">
@@ -116,8 +123,8 @@
 						<div class="form-inline">
 							<input id="ringer_tx_max" class="form-control taux" name="ringer_tx_max"
 								value="{$data.ringer_tx_max}">
-							{t}en{/t}
-							<input class="timepicker form-control" name="ringer_duree" value="{$data.ringer_duree}">
+							{t}en (heures){/t}
+							<input class="duration form-control" name="ringer_duree" value="{$data.ringer_duree}">
 						</div>
 					</div>
 				</div>
@@ -135,10 +142,10 @@
 				<legend>{t}Maturation Leibovitz{/t}</legend>
 				<div class="form-group">
 					<label for="leibovitz_t50" class="control-label col-md-4">
-						{t}T50 :{/t}
+						{t}T50 (heures) :{/t}
 					</label>
 					<div class="col-md-8">
-						<input id="leibovitz_t50" class="form-control time" name="leibovitz_t50"
+						<input id="leibovitz_t50" class="form-control duration" name="leibovitz_t50"
 							value="{$data.leibovitz_t50}">
 					</div>
 				</div>
@@ -150,8 +157,8 @@
 						<div class="form-inline">
 							<input id="leibovitz_tx_max" class="taux form-control" name="leibovitz_tx_max"
 								value="{$data.leibovitz_tx_max}">
-							{t}en{/t}
-							<input class="timepicker form-control" name="leibovitz_duree"
+							{t}en (heures){/t}
+							<input class="duration form-control" name="leibovitz_duree"
 								value="{$data.leibovitz_duree}">
 						</div>
 					</div>

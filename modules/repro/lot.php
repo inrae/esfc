@@ -56,7 +56,10 @@ switch ($t_module["param"]) {
 		$devenir = new Devenir($bdd, $ObjetBDDParam);
 		$vue->set($devenir->getListFromLot($id), "dataDevenir");
 		$vue->set("lot", "devenirOrigine");
-
+		/**
+		 * Lecture des lots dérivés
+		 */
+		$vue->set($dataClass->getDerivatedLots($id), "lots");
 		break;
 	case "change":
 		/*
@@ -64,24 +67,36 @@ switch ($t_module["param"]) {
 		 * If is a new record, generate a new record with default value :
 		 * $_REQUEST["idParent"] contains the identifiant of the parent record
 		 */
-		dataRead($dataClass, $id, "repro/lotChange.tpl");
-		if (isset($_REQUEST["sequence_id"])) {
-			require_once "modules/classes/sequence.class.php";
-			$sequence = new Sequence($bdd, $ObjetBDDParam);
-			$vue->set($sequence->lire($_REQUEST["sequence_id"]), "sequence");
-		}
 		/*
 		 * Lecture de la liste des croisements
 		 */
 		require_once 'modules/classes/croisement.class.php';
 		$croisement = new Croisement($bdd, $ObjetBDDParam);
-		$vue->set($croisement->getListFromAnnee($_SESSION["annee"]), "croisements");
-		/*
-		 * Lecture de la liste des marquages VIE
-		 */
-		require_once "modules/classes/vieModele.class.php";
-		$vieModele = new VieModele($bdd, $ObjetBDDParam);
-		$vue->set($vieModele->getModelesFromAnnee($_SESSION["annee"]), "modeles");
+		$croisements = $croisement->getListFromAnnee($_SESSION["annee"]);
+		if (empty($croisements)) {
+			$module_coderetour = -1;
+			$message->set(
+				sprintf(
+					_("Aucun croisement n'a été enregistré pour l'année %s, la création d'un lot n'est pas possible"),
+					$_SESSION["annee"]
+				),
+				true
+			);
+		} else {
+			dataRead($dataClass, $id, "repro/lotChange.tpl");
+			if (isset($_REQUEST["sequence_id"])) {
+				require_once "modules/classes/sequence.class.php";
+				$sequence = new Sequence($bdd, $ObjetBDDParam);
+				$vue->set($sequence->lire($_REQUEST["sequence_id"]), "sequence");
+			}
+			$vue->set($croisements, "croisements");
+			/*
+			 * Lecture de la liste des marquages VIE
+			 */
+			require_once "modules/classes/vieModele.class.php";
+			$vieModele = new VieModele($bdd, $ObjetBDDParam);
+			$vue->set($vieModele->getModelesFromAnnee($_SESSION["annee"]), "modeles");
+		}
 		break;
 	case "write":
 		/*

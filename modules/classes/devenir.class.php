@@ -14,6 +14,7 @@
  */
 class Devenir extends ObjetBDD
 {
+	public Lot $lot;
 	private $sql = "select d1.*, dt1.devenir_type_libelle, sl1.localisation,
 			c.categorie_libelle, lot_nom,
 			d2.devenir_date as devenir_date_parent, dt2.devenir_type_libelle as devenir_type_libelle_parent,
@@ -104,6 +105,33 @@ class Devenir extends ObjetBDD
 		}
 		$this->colonnes["devenir_date_parent"]["type"] = 2;
 		return $this->getListeParamAsPrepared($this->sql . $where . $this->sqlOrder, $param);
+	}
+
+	function ecrire($data):int {
+
+		$id = parent::ecrire($data);
+		/**
+		 * Search for a creation of a derivated lot
+		 */
+		if ($data["devenir_type_id"] == 6 && $data["devenir_id"] == 0) {
+			if (!isset($this->lot)) {
+				$this->lot = $this->classInstanciate("Lot", "lot.class.php");
+			}
+			/**
+			 * Search for preexistant sublots
+			 */
+			$sql = "select count(*) as nb from lot where parent_lot_id = :lot_id";
+			$count = $this->lireParamAsPrepared($sql, array("lot_id"=>$data["lot_id"]));
+			$nb = $count["nb"] + 1;
+			$dataLot = $this->lot->lire($data["lot_id"]);
+			$dataLot["parent_lot_id"] = $data["lot_id"];
+			$dataLot["lot_id"] = 0;
+			$dataLot["nb_larve_initial"] = $data["poisson_nombre"];
+			$dataLot["nb_larve_compte"] = $data["poisson_nombre"];
+			$dataLot["lot_nom"] .= "-".$nb;
+			$this->lot->ecrire($dataLot);
+		}
+		return $id;
 	}
 }
 

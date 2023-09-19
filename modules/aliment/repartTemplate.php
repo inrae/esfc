@@ -72,7 +72,7 @@ switch ($t_module["param"]) {
 			 * Preparation des aliments
 			 */
 			$data = array();
-			foreach ($_REQUEST as $value) {
+			foreach ($_REQUEST as $key=>$value) {
 				if (preg_match('/[0-9]+$/', $key, $val)) {
 					$pos = strrpos($key, "_");
 					$nom = substr($key, 0, $pos);

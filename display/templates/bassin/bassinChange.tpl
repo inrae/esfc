@@ -131,7 +131,7 @@
 
             <div class="form-group">
                 <label for="csurface" class="control-label col-md-4">
-                    {t}Surface (en cm2) :/t}
+                    {t}Surface (en cm2) :{/t}
                 </label>
                 <div class="col-md-8">
                     <input class="form-control nombre" id="csurface" name="surface" value="{$data.surface}">

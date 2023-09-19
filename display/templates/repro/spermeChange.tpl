@@ -1,4 +1,4 @@
-<a href="index.php?module={$poissonDetailParent}&sequence_id={$sequence_id}">
+<a href="index.php?module={$poissonDetailParent}&sequence_id={$data.sequence_id}">
     <img src="display/images/display.png" height="25">
     {t}Retour à la liste des poissons{/t}
 </a>&nbsp;
@@ -46,12 +46,18 @@
 
 
     <div class="col-lg-8 col-md-12">
-        <h3>{t}Analyses réalisées{/t}</h3>
+        <h3>
+            <img src="display/images/analyse.png" height="25">
+            {t}Analyses réalisées{/t}
+        </h3>
         {include file="repro/spermeMesureList.tpl"}
 
         <!-- Ajout de l'affichage des congelations -->
         {if $data.sperme_id > 0}
-        <h3>{t}Congélations{/t}</h3>
+        <h3>
+            <img src="display/images/congelation.svg" height="25">
+            {t}Congélations{/t}
+        </h3>
         {include file="repro/spermeCongelationList.tpl"}
         {/if}
     </div>

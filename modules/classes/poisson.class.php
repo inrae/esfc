@@ -84,33 +84,25 @@ class Poisson extends ObjetBDD
      */
     function getListeSearch($dataSearch)
     {
-
-        $sql = "select poisson_id, s.sexe_id, matricule, prenom, cohorte, capture_date, 
+        $data = array();
+        $sql = "select poisson_id, s.sexe_id, matricule, prenom, cohorte, capture_date, date_naissance,
                 s.sexe_libelle, s.sexe_libelle_court, poisson_statut_libelle,commentaire,
 					pittag_valeur,
 					m.mortalite_date,
-					categorie_id, categorie_libelle";
+					categorie_id, categorie_libelle
+                    , longueur_fourche, longueur_totale, masse
+                    , bassin_id, bassin_nom, site_id, site_name";
         $from = " from poisson 
                     join sexe s using (sexe_id)
 					join poisson_statut using (poisson_statut_id)
 					join categorie using (categorie_id)
 					left outer join mortalite m using (poisson_id)					  
-					left outer join v_pittag_by_poisson using (poisson_id)";
-        if ($dataSearch["displayMorpho"] == 1) {
-            $sql .= ", longueur_fourche, longueur_totale, masse";
-            $from .= " left outer join v_poisson_last_lf using (poisson_id)
-					  left outer join v_poisson_last_lt using (poisson_id)
-					  left outer join v_poisson_last_masse using (poisson_id) ";
-        }
-        if ($dataSearch["displayBassin"] == 1 || $dataSearch["site_id"] > 0) {
-            $sql .= ", bassin_id, bassin_nom, site_id, site_name";
-            $from .= " left outer join v_poisson_last_bassin using (poisson_id)
-                            left outer join site using (site_id)";
-        }
-        /**
-         * Preparation de la clause order
-         */
-        $order = " order by matricule ";
+					left outer join v_pittag_by_poisson using (poisson_id)
+                    left outer join v_poisson_last_lf using (poisson_id)
+				    left outer join v_poisson_last_lt using (poisson_id)
+					left outer join v_poisson_last_masse using (poisson_id)
+                    left outer join v_poisson_last_bassin using (poisson_id)
+                    left outer join site using (site_id)  ";
         /**
          * Preparation de la clause where
          */
@@ -150,6 +142,11 @@ class Poisson extends ObjetBDD
             $param["site_id"] = $dataSearch["site_id"];
             $and = " and ";
         }
+        if ($dataSearch["bassin_id"]>0) {
+            $where .= $and . " bassin_id = :bassin_id ";
+            $param["bassin_id"] = $dataSearch["bassin_id"];
+            $and = " and ";
+        }
         if (strlen($dataSearch["eventSearch"]) > 0) {
             if (key_exists($dataSearch["eventSearch"], $_SESSION["searchPoisson"]->getSearchByEvent())) {
                 $from .= " join " . $dataSearch["eventSearch"] . " es using (poisson_id)";
@@ -164,7 +161,7 @@ class Poisson extends ObjetBDD
         }
         if (strlen($where) > 7) {
             $this->colonnes["mortalite_date"] = array("type" => 2);
-            $data = $this->getListeParamAsPrepared($sql . $from . $where . $order, $param);
+            $data = $this->getListeParamAsPrepared($sql . $from . $where , $param);
         }
         /**
          * Recherche des temperatures cumulees
@@ -307,7 +304,7 @@ class Poisson extends ObjetBDD
              * Recherche des poissons "enfants"
              */
         if (!isset($this->parent_poisson)) {
-            $this->parent_poisson = $this->classInstanciate("ParentPoisson", "parent_poisson.class.php");
+            $this->parent_poisson = $this->classInstanciate("ParentPoisson", "parentPoisson.class.php");
         }
         $listeEnfant = $this->parent_poisson->lireEnfant($id);
         if (is_array($listeEnfant) == true && count($listeEnfant) > 0) {
@@ -343,7 +340,7 @@ class Poisson extends ObjetBDD
             /*
              * Documents
              */
-            if (isset($this->documentLie)) {
+            if (!isset($this->documentLie)) {
                 require_once $this->classpath . "/documentLie.class.php";
                 $this->documentLie = new DocumentLie($this->connection, $this->paramori, "poisson");
             }
@@ -361,7 +358,7 @@ class Poisson extends ObjetBDD
             if (!isset($this->pittag)) {
                 $this->pittag = $this->classInstanciate("Pittag", "pittag.class.php");
             }
-            $pittag->supprimerChamp($id, "poisson_id");
+            $this->pittag->supprimerChamp($id, "poisson_id");
             /*
              * Suppression du poisson
              */

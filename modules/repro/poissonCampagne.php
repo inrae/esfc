@@ -15,8 +15,9 @@ $id = $_REQUEST[$keyName];
  */
 require "modules/repro/setAnnee.php";
 
-if (isset($_SESSION["sequence_id"]))
+if (isset ($vue) && isset($_SESSION["sequence_id"])) {
 	$vue->set($_SESSION["sequence_id"], "sequence_id");
+}
 
 switch ($t_module["param"]) {
 	case "list":
