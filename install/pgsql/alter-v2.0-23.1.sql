@@ -13,3 +13,10 @@ values
 (6, 'Création d''un lot dérivé');
 
 insert into dbversion(dbversion_number, dbversion_date) values ('23.1', '2023-09-19');
+
+
+/*
+ * Pour Ruthenus
+ */
+update ruthenus.pittag set pittag_valeur = replace(pittag_valeur, '95500000', '955.00000')
+where pittag_valeur like '95500000%';

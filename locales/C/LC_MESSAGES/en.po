@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ESFC\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-08-21 16:09+0200\n"
+"POT-Creation-Date: 2023-09-19 09:38+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -17,7 +17,7 @@ msgstr ""
 #. (itstool) path: menu/item@label
 #. (itstool) path: item/item@label
 #: ../../../param/menu.xml:8 ../../../param/menu.xml:9
-#: ../../../param/menu.xml:30 ../../../param/menu.xml:38
+#: ../../../param/menu.xml:32 ../../../param/menu.xml:40
 #: ../../../display/templates/repro/croisementList.tpl:12
 msgid "Poissons"
 msgstr "Fish"
@@ -48,744 +48,754 @@ msgstr "Measurement import"
 msgid "Importation des morphologies à partir d'un fichier CSV"
 msgstr "Measurement import from a CSV file"
 
+#. (itstool) path: item/item@label
+#: ../../../param/menu.xml:13
+msgid "Requêtes sur la base de données"
+msgstr "Database requests"
+
+#. (itstool) path: item/item@tooltip
+#: ../../../param/menu.xml:13
+msgid "Exécuter des requêtes sur la base de données"
+msgstr "Run requests on database"
+
 #. (itstool) path: menu/item@label
 #. (itstool) path: item/item@label
-#: ../../../param/menu.xml:14 ../../../param/menu.xml:15
+#: ../../../param/menu.xml:16 ../../../param/menu.xml:17
 #: ../../../display/templates/repro/sequenceList.tpl:94
 msgid "Bassins"
 msgstr "Basins"
 
 #. (itstool) path: menu/item@tooltip
 #. (itstool) path: item/item@tooltip
-#: ../../../param/menu.xml:14 ../../../param/menu.xml:15
+#: ../../../param/menu.xml:16 ../../../param/menu.xml:17
 msgid "Liste des bassins"
 msgstr "List of basins"
 
 #. (itstool) path: item/item@label
-#: ../../../param/menu.xml:16
+#: ../../../param/menu.xml:18
 msgid "Circuits d'eau"
 msgstr "Water circuits"
 
 #. (itstool) path: item/item@tooltip
-#: ../../../param/menu.xml:16
+#: ../../../param/menu.xml:18
 msgid "Liste des circuits d'eau"
 msgstr "List of water circuits"
 
 #. (itstool) path: item/item@label
-#: ../../../param/menu.xml:17
+#: ../../../param/menu.xml:19
 msgid "Import sondes"
 msgstr "Probes import"
 
 #. (itstool) path: item/item@tooltip
-#: ../../../param/menu.xml:17
+#: ../../../param/menu.xml:19
 msgid "Importation des résultats d'analyses effectuées avec les sondes"
 msgstr "Import of probe analysis results"
 
 #. (itstool) path: item/item@label
-#: ../../../param/menu.xml:18
+#: ../../../param/menu.xml:20
 msgid "Graphique des analyses"
 msgstr "Analysis graph"
 
 #. (itstool) path: item/item@tooltip
-#: ../../../param/menu.xml:18
+#: ../../../param/menu.xml:20
 msgid "Affichage des dernières analyses d'eau sous forme de graphique"
 msgstr "Display of last water analysis with a graph"
 
 #. (itstool) path: menu/item@label
-#: ../../../param/menu.xml:21
+#: ../../../param/menu.xml:23
 msgid "Alimentation"
 msgstr "Feed"
 
 #. (itstool) path: menu/item@tooltip
-#: ../../../param/menu.xml:21
+#: ../../../param/menu.xml:23
 msgid "Gestion de l'alimentation des poissons"
 msgstr "Fish feed management"
 
 #. (itstool) path: item/item@label
-#: ../../../param/menu.xml:22
+#: ../../../param/menu.xml:24
 msgid "Répartitions"
 msgstr "Distributions"
 
 #. (itstool) path: item/item@tooltip
-#: ../../../param/menu.xml:22
+#: ../../../param/menu.xml:24
 msgid "Répartition des aliments dans les bassins"
 msgstr "Distribution of feed in basins"
 
 #. (itstool) path: item/item@label
-#: ../../../param/menu.xml:23
+#: ../../../param/menu.xml:25
 #: ../../../display/templates/bassin/bassinDisplay.tpl:62
 msgid "Aliments"
 msgstr "Feeds"
 
 #. (itstool) path: item/item@tooltip
-#: ../../../param/menu.xml:23
+#: ../../../param/menu.xml:25
 msgid "Liste des aliments"
 msgstr "List of feeds"
 
 #. (itstool) path: item/item@label
-#: ../../../param/menu.xml:24
+#: ../../../param/menu.xml:26
 msgid "Catégories d'aliments"
 msgstr "Feed categories"
 
 #. (itstool) path: item/item@tooltip
-#: ../../../param/menu.xml:24
+#: ../../../param/menu.xml:26
 msgid "Liste des catégories d'aliments"
 msgstr "List of categories of feeds"
 
 #. (itstool) path: item/item@label
-#: ../../../param/menu.xml:25
+#: ../../../param/menu.xml:27
 #: ../../../display/templates/parametre/alimentTypeList.tpl:1
 msgid "Types d'aliments"
 msgstr "Feed types"
 
 #. (itstool) path: item/item@tooltip
-#: ../../../param/menu.xml:25
+#: ../../../param/menu.xml:27
 msgid "Liste des types d'aliments"
 msgstr "List of types of feeds"
 
 #. (itstool) path: item/item@label
-#: ../../../param/menu.xml:26
+#: ../../../param/menu.xml:28
 msgid "Modèles de répartition"
 msgstr "Repartition templates"
 
 #. (itstool) path: item/item@tooltip
-#: ../../../param/menu.xml:26
+#: ../../../param/menu.xml:28
 msgid "Liste des modèles de répartition"
 msgstr "List of templates of repartition"
 
 #. (itstool) path: menu/item@label
 #. (itstool) path: item/item@label
-#: ../../../param/menu.xml:29 ../../../param/menu.xml:61
+#: ../../../param/menu.xml:31 ../../../param/menu.xml:63
 #: ../../../display/templates/poisson/poissonDisplay.tpl:132
 msgid "Reproduction"
 msgstr "Reproduction"
 
 #. (itstool) path: menu/item@tooltip
-#: ../../../param/menu.xml:29
+#: ../../../param/menu.xml:31
 msgid "Gestion de la reproduction"
 msgstr "Reproduction management"
 
 #. (itstool) path: item/item@tooltip
-#: ../../../param/menu.xml:30
+#: ../../../param/menu.xml:32
 msgid "Liste des reproducteurs sélectionnés pour une campagne"
 msgstr "List of breeding stock selected for a campaign"
 
 #. (itstool) path: item/item@label
-#: ../../../param/menu.xml:31
+#: ../../../param/menu.xml:33
 msgid "Séquences et bassins"
 msgstr "Sequences and basins"
 
 #. (itstool) path: item/item@tooltip
-#: ../../../param/menu.xml:31
+#: ../../../param/menu.xml:33
 msgid "Liste des séquences et des bassins pour une campagne"
 msgstr "List of sequences and basins for a campaign"
 
 #. (itstool) path: item/item@label
-#: ../../../param/menu.xml:32
+#: ../../../param/menu.xml:34
 msgid "Lots de larves"
 msgstr "Batches of larvae"
 
 #. (itstool) path: item/item@tooltip
-#: ../../../param/menu.xml:32
+#: ../../../param/menu.xml:34
 msgid "Liste des lots de larves pour une campagne"
 msgstr "List of batches of larvae for a campaign"
 
 #. (itstool) path: item/item@label
-#: ../../../param/menu.xml:33
+#: ../../../param/menu.xml:35
 msgid "Destination des lots"
 msgstr "Destination of lots"
 
 #. (itstool) path: item/item@tooltip
-#: ../../../param/menu.xml:33
+#: ../../../param/menu.xml:35
 msgid "Liste des lâchers ou des rentrées dans le stock captif"
 msgstr "List of releases or re-entries into captive stock"
 
 #. (itstool) path: item/item@label
-#: ../../../param/menu.xml:34
+#: ../../../param/menu.xml:36
 msgid "Modèles de marquage VIE"
 msgstr "VIE marking models"
 
 #. (itstool) path: item/item@tooltip
-#: ../../../param/menu.xml:34
+#: ../../../param/menu.xml:36
 msgid "Liste des modèles de marquage VIE pour une campagne"
 msgstr "List of VIE marking models for a campaign"
 
 #. (itstool) path: menu/item@label
-#: ../../../param/menu.xml:37
+#: ../../../param/menu.xml:39
 msgid "Paramètres"
 msgstr "Settings"
 
 #. (itstool) path: menu/item@tooltip
-#: ../../../param/menu.xml:37
+#: ../../../param/menu.xml:39
 msgid "Paramètres généraux de l'application"
 msgstr "Application Settings"
 
 #. (itstool) path: item/item@tooltip
-#: ../../../param/menu.xml:38
+#: ../../../param/menu.xml:40
 msgid "Paramètres liés aux poissons"
 msgstr "Fish settings"
 
 #. (itstool) path: item/item@label
-#: ../../../param/menu.xml:39
+#: ../../../param/menu.xml:41
 msgid "Types de pittags"
 msgstr "Pittag types"
 
 #. (itstool) path: item/item@tooltip
-#: ../../../param/menu.xml:39
+#: ../../../param/menu.xml:41
 msgid "Liste des types de pittags"
 msgstr "List of types of pittags"
 
 #. (itstool) path: item/item@label
-#: ../../../param/menu.xml:40
+#: ../../../param/menu.xml:42
 #: ../../../display/templates/parametre/poissonStatutList.tpl:1
 msgid "Statuts des poissons"
 msgstr "Fish status"
 
 #. (itstool) path: item/item@tooltip
-#: ../../../param/menu.xml:40
+#: ../../../param/menu.xml:42
 msgid "Liste des statuts des poissons"
 msgstr "List of status of fish"
 
 #. (itstool) path: item/item@label
-#: ../../../param/menu.xml:41
+#: ../../../param/menu.xml:43
 msgid "Méthodes de sexage"
 msgstr "Sexing methods"
 
 #. (itstool) path: item/item@tooltip
-#: ../../../param/menu.xml:41
+#: ../../../param/menu.xml:43
 msgid "Liste des méthode de sexage utilisées"
 msgstr "List of used sexing methods"
 
 #. (itstool) path: item/item@label
-#: ../../../param/menu.xml:42
+#: ../../../param/menu.xml:44
 #: ../../../display/templates/parametre/evenementTypeList.tpl:1
 msgid "Types d'événements"
 msgstr "Event types"
 
 #. (itstool) path: item/item@tooltip
-#: ../../../param/menu.xml:42
+#: ../../../param/menu.xml:44
 msgid "Liste des types d'événements"
 msgstr "List of event types"
 
 #. (itstool) path: item/item@label
-#: ../../../param/menu.xml:43
+#: ../../../param/menu.xml:45
 msgid "Types de pathologie"
 msgstr "Pathology types"
 
 #. (itstool) path: item/item@tooltip
-#: ../../../param/menu.xml:43
+#: ../../../param/menu.xml:45
 msgid "Liste des types de pathologie"
 msgstr "List of pathology types"
 
 #. (itstool) path: item/item@label
-#: ../../../param/menu.xml:44
+#: ../../../param/menu.xml:46
 msgid "Types de mortalités"
 msgstr "Mortality types"
 
 #. (itstool) path: item/item@tooltip
-#: ../../../param/menu.xml:44
+#: ../../../param/menu.xml:46
 msgid "Liste des types de mortalités"
 msgstr "List of mortality types"
 
 #. (itstool) path: item/item@label
-#: ../../../param/menu.xml:45
+#: ../../../param/menu.xml:47
 msgid "Détermination des cohortes"
 msgstr "Cohort determination"
 
 #. (itstool) path: item/item@tooltip
-#: ../../../param/menu.xml:45
+#: ../../../param/menu.xml:47
 msgid "Méthodes de détermination des cohortes"
 msgstr "Methods of cohort determinations"
 
 #. (itstool) path: item/item@label
-#: ../../../param/menu.xml:46
+#: ../../../param/menu.xml:48
 msgid "Lieux de lâcher"
 msgstr "Release site"
 
 #. (itstool) path: item/item@tooltip
-#: ../../../param/menu.xml:46
+#: ../../../param/menu.xml:48
 msgid "Liste des lieux de lâcher"
 msgstr "List of release locations"
 
 #. (itstool) path: item/item@label
-#: ../../../param/menu.xml:47
+#: ../../../param/menu.xml:49
 msgid "Nageoires"
 msgstr "Fins"
 
 #. (itstool) path: item/item@tooltip
-#: ../../../param/menu.xml:47
+#: ../../../param/menu.xml:49
 msgid "Liste des nageoires (prélévements génétiques)"
 msgstr "List of fins (genetic samples)"
 
 #. (itstool) path: item/item@label
-#: ../../../param/menu.xml:50
+#: ../../../param/menu.xml:52
 msgid "Sites et bassins"
 msgstr "Sites and basins"
 
 #. (itstool) path: item/item@tooltip
-#: ../../../param/menu.xml:50
+#: ../../../param/menu.xml:52
 msgid "Paramètres concernant les sites et les bassins"
 msgstr "Sites and basin parameters"
 
 #. (itstool) path: item/item@label
-#: ../../../param/menu.xml:51
+#: ../../../param/menu.xml:53
 msgid "Sites"
 msgstr "Sites"
 
 #. (itstool) path: item/item@tooltip
-#: ../../../param/menu.xml:51
+#: ../../../param/menu.xml:53
 #: ../../../display/templates/parametre/siteList.tpl:1
 msgid "Liste des sites"
 msgstr "List of sites"
 
 #. (itstool) path: item/item@label
-#: ../../../param/menu.xml:52
+#: ../../../param/menu.xml:54
 #: ../../../display/templates/parametre/bassinTypeList.tpl:1
 msgid "Types de bassins"
 msgstr "Basin types"
 
 #. (itstool) path: item/item@tooltip
-#: ../../../param/menu.xml:52
+#: ../../../param/menu.xml:54
 msgid "Liste des types de bassins"
 msgstr "List of basin types"
 
 #. (itstool) path: item/item@label
-#: ../../../param/menu.xml:53
+#: ../../../param/menu.xml:55
 msgid "Usages des bassins"
 msgstr "Basin uses"
 
 #. (itstool) path: item/item@tooltip
-#: ../../../param/menu.xml:53
+#: ../../../param/menu.xml:55
 msgid "Liste des types d'usage des bassins"
 msgstr "List of basin usage types"
 
 #. (itstool) path: item/item@label
-#: ../../../param/menu.xml:54
+#: ../../../param/menu.xml:56
 msgid "Zones d'implantation"
 msgstr "Location zones"
 
 #. (itstool) path: item/item@tooltip
-#: ../../../param/menu.xml:54
+#: ../../../param/menu.xml:56
 msgid "Liste des zones d'implantation des bassins"
 msgstr "List of basin location zones"
 
 #. (itstool) path: item/item@label
-#: ../../../param/menu.xml:55
+#: ../../../param/menu.xml:57
 #: ../../../display/templates/bassin/circuitEauDisplay.tpl:203
 msgid "Métaux"
 msgstr "Metals"
 
 #. (itstool) path: item/item@tooltip
-#: ../../../param/menu.xml:55
+#: ../../../param/menu.xml:57
 #: ../../../display/templates/parametre/metalList.tpl:1
 msgid "Liste des métaux analysés"
 msgstr "List of analyzed metals"
 
 #. (itstool) path: item/item@label
-#: ../../../param/menu.xml:56
+#: ../../../param/menu.xml:58
 msgid "Laboratoires"
 msgstr "Laboratories"
 
 #. (itstool) path: item/item@tooltip
-#: ../../../param/menu.xml:56
+#: ../../../param/menu.xml:58
 msgid "Liste des laboratoires sollicités pour les analyses d'eau"
 msgstr "List of laboratories used for water analysis"
 
 #. (itstool) path: item/item@label
-#: ../../../param/menu.xml:57
+#: ../../../param/menu.xml:59
 msgid "Types d'événements dans les bassins"
 msgstr "Basin event types"
 
 #. (itstool) path: item/item@tooltip
-#: ../../../param/menu.xml:57
+#: ../../../param/menu.xml:59
 msgid "Liste des types d'événements pouvant survenir dans les bassins"
 msgstr "List of basin event types"
 
 #. (itstool) path: item/item@label
-#: ../../../param/menu.xml:58
+#: ../../../param/menu.xml:60
 msgid "Types d'événements sur les circuits d'eau"
 msgstr "Types of events on water circuits"
 
 #. (itstool) path: item/item@tooltip
-#: ../../../param/menu.xml:58
+#: ../../../param/menu.xml:60
 msgid "Liste des types d'événements pouvant survenir sur les circuits d'eau"
 msgstr "List of types of events that can occur on water circuits"
 
 #. (itstool) path: item/item@tooltip
-#: ../../../param/menu.xml:61
+#: ../../../param/menu.xml:63
 msgid "Paramètres associés à la reproduction"
 msgstr "Parameters associated with reproduction"
 
 #. (itstool) path: item/item@label
-#: ../../../param/menu.xml:62
+#: ../../../param/menu.xml:64
 msgid "Hormones"
 msgstr "Hormones"
 
 #. (itstool) path: item/item@tooltip
-#: ../../../param/menu.xml:62
+#: ../../../param/menu.xml:64
 msgid "Liste des hormones utilisées"
 msgstr "List of hormones used"
 
 #. (itstool) path: item/item@label
-#: ../../../param/menu.xml:63
+#: ../../../param/menu.xml:65
 msgid "Produits d'anesthésie"
 msgstr "Anesthesia products"
 
 #. (itstool) path: item/item@tooltip
-#: ../../../param/menu.xml:63
+#: ../../../param/menu.xml:65
 msgid "Liste des produits d'anesthésie utilisés"
 msgstr "List of anesthesia products used"
 
 #. (itstool) path: item/item@label
-#: ../../../param/menu.xml:64
+#: ../../../param/menu.xml:66
 msgid "Implantation VIE"
 msgstr "VIE location"
 
 #. (itstool) path: item/item@tooltip
-#: ../../../param/menu.xml:64
+#: ../../../param/menu.xml:66
 msgid "Liste des emplacements d'implantation des marques VIE"
 msgstr "List of VIE marking locations"
 
 #. (itstool) path: item/item@label
-#: ../../../param/menu.xml:65
+#: ../../../param/menu.xml:67
 msgid "Dilueurs de sperme"
 msgstr "Sperm thinners"
 
 #. (itstool) path: item/item@tooltip
-#: ../../../param/menu.xml:65
+#: ../../../param/menu.xml:67
 msgid "Liste des dilueurs de sperme"
 msgstr "List of sperm dilutors"
 
 #. (itstool) path: item/item@label
-#: ../../../param/menu.xml:66
+#: ../../../param/menu.xml:68
 msgid "Caractéristiques du sperme"
 msgstr "Sperm characteristics"
 
 #. (itstool) path: item/item@tooltip
-#: ../../../param/menu.xml:66
+#: ../../../param/menu.xml:68
 msgid "Liste des caractéristiques potentielles du sperme"
 msgstr "List of sperm potential characteristics"
 
 #. (itstool) path: item/item@label
-#: ../../../param/menu.xml:67
+#: ../../../param/menu.xml:69
 msgid "Conservateurs de spermes"
 msgstr "Sperm preservatives"
 
 #. (itstool) path: item/item@tooltip
-#: ../../../param/menu.xml:67
+#: ../../../param/menu.xml:69
 msgid "Produits utilisés pour conserver le sperme"
 msgstr "Products used to conserve sperm"
 
 #. (itstool) path: item/item@label
-#: ../../../param/menu.xml:68
+#: ../../../param/menu.xml:70
 msgid "Stades des œufs"
 msgstr "Egg stades"
 
 #. (itstool) path: item/item@tooltip
-#: ../../../param/menu.xml:68
+#: ../../../param/menu.xml:70
 msgid "Liste des stades des œufs"
 msgstr "List of egg stages"
 
 #. (itstool) path: item/item@label
-#: ../../../param/menu.xml:69
+#: ../../../param/menu.xml:71
 msgid "Stades des gonades"
 msgstr "Gonad stages"
 
 #. (itstool) path: item/item@tooltip
-#: ../../../param/menu.xml:69
+#: ../../../param/menu.xml:71
 msgid "Liste des stades des gonades"
 msgstr "List of gonad stages"
 
 #. (itstool) path: item/item@label
-#: ../../../param/menu.xml:75
+#: ../../../param/menu.xml:77
 msgid "Types d'anomalies"
 msgstr "Anomaly types"
 
 #. (itstool) path: item/item@tooltip
-#: ../../../param/menu.xml:75
+#: ../../../param/menu.xml:77
 msgid "Liste des types d'anomalies détectés dans la base de données"
 msgstr "List of anomaly types detected into the database"
 
 #. (itstool) path: item/item@label
-#: ../../../param/menu.xml:76
+#: ../../../param/menu.xml:78
 msgid "Types de fichiers"
 msgstr "File types"
 
 #. (itstool) path: item/item@tooltip
-#: ../../../param/menu.xml:76
+#: ../../../param/menu.xml:78
 msgid "Liste des types de fichiers importables"
 msgstr "List of importable file types"
 
 #. (itstool) path: item/item@label
 #. (itstool) path: item/item@tooltip
-#: ../../../param/menu.xml:78
+#: ../../../param/menu.xml:80
 msgid "Schéma de la base de données"
 msgstr "Database schema"
 
 #. (itstool) path: item/item@label
-#: ../../../param/menu.xml:79
+#: ../../../param/menu.xml:81
 msgid "Structure de la base de données (HTML)"
 msgstr "Database structure (HTML)"
 
 #. (itstool) path: item/item@tooltip
-#: ../../../param/menu.xml:79
+#: ../../../param/menu.xml:81
 msgid "Liste des tables et des colonnes"
 msgstr "List of tables and columns"
 
 #. (itstool) path: menu/item@label
-#: ../../../param/menu.xml:83
+#: ../../../param/menu.xml:85
 msgid "Administration"
 msgstr "Administration"
 
 #. (itstool) path: menu/item@tooltip
-#: ../../../param/menu.xml:83
+#: ../../../param/menu.xml:85
 msgid "Administration de l'application"
 msgstr "Application administration"
 
 #. (itstool) path: item/item@label
-#: ../../../param/menu.xml:84
+#: ../../../param/menu.xml:86
 msgid "Liste des comptes locaux"
 msgstr "Local accounts list"
 
 #. (itstool) path: item/item@tooltip
-#: ../../../param/menu.xml:84
+#: ../../../param/menu.xml:86
 msgid "Liste des logins - identification via la base de données"
 msgstr "List of logins - identification via the database"
 
 #. (itstool) path: item/item@label
-#: ../../../param/menu.xml:85
+#: ../../../param/menu.xml:87
 msgid "ACL - droits"
 msgstr "ACL - rights"
 
 #. (itstool) path: item/item@tooltip
-#: ../../../param/menu.xml:85
+#: ../../../param/menu.xml:87
 msgid "applications et droits gérés"
 msgstr "applications and rights managed"
 
 #. (itstool) path: item/item@label
-#: ../../../param/menu.xml:86
+#: ../../../param/menu.xml:88
 msgid "ACL - logins"
 msgstr "ACL - logins"
 
 #. (itstool) path: item/item@tooltip
-#: ../../../param/menu.xml:86
+#: ../../../param/menu.xml:88
 msgid "Logins déclarés dans le module de gestion des droits"
 msgstr "Logins declared in the rights management module"
 
 #. (itstool) path: item/item@label
-#: ../../../param/menu.xml:87
+#: ../../../param/menu.xml:89
 msgid "ACL - groupes de logins"
 msgstr "ACL - login groups"
 
 #. (itstool) path: item/item@tooltip
-#: ../../../param/menu.xml:87
+#: ../../../param/menu.xml:89
 msgid "Groupes de logins et logins rattachés aux groupes"
 msgstr "Groups of logins and logins attached to groups"
 
 #. (itstool) path: item/item@label
-#: ../../../param/menu.xml:88
+#: ../../../param/menu.xml:90
 msgid "Paramètres de l'application"
 msgstr "Application Settings"
 
 #. (itstool) path: item/item@tooltip
-#: ../../../param/menu.xml:88
+#: ../../../param/menu.xml:90
 msgid "Liste des paramètres pérennes de l'application"
 msgstr "List of long-term parameters of the application"
 
 #. (itstool) path: item/item@label
-#: ../../../param/menu.xml:90
+#: ../../../param/menu.xml:92
 msgid "Structure de la base de données des droits (HTML)"
 msgstr "Right management database structure (HTML)"
 
 #. (itstool) path: item/item@tooltip
-#: ../../../param/menu.xml:90
+#: ../../../param/menu.xml:92
 msgid ""
 "Liste des tables et des colonnes de la base de données de gestion des droits"
 msgstr "List of tables and columns for the right management database"
 
 #. (itstool) path: item/item@label
-#: ../../../param/menu.xml:91 ../../../display/templates/phpinfo.tpl:1
+#: ../../../param/menu.xml:93 ../../../display/templates/phpinfo.tpl:1
 msgid "PHP info"
 msgstr "PHP info"
 
 #. (itstool) path: item/item@tooltip
-#: ../../../param/menu.xml:91
+#: ../../../param/menu.xml:93
 msgid "configuration générale du serveur PHP"
 msgstr "general configuration of the PHP server"
 
 #. (itstool) path: item/item@label
-#: ../../../param/menu.xml:93
+#: ../../../param/menu.xml:95
 msgid "Logs"
 msgstr "Logs"
 
 #. (itstool) path: item/item@tooltip
-#: ../../../param/menu.xml:93
+#: ../../../param/menu.xml:95
 msgid "Consultation des logs enregistrées"
 msgstr "Consulting saved logs"
 
 #. (itstool) path: item/item@label
-#: ../../../param/menu.xml:94
+#: ../../../param/menu.xml:96
 msgid "Variables SERVER"
 msgstr "SERVER variables"
 
 #. (itstool) path: item/item@tooltip
-#: ../../../param/menu.xml:94
+#: ../../../param/menu.xml:96
 msgid "Affichage des variables fournies par le serveur"
 msgstr "Display of variables supplied by the server"
 
 #. (itstool) path: item/item@label
-#: ../../../param/menu.xml:95
+#: ../../../param/menu.xml:97
 msgid "Variables SESSION"
 msgstr "SESSION variables"
 
 #. (itstool) path: item/item@tooltip
-#: ../../../param/menu.xml:95
+#: ../../../param/menu.xml:97
 msgid "Affichage des variables de session"
 msgstr "Display of variables of the session"
 
 #. (itstool) path: item/item@label
-#: ../../../param/menu.xml:96
+#: ../../../param/menu.xml:98
 msgid "Backup"
 msgstr "Backup"
 
 #. (itstool) path: item/item@tooltip
-#: ../../../param/menu.xml:96 ../../../display/templates/framework/backup.tpl:1
+#: ../../../param/menu.xml:98 ../../../display/templates/framework/backup.tpl:1
 msgid "Sauvegarde de la base de données"
 msgstr "Database backup"
 
 #. (itstool) path: menu/item@label
-#: ../../../param/menu.xml:98 ../../../param/menu.xml:101
+#: ../../../param/menu.xml:100 ../../../param/menu.xml:103
 msgid "documentation"
 msgstr "documentation"
 
 #. (itstool) path: menu/item@tooltip
-#: ../../../param/menu.xml:98
+#: ../../../param/menu.xml:100
 msgid "Documentations en ligne en français"
 msgstr "French online documentations"
 
 #. (itstool) path: item/item@label
-#: ../../../param/menu.xml:99 ../../../param/menu.xml:102
+#: ../../../param/menu.xml:101 ../../../param/menu.xml:104
 msgid "Comprendre la double authentification"
 msgstr "Understand the double authentication"
 
 #. (itstool) path: item/item@tooltip
-#: ../../../param/menu.xml:99 ../../../param/menu.xml:102
+#: ../../../param/menu.xml:101 ../../../param/menu.xml:104
 msgid "Comprendre le mécanisme de double authentification"
 msgstr "Understand the mechanism of the double authentication"
 
 #. (itstool) path: menu/item@tooltip
-#: ../../../param/menu.xml:101
+#: ../../../param/menu.xml:103
 msgid "Documentations en ligne en anglais"
 msgstr "English online documentations"
 
 #. (itstool) path: menu/item@label
-#: ../../../param/menu.xml:104 ../../../display/templates/entete.tpl:21
+#: ../../../param/menu.xml:106 ../../../display/templates/entete.tpl:21
 #: ../../../display/templates/entete.tpl:45
 #: ../../../display/templates/entete.tpl:46
 msgid "Connexion"
 msgstr "Sign in"
 
 #. (itstool) path: menu/item@tooltip
-#: ../../../param/menu.xml:104
+#: ../../../param/menu.xml:106
 msgid "S'identifier dans l'application"
 msgstr "Sign in to the app"
 
 #. (itstool) path: menu/item@label
-#: ../../../param/menu.xml:105 ../../../display/templates/entete.tpl:41
+#: ../../../param/menu.xml:107 ../../../display/templates/entete.tpl:41
 #: ../../../display/templates/entete.tpl:42
 msgid "Déconnexion"
 msgstr "Sign out"
 
 #. (itstool) path: menu/item@tooltip
-#: ../../../param/menu.xml:105
+#: ../../../param/menu.xml:107
 msgid "Déconnexion de l'application"
 msgstr "Sign out of the app"
 
 #. (itstool) path: item/item@label
-#: ../../../param/menu.xml:106
+#: ../../../param/menu.xml:108
 msgid "Dernières connexions"
 msgstr "Last connections"
 
 #. (itstool) path: item/item@tooltip
-#: ../../../param/menu.xml:106
+#: ../../../param/menu.xml:108
 msgid "Liste des dernières connexions réalisées"
 msgstr "List of latest locations"
 
 #. (itstool) path: item/item@label
-#: ../../../param/menu.xml:107 ../../../display/templates/entete.tpl:37
+#: ../../../param/menu.xml:109 ../../../display/templates/entete.tpl:37
 #: ../../../display/templates/entete.tpl:38
 #: ../../../display/templates/framework/ident/loginChangePassword.tpl:86
 msgid "Modifier le mot de passe"
 msgstr "Change your password"
 
 #. (itstool) path: item/item@tooltip
-#: ../../../param/menu.xml:107
+#: ../../../param/menu.xml:109
 msgid "Modifiez votre mot de passe (identification locale uniquement)"
 msgstr "Change your password (local identification only)"
 
 #. (itstool) path: menu/item@label
-#: ../../../param/menu.xml:109
+#: ../../../param/menu.xml:111
 msgid "?"
 msgstr "?"
 
 #. (itstool) path: menu/item@tooltip
-#: ../../../param/menu.xml:109
+#: ../../../param/menu.xml:111
 msgid "Aide"
 msgstr "Help"
 
 #. (itstool) path: item/item@label
-#: ../../../param/menu.xml:110
+#: ../../../param/menu.xml:112
 msgid "A propos"
 msgstr "About"
 
 #. (itstool) path: item/item@tooltip
-#: ../../../param/menu.xml:110
+#: ../../../param/menu.xml:112
 msgid "A propos de Collec-Science"
 msgstr "A propos de"
 
 #. (itstool) path: item/item@label
-#: ../../../param/menu.xml:111
+#: ../../../param/menu.xml:113
 msgid "Nouveautés"
 msgstr "News"
 
 #. (itstool) path: item/item@tooltip
-#: ../../../param/menu.xml:111
+#: ../../../param/menu.xml:113
 msgid "Quoi de neuf dans l'application ?"
 msgstr "What's new in the app?"
 
 #. (itstool) path: item/item@label
-#: ../../../param/menu.xml:112
+#: ../../../param/menu.xml:114
 msgid "Français"
 msgstr "French"
 
 #. (itstool) path: item/item@tooltip
-#: ../../../param/menu.xml:112
+#: ../../../param/menu.xml:114
 msgid "Libellés en français"
 msgstr "Labels in French"
 
 #. (itstool) path: item/item@label
-#: ../../../param/menu.xml:113
+#: ../../../param/menu.xml:115
 msgid "English"
 msgstr "English"
 
 #. (itstool) path: item/item@tooltip
-#: ../../../param/menu.xml:113
+#: ../../../param/menu.xml:115
 msgid "Labels in English"
 msgstr "Labels in English"
 
 #. (itstool) path: item/item@label
-#: ../../../param/menu.xml:114
+#: ../../../param/menu.xml:116
 msgid "English US"
 msgstr "English US"
 
 #. (itstool) path: item/item@tooltip
-#: ../../../param/menu.xml:114
+#: ../../../param/menu.xml:116
 msgid "Labels in English/US"
 msgstr "Labels in English/US"
 
 #: ../../../param/param.default.inc.php:12
-msgid "21/08/2023"
-msgstr "21/08/2023"
+msgid "19/09/2023"
+msgstr "19/09/2023"
 
 #: ../../../framework/ldap/ldap.class.php:74
 msgid "Impossible de se connecter au serveur LDAP"
@@ -1315,7 +1325,7 @@ msgid "Le champ %s est obligatoire, mais n'a pas été renseigné."
 msgstr "The field %s is required, but has not been filled out."
 
 #: ../../../framework/objetbdd/ObjetBDD.php:1867
-#: ../../../modules/classes/morphologieImport.class.php:286
+#: ../../../modules/classes/morphologieImport.class.php:297
 #, php-format
 msgid ""
 "La connexion à la base de données n'est pas disponible pour instancier la "
@@ -1380,6 +1390,14 @@ msgstr "File %s is empty or cannot be read"
 msgid "%s bassin(s) ajouté(s) à la campagne de reproduction"
 msgstr "%s basin(s) added to the breeding campaign"
 
+#: ../../../modules/repro/sperme.php:53
+msgid ""
+"Le poisson n'est rattaché à aucune séquence, la saisie d'un prélèvement de "
+"sperme n'est pas possible"
+msgstr ""
+"The fish is not attached to any sequence, so it is not possible to enter a "
+"sperm sample."
+
 #: ../../../modules/repro/lotAlim.php:61
 #, php-format
 msgid ""
@@ -1396,31 +1414,40 @@ msgstr "Some batches are not assigned to specific basins"
 msgid "La génération de la fiche d'alimentation a échoué"
 msgstr "Generation of the food sheet failed"
 
+#: ../../../modules/repro/lot.php:80
+#, php-format
+msgid ""
+"Aucun croisement n'a été enregistré pour l'année %s, la création d'un lot "
+"n'est pas possible"
+msgstr ""
+"No crossbreeding has been recorded for the year %s, so it is not possible to "
+"create a lot"
+
 #: ../../../modules/repro/biopsie.php:82
 msgid "Calcul du diamètre moyen de l'ovocyte - "
 msgstr "Calculation of average oocyte diameter - "
 
-#: ../../../modules/repro/poissonCampagne.php:166
+#: ../../../modules/repro/poissonCampagne.php:167
 #: ../../../display/templates/repro/poissonCampagneDisplay.tpl:40
 msgid "constaté"
 msgstr "seen"
 
-#: ../../../modules/repro/poissonCampagne.php:168
+#: ../../../modules/repro/poissonCampagne.php:169
 #: ../../../display/templates/repro/poissonCampagneDisplay.tpl:41
 msgid "prévu"
 msgstr "previous"
 
-#: ../../../modules/repro/poissonCampagne.php:435
+#: ../../../modules/repro/poissonCampagne.php:436
 #, php-format
 msgid "%s poissons déselectionnés"
 msgstr "%s fish deselected"
 
-#: ../../../modules/repro/poissonCampagne.php:454
+#: ../../../modules/repro/poissonCampagne.php:455
 #, php-format
 msgid "%s poisson(s) ajouté(s)"
 msgstr "%s fish added"
 
-#: ../../../modules/repro/poissonCampagne.php:477
+#: ../../../modules/repro/poissonCampagne.php:478
 #, php-format
 msgid "%s statuts modifiés"
 msgstr "%s status changed"
@@ -1451,27 +1478,35 @@ msgstr "No fish matches pittag %s"
 msgid "Une erreur est survenue pendant l'écriture dans la base de données"
 msgstr "An error has occurred while writing to the database"
 
-#: ../../../modules/poisson/morphologie.php:35
+#: ../../../modules/poisson/morphologie.php:20
 msgid "Impossible de recopier le fichier importé dans le dossier temporaire"
 msgstr "Unable to copy imported file to temporary folder"
 
-#: ../../../modules/poisson/morphologie.php:64
+#: ../../../modules/poisson/morphologie.php:77
+msgid ""
+"Le fichier téléchargé n'est plus accessible sur le serveur, recommencez "
+"l'opération"
+msgstr ""
+"The downloaded file can no longer be accessed on the server, repeat the "
+"operation"
+
+#: ../../../modules/poisson/morphologie.php:94
 #, php-format
 msgid "Import effectué. %s lignes traitées"
 msgstr "Import performed. %s lines processed"
 
-#: ../../../modules/poisson/morphologie.php:65
+#: ../../../modules/poisson/morphologie.php:95
 #, php-format
 msgid "Premier événement généré : %s"
 msgstr "First event generated: %s"
 
-#: ../../../modules/poisson/morphologie.php:66
+#: ../../../modules/poisson/morphologie.php:96
 #, php-format
 msgid "Dernier événement généré : %s"
 msgstr "Last event generated: %s"
 
-#: ../../../modules/poisson/morphologie.php:72
-#: ../../../modules/poisson/morphologie.php:76
+#: ../../../modules/poisson/morphologie.php:102
+#: ../../../modules/poisson/morphologie.php:106
 msgid "Une erreur s'est produite pendant l'importation."
 msgstr "An error occurred during import."
 
@@ -1540,50 +1575,50 @@ msgstr "Error while creating a new distribution"
 msgid "Opération effectuée"
 msgstr "Done"
 
-#: ../../../modules/classes/search.class.php:154
+#: ../../../modules/classes/search.class.php:152
 #: ../../../display/templates/poisson/evenementChange.tpl:192
 #: ../../../display/templates/poisson/poissonDisplay.tpl:107
 msgid "Morphologie"
 msgstr "Morphology"
 
-#: ../../../modules/classes/search.class.php:155
+#: ../../../modules/classes/search.class.php:153
 msgid "Mortalite"
 msgstr "Mortality"
 
-#: ../../../modules/classes/search.class.php:156
+#: ../../../modules/classes/search.class.php:154
 msgid "Détermination des parents"
 msgstr "Determination of parents"
 
-#: ../../../modules/classes/search.class.php:157
+#: ../../../modules/classes/search.class.php:155
 #: ../../../display/templates/poisson/evenementChange.tpl:638
 #: ../../../display/templates/poisson/poissonDisplay.tpl:261
 msgid "Détermination du sexe"
 msgstr "Sexe determination"
 
-#: ../../../modules/classes/search.class.php:158
+#: ../../../modules/classes/search.class.php:156
 msgid "Pathologie"
 msgstr "Pathology"
 
-#: ../../../modules/classes/search.class.php:159
+#: ../../../modules/classes/search.class.php:157
 #: ../../../display/templates/poisson/evenementChange.tpl:209
 msgid "Échographie"
 msgstr "Echography"
 
-#: ../../../modules/classes/search.class.php:160
+#: ../../../modules/classes/search.class.php:158
 #: ../../../display/templates/poisson/evenementChange.tpl:217
 msgid "Dosage sanguin"
 msgstr "Blood dosage"
 
-#: ../../../modules/classes/search.class.php:161
+#: ../../../modules/classes/search.class.php:159
 #: ../../../display/templates/poisson/evenementChange.tpl:225
 msgid "Anesthésie"
 msgstr "Anesthesia"
 
-#: ../../../modules/classes/search.class.php:162
+#: ../../../modules/classes/search.class.php:160
 msgid "Génétique"
 msgstr "Genetics"
 
-#: ../../../modules/classes/search.class.php:163
+#: ../../../modules/classes/search.class.php:161
 msgid "Transfert"
 msgstr "Transfer"
 
@@ -1612,40 +1647,35 @@ msgstr "The analyzed value %s is not described in the settings file"
 msgid "Erreur lors de l'écriture dans la table analyse_eau : %s"
 msgstr "Error writing into the table analyse_eau: %s"
 
-#: ../../../modules/classes/morphologieImport.class.php:58
-#, php-format
-msgid "La colonne %1$s n'est pas reconnue (%2$s)"
-msgstr "Column %1$s is not recognized (%2$s)"
-
-#: ../../../modules/classes/morphologieImport.class.php:62
+#: ../../../modules/classes/morphologieImport.class.php:66
 #, php-format
 msgid "Le fichier %s n'a pas été trouvé ou n'est pas lisible"
 msgstr "%s file not found or not readable"
 
-#: ../../../modules/classes/morphologieImport.class.php:191
+#: ../../../modules/classes/morphologieImport.class.php:202
 #, php-format
 msgid "Ligne %s : une erreur est survenue lors de l'enregistrement"
 msgstr "Line %s: an error has occurred during registration"
 
-#: ../../../modules/classes/morphologieImport.class.php:238
+#: ../../../modules/classes/morphologieImport.class.php:249
 #, php-format
 msgid "Le pittag %s ne correspond à aucun poisson"
 msgstr "The pittag %s does not correspond to any fish"
 
-#: ../../../modules/classes/morphologieImport.class.php:243
+#: ../../../modules/classes/morphologieImport.class.php:254
 msgid "Le pittag n'a pas été renseigné"
 msgstr "The pittag has not been filled out"
 
-#: ../../../modules/classes/morphologieImport.class.php:249
+#: ../../../modules/classes/morphologieImport.class.php:260
 msgid "La date de mesure n'a pas été renseignée"
 msgstr "The measure date has not been filled out"
 
-#: ../../../modules/classes/morphologieImport.class.php:259
+#: ../../../modules/classes/morphologieImport.class.php:270
 #, php-format
 msgid "La colonne %1s contient une valeur non numérique (%2s)"
 msgstr "Column %1s contains a non-numeric value (%2s)"
 
-#: ../../../modules/classes/morphologieImport.class.php:267
+#: ../../../modules/classes/morphologieImport.class.php:278
 msgid "Aucune mesure n'a été renseignée"
 msgstr "No measures have been entered"
 
@@ -1686,7 +1716,7 @@ msgstr "New analysis..."
 #: ../../../display/templates/repro/spermeMesureList.tpl:10
 #: ../../../display/templates/repro/poissonEchographieList.tpl:5
 #: ../../../display/templates/repro/psEvenementList.tpl:5
-#: ../../../display/templates/repro/devenirList.tpl:17
+#: ../../../display/templates/repro/devenirList.tpl:11
 #: ../../../display/templates/repro/lotMesureList.tpl:9
 #: ../../../display/templates/repro/poissonBiopsieList.tpl:4
 #: ../../../display/templates/repro/poissonSanguinList.tpl:4
@@ -1833,7 +1863,7 @@ msgid "Liste des spermes utilisés"
 msgstr "Used sperms"
 
 #: ../../../display/templates/repro/alimJuv.tpl:17
-#: ../../../display/templates/repro/lotList.tpl:98
+#: ../../../display/templates/repro/lotList.tpl:104
 msgid "Alimentation quotidienne"
 msgstr "Daily food"
 
@@ -1854,7 +1884,7 @@ msgstr "Year:"
 #: ../../../display/templates/repro/vieModeleList.tpl:20
 #: ../../../display/templates/repro/poissonCampagneList.tpl:118
 #: ../../../display/templates/poisson/poissonDisplay.tpl:69
-#: ../../../display/templates/poisson/poissonSearch.tpl:171
+#: ../../../display/templates/poisson/poissonSearch.tpl:157
 #: ../../../display/templates/anomalie/anomalieList.tpl:46
 #: ../../../display/templates/bassin/bassinAlimentConsomme.tpl:14
 #: ../../../display/templates/bassin/circuitEauDisplay.tpl:145
@@ -1869,10 +1899,11 @@ msgstr "Search"
 msgid "Destination des poissons"
 msgstr "Fish usage"
 
-#: ../../../display/templates/repro/biopsieChange.tpl:3
+#: ../../../display/templates/repro/biopsieChange.tpl:10
 #: ../../../display/templates/repro/spermeCongelationChange.tpl:37
 #: ../../../display/templates/repro/poissonCampagneChange.tpl:3
 #: ../../../display/templates/repro/spermeFreezingPlaceChange.tpl:3
+#: ../../../display/templates/repro/injectionChange.tpl:3
 #: ../../../display/templates/repro/poissonCampagneDisplay.tpl:192
 #: ../../../display/templates/repro/spermeChange.tpl:3
 #: ../../../display/templates/repro/spermeFreezingMeasureChange.tpl:3
@@ -1882,7 +1913,7 @@ msgstr "Fish usage"
 #: ../../../display/templates/repro/spermeMesureChange.tpl:4
 #: ../../../display/templates/poisson/pittagChange.tpl:3
 #: ../../../display/templates/poisson/parentPoissonChange.tpl:27
-#: ../../../display/templates/poisson/poissonChange.tpl:29
+#: ../../../display/templates/poisson/poissonChange.tpl:28
 #: ../../../display/templates/poisson/evenementChange.tpl:75
 #: ../../../display/templates/poisson/poissonDisplay.tpl:48
 #: ../../../display/templates/poisson/ventilationChange.tpl:3
@@ -1890,10 +1921,11 @@ msgstr "Fish usage"
 msgid "Retour à la liste des poissons"
 msgstr "Back to the list of fish"
 
-#: ../../../display/templates/repro/biopsieChange.tpl:7
+#: ../../../display/templates/repro/biopsieChange.tpl:14
 #: ../../../display/templates/repro/spermeCongelationChange.tpl:42
 #: ../../../display/templates/repro/poissonCampagneChange.tpl:14
 #: ../../../display/templates/repro/spermeFreezingPlaceChange.tpl:7
+#: ../../../display/templates/repro/injectionChange.tpl:7
 #: ../../../display/templates/repro/spermeChange.tpl:7
 #: ../../../display/templates/repro/spermeFreezingMeasureChange.tpl:7
 #: ../../../display/templates/repro/poissonSequenceChange.tpl:8
@@ -1905,31 +1937,31 @@ msgstr "Back to the list of fish"
 msgid "Retour au reproducteur"
 msgstr "Back to the breeder"
 
-#: ../../../display/templates/repro/biopsieChange.tpl:9
+#: ../../../display/templates/repro/biopsieChange.tpl:16
 msgid "Modification d'une biopsie"
 msgstr "Edit a biopsy"
 
-#: ../../../display/templates/repro/biopsieChange.tpl:24
+#: ../../../display/templates/repro/biopsieChange.tpl:31
 #: ../../../display/templates/repro/spermeChangeCorps.tpl:5
 #: ../../../display/templates/repro/dosageSanguinChange.tpl:24
 msgid "Date du prélèvement :"
 msgstr "Sampling date:"
 
-#: ../../../display/templates/repro/biopsieChange.tpl:34
+#: ../../../display/templates/repro/biopsieChange.tpl:41
 msgid "Diamètre moyen (mm) :"
 msgstr "Mean diameter (mm):"
 
-#: ../../../display/templates/repro/biopsieChange.tpl:42
+#: ../../../display/templates/repro/biopsieChange.tpl:49
 msgid "Écart type du diamètre moyen :"
 msgstr "Standard deviation of mean diameter:"
 
-#: ../../../display/templates/repro/biopsieChange.tpl:52
+#: ../../../display/templates/repro/biopsieChange.tpl:59
 msgid "Technique de mesure utilisée :"
 msgstr "Used measure technical:"
 
-#: ../../../display/templates/repro/biopsieChange.tpl:57
+#: ../../../display/templates/repro/biopsieChange.tpl:64
 #: ../../../display/templates/repro/spermeFreezingPlaceChange.tpl:69
-#: ../../../display/templates/repro/injectionChange.tpl:45
+#: ../../../display/templates/repro/injectionChange.tpl:53
 #: ../../../display/templates/repro/croisementChange.tpl:91
 #: ../../../display/templates/repro/lotChange.tpl:95
 #: ../../../display/templates/repro/devenirChange.tpl:43
@@ -1939,48 +1971,47 @@ msgstr "Used measure technical:"
 #: ../../../display/templates/poisson/evenementChange.tpl:409
 #: ../../../display/templates/poisson/evenementChange.tpl:614
 #: ../../../display/templates/poisson/poissonSearch.tpl:113
+#: ../../../display/templates/poisson/poissonSearch.tpl:145
 msgid "Sélectionnez..."
 msgstr "Choose..."
 
-#: ../../../display/templates/repro/biopsieChange.tpl:70
+#: ../../../display/templates/repro/biopsieChange.tpl:77
 msgid "Image(s) utilisée(s) pour le calcul du diamètre :"
 msgstr "Image(s) used to calculate diameter:"
 
-#: ../../../display/templates/repro/biopsieChange.tpl:77
+#: ../../../display/templates/repro/biopsieChange.tpl:84
 msgid "Taux OPI :"
 msgstr "OPI rate:"
 
-#: ../../../display/templates/repro/biopsieChange.tpl:85
+#: ../../../display/templates/repro/biopsieChange.tpl:92
 msgid "Taux de coloration normale :"
 msgstr "Normal staining rate:"
 
-#: ../../../display/templates/repro/biopsieChange.tpl:94
+#: ../../../display/templates/repro/biopsieChange.tpl:101
 msgid "Taux d'éclatement :"
 msgstr "Burst rate:"
 
-#: ../../../display/templates/repro/biopsieChange.tpl:102
+#: ../../../display/templates/repro/biopsieChange.tpl:109
 msgid "Maturation Ringer"
 msgstr "Ringer maturation"
 
-#: ../../../display/templates/repro/biopsieChange.tpl:105
-#: ../../../display/templates/repro/biopsieChange.tpl:138
-msgid "T50 :"
-msgstr "T50:"
+#: ../../../display/templates/repro/biopsieChange.tpl:112
+#: ../../../display/templates/repro/biopsieChange.tpl:145
+msgid "T50 (heures) :"
+msgstr "T50 (hours):"
 
-#: ../../../display/templates/repro/biopsieChange.tpl:113
-#: ../../../display/templates/repro/biopsieChange.tpl:147
+#: ../../../display/templates/repro/biopsieChange.tpl:120
+#: ../../../display/templates/repro/biopsieChange.tpl:154
 msgid "% maximal de maturation observé :"
 msgstr "Maximum ripening % observed:"
 
-#: ../../../display/templates/repro/biopsieChange.tpl:119
-#: ../../../display/templates/repro/biopsieChange.tpl:153
-#: ../../../display/templates/repro/poissonBiopsieList.tpl:47
-#: ../../../display/templates/repro/poissonBiopsieList.tpl:55
-msgid "en"
-msgstr "in"
-
 #: ../../../display/templates/repro/biopsieChange.tpl:126
-#: ../../../display/templates/repro/biopsieChange.tpl:161
+#: ../../../display/templates/repro/biopsieChange.tpl:160
+msgid "en (heures)"
+msgstr "in (hours)"
+
+#: ../../../display/templates/repro/biopsieChange.tpl:133
+#: ../../../display/templates/repro/biopsieChange.tpl:168
 #: ../../../display/templates/repro/dosageSanguinChange.tpl:68
 #: ../../../display/templates/repro/echographieChange.tpl:32
 #: ../../../display/templates/poisson/evenementChange.tpl:538
@@ -1990,24 +2021,23 @@ msgstr "in"
 msgid "Commentaires :"
 msgstr "Comment:"
 
-#: ../../../display/templates/repro/biopsieChange.tpl:135
+#: ../../../display/templates/repro/biopsieChange.tpl:142
 msgid "Maturation Leibovitz"
 msgstr "Leibovitz maturation"
 
-#: ../../../display/templates/repro/biopsieChange.tpl:170
+#: ../../../display/templates/repro/biopsieChange.tpl:177
 #: ../../../display/templates/poisson/evenementChange.tpl:146
 msgid "Commentaire général :"
 msgstr "Main comment:"
 
-#: ../../../display/templates/repro/biopsieChange.tpl:179
+#: ../../../display/templates/repro/biopsieChange.tpl:186
 #: ../../../display/templates/repro/spermeCongelationChange.tpl:186
 #: ../../../display/templates/repro/sequenceChange.tpl:56
 #: ../../../display/templates/repro/poissonCampagneChange.tpl:90
 #: ../../../display/templates/repro/spermeFreezingPlaceChange.tpl:77
 #: ../../../display/templates/repro/saliniteChange.tpl:39
 #: ../../../display/templates/repro/saliniteChange.tpl:60
-#: ../../../display/templates/repro/injectionChange.tpl:68
-#: ../../../display/templates/repro/injectionChange.tpl:88
+#: ../../../display/templates/repro/injectionChange.tpl:79
 #: ../../../display/templates/repro/spermeChange.tpl:39
 #: ../../../display/templates/repro/spermeFreezingMeasureChange.tpl:57
 #: ../../../display/templates/repro/vieModeleChange.tpl:54
@@ -2061,7 +2091,7 @@ msgstr "Main comment:"
 #: ../../../display/templates/parametre/pittagTypeChange.tpl:21
 #: ../../../display/templates/poisson/pittagChange.tpl:69
 #: ../../../display/templates/poisson/parentPoissonChange.tpl:67
-#: ../../../display/templates/poisson/poissonChange.tpl:214
+#: ../../../display/templates/poisson/poissonChange.tpl:210
 #: ../../../display/templates/poisson/evenementChange.tpl:154
 #: ../../../display/templates/poisson/ventilationChange.tpl:56
 #: ../../../display/templates/anomalie/anomalieChange.tpl:127
@@ -2091,15 +2121,14 @@ msgstr "Main comment:"
 msgid "Valider"
 msgstr "Save and return"
 
-#: ../../../display/templates/repro/biopsieChange.tpl:181
+#: ../../../display/templates/repro/biopsieChange.tpl:188
 #: ../../../display/templates/repro/spermeCongelationChange.tpl:188
 #: ../../../display/templates/repro/sequenceChange.tpl:58
 #: ../../../display/templates/repro/poissonCampagneChange.tpl:92
 #: ../../../display/templates/repro/spermeFreezingPlaceChange.tpl:79
 #: ../../../display/templates/repro/saliniteChange.tpl:41
 #: ../../../display/templates/repro/saliniteChange.tpl:62
-#: ../../../display/templates/repro/injectionChange.tpl:70
-#: ../../../display/templates/repro/injectionChange.tpl:90
+#: ../../../display/templates/repro/injectionChange.tpl:81
 #: ../../../display/templates/repro/spermeChange.tpl:41
 #: ../../../display/templates/repro/spermeFreezingMeasureChange.tpl:59
 #: ../../../display/templates/repro/vieModeleChange.tpl:56
@@ -2153,7 +2182,7 @@ msgstr "Save and return"
 #: ../../../display/templates/parametre/pittagTypeChange.tpl:23
 #: ../../../display/templates/poisson/pittagChange.tpl:71
 #: ../../../display/templates/poisson/parentPoissonChange.tpl:69
-#: ../../../display/templates/poisson/poissonChange.tpl:216
+#: ../../../display/templates/poisson/poissonChange.tpl:212
 #: ../../../display/templates/poisson/evenementChange.tpl:156
 #: ../../../display/templates/poisson/ventilationChange.tpl:58
 #: ../../../display/templates/anomalie/anomalieChange.tpl:129
@@ -2177,16 +2206,16 @@ msgstr "Save and return"
 msgid "Supprimer"
 msgstr "Delete"
 
-#: ../../../display/templates/repro/biopsieChange.tpl:189
+#: ../../../display/templates/repro/biopsieChange.tpl:196
 msgid "Documents associés"
 msgstr "Associated documents"
 
-#: ../../../display/templates/repro/biopsieChange.tpl:196
+#: ../../../display/templates/repro/biopsieChange.tpl:203
 #: ../../../display/templates/repro/spermeCongelationChange.tpl:192
 #: ../../../display/templates/repro/sequenceChange.tpl:65
 #: ../../../display/templates/repro/spermeFreezingPlaceChange.tpl:86
 #: ../../../display/templates/repro/saliniteChange.tpl:72
-#: ../../../display/templates/repro/injectionChange.tpl:100
+#: ../../../display/templates/repro/injectionChange.tpl:89
 #: ../../../display/templates/repro/spermeFreezingMeasureChange.tpl:66
 #: ../../../display/templates/repro/vieModeleChange.tpl:63
 #: ../../../display/templates/repro/profilThermiqueChange.tpl:73
@@ -2230,10 +2259,10 @@ msgstr "Associated documents"
 #: ../../../display/templates/parametre/pittagTypeChange.tpl:31
 #: ../../../display/templates/poisson/pittagChange.tpl:79
 #: ../../../display/templates/poisson/parentPoissonChange.tpl:76
-#: ../../../display/templates/poisson/poissonChange.tpl:224
+#: ../../../display/templates/poisson/poissonChange.tpl:220
 #: ../../../display/templates/poisson/evenementChange.tpl:859
 #: ../../../display/templates/poisson/ventilationChange.tpl:66
-#: ../../../display/templates/poisson/morphologieImport.tpl:88
+#: ../../../display/templates/poisson/morphologieImport.tpl:213
 #: ../../../display/templates/anomalie/anomalieChange.tpl:136
 #: ../../../display/templates/bassin/analyseEauChange.tpl:256
 #: ../../../display/templates/bassin/circuitEvenementChange.tpl:74
@@ -2265,6 +2294,7 @@ msgid "Nouveau lot de larves..."
 msgstr "New larvae batch..."
 
 #: ../../../display/templates/repro/lotList.tpl:36
+#: ../../../display/templates/repro/sublotList.tpl:4
 msgid "Nom du lot"
 msgstr "Batch name"
 
@@ -2279,7 +2309,8 @@ msgid "Séquence"
 msgstr "Sequence"
 
 #: ../../../display/templates/repro/lotList.tpl:39
-#: ../../../display/templates/poisson/poissonList.tpl:30
+#: ../../../display/templates/repro/sublotList.tpl:5
+#: ../../../display/templates/poisson/poissonList.tpl:63
 #: ../../../display/templates/bassin/bassinPoissonList.tpl:5
 #: ../../../display/templates/bassin/circuitEauDisplay.tpl:76
 #: ../../../display/templates/aliment/repartitionResteChange.tpl:79
@@ -2295,38 +2326,46 @@ msgid "Age (jours)"
 msgstr "Age (days)"
 
 #: ../../../display/templates/repro/lotList.tpl:42
+#: ../../../display/templates/repro/sublotList.tpl:6
 msgid "Nbre de larves estimé"
 msgstr "Estimated number of larvae"
 
 #: ../../../display/templates/repro/lotList.tpl:43
+#: ../../../display/templates/repro/sublotList.tpl:7
 msgid "Nbre de larves comptées"
 msgstr "Number of larvae counted"
 
 #: ../../../display/templates/repro/lotList.tpl:44
+#: ../../../display/templates/repro/sublotList.tpl:8
 msgid "Marque VIE"
 msgstr "VIE mark"
 
 #: ../../../display/templates/repro/lotList.tpl:45
+#: ../../../display/templates/repro/sublotList.tpl:9
 msgid "Date de marquage VIE"
 msgstr "VIE marking date"
 
-#: ../../../display/templates/repro/lotList.tpl:47
+#: ../../../display/templates/repro/lotList.tpl:46
+msgid "Lot parent"
+msgstr "Parent's lot"
+
+#: ../../../display/templates/repro/lotList.tpl:48
 msgid "Fiche alim."
 msgstr "Food sheet"
 
-#: ../../../display/templates/repro/lotList.tpl:103
+#: ../../../display/templates/repro/lotList.tpl:109
 msgid "Date de début d'alimentation :"
 msgstr "Feeding start date:"
 
-#: ../../../display/templates/repro/lotList.tpl:112
+#: ../../../display/templates/repro/lotList.tpl:118
 msgid "Durée d'alimentation (en jours) :"
 msgstr "Feed duration (in days):"
 
-#: ../../../display/templates/repro/lotList.tpl:120
+#: ../../../display/templates/repro/lotList.tpl:126
 msgid "Nombre d'artémies par ml :"
 msgstr "Number of artemia per ml:"
 
-#: ../../../display/templates/repro/lotList.tpl:127
+#: ../../../display/templates/repro/lotList.tpl:133
 msgid "Générer la fiche d'alimentation"
 msgstr "Generate the food sheet"
 
@@ -2356,7 +2395,7 @@ msgid "Lot :"
 msgstr "Batch:"
 
 #: ../../../display/templates/repro/lotDetail.tpl:7
-#: ../../../display/templates/repro/injectionChange.tpl:30
+#: ../../../display/templates/repro/injectionChange.tpl:34
 #: ../../../display/templates/repro/spermeChange.tpl:23
 #: ../../../display/templates/repro/poissonSequenceChange.tpl:23
 msgid "Séquence de reproduction :"
@@ -2382,6 +2421,10 @@ msgstr "Hatching date:"
 #: ../../../display/templates/repro/lotDetail.tpl:30
 msgid "Nbre de larves estimé / compté :"
 msgstr "Estimated number of larvae / counted:"
+
+#: ../../../display/templates/repro/lotDetail.tpl:35
+msgid "Lot parent :"
+msgstr "Parent's lot:"
 
 #: ../../../display/templates/repro/psEvenementList.tpl:6
 #: ../../../display/templates/repro/poissonSequenceChange.tpl:114
@@ -2477,11 +2520,11 @@ msgid "Nb de paillettes utilisées en repro :"
 msgstr "Number of straws used in reproduction:"
 
 #: ../../../display/templates/repro/spermeCongelationChange.tpl:177
-#: ../../../display/templates/repro/injectionChange.tpl:61
+#: ../../../display/templates/repro/injectionChange.tpl:73
 #: ../../../display/templates/repro/spermeChangeCorps.tpl:74
 #: ../../../display/templates/repro/psEvenementChange.tpl:27
 #: ../../../display/templates/poisson/pittagChange.tpl:60
-#: ../../../display/templates/poisson/poissonChange.tpl:178
+#: ../../../display/templates/poisson/poissonChange.tpl:174
 #: ../../../display/templates/poisson/evenementChange.tpl:294
 #: ../../../display/templates/poisson/evenementChange.tpl:388
 #: ../../../display/templates/poisson/evenementChange.tpl:583
@@ -2569,23 +2612,19 @@ msgstr "Sequence name:"
 msgid "Date de début de la séquence :"
 msgstr "Sequence start date:"
 
-#: ../../../display/templates/repro/devenirList.tpl:4
-msgid "Nouvelle destination (lâcher, entrée dans le stock captif, etc.)"
-msgstr "New destination (release, entry into captive stock, etc.)"
-
-#: ../../../display/templates/repro/devenirList.tpl:16
+#: ../../../display/templates/repro/devenirList.tpl:10
 msgid "N° de lot"
 msgstr "Batch number"
 
-#: ../../../display/templates/repro/devenirList.tpl:18
+#: ../../../display/templates/repro/devenirList.tpl:12
 msgid "Destination"
 msgstr "Destination"
 
-#: ../../../display/templates/repro/devenirList.tpl:19
+#: ../../../display/templates/repro/devenirList.tpl:13
 msgid "Nbre poissons"
 msgstr "Number of fish"
 
-#: ../../../display/templates/repro/devenirList.tpl:20
+#: ../../../display/templates/repro/devenirList.tpl:14
 msgid "Destination parente"
 msgstr "Destination parente"
 
@@ -2601,7 +2640,7 @@ msgstr "Fish name"
 #: ../../../display/templates/repro/croisementChange.tpl:110
 #: ../../../display/templates/repro/poissonCampagneList.tpl:151
 #: ../../../display/templates/poisson/genderSelectionList.tpl:8
-#: ../../../display/templates/poisson/poissonList.tpl:21
+#: ../../../display/templates/poisson/poissonList.tpl:58
 #: ../../../display/templates/poisson/parentPoissonList.tpl:9
 #: ../../../display/templates/bassin/bassinPoissonPresent.tpl:8
 msgid "Sexe"
@@ -2618,7 +2657,7 @@ msgstr "Oocyte total weight"
 #: ../../../display/templates/repro/poissonCampagneChange.tpl:8
 #: ../../../display/templates/poisson/pittagChange.tpl:8
 #: ../../../display/templates/poisson/parentPoissonChange.tpl:32
-#: ../../../display/templates/poisson/poissonChange.tpl:35
+#: ../../../display/templates/poisson/poissonChange.tpl:34
 #: ../../../display/templates/poisson/evenementChange.tpl:80
 #: ../../../display/templates/poisson/ventilationChange.tpl:14
 #: ../../../display/templates/anomalie/anomalieChange.tpl:27
@@ -2736,19 +2775,19 @@ msgstr "Detail of a sperm sample"
 msgid "Congélation"
 msgstr "Freezing"
 
-#: ../../../display/templates/repro/injectionChange.tpl:12
+#: ../../../display/templates/repro/injectionChange.tpl:9
 msgid "Modification d'une injection"
 msgstr "Edit an injection"
 
-#: ../../../display/templates/repro/injectionChange.tpl:22
+#: ../../../display/templates/repro/injectionChange.tpl:24
 msgid "Date de l'injection :"
 msgstr "Injection date:"
 
-#: ../../../display/templates/repro/injectionChange.tpl:42
+#: ../../../display/templates/repro/injectionChange.tpl:49
 msgid "Hormone utilisée :"
 msgstr "Hormone used:"
 
-#: ../../../display/templates/repro/injectionChange.tpl:56
+#: ../../../display/templates/repro/injectionChange.tpl:65
 msgid "Dose injectée :"
 msgstr "Injected dose:"
 
@@ -2790,24 +2829,24 @@ msgid "Taux éclatement"
 msgstr "Taux éclatement"
 
 #: ../../../display/templates/repro/poissonBiopsieList.tpl:9
-msgid "Ringer T50"
-msgstr "Ringer T50"
+msgid "Ringer T50 (heures)"
+msgstr "Ringer T50 (hours)"
 
 #: ../../../display/templates/repro/poissonBiopsieList.tpl:10
-msgid "Ringer Tmax"
-msgstr "Ringer Tmax"
+msgid "Ringer Tmax en heures"
+msgstr "Ringer Tmax in hours"
 
 #: ../../../display/templates/repro/poissonBiopsieList.tpl:11
 msgid "Ringer commentaire"
 msgstr "Ringer comment"
 
 #: ../../../display/templates/repro/poissonBiopsieList.tpl:12
-msgid "Leib T50"
-msgstr "Leib T50"
+msgid "Leib T50 (heures)"
+msgstr "Leib T50 (hours)"
 
 #: ../../../display/templates/repro/poissonBiopsieList.tpl:13
-msgid "Leib Tmax"
-msgstr "Leib Tmax"
+msgid "Leib Tmax en heures"
+msgstr "Leib Tmax in hours"
 
 #: ../../../display/templates/repro/poissonBiopsieList.tpl:14
 msgid "Leib commentaire"
@@ -2816,6 +2855,11 @@ msgstr "Leib comment"
 #: ../../../display/templates/repro/poissonBiopsieList.tpl:15
 msgid "Commentaire général"
 msgstr "General comment"
+
+#: ../../../display/templates/repro/poissonBiopsieList.tpl:47
+#: ../../../display/templates/repro/poissonBiopsieList.tpl:55
+msgid "en"
+msgstr "in"
 
 #: ../../../display/templates/repro/bassinLotList.tpl:10
 msgid "Date de début d'utilisation"
@@ -2965,15 +3009,23 @@ msgstr "Batch detail"
 msgid "Modifier le lot..."
 msgstr "Edit the batch..."
 
-#: ../../../display/templates/repro/lotDisplay.tpl:18
+#: ../../../display/templates/repro/lotDisplay.tpl:16
+msgid "Lots dérivés"
+msgstr "Derivated lots"
+
+#: ../../../display/templates/repro/lotDisplay.tpl:22
 msgid "Devenir du lot"
 msgstr "Batch destiny"
 
-#: ../../../display/templates/repro/lotDisplay.tpl:27
+#: ../../../display/templates/repro/lotDisplay.tpl:26
+msgid "Nouvelle destination (lâcher, entrée dans le stock captif, etc.)"
+msgstr "New destination (release, entry into captive stock, etc.)"
+
+#: ../../../display/templates/repro/lotDisplay.tpl:37
 msgid "Comptages et mesures"
 msgstr "Counts and measurements"
 
-#: ../../../display/templates/repro/lotDisplay.tpl:33
+#: ../../../display/templates/repro/lotDisplay.tpl:43
 msgid "Bassins utilisés"
 msgstr "Basins used"
 
@@ -3545,7 +3597,7 @@ msgid "Statut de reproduction"
 msgstr "Reproduction status"
 
 #: ../../../display/templates/repro/poissonCampagneList.tpl:150
-#: ../../../display/templates/poisson/poissonList.tpl:23
+#: ../../../display/templates/poisson/poissonList.tpl:60
 #: ../../../display/templates/poisson/parentPoissonList.tpl:10
 #: ../../../display/templates/bassin/bassinPoissonPresent.tpl:9
 msgid "Cohorte"
@@ -3898,7 +3950,7 @@ msgid "Liste des requêtes"
 msgstr "List of requests"
 
 #: ../../../display/templates/parametre/requeteList.tpl:14
-#: ../../../display/templates/poisson/poissonList.tpl:17
+#: ../../../display/templates/poisson/poissonList.tpl:54
 #: ../../../display/templates/framework/request/requestList.tpl:9
 msgid "Id"
 msgstr "Id"
@@ -4095,9 +4147,7 @@ msgstr "Active?"
 #: ../../../display/templates/parametre/laboratoireAnalyseChange.tpl:24
 #: ../../../display/templates/parametre/evenementTypeChange.tpl:31
 #: ../../../display/templates/parametre/sortieLieuChange.tpl:63
-#: ../../../display/templates/poisson/poissonSearch.tpl:150
-#: ../../../display/templates/poisson/poissonSearch.tpl:166
-#: ../../../display/templates/poisson/poissonSearch.tpl:191
+#: ../../../display/templates/poisson/poissonSearch.tpl:176
 #: ../../../display/templates/anomalie/anomalieList.tpl:18
 #: ../../../display/templates/bassin/circuitEauList.tpl:37
 #: ../../../display/templates/bassin/circuitEauDisplay.tpl:97
@@ -4123,9 +4173,7 @@ msgstr "yes"
 #: ../../../display/templates/parametre/laboratoireAnalyseChange.tpl:28
 #: ../../../display/templates/parametre/evenementTypeChange.tpl:27
 #: ../../../display/templates/parametre/sortieLieuChange.tpl:59
-#: ../../../display/templates/poisson/poissonSearch.tpl:145
-#: ../../../display/templates/poisson/poissonSearch.tpl:161
-#: ../../../display/templates/poisson/poissonSearch.tpl:186
+#: ../../../display/templates/poisson/poissonSearch.tpl:171
 #: ../../../display/templates/anomalie/anomalieList.tpl:14
 #: ../../../display/templates/bassin/circuitEauList.tpl:37
 #: ../../../display/templates/bassin/circuitEauSearch.tpl:45
@@ -4408,7 +4456,7 @@ msgid "Matricule :"
 msgstr "Personnel number:"
 
 #: ../../../display/templates/poisson/poissonDetail.tpl:8
-#: ../../../display/templates/poisson/poissonChange.tpl:76
+#: ../../../display/templates/poisson/poissonChange.tpl:75
 #: ../../../display/templates/poisson/poissonSearch.tpl:89
 msgid "Sexe :"
 msgstr "Sex:"
@@ -4418,7 +4466,7 @@ msgid "(Pit)tag :"
 msgstr "pittag:"
 
 #: ../../../display/templates/poisson/poissonDetail.tpl:17
-#: ../../../display/templates/poisson/poissonChange.tpl:149
+#: ../../../display/templates/poisson/poissonChange.tpl:145
 msgid "Cohorte :"
 msgstr "Cohort:"
 
@@ -4496,17 +4544,16 @@ msgid "Valeur de la marque :"
 msgstr "Mark value:"
 
 #: ../../../display/templates/poisson/pittagChange.tpl:28
-#: ../../../display/templates/poisson/poissonChange.tpl:100
 msgid "Nombre hexadécimal ou numérique"
 msgstr "Hexadecimal or numeric number"
 
 #: ../../../display/templates/poisson/pittagChange.tpl:33
-#: ../../../display/templates/poisson/poissonChange.tpl:105
+#: ../../../display/templates/poisson/poissonChange.tpl:102
 msgid "Type de marque :"
 msgstr "Mark type:"
 
 #: ../../../display/templates/poisson/pittagChange.tpl:51
-#: ../../../display/templates/poisson/poissonChange.tpl:123
+#: ../../../display/templates/poisson/poissonChange.tpl:120
 msgid "Date de pose :"
 msgstr "Date of installation:"
 
@@ -4547,62 +4594,62 @@ msgstr ""
 "The pittag must be filled in, failing that the registration number or first "
 "name for former fish"
 
-#: ../../../display/templates/poisson/poissonChange.tpl:38
+#: ../../../display/templates/poisson/poissonChange.tpl:37
 msgid "Modification d'un poisson"
 msgstr "Edit of a fish"
 
-#: ../../../display/templates/poisson/poissonChange.tpl:48
+#: ../../../display/templates/poisson/poissonChange.tpl:47
 #: ../../../display/templates/anomalie/anomalieChange.tpl:96
 msgid "Statut :"
 msgstr "Status:"
 
-#: ../../../display/templates/poisson/poissonChange.tpl:62
+#: ../../../display/templates/poisson/poissonChange.tpl:61
 #: ../../../display/templates/poisson/poissonSearch.tpl:57
 msgid "Catégorie :"
 msgstr "Category:"
 
-#: ../../../display/templates/poisson/poissonChange.tpl:90
+#: ../../../display/templates/poisson/poissonChange.tpl:89
 msgid "Pittag"
 msgstr "Pittag"
 
-#: ../../../display/templates/poisson/poissonChange.tpl:93
+#: ../../../display/templates/poisson/poissonChange.tpl:92
 msgid "Numéro de pittag :"
 msgstr "Pittag number:"
 
-#: ../../../display/templates/poisson/poissonChange.tpl:100
-msgid "01AB2C ou 12345"
-msgstr "01AB2C or 12345"
+#: ../../../display/templates/poisson/poissonChange.tpl:98
+msgid "Pittag complet"
+msgstr "Full Pittag"
 
-#: ../../../display/templates/poisson/poissonChange.tpl:110
+#: ../../../display/templates/poisson/poissonChange.tpl:107
 msgid "Sélectionnez le type de marque..."
 msgstr "Select the mark type..."
 
-#: ../../../display/templates/poisson/poissonChange.tpl:128
+#: ../../../display/templates/poisson/poissonChange.tpl:124
 msgid "Date de pose de la marque"
 msgstr "Date of application of the mark"
 
-#: ../../../display/templates/poisson/poissonChange.tpl:135
+#: ../../../display/templates/poisson/poissonChange.tpl:131
 msgid "Matricule:"
 msgstr "Personnel number:"
 
-#: ../../../display/templates/poisson/poissonChange.tpl:143
+#: ../../../display/templates/poisson/poissonChange.tpl:139
 #: ../../../display/templates/framework/ident/loginsaisie.tpl:102
 msgid "Prénom :"
 msgstr "First name:"
 
-#: ../../../display/templates/poisson/poissonChange.tpl:157
+#: ../../../display/templates/poisson/poissonChange.tpl:153
 msgid "Date de capture :"
 msgstr "Catch date:"
 
-#: ../../../display/templates/poisson/poissonChange.tpl:168
+#: ../../../display/templates/poisson/poissonChange.tpl:164
 msgid "Date de naissance :"
 msgstr "Birthday:"
 
-#: ../../../display/templates/poisson/poissonChange.tpl:186
+#: ../../../display/templates/poisson/poissonChange.tpl:182
 msgid "Marquage VIE au stade juvénile - lot"
 msgstr "VIE marking at juvenile stage - batch"
 
-#: ../../../display/templates/poisson/poissonChange.tpl:188
+#: ../../../display/templates/poisson/poissonChange.tpl:184
 msgid ""
 "La sélection du modèle de marquage VIE entraîne une mise à jour automatique "
 "de la date de naissance, de la cohorte et des parents à partir des données "
@@ -4611,11 +4658,11 @@ msgstr ""
 "Selecting the VIE tagging model automatically updates the date of birth, "
 "cohort and parents from the reproduction data"
 
-#: ../../../display/templates/poisson/poissonChange.tpl:192
+#: ../../../display/templates/poisson/poissonChange.tpl:188
 msgid "Modèle de marque :"
 msgstr "Mark model:"
 
-#: ../../../display/templates/poisson/poissonChange.tpl:198
+#: ../../../display/templates/poisson/poissonChange.tpl:194
 msgid "Sélectionnez pour générer les parents..."
 msgstr "Select to generate parents..."
 
@@ -4931,54 +4978,54 @@ msgstr "Method"
 msgid "Type de parente"
 msgstr "Parent type"
 
-#: ../../../display/templates/poisson/poissonList.tpl:5
+#: ../../../display/templates/poisson/poissonList.tpl:41
 msgid "Nouveau poisson..."
 msgstr "New fish..."
 
-#: ../../../display/templates/poisson/poissonList.tpl:10
+#: ../../../display/templates/poisson/poissonList.tpl:46
 msgid ""
 "Liste de tous les événements pour les poissons sélectionnés au format CSV"
 msgstr "List of all events for the selected fish in CSV format"
 
-#: ../../../display/templates/poisson/poissonList.tpl:18
+#: ../../../display/templates/poisson/poissonList.tpl:55
 msgid "(Pit)tag"
 msgstr "Pittag"
 
-#: ../../../display/templates/poisson/poissonList.tpl:19
+#: ../../../display/templates/poisson/poissonList.tpl:56
 msgid "Matricule"
 msgstr "Personnel number"
 
-#: ../../../display/templates/poisson/poissonList.tpl:20
+#: ../../../display/templates/poisson/poissonList.tpl:57
 msgid "Prénom"
 msgstr "First name"
 
-#: ../../../display/templates/poisson/poissonList.tpl:22
+#: ../../../display/templates/poisson/poissonList.tpl:59
 #: ../../../display/templates/poisson/poissonCampagneList.tpl:6
 msgid "Statut"
 msgstr "Status"
 
-#: ../../../display/templates/poisson/poissonList.tpl:27
+#: ../../../display/templates/poisson/poissonList.tpl:61
 msgid "Date de capture /naissance"
 msgstr "Date of catch/birth"
 
-#: ../../../display/templates/poisson/poissonList.tpl:28
+#: ../../../display/templates/poisson/poissonList.tpl:62
 msgid "Date de mortalité"
 msgstr "Mortality date"
 
-#: ../../../display/templates/poisson/poissonList.tpl:33
+#: ../../../display/templates/poisson/poissonList.tpl:64
 #: ../../../display/templates/bassin/bassinPoissonPresent.tpl:11
 msgid "Masse"
 msgstr "Mass"
 
-#: ../../../display/templates/poisson/poissonList.tpl:34
+#: ../../../display/templates/poisson/poissonList.tpl:65
 msgid "Long fourche"
 msgstr "Fork length"
 
-#: ../../../display/templates/poisson/poissonList.tpl:35
+#: ../../../display/templates/poisson/poissonList.tpl:66
 msgid "Long totale"
 msgstr "Total length"
 
-#: ../../../display/templates/poisson/poissonList.tpl:38
+#: ../../../display/templates/poisson/poissonList.tpl:71
 msgid "Température cumulée (bassin)"
 msgstr "Cumulative temperature (basin)"
 
@@ -5002,29 +5049,25 @@ msgstr "Search by recorded event:"
 msgid "Entre le :"
 msgstr "Between :"
 
-#: ../../../display/templates/poisson/poissonSearch.tpl:129
+#: ../../../display/templates/poisson/poissonSearch.tpl:130
 msgid "et le :"
 msgstr "and:"
 
-#: ../../../display/templates/poisson/poissonSearch.tpl:139
-msgid "Afficher : les données morphologiques ?"
-msgstr "Display: morphological data?"
+#: ../../../display/templates/poisson/poissonSearch.tpl:140
+msgid "Recherche par bassin :"
+msgstr "Search by basin:"
 
-#: ../../../display/templates/poisson/poissonSearch.tpl:155
-msgid "le bassin ?"
-msgstr "basin?"
-
-#: ../../../display/templates/poisson/poissonSearch.tpl:180
+#: ../../../display/templates/poisson/poissonSearch.tpl:165
 msgid "Afficher : le cumul des températures (calcul long) ?"
 msgstr "Display: cumulative temperatures (long calculation)?"
 
-#: ../../../display/templates/poisson/poissonSearch.tpl:195
+#: ../../../display/templates/poisson/poissonSearch.tpl:180
 #: ../../../display/templates/bassin/bassinList.tpl:11
 #: ../../../display/templates/framework/logList.tpl:34
 msgid "du :"
 msgstr "from:"
 
-#: ../../../display/templates/poisson/poissonSearch.tpl:202
+#: ../../../display/templates/poisson/poissonSearch.tpl:187
 #: ../../../display/templates/bassin/bassinList.tpl:15
 #: ../../../display/templates/bassin/analyseGraph.tpl:72
 #: ../../../display/templates/framework/logList.tpl:38
@@ -5059,59 +5102,106 @@ msgstr "Number of beats/second:"
 msgid "Type de mortalite"
 msgstr "Mortality type"
 
-#: ../../../display/templates/poisson/morphologieImport.tpl:1
+#: ../../../display/templates/poisson/morphologieImport.tpl:52
 msgid "Importation de mesures de morphologie à partir d'un fichier CSV"
 msgstr "Importing morphology measurements from a CSV file"
 
-#: ../../../display/templates/poisson/morphologieImport.tpl:7
-msgid "Contrôles OK."
-msgstr "Controls OK."
+#: ../../../display/templates/poisson/morphologieImport.tpl:60
+msgid "Appariement des colonnes"
+msgstr "Columns matching"
 
-#: ../../../display/templates/poisson/morphologieImport.tpl:7
-msgid "Vous pouvez réaliser l'import du fichier (%1) :"
-msgstr "You can import the file (%1):"
+#: ../../../display/templates/poisson/morphologieImport.tpl:64
+msgid "Nom du champ utilisé dans l'application"
+msgstr "Name of the field used in the application"
 
-#: ../../../display/templates/poisson/morphologieImport.tpl:8
-msgid "Déclencher l'import"
-msgstr "Import the file"
+#: ../../../display/templates/poisson/morphologieImport.tpl:65
+msgid "Nom de la colonne correspondante dans le fichier"
+msgstr "Name of the corresponding column in the file"
 
-#: ../../../display/templates/poisson/morphologieImport.tpl:19
-msgid "N° de ligne"
-msgstr "Line number"
+#: ../../../display/templates/poisson/morphologieImport.tpl:81
+msgid "Colonnes dans le fichier d'origine"
+msgstr "Columns in the origin file"
 
-#: ../../../display/templates/poisson/morphologieImport.tpl:20
-msgid "Anomalie(s) détectée(s)"
-msgstr "Detected anomalies"
+#: ../../../display/templates/poisson/morphologieImport.tpl:85
+msgid "Nom de la colonne"
+msgstr "Name of the column"
 
-#: ../../../display/templates/poisson/morphologieImport.tpl:42
-msgid "Nom du fichier à importer (CSV) :"
-msgstr "Name of CSV file to import:"
-
-#: ../../../display/templates/poisson/morphologieImport.tpl:49
-msgid "Séparateur utilisé :"
-msgstr "Used separator:"
-
-#: ../../../display/templates/poisson/morphologieImport.tpl:52
-msgid "Virgule"
-msgstr "Comma"
-
-#: ../../../display/templates/poisson/morphologieImport.tpl:53
-msgid "Point-virgule"
-msgstr "Semi-comma"
-
-#: ../../../display/templates/poisson/morphologieImport.tpl:54
-msgid "Tabulation"
-msgstr "Tabulation"
-
-#: ../../../display/templates/poisson/morphologieImport.tpl:59
-msgid "Encodage du fichier :"
-msgstr "File encoding:"
-
-#: ../../../display/templates/poisson/morphologieImport.tpl:69
+#: ../../../display/templates/poisson/morphologieImport.tpl:100
 msgid "Vérifier le fichier"
 msgstr "Verify the file"
 
-#: ../../../display/templates/poisson/morphologieImport.tpl:77
+#: ../../../display/templates/poisson/morphologieImport.tpl:105
+msgid ""
+"Indiquez le nom de la colonne présente dans le fichier à charger en face de "
+"chaque colonne attendue."
+msgstr ""
+"Enter the name of the column in the file to be uploaded in front of each "
+"expected column."
+
+#: ../../../display/templates/poisson/morphologieImport.tpl:107
+msgid ""
+"Vous pouvez utiliser la souris pour déplacer les libellés du tableau de "
+"droite vers le tableau de gauche."
+msgstr ""
+"You can use the mouse to move labels from the right-hand table to the left-"
+"hand table."
+
+#: ../../../display/templates/poisson/morphologieImport.tpl:119
+msgid "Contrôles OK."
+msgstr "Controls OK."
+
+#: ../../../display/templates/poisson/morphologieImport.tpl:119
+msgid "Vous pouvez réaliser l'import du fichier (%1) :"
+msgstr "You can import the file (%1):"
+
+#: ../../../display/templates/poisson/morphologieImport.tpl:120
+msgid "Déclencher l'import"
+msgstr "Import the file"
+
+#: ../../../display/templates/poisson/morphologieImport.tpl:131
+msgid "N° de ligne"
+msgstr "Line number"
+
+#: ../../../display/templates/poisson/morphologieImport.tpl:132
+msgid "Anomalie(s) détectée(s)"
+msgstr "Detected anomalies"
+
+#: ../../../display/templates/poisson/morphologieImport.tpl:155
+msgid "Nom du fichier à importer (CSV) :"
+msgstr "Name of CSV file to import:"
+
+#: ../../../display/templates/poisson/morphologieImport.tpl:162
+msgid "Séparateur utilisé :"
+msgstr "Used separator:"
+
+#: ../../../display/templates/poisson/morphologieImport.tpl:165
+#: ../../../display/templates/poisson/morphologieImport.tpl:168
+msgid "Virgule"
+msgstr "Comma"
+
+#: ../../../display/templates/poisson/morphologieImport.tpl:166
+#: ../../../display/templates/poisson/morphologieImport.tpl:169
+msgid "Point-virgule"
+msgstr "Semi-comma"
+
+#: ../../../display/templates/poisson/morphologieImport.tpl:167
+#: ../../../display/templates/poisson/morphologieImport.tpl:170
+msgid "Tabulation"
+msgstr "Tabulation"
+
+#: ../../../display/templates/poisson/morphologieImport.tpl:176
+msgid "Numéro de la ligne contenant l'entête :"
+msgstr "Number of the line containing the header:"
+
+#: ../../../display/templates/poisson/morphologieImport.tpl:183
+msgid "Encodage du fichier :"
+msgstr "File encoding:"
+
+#: ../../../display/templates/poisson/morphologieImport.tpl:193
+msgid "Apparier les colonnes"
+msgstr "Match columns"
+
+#: ../../../display/templates/poisson/morphologieImport.tpl:201
 msgid ""
 "Ce module permet d'importer des mesures réalisées sur les poissons à partir "
 "d'un fichier CSV, et crée les événements correspondants."
@@ -5119,33 +5209,41 @@ msgstr ""
 "This module allows you to import measurements taken on fish from a CSV file, "
 "and create the corresponding events."
 
-#: ../../../display/templates/poisson/morphologieImport.tpl:79
+#: ../../../display/templates/poisson/morphologieImport.tpl:203
 msgid ""
 "Il n'accepte que des fichiers au format CSV. La ligne d'entête doit "
-"comprendre exclusivement les colonnes suivantes :"
+"comprendre les colonnes suivantes :"
 msgstr ""
 "It only accepts files in CSV format. The header row must contain only the "
 "following columns:"
 
-#: ../../../display/templates/poisson/morphologieImport.tpl:82
+#: ../../../display/templates/poisson/morphologieImport.tpl:206
 msgid "PITTAG du poisson"
 msgstr "Fish pittag"
 
-#: ../../../display/templates/poisson/morphologieImport.tpl:83
+#: ../../../display/templates/poisson/morphologieImport.tpl:207
 msgid "Date de mesure (format dd/mm/yyyy)"
 msgstr "Measure date (format yyyy-mm-dd)"
 
-#: ../../../display/templates/poisson/morphologieImport.tpl:84
+#: ../../../display/templates/poisson/morphologieImport.tpl:208
 msgid "Longueur totale mesurée, en cm"
 msgstr "Total measured length, in cm"
 
-#: ../../../display/templates/poisson/morphologieImport.tpl:85
+#: ../../../display/templates/poisson/morphologieImport.tpl:209
 msgid "Longueur fourche mesurée, en cm"
 msgstr "Fork measured length, in cm"
 
-#: ../../../display/templates/poisson/morphologieImport.tpl:86
+#: ../../../display/templates/poisson/morphologieImport.tpl:210
 msgid "Poids mesuré, en grammes"
 msgstr "Measured weight, in grams"
+
+#: ../../../display/templates/poisson/morphologieImport.tpl:212
+msgid ""
+"Le nom des colonnes dans le fichier peut être différent, un mécanisme "
+"d'appariement est proposé pendant l'importation"
+msgstr ""
+"The names of the columns in the file may be different, and a matching "
+"mechanism is proposed during import."
 
 #: ../../../display/templates/poisson/sortieList.tpl:8
 msgid "Sevrage/Commentaire"
@@ -6863,6 +6961,22 @@ msgstr "Display"
 #: ../../../display/templates/main.tpl:88
 msgid "Photo : © Marie-Laure Acolas - 2012 - lâcher d'esturgeons en Dordogne"
 msgstr "Photo: © Marie-Laure Acolas - 2012 - Sturgeon release in the Dordogne"
+
+#, php-format
+#~ msgid "La colonne %1$s n'est pas reconnue (%2$s)"
+#~ msgstr "Column %1$s is not recognized (%2$s)"
+
+#~ msgid "T50 :"
+#~ msgstr "T50:"
+
+#~ msgid "01AB2C ou 12345"
+#~ msgstr "01AB2C or 12345"
+
+#~ msgid "Afficher : les données morphologiques ?"
+#~ msgstr "Display: morphological data?"
+
+#~ msgid "le bassin ?"
+#~ msgstr "basin?"
 
 #~ msgid "Structure de la base de données (Latex)"
 #~ msgstr "Database structure (Latex)"

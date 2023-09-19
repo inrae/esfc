@@ -198,11 +198,9 @@
 <div class="row">
     <div class="col-md-6">
         <div class="bg-info">
-            {t}Ce module permet d'importer des mesures réalisées sur les poissons à partir d'un fichier CSV, et crée les
-            événements correspondants.{/t}
+            {t}Ce module permet d'importer des mesures réalisées sur les poissons à partir d'un fichier CSV, et crée les événements correspondants.{/t}
             <br>
-            {t}Il n'accepte que des fichiers au format CSV. La ligne d'entête doit comprendre les colonnes
-            suivantes :{/t}
+            {t}Il n'accepte que des fichiers au format CSV. La ligne d'entête doit comprendre les colonnes suivantes :{/t}
             <br>
             <ul>
                 <li><b>pittag</b><span class="red">*</span> : {t}PITTAG du poisson{/t}</li>
@@ -211,6 +209,7 @@
                 <li><b>fork_length</b> : {t}Longueur fourche mesurée, en cm{/t}</li>
                 <li><b>weight</b> : {t}Poids mesuré, en grammes{/t}</li>
             </ul>
+            {t}Le nom des colonnes dans le fichier peut être différent, un mécanisme d'appariement est proposé pendant l'importation{/t}
             <span class="red">*</span><span class="messagebas">{t}Champ obligatoire{/t}</span>
         </div>
     </div>
