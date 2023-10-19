@@ -106,6 +106,7 @@ class AnalyseEau extends ObjetBDD
 		);
 		parent::__construct($bdd, $param);
 	}
+
 	/**
 	 * Retourne les analyses d'eau pour un circuit d'eau, avec les criteres limitatifs fournis
 	 *
@@ -115,7 +116,7 @@ class AnalyseEau extends ObjetBDD
 	 * @param int $offset        	
 	 * @return array
 	 */
-	function getDetailByCircuitEau($id, $dateRef = null, int $limit = 1, int $offset = 0):?array
+	function getDetailByCircuitEau($id, $dateRef = null, int $limit = 1, int $offset = 0): ?array
 	{
 		if ($id > 0 && is_numeric($id)) {
 			$sql = "select * from analyse_eau
@@ -124,15 +125,16 @@ class AnalyseEau extends ObjetBDD
 			if (is_null($dateRef))
 				$dateRef = date("d/m/Y");
 			$param = array(
-				"date_ref" => $this->formatDateLocaleVersDB($dateRef, 2), 
-				"id" => $id)
-				;
+				"date_ref" => $this->formatDateLocaleVersDB($dateRef, 2),
+				"id" => $id
+			)
+			;
 			$where = " where analyse_eau_date <= :date_ref and circuit_eau.circuit_eau_id = :id";
-			
+
 			$order = " order by analyse_eau_date desc LIMIT " . $limit . " OFFSET " . $offset;
 			if (!isset($this->analyseMetal)) {
 				$this->analyseMetal = $this->classInstanciate("AnalyseMetal", "analyseMetal.class.php");
-			} 
+			}
 			if ($limit == 1) {
 				$data = $this->lireParamAsPrepared($sql . $where . $order, $param);
 				if ($data["analyse_eau_id"] > 0 && is_numeric($data["analyse_eau_id"]))
@@ -153,9 +155,9 @@ class AnalyseEau extends ObjetBDD
 	 *
 	 * @see ObjetBDD::supprimer()
 	 */
-	function supprimer($id):bool
+	function supprimer($id): bool
 	{
-		if ($id > 0 ) {
+		if ($id > 0) {
 			/*
 			 * Suppression des analyses des metaux
 			 */
@@ -174,7 +176,7 @@ class AnalyseEau extends ObjetBDD
 	 * @param int $bassin_id        	
 	 * @return int
 	 */
-	function getIdFromDateBassin($dateAnalyse, $bassin_id) :?int
+	function getIdFromDateBassin($dateAnalyse, $bassin_id): ?int
 	{
 		$dateAnalyse = $this->encodeData($dateAnalyse);
 		$dateAnalyse = $this->formatDateLocaleVersDB($dateAnalyse, 3);
@@ -215,7 +217,7 @@ class AnalyseEau extends ObjetBDD
 	 * @param [string] $attribut
 	 * @return array
 	 */
-	function getValFromDatesCircuit($circuit_id, $date_from, $date_to, $attribut) :?array
+	function getValFromDatesCircuit($circuit_id, $date_from, $date_to, $attribut): ?array
 	{
 		if (in_array($attribut, array("temperature", "o2_pc", "salinite", "ph", "nh4", "n_nh4", "no2", "n_no2", "no3", "n_no3"))) {
 			$date_from = $this->formatDateLocaleVersDB($date_from);
@@ -227,9 +229,12 @@ class AnalyseEau extends ObjetBDD
 			return ($this->getListeParamAsPrepared(
 				$sql,
 				array(
-					"circuit_id" => $circuit_id, "date_from" => $date_from, "date_to" => $date_to
+					"circuit_id" => $circuit_id,
+					"date_from" => $date_from,
+					"date_to" => $date_to
 				)
-			));
+			)
+			);
 
 		}
 	}

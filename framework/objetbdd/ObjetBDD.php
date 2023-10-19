@@ -878,7 +878,7 @@ class ObjetBDD
                 $i++;
                 $sql .= " ";
                 $cle = $this->quoteIdentifier . $key . $this->quoteIdentifier;
-                if (empty($value)) {
+                if (strlen($value) == 0) {
                     // Traitement des null
                     if ($this->debug_mode == 2) {
                         echo "<br>Null value for " . $key;
