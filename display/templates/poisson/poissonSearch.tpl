@@ -49,6 +49,21 @@
 					{/section}
 				</select>
 			</div>
+			<label class="control-label col-md-1" for="cohorte">
+				{t}Cohorte :{/t}
+			</label>
+			<div class="col-md-2">
+				<select id="cohorte" name="cohorte" class="form-control">
+					<option value="" {if $poissonSearch.cohorte=="" }selected{/if}>
+						{t}Sélectionnez la cohorte...{/t}
+					</option>
+					{section name=lst loop=$cohortes}
+					<option value="{$cohortes[lst].cohorte}" {if $poissonSearch.cohorte==$cohortes[lst].cohorte}selected{/if}>
+						{$cohortes[lst].cohorte}
+					</option>
+					{/section}
+				</select>
+			</div>
 
 		</div>
 		<div class="row">
