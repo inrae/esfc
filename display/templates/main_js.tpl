@@ -42,23 +42,22 @@
 <link rel="stylesheet" type="text/css"
 	href="display/node_modules/datatables.net-buttons-bs/css/buttons.bootstrap.min.css" />
 
-<!-- Rajout du tri sur la date/heure -->
-<script type="text/javascript" src="display/node_modules/moment/min/moment.min.js"></script>
-<script type="text/javascript" src="display/node_modules/datetime-moment/datetime-moment.js"></script>
-
 <!-- composant date/heure -->
-
 <script type="text/javascript" charset="utf-8"
 	src="display/node_modules/jquery-ui/ui/i18n/datepicker-en-GB.js"></script>
 <script type="text/javascript" charset="utf-8" src="display/node_modules/jquery-ui/ui/i18n/datepicker-fr.js"></script>
-<script type="text/javascript" charset="utf-8"
-	src="display/javascript/jquery-timepicker-addon/jquery-ui-timepicker-addon.min.js"></script>
-<script type="text/javascript" charset="utf-8"
-	src="display/javascript/jquery-timepicker-addon/i18n/jquery-ui-timepicker-fr.js"></script>
-<link rel="stylesheet" type="text/css" href="display/node_modules/jquery-ui-dist/jquery-ui.min.css" />
-<link rel="stylesheet" type="text/css" href="display/node_modules/jquery-ui-dist/jquery-ui.theme.min.css" />
-<link rel="stylesheet" type="text/css"
-	href="display/javascript/jquery-timepicker-addon/jquery-ui-timepicker-addon.min.css" />
+<!--script type="text/javascript" charset="utf-8"
+	src="display/javascript/jquery-timepicker-addon/jquery-ui-timepicker-addon.min.js"></script-->
+	<link rel="stylesheet" type="text/css" href="display/node_modules/jquery-ui-dist/jquery-ui.min.css" />
+	<link rel="stylesheet" type="text/css" href="display/node_modules/jquery-ui-dist/jquery-ui.theme.min.css" />
+
+<!-- Rajout du tri sur la date/heure -->
+<script type="text/javascript" src="display/node_modules/moment/min/moment.min.js"></script>
+<script type="text/javascript" src="display/node_modules/datetime-moment/datetime-moment.js"></script>
+<script type="text/javascript" src="display/node_modules/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
+<link rel="stylesheet" type="text/css" href="display/node_modules/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css">
+
+<!-- general -->
 <link rel="stylesheet" type="text/css" href="display/CSS/bootstrap-prototypephp.css">
 <script type="text/javascript" charset="utf-8" src="display/javascript/jquery-ui-custom/combobox.js"></script>
 
@@ -235,18 +234,17 @@
 		});
 		{/literal}
 
-			$(".date").datepicker($.datepicker.regional['{$LANG["date"]["locale"]}']);
-			$(".datepicker").datepicker($.datepicker.regional['{$LANG["date"]["locale"]}']);
-			$.datepicker.setDefaults($.datepicker.regional['{$LANG["date"]["locale"]}']);
-			$(".timepicker").timepicker({
-				timeFormat: 'HH:mm:ss'
+		$('.datepicker').datetimepicker({
+    			locale: locale,
+				format: '{$LANG["date"]["formatdate"]}'
 			});
-			$('.timepicker').attr('pattern', '[0-9][0-9]\:[0-9][0-9]\:[0-9][0-9]');
-			$.timepicker.setDefaults($.timepicker.regional['{$LANG["date"]["locale"]}']);
 			$('.datetimepicker').datetimepicker({
-				dateFormat: '{$LANG["date"]["formatdatecourt"]}',
-				timeFormat: 'HH:mm:ss',
-				timeInput: true
+    			locale: locale,
+				format: '{$LANG["date"]["formatdate"]} HH:mm:ss'
+			});
+			$('.timepicker').datetimepicker({
+				locale: locale,
+				format: 'HH:mm:ss'
 			});
 			$('.date, .datepicker, .timepicker, .datetimepicker').attr('autocomplete', 'off');
 

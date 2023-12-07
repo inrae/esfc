@@ -20,7 +20,7 @@
         <tr>
             <td>
                 {if $droits.reproGestion == 1}
-                <a href="index.php?module=lotMesureChange&lot_mesure_id={$dataMesure[lst].lot_mesure_id}">
+                <a href="index.php?module=lotMesureChange&lot_mesure_id={$dataMesure[lst].lot_mesure_id}&lot_id={$dataLot.lot_id}">
                     {$dataMesure[lst].lot_mesure_date}
                 </a>
                 {else}

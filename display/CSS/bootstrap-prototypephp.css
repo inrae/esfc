@@ -67,22 +67,22 @@ body {
 	font-size: small;
 	font-style: italic;
 }
-.selected {
-	background-color: #009EE0;
+h1{
+	font-size:x-large;
 }
 h2 {
-	font-size:large;
+	font-size:x-large;
 }
 h3 {
-	font-size:medium;
+	font-size:large;
 }
 legend {
 	font-size:large;
 	color:#003A80;
 }
 .textareaDisplay {
-	white-space:pre-wrap;
-	display: flex;
+	white-space: break-spaces;
+	display: normal;
 }
 
 .tableTextarea {
@@ -112,10 +112,10 @@ legend {
 	border-radius: 0.4em;
 	background-color: white;
 }
-.form-display > row > label {
+/*.form-display > row > label {
 	text-align: right;
 	word-wrap: break-word;
-}
+}*/
 .display {
 	word-wrap: break-word;
 	border-style: solid;
@@ -132,7 +132,7 @@ legend {
 	background-position: 100% 50%;
 }
 
-.datetimepicker, .timepicker {
+.datetimepicker {
 	background-image: url("images/clock.png");
 	background-size: 1em;
 	background-repeat: no-repeat;
@@ -266,6 +266,7 @@ meter[value="4"]::-moz-meter-bar { background: #A4C400; }
 .tab-content{
 	/*background-color: rgba(0, 158, 224, 0.1);*/
 	border-top: 2px solid rgba(0,158,224);
+	border-right: 0px;
 	padding:10px;
 }
 .tab-content-white{
@@ -286,15 +287,6 @@ background-color:  rgba(0,158,224,0.2) !important;
 	border-radius: 0.5;
 }
 
-.submenu {
-	border-bottom: solid ;
-	border-right: solid ;
-	border-bottom-color: rgba(0,158,224);
-	border-right-color: rgba(0,158,224);
-	background-color: rgba(0,158,224, 0.1);
-	list-style: none;
-}
-
 .trashed {
 	background-color: rgba(213,19,23,0.5);
 }
@@ -313,6 +305,9 @@ background-color:  rgba(0,158,224,0.2) !important;
 }
 .top {
 	vertical-align: text-top ;
+}
+table {
+	width: 100%;
 }
 table a {
 	text-decoration: underline;
@@ -337,6 +332,21 @@ table a:visited {
 	background-repeat: no-repeat;
 	background-position: 100% 50%;
 }
+thead {
+	/*background-color: #fff;*/
+	color: rgb(0,58,128);
+}
+th {
+	font-weight: normal;
+	text-align: center;
+}
+tr {
+	width: 70%;
+}
+
+.hover {
+	cursor: pointer;
+}
 /* bootstrap hack: fix content width inside hidden tabs */
 .tab-content > .tab-pane:not(.active),
 .pill-content > .pill-pane:not(.active) {
@@ -345,3 +355,12 @@ table a:visited {
     overflow-y: hidden;
 }
 /* bootstrap hack end */
+
+.submenu {
+	border-bottom: solid ;
+	border-right: solid ;
+	border-bottom-color: rgba(0,158,224);
+	border-right-color: rgba(0,158,224);
+	background-color: rgba(0,158,224, 0.1);
+	list-style: none;
+}

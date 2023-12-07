@@ -1,5 +1,16 @@
 News
 ==========
+Version 23.2.0 of 7 December 2023
+---------------------------------
+Bug fixes :
+- creating event types for ponds was not successful
+- deleting a breeding lot did not work
+
+New features:
+- it is now possible to search by cohort independently of other criteria
+- by choosing the "mortality" event type, the status of the fish is now updated
+- replacement of the date/time component by a more modern component
+
 Version 23.1.0 of 19 September 2023
 -----------------------------
 Bug fixes :

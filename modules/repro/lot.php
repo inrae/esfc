@@ -125,6 +125,17 @@ switch ($t_module["param"]) {
 		/*
 		 * delete record
 		 */
-		dataDelete($dataClass, $id);
+		$bdd->beginTransaction();
+		try {
+			dataDelete($dataClass, $id, true);
+			$module_coderetour = 1;
+			$message->set(_("Suppression effectuée"));
+			$bdd->commit();
+		} catch (Exception $e) {
+			$bdd->rollback();
+			$module_coderetour = -1;
+			$message->set($e->getMessage(), true);
+		}
+
 		break;
 }

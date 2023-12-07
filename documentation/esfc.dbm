@@ -3,7 +3,7 @@
 CAUTION: Do not modify this file unless you know what you are doing.
  Unexpected results may occur if the code is changed deliberately.
 -->
-<dbmodel pgmodeler-ver="1.0.5" use-changelog="false" author="Eric Quinton" last-position="0,977" last-zoom="0.55" max-obj-count="171"
+<dbmodel pgmodeler-ver="1.0.6" use-changelog="false" author="Eric Quinton" last-position="0,369" last-zoom="0.55" max-obj-count="171"
 	 default-owner="postgres"
 	 layers="Default layer"
 	 active-layers="0"
@@ -1805,7 +1805,7 @@ Le premier chiffre correspond au lundi]]> </comment>
 	<role name="quinton"/>
 </sequence>
 
-<table name="evenement_type" layers="0" collapse-mode="1" max-obj-count="3" z-value="0">
+<table name="evenement_type" layers="0" collapse-mode="1" max-obj-count="4" z-value="0">
 	<schema name="public"/>
 	<role name="quinton"/>
 	<comment> <![CDATA[Table des types d'événements]]> </comment>
@@ -4672,6 +4672,15 @@ Le premier chiffre correspond au lundi]]> </comment>
 			<column name="poisson_id"/>
 		</idxelement>
 </index>
+
+<relationship name="poisson_statut_has_many_evenement_type" type="rel1n" layers="0"
+	 src-col-pattern="{sc}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#0fa061"
+	 src-table="public.poisson_statut"
+	 dst-table="public.evenement_type"
+	 src-required="false" dst-required="false"/>
 
 <constraint name="aliment_type_aliment_fk" type="fk-constr" comparison-type="MATCH SIMPLE"
 	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.aliment_type" table="public.aliment">
