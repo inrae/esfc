@@ -19,6 +19,8 @@ class Lot extends ObjetBDD
 {
 	public BassinLot $bassinLot;
 	public Croisement $croisement;
+	public LotMesure $lotMesure;
+	public Devenir $devenir;
 
 	/**
 	 * 
@@ -260,5 +262,40 @@ class Lot extends ObjetBDD
 			$data = $this->getListeParamAsPrepared($sql, $param);
 		}
 		return $data;
+	}
+
+	function supprimer($lot_id) {
+		/**
+		 * Search if the lot is referenced by another
+		 */
+		$data = array("lot_id"=>$lot_id);
+		$sql = "select count(*) as nb from lot where parent_lot_id = :lot_id";
+		$res = $this->lireParamAsPrepared($sql, $data);
+		if ($res["nb"] > 0) {
+			throw new ObjetBDDException(_("Le lot a été partagé en un ou plusieurs lots, sa suppression n'est pas possible"));
+		}
+		/**
+		 * Search if exists devenir item
+		 */
+		$sql = "select count(*) as nb from devenir where lot_id = :lot_id";
+		$res = $this->lireParamAsPrepared($sql, $data);
+		if ($res["nb"] > 0) {
+			throw new ObjetBDDException(_("Des destinations ont été enregistrées pour les poissons du lot, sa suppression n'est pas possible"));
+		}
+		/**
+		 * Delete from lot_mesure
+		 */
+		if (!isset ($this->lotMesure)) {
+			$this->lotMesure = $this->classInstanciate("LotMesure", "lotMesure.class.php");
+		}
+		$this->lotMesure->supprimerChamp($lot_id, "lot_id");
+		/**
+		 * Delete from bassin_lot
+		 */
+		if (!isset ($this->bassinLot)) {
+			$this->bassinLot = $this->classInstanciate("BassinLot", "bassinLot.class.php");
+		}
+		$this->bassinLot->supprimerChamp($lot_id, "lot_id");
+		parent::supprimer($lot_id);
 	}
 }

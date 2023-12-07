@@ -111,8 +111,8 @@ class LotMesure extends ObjetBDD
 	{
 		$date = $this->formatDateLocaleVersDB($date);
 		/*
-			 * Recuperation de la mortalite totale
-			 */
+		 * Recuperation de la mortalite totale
+		 */
 		$param = array("lot_id" => $lot_id, "date" => $date);
 		$sql = "select sum(lot_mortalite) as lot_mortalite
 					from lot_mesure
@@ -122,8 +122,8 @@ class LotMesure extends ObjetBDD
 		if (!is_array($data))
 			$data["lot_mortalite"] = 0;
 		/*
-			 * Recuperation de la derniere masse individuelle connue
-			 */
+		 * Recuperation de la derniere masse individuelle connue
+		 */
 		$sql = "select lot_mesure_masse_indiv 
 					from lot_mesure
 					where lot_mesure_date <= :date
