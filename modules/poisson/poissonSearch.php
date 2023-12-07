@@ -40,3 +40,4 @@ require_once "modules/classes/bassin.class.php";
 $bassin = new Bassin($bdd, $ObjetBDDParam);
 $dataSearch["site_id"] > 0 ? $site_id = $dataSearch["site_id"] : $site_id = 0;
 $vue->set($bassin->getListBassin($site_id), "bassins");
+$vue->set($dataClass->getListCohortes(),"cohortes");

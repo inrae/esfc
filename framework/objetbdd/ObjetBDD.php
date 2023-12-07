@@ -878,7 +878,7 @@ class ObjetBDD
                 $i++;
                 $sql .= " ";
                 $cle = $this->quoteIdentifier . $key . $this->quoteIdentifier;
-                if (strlen($value) == 0) {
+                if (empty($value)) {
                     // Traitement des null
                     if ($this->debug_mode == 2) {
                         echo "<br>Null value for " . $key;
@@ -1276,7 +1276,7 @@ class ObjetBDD
              * Verification des champs numeriques
              */
             if ($this->colonnes[$key]["type"] == 1) {
-                if (strlen($value) > 0 && !is_numeric($value)) {
+                if (!empty($value) && !is_numeric($value)) {
                     $testok = false;
                     $this->errorData[] = array(
                         "code" => 1,

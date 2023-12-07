@@ -127,7 +127,6 @@ class Poisson extends ObjetBDD
             $ftexte = "%" . mb_strtoupper($dataSearch["texte"], 'UTF-8') . "%";
             $where .= $and . " (upper(matricule) like :texte
 						or upper(prenom) like :texte
-						or cohorte like :texte
 						or upper(pittag_valeur) like :texte";
             $param["texte"] = $ftexte;
             if (is_numeric($dataSearch["texte"])) {
@@ -142,7 +141,7 @@ class Poisson extends ObjetBDD
             $param["site_id"] = $dataSearch["site_id"];
             $and = " and ";
         }
-        if ($dataSearch["bassin_id"]>0) {
+        if ($dataSearch["bassin_id"] > 0) {
             $where .= $and . " bassin_id = :bassin_id ";
             $param["bassin_id"] = $dataSearch["bassin_id"];
             $and = " and ";
@@ -152,16 +151,20 @@ class Poisson extends ObjetBDD
                 $from .= " join " . $dataSearch["eventSearch"] . " es using (poisson_id)";
                 $where .= $and . "es." . $dataSearch["eventSearch"] . "_date" . " between :dateFromEvent and :dateToEvent";
                 $param["dateFromEvent"] = $this->formatDateLocaleVersDB($dataSearch["dateFromEvent"]);
-                $param["dateToEvent"] =  $this->formatDateLocaleVersDB($dataSearch["dateToEvent"]);
+                $param["dateToEvent"] = $this->formatDateLocaleVersDB($dataSearch["dateToEvent"]);
                 $sql .= ",es." . $dataSearch["eventSearch"] . "_date as event_date";
                 $and = " and ";
                 $this->colonnes["event_date"] = array("type" => 2);
                 $order .= ",event_date";
             }
         }
+        if (strlen($dataSearch["cohorte"]) > 0) {
+            $where .= $and . " cohorte = :cohorte";
+            $param["cohorte"] = $dataSearch["cohorte"];
+        }
         if (strlen($where) > 7) {
             $this->colonnes["mortalite_date"] = array("type" => 2);
-            $data = $this->getListeParamAsPrepared($sql . $from . $where , $param);
+            $data = $this->getListeParamAsPrepared($sql . $from . $where, $param);
         }
         /**
          * Recherche des temperatures cumulees
@@ -298,11 +301,11 @@ class Poisson extends ObjetBDD
 
         $retour = 0;
         /*
-             * Vérification des liens non supprimables
-             */
+         * Vérification des liens non supprimables
+         */
         /*
-             * Recherche des poissons "enfants"
-             */
+         * Recherche des poissons "enfants"
+         */
         if (!isset($this->parent_poisson)) {
             $this->parent_poisson = $this->classInstanciate("ParentPoisson", "parentPoisson.class.php");
         }
@@ -319,8 +322,8 @@ class Poisson extends ObjetBDD
         }
         if ($retour == 0) {
             /*
-                 * Vérification des événements
-                 */
+             * Vérification des événements
+             */
             if (!isset($this->evenement)) {
                 $this->evenement = $this->classInstanciate("Evenement", "evenement.class.php");
             }
@@ -348,7 +351,7 @@ class Poisson extends ObjetBDD
                 $this->documentSturio = $this->classInstanciate("DocumentSturio", "documentSturio.class.php");
             }
             $listeDocument = $this->documentLie->getListeDocument($id);
-            foreach ($listeDocument as  $value) {
+            foreach ($listeDocument as $value) {
                 if ($value["document_id"] > 0)
                     $this->documentSturio->supprimer($value["document_id"]);
             }
@@ -393,7 +396,8 @@ class Poisson extends ObjetBDD
             "date_debut" => $date_debut,
             "date_fin" => $date_fin,
             "poisson_id" => $poisson_id
-        ));
+        )
+        );
         $temperature = 0;
         foreach ($bassins as $bassin) {
             if ($bassin["date_debut"] < $date_debut)
@@ -401,8 +405,8 @@ class Poisson extends ObjetBDD
             if (strlen($bassin["date_fin"]) == 0)
                 $bassin["date_fin"] = $date_fin;
             /*
-                 * Calcul du total de la temperature
-                 */
+             * Calcul du total de la temperature
+             */
             $sqltemp = "with gs as (
 				select generate_series('" . $bassin["date_debut"] . "'::date, '" . $bassin["date_fin"] . "'::date, interval ' 1 day') as date_jour
 				)
@@ -424,5 +428,16 @@ class Poisson extends ObjetBDD
                 $temperature += $dataTotal["temperature"];
         }
         return $temperature;
+    }
+
+    /**
+     * Get the list of all cohortes described for fish
+     *
+     * @return array
+     */
+    function getListCohortes(): array
+    {
+        $sql = "select distinct cohorte from poisson  where cohorte is not null order by cohorte";
+        return $this->getListeParam($sql);
     }
 }

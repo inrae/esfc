@@ -1,5 +1,16 @@
 Nouveautés
 ==========
+Version 23.2.0 du 7 décembre 2023
+---------------------------------
+Corrections de bugs :
+- la création des types d'événements pour les bassins n'aboutissait pas
+- la suppression d'un lot de reproduction ne fonctionnait pas
+
+Nouveautés :
+- il est possible de réaliser une recherche par cohorte indépendament des autres critères
+- en choisissant le type d'évenement "mortalité", le statut du poisson est maintenant mis à jour
+- remplacement du composant date/heure par un composant plus moderne
+
 Version 23.1.0 du 19 septembre 2023
 -----------------------------
 Corrections de bugs :

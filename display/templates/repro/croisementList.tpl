@@ -24,6 +24,9 @@
     <tbody>
         {section name=lst loop=$croisements}
         <!-- calculs -->
+        {$ovocyte = 0}
+        {$oeuf = 0}
+        {$larve = 0}
         {if $croisements[lst].ovocyte_masse > 0 && $croisements[lst].ovocyte_densite > 0}
         {assign var="ovocyte" value=intval($croisements[lst].ovocyte_masse * $croisements[lst].ovocyte_densite)}
         {if !$ovocyte > 0}
