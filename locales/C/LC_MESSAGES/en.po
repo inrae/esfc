@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ESFC\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-19 09:38+0200\n"
+"POT-Creation-Date: 2023-12-07 16:04+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Poedit 3.3.2\n"
+"X-Generator: Poedit 3.4.1\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 #. (itstool) path: menu/item@label
@@ -690,8 +690,8 @@ msgstr "English online documentations"
 
 #. (itstool) path: menu/item@label
 #: ../../../param/menu.xml:106 ../../../display/templates/entete.tpl:21
-#: ../../../display/templates/entete.tpl:45
 #: ../../../display/templates/entete.tpl:46
+#: ../../../display/templates/entete.tpl:47
 msgid "Connexion"
 msgstr "Sign in"
 
@@ -701,8 +701,8 @@ msgid "S'identifier dans l'application"
 msgstr "Sign in to the app"
 
 #. (itstool) path: menu/item@label
-#: ../../../param/menu.xml:107 ../../../display/templates/entete.tpl:41
-#: ../../../display/templates/entete.tpl:42
+#: ../../../param/menu.xml:107 ../../../display/templates/entete.tpl:42
+#: ../../../display/templates/entete.tpl:43
 msgid "Déconnexion"
 msgstr "Sign out"
 
@@ -722,8 +722,8 @@ msgid "Liste des dernières connexions réalisées"
 msgstr "List of latest locations"
 
 #. (itstool) path: item/item@label
-#: ../../../param/menu.xml:109 ../../../display/templates/entete.tpl:37
-#: ../../../display/templates/entete.tpl:38
+#: ../../../param/menu.xml:109 ../../../display/templates/entete.tpl:38
+#: ../../../display/templates/entete.tpl:39
 #: ../../../display/templates/framework/ident/loginChangePassword.tpl:86
 msgid "Modifier le mot de passe"
 msgstr "Change your password"
@@ -794,8 +794,8 @@ msgid "Labels in English/US"
 msgstr "Labels in English/US"
 
 #: ../../../param/param.default.inc.php:12
-msgid "19/09/2023"
-msgstr "19/09/2023"
+msgid "07/12/2023"
+msgstr "07/12/2023"
 
 #: ../../../framework/ldap/ldap.class.php:74
 msgid "Impossible de se connecter au serveur LDAP"
@@ -920,6 +920,7 @@ msgid "Vous êtes maintenant déconnecté"
 msgstr "You are now signed off"
 
 #: ../../../framework/identification/passwordLost.php:40
+#: ../../../display/templates/framework/mail/passwordLost.tpl:1
 msgid "Réinitialisation du mot de passe"
 msgstr "Resetting password"
 
@@ -985,25 +986,6 @@ msgid ""
 "Problème rencontré lors de l'écriture du login pour la gestion des droits"
 msgstr "Problem encountered when writing the login for rights management"
 
-#: ../../../framework/identification/login.php:94
-#: ../../../display/templates/framework/mail/passwordChanged.tpl:1
-msgid "Modification du mot de passe"
-msgstr "Password change"
-
-#: ../../../framework/identification/login.php:96
-msgid ""
-"Vous venez de modifier votre mot de passe. Si vous n'êtes pas à l'origine de "
-"cette opération, contactez l'administrateur de l'application, et activez "
-"également la double authentification pour mieux protéger votre compte."
-msgstr ""
-"You've just changed your password. If you didn't do it yourself, please "
-"contact the application administrator, and activate double authentication to "
-"further protect your account."
-
-#: ../../../framework/identification/login.php:97
-msgid "Ne répondez pas à ce message, il ne sera pas relevé"
-msgstr "Do not reply to this message, it will not be picked up"
-
 #: ../../../framework/identification/passwordlost.class.php:79
 msgid "Le compte n'est pas actif"
 msgstr "The account is not active"
@@ -1024,7 +1006,7 @@ msgstr "No account has been found for the mail in question"
 msgid "Le mail n'a pas été renseigné"
 msgstr "The email has not filled in"
 
-#: ../../../framework/vue.class.php:318
+#: ../../../framework/vue.class.php:316
 msgid ""
 "Une erreur a été détectée lors de la création de l'écran. Si le problème "
 "persiste, contactez l'administrateur de l'application."
@@ -1032,16 +1014,24 @@ msgstr ""
 "An error has been detected during screen creation. If the problem persists, "
 "please contact the application administrator."
 
-#: ../../../framework/vue.class.php:655
+#: ../../../framework/vue.class.php:653
 msgid "Problème rencontré lors de l'ouverture de finfo"
 msgstr "Problem encountered during the finfo loading"
 
-#: ../../../framework/log/log.class.php:285
+#: ../../../framework/vue.class.php:736
+msgid ""
+"Le nom du fichier à exporter n'a pas été renseigné et aucune donnée n'est "
+"disponible pour l'exportation"
+msgstr ""
+"The name of the file to be exported has not been entered and no data is "
+"available for export"
+
+#: ../../../framework/log/log.class.php:291
 #, php-format
 msgid "%s - Compte bloqué"
 msgstr "%s - Account blocked"
 
-#: ../../../framework/log/log.class.php:316
+#: ../../../framework/log/log.class.php:326
 msgid ""
 "Le nombre d'accès autorisés pour le module demandé a été atteint. Si vous "
 "considérez que la valeur est trop faible, veuillez contacter "
@@ -1051,7 +1041,7 @@ msgstr ""
 "If you consider that the value is too low, please contact the application "
 "administrato"
 
-#: ../../../framework/log/log.class.php:318
+#: ../../../framework/log/log.class.php:328
 #, php-format
 msgid "%s - Trop d'accès à un module"
 msgstr "%s - Too many accesses to a module"
@@ -1067,7 +1057,7 @@ msgid "Erreur: type d'affichage non défini pour le module demandé : %s"
 msgstr "Error: display type not defined for the requested module: %s"
 
 #: ../../../framework/fonctions.php:80
-#: ../../../framework/dbparam/dbparam.php:19
+#: ../../../framework/dbparam/dbparam.php:20
 msgid "Enregistrement effectué"
 msgstr "Saved"
 
@@ -1092,30 +1082,30 @@ msgstr "A record with this name already exists in the database."
 msgid "Problème lors de l'enregistrement..."
 msgstr "Problem when saving ..."
 
-#: ../../../framework/fonctions.php:146
+#: ../../../framework/fonctions.php:146 ../../../modules/repro/lot.php:132
 msgid "Suppression effectuée"
 msgstr "Deletion done"
 
-#: ../../../framework/fonctions.php:161
+#: ../../../framework/fonctions.php:165
 msgid ""
 "La suppression n'est pas possible : des informations sont référencées par "
 "cet enregistrement"
 msgstr "Deletion is not possible: information is referenced by this record"
 
-#: ../../../framework/fonctions.php:166
+#: ../../../framework/fonctions.php:173
 msgid "Problème lors de la suppression"
 msgstr "Problem when deleting"
 
-#: ../../../framework/fonctions.php:175
+#: ../../../framework/fonctions.php:178
 msgid ""
 "Suppression impossible : la clé n'est pas numérique ou n'a pas été fournie"
 msgstr "Deletion impossible: the key is not digital or has not been supplied"
 
-#: ../../../framework/fonctions.php:462
+#: ../../../framework/fonctions.php:465
 msgid "Impossible d'initialiser le composant curl"
 msgstr "Unable to initialize the CURL component"
 
-#: ../../../framework/fonctions.php:504
+#: ../../../framework/fonctions.php:507
 #, php-format
 msgid ""
 "Une erreur est survenue lors de l'exécution de la requête vers le serveur "
@@ -1124,28 +1114,28 @@ msgstr ""
 "An error occurred while executing the request to the remote server. CURL "
 "error code : %s"
 
-#: ../../../framework/common.inc.php:196
+#: ../../../framework/common.inc.php:198
 msgid "La connexion à la base de données a échoué"
 msgstr "Failed to connect to the main database"
 
-#: ../../../framework/common.inc.php:217
+#: ../../../framework/common.inc.php:219
 msgid "La connexion à la base de données des droits a échoué"
 msgstr "Failed to connect to rights management database (GACL)"
 
-#: ../../../framework/common.inc.php:228
+#: ../../../framework/common.inc.php:230
 msgid "Echec de connexion à la base de données de gestion des droits (GACL)"
 msgstr "Failed to connect to rights management database (GACL)"
 
-#: ../../../framework/common.inc.php:231
+#: ../../../framework/common.inc.php:233
 msgid "Echec de connexion à la base de données principale"
 msgstr "Failed to connect to the main database"
 
-#: ../../../framework/common.inc.php:247
+#: ../../../framework/common.inc.php:249
 msgid ""
 "Vous avez été déconnecté, votre session était ouverte depuis trop longtemps"
 msgstr "You have been disconnected, your session has been open for too long"
 
-#: ../../../framework/common.inc.php:295
+#: ../../../framework/common.inc.php:297
 msgid "Problème rencontré lors de la lecture de la table des paramètres"
 msgstr "Problem encountered when reading the parameter table"
 
@@ -1181,7 +1171,7 @@ msgstr ""
 "Adding a login to the account table (rights management) is not possible: the "
 "login is not provided"
 
-#: ../../../framework/dbparam/dbparam.php:32
+#: ../../../framework/dbparam/dbparam.php:33
 msgid "Problème lors de la mise en fichier..."
 msgstr "Writing problem..."
 
@@ -1228,19 +1218,19 @@ msgstr ""
 msgid "Veuillez utiliser le login qui vous a été fourni pour vous identifier"
 msgstr "Please use the login provided to identify yourself"
 
-#: ../../../framework/controller.php:371
+#: ../../../framework/controller.php:372
 msgid "Identification refusée"
 msgstr "Authentication failed"
 
-#: ../../../framework/controller.php:395
+#: ../../../framework/controller.php:396
 msgid "Identification réussie !"
 msgstr "Authentication successful!"
 
-#: ../../../framework/controller.php:406
+#: ../../../framework/controller.php:407
 msgid "Connexions précédentes récentes :"
 msgstr "Recent previous connections:"
 
-#: ../../../framework/controller.php:419
+#: ../../../framework/controller.php:420
 #, php-format
 msgid ""
 "Dernière connexion le %1$s depuis l'adresse IP %2$s. Si ce n'était pas vous, "
@@ -1250,12 +1240,12 @@ msgstr ""
 "your password or contact the administrator of the application."
 
 #. traduction: conserver inchangée la chaîne %s
-#: ../../../framework/controller.php:516
+#: ../../../framework/controller.php:518
 #, php-format
 msgid "Module précédent enregistré : %s"
 msgstr "Previous module: %s"
 
-#: ../../../framework/controller.php:584
+#: ../../../framework/controller.php:586
 msgid ""
 "L'accès au module demandé nécessite une ré-identification. Veuillez saisir "
 "votre login et votre mot de passe"
@@ -1263,16 +1253,16 @@ msgstr ""
 "Access to the requested module requires re-identification. Please enter your "
 "login and password"
 
-#: ../../../framework/controller.php:602
+#: ../../../framework/controller.php:604
 msgid "Erreur d'écriture dans le fichier de traces"
 msgstr "Error writing to the log file"
 
-#: ../../../framework/controller.php:747
+#: ../../../framework/controller.php:750
 #, php-format
 msgid "Mode développement - base de données : %1$s - schema : %2$s"
 msgstr "Development mode - database: %1$s - schema: %2$s"
 
-#: ../../../framework/controller.php:786
+#: ../../../framework/controller.php:789
 msgid ""
 "Une erreur indéterminée s'est produite pendant le traitement de la requête. "
 "Si le problème persiste, consultez l'administrateur de l'application"
@@ -1296,12 +1286,12 @@ msgstr "The key structure is incorrect"
 msgid "La clé n'est pas numérique"
 msgstr "The key is not numeric"
 
-#: ../../../framework/objetbdd/ObjetBDD.php:1404
+#: ../../../framework/objetbdd/ObjetBDD.php:1380
 #, php-format
 msgid "le champ %1$s  n'est pas numerique. Valeur saisie : %2$s"
 msgstr "the field %1$s is not numeric. Entered value: %2$s"
 
-#: ../../../framework/objetbdd/ObjetBDD.php:1408
+#: ../../../framework/objetbdd/ObjetBDD.php:1384
 #, php-format
 msgid ""
 "Le champ %1$s est trop grand. Longueur maximale autorisée : %2$s. Valeur "
@@ -1310,7 +1300,7 @@ msgstr ""
 "The %1$s field is too big. Maximum length allowed: %2$s. Entered value: %3$s "
 "(%4$s characters)"
 
-#: ../../../framework/objetbdd/ObjetBDD.php:1412
+#: ../../../framework/objetbdd/ObjetBDD.php:1388
 #, php-format
 msgid ""
 "Le contenu du champ %1$s ne correspond pas au format attendu. Masque "
@@ -1319,12 +1309,12 @@ msgstr ""
 "The content of the field %1$s does not match the expected format. Authorized "
 "mask: %2$s. Entered value: %3$s"
 
-#: ../../../framework/objetbdd/ObjetBDD.php:1416
+#: ../../../framework/objetbdd/ObjetBDD.php:1392
 #, php-format
 msgid "Le champ %s est obligatoire, mais n'a pas été renseigné."
 msgstr "The field %s is required, but has not been filled out."
 
-#: ../../../framework/objetbdd/ObjetBDD.php:1867
+#: ../../../framework/objetbdd/ObjetBDD.php:1846
 #: ../../../modules/classes/morphologieImport.class.php:297
 #, php-format
 msgid ""
@@ -1575,50 +1565,50 @@ msgstr "Error while creating a new distribution"
 msgid "Opération effectuée"
 msgstr "Done"
 
-#: ../../../modules/classes/search.class.php:152
+#: ../../../modules/classes/search.class.php:161
 #: ../../../display/templates/poisson/evenementChange.tpl:192
 #: ../../../display/templates/poisson/poissonDisplay.tpl:107
 msgid "Morphologie"
 msgstr "Morphology"
 
-#: ../../../modules/classes/search.class.php:153
+#: ../../../modules/classes/search.class.php:162
 msgid "Mortalite"
 msgstr "Mortality"
 
-#: ../../../modules/classes/search.class.php:154
+#: ../../../modules/classes/search.class.php:163
 msgid "Détermination des parents"
 msgstr "Determination of parents"
 
-#: ../../../modules/classes/search.class.php:155
+#: ../../../modules/classes/search.class.php:164
 #: ../../../display/templates/poisson/evenementChange.tpl:638
 #: ../../../display/templates/poisson/poissonDisplay.tpl:261
 msgid "Détermination du sexe"
 msgstr "Sexe determination"
 
-#: ../../../modules/classes/search.class.php:156
+#: ../../../modules/classes/search.class.php:165
 msgid "Pathologie"
 msgstr "Pathology"
 
-#: ../../../modules/classes/search.class.php:157
+#: ../../../modules/classes/search.class.php:166
 #: ../../../display/templates/poisson/evenementChange.tpl:209
 msgid "Échographie"
 msgstr "Echography"
 
-#: ../../../modules/classes/search.class.php:158
+#: ../../../modules/classes/search.class.php:167
 #: ../../../display/templates/poisson/evenementChange.tpl:217
 msgid "Dosage sanguin"
 msgstr "Blood dosage"
 
-#: ../../../modules/classes/search.class.php:159
+#: ../../../modules/classes/search.class.php:168
 #: ../../../display/templates/poisson/evenementChange.tpl:225
 msgid "Anesthésie"
 msgstr "Anesthesia"
 
-#: ../../../modules/classes/search.class.php:160
+#: ../../../modules/classes/search.class.php:169
 msgid "Génétique"
 msgstr "Genetics"
 
-#: ../../../modules/classes/search.class.php:161
+#: ../../../modules/classes/search.class.php:170
 msgid "Transfert"
 msgstr "Transfer"
 
@@ -1678,6 +1668,20 @@ msgstr "Column %1s contains a non-numeric value (%2s)"
 #: ../../../modules/classes/morphologieImport.class.php:278
 msgid "Aucune mesure n'a été renseignée"
 msgstr "No measures have been entered"
+
+#: ../../../modules/classes/lot.class.php:275
+msgid ""
+"Le lot a été partagé en un ou plusieurs lots, sa suppression n'est pas "
+"possible"
+msgstr "The lot has been split into one or more lots and cannot be deleted"
+
+#: ../../../modules/classes/lot.class.php:283
+msgid ""
+"Des destinations ont été enregistrées pour les poissons du lot, sa "
+"suppression n'est pas possible"
+msgstr ""
+"Destinations have been recorded for the fish in the lot and it is not "
+"possible to delete them"
 
 #: ../../../modules/classes/morphologie.class.php:180
 #: ../../../display/templates/poisson/poissonCampagneList.tpl:7
@@ -1884,7 +1888,7 @@ msgstr "Year:"
 #: ../../../display/templates/repro/vieModeleList.tpl:20
 #: ../../../display/templates/repro/poissonCampagneList.tpl:118
 #: ../../../display/templates/poisson/poissonDisplay.tpl:69
-#: ../../../display/templates/poisson/poissonSearch.tpl:157
+#: ../../../display/templates/poisson/poissonSearch.tpl:172
 #: ../../../display/templates/anomalie/anomalieList.tpl:46
 #: ../../../display/templates/bassin/bassinAlimentConsomme.tpl:14
 #: ../../../display/templates/bassin/circuitEauDisplay.tpl:145
@@ -1970,8 +1974,8 @@ msgstr "Used measure technical:"
 #: ../../../display/templates/repro/spermeMesureChangeCorps.tpl:20
 #: ../../../display/templates/poisson/evenementChange.tpl:409
 #: ../../../display/templates/poisson/evenementChange.tpl:614
-#: ../../../display/templates/poisson/poissonSearch.tpl:113
-#: ../../../display/templates/poisson/poissonSearch.tpl:145
+#: ../../../display/templates/poisson/poissonSearch.tpl:128
+#: ../../../display/templates/poisson/poissonSearch.tpl:160
 msgid "Sélectionnez..."
 msgstr "Choose..."
 
@@ -2067,8 +2071,7 @@ msgstr "Main comment:"
 #: ../../../display/templates/parametre/mortaliteTypeChange.tpl:22
 #: ../../../display/templates/parametre/requeteChange.tpl:95
 #: ../../../display/templates/parametre/poissonStatutChange.tpl:22
-#: ../../../display/templates/parametre/bassinEvenementTypeChange.tpl:20
-#: ../../../display/templates/parametre/bassinEvenementTypeChange.tpl:41
+#: ../../../display/templates/parametre/bassinEvenementTypeChange.tpl:21
 #: ../../../display/templates/parametre/anesthesieProduitChange.tpl:37
 #: ../../../display/templates/parametre/nageoireChange.tpl:24
 #: ../../../display/templates/parametre/nageoireChange.tpl:45
@@ -2081,7 +2084,7 @@ msgstr "Main comment:"
 #: ../../../display/templates/parametre/metalChange.tpl:44
 #: ../../../display/templates/parametre/bassinTypeChange.tpl:22
 #: ../../../display/templates/parametre/laboratoireAnalyseChange.tpl:34
-#: ../../../display/templates/parametre/evenementTypeChange.tpl:36
+#: ../../../display/templates/parametre/evenementTypeChange.tpl:51
 #: ../../../display/templates/parametre/spermeDilueurChange.tpl:23
 #: ../../../display/templates/parametre/circuitEvenementTypeChange.tpl:20
 #: ../../../display/templates/parametre/circuitEvenementTypeChange.tpl:41
@@ -2158,8 +2161,7 @@ msgstr "Save and return"
 #: ../../../display/templates/parametre/mortaliteTypeChange.tpl:23
 #: ../../../display/templates/parametre/requeteChange.tpl:97
 #: ../../../display/templates/parametre/poissonStatutChange.tpl:24
-#: ../../../display/templates/parametre/bassinEvenementTypeChange.tpl:22
-#: ../../../display/templates/parametre/bassinEvenementTypeChange.tpl:43
+#: ../../../display/templates/parametre/bassinEvenementTypeChange.tpl:23
 #: ../../../display/templates/parametre/anesthesieProduitChange.tpl:39
 #: ../../../display/templates/parametre/nageoireChange.tpl:26
 #: ../../../display/templates/parametre/nageoireChange.tpl:47
@@ -2172,7 +2174,7 @@ msgstr "Save and return"
 #: ../../../display/templates/parametre/metalChange.tpl:46
 #: ../../../display/templates/parametre/bassinTypeChange.tpl:24
 #: ../../../display/templates/parametre/laboratoireAnalyseChange.tpl:36
-#: ../../../display/templates/parametre/evenementTypeChange.tpl:38
+#: ../../../display/templates/parametre/evenementTypeChange.tpl:53
 #: ../../../display/templates/parametre/spermeDilueurChange.tpl:25
 #: ../../../display/templates/parametre/circuitEvenementTypeChange.tpl:22
 #: ../../../display/templates/parametre/circuitEvenementTypeChange.tpl:43
@@ -2240,7 +2242,7 @@ msgstr "Associated documents"
 #: ../../../display/templates/parametre/mimeTypeChange.tpl:61
 #: ../../../display/templates/parametre/mortaliteTypeChange.tpl:29
 #: ../../../display/templates/parametre/poissonStatutChange.tpl:31
-#: ../../../display/templates/parametre/bassinEvenementTypeChange.tpl:53
+#: ../../../display/templates/parametre/bassinEvenementTypeChange.tpl:31
 #: ../../../display/templates/parametre/anesthesieProduitChange.tpl:46
 #: ../../../display/templates/parametre/nageoireChange.tpl:56
 #: ../../../display/templates/parametre/bassinUsageChange.tpl:50
@@ -2250,7 +2252,7 @@ msgstr "Associated documents"
 #: ../../../display/templates/parametre/metalChange.tpl:53
 #: ../../../display/templates/parametre/bassinTypeChange.tpl:31
 #: ../../../display/templates/parametre/laboratoireAnalyseChange.tpl:44
-#: ../../../display/templates/parametre/evenementTypeChange.tpl:45
+#: ../../../display/templates/parametre/evenementTypeChange.tpl:60
 #: ../../../display/templates/parametre/spermeDilueurChange.tpl:32
 #: ../../../display/templates/parametre/circuitEvenementTypeChange.tpl:53
 #: ../../../display/templates/parametre/spermeCaracteristiqueChange.tpl:34
@@ -2500,6 +2502,7 @@ msgstr "Thinner used: "
 #: ../../../display/templates/repro/spermeCongelationChange.tpl:146
 #: ../../../display/templates/repro/spermeChangeCorps.tpl:26
 #: ../../../display/templates/repro/spermeChangeCorps.tpl:61
+#: ../../../display/templates/parametre/evenementTypeChange.tpl:41
 msgid "Choisissez..."
 msgstr "Please choose..."
 
@@ -3565,7 +3568,7 @@ msgstr "Reproduction status:"
 
 #: ../../../display/templates/repro/poissonCampagneList.tpl:77
 #: ../../../display/templates/repro/poissonCampagneList.tpl:208
-#: ../../../display/templates/poisson/poissonSearch.tpl:78
+#: ../../../display/templates/poisson/poissonSearch.tpl:93
 msgid "Sélectionnez le statut..."
 msgstr "Select status..."
 
@@ -3777,96 +3780,96 @@ msgstr "Basin:"
 msgid "Date de fin d'utilisation :"
 msgstr "Date of end of use:"
 
-#: ../../../display/templates/main_js.tpl:79
+#: ../../../display/templates/main_js.tpl:78
 msgid "Traitement en cours..."
 msgstr "Processing..."
 
-#: ../../../display/templates/main_js.tpl:80
+#: ../../../display/templates/main_js.tpl:79
 msgid "Rechercher :"
 msgstr "Search:"
 
-#: ../../../display/templates/main_js.tpl:81
+#: ../../../display/templates/main_js.tpl:80
 msgid "Afficher _MENU_ éléments"
 msgstr "Show _MENU_ entries"
 
-#: ../../../display/templates/main_js.tpl:82
+#: ../../../display/templates/main_js.tpl:81
 msgid "Affichage de l'élément _START_ à _END_ sur _TOTAL_ éléments"
 msgstr "Showing _START_ to _END_ of _TOTAL_ entries"
 
-#: ../../../display/templates/main_js.tpl:83
+#: ../../../display/templates/main_js.tpl:82
 msgid "Affichage de l'élément 0 à 0 sur 0 élément"
 msgstr "Showing 0 to 0 of 0 entries"
 
-#: ../../../display/templates/main_js.tpl:84
+#: ../../../display/templates/main_js.tpl:83
 msgid "(filtré de _MAX_ éléments au total)"
 msgstr "(filtered from _MAX_ total entries)"
 
-#: ../../../display/templates/main_js.tpl:86
+#: ../../../display/templates/main_js.tpl:85
 msgid "Chargement en cours..."
 msgstr "Loading..."
 
-#: ../../../display/templates/main_js.tpl:87
+#: ../../../display/templates/main_js.tpl:86
 msgid "Aucun élément à afficher"
 msgstr "No matching records found"
 
-#: ../../../display/templates/main_js.tpl:88
+#: ../../../display/templates/main_js.tpl:87
 msgid "Aucune donnée disponible dans le tableau"
 msgstr "No data available in table"
 
-#: ../../../display/templates/main_js.tpl:90
+#: ../../../display/templates/main_js.tpl:89
 msgid "Premier"
 msgstr "First"
 
-#: ../../../display/templates/main_js.tpl:91
+#: ../../../display/templates/main_js.tpl:90
 msgid "Précédent"
 msgstr "Previous"
 
-#: ../../../display/templates/main_js.tpl:92
+#: ../../../display/templates/main_js.tpl:91
 msgid "Suivant"
 msgstr "Next"
 
-#: ../../../display/templates/main_js.tpl:93
+#: ../../../display/templates/main_js.tpl:92
 msgid "Dernier"
 msgstr "Last"
 
-#: ../../../display/templates/main_js.tpl:96
+#: ../../../display/templates/main_js.tpl:95
 msgid ": activer pour trier la colonne par ordre croissant"
 msgstr ": activate to sort column ascending"
 
-#: ../../../display/templates/main_js.tpl:97
+#: ../../../display/templates/main_js.tpl:96
 msgid ": activer pour trier la colonne par ordre décroissant"
 msgstr ": activate to sort column descending"
 
-#: ../../../display/templates/main_js.tpl:101
+#: ../../../display/templates/main_js.tpl:100
 msgid "Afficher %d éléments"
 msgstr "Display %d elements"
 
-#: ../../../display/templates/main_js.tpl:102
+#: ../../../display/templates/main_js.tpl:101
 msgid "Tout afficher"
 msgstr "Display all"
 
-#: ../../../display/templates/main_js.tpl:222
+#: ../../../display/templates/main_js.tpl:221
 msgid "Valeur numérique..."
 msgstr "Numerical value..."
 
-#: ../../../display/templates/main_js.tpl:253
+#: ../../../display/templates/main_js.tpl:251
 #: ../../../display/templates/document/documentList.tpl:85
 msgid "Confirmez-vous la suppression ?"
 msgstr "Do you confirm the deletion?"
 
-#: ../../../display/templates/main_js.tpl:277
+#: ../../../display/templates/main_js.tpl:275
 msgid "Confirmez-vous l'opération ?"
 msgstr "Do you confirm the operation?"
 
-#: ../../../display/templates/entete.tpl:36
+#: ../../../display/templates/entete.tpl:37
 msgid "Activer la double authentification pour votre compte"
 msgstr "Activate dual authentication for your account"
 
-#: ../../../display/templates/entete.tpl:36
+#: ../../../display/templates/entete.tpl:37
 msgid "Activer la double authentification"
 msgstr "Activate dual authentification"
 
-#: ../../../display/templates/entete.tpl:39
+#: ../../../display/templates/entete.tpl:40
 msgid "Mot de passe"
 msgstr "Password"
 
@@ -4146,8 +4149,9 @@ msgstr "Active?"
 #: ../../../display/templates/parametre/metalChange.tpl:34
 #: ../../../display/templates/parametre/laboratoireAnalyseChange.tpl:24
 #: ../../../display/templates/parametre/evenementTypeChange.tpl:31
+#: ../../../display/templates/parametre/evenementTypeList.tpl:29
 #: ../../../display/templates/parametre/sortieLieuChange.tpl:63
-#: ../../../display/templates/poisson/poissonSearch.tpl:176
+#: ../../../display/templates/poisson/poissonSearch.tpl:191
 #: ../../../display/templates/anomalie/anomalieList.tpl:18
 #: ../../../display/templates/bassin/circuitEauList.tpl:37
 #: ../../../display/templates/bassin/circuitEauDisplay.tpl:97
@@ -4172,8 +4176,9 @@ msgstr "yes"
 #: ../../../display/templates/parametre/metalChange.tpl:38
 #: ../../../display/templates/parametre/laboratoireAnalyseChange.tpl:28
 #: ../../../display/templates/parametre/evenementTypeChange.tpl:27
+#: ../../../display/templates/parametre/evenementTypeList.tpl:30
 #: ../../../display/templates/parametre/sortieLieuChange.tpl:59
-#: ../../../display/templates/poisson/poissonSearch.tpl:171
+#: ../../../display/templates/poisson/poissonSearch.tpl:186
 #: ../../../display/templates/anomalie/anomalieList.tpl:14
 #: ../../../display/templates/bassin/circuitEauList.tpl:37
 #: ../../../display/templates/bassin/circuitEauSearch.tpl:45
@@ -4252,7 +4257,7 @@ msgid "Catégorie d'alimentation :"
 msgstr "Feeding category:"
 
 #: ../../../display/templates/parametre/bassinUsageChange.tpl:28
-#: ../../../display/templates/poisson/poissonSearch.tpl:62
+#: ../../../display/templates/poisson/poissonSearch.tpl:77
 #: ../../../display/templates/aliment/repartitionSearch.tpl:13
 #: ../../../display/templates/aliment/repartTemplateSearch.tpl:10
 msgid "Sélectionnez la catégorie..."
@@ -4349,6 +4354,10 @@ msgstr "Name of event type:"
 msgid "Actif dans les sélections ?"
 msgstr "Active in selection?"
 
+#: ../../../display/templates/parametre/evenementTypeChange.tpl:37
+msgid "Statut du poisson après l'événement :"
+msgstr "Fish status after event:"
+
 #: ../../../display/templates/parametre/spermeDilueurList.tpl:1
 msgid "Dilueurs du sperme utilisés pour la congélation"
 msgstr "Semen thinners used for freezing"
@@ -4376,6 +4385,10 @@ msgstr "Semen preservatives used for freezing"
 #: ../../../display/templates/parametre/spermeConservateurList.tpl:11
 msgid "Nom du produit conservateur"
 msgstr "Preservative product name"
+
+#: ../../../display/templates/parametre/evenementTypeList.tpl:13
+msgid "Statut du poisson après l'événement"
+msgstr "Fish status after event"
 
 #: ../../../display/templates/parametre/anesthesieProduitList.tpl:1
 msgid "Produits utilisés pour l'anesthésie"
@@ -4457,7 +4470,7 @@ msgstr "Personnel number:"
 
 #: ../../../display/templates/poisson/poissonDetail.tpl:8
 #: ../../../display/templates/poisson/poissonChange.tpl:75
-#: ../../../display/templates/poisson/poissonSearch.tpl:89
+#: ../../../display/templates/poisson/poissonSearch.tpl:104
 msgid "Sexe :"
 msgstr "Sex:"
 
@@ -4467,6 +4480,7 @@ msgstr "pittag:"
 
 #: ../../../display/templates/poisson/poissonDetail.tpl:17
 #: ../../../display/templates/poisson/poissonChange.tpl:145
+#: ../../../display/templates/poisson/poissonSearch.tpl:53
 msgid "Cohorte :"
 msgstr "Cohort:"
 
@@ -4604,7 +4618,7 @@ msgid "Statut :"
 msgstr "Status:"
 
 #: ../../../display/templates/poisson/poissonChange.tpl:61
-#: ../../../display/templates/poisson/poissonSearch.tpl:57
+#: ../../../display/templates/poisson/poissonSearch.tpl:72
 msgid "Catégorie :"
 msgstr "Category:"
 
@@ -4818,7 +4832,7 @@ msgid "Sexe déterminé :"
 msgstr "Determined sex:"
 
 #: ../../../display/templates/poisson/evenementChange.tpl:667
-#: ../../../display/templates/poisson/poissonSearch.tpl:94
+#: ../../../display/templates/poisson/poissonSearch.tpl:109
 msgid "Sélectionnez le sexe..."
 msgstr "Select the sex..."
 
@@ -5037,37 +5051,41 @@ msgstr "Parent"
 msgid "Libellé à rechercher (id, tag, prenom, matricule, cohorte) :"
 msgstr "Name to search (i, tag, first name, personnel number, cohort):"
 
-#: ../../../display/templates/poisson/poissonSearch.tpl:73
+#: ../../../display/templates/poisson/poissonSearch.tpl:58
+msgid "Sélectionnez la cohorte..."
+msgstr "Select the cohort..."
+
+#: ../../../display/templates/poisson/poissonSearch.tpl:88
 msgid "Statut de l'animal :"
 msgstr "Animal status:"
 
-#: ../../../display/templates/poisson/poissonSearch.tpl:108
+#: ../../../display/templates/poisson/poissonSearch.tpl:123
 msgid "Recherche par événement enregistré :"
 msgstr "Search by recorded event:"
 
-#: ../../../display/templates/poisson/poissonSearch.tpl:123
+#: ../../../display/templates/poisson/poissonSearch.tpl:138
 msgid "Entre le :"
 msgstr "Between :"
 
-#: ../../../display/templates/poisson/poissonSearch.tpl:130
+#: ../../../display/templates/poisson/poissonSearch.tpl:145
 msgid "et le :"
 msgstr "and:"
 
-#: ../../../display/templates/poisson/poissonSearch.tpl:140
+#: ../../../display/templates/poisson/poissonSearch.tpl:155
 msgid "Recherche par bassin :"
 msgstr "Search by basin:"
 
-#: ../../../display/templates/poisson/poissonSearch.tpl:165
+#: ../../../display/templates/poisson/poissonSearch.tpl:180
 msgid "Afficher : le cumul des températures (calcul long) ?"
 msgstr "Display: cumulative temperatures (long calculation)?"
 
-#: ../../../display/templates/poisson/poissonSearch.tpl:180
+#: ../../../display/templates/poisson/poissonSearch.tpl:195
 #: ../../../display/templates/bassin/bassinList.tpl:11
 #: ../../../display/templates/framework/logList.tpl:34
 msgid "du :"
 msgstr "from:"
 
-#: ../../../display/templates/poisson/poissonSearch.tpl:187
+#: ../../../display/templates/poisson/poissonSearch.tpl:202
 #: ../../../display/templates/bassin/bassinList.tpl:15
 #: ../../../display/templates/bassin/analyseGraph.tpl:72
 #: ../../../display/templates/framework/logList.tpl:38
@@ -6362,29 +6380,29 @@ msgstr "Login:"
 msgid "Mot de passe :"
 msgstr "Password:"
 
-#: ../../../display/templates/framework/ident/login.tpl:54
+#: ../../../display/templates/framework/ident/login.tpl:56
 msgid "Conserver la connexion pendant"
 msgstr "Keep me signed in for"
 
-#: ../../../display/templates/framework/ident/login.tpl:54
+#: ../../../display/templates/framework/ident/login.tpl:56
 msgid "heures"
 msgstr "hours"
 
-#: ../../../display/templates/framework/ident/login.tpl:60
+#: ../../../display/templates/framework/ident/login.tpl:62
 #: ../../../display/templates/framework/ident/identMailInput.tpl:2
 msgid "Mot de passe oublié ?"
 msgstr "Forgot your password?"
 
-#: ../../../display/templates/framework/ident/login.tpl:64
+#: ../../../display/templates/framework/ident/login.tpl:66
 #: ../../../display/templates/framework/ident/loginAdmin.tpl:46
 msgid "Se connecter"
 msgstr "Sign in"
 
-#: ../../../display/templates/framework/ident/login.tpl:69
+#: ../../../display/templates/framework/ident/login.tpl:71
 msgid "ou :"
 msgstr "or:"
 
-#: ../../../display/templates/framework/ident/login.tpl:71
+#: ../../../display/templates/framework/ident/login.tpl:73
 msgid "Se connecter avec l'identification centralisée"
 msgstr "Logging in with centralised identification"
 
@@ -6634,6 +6652,10 @@ msgstr "The link will remain valid until %1."
 #: ../../../display/templates/framework/mail/accountBlocked.tpl:2
 msgid "Le compte %1 a été bloqué le %2 après trop de tentatives de connexion."
 msgstr "Account %1 was blocked on %2 after too many connection attempts."
+
+#: ../../../display/templates/framework/mail/passwordChanged.tpl:1
+msgid "Modification du mot de passe"
+msgstr "Password change"
 
 #: ../../../display/templates/framework/mail/passwordChanged.tpl:4
 msgid "Votre mot de passe vient d'être modifié dans l'application %1"
@@ -6961,6 +6983,19 @@ msgstr "Display"
 #: ../../../display/templates/main.tpl:88
 msgid "Photo : © Marie-Laure Acolas - 2012 - lâcher d'esturgeons en Dordogne"
 msgstr "Photo: © Marie-Laure Acolas - 2012 - Sturgeon release in the Dordogne"
+
+#~ msgid ""
+#~ "Vous venez de modifier votre mot de passe. Si vous n'êtes pas à l'origine "
+#~ "de cette opération, contactez l'administrateur de l'application, et "
+#~ "activez également la double authentification pour mieux protéger votre "
+#~ "compte."
+#~ msgstr ""
+#~ "You've just changed your password. If you didn't do it yourself, please "
+#~ "contact the application administrator, and activate double authentication "
+#~ "to further protect your account."
+
+#~ msgid "Ne répondez pas à ce message, il ne sera pas relevé"
+#~ msgstr "Do not reply to this message, it will not be picked up"
 
 #, php-format
 #~ msgid "La colonne %1$s n'est pas reconnue (%2$s)"

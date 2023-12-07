@@ -46,8 +46,8 @@
 <script type="text/javascript" charset="utf-8"
 	src="display/node_modules/jquery-ui/ui/i18n/datepicker-en-GB.js"></script>
 <script type="text/javascript" charset="utf-8" src="display/node_modules/jquery-ui/ui/i18n/datepicker-fr.js"></script>
-<script type="text/javascript" charset="utf-8"
-	src="display/javascript/jquery-timepicker-addon/jquery-ui-timepicker-addon.min.js"></script>
+<!--script type="text/javascript" charset="utf-8"
+	src="display/javascript/jquery-timepicker-addon/jquery-ui-timepicker-addon.min.js"></script-->
 	<link rel="stylesheet" type="text/css" href="display/node_modules/jquery-ui-dist/jquery-ui.min.css" />
 	<link rel="stylesheet" type="text/css" href="display/node_modules/jquery-ui-dist/jquery-ui.theme.min.css" />
 

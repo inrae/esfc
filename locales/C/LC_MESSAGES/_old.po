@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ESFC\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-19 09:31+0200\n"
+"POT-Creation-Date: 2023-09-19 09:38+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -1420,6 +1420,8 @@ msgid ""
 "Aucun croisement n'a été enregistré pour l'année %s, la création d'un lot "
 "n'est pas possible"
 msgstr ""
+"No crossbreeding has been recorded for the year %s, so it is not possible to "
+"create a lot"
 
 #: ../../../modules/repro/biopsie.php:82
 msgid "Calcul du diamètre moyen de l'ovocyte - "
@@ -1485,6 +1487,8 @@ msgid ""
 "Le fichier téléchargé n'est plus accessible sur le serveur, recommencez "
 "l'opération"
 msgstr ""
+"The downloaded file can no longer be accessed on the server, repeat the "
+"operation"
 
 #: ../../../modules/poisson/morphologie.php:94
 #, php-format
@@ -2258,7 +2262,7 @@ msgstr "Associated documents"
 #: ../../../display/templates/poisson/poissonChange.tpl:220
 #: ../../../display/templates/poisson/evenementChange.tpl:859
 #: ../../../display/templates/poisson/ventilationChange.tpl:66
-#: ../../../display/templates/poisson/morphologieImport.tpl:214
+#: ../../../display/templates/poisson/morphologieImport.tpl:213
 #: ../../../display/templates/anomalie/anomalieChange.tpl:136
 #: ../../../display/templates/bassin/analyseEauChange.tpl:256
 #: ../../../display/templates/bassin/circuitEvenementChange.tpl:74
@@ -5112,11 +5116,11 @@ msgstr "Name of the field used in the application"
 
 #: ../../../display/templates/poisson/morphologieImport.tpl:65
 msgid "Nom de la colonne correspondante dans le fichier"
-msgstr ""
+msgstr "Name of the corresponding column in the file"
 
 #: ../../../display/templates/poisson/morphologieImport.tpl:81
 msgid "Colonnes dans le fichier d'origine"
-msgstr ""
+msgstr "Columns in the origin file"
 
 #: ../../../display/templates/poisson/morphologieImport.tpl:85
 msgid "Nom de la colonne"
@@ -5131,12 +5135,16 @@ msgid ""
 "Indiquez le nom de la colonne présente dans le fichier à charger en face de "
 "chaque colonne attendue."
 msgstr ""
+"Enter the name of the column in the file to be uploaded in front of each "
+"expected column."
 
 #: ../../../display/templates/poisson/morphologieImport.tpl:107
 msgid ""
 "Vous pouvez utiliser la souris pour déplacer les libellés du tableau de "
 "droite vers le tableau de gauche."
 msgstr ""
+"You can use the mouse to move labels from the right-hand table to the left-"
+"hand table."
 
 #: ../../../display/templates/poisson/morphologieImport.tpl:119
 msgid "Contrôles OK."
@@ -5183,7 +5191,7 @@ msgstr "Tabulation"
 
 #: ../../../display/templates/poisson/morphologieImport.tpl:176
 msgid "Numéro de la ligne contenant l'entête :"
-msgstr ""
+msgstr "Number of the line containing the header:"
 
 #: ../../../display/templates/poisson/morphologieImport.tpl:183
 msgid "Encodage du fichier :"
@@ -5191,47 +5199,51 @@ msgstr "File encoding:"
 
 #: ../../../display/templates/poisson/morphologieImport.tpl:193
 msgid "Apparier les colonnes"
-msgstr ""
+msgstr "Match columns"
 
 #: ../../../display/templates/poisson/morphologieImport.tpl:201
-#, fuzzy
 msgid ""
 "Ce module permet d'importer des mesures réalisées sur les poissons à partir "
-"d'un fichier CSV, et crée les\n"
-"            événements correspondants."
+"d'un fichier CSV, et crée les événements correspondants."
 msgstr ""
 "This module allows you to import measurements taken on fish from a CSV file, "
 "and create the corresponding events."
 
-#: ../../../display/templates/poisson/morphologieImport.tpl:204
-#, fuzzy
+#: ../../../display/templates/poisson/morphologieImport.tpl:203
 msgid ""
 "Il n'accepte que des fichiers au format CSV. La ligne d'entête doit "
-"comprendre les colonnes\n"
-"            suivantes :"
+"comprendre les colonnes suivantes :"
 msgstr ""
 "It only accepts files in CSV format. The header row must contain only the "
 "following columns:"
 
-#: ../../../display/templates/poisson/morphologieImport.tpl:208
+#: ../../../display/templates/poisson/morphologieImport.tpl:206
 msgid "PITTAG du poisson"
 msgstr "Fish pittag"
 
-#: ../../../display/templates/poisson/morphologieImport.tpl:209
+#: ../../../display/templates/poisson/morphologieImport.tpl:207
 msgid "Date de mesure (format dd/mm/yyyy)"
 msgstr "Measure date (format yyyy-mm-dd)"
 
-#: ../../../display/templates/poisson/morphologieImport.tpl:210
+#: ../../../display/templates/poisson/morphologieImport.tpl:208
 msgid "Longueur totale mesurée, en cm"
 msgstr "Total measured length, in cm"
 
-#: ../../../display/templates/poisson/morphologieImport.tpl:211
+#: ../../../display/templates/poisson/morphologieImport.tpl:209
 msgid "Longueur fourche mesurée, en cm"
 msgstr "Fork measured length, in cm"
 
-#: ../../../display/templates/poisson/morphologieImport.tpl:212
+#: ../../../display/templates/poisson/morphologieImport.tpl:210
 msgid "Poids mesuré, en grammes"
 msgstr "Measured weight, in grams"
+
+#: ../../../display/templates/poisson/morphologieImport.tpl:212
+msgid ""
+"Le nom des colonnes dans le fichier peut être différent, un mécanisme "
+"d'appariement est proposé pendant l'importation"
+msgstr ""
+"The names of the columns in the file may be different, and a matching "
+"mechanism is proposed during import."
 
 #: ../../../display/templates/poisson/sortieList.tpl:8
 msgid "Sevrage/Commentaire"
