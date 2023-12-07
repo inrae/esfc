@@ -32,6 +32,21 @@
                     </label>
                 </div>
             </div>
+            <div class="form-group">
+                <label for="poisson_statut_id" class="control-label col-md-4">
+                    {t}Statut du poisson après l'événement :{/t}
+                </label>
+                <div class="col-md-8">
+                    <select class="form-control" id="poisson_statut_id" name="poisson_statut_id">
+                        <option value="" {if $data.poisson_statut_id == ""}selected{/if}>{t}Choisissez...{/t}</option>
+                        {foreach $poissonStatuts as $ps}
+                        <option value="{$ps.poisson_statut_id}" {if $data.poisson_statut_id == $ps.poisson_statut_id}selected{/if}>
+                            {$ps.poisson_statut_libelle}
+                        </option>
+                        {/foreach}
+                    </select>
+                </div>
+            </div>
             <div class="form-group center">
                 <button type="submit" class="btn btn-primary button-valid">{t}Valider{/t}</button>
                 {if $data.evenement_type_id > 0 &&$droits["paramAdmin"] == 1}

@@ -13,6 +13,8 @@
  */
 class Evenement extends ObjetBDD
 {
+    public $evenementType;
+    public $poisson;
 
     /**
      * Constructeur de la classe
@@ -203,5 +205,27 @@ class Evenement extends ObjetBDD
          * Suppression finale de l'evenement
          */
         return parent::supprimer($id);
+    }
+
+    function ecrire($data) {
+        $id = parent::ecrire($data);
+        if ($id > 0) {
+            /**
+             * search if a status must be updated
+             */
+            if (!isset($this->evenementType)) {
+                $this->evenementType = $this->classInstanciate("Evenement_type","evenementType.class.php" );
+            }
+            $dtype = $this->evenementType->lire($data["evenement_type_id"]);
+            if (!empty($dtype["poisson_statut_id"])) {
+                if (!isset($this->poisson)){
+                    $this->poisson = $this->classInstanciate("Poisson", "poisson;class.php");
+                }
+                $dpoisson = $this->poisson->lire($data["poisson_id"]);
+                $dpoisson["poisson_statut_id"] = $dtype["poisson_statut_id"];
+                $this->poisson->ecrire($dpoisson);
+            }
+        }
+        return $id;
     }
 }

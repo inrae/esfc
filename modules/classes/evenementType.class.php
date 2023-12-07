@@ -32,8 +32,20 @@ class Evenement_type extends ObjetBDD
                 "type" => 1,
                 "requis" => 1,
                 "defaultValue" => 1
+            ),
+            "poisson_statut_id" => array( 
+                "type"=>1
             )
         );
         parent::__construct($bdd, $param);
+    }
+    function getListe($order = "") {
+        $sql = "select evenement_type_id, evenement_type_libelle, evenement_type_actif, poisson_statut_id, poisson_statut_libelle
+                from evenement_type
+                left outer join poisson_statut using (poisson_statut_id)";
+                if (!empty ($order)) {
+                    $order = " order by ".$order;
+                }
+                return $this->getListeParam($sql.$order);
     }
 }

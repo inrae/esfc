@@ -26,6 +26,12 @@ switch ($t_module["param"]) {
 		 * $_REQUEST["idParent"] contains the identifiant of the parent record
 		 */
 		dataRead($dataClass, $id, "parametre/evenementTypeChange.tpl");
+		/**
+		 * Get the list of status of fish
+		 */
+		require_once "modules/classes/poissonStatut.class.php";
+		$poissonStatut = new Poisson_statut($bdd, $ObjetBDDParam);
+		$vue->set($poissonStatut->getListe(2), "poissonStatuts");
 		break;
 	case "write":
 		/*
