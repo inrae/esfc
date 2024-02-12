@@ -43,12 +43,12 @@
                 </div>
             </div>
             <div class="form-group">
-                <label for="nb_visiotube" class="control-label col-md-4">
-                    {t}Nombre de visiotubes :{/t}
+                <label for="nb_visotube" class="control-label col-md-4">
+                    {t}Nombre de visotubes :{/t}
                 </label>
                 <div class="col-md-8">
-                    <input id="nb_visiotube" class="form-control nombre" name="nb_visiotube"
-                        value="{$data.nb_visiotube}">
+                    <input id="nb_visotube" class="form-control nombre" name="nb_visotube"
+                        value="{$data.nb_visotube}">
                 </div>
             </div>
             <div class="form-group">

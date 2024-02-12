@@ -5,7 +5,7 @@ class SpermeCongelation extends ObjetBDD
 
     private $sql = "select sperme_congelation_id, sperme_id, congelation_date, congelation_volume,
 			sperme_dilueur_id, sperme_dilueur_libelle, nb_paillette, 
-			nb_visiotube, sperme_congelation_commentaire,
+			nb_visotube, sperme_congelation_commentaire,
             sperme_conservateur_id, sperme_conservateur_libelle,
             volume_sperme, volume_dilueur, volume_conservateur,
             nb_paillettes_utilisees
@@ -43,7 +43,7 @@ class SpermeCongelation extends ObjetBDD
             "nb_paillette" => array(
                 "type" => 1
             ),
-            "nb_visiotube" => array(
+            "nb_visotube" => array(
                 "type" => 1
             ),
             "sperme_conservateur_id" => array(

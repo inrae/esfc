@@ -10,7 +10,7 @@
             <th>{t}Cuve{/t}</th>
             <th>{t}Numéro canister{/t}</th>
             <th>{t}Position canister{/t}</th>
-            <th>{t}Nb visiotubes{/t}</th>
+            <th>{t}Nb visotubes{/t}</th>
         </tr>
     </thead>
     <tbody>
@@ -33,7 +33,7 @@
                 {if $place[lst].position_canister == 2}{t}haut{/t}{/if}
             </td>
             <td class="center">
-                {$place[lst].nb_visiotube}
+                {$place[lst].nb_visotube}
             </td>
         </tr>
         {/section}

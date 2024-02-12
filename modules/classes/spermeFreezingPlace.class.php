@@ -28,7 +28,7 @@ class SpermeFreezingPlace extends ObjetBDD
                 "type" => 1,
                 "defaultValue" => 1
             ),
-            "nb_visiotube" => array(
+            "nb_visotube" => array(
                 "type" => 1
             )
         );

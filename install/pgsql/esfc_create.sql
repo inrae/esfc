@@ -3189,7 +3189,7 @@ CREATE TABLE public.sperme_congelation (
 	congelation_date timestamp NOT NULL,
 	congelation_volume real,
 	nb_paillette integer,
-	nb_visiotube integer,
+	nb_visotube integer,
 	sperme_congelation_commentaire character varying,
 	nb_paillettes_utilisees integer,
 	sperme_conservateur_id integer DEFAULT 1,
@@ -3209,7 +3209,7 @@ COMMENT ON COLUMN public.sperme_congelation.congelation_volume IS E'Volume conge
 -- ddl-end --
 COMMENT ON COLUMN public.sperme_congelation.nb_paillette IS E'Nombre de paillettes préparées';
 -- ddl-end --
-COMMENT ON COLUMN public.sperme_congelation.nb_visiotube IS E'Nombre de visiotubes utilisés';
+COMMENT ON COLUMN public.sperme_congelation.nb_visotube IS E'Nombre de visotubes utilisés';
 -- ddl-end --
 ALTER TABLE public.sperme_congelation OWNER TO esfc;
 -- ddl-end --
@@ -3327,7 +3327,7 @@ CREATE TABLE public.sperme_freezing_place (
 	cuve_libelle character varying,
 	canister_numero character varying,
 	position_canister smallint NOT NULL,
-	nb_visiotube integer,
+	nb_visotube integer,
 	CONSTRAINT sperme_freezing_place_pk PRIMARY KEY (sperme_freezing_place_id)
 );
 -- ddl-end --
@@ -3339,7 +3339,7 @@ COMMENT ON COLUMN public.sperme_freezing_place.canister_numero IS E'N° du canis
 -- ddl-end --
 COMMENT ON COLUMN public.sperme_freezing_place.position_canister IS E'Emplacement du canister dans la bouteille\n1 : bas\n2 : haut';
 -- ddl-end --
-COMMENT ON COLUMN public.sperme_freezing_place.nb_visiotube IS E'Nombre de visiotubes utilisés';
+COMMENT ON COLUMN public.sperme_freezing_place.nb_visotube IS E'Nombre de visotubes utilisés';
 -- ddl-end --
 ALTER TABLE public.sperme_freezing_place OWNER TO esfc;
 -- ddl-end --

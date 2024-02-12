@@ -11,7 +11,7 @@
             <th>{t}Volume total (ml){/t}</th>
             <th>{t}Volume sperme (ml){/t}</th>
             <th>{t}Nb paillettes{/t}</th>
-            <th>{t}Nb visiotubes{/t}</th>
+            <th>{t}Nb visotubes{/t}</th>
             <th>{t}Dilueur{/t}</th>
             <th>{t}Conservateur{/t}</th>
             <th>{t}Nb paillettes utilisées{/t}</th>
@@ -35,7 +35,7 @@
                 {$congelation[lst].congelation_volume}</td>
             <td class="center">{$congelation[lst].volume_sperme}</td>
             <td class="center">{$congelation[lst].nb_paillette}</td>
-            <td class="center">{$congelation[lst].nb_visiotube}</td>
+            <td class="center">{$congelation[lst].nb_visotube}</td>
             <td>{$congelation[lst].sperme_dilueur_libelle} : {$congelation[lst].volume_dilueur} ml</td>
             <td>{$congelation[lst].sperme_conservateur_libelle} : {$congelation[lst].volume_conservateur} ml</td>
             <td>{$congelation[lst].nb_paillettes_utilisees}</td>
