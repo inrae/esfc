@@ -191,6 +191,7 @@
         </form>
         <span class="red">*</span><span class="messagebas">{t}Champ obligatoire{/t}</span>
     </div>
+    {if $data.sperme_congelation_id > 0}
     <div class="col-md-6">
         <fieldset>
             <legend>{t}Vitesse de congélation{/t}</legend>
@@ -202,8 +203,9 @@
             </div>
         </fieldset>
     </div>
+    {/if}
 </div>
-
+{if $data.sperme_congelation_id > 0}
 <div class="row">
     <div class="col-md-6">
         <fieldset>
@@ -218,3 +220,4 @@
         </fieldset>
     </div>
 </div>
+{/if}
