@@ -3,7 +3,7 @@
 CAUTION: Do not modify this file unless you know what you are doing.
  Unexpected results may occur if the code is changed deliberately.
 -->
-<dbmodel pgmodeler-ver="1.0.6" use-changelog="false" author="Eric Quinton" last-position="857,2163" last-zoom="0.8" max-obj-count="171"
+<dbmodel pgmodeler-ver="1.0.6" use-changelog="false" author="Eric Quinton" last-position="854,2160" last-zoom="0.8" max-obj-count="171"
 	 default-owner="postgres"
 	 layers="Default layer"
 	 active-layers="0"
@@ -3276,7 +3276,7 @@ Le premier chiffre correspond au lundi]]> </comment>
 	<role name="quinton"/>
 </sequence>
 
-<table name="sperme_congelation" layers="0" collapse-mode="1" max-obj-count="15" z-value="0">
+<table name="sperme_congelation" layers="0" collapse-mode="1" max-obj-count="18" z-value="0">
 	<schema name="public"/>
 	<role name="quinton"/>
 	<comment> <![CDATA[Table des congélations de sperme]]> </comment>
@@ -3325,6 +3325,14 @@ Le premier chiffre correspond au lundi]]> </comment>
 	</column>
 	<column name="volume_sperme">
 		<type name="real" length="0"/>
+	</column>
+	<column name="paillette_volume">
+		<type name="float4" length="0"/>
+		<comment> <![CDATA[Volume par paillette, en ml (0,5 ou 5 ml)]]> </comment>
+	</column>
+	<column name="operateur">
+		<type name="varchar" length="0"/>
+		<comment> <![CDATA[Personne ayant réalisé la congélation]]> </comment>
 	</column>
 	<constraint name="sperme_congelation_pk" type="pk-constr" table="public.sperme_congelation">
 		<columns names="sperme_congelation_id" ref-type="src-columns"/>

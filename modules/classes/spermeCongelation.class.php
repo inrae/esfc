@@ -8,7 +8,7 @@ class SpermeCongelation extends ObjetBDD
 			nb_visotube, sperme_congelation_commentaire,
             sperme_conservateur_id, sperme_conservateur_libelle,
             volume_sperme, volume_dilueur, volume_conservateur,
-            nb_paillettes_utilisees
+            nb_paillettes_utilisees, paillette_volume, operateur
 			from sperme_congelation 
 			left outer join sperme_dilueur using (sperme_dilueur_id)
             left outer join sperme_conservateur using (sperme_conservateur_id)
@@ -64,6 +64,13 @@ class SpermeCongelation extends ObjetBDD
             ),
             "sperme_congelation_commentaire" => array(
                 "type" => 0
+            ),
+            "paillette_volume" => array(
+                "type" => 1,
+                "defaultValue" => 0.5
+            ),
+            "operateur" => array(
+                "type" => 0
             )
         );
         parent::__construct($bdd, $param);
@@ -85,7 +92,7 @@ class SpermeCongelation extends ObjetBDD
         return $this->getListeParamAsPrepared($this->sql . $where . $order, $arg);
     }
 
-    function lire($id, bool $getDefault = true, int $parentValue = 0):array
+    function lire($id, bool $getDefault = true, int $parentValue = 0): array
     {
         if ($id > 0) {
             $sql = "select sc.*, poisson_campagne_id, sequence_id

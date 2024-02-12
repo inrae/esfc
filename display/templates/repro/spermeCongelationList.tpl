@@ -15,6 +15,8 @@
             <th>{t}Dilueur{/t}</th>
             <th>{t}Conservateur{/t}</th>
             <th>{t}Nb paillettes utilisées{/t}</th>
+            <th>{t}Volume par paillette{/t}</th>
+            <th>{t}Opérateur{/t}</th>
             <th>{t}Remarque{/t}</th>
         </tr>
     </thead>
@@ -39,6 +41,8 @@
             <td>{$congelation[lst].sperme_dilueur_libelle} : {$congelation[lst].volume_dilueur} ml</td>
             <td>{$congelation[lst].sperme_conservateur_libelle} : {$congelation[lst].volume_conservateur} ml</td>
             <td>{$congelation[lst].nb_paillettes_utilisees}</td>
+            <td class="center">{$congelation[lst].paillette_volume}</td>
+            <td>{$congelation[lst].operateur}</td>
             <td>{$congelation[lst].sperme_congelation_commentaire}</td>
         </tr>
         {/section}

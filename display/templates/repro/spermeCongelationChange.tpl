@@ -29,6 +29,19 @@
                 }
             }
         });
+        var myStorage = window.localStorage;
+        $("#operateur").change(function() { 
+            myStorage.setItem( "spermeCongelationOperateur", $("#operateur").val() );
+        });
+        var operateur = "{$data.operateur}";
+        if (operateur.length == 0) {
+            try {
+                operateur = myStorage.getItem("spermeCongelationOperateur");
+                $("#operateur").val(operateur);
+            } catch {
+                // nothing to do
+            }
+        }
     });
 </script>
 
@@ -101,6 +114,15 @@
                 </div>
             </div>
             <div class="form-group">
+                <label for="paillette_volume" class="control-label col-md-4">
+                    {t}Volume par paillette :{/t}
+                </label>
+                <div class="col-md-8">
+                    <input id="paillette_volume" class="form-control taux" name="paillette_volume"
+                        value="{$data.paillette_volume}">
+                </div>
+            </div>
+            <div class="form-group">
                 <label for="nb_visotube" class="control-label col-md-4">
                     {t}Nombre total de visotubes :{/t}
                 </label>
@@ -165,11 +187,20 @@
             </div>
             <div class="form-group">
                 <label for="nb_paillettes_utilisees" class="control-label col-md-4">
-                    {t}Nb de paillettes utilisées en repro :{/t}
+                    {t}Nb de paillettes utilisées en repro:{/t}
                 </label>
                 <div class="col-md-8">
                     <input id="nb_paillettes_utilisees" class="form-control nombre" name="nb_paillettes_utilisees"
                         value="{$data.nb_paillettes_utilisees}" readonly>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="operateur" class="control-label col-md-4">
+                    {t}Opérateur :{/t}
+                </label>
+                <div class="col-md-8">
+                    <input id="operateur" class="form-control"
+                        name="operateur" value="{$data.operateur}">
                 </div>
             </div>
             <div class="form-group">
