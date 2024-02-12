@@ -13,6 +13,15 @@ $keyName = "croisement_id";
 $id = $_REQUEST[$keyName];
 
 switch ($t_module["param"]) {
+	case "list":
+		isset($_COOKIE["annee"]) ? $year = $_COOKIE["annee"]: $year = 0;
+		$vue->set($dataClass->getListCroisements($year),"croisements");
+		$vue->set("repro/croisementListAll.tpl", "corps");
+		$vue->set($year, "annee");
+		require_once "modules/classes/poissonCampagne.class.php";
+		$pc = new PoissonCampagne($bdd, $ObjetBDDParam);
+		$vue->set($pc->getAnnees(), "annees");
+		break;
 	case "display":
 		/*
 		 * Display the detail of the record

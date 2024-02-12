@@ -3,7 +3,7 @@
 CAUTION: Do not modify this file unless you know what you are doing.
  Unexpected results may occur if the code is changed deliberately.
 -->
-<dbmodel pgmodeler-ver="1.0.6" use-changelog="false" author="Eric Quinton" last-position="854,2160" last-zoom="0.8" max-obj-count="171"
+<dbmodel pgmodeler-ver="1.0.6" use-changelog="false" author="Eric Quinton" last-position="203,2352" last-zoom="0.8" max-obj-count="171"
 	 default-owner="postgres"
 	 layers="Default layer"
 	 active-layers="0"
@@ -3963,6 +3963,7 @@ Le premier chiffre correspond au lundi]]> </comment>
 	<schema name="public"/>
 	<role name="quinton"/>
 	<comment> <![CDATA[Liste des bassins fréquentés par un poisson]]> </comment>
+	<tag name="bassin"/>
 	<position x="1740" y="3400"/>
 	<reference>
 		<expression> <![CDATA[ SELECT t.poisson_id,
@@ -4689,6 +4690,31 @@ Le premier chiffre correspond au lundi]]> </comment>
 	 src-table="public.poisson_statut"
 	 dst-table="public.evenement_type"
 	 src-required="false" dst-required="false"/>
+
+<view name="v_croisement_parents" layers="0" collapse-mode="2" max-obj-count="1" z-value="0">
+	<schema name="public"/>
+	<tag name="repro"/>
+	<position x="380" y="3240"/>
+	<reference>
+		<expression> <![CDATA[select croisement_id, array_to_string(
+array_agg(
+matricule ||
+case when prenom is not null then ' ' || prenom  else '' end
+|| '(' || sexe_libelle_court || ')'
+), ', ') as parents
+from poisson_croisement 
+join poisson_campagne using (poisson_campagne_id)
+join poisson using (poisson_id)
+left outer join sexe using (sexe_id)
+group by croisement_id]]> </expression>
+	<column name="croisement_id">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="parents">
+		<type name="varchar" length="0"/>
+	</column>
+	</reference>
+</view>
 
 <constraint name="aliment_type_aliment_fk" type="fk-constr" comparison-type="MATCH SIMPLE"
 	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.aliment_type" table="public.aliment">

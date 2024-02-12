@@ -107,8 +107,8 @@ class Croisement extends ObjetBDD
 					order by croisement_date, croisement_nom";
 		$data = $this->getListeParamAsPrepared($sql, array("id" => $sequence_id));
 		/*
-			 * Recherche des parents
-			 */
+		 * Recherche des parents
+		 */
 		foreach ($data as $key => $value) {
 			$data[$key]["parents"] = $this->getParentsFromCroisement($value["croisement_id"]);
 		}
@@ -132,8 +132,8 @@ class Croisement extends ObjetBDD
 					order by croisement_date, croisement_id";
 		$data = $this->getListeParamAsPrepared($sql, array("annee" => $annee));
 		/*
-			 * Recherche des parents
-			 */
+		 * Recherche des parents
+		 */
 		foreach ($data as $key => $value) {
 			$data[$key]["parents"] = $this->getParentsFromCroisement($value["croisement_id"]);
 		}
@@ -160,14 +160,14 @@ class Croisement extends ObjetBDD
 						order by sexe_libelle_court, prenom";
 			$poissons = $this->getListeParamAsPrepared($sql, array("id" => $croisement_id));
 			foreach ($poissons as $value1) {
-				if (!$new ) {
+				if (!$new) {
 					$parents .= " / ";
 				} else {
 					$new = false;
 				}
 				$parents .= $value1["matricule"];
 				if (!empty($value1["prenom"])) {
-					$parents .= " ".$value1["prenom"];
+					$parents .= " " . $value1["prenom"];
 				}
 				$parents .= " (" . $value1["sexe_libelle_court"] . ")";
 			}
@@ -216,22 +216,22 @@ class Croisement extends ObjetBDD
 		$data = array();
 		if (is_null($sequence_id)) {
 			/*
-				 * Recuperation du numero de sequence
-				 */
+			 * Recuperation du numero de sequence
+			 */
 			$dataSequence = $this->lire($croisement_id);
 			$sequence_id = $dataSequence["sequence_id"];
 		}
 		if ($sequence_id > 0) {
 			/*
-				 * Recherche des poissons attaches a la sequence
-				 */
+			 * Recherche des poissons attaches a la sequence
+			 */
 			if (!isset($this->poissonSequence)) {
 				$this->poissonSequence = $this->classInstanciate("PoissonSequence", "poissonSequence.class.php");
 			}
 			$data = $this->poissonSequence->getListFromSequence($sequence_id);
 			/*
-				 * Recherche des poissons attaches au croisement
-				 */
+			 * Recherche des poissons attaches au croisement
+			 */
 			$sql = "select poisson_campagne_id 
 						from poisson_croisement
 						where croisement_id = :croisement_id";
@@ -260,5 +260,28 @@ class Croisement extends ObjetBDD
 		$data = $this->lireParamAsPrepared($sql . $where, array("id" => $id));
 		$data["parents"] = $this->getParentsFromCroisement($id);
 		return $data;
+	}
+/**
+ * Get the list of croisements
+ *
+ * @param integer $year
+ * @return array
+ */
+	function getListCroisements(int $year = 0)
+	{
+		$this->colonnes["croisement_date"]["type"] = 2;
+		$sql = "select croisement_id, croisement_nom, croisement_date, croisement_qualite_libelle,  
+				sequence_id, annee, sequence_nom, 
+				parents
+				from croisement
+				join sequence using (sequence_id)
+				left outer join croisement_qualite using (croisement_qualite_id)
+				left outer join v_croisement_parents using (croisement_id)";
+		$data = array();
+		if ($year > 0) {
+			$sql .= " where annee = :year";
+			$data["year"] = $year;
+		}
+		return $this->getListeParamAsPrepared($sql, $data);
 	}
 }

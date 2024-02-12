@@ -5,7 +5,7 @@
 		<its:translateRule selector="//item/@tooltip" translate="yes"/>
 	</its:rules>
 
-	<item module="poissonList" label="Poissons" tooltip="Liste des poissons" >
+	<item module="poissonList" label="Poissons" tooltip="Liste des poissons">
 		<item module="poissonList" label="Poissons" tooltip="Liste des poissons" />
 		<item module="anomalieList" label="Anomalies" tooltip="Liste des anomalies détectées" droits="gestion"/>
 		<item divider="1" droits="requete"/>
@@ -34,6 +34,9 @@
 		<item module="lotList" label="Lots de larves" tooltip="Liste des lots de larves pour une campagne" droits="reproConsult"/>
 		<item module="devenirList" label="Destination des lots" tooltip="Liste des lâchers ou des rentrées dans le stock captif" droits="reproConsult"/>
 		<item module="vieModeleList" label="Modèles de marquage VIE" tooltip="Liste des modèles de marquage VIE pour une campagne" droits="reproGestion"/>
+		<item divider="1" droits="consult"/>
+		<item module="croisementList" label="Liste des croisements" tooltip="Liste des croisements effectués" droits="reproConsult"/>
+		<item module="spermeCongeleList" label="Liste des spermes congelés" tooltip="Liste des paillettes disponibles" droits="reproConsult"/>
 	</item>
 
 	<item module="parametres" label="Paramètres" tooltip="Paramètres généraux de l'application" droits="consult">
@@ -48,7 +51,7 @@
 			<item module="sortieLieuList" label="Lieux de lâcher" tooltip="Liste des lieux de lâcher" droits="consult"/>
 			<item module="nageoireList" label="Nageoires" tooltip="Liste des nageoires (prélévements génétiques)" droits="consult"/>
 		</item>
-		
+
 		<item module="sites" label="Sites et bassins" tooltip="Paramètres concernant les sites et les bassins" droits="consult">
 			<item module="siteListe" label="Sites" tooltip="Liste des sites" droits="consult"/>
 			<item module="bassinTypeList" label="Types de bassins" tooltip="Liste des types de bassins" droits="consult"/>
@@ -63,16 +66,16 @@
 		<item module="reproduction" label="Reproduction" tooltip="Paramètres associés à la reproduction" droits="consult">
 			<item module="hormoneList" label="Hormones" tooltip="Liste des hormones utilisées" droits="consult"/>
 			<item module="anesthesieProduitList" label="Produits d'anesthésie" tooltip="Liste des produits d'anesthésie utilisés" droits="consult"/>
-			<item module="vieImplantationList" label="Implantation VIE" tooltip="Liste des emplacements d'implantation des marques VIE" droits="consult"/>			
+			<item module="vieImplantationList" label="Implantation VIE" tooltip="Liste des emplacements d'implantation des marques VIE" droits="consult"/>
 			<item module="spermeDilueurList" label="Dilueurs de sperme" tooltip="Liste des dilueurs de sperme" droits="consult"/>
 			<item module="spermeCaracteristiqueList" label="Caractéristiques du sperme" tooltip="Liste des caractéristiques potentielles du sperme" droits="consult"/>
 			<item module="spermeConservateurList" label="Conservateurs de spermes" tooltip="Produits utilisés pour conserver le sperme" droits="consult"/>
 			<item module="stadeOeufList" label="Stades des œufs" tooltip="Liste des stades des œufs" droits="consult"/>
 			<item module="stadeGonadeList" label="Stades des gonades" tooltip="Liste des stades des gonades" droits="consult"/>
 		</item>
-		
-		
-		
+
+
+
 		<item divider="1" droits="consult"/>
 		<item module="anomalieTypeList" label="Types d'anomalies" tooltip="Liste des types d'anomalies détectés dans la base de données" droits="consult"/>
 		<item module="mimeTypeList" label="Types de fichiers" tooltip="Liste des types de fichiers importables" droits="consult"/>
@@ -91,18 +94,18 @@
 		<item divider='1'/>
 		<item module="dbstructureGacl" droits="admin" label="Structure de la base de données des droits (HTML)" tooltip="Liste des tables et des colonnes de la base de données de gestion des droits"/>
 		<item module="phpinfo" droits="admin" label="PHP info" tooltip="configuration générale du serveur PHP"/>
-        <item divider="1"/>
-        <item module="logList" droits="admin" label="Logs" tooltip="Consultation des logs enregistrées"/>
+		<item divider="1"/>
+		<item module="logList" droits="admin" label="Logs" tooltip="Consultation des logs enregistrées"/>
 		<item module="systemShowServer" droits="admin" label="Variables SERVER" tooltip="Affichage des variables fournies par le serveur"/>
 		<item module="systemShowSession" droits="admin" label="Variables SESSION" tooltip="Affichage des variables de session"/>
-        <item module="backupDisplay" droits="admin" label="Backup" tooltip="Sauvegarde de la base de données"/>
+		<item module="backupDisplay" droits="admin" label="Backup" tooltip="Sauvegarde de la base de données"/>
 	</item>
-    <item module="documentation_fr" label="documentation" tooltip="Documentations en ligne en français" language="fr">
-        <item module="doctotp_fr" label="Comprendre la double authentification" tooltip="Comprendre le mécanisme de double authentification" language="fr"/>
-    </item>
-    <item module="documentation_en" label="documentation" tooltip="Documentations en ligne en anglais" language="en">
-        <item module="doctotp_en" label="Comprendre la double authentification" tooltip="Comprendre le mécanisme de double authentification" language="en"/>
-    </item>
+	<item module="documentation_fr" label="documentation" tooltip="Documentations en ligne en français" language="fr">
+		<item module="doctotp_fr" label="Comprendre la double authentification" tooltip="Comprendre le mécanisme de double authentification" language="fr"/>
+	</item>
+	<item module="documentation_en" label="documentation" tooltip="Documentations en ligne en anglais" language="en">
+		<item module="doctotp_en" label="Comprendre la double authentification" tooltip="Comprendre le mécanisme de double authentification" language="en"/>
+	</item>
 	<item module="connexion" label="Connexion" tooltip="S'identifier dans l'application" onlynoconnect="1"/>
 	<item module="disconnect" label="Déconnexion" tooltip="Déconnexion de l'application" loginrequis="1">
 		<item module="getLastConnections" label="Dernières connexions" tooltip="Liste des dernières connexions réalisées" loginrequis="1"/>
