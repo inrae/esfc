@@ -36,7 +36,7 @@
 		<item module="vieModeleList" label="Modèles de marquage VIE" tooltip="Liste des modèles de marquage VIE pour une campagne" droits="reproGestion"/>
 		<item divider="1" droits="consult"/>
 		<item module="croisementList" label="Liste des croisements" tooltip="Liste des croisements effectués" droits="reproConsult"/>
-		<item module="spermeCongeleList" label="Liste des spermes congelés" tooltip="Liste des paillettes disponibles" droits="reproConsult"/>
+		<item module="spermeCongelationList" label="Liste des spermes congelés" tooltip="Liste des paillettes disponibles" droits="reproConsult"/>
 	</item>
 
 	<item module="parametres" label="Paramètres" tooltip="Paramètres généraux de l'application" droits="consult">

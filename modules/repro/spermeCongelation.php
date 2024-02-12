@@ -17,6 +17,15 @@ if (isset($vue)) {
     $vue->set($_SESSION["poissonDetailParent"], "poissonDetailParent");
 }
 switch ($t_module["param"]) {
+    case "list":
+		isset($_COOKIE["annee"]) ? $year = $_COOKIE["annee"]: $year = 0;
+		$vue->set($dataClass->getAllCongelations($year),"spermes");
+		$vue->set("repro/spermeCongelationListAll.tpl", "corps");
+		$vue->set($year, "annee");
+		require_once "modules/classes/poissonCampagne.class.php";
+		$pc = new PoissonCampagne($bdd, $ObjetBDDParam);
+		$vue->set($pc->getAnnees(), "annees");
+		break;
     case "change":
         /*
 		 * open the form to modify the record

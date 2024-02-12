@@ -126,16 +126,16 @@ class PoissonCampagne extends ObjetBDD
 		$nb = 0;
 
 		/*
-			 * recherche des adultes qui n'existent pas dans la table poisson_campagne pour l'annee consideree
-			 */
+		 * recherche des adultes qui n'existent pas dans la table poisson_campagne pour l'annee consideree
+		 */
 		$sql = "select p.poisson_id from poisson p
 				where categorie_id = 1
 				and poisson_statut_id = 1
 				and p.poisson_id not in (select c.poisson_id from poisson_campagne c where annee = :annee)";
 		$liste = $this->getListeParamAsPrepared($sql, array("annee" => $annee));
 		/*
-			 * Traitement de chaque occurence de la liste
-			 */
+		 * Traitement de chaque occurence de la liste
+		 */
 		foreach ($liste as $value) {
 			if ($this->initCampagnePoisson($value["poisson_id"], $annee) > 0)
 				$nb++;
@@ -152,8 +152,8 @@ class PoissonCampagne extends ObjetBDD
 	function initCampagnePoisson(int $poisson_id, int $annee)
 	{
 		/*
-			 * Recherche s'il existe deja un enregistrement
-			 */
+		 * Recherche s'il existe deja un enregistrement
+		 */
 		$data = $this->lireFromPoissonAnnee($poisson_id, $annee);
 		if (!$data["poisson_campagne_id"] > 0) {
 			$data = array(
@@ -164,8 +164,8 @@ class PoissonCampagne extends ObjetBDD
 			);
 		}
 		/*
-			 * Calcul du taux de croissance journalier
-			 */
+		 * Calcul du taux de croissance journalier
+		 */
 		$result = $this->txCroissanceJourCalcul($poisson_id, $annee);
 		if (!is_null($result)) {
 			$data["tx_croissance_journalier"] = $result["txCroissance"];
@@ -225,8 +225,8 @@ class PoissonCampagne extends ObjetBDD
 		$order = " order by sexe_libelle, prenom";
 		$liste = $this->getListeParamAsPrepared($sql . $where . $order, $psql);
 		/*
-			 * Rajout des années de croisement antérieures
-			 */
+		 * Rajout des années de croisement antérieures
+		 */
 		foreach ($liste as $key => $value) {
 			$liste[$key]["annees"] = $this->getAnneeCroisement($value["poisson_id"]);
 			$annees = explode(",", $liste[$key]["annees"]);
@@ -276,30 +276,32 @@ class PoissonCampagne extends ObjetBDD
 		$sql = "select distinct sequence_id, s.annee, sequence_nom, sequence_date_debut
 					from sequence s
 					join poisson_sequence using (sequence_id)
-					join poisson_campagne using (poisson_campagne_id)";
+					join poisson_campagne using (poisson_campagne_id)where";
 		$param = array("poisson_id" => $poisson_id);
-		if (is_array($annee)) {
-			$sql .= " where s.annee in (";
-			$annees = "";
-			$comma = false;
-			foreach ($annee as $an) {
-				if (is_numeric($an)) {
-					if ($comma) {
-						$sql .= ",";
-					} else {
-						$comma = true;
+		$and = " ";
+		if (!$isPoissonCampagne) {
+			if (is_array($annee)) {
+				$sql .= " s.annee in (";
+				$comma = false;
+				foreach ($annee as $an) {
+					if (is_numeric($an)) {
+						if ($comma) {
+							$sql .= ",";
+						} else {
+							$comma = true;
+						}
+						$sql .= $an;
 					}
-					$sql .= $an;
 				}
+				$sql .= ")";
+			} else {
+				$sql .= " s.annee = :annee";
+				$param["annee"] = $annee;
 			}
-			$sql .= ")";
-		} else {
-			$sql .= " where s.annee = :annee";
-			$param["annee"] = $annee;
+			$and = " and ";
 		}
-
 		if ($isPoissonCampagne) {
-			$sql .= " and poisson_campagne_id = :poisson_id";
+			$sql .= $and."poisson_campagne_id = :poisson_id";
 		} else {
 			$sql .= " and poisson_id = :poisson_id";
 		}
@@ -450,8 +452,8 @@ class PoissonCampagne extends ObjetBDD
 		$this->colonnes["pf_datetime"]["type"] = 3;
 		if ($profil_thermique_type_id == 1) {
 			/*
-				 * Traitement des valeurs constatees, lues dans les analyses d'eau
-				 */
+			 * Traitement des valeurs constatees, lues dans les analyses d'eau
+			 */
 
 			$sql = "SELECT distinct b.poisson_id,b.bassin_id,b.bassin_nom,b.date_debut,b.date_fin,
     				analyse_eau_date as pf_datetime,
@@ -470,8 +472,8 @@ class PoissonCampagne extends ObjetBDD
 					order by analyse_eau_date";
 		} else {
 			/*
-				 * Traitement des valeurs prevues
-				 */
+			 * Traitement des valeurs prevues
+			 */
 			$sql = "SELECT b.poisson_id,b.bassin_id,b.bassin_nom,b.date_debut,b.date_fin,
     				bc.bassin_campagne_id,pt.profil_thermique_id,bc.annee,pt.pf_datetime,
     				pt.pf_temperature,pt.profil_thermique_type_id

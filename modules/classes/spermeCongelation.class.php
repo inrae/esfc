@@ -104,4 +104,21 @@ class SpermeCongelation extends ObjetBDD
             return $this->getDefaultValue($parentValue);
         }
     }
+    
+    function getAllCongelations(int $year = 0) {
+        $sql = "select sperme_congelation_id, sperme_id,            poisson_campagne_id, sequence_id,
+                congelation_date, congelation_volume, nb_paillette, paillette_volume, nb_visotube, 
+                nb_paillettes_utilisees, volume_sperme,operateur,
+                matricule, prenom
+                from sperme_congelation
+                join sperme using(sperme_id)
+                join poisson_campagne using (poisson_campagne_id)
+                join poisson using (poisson_id)";
+                $data = array();
+		if ($year > 0) {
+			$sql .= " where annee = :year";
+			$data["year"] = $year;
+		}
+		return $this->getListeParamAsPrepared($sql, $data);
+    }
 }
