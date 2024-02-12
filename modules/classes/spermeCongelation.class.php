@@ -80,7 +80,21 @@ class SpermeCongelation extends ObjetBDD
         $order = " order by congelation_date";
         $arg = array(
             "sperme_id" => $sperme_id
-        );;
+        );
+        ;
         return $this->getListeParamAsPrepared($this->sql . $where . $order, $arg);
+    }
+
+    function lire($id, bool $getDefault = true, int $parentValue = 0):array
+    {
+        if ($id > 0) {
+            $sql = "select sc.*, poisson_campagne_id, sequence_id
+                from sperme_congelation sc
+                join sperme using (sperme_id)
+                where sperme_congelation_id = :id";
+            return $this->lireParamAsPrepared($sql, array("id" => $id));
+        } else {
+            return $this->getDefaultValue($parentValue);
+        }
     }
 }
