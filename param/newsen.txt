@@ -1,5 +1,16 @@
 News
 ==========
+Version 24.0.0 of 13 February 2024
+---------------------------------
+Bug fixes :
+- the "visotubes" fields were incorrectly ortographed
+- when creating a sperm freeze, the attached information was visible
+- in some cases, a blank page was displayed in the sperm management modules
+
+New features:
+- in sperm freezing, additional information has been added (operator, volume of straws)
+- two lists are now available: the list of all crosses made, and the list of frozen semen
+
 Version 23.2.0 of 7 December 2023
 ---------------------------------
 Bug fixes :

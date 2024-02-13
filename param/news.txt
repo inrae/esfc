@@ -1,5 +1,16 @@
 Nouveautés
 ==========
+Version 24.0.0 du 13 février 2024
+---------------------------------
+Corrections de bugs :
+- les champs "visotubes" étaient mal ortographiés
+- lors de la création d'une congélation de sperme, les infos rattachées étaient visibles
+- dans certains cas, une page blanche était affichée dans les modules de gestion du sperme
+
+Nouveautés :
+- en congélation du sperme, des informations complémentaires ont été rajoutées (opérateur, volume des paillettes)
+- deux listes sont maitenant disponibles : la liste de tous les croisements réalisés, et la liste des semences congelées
+
 Version 23.2.0 du 7 décembre 2023
 ---------------------------------
 Corrections de bugs :

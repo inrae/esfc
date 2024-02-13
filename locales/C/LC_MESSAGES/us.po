@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ESFC\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-07 16:04+0100\n"
+"POT-Creation-Date: 2024-02-13 08:55+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -17,7 +17,7 @@ msgstr ""
 #. (itstool) path: menu/item@label
 #. (itstool) path: item/item@label
 #: ../../../param/menu.xml:8 ../../../param/menu.xml:9
-#: ../../../param/menu.xml:32 ../../../param/menu.xml:40
+#: ../../../param/menu.xml:32 ../../../param/menu.xml:43
 #: ../../../display/templates/repro/croisementList.tpl:12
 msgid "Poissons"
 msgstr "Fish"
@@ -165,7 +165,7 @@ msgstr "List of templates of repartition"
 
 #. (itstool) path: menu/item@label
 #. (itstool) path: item/item@label
-#: ../../../param/menu.xml:31 ../../../param/menu.xml:63
+#: ../../../param/menu.xml:31 ../../../param/menu.xml:66
 #: ../../../display/templates/poisson/poissonDisplay.tpl:132
 msgid "Reproduction"
 msgstr "Reproduction"
@@ -220,582 +220,603 @@ msgstr "VIE marking models"
 msgid "Liste des modèles de marquage VIE pour une campagne"
 msgstr "List of VIE marking models for a campaign"
 
-#. (itstool) path: menu/item@label
+#. (itstool) path: item/item@label
+#: ../../../param/menu.xml:38
+msgid "Liste des croisements"
+msgstr "List of crossbreds"
+
+#. (itstool) path: item/item@tooltip
+#: ../../../param/menu.xml:38
+msgid "Liste des croisements effectués"
+msgstr "List of crossbreds performed"
+
+#. (itstool) path: item/item@label
 #: ../../../param/menu.xml:39
+msgid "Liste des spermes congelés"
+msgstr "List of frozen sperms"
+
+#. (itstool) path: item/item@tooltip
+#: ../../../param/menu.xml:39
+msgid "Liste des paillettes disponibles"
+msgstr "List of available straws"
+
+#. (itstool) path: menu/item@label
+#: ../../../param/menu.xml:42
 msgid "Paramètres"
 msgstr "Settings"
 
 #. (itstool) path: menu/item@tooltip
-#: ../../../param/menu.xml:39
+#: ../../../param/menu.xml:42
 msgid "Paramètres généraux de l'application"
 msgstr "Application Settings"
 
 #. (itstool) path: item/item@tooltip
-#: ../../../param/menu.xml:40
+#: ../../../param/menu.xml:43
 msgid "Paramètres liés aux poissons"
 msgstr "Fish settings"
 
 #. (itstool) path: item/item@label
-#: ../../../param/menu.xml:41
+#: ../../../param/menu.xml:44
 msgid "Types de pittags"
 msgstr "Pittag types"
 
 #. (itstool) path: item/item@tooltip
-#: ../../../param/menu.xml:41
+#: ../../../param/menu.xml:44
 msgid "Liste des types de pittags"
 msgstr "List of types of pittags"
 
 #. (itstool) path: item/item@label
-#: ../../../param/menu.xml:42
+#: ../../../param/menu.xml:45
 #: ../../../display/templates/parametre/poissonStatutList.tpl:1
 msgid "Statuts des poissons"
 msgstr "Fish status"
 
 #. (itstool) path: item/item@tooltip
-#: ../../../param/menu.xml:42
+#: ../../../param/menu.xml:45
 msgid "Liste des statuts des poissons"
 msgstr "List of status of fish"
 
 #. (itstool) path: item/item@label
-#: ../../../param/menu.xml:43
+#: ../../../param/menu.xml:46
 msgid "Méthodes de sexage"
 msgstr "Sexing methods"
 
 #. (itstool) path: item/item@tooltip
-#: ../../../param/menu.xml:43
+#: ../../../param/menu.xml:46
 msgid "Liste des méthode de sexage utilisées"
 msgstr "List of used sexing methods"
 
 #. (itstool) path: item/item@label
-#: ../../../param/menu.xml:44
+#: ../../../param/menu.xml:47
 #: ../../../display/templates/parametre/evenementTypeList.tpl:1
 msgid "Types d'événements"
 msgstr "Event types"
 
 #. (itstool) path: item/item@tooltip
-#: ../../../param/menu.xml:44
+#: ../../../param/menu.xml:47
 msgid "Liste des types d'événements"
 msgstr "List of event types"
 
 #. (itstool) path: item/item@label
-#: ../../../param/menu.xml:45
+#: ../../../param/menu.xml:48
 msgid "Types de pathologie"
 msgstr "Pathology types"
 
 #. (itstool) path: item/item@tooltip
-#: ../../../param/menu.xml:45
+#: ../../../param/menu.xml:48
 msgid "Liste des types de pathologie"
 msgstr "List of pathology types"
 
 #. (itstool) path: item/item@label
-#: ../../../param/menu.xml:46
+#: ../../../param/menu.xml:49
 msgid "Types de mortalités"
 msgstr "Mortality types"
 
 #. (itstool) path: item/item@tooltip
-#: ../../../param/menu.xml:46
+#: ../../../param/menu.xml:49
 msgid "Liste des types de mortalités"
 msgstr "List of mortality types"
 
 #. (itstool) path: item/item@label
-#: ../../../param/menu.xml:47
+#: ../../../param/menu.xml:50
 msgid "Détermination des cohortes"
 msgstr "Cohort determination"
 
 #. (itstool) path: item/item@tooltip
-#: ../../../param/menu.xml:47
+#: ../../../param/menu.xml:50
 msgid "Méthodes de détermination des cohortes"
 msgstr "Methods of cohort determinations"
 
 #. (itstool) path: item/item@label
-#: ../../../param/menu.xml:48
+#: ../../../param/menu.xml:51
 msgid "Lieux de lâcher"
 msgstr "Release site"
 
 #. (itstool) path: item/item@tooltip
-#: ../../../param/menu.xml:48
+#: ../../../param/menu.xml:51
 msgid "Liste des lieux de lâcher"
 msgstr "List of release locations"
 
 #. (itstool) path: item/item@label
-#: ../../../param/menu.xml:49
+#: ../../../param/menu.xml:52
 msgid "Nageoires"
 msgstr "Fins"
 
 #. (itstool) path: item/item@tooltip
-#: ../../../param/menu.xml:49
+#: ../../../param/menu.xml:52
 msgid "Liste des nageoires (prélévements génétiques)"
 msgstr "List of fins (genetic samples)"
 
 #. (itstool) path: item/item@label
-#: ../../../param/menu.xml:52
+#: ../../../param/menu.xml:55
 msgid "Sites et bassins"
 msgstr "Sites and basins"
 
 #. (itstool) path: item/item@tooltip
-#: ../../../param/menu.xml:52
+#: ../../../param/menu.xml:55
 msgid "Paramètres concernant les sites et les bassins"
 msgstr "Sites and basin parameters"
 
 #. (itstool) path: item/item@label
-#: ../../../param/menu.xml:53
+#: ../../../param/menu.xml:56
 msgid "Sites"
 msgstr "Sites"
 
 #. (itstool) path: item/item@tooltip
-#: ../../../param/menu.xml:53
+#: ../../../param/menu.xml:56
 #: ../../../display/templates/parametre/siteList.tpl:1
 msgid "Liste des sites"
 msgstr "List of sites"
 
 #. (itstool) path: item/item@label
-#: ../../../param/menu.xml:54
+#: ../../../param/menu.xml:57
 #: ../../../display/templates/parametre/bassinTypeList.tpl:1
 msgid "Types de bassins"
 msgstr "Basin types"
 
 #. (itstool) path: item/item@tooltip
-#: ../../../param/menu.xml:54
+#: ../../../param/menu.xml:57
 msgid "Liste des types de bassins"
 msgstr "List of basin types"
 
 #. (itstool) path: item/item@label
-#: ../../../param/menu.xml:55
+#: ../../../param/menu.xml:58
 msgid "Usages des bassins"
 msgstr "Basin uses"
 
 #. (itstool) path: item/item@tooltip
-#: ../../../param/menu.xml:55
+#: ../../../param/menu.xml:58
 msgid "Liste des types d'usage des bassins"
 msgstr "List of basin usage types"
 
 #. (itstool) path: item/item@label
-#: ../../../param/menu.xml:56
+#: ../../../param/menu.xml:59
 msgid "Zones d'implantation"
 msgstr "Location zones"
 
 #. (itstool) path: item/item@tooltip
-#: ../../../param/menu.xml:56
+#: ../../../param/menu.xml:59
 msgid "Liste des zones d'implantation des bassins"
 msgstr "List of basin location zones"
 
 #. (itstool) path: item/item@label
-#: ../../../param/menu.xml:57
+#: ../../../param/menu.xml:60
 #: ../../../display/templates/bassin/circuitEauDisplay.tpl:203
 msgid "Métaux"
 msgstr "Metals"
 
 #. (itstool) path: item/item@tooltip
-#: ../../../param/menu.xml:57
+#: ../../../param/menu.xml:60
 #: ../../../display/templates/parametre/metalList.tpl:1
 msgid "Liste des métaux analysés"
 msgstr "List of analyzed metals"
 
 #. (itstool) path: item/item@label
-#: ../../../param/menu.xml:58
+#: ../../../param/menu.xml:61
 msgid "Laboratoires"
 msgstr "Laboratories"
 
 #. (itstool) path: item/item@tooltip
-#: ../../../param/menu.xml:58
+#: ../../../param/menu.xml:61
 msgid "Liste des laboratoires sollicités pour les analyses d'eau"
 msgstr "List of laboratories used for water analysis"
 
 #. (itstool) path: item/item@label
-#: ../../../param/menu.xml:59
+#: ../../../param/menu.xml:62
 msgid "Types d'événements dans les bassins"
 msgstr "Basin event types"
 
 #. (itstool) path: item/item@tooltip
-#: ../../../param/menu.xml:59
+#: ../../../param/menu.xml:62
 msgid "Liste des types d'événements pouvant survenir dans les bassins"
 msgstr "List of basin event types"
 
 #. (itstool) path: item/item@label
-#: ../../../param/menu.xml:60
+#: ../../../param/menu.xml:63
 msgid "Types d'événements sur les circuits d'eau"
 msgstr "Types of events on water circuits"
 
 #. (itstool) path: item/item@tooltip
-#: ../../../param/menu.xml:60
+#: ../../../param/menu.xml:63
 msgid "Liste des types d'événements pouvant survenir sur les circuits d'eau"
 msgstr "List of types of events that can occur on water circuits"
 
 #. (itstool) path: item/item@tooltip
-#: ../../../param/menu.xml:63
+#: ../../../param/menu.xml:66
 msgid "Paramètres associés à la reproduction"
 msgstr "Parameters associated with reproduction"
 
 #. (itstool) path: item/item@label
-#: ../../../param/menu.xml:64
+#: ../../../param/menu.xml:67
 msgid "Hormones"
 msgstr "Hormones"
 
 #. (itstool) path: item/item@tooltip
-#: ../../../param/menu.xml:64
+#: ../../../param/menu.xml:67
 msgid "Liste des hormones utilisées"
 msgstr "List of hormones used"
 
 #. (itstool) path: item/item@label
-#: ../../../param/menu.xml:65
+#: ../../../param/menu.xml:68
 msgid "Produits d'anesthésie"
 msgstr "Anesthesia products"
 
 #. (itstool) path: item/item@tooltip
-#: ../../../param/menu.xml:65
+#: ../../../param/menu.xml:68
 msgid "Liste des produits d'anesthésie utilisés"
 msgstr "List of anesthesia products used"
 
 #. (itstool) path: item/item@label
-#: ../../../param/menu.xml:66
+#: ../../../param/menu.xml:69
 msgid "Implantation VIE"
 msgstr "VIE location"
 
 #. (itstool) path: item/item@tooltip
-#: ../../../param/menu.xml:66
+#: ../../../param/menu.xml:69
 msgid "Liste des emplacements d'implantation des marques VIE"
 msgstr "List of VIE marking locations"
 
 #. (itstool) path: item/item@label
-#: ../../../param/menu.xml:67
+#: ../../../param/menu.xml:70
 msgid "Dilueurs de sperme"
 msgstr "Sperm thinners"
 
 #. (itstool) path: item/item@tooltip
-#: ../../../param/menu.xml:67
+#: ../../../param/menu.xml:70
 msgid "Liste des dilueurs de sperme"
 msgstr "List of sperm dilutors"
 
 #. (itstool) path: item/item@label
-#: ../../../param/menu.xml:68
+#: ../../../param/menu.xml:71
 msgid "Caractéristiques du sperme"
 msgstr "Sperm characteristics"
 
 #. (itstool) path: item/item@tooltip
-#: ../../../param/menu.xml:68
+#: ../../../param/menu.xml:71
 msgid "Liste des caractéristiques potentielles du sperme"
 msgstr "List of sperm potential characteristics"
 
 #. (itstool) path: item/item@label
-#: ../../../param/menu.xml:69
+#: ../../../param/menu.xml:72
 msgid "Conservateurs de spermes"
 msgstr "Sperm preservatives"
 
 #. (itstool) path: item/item@tooltip
-#: ../../../param/menu.xml:69
+#: ../../../param/menu.xml:72
 msgid "Produits utilisés pour conserver le sperme"
 msgstr "Products used to conserve sperm"
 
 #. (itstool) path: item/item@label
-#: ../../../param/menu.xml:70
+#: ../../../param/menu.xml:73
 msgid "Stades des œufs"
 msgstr "Egg stades"
 
 #. (itstool) path: item/item@tooltip
-#: ../../../param/menu.xml:70
+#: ../../../param/menu.xml:73
 msgid "Liste des stades des œufs"
 msgstr "List of egg stages"
 
 #. (itstool) path: item/item@label
-#: ../../../param/menu.xml:71
+#: ../../../param/menu.xml:74
 msgid "Stades des gonades"
 msgstr "Gonad stages"
 
 #. (itstool) path: item/item@tooltip
-#: ../../../param/menu.xml:71
+#: ../../../param/menu.xml:74
 msgid "Liste des stades des gonades"
 msgstr "List of gonad stages"
 
 #. (itstool) path: item/item@label
-#: ../../../param/menu.xml:77
+#: ../../../param/menu.xml:80
 msgid "Types d'anomalies"
 msgstr "Anomaly types"
 
 #. (itstool) path: item/item@tooltip
-#: ../../../param/menu.xml:77
+#: ../../../param/menu.xml:80
 msgid "Liste des types d'anomalies détectés dans la base de données"
 msgstr "List of anomaly types detected into the database"
 
 #. (itstool) path: item/item@label
-#: ../../../param/menu.xml:78
+#: ../../../param/menu.xml:81
 msgid "Types de fichiers"
 msgstr "File types"
 
 #. (itstool) path: item/item@tooltip
-#: ../../../param/menu.xml:78
+#: ../../../param/menu.xml:81
 msgid "Liste des types de fichiers importables"
 msgstr "List of importable file types"
 
 #. (itstool) path: item/item@label
 #. (itstool) path: item/item@tooltip
-#: ../../../param/menu.xml:80
+#: ../../../param/menu.xml:83
 msgid "Schéma de la base de données"
 msgstr "Database schema"
 
 #. (itstool) path: item/item@label
-#: ../../../param/menu.xml:81
+#: ../../../param/menu.xml:84
 msgid "Structure de la base de données (HTML)"
 msgstr "Database structure (HTML)"
 
 #. (itstool) path: item/item@tooltip
-#: ../../../param/menu.xml:81
+#: ../../../param/menu.xml:84
 msgid "Liste des tables et des colonnes"
 msgstr "List of tables and columns"
 
 #. (itstool) path: menu/item@label
-#: ../../../param/menu.xml:85
+#: ../../../param/menu.xml:88
 msgid "Administration"
 msgstr "Administration"
 
 #. (itstool) path: menu/item@tooltip
-#: ../../../param/menu.xml:85
+#: ../../../param/menu.xml:88
 msgid "Administration de l'application"
 msgstr "Application administration"
 
 #. (itstool) path: item/item@label
-#: ../../../param/menu.xml:86
+#: ../../../param/menu.xml:89
 msgid "Liste des comptes locaux"
 msgstr "Local accounts list"
 
 #. (itstool) path: item/item@tooltip
-#: ../../../param/menu.xml:86
+#: ../../../param/menu.xml:89
 msgid "Liste des logins - identification via la base de données"
 msgstr "List of logins - identification via the database"
 
 #. (itstool) path: item/item@label
-#: ../../../param/menu.xml:87
+#: ../../../param/menu.xml:90
 msgid "ACL - droits"
 msgstr "ACL - rights"
 
 #. (itstool) path: item/item@tooltip
-#: ../../../param/menu.xml:87
+#: ../../../param/menu.xml:90
 msgid "applications et droits gérés"
 msgstr "applications and rights managed"
 
 #. (itstool) path: item/item@label
-#: ../../../param/menu.xml:88
+#: ../../../param/menu.xml:91
 msgid "ACL - logins"
 msgstr "ACL - logins"
 
 #. (itstool) path: item/item@tooltip
-#: ../../../param/menu.xml:88
+#: ../../../param/menu.xml:91
 msgid "Logins déclarés dans le module de gestion des droits"
 msgstr "Logins declared in the rights management module"
 
 #. (itstool) path: item/item@label
-#: ../../../param/menu.xml:89
+#: ../../../param/menu.xml:92
 msgid "ACL - groupes de logins"
 msgstr "ACL - login groups"
 
 #. (itstool) path: item/item@tooltip
-#: ../../../param/menu.xml:89
+#: ../../../param/menu.xml:92
 msgid "Groupes de logins et logins rattachés aux groupes"
 msgstr "Groups of logins and logins attached to groups"
 
 #. (itstool) path: item/item@label
-#: ../../../param/menu.xml:90
+#: ../../../param/menu.xml:93
 msgid "Paramètres de l'application"
 msgstr "Application Settings"
 
 #. (itstool) path: item/item@tooltip
-#: ../../../param/menu.xml:90
+#: ../../../param/menu.xml:93
 msgid "Liste des paramètres pérennes de l'application"
 msgstr "List of long-term parameters of the application"
 
 #. (itstool) path: item/item@label
-#: ../../../param/menu.xml:92
+#: ../../../param/menu.xml:95
 msgid "Structure de la base de données des droits (HTML)"
 msgstr "Right management database structure (HTML)"
 
 #. (itstool) path: item/item@tooltip
-#: ../../../param/menu.xml:92
+#: ../../../param/menu.xml:95
 msgid ""
 "Liste des tables et des colonnes de la base de données de gestion des droits"
 msgstr "List of tables and columns for the right management database"
 
 #. (itstool) path: item/item@label
-#: ../../../param/menu.xml:93 ../../../display/templates/phpinfo.tpl:1
+#: ../../../param/menu.xml:96 ../../../display/templates/phpinfo.tpl:1
 msgid "PHP info"
 msgstr "PHP info"
 
 #. (itstool) path: item/item@tooltip
-#: ../../../param/menu.xml:93
+#: ../../../param/menu.xml:96
 msgid "configuration générale du serveur PHP"
 msgstr "general configuration of the PHP server"
 
 #. (itstool) path: item/item@label
-#: ../../../param/menu.xml:95
+#: ../../../param/menu.xml:98
 msgid "Logs"
 msgstr "Logs"
 
 #. (itstool) path: item/item@tooltip
-#: ../../../param/menu.xml:95
+#: ../../../param/menu.xml:98
 msgid "Consultation des logs enregistrées"
 msgstr "Consulting saved logs"
 
 #. (itstool) path: item/item@label
-#: ../../../param/menu.xml:96
+#: ../../../param/menu.xml:99
 msgid "Variables SERVER"
 msgstr "SERVER variables"
 
 #. (itstool) path: item/item@tooltip
-#: ../../../param/menu.xml:96
+#: ../../../param/menu.xml:99
 msgid "Affichage des variables fournies par le serveur"
 msgstr "Display of variables supplied by the server"
 
 #. (itstool) path: item/item@label
-#: ../../../param/menu.xml:97
+#: ../../../param/menu.xml:100
 msgid "Variables SESSION"
 msgstr "SESSION variables"
 
 #. (itstool) path: item/item@tooltip
-#: ../../../param/menu.xml:97
+#: ../../../param/menu.xml:100
 msgid "Affichage des variables de session"
 msgstr "Display of variables of the session"
 
 #. (itstool) path: item/item@label
-#: ../../../param/menu.xml:98
+#: ../../../param/menu.xml:101
 msgid "Backup"
 msgstr "Backup"
 
 #. (itstool) path: item/item@tooltip
-#: ../../../param/menu.xml:98 ../../../display/templates/framework/backup.tpl:1
+#: ../../../param/menu.xml:101
+#: ../../../display/templates/framework/backup.tpl:1
 msgid "Sauvegarde de la base de données"
 msgstr "Database backup"
 
 #. (itstool) path: menu/item@label
-#: ../../../param/menu.xml:100 ../../../param/menu.xml:103
+#: ../../../param/menu.xml:103 ../../../param/menu.xml:106
 msgid "documentation"
 msgstr "documentation"
 
 #. (itstool) path: menu/item@tooltip
-#: ../../../param/menu.xml:100
+#: ../../../param/menu.xml:103
 msgid "Documentations en ligne en français"
 msgstr "French online documentations"
 
 #. (itstool) path: item/item@label
-#: ../../../param/menu.xml:101 ../../../param/menu.xml:104
+#: ../../../param/menu.xml:104 ../../../param/menu.xml:107
 msgid "Comprendre la double authentification"
 msgstr "Understand the double authentication"
 
 #. (itstool) path: item/item@tooltip
-#: ../../../param/menu.xml:101 ../../../param/menu.xml:104
+#: ../../../param/menu.xml:104 ../../../param/menu.xml:107
 msgid "Comprendre le mécanisme de double authentification"
 msgstr "Understand the mechanism of the double authentication"
 
 #. (itstool) path: menu/item@tooltip
-#: ../../../param/menu.xml:103
+#: ../../../param/menu.xml:106
 msgid "Documentations en ligne en anglais"
 msgstr "English online documentations"
 
 #. (itstool) path: menu/item@label
-#: ../../../param/menu.xml:106 ../../../display/templates/entete.tpl:21
+#: ../../../param/menu.xml:109 ../../../display/templates/entete.tpl:21
 #: ../../../display/templates/entete.tpl:46
 #: ../../../display/templates/entete.tpl:47
 msgid "Connexion"
 msgstr "Sign in"
 
 #. (itstool) path: menu/item@tooltip
-#: ../../../param/menu.xml:106
+#: ../../../param/menu.xml:109
 msgid "S'identifier dans l'application"
 msgstr "Sign in to the app"
 
 #. (itstool) path: menu/item@label
-#: ../../../param/menu.xml:107 ../../../display/templates/entete.tpl:42
+#: ../../../param/menu.xml:110 ../../../display/templates/entete.tpl:42
 #: ../../../display/templates/entete.tpl:43
 msgid "Déconnexion"
 msgstr "Sign out"
 
 #. (itstool) path: menu/item@tooltip
-#: ../../../param/menu.xml:107
+#: ../../../param/menu.xml:110
 msgid "Déconnexion de l'application"
 msgstr "Sign out of the app"
 
 #. (itstool) path: item/item@label
-#: ../../../param/menu.xml:108
+#: ../../../param/menu.xml:111
 msgid "Dernières connexions"
 msgstr "Last connections"
 
 #. (itstool) path: item/item@tooltip
-#: ../../../param/menu.xml:108
+#: ../../../param/menu.xml:111
 msgid "Liste des dernières connexions réalisées"
 msgstr "List of latest locations"
 
 #. (itstool) path: item/item@label
-#: ../../../param/menu.xml:109 ../../../display/templates/entete.tpl:38
+#: ../../../param/menu.xml:112 ../../../display/templates/entete.tpl:38
 #: ../../../display/templates/entete.tpl:39
 #: ../../../display/templates/framework/ident/loginChangePassword.tpl:86
 msgid "Modifier le mot de passe"
 msgstr "Change your password"
 
 #. (itstool) path: item/item@tooltip
-#: ../../../param/menu.xml:109
+#: ../../../param/menu.xml:112
 msgid "Modifiez votre mot de passe (identification locale uniquement)"
 msgstr "Change your password (local identification only)"
 
 #. (itstool) path: menu/item@label
-#: ../../../param/menu.xml:111
+#: ../../../param/menu.xml:114
 msgid "?"
 msgstr "?"
 
 #. (itstool) path: menu/item@tooltip
-#: ../../../param/menu.xml:111
+#: ../../../param/menu.xml:114
 msgid "Aide"
 msgstr "Help"
 
 #. (itstool) path: item/item@label
-#: ../../../param/menu.xml:112
+#: ../../../param/menu.xml:115
 msgid "A propos"
 msgstr "About"
 
 #. (itstool) path: item/item@tooltip
-#: ../../../param/menu.xml:112
-msgid "A propos de Collec-Science"
-msgstr "A propos de"
+#: ../../../param/menu.xml:115
+msgid "A propos de ESFC"
+msgstr "About ESFC"
 
 #. (itstool) path: item/item@label
-#: ../../../param/menu.xml:113
+#: ../../../param/menu.xml:116
 msgid "Nouveautés"
 msgstr "News"
 
 #. (itstool) path: item/item@tooltip
-#: ../../../param/menu.xml:113
+#: ../../../param/menu.xml:116
 msgid "Quoi de neuf dans l'application ?"
 msgstr "What's new in the app?"
 
 #. (itstool) path: item/item@label
-#: ../../../param/menu.xml:114
+#: ../../../param/menu.xml:117
 msgid "Français"
 msgstr "French"
 
 #. (itstool) path: item/item@tooltip
-#: ../../../param/menu.xml:114
+#: ../../../param/menu.xml:117
 msgid "Libellés en français"
 msgstr "Labels in French"
 
 #. (itstool) path: item/item@label
-#: ../../../param/menu.xml:115
+#: ../../../param/menu.xml:118
 msgid "English"
 msgstr "English"
 
 #. (itstool) path: item/item@tooltip
-#: ../../../param/menu.xml:115
+#: ../../../param/menu.xml:118
 msgid "Labels in English"
 msgstr "Labels in English"
 
 #. (itstool) path: item/item@label
-#: ../../../param/menu.xml:116
+#: ../../../param/menu.xml:119
 msgid "English US"
 msgstr "English US"
 
 #. (itstool) path: item/item@tooltip
-#: ../../../param/menu.xml:116
+#: ../../../param/menu.xml:119
 msgid "Labels in English/US"
 msgstr "Labels in English/US"
 
 #: ../../../param/param.default.inc.php:12
-msgid "07/12/2023"
-msgstr "2023-12-07"
+msgid "13/02/2024"
+msgstr "02/13/2024"
 
 #: ../../../framework/ldap/ldap.class.php:74
 msgid "Impossible de se connecter au serveur LDAP"
@@ -1026,12 +1047,12 @@ msgstr ""
 "The name of the file to be exported has not been entered and no data is "
 "available for export"
 
-#: ../../../framework/log/log.class.php:291
+#: ../../../framework/log/log.class.php:296
 #, php-format
 msgid "%s - Compte bloqué"
 msgstr "%s - Account blocked"
 
-#: ../../../framework/log/log.class.php:326
+#: ../../../framework/log/log.class.php:331
 msgid ""
 "Le nombre d'accès autorisés pour le module demandé a été atteint. Si vous "
 "considérez que la valeur est trop faible, veuillez contacter "
@@ -1041,7 +1062,7 @@ msgstr ""
 "If you consider that the value is too low, please contact the application "
 "administrato"
 
-#: ../../../framework/log/log.class.php:328
+#: ../../../framework/log/log.class.php:333
 #, php-format
 msgid "%s - Trop d'accès à un module"
 msgstr "%s - Too many accesses to a module"
@@ -1086,26 +1107,26 @@ msgstr "Problem when saving ..."
 msgid "Suppression effectuée"
 msgstr "Deletion done"
 
-#: ../../../framework/fonctions.php:165
+#: ../../../framework/fonctions.php:161
 msgid ""
 "La suppression n'est pas possible : des informations sont référencées par "
 "cet enregistrement"
 msgstr "Deletion is not possible: information is referenced by this record"
 
-#: ../../../framework/fonctions.php:173
+#: ../../../framework/fonctions.php:166
 msgid "Problème lors de la suppression"
 msgstr "Problem when deleting"
 
-#: ../../../framework/fonctions.php:178
+#: ../../../framework/fonctions.php:175
 msgid ""
 "Suppression impossible : la clé n'est pas numérique ou n'a pas été fournie"
 msgstr "Deletion impossible: the key is not digital or has not been supplied"
 
-#: ../../../framework/fonctions.php:465
+#: ../../../framework/fonctions.php:462
 msgid "Impossible d'initialiser le composant curl"
 msgstr "Unable to initialize the CURL component"
 
-#: ../../../framework/fonctions.php:507
+#: ../../../framework/fonctions.php:504
 #, php-format
 msgid ""
 "Une erreur est survenue lors de l'exécution de la requête vers le serveur "
@@ -1720,6 +1741,7 @@ msgstr "New analysis..."
 #: ../../../display/templates/repro/spermeMesureList.tpl:10
 #: ../../../display/templates/repro/poissonEchographieList.tpl:5
 #: ../../../display/templates/repro/psEvenementList.tpl:5
+#: ../../../display/templates/repro/spermeCongelationListAll.tpl:40
 #: ../../../display/templates/repro/devenirList.tpl:11
 #: ../../../display/templates/repro/lotMesureList.tpl:9
 #: ../../../display/templates/repro/poissonBiopsieList.tpl:4
@@ -1727,6 +1749,7 @@ msgstr "New analysis..."
 #: ../../../display/templates/repro/poissonSequenceChange.tpl:113
 #: ../../../display/templates/repro/echographieList.tpl:6
 #: ../../../display/templates/repro/ventilationList.tpl:5
+#: ../../../display/templates/repro/croisementListAll.tpl:40
 #: ../../../display/templates/poisson/anesthesieList.tpl:6
 #: ../../../display/templates/poisson/dosageSanguinList.tpl:5
 #: ../../../display/templates/poisson/pathologieList.tpl:6
@@ -1749,6 +1772,7 @@ msgid "Date"
 msgstr "Date"
 
 #: ../../../display/templates/repro/spermeMesureList.tpl:11
+#: ../../../display/templates/repro/croisementListAll.tpl:43
 msgid "Qualité"
 msgstr "Quality"
 
@@ -1875,9 +1899,11 @@ msgstr "Daily food"
 #: ../../../display/templates/repro/lotSearch.tpl:21
 #: ../../../display/templates/repro/sequenceList.tpl:42
 #: ../../../display/templates/repro/sequenceList.tpl:114
+#: ../../../display/templates/repro/spermeCongelationListAll.tpl:14
 #: ../../../display/templates/repro/sequenceChange.tpl:16
 #: ../../../display/templates/repro/poissonCampagneChange.tpl:39
 #: ../../../display/templates/repro/vieModeleList.tpl:8
+#: ../../../display/templates/repro/croisementListAll.tpl:14
 #: ../../../display/templates/repro/poissonCampagneList.tpl:106
 msgid "Année :"
 msgstr "Year:"
@@ -1885,7 +1911,9 @@ msgstr "Year:"
 #: ../../../display/templates/repro/devenirCampagneList.tpl:19
 #: ../../../display/templates/repro/lotSearch.tpl:34
 #: ../../../display/templates/repro/sequenceList.tpl:54
+#: ../../../display/templates/repro/spermeCongelationListAll.tpl:29
 #: ../../../display/templates/repro/vieModeleList.tpl:20
+#: ../../../display/templates/repro/croisementListAll.tpl:29
 #: ../../../display/templates/repro/poissonCampagneList.tpl:118
 #: ../../../display/templates/poisson/poissonDisplay.tpl:69
 #: ../../../display/templates/poisson/poissonSearch.tpl:172
@@ -1904,9 +1932,9 @@ msgid "Destination des poissons"
 msgstr "Fish usage"
 
 #: ../../../display/templates/repro/biopsieChange.tpl:10
-#: ../../../display/templates/repro/spermeCongelationChange.tpl:37
+#: ../../../display/templates/repro/spermeCongelationChange.tpl:50
 #: ../../../display/templates/repro/poissonCampagneChange.tpl:3
-#: ../../../display/templates/repro/spermeFreezingPlaceChange.tpl:3
+#: ../../../display/templates/repro/spermeFreezingPlaceChange.tpl:5
 #: ../../../display/templates/repro/injectionChange.tpl:3
 #: ../../../display/templates/repro/poissonCampagneDisplay.tpl:192
 #: ../../../display/templates/repro/spermeChange.tpl:3
@@ -1926,9 +1954,9 @@ msgid "Retour à la liste des poissons"
 msgstr "Back to the list of fish"
 
 #: ../../../display/templates/repro/biopsieChange.tpl:14
-#: ../../../display/templates/repro/spermeCongelationChange.tpl:42
+#: ../../../display/templates/repro/spermeCongelationChange.tpl:55
 #: ../../../display/templates/repro/poissonCampagneChange.tpl:14
-#: ../../../display/templates/repro/spermeFreezingPlaceChange.tpl:7
+#: ../../../display/templates/repro/spermeFreezingPlaceChange.tpl:10
 #: ../../../display/templates/repro/injectionChange.tpl:7
 #: ../../../display/templates/repro/spermeChange.tpl:7
 #: ../../../display/templates/repro/spermeFreezingMeasureChange.tpl:7
@@ -1964,7 +1992,7 @@ msgid "Technique de mesure utilisée :"
 msgstr "Used measure technical:"
 
 #: ../../../display/templates/repro/biopsieChange.tpl:64
-#: ../../../display/templates/repro/spermeFreezingPlaceChange.tpl:69
+#: ../../../display/templates/repro/spermeFreezingPlaceChange.tpl:72
 #: ../../../display/templates/repro/injectionChange.tpl:53
 #: ../../../display/templates/repro/croisementChange.tpl:91
 #: ../../../display/templates/repro/lotChange.tpl:95
@@ -2035,10 +2063,10 @@ msgid "Commentaire général :"
 msgstr "Main comment:"
 
 #: ../../../display/templates/repro/biopsieChange.tpl:186
-#: ../../../display/templates/repro/spermeCongelationChange.tpl:186
+#: ../../../display/templates/repro/spermeCongelationChange.tpl:217
 #: ../../../display/templates/repro/sequenceChange.tpl:56
 #: ../../../display/templates/repro/poissonCampagneChange.tpl:90
-#: ../../../display/templates/repro/spermeFreezingPlaceChange.tpl:77
+#: ../../../display/templates/repro/spermeFreezingPlaceChange.tpl:80
 #: ../../../display/templates/repro/saliniteChange.tpl:39
 #: ../../../display/templates/repro/saliniteChange.tpl:60
 #: ../../../display/templates/repro/injectionChange.tpl:79
@@ -2125,10 +2153,10 @@ msgid "Valider"
 msgstr "Save and return"
 
 #: ../../../display/templates/repro/biopsieChange.tpl:188
-#: ../../../display/templates/repro/spermeCongelationChange.tpl:188
+#: ../../../display/templates/repro/spermeCongelationChange.tpl:219
 #: ../../../display/templates/repro/sequenceChange.tpl:58
 #: ../../../display/templates/repro/poissonCampagneChange.tpl:92
-#: ../../../display/templates/repro/spermeFreezingPlaceChange.tpl:79
+#: ../../../display/templates/repro/spermeFreezingPlaceChange.tpl:82
 #: ../../../display/templates/repro/saliniteChange.tpl:41
 #: ../../../display/templates/repro/saliniteChange.tpl:62
 #: ../../../display/templates/repro/injectionChange.tpl:81
@@ -2213,9 +2241,9 @@ msgid "Documents associés"
 msgstr "Associated documents"
 
 #: ../../../display/templates/repro/biopsieChange.tpl:203
-#: ../../../display/templates/repro/spermeCongelationChange.tpl:192
+#: ../../../display/templates/repro/spermeCongelationChange.tpl:223
 #: ../../../display/templates/repro/sequenceChange.tpl:65
-#: ../../../display/templates/repro/spermeFreezingPlaceChange.tpl:86
+#: ../../../display/templates/repro/spermeFreezingPlaceChange.tpl:89
 #: ../../../display/templates/repro/saliniteChange.tpl:72
 #: ../../../display/templates/repro/injectionChange.tpl:89
 #: ../../../display/templates/repro/spermeFreezingMeasureChange.tpl:66
@@ -2301,12 +2329,14 @@ msgid "Nom du lot"
 msgstr "Batch name"
 
 #: ../../../display/templates/repro/lotList.tpl:37
+#: ../../../display/templates/repro/croisementListAll.tpl:44
 msgid "Parents"
 msgstr "Parents"
 
 #: ../../../display/templates/repro/lotList.tpl:38
 #: ../../../display/templates/repro/psEvenementList.tpl:4
 #: ../../../display/templates/repro/spermeList.tpl:5
+#: ../../../display/templates/repro/croisementListAll.tpl:41
 msgid "Séquence"
 msgstr "Sequence"
 
@@ -2464,65 +2494,73 @@ msgstr "Recalculate"
 msgid "Température relevée"
 msgstr "Temperature measured"
 
-#: ../../../display/templates/repro/spermeCongelationChange.tpl:48
+#: ../../../display/templates/repro/spermeCongelationChange.tpl:61
 #: ../../../display/templates/repro/spermeMesureChange.tpl:14
 msgid "Retour au prélèvement"
 msgstr "Back to sampling"
 
-#: ../../../display/templates/repro/spermeCongelationChange.tpl:50
+#: ../../../display/templates/repro/spermeCongelationChange.tpl:63
 msgid "Modification d'une congélation de sperme"
 msgstr "Edit as sperm freeze"
 
-#: ../../../display/templates/repro/spermeCongelationChange.tpl:68
+#: ../../../display/templates/repro/spermeCongelationChange.tpl:81
 msgid "Date de congélation:"
 msgstr "Freezing date:"
 
-#: ../../../display/templates/repro/spermeCongelationChange.tpl:78
+#: ../../../display/templates/repro/spermeCongelationChange.tpl:91
 msgid "Volume total congelé (ml) :"
 msgstr "Total volume frozen (ml):"
 
-#: ../../../display/templates/repro/spermeCongelationChange.tpl:87
+#: ../../../display/templates/repro/spermeCongelationChange.tpl:100
 msgid "Volume de sperme (ml) :"
 msgstr "Sperm volume (ml):"
 
-#: ../../../display/templates/repro/spermeCongelationChange.tpl:96
+#: ../../../display/templates/repro/spermeCongelationChange.tpl:109
 msgid "Nombre total de paillettes :"
 msgstr "Total number of straws:"
 
-#: ../../../display/templates/repro/spermeCongelationChange.tpl:105
-msgid "Nombre total de visiotubes :"
-msgstr "Total number of visiotubes:"
+#: ../../../display/templates/repro/spermeCongelationChange.tpl:118
+msgid "Volume par paillette :"
+msgstr "Volume by straw:"
 
-#: ../../../display/templates/repro/spermeCongelationChange.tpl:114
+#: ../../../display/templates/repro/spermeCongelationChange.tpl:127
+msgid "Nombre total de visotubes :"
+msgstr "Total number of visotubes:"
+
+#: ../../../display/templates/repro/spermeCongelationChange.tpl:136
 #: ../../../display/templates/repro/spermeChangeCorps.tpl:56
 msgid "Dilueur utilisé : "
 msgstr "Thinner used: "
 
-#: ../../../display/templates/repro/spermeCongelationChange.tpl:119
-#: ../../../display/templates/repro/spermeCongelationChange.tpl:146
+#: ../../../display/templates/repro/spermeCongelationChange.tpl:141
+#: ../../../display/templates/repro/spermeCongelationChange.tpl:168
 #: ../../../display/templates/repro/spermeChangeCorps.tpl:26
 #: ../../../display/templates/repro/spermeChangeCorps.tpl:61
 #: ../../../display/templates/parametre/evenementTypeChange.tpl:41
 msgid "Choisissez..."
 msgstr "Please choose..."
 
-#: ../../../display/templates/repro/spermeCongelationChange.tpl:132
+#: ../../../display/templates/repro/spermeCongelationChange.tpl:154
 msgid "Volume de dilueur utilisé (ml) :"
 msgstr "Volume of diluent used (ml):"
 
-#: ../../../display/templates/repro/spermeCongelationChange.tpl:141
+#: ../../../display/templates/repro/spermeCongelationChange.tpl:163
 msgid "Conservateur utilisé : "
 msgstr "Preservative used: "
 
-#: ../../../display/templates/repro/spermeCongelationChange.tpl:159
+#: ../../../display/templates/repro/spermeCongelationChange.tpl:181
 msgid "Volume de conservateur utilisé (ml) :"
 msgstr "Volume of preservative used (ml):"
 
-#: ../../../display/templates/repro/spermeCongelationChange.tpl:168
-msgid "Nb de paillettes utilisées en repro :"
+#: ../../../display/templates/repro/spermeCongelationChange.tpl:190
+msgid "Nb de paillettes utilisées en repro:"
 msgstr "Number of straws used in reproduction:"
 
-#: ../../../display/templates/repro/spermeCongelationChange.tpl:177
+#: ../../../display/templates/repro/spermeCongelationChange.tpl:199
+msgid "Opérateur :"
+msgstr "Operator:"
+
+#: ../../../display/templates/repro/spermeCongelationChange.tpl:208
 #: ../../../display/templates/repro/injectionChange.tpl:73
 #: ../../../display/templates/repro/spermeChangeCorps.tpl:74
 #: ../../../display/templates/repro/psEvenementChange.tpl:27
@@ -2539,15 +2577,15 @@ msgstr "Number of straws used in reproduction:"
 msgid "Commentaire :"
 msgstr "Comment:"
 
-#: ../../../display/templates/repro/spermeCongelationChange.tpl:196
+#: ../../../display/templates/repro/spermeCongelationChange.tpl:228
 msgid "Vitesse de congélation"
 msgstr "Freezing speed"
 
-#: ../../../display/templates/repro/spermeCongelationChange.tpl:210
+#: ../../../display/templates/repro/spermeCongelationChange.tpl:243
 msgid "Liste des analyses effectuées"
 msgstr "List of analyses performed"
 
-#: ../../../display/templates/repro/spermeCongelationChange.tpl:216
+#: ../../../display/templates/repro/spermeCongelationChange.tpl:249
 msgid "Liste des emplacements de congélation"
 msgstr "List of freeze locations"
 
@@ -2595,6 +2633,48 @@ msgid ""
 "activité"
 msgstr ""
 "Initialization concerns the basins designated for reproduction, in operation"
+
+#: ../../../display/templates/repro/spermeCongelationListAll.tpl:19
+#: ../../../display/templates/repro/croisementListAll.tpl:19
+msgid "Toutes les années"
+msgstr "All years"
+
+#: ../../../display/templates/repro/spermeCongelationListAll.tpl:41
+#: ../../../display/templates/repro/croisementChange.tpl:109
+#: ../../../display/templates/repro/spermeUtiliseList.tpl:9
+#: ../../../display/templates/anomalie/anomalieList.tpl:60
+msgid "Poisson"
+msgstr "Fish"
+
+#: ../../../display/templates/repro/spermeCongelationListAll.tpl:42
+msgid "Volume congelé"
+msgstr "Frozen volume"
+
+#: ../../../display/templates/repro/spermeCongelationListAll.tpl:43
+msgid "Volume de sperme"
+msgstr "Sperm volume"
+
+#: ../../../display/templates/repro/spermeCongelationListAll.tpl:44
+msgid "Nombre de visotubes"
+msgstr "Number of visotubes"
+
+#: ../../../display/templates/repro/spermeCongelationListAll.tpl:45
+msgid "Nombre de paillettes"
+msgstr "Number of straws"
+
+#: ../../../display/templates/repro/spermeCongelationListAll.tpl:46
+#: ../../../display/templates/repro/spermeCongelationList.tpl:18
+msgid "Volume par paillette"
+msgstr "Volume by straw"
+
+#: ../../../display/templates/repro/spermeCongelationListAll.tpl:47
+msgid "Nombre de paillettes utilisées"
+msgstr "Number of used straws"
+
+#: ../../../display/templates/repro/spermeCongelationListAll.tpl:48
+#: ../../../display/templates/repro/spermeCongelationList.tpl:19
+msgid "Opérateur"
+msgstr "Operator"
 
 #: ../../../display/templates/repro/sequenceChange.tpl:3
 #: ../../../display/templates/repro/sequenceDisplay.tpl:30
@@ -2689,41 +2769,41 @@ msgstr "Daily growth rate:"
 msgid "Taux de croissance spécifique :"
 msgstr "Specific growth rate:"
 
-#: ../../../display/templates/repro/spermeFreezingPlaceChange.tpl:13
+#: ../../../display/templates/repro/spermeFreezingPlaceChange.tpl:16
 #: ../../../display/templates/repro/spermeFreezingMeasureChange.tpl:13
 msgid "Retour au sperme prélevé"
 msgstr "Back to the sperm collected"
 
-#: ../../../display/templates/repro/spermeFreezingPlaceChange.tpl:18
+#: ../../../display/templates/repro/spermeFreezingPlaceChange.tpl:21
 #: ../../../display/templates/repro/spermeFreezingMeasureChange.tpl:18
 msgid "Retour à la congélation"
 msgstr "Back to the freeze"
 
-#: ../../../display/templates/repro/spermeFreezingPlaceChange.tpl:20
+#: ../../../display/templates/repro/spermeFreezingPlaceChange.tpl:23
 msgid "Modification d'un emplacement de stockage du sperme congelé"
 msgstr "Change of storage location for frozen sperm"
 
-#: ../../../display/templates/repro/spermeFreezingPlaceChange.tpl:39
+#: ../../../display/templates/repro/spermeFreezingPlaceChange.tpl:42
 msgid "Nom de la cuve :"
 msgstr "Tank name:"
 
-#: ../../../display/templates/repro/spermeFreezingPlaceChange.tpl:47
-msgid "Nombre de visiotubes :"
-msgstr "Number of visiotubes:"
+#: ../../../display/templates/repro/spermeFreezingPlaceChange.tpl:50
+msgid "Nombre de visotubes :"
+msgstr "Number of visotubes:"
 
-#: ../../../display/templates/repro/spermeFreezingPlaceChange.tpl:56
+#: ../../../display/templates/repro/spermeFreezingPlaceChange.tpl:59
 msgid "Numéro de canister :"
 msgstr "Canister number:"
 
-#: ../../../display/templates/repro/spermeFreezingPlaceChange.tpl:65
+#: ../../../display/templates/repro/spermeFreezingPlaceChange.tpl:68
 msgid "Position du canister :"
 msgstr "Canister position:"
 
-#: ../../../display/templates/repro/spermeFreezingPlaceChange.tpl:70
+#: ../../../display/templates/repro/spermeFreezingPlaceChange.tpl:73
 msgid "Bas"
 msgstr "Down"
 
-#: ../../../display/templates/repro/spermeFreezingPlaceChange.tpl:71
+#: ../../../display/templates/repro/spermeFreezingPlaceChange.tpl:74
 msgid "Haut"
 msgstr "Up"
 
@@ -3193,8 +3273,8 @@ msgstr "Canister position"
 
 #: ../../../display/templates/repro/spermeFreezingPlaceList.tpl:13
 #: ../../../display/templates/repro/spermeCongelationList.tpl:14
-msgid "Nb visiotubes"
-msgstr "Number of visiotubes"
+msgid "Nb visotubes"
+msgstr "Number of visotubes"
 
 #: ../../../display/templates/repro/spermeFreezingPlaceList.tpl:32
 msgid "bas"
@@ -3248,12 +3328,6 @@ msgstr "Back to crossbreeding"
 #: ../../../display/templates/repro/croisementChange.tpl:105
 msgid "Poissons utilisés pour la reproduction :"
 msgstr "Fish used for reproduction:"
-
-#: ../../../display/templates/repro/croisementChange.tpl:109
-#: ../../../display/templates/repro/spermeUtiliseList.tpl:9
-#: ../../../display/templates/anomalie/anomalieList.tpl:60
-msgid "Poisson"
-msgstr "Fish"
 
 #: ../../../display/templates/repro/croisementChange.tpl:111
 msgid "Sélectionné"
@@ -3339,7 +3413,7 @@ msgstr "Frozen date"
 
 #: ../../../display/templates/repro/spermeList.tpl:15
 #: ../../../display/templates/repro/injectionList.tpl:9
-#: ../../../display/templates/repro/spermeCongelationList.tpl:18
+#: ../../../display/templates/repro/spermeCongelationList.tpl:20
 msgid "Remarque"
 msgstr "Remark"
 
@@ -3475,6 +3549,10 @@ msgstr "Release location:"
 #: ../../../display/templates/repro/devenirChange.tpl:104
 msgid "Nombre de poissons concernés :"
 msgstr "Number of related fish:"
+
+#: ../../../display/templates/repro/croisementListAll.tpl:42
+msgid "Croisement"
+msgstr "Crossbreed"
 
 #: ../../../display/templates/repro/spermeUtiliseChange.tpl:38
 msgid "Modification du sperme utilisé pour le croisement"
@@ -5908,10 +5986,10 @@ msgstr "Back to water circuit"
 
 #: ../../../display/templates/enpied.tpl:3
 msgid ""
-"Copyright © 2016-2023 - Tous droits réservés. Auteur : Éric Quinton, pour "
+"Copyright © 2016-2024 - Tous droits réservés. Auteur : Éric Quinton, pour "
 "INRAE - EABX - Logiciel diffusé sous licence AGPL"
 msgstr ""
-"Copyright © 2016-2023 - All rights reserved. Author: Eric Quinton, for INRAE "
+"Copyright © 2016-2024 - All rights reserved. Author: Eric Quinton, for INRAE "
 "- EABX - Software released under AGPL license"
 
 #: ../../../display/templates/enpied.tpl:5
@@ -6983,6 +7061,9 @@ msgstr "Display"
 #: ../../../display/templates/main.tpl:88
 msgid "Photo : © Marie-Laure Acolas - 2012 - lâcher d'esturgeons en Dordogne"
 msgstr "Photo: © Marie-Laure Acolas - 2012 - Sturgeon release in the Dordogne"
+
+#~ msgid "A propos de Collec-Science"
+#~ msgstr "A propos de"
 
 #~ msgid ""
 #~ "Vous venez de modifier votre mot de passe. Si vous n'êtes pas à l'origine "

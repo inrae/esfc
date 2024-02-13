@@ -1,8 +1,11 @@
-<a href="index.php?module={$poissonDetailParent}&sequence_id={$sequence_id}">
+
+{if $dataCongelation.sequence_id > 0}
+<a href="index.php?module={$poissonDetailParent}&sequence_id={$dataCongelation.sequence_id}">
     <img src="display/images/display.png" height="25">
     {t}Retour à la liste des poissons{/t}
 </a>&nbsp;
-<a href="index.php?module=poissonCampagneDisplay&poisson_campagne_id={$data.poisson_campagne_id}">
+{/if}
+<a href="index.php?module=poissonCampagneDisplay&poisson_campagne_id={$dataPoisson.poisson_campagne_id}">
     <img src="display/images/fish.svg" height="25">
     {t}Retour au reproducteur{/t}
 </a>
@@ -43,12 +46,12 @@
                 </div>
             </div>
             <div class="form-group">
-                <label for="nb_visiotube" class="control-label col-md-4">
-                    {t}Nombre de visiotubes :{/t}
+                <label for="nb_visotube" class="control-label col-md-4">
+                    {t}Nombre de visotubes :{/t}
                 </label>
                 <div class="col-md-8">
-                    <input id="nb_visiotube" class="form-control nombre" name="nb_visiotube"
-                        value="{$data.nb_visiotube}">
+                    <input id="nb_visotube" class="form-control nombre" name="nb_visotube"
+                        value="{$data.nb_visotube}">
                 </div>
             </div>
             <div class="form-group">

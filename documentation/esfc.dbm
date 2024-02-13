@@ -3,7 +3,7 @@
 CAUTION: Do not modify this file unless you know what you are doing.
  Unexpected results may occur if the code is changed deliberately.
 -->
-<dbmodel pgmodeler-ver="1.0.6" use-changelog="false" author="Eric Quinton" last-position="0,369" last-zoom="0.55" max-obj-count="171"
+<dbmodel pgmodeler-ver="1.0.6" use-changelog="false" author="Eric Quinton" last-position="203,2352" last-zoom="0.8" max-obj-count="171"
 	 default-owner="postgres"
 	 layers="Default layer"
 	 active-layers="0"
@@ -3220,7 +3220,7 @@ Le premier chiffre correspond au lundi]]> </comment>
 	<role name="quinton"/>
 	<comment> <![CDATA[Aspect visuel du sperme]]> </comment>
 	<tag name="repro"/>
-	<position x="880" y="3240"/>
+	<position x="1740" y="3240"/>
 	<column name="sperme_aspect_id" not-null="true" sequence="public.sperme_aspect_sperme_aspect_id_seq">
 		<type name="integer" length="0"/>
 	</column>
@@ -3259,7 +3259,7 @@ Le premier chiffre correspond au lundi]]> </comment>
 	<role name="quinton"/>
 	<comment> <![CDATA[Table des caractéristiques complémentaires du sperme]]> </comment>
 	<tag name="repro"/>
-	<position x="380" y="3240"/>
+	<position x="1300" y="3240"/>
 	<column name="sperme_caracteristique_id" not-null="true" sequence="public.sperme_caracteristique_sperme_caracteristique_id_seq">
 		<type name="integer" length="0"/>
 	</column>
@@ -3276,7 +3276,7 @@ Le premier chiffre correspond au lundi]]> </comment>
 	<role name="quinton"/>
 </sequence>
 
-<table name="sperme_congelation" layers="0" collapse-mode="1" max-obj-count="15" z-value="0">
+<table name="sperme_congelation" layers="0" collapse-mode="1" max-obj-count="18" z-value="0">
 	<schema name="public"/>
 	<role name="quinton"/>
 	<comment> <![CDATA[Table des congélations de sperme]]> </comment>
@@ -3304,9 +3304,9 @@ Le premier chiffre correspond au lundi]]> </comment>
 		<type name="integer" length="0"/>
 		<comment> <![CDATA[Nombre de paillettes préparées]]> </comment>
 	</column>
-	<column name="nb_visiotube">
+	<column name="nb_visotube">
 		<type name="integer" length="0"/>
-		<comment> <![CDATA[Nombre de visiotubes utilisés]]> </comment>
+		<comment> <![CDATA[Nombre de visotubes utilisés]]> </comment>
 	</column>
 	<column name="sperme_congelation_commentaire">
 		<type name="character varying" length="0"/>
@@ -3326,6 +3326,14 @@ Le premier chiffre correspond au lundi]]> </comment>
 	<column name="volume_sperme">
 		<type name="real" length="0"/>
 	</column>
+	<column name="paillette_volume">
+		<type name="float4" length="0"/>
+		<comment> <![CDATA[Volume par paillette, en ml (0,5 ou 5 ml)]]> </comment>
+	</column>
+	<column name="operateur">
+		<type name="varchar" length="0"/>
+		<comment> <![CDATA[Personne ayant réalisé la congélation]]> </comment>
+	</column>
 	<constraint name="sperme_congelation_pk" type="pk-constr" table="public.sperme_congelation">
 		<columns names="sperme_congelation_id" ref-type="src-columns"/>
 	</constraint>
@@ -3341,7 +3349,7 @@ Le premier chiffre correspond au lundi]]> </comment>
 	<role name="quinton"/>
 	<comment> <![CDATA[Table des produits de conservation utilisés pour la congélation des spermes]]> </comment>
 	<tag name="repro"/>
-	<position x="3000" y="3020"/>
+	<position x="2560" y="2880"/>
 	<column name="sperme_conservateur_id" not-null="true" sequence="public.sperme_conservateur_sperme_conservateur_id_seq">
 		<type name="integer" length="0"/>
 	</column>
@@ -3436,9 +3444,9 @@ Le premier chiffre correspond au lundi]]> </comment>
 1 : bas
 2 : haut]]> </comment>
 	</column>
-	<column name="nb_visiotube">
+	<column name="nb_visotube">
 		<type name="integer" length="0"/>
-		<comment> <![CDATA[Nombre de visiotubes utilisés]]> </comment>
+		<comment> <![CDATA[Nombre de visotubes utilisés]]> </comment>
 	</column>
 	<constraint name="sperme_freezing_place_pk" type="pk-constr" table="public.sperme_freezing_place">
 		<columns names="sperme_freezing_place_id" ref-type="src-columns"/>
@@ -3514,7 +3522,7 @@ Le premier chiffre correspond au lundi]]> </comment>
 3 : bonne
 4 : très bonne]]> </comment>
 	<tag name="repro"/>
-	<position x="2540" y="2720"/>
+	<position x="2560" y="2720"/>
 	<column name="sperme_qualite_id" not-null="true">
 		<type name="integer" length="0"/>
 	</column>
@@ -3955,6 +3963,7 @@ Le premier chiffre correspond au lundi]]> </comment>
 	<schema name="public"/>
 	<role name="quinton"/>
 	<comment> <![CDATA[Liste des bassins fréquentés par un poisson]]> </comment>
+	<tag name="bassin"/>
 	<position x="1740" y="3400"/>
 	<reference>
 		<expression> <![CDATA[ SELECT t.poisson_id,
@@ -4161,7 +4170,7 @@ Le premier chiffre correspond au lundi]]> </comment>
 <view name="v_prenom_parents_male" layers="0" collapse-mode="1" max-obj-count="1" z-value="0">
 	<schema name="public"/>
 	<role name="quinton"/>
-	<position x="1740" y="3240"/>
+	<position x="880" y="3240"/>
 	<reference>
 		<expression> <![CDATA[ SELECT pp.poisson_id,
     array_to_string(array_agg(p.prenom ORDER BY p.prenom), '+'::text) AS peres
@@ -4199,7 +4208,7 @@ Le premier chiffre correspond au lundi]]> </comment>
 <view name="v_transfert_last_bassin_for_poisson" layers="0" collapse-mode="1" max-obj-count="1" z-value="0">
 	<schema name="public"/>
 	<role name="quinton"/>
-	<position x="1300" y="3240"/>
+	<position x="1300" y="3500"/>
 	<reference>
 		<expression> <![CDATA[ SELECT transfert.poisson_id,
     max(transfert.transfert_date) AS transfert_date_last
@@ -4681,6 +4690,31 @@ Le premier chiffre correspond au lundi]]> </comment>
 	 src-table="public.poisson_statut"
 	 dst-table="public.evenement_type"
 	 src-required="false" dst-required="false"/>
+
+<view name="v_croisement_parents" layers="0" collapse-mode="2" max-obj-count="1" z-value="0">
+	<schema name="public"/>
+	<tag name="repro"/>
+	<position x="380" y="3240"/>
+	<reference>
+		<expression> <![CDATA[select croisement_id, array_to_string(
+array_agg(
+matricule ||
+case when prenom is not null then ' ' || prenom  else '' end
+|| '(' || sexe_libelle_court || ')'
+), ', ') as parents
+from poisson_croisement 
+join poisson_campagne using (poisson_campagne_id)
+join poisson using (poisson_id)
+left outer join sexe using (sexe_id)
+group by croisement_id]]> </expression>
+	<column name="croisement_id">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="parents">
+		<type name="varchar" length="0"/>
+	</column>
+	</reference>
+</view>
 
 <constraint name="aliment_type_aliment_fk" type="fk-constr" comparison-type="MATCH SIMPLE"
 	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.aliment_type" table="public.aliment">

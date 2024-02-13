@@ -4,7 +4,7 @@
 </p>
 
 
-    <h3>Copyright © 2014-2023 - Eric Quinton - EABX - INRAE</h3>
+    <h3>Copyright © 2014-2024 - Eric Quinton - EABX - INRAE</h3>
 <p>
 
 <br>

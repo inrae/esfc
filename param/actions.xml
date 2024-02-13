@@ -287,6 +287,7 @@
 	<croisementDisplay action="modules/repro/croisement.php" param="display" droits="reproGestion"  type="smarty"/>
 	<croisementWrite action="modules/repro/croisement.php" param="write" droits="reproGestion" modulebefore="croisementChange" retourok="croisementDisplay" retourko="croisementChange"/>
 	<croisementDelete action="modules/repro/croisement.php" param="delete" droits="reproGestion" modulebefore="croisementChange" retourok="sequenceDisplay" retourko="croisementChange"/>
+	<croisementList action="modules/repro/croisement.php" param="list" droits="reproConsult" type="smarty"/>
 
 	<lotList action="modules/repro/lot.php" param="list" retourlogin="1" droits="reproConsult"  type="smarty"/>
 	<lotDisplay action="modules/repro/lot.php" param="display" droits="reproConsult"  type="smarty"/>
@@ -324,6 +325,7 @@
 	<spermeCongelationChange action="modules/repro/spermeCongelation.php" param="change" droits="reproGestion" type="smarty" />
 	<spermeCongelationWrite action="modules/repro/spermeCongelation.php" param="write" droits="reproGestion" modulebefore="spermeCongelationChange" retourok="spermeCongelationChange" retourko="spermeCongelationChange"/>
 	<spermeCongelationDelete action="modules/repro/spermeCongelation.php" param="delete" droits="reproGestion" modulebefore="spermeCongelationChange" retourok="spermeChange" retourko="spermeCongelationChange"/>
+	<spermeCongelationList action="modules/repro/spermeCongelation.php" param="list" droits="reproConsult" type="smarty"/>
 
 	<spermeFreezingPlaceChange action="modules/repro/spermeFreezingPlace.php" param="change" droits="reproGestion"  type="smarty"/>
 	<spermeFreezingPlaceWrite action="modules/repro/spermeFreezingPlace.php" param="write" droits="reproGestion" modulebefore="spermeFreezingPlaceChange" retourok="spermeCongelationChange" retourko="spermeFreezingPlaceChange"/>

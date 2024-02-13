@@ -29,10 +29,23 @@
                 }
             }
         });
+        var myStorage = window.localStorage;
+        $("#operateur").change(function() { 
+            myStorage.setItem( "spermeCongelationOperateur", $("#operateur").val() );
+        });
+        var operateur = "{$data.operateur}";
+        if (operateur.length == 0) {
+            try {
+                operateur = myStorage.getItem("spermeCongelationOperateur");
+                $("#operateur").val(operateur);
+            } catch {
+                // nothing to do
+            }
+        }
     });
 </script>
 
-<a href="index.php?module={$poissonDetailParent}&sequence_id={$sequence_id}">
+<a href="index.php?module={$poissonDetailParent}&sequence_id={$data.sequence_id}">
     <img src="display/images/display.png" height="25">
     {t}Retour à la liste des poissons{/t}
 </a>
@@ -101,12 +114,21 @@
                 </div>
             </div>
             <div class="form-group">
-                <label for="nb_visiotube" class="control-label col-md-4">
-                    {t}Nombre total de visiotubes :{/t}
+                <label for="paillette_volume" class="control-label col-md-4">
+                    {t}Volume par paillette :{/t}
                 </label>
                 <div class="col-md-8">
-                    <input id="nb_visiotube" class="form-control nombre" name="nb_visiotube"
-                        value="{$data.nb_visiotube}">
+                    <input id="paillette_volume" class="form-control taux" name="paillette_volume"
+                        value="{$data.paillette_volume}">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="nb_visotube" class="control-label col-md-4">
+                    {t}Nombre total de visotubes :{/t}
+                </label>
+                <div class="col-md-8">
+                    <input id="nb_visotube" class="form-control nombre" name="nb_visotube"
+                        value="{$data.nb_visotube}">
                 </div>
             </div>
             <div class="form-group">
@@ -165,11 +187,20 @@
             </div>
             <div class="form-group">
                 <label for="nb_paillettes_utilisees" class="control-label col-md-4">
-                    {t}Nb de paillettes utilisées en repro :{/t}
+                    {t}Nb de paillettes utilisées en repro:{/t}
                 </label>
                 <div class="col-md-8">
                     <input id="nb_paillettes_utilisees" class="form-control nombre" name="nb_paillettes_utilisees"
                         value="{$data.nb_paillettes_utilisees}" readonly>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="operateur" class="control-label col-md-4">
+                    {t}Opérateur :{/t}
+                </label>
+                <div class="col-md-8">
+                    <input id="operateur" class="form-control"
+                        name="operateur" value="{$data.operateur}">
                 </div>
             </div>
             <div class="form-group">
@@ -191,6 +222,7 @@
         </form>
         <span class="red">*</span><span class="messagebas">{t}Champ obligatoire{/t}</span>
     </div>
+    {if $data.sperme_congelation_id > 0}
     <div class="col-md-6">
         <fieldset>
             <legend>{t}Vitesse de congélation{/t}</legend>
@@ -202,8 +234,9 @@
             </div>
         </fieldset>
     </div>
+    {/if}
 </div>
-
+{if $data.sperme_congelation_id > 0}
 <div class="row">
     <div class="col-md-6">
         <fieldset>
@@ -218,3 +251,4 @@
         </fieldset>
     </div>
 </div>
+{/if}

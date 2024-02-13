@@ -5,10 +5,10 @@ class SpermeCongelation extends ObjetBDD
 
     private $sql = "select sperme_congelation_id, sperme_id, congelation_date, congelation_volume,
 			sperme_dilueur_id, sperme_dilueur_libelle, nb_paillette, 
-			nb_visiotube, sperme_congelation_commentaire,
+			nb_visotube, sperme_congelation_commentaire,
             sperme_conservateur_id, sperme_conservateur_libelle,
             volume_sperme, volume_dilueur, volume_conservateur,
-            nb_paillettes_utilisees
+            nb_paillettes_utilisees, paillette_volume, operateur
 			from sperme_congelation 
 			left outer join sperme_dilueur using (sperme_dilueur_id)
             left outer join sperme_conservateur using (sperme_conservateur_id)
@@ -43,7 +43,7 @@ class SpermeCongelation extends ObjetBDD
             "nb_paillette" => array(
                 "type" => 1
             ),
-            "nb_visiotube" => array(
+            "nb_visotube" => array(
                 "type" => 1
             ),
             "sperme_conservateur_id" => array(
@@ -64,6 +64,13 @@ class SpermeCongelation extends ObjetBDD
             ),
             "sperme_congelation_commentaire" => array(
                 "type" => 0
+            ),
+            "paillette_volume" => array(
+                "type" => 1,
+                "defaultValue" => 0.5
+            ),
+            "operateur" => array(
+                "type" => 0
             )
         );
         parent::__construct($bdd, $param);
@@ -80,7 +87,38 @@ class SpermeCongelation extends ObjetBDD
         $order = " order by congelation_date";
         $arg = array(
             "sperme_id" => $sperme_id
-        );;
+        );
+        ;
         return $this->getListeParamAsPrepared($this->sql . $where . $order, $arg);
+    }
+
+    function lire($id, bool $getDefault = true, int $parentValue = 0): array
+    {
+        if ($id > 0) {
+            $sql = "select sc.*, poisson_campagne_id, sequence_id
+                from sperme_congelation sc
+                join sperme using (sperme_id)
+                where sperme_congelation_id = :id";
+            return $this->lireParamAsPrepared($sql, array("id" => $id));
+        } else {
+            return $this->getDefaultValue($parentValue);
+        }
+    }
+    
+    function getAllCongelations(int $year = 0) {
+        $sql = "select sperme_congelation_id, sperme_id,            poisson_campagne_id, sequence_id,
+                congelation_date, congelation_volume, nb_paillette, paillette_volume, nb_visotube, 
+                nb_paillettes_utilisees, volume_sperme,operateur,
+                matricule, prenom
+                from sperme_congelation
+                join sperme using(sperme_id)
+                join poisson_campagne using (poisson_campagne_id)
+                join poisson using (poisson_id)";
+                $data = array();
+		if ($year > 0) {
+			$sql .= " where annee = :year";
+			$data["year"] = $year;
+		}
+		return $this->getListeParamAsPrepared($sql, $data);
     }
 }
