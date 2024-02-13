@@ -112,7 +112,7 @@
 		<item module="loginChangePassword" loginrequis="1" label="Modifier le mot de passe" tooltip="Modifiez votre mot de passe (identification locale uniquement)" />
 	</item>
 	<item module="aide" label="?" tooltip="Aide">
-		<item module="apropos" label="A propos" tooltip="A propos de Collec-Science"/>
+		<item module="apropos" label="A propos" tooltip="A propos de ESFC"/>
 		<item module="quoideneuf" label="Nouveautés" tooltip="Quoi de neuf dans l'application ?"/>
 		<item module="setlanguagefr" label="Français" tooltip="Libellés en français"/>
 		<item module="setlanguageen" label="English" tooltip="Labels in English"/>

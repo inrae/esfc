@@ -19,3 +19,4 @@ join poisson using (poisson_id)
 left outer join sexe using (sexe_id)
 group by croisement_id
 ;
+insert into dbversion(dbversion_number, dbversion_date) values ('24.0', '2024-02-13');
