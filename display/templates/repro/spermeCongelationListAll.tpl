@@ -3,6 +3,36 @@
         $("#annee").change(function() { 
             Cookies.set( 'annee', $(this).val(), { expires: 180, secure: true } );
         });
+        var scrolly = "2000pt";
+        var tableList = $( '#listAll' ).DataTable( {
+					"order": [[0,"desc"],[1,"asc"],[2,"asc"]],
+					dom: 'Birtp',
+					"language": dataTableLanguage,
+					"paging": false,
+					"searching": true,
+                    "stateSave":false,
+				} );
+        $( '#listAll thead th' ).each( function () {
+            var title = $( this ).text();
+            var size = title.trim().length;
+            if ( size > 0 ) {
+                $( this ).html( '<input type="text" placeholder="' + title + '" size="' + size + '" class="searchInput" title="'+title+'">' );
+            }
+        } );
+        //var tableList = $("#listAll").DataTable();
+        tableList.columns().every( function () {
+            var that = this;
+            if ( that.index() > 0 ) {
+                $( 'input', this.header() ).on( 'keyup change clear', function () {
+                    if ( that.search() !== this.value ) {
+                        that.search( this.value ).draw();
+                    }
+                } );
+            }
+        } );
+        $( ".searchInput" ).hover( function () {
+            $( this ).focus();
+        } );
     });
 </script>
 <form method="get" action="index.php" id="search">
@@ -34,7 +64,7 @@
 </form>
 <div class="row">
     <div class="col-lg-10">
-        <table class="datatable-export table table-bordered" data-order='[[0,"desc"],[1,"asc"],[2,"asc"]]'>
+        <table id="listAll" class="table table-bordered table-hover" >
             <thead>
                 <tr>
                     <th>{t}Date{/t}</th>
