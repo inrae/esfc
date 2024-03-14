@@ -118,8 +118,12 @@
                     {t}Volume par paillette :{/t}
                 </label>
                 <div class="col-md-8">
+                    <datalist id="volumes">
+                        <option value="0.5"></option>
+                        <option value="5"></option>
+                    </datalist>
                     <input id="paillette_volume" class="form-control taux" name="paillette_volume"
-                        value="{$data.paillette_volume}">
+                        value="{$data.paillette_volume}" list="volumes">
                 </div>
             </div>
             <div class="form-group">
