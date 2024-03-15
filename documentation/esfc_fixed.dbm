@@ -4,7 +4,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
  Unexpected results may occur if the code is changed deliberately.
 -->
 <dbmodel pgmodeler-ver="1.1.0" use-changelog="false" max-obj-count="171"
-	 last-position="-20,0" last-zoom="1" scene-rect="-20,0,3819.15,3941.52"
+	 last-position="0,0" last-zoom="1"
 	 default-owner="postgres"
 	 layers="Default layer"
 	 active-layers="0"
@@ -5560,13 +5560,7 @@ group by croisement_id;;]]> </definition>
 <relationship name="rel_devenir_devenir" type="relfk" layers="0"
 	 src-table="public.devenir"
 	 dst-table="public.devenir" reference-fk="devenir_devenir_fk"
-	 src-required="false" dst-required="false">
-	<line>
-		<position x="329.926" y="1095.91"/>
-	<position x="329.926" y="987"/>
-	<position x="204.617" y="987"/>
-	</line>
-</relationship>
+	 src-required="false" dst-required="false"/>
 
 <relationship name="rel_devenir_devenir_type" type="relfk" layers="0"
 	 src-table="public.devenir"
@@ -5726,13 +5720,7 @@ group by croisement_id;;]]> </definition>
 <relationship name="rel_lot_lot" type="relfk" layers="0"
 	 src-table="public.lot"
 	 dst-table="public.lot" reference-fk="lot_parent_lot_id_fk"
-	 src-required="false" dst-required="false">
-	<line>
-		<position x="779.6" y="2803.44"/>
-	<position x="779.6" y="2687"/>
-	<position x="631.067" y="2687"/>
-	</line>
-</relationship>
+	 src-required="false" dst-required="false"/>
 
 <relationship name="rel_lot_mesure_lot" type="relfk" layers="0"
 	 src-table="public.lot_mesure"

@@ -95,9 +95,12 @@ class SpermeCongelation extends ObjetBDD
     function lire($id, bool $getDefault = true, int $parentValue = 0): array
     {
         if ($id > 0) {
-            $sql = "select sc.*, poisson_campagne_id, sequence_id
+            $sql = "select sc.*, poisson_campagne_id, matricule,
+            sequence_id, sperme_date::date
                 from sperme_congelation sc
                 join sperme using (sperme_id)
+                join poisson_campagne using (poisson_campagne_id)
+                join poisson using (poisson_id)
                 where sperme_congelation_id = :id";
             return $this->lireParamAsPrepared($sql, array("id" => $id));
         } else {

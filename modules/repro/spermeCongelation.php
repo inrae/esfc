@@ -18,20 +18,20 @@ if (isset($vue)) {
 }
 switch ($t_module["param"]) {
     case "list":
-		isset($_COOKIE["annee"]) ? $year = $_COOKIE["annee"]: $year = 0;
-		$vue->set($dataClass->getAllCongelations($year),"spermes");
-		$vue->set("repro/spermeCongelationListAll.tpl", "corps");
-		$vue->set($year, "annee");
-		require_once "modules/classes/poissonCampagne.class.php";
-		$pc = new PoissonCampagne($bdd, $ObjetBDDParam);
-		$vue->set($pc->getAnnees(), "annees");
-		break;
+        isset($_COOKIE["annee"]) ? $year = $_COOKIE["annee"] : $year = 0;
+        $vue->set($dataClass->getAllCongelations($year), "spermes");
+        $vue->set("repro/spermeCongelationListAll.tpl", "corps");
+        $vue->set($year, "annee");
+        require_once "modules/classes/poissonCampagne.class.php";
+        $pc = new PoissonCampagne($bdd, $ObjetBDDParam);
+        $vue->set($pc->getAnnees(), "annees");
+        break;
     case "change":
         /*
-		 * open the form to modify the record
-		 * If is a new record, generate a new record with default value :
-		 * $_REQUEST["idParent"] contains the identifiant of the parent record
-		 */
+         * open the form to modify the record
+         * If is a new record, generate a new record with default value :
+         * $_REQUEST["idParent"] contains the identifiant of the parent record
+         */
         dataRead($dataClass, $id, "repro/spermeCongelationChange.tpl", $_REQUEST["sperme_id"]);
         /*
          * Recherche des dilueurs
@@ -91,8 +91,8 @@ switch ($t_module["param"]) {
         break;
     case "write":
         /*
-		 * write record in database
-		 */
+         * write record in database
+         */
         $id = dataWrite($dataClass, $_REQUEST);
         if ($id > 0) {
             $_REQUEST[$keyName] = $id;
@@ -100,8 +100,39 @@ switch ($t_module["param"]) {
         break;
     case "delete":
         /*
-		 * delete record
-		 */
+         * delete record
+         */
         dataDelete($dataClass, $id);
         break;
+    case "generateVisotube":
+        $data = $dataClass->lire($id);
+        $nbPaillettesStockees = 0;
+        $visotubeRadical = $data["matricule"] . "-" . $data["sperme_data"] . "-";
+        $visotubeNumber = 0;
+        $visotube = array(
+            "login" => $_SESSION["CSlogin"],
+            "token" => $_SESSION["CSpassword"],
+            "collection_name" => $_SESSION["CSCollectionName"],
+            "sample_type_name" => $_SESSION["CSSampleTypeName"]
+        );
+        $url = $_SESSION["CSAddress"] . "/" . $_SESSION["CSApiCreateUrl"];
+        $module_coderetour = 1;
+        while ($nbPaillettesStockees < $data["nb_paillette"]) {
+            $visotube["identifier"] = $visotubeRadical . ($visotubeNumber + $_POST["firstNumber"]);
+            $visotubeNumber++;
+            $nbPaillettes = $data["nb_paillette"] - $nbPaillettesStockees;
+            if ($nbPaillettes > $_POST["paillettesNb"]) {
+                $nbPaillettes = $_POST["paillettesNb"];
+            }
+            $visotube["multiple_value"] = $nbPaillettes;
+            $nbPaillettesStockees += $nbPaillettes;
+            $result_json = apiCall("POST", $url, '', $visotube);
+            $result = json_decode($result_json, true);
+            if ($result["error_code"] != 200) {
+                $message->set(_("La création du visotube a échoué"), true);
+                $message->set($result["error_code"], $result["error_message"]);
+                $module_coderetour = -1;
+            }
+            break;
+        }
 }
