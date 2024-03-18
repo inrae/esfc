@@ -7,5 +7,9 @@ values
 ('CSCollectionName','collection'),
 ('CSApiConsultUrl','index.php?module=apiv1sampleList'),
 ('CSApiCreateUrl', 'index.php?module=apiv1sampleWrite'),
-('CSSampleTypeName', 'Visotube');
+('CSSampleTypeName', 'Visotube'),
+('CSInstanceName', 'STURIO'),
+('CSCertificatePath', ''),
+('CSDebugMode', '0')
+;
 

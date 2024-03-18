@@ -13,12 +13,12 @@ $id = $_REQUEST[$keyName];
 /*
  * Passage en parametre de la liste parente
  */
-if (isset($vue)) {
+if (isset ($vue)) {
     $vue->set($_SESSION["poissonDetailParent"], "poissonDetailParent");
 }
 switch ($t_module["param"]) {
     case "list":
-        isset($_COOKIE["annee"]) ? $year = $_COOKIE["annee"] : $year = 0;
+        isset ($_COOKIE["annee"]) ? $year = $_COOKIE["annee"] : $year = 0;
         $vue->set($dataClass->getAllCongelations($year), "spermes");
         $vue->set("repro/spermeCongelationListAll.tpl", "corps");
         $vue->set($year, "annee");
@@ -88,6 +88,24 @@ switch ($t_module["param"]) {
         $sm = new SpermeMesure($bdd, $ObjetBDDParam);
         $vue->set($sm->getListFromCongelation($id), "dataMesure");
 
+        /**
+         * Recherche des echantillons depuis Collec-Science
+         */
+        $search = array(
+            "login" => $_SESSION["CSLogin"],
+            "token" => $_SESSION["CSToken"],
+            "collection_id" => $_SESSION["CSCollectionId"],
+            /*"sample_type_id" => $_SESSION["CSSampleTypeName"],*/
+            "name" => $data["matricule"] . "-" . $data["sperme_date"],
+            /*"metadata_field" => "instance",
+            "metadata_value" => $_SESSION["CSInstanceName"]*/
+        );
+        $url = $_SESSION["CSAddress"] . "/" . $_SESSION["CSApiConsultUrl"];
+        $result_json = apiCall("GET", $url, $_SESSION["CSCertificatePath"], $search, $_SESSION["CSDebugMode"]);
+        $result = json_decode($result_json, true);
+        printA($result);
+        if ($result["error_code"] != 200) {
+        }
         break;
     case "write":
         /*
@@ -105,34 +123,50 @@ switch ($t_module["param"]) {
         dataDelete($dataClass, $id);
         break;
     case "generateVisotube":
-        $data = $dataClass->lire($id);
+        $data = $dataClass->lire($id, $_POST["sperme_id"]);
         $nbPaillettesStockees = 0;
-        $visotubeRadical = $data["matricule"] . "-" . $data["sperme_data"] . "-";
+        $visotubeRadical = $data["matricule"] . "-" . $data["sperme_date"] . "-";
         $visotubeNumber = 0;
         $visotube = array(
-            "login" => $_SESSION["CSlogin"],
-            "token" => $_SESSION["CSpassword"],
+            "login" => $_SESSION["CSLogin"],
+            "token" => $_SESSION["CSToken"],
             "collection_name" => $_SESSION["CSCollectionName"],
-            "sample_type_name" => $_SESSION["CSSampleTypeName"]
+            "sample_type_name" => $_SESSION["CSSampleTypeName"],
+            /*"md_instance" => $_SESSION["CSInstanceName"]*/
         );
         $url = $_SESSION["CSAddress"] . "/" . $_SESSION["CSApiCreateUrl"];
         $module_coderetour = 1;
-        while ($nbPaillettesStockees < $data["nb_paillette"]) {
-            $visotube["identifier"] = $visotubeRadical . ($visotubeNumber + $_POST["firstNumber"]);
-            $visotubeNumber++;
-            $nbPaillettes = $data["nb_paillette"] - $nbPaillettesStockees;
-            if ($nbPaillettes > $_POST["paillettesNb"]) {
-                $nbPaillettes = $_POST["paillettesNb"];
+        try {
+            for ($i = 1; $i <= $_POST["visotubesNb"]; $i++) {
+                if ($nbPaillettesStockees < $_POST["totalPaillettesNb"]) {
+                    $visotube["identifier"] = $visotubeRadical . ($visotubeNumber + $_POST["firstNumber"]);
+                    $visotubeNumber++;
+                    $nbPaillettes = $data["nb_paillette"] - $nbPaillettesStockees;
+                    if ($nbPaillettes > $_POST["paillettesNb"]) {
+                        $nbPaillettes = $_POST["paillettesNb"];
+                    }
+                    $visotube["multiple_value"] = $nbPaillettes;
+                    $nbPaillettesStockees += $nbPaillettes;
+                    $result_json = apiCall("POST", $url, $_SESSION["CSCertificatePath"], $visotube, $_SESSION["CSDebugMode"]);
+                    $result = json_decode($result_json, true);
+                    if ($result["error_code"] != 200) {
+                        $message->set(_("La création du visotube a échoué"), true);
+                        $message->set($result["error_code"] . " : " . $result["error_message"]);
+                        $module_coderetour = -1;
+                        break;
+                    }
+                } else {
+                    $message->set(_("Le nombre de paillettes à stocker n'est pas suffisant pour remplir tous les visotubes demandés"));
+                    break;
+                }
             }
-            $visotube["multiple_value"] = $nbPaillettes;
-            $nbPaillettesStockees += $nbPaillettes;
-            $result_json = apiCall("POST", $url, '', $visotube);
-            $result = json_decode($result_json, true);
-            if ($result["error_code"] != 200) {
-                $message->set(_("La création du visotube a échoué"), true);
-                $message->set($result["error_code"], $result["error_message"]);
-                $module_coderetour = -1;
-            }
-            break;
+        } catch (ApiCurlException $e) {
+            $message->set($e->getMessage(), true);
+            $module_coderetour = -1;
         }
+        if ($visotubeNumber < $_POST["visotubesNb"]) {
+            $message->set(_("Tous les visotubes demandés n'ont pas pu être créés"));
+        }
+        $message->set(sprintf(_("%s visotubes créés"), $visotubeNumber));
+        break;
 }

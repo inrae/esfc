@@ -31,8 +31,8 @@
                 x: 'x',
                 xFormat: '%d/%m/%Y %H:%M:%S', // 'xFormat' can be used as custom format of 'x'
                 columns: [
-                    [{ $mx }],
-                    [{ $my }]
+                    [{$mx }],
+                    [{$my }]
                 ]
             },
             axis: {
@@ -60,8 +60,8 @@
                 // nothing to do
             }
         }
-        $("#generateVisotubes").submit(function (event) {
-            if (!confirm("{t}Confirmez-vous la génération des visotubes dans Collec-Science ?{/t}")) {
+        $("form#generateVisotubes").on ("submit", function (event) {
+            if (! confirm("{t}Confirmez-vous la génération des visotubes dans Collec-Science ?{/t}")) {
                 event.preventDefault();
             }
         });
@@ -301,8 +301,11 @@
             <div class="tab-pane fade" id="nav-storage" role="tabpanel" aria-labelledby="tab-storage">
                 <div class="row">
                     <form id="generateVisotubes" method="post" action="index.php" class="form-horizontal">
-                        <input name="action" type="hidden" value="spermeCongelationVisotubes">
+                        <input name="module" type="hidden" value="spermeCongelationVisotubes">
                         <input type="hidden" name="sperme_congelation_id" value="{$data.sperme_congelation_id}">
+                        <input type="hidden" name="sperme_id" value="{$data.sperme_id}">
+                        <input type="hidden" name="sperme_congelation_id" value="{$data.sperme_congelation_id}">
+                        <input type="hidden" name="poisson_campagne_id" value="{$dataPoisson.poisson_campagne_id}">
                         <div class="form-group">
                             <label for="visotubesNb" class="control-label col-md-4">
                                 {t}Nombre de visotubes à générer dans Collec-Science :{/t}
@@ -310,6 +313,15 @@
                             <div class="col-md-8">
                                 <input id="visotubesNb" class="form-control nombre" name="visotubesNb"
                                     value="{$data.nb_visotube}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="totalPaillettesNb" class="control-label col-md-4">
+                                {t}Nombre total de paillettes à générer dans Collec-Science :{/t}
+                            </label>
+                            <div class="col-md-8">
+                                <input id="totalPaillettesNb" class="form-control nombre" name="totalPaillettesNb"
+                                    value="{$data.nb_paillette}">
                             </div>
                         </div>
                         <div class="form-group">
@@ -329,7 +341,7 @@
                             </div>
                         </div>
                         <div class="form-group center">
-                            <button type="submit" class="btn btn-primary button-valid">
+                            <button id="visotubeSubmit" class="btn btn-primary button-valid">
                                 {t}Générer les visotubes dans Collec-Science{/t}
                             </button>
                         </div>
