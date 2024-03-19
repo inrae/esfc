@@ -109,7 +109,8 @@ class SpermeCongelation extends ObjetBDD
     }
     
     function getAllCongelations(int $year = 0) {
-        $sql = "select sperme_congelation_id, sperme_id,            poisson_campagne_id, sequence_id,
+        $sql = "select sperme_congelation_id, sperme_id,            
+                poisson_campagne_id, sequence_id,
                 congelation_date, congelation_volume, nb_paillette, paillette_volume, nb_visotube, 
                 nb_paillettes_utilisees, volume_sperme,operateur,
                 matricule, prenom

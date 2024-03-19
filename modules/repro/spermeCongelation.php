@@ -25,6 +25,26 @@ switch ($t_module["param"]) {
         require_once "modules/classes/poissonCampagne.class.php";
         $pc = new PoissonCampagne($bdd, $ObjetBDDParam);
         $vue->set($pc->getAnnees(), "annees");
+        /**
+         * Search the visotubes from Collec-Science
+         */
+        $search = array(
+            "login" => $_SESSION["CSLogin"],
+            "token" => $_SESSION["CSToken"],
+            "collection_id" => $_SESSION["CSCollectionId"]
+        );
+        if ($year > 0) {
+            $search ["name"] = $year;
+        }
+        $url = $_SESSION["CSAddress"] . "/" . $_SESSION["CSApiConsultUrl"];
+        try {
+            $result_json = apiCall("POST", $url, $_SESSION["CSCertificatePath"], $search, $_SESSION["CSDebugMode"]);
+            $result = json_decode($result_json, true);
+            $vue->set($result, "visotubes");
+        } catch (ApiCurlException $e) {
+            $message->set(_("La récupération des informations en provenance de Collec-Science a échoué. Si le problème persiste, contactez l'administrateur de l'application"), true);
+            $message->set($e->getMessage(), true);
+        }
         break;
     case "change":
         /*
@@ -32,7 +52,7 @@ switch ($t_module["param"]) {
          * If is a new record, generate a new record with default value :
          * $_REQUEST["idParent"] contains the identifiant of the parent record
          */
-        dataRead($dataClass, $id, "repro/spermeCongelationChange.tpl", $_REQUEST["sperme_id"]);
+        $data = dataRead($dataClass, $id, "repro/spermeCongelationChange.tpl", $_REQUEST["sperme_id"]);
         /*
          * Recherche des dilueurs
          */
@@ -96,15 +116,16 @@ switch ($t_module["param"]) {
             "token" => $_SESSION["CSToken"],
             "collection_id" => $_SESSION["CSCollectionId"],
             /*"sample_type_id" => $_SESSION["CSSampleTypeName"],*/
-            "name" => $data["matricule"] . "-" . $data["sperme_date"],
-            /*"metadata_field" => "instance",
-            "metadata_value" => $_SESSION["CSInstanceName"]*/
+            "name" => $data["matricule"] . "-" . $data["sperme_date"]
         );
         $url = $_SESSION["CSAddress"] . "/" . $_SESSION["CSApiConsultUrl"];
-        $result_json = apiCall("GET", $url, $_SESSION["CSCertificatePath"], $search, $_SESSION["CSDebugMode"]);
-        $result = json_decode($result_json, true);
-        printA($result);
-        if ($result["error_code"] != 200) {
+        try {
+            $result_json = apiCall("POST", $url, $_SESSION["CSCertificatePath"], $search, $_SESSION["CSDebugMode"]);
+            $result = json_decode($result_json, true);
+            $vue->set($result, "visotubes");
+        } catch (ApiCurlException $e) {
+            $message->set(_("La récupération des informations en provenance de Collec-Science a échoué. Si le problème persiste, contactez l'administrateur de l'application"), true);
+            $message->set($e->getMessage(), true);
         }
         break;
     case "write":

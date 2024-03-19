@@ -357,9 +357,10 @@
                     <legend>{t}Liste des visotubes présents dans Collec-Science{/t}</legend>
                     {$totalInitial = 0}
                     {$totalRestant = 0}
-                    <table class="datatable table table-bordered table-hover">
+                    <table class="datatable table table-bordered table-hover" data-order='[[1,"ASC"]]'>
                         <thead>
                             <tr>
+                                <th>{t}UID{/t}</th>
                                 <th>{t}Identifiant{/t}</th>
                                 <th>{t}Nombre de paillettes initial{/t}</th>
                                 <th>{t}Nombre de paillettes restant{/t}</th>
@@ -369,6 +370,9 @@
                         <tbody>
                             {foreach $visotubes as $visotube}
                             <tr>
+                                <td class="center">
+                                    {$visotube.uid}
+                                </td>
                                 <td>
                                     {$visotube.identifier}
                                 </td>
@@ -393,7 +397,7 @@
                         </tbody>
                         <tfoot>
                             <tr>
-                                <td>{t}Total :{/t}</td>
+                                <td colspan="2">{t}Total :{/t}</td>
                                 <td class="center">{$totalInitial}</td>
                                 <td class="center">{$totalRestant}</td>
                                 <td></td>
@@ -402,7 +406,10 @@
                     </table>
                 </fieldset>
                 <div class="row">
-                    {include file='repro/spermeFreezingPlaceList.tpl'}
+                    <fieldset>
+                        <legend>{t}Ancien stockage (obsolète){/t}</legend>
+                        {include file='repro/spermeFreezingPlaceList.tpl'}
+                    </fieldset>
                 </div>
             </div>
             {/if}
