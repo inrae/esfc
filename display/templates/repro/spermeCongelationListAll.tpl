@@ -21,7 +21,7 @@
         $("#annee").change(function () {
             Cookies.set('annee', $(this).val(), { expires: 180, secure: true });
         });
-        var scrolly = "2000pt";
+        /*var scrolly = "2000pt";
         var tableList = $('#listAll').DataTable({
             "order": [[0, "desc"], [1, "asc"]],
             dom: 'Birtp',
@@ -50,7 +50,7 @@
         });
         $(".searchInput").hover(function () {
             $(this).focus();
-        });
+        });*/
     });
 </script>
 <form method="get" action="index.php" id="search">
@@ -102,7 +102,7 @@
             <div class="tab-pane active in" id="nav-congelation" role="tabpanel" aria-labelledby="tab-congelation">
                 <div class="row">
                     <div class="col-lg-12">
-                        <table id="listAll" class="table table-bordered table-hover">
+                        <table id="listAll" class="table table-bordered table-hover datatable-searching">
                             <thead>
                                 <tr>
                                     <th>{t}Date de congélation{/t}</th>
