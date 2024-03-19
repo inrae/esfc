@@ -65,6 +65,14 @@
                 event.preventDefault();
             }
         });
+        $(".volcalc").change(function() { 
+            var nbpaillette = $("#nb_paillette").val();
+            var volume = $("#paillette_volume").val();
+            console.log(nbpaillette);
+            if (nbpaillette > 0 && volume > 0) {
+                $("#congelation_volume").val( volume * nbpaillette);
+            }
+        });
     });
 </script>
 
@@ -144,15 +152,6 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="congelation_volume" class="control-label col-md-4">
-                                {t}Volume total congelé (ml) :{/t}
-                            </label>
-                            <div class="col-md-8">
-                                <input id="congelation_volume" class="form-control taux" name="congelation_volume"
-                                    value="{$data.congelation_volume}">
-                            </div>
-                        </div>
-                        <div class="form-group">
                             <label for="volume_sperme" class="control-label col-md-4">
                                 {t}Volume de sperme (ml) :{/t}
                             </label>
@@ -166,21 +165,30 @@
                                 {t}Nombre total de paillettes :{/t}
                             </label>
                             <div class="col-md-8">
-                                <input id="nb_paillette" class="form-control nombre" name="nb_paillette"
+                                <input id="nb_paillette" class="form-control nombre volcalc" name="nb_paillette"
                                     value="{$data.nb_paillette}">
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="paillette_volume" class="control-label col-md-4">
-                                {t}Volume par paillette :{/t}
+                                {t}Volume par paillette (mL) :{/t}
                             </label>
                             <div class="col-md-8">
                                 <datalist id="volumes">
                                     <option value="0.5"></option>
                                     <option value="5"></option>
                                 </datalist>
-                                <input id="paillette_volume" class="form-control taux" name="paillette_volume"
+                                <input id="paillette_volume" class="form-control taux volcalc" name="paillette_volume"
                                     value="{$data.paillette_volume}" list="volumes">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="congelation_volume" class="control-label col-md-4">
+                                {t}Volume total congelé (mL) :{/t}
+                            </label>
+                            <div class="col-md-8">
+                                <input id="congelation_volume" class="form-control taux" name="congelation_volume"
+                                    value="{$data.congelation_volume}">
                             </div>
                         </div>
                         <div class="form-group">
