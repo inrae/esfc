@@ -8,8 +8,9 @@ values
 ('CSApiConsultUrl','index.php?module=apiv1sampleList'),
 ('CSApiCreateUrl', 'index.php?module=apiv1sampleWrite'),
 ('CSSampleTypeName', 'Visotube'),
-('CSInstanceName', 'STURIO'),
 ('CSCertificatePath', ''),
 ('CSDebugMode', '0')
 ;
+alter table sperme_mesure add column concentration double precision;
+COMMENT ON COLUMN sperme_mesure.concentration IS E'Concentration, en milliard/mL';
 

@@ -9,6 +9,7 @@
         <tr>
             <th>{t}Date{/t}</th>
             <th>{t}Qualité{/t}</th>
+            <th>{t}Concentration (milliard/mL){/t}</th>
             <th>{t}Motilité initiale{/t}</th>
             <th>{t}Tx survie initial{/t}</th>
             <th>{t}Motilité 60"{/t}</th>
@@ -32,6 +33,7 @@
                 {/if}
             </td>
             <td>{$dataMesure[lst].sperme_qualite_libelle}</td>
+            <td class="center">{$dataMesure[lst].concentration}</td>
             <td class="center">{$dataMesure[lst].motilite_initiale}</td>
             <td class="center">{$dataMesure[lst].tx_survie_initial}</td>
             <td class="center">{$dataMesure[lst].motilite_60}</td>

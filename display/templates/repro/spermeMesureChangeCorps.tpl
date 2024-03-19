@@ -28,15 +28,22 @@
         </select>
     </div>
 </div>
-{if $data.sperme_congelation_id > 0}
 <div class="form-group"><label for="nb_paillette_utilise" class="control-label col-md-4">
-        {t}Nbre de paillettes utilisées pour l'analyse :{/t}<span class="red">*</span>
+        {t}Nbre de paillettes utilisées pour l'analyse :{/t}
     </label>
     <div class="col-md-8">
-        <input id="nb_paillette_utilise" class="nombre form-control" name="nb_paillette_utilise" value="{$data.nb_paillette_utilise}" required>
+        <input id="nb_paillette_utilise" class="nombre form-control" name="nb_paillette_utilise" value="{$data.nb_paillette_utilise}">
     </div>
 </div>
-{/if}
+<div class="form-group">
+    <label for="concentration" class="control-label col-md-4">
+        {t}Concentration (en milliard/mL) :{/t}
+    </label>
+    <div class="col-md-8">
+        <input class="taux form-control" id="concentration" name="concentration"
+            value="{$data.concentration}">  
+    </div>
+</div>
 <div class="form-group">
     <label for="motilite_initiale" class="control-label col-md-4">
         {t}Motilité initiale (1 à 5) :{/t}
