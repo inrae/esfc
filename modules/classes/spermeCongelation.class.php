@@ -109,20 +109,25 @@ class SpermeCongelation extends ObjetBDD
     }
     
     function getAllCongelations(int $year = 0) {
-        $sql = "select sperme_congelation_id, sperme_id,            
-                poisson_campagne_id, sequence_id,
-                congelation_date, congelation_volume, nb_paillette, paillette_volume, nb_visotube, 
-                nb_paillettes_utilisees, volume_sperme,operateur,
-                matricule, prenom
-                from sperme_congelation
-                join sperme using(sperme_id)
-                join poisson_campagne using (poisson_campagne_id)
-                join poisson using (poisson_id)";
+        $sql = "select sc.sperme_congelation_id, sc.sperme_id,            
+        poisson_campagne_id, sequence_id,
+        congelation_date, congelation_volume, nb_paillette, paillette_volume, nb_visotube, 
+        nb_paillettes_utilisees, volume_sperme,operateur,
+        matricule, prenom, sperme_mesure_date, concentration, sperme_qualite_libelle
+        from sperme_congelation sc
+        join sperme s using(sperme_id)
+        join poisson_campagne using (poisson_campagne_id)
+        join poisson using (poisson_id)
+        left outer join sperme_mesure sm on (sm.sperme_mesure_id = 
+        (select sperme_mesure_id from sperme_mesure sm2 where sm2.sperme_id = s.sperme_id order by sperme_mesure_id desc limit 1)
+        )
+        left outer join sperme_qualite sq using (sperme_qualite_id)";
                 $data = array();
 		if ($year > 0) {
 			$sql .= " where annee = :year";
 			$data["year"] = $year;
 		}
+        $this->colonnes["sperme_mesure_date"] = ["type"=>2];
 		return $this->getListeParamAsPrepared($sql, $data);
     }
 }

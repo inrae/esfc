@@ -101,18 +101,20 @@
         <div class="tab-content" id="nav-tabContent">
             <div class="tab-pane active in" id="nav-congelation" role="tabpanel" aria-labelledby="tab-congelation">
                 <div class="row">
-                    <div class="col-lg-10">
+                    <div class="col-lg-12">
                         <table id="listAll" class="table table-bordered table-hover">
                             <thead>
                                 <tr>
-                                    <th>{t}Date{/t}</th>
+                                    <th>{t}Date de congélation{/t}</th>
                                     <th>{t}Poisson{/t}</th>
                                     <th>{t}Volume congelé{/t}</th>
                                     <th>{t}Volume de sperme{/t}</th>
                                     <th>{t}Nombre de visotubes{/t}</th>
                                     <th>{t}Nombre de paillettes{/t}</th>
                                     <th>{t}Volume par paillette{/t}</th>
-                                    <th>{t}Nombre de paillettes utilisées{/t}</th>
+                                    <th>{t}Date de la dernière analyse{/t}</th>
+                                    <th>{t}Concentration (milliard/mL){/t}</th>
+                                    <th>{t}Qualité estimée{/t}</th>
                                     <th>{t}Opérateur{/t}</th>
                                 </tr>
                             </thead>
@@ -141,7 +143,9 @@
                                     <td class="center">{$sperme.nb_visotube}</td>
                                     <td class="center">{$sperme.nb_paillette}</td>
                                     <td class="center">{$sperme.paillette_volume}</td>
-                                    <td class="center">{$sperme.nb_paillettes_utilises}</td>
+                                    <td>{$sperme.sperme_mesure_date}</td>
+                                    <td>{$sperme.concentration}</td>
+                                    <td>{$sperme.sperme_qualite_libelle}</td>
                                     <td>{$sperme.operateur}</td>
                                 </tr>
                                 {/foreach}
