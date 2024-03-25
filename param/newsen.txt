@@ -1,5 +1,15 @@
 News
 ==========
+Version 24.1.0 of 25 March 2024
+------------------------------
+New information on semen freezing:
+- the list of available semen has been extended
+- various improvements have been made to freezing data entry (automatic calculation of volume, etc.)
+- storage management has been transferred to Collec-Science:
+- visotubes are generated directly in Collec-Science
+- the list of visotubes generated for a sample is retrieved from Collec-Science
+- the list of all available visotubes can be viewed (by automatic interrogation of Collec-Science), either globally or by year
+
 Version 24.0.0 of 13 February 2024
 ---------------------------------
 Bug fixes :

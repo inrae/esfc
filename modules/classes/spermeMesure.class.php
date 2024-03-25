@@ -12,7 +12,7 @@ class SpermeMesure extends ObjetBDD
     private $sql = "select sperme_mesure_id, sperme_id, sperme_mesure_date,
 			motilite_initiale, tx_survie_initial, motilite_60, tx_survie_60, temps_survie,
 			sperme_ph, nb_paillette_utilise, sperme_qualite_id, sperme_qualite_libelle,
-            sperme_congelation_id
+            sperme_congelation_id, concentration
 			from sperme_mesure
 			join sperme using (sperme_id)
 			left outer join sperme_qualite using (sperme_qualite_id)";
@@ -66,7 +66,8 @@ class SpermeMesure extends ObjetBDD
             ),
             "sperme_congelation_id" => array(
                 "type" => 1
-            )
+            ),
+            "concentration" => array("type" => 1)
         );
         parent::__construct($bdd, $param);
     }
@@ -87,7 +88,7 @@ class SpermeMesure extends ObjetBDD
              * Modification du nombre de paillettes utilisees
              */
             $data["sperme_mesure_id"] = $id;
-            if (!isset($this->spermeCongelation)) {
+            if (!isset ($this->spermeCongelation)) {
                 $this->spermeCongelation = $this->classInstanciate("SpermeCongelation", "spermeCongelation.class.php");
             }
             $dsc = $this->spermeCongelation->lire($data["sperme_congelation_id"]);

@@ -326,6 +326,7 @@
 	<spermeCongelationWrite action="modules/repro/spermeCongelation.php" param="write" droits="reproGestion" modulebefore="spermeCongelationChange" retourok="spermeCongelationChange" retourko="spermeCongelationChange"/>
 	<spermeCongelationDelete action="modules/repro/spermeCongelation.php" param="delete" droits="reproGestion" modulebefore="spermeCongelationChange" retourok="spermeChange" retourko="spermeCongelationChange"/>
 	<spermeCongelationList action="modules/repro/spermeCongelation.php" param="list" droits="reproConsult" type="smarty"/>
+	<spermeCongelationVisotubes action="modules/repro/spermeCongelation.php" param="generateVisotube" droits="reproGestion" modulebefore="spermeCongelationChange,spermeCongelationWrite,spermeCongelationList,spermeCongelationVisotubes" retourok="spermeCongelationChange" retourko="spermeCongelationChange"/>
 
 	<spermeFreezingPlaceChange action="modules/repro/spermeFreezingPlace.php" param="change" droits="reproGestion"  type="smarty"/>
 	<spermeFreezingPlaceWrite action="modules/repro/spermeFreezingPlace.php" param="write" droits="reproGestion" modulebefore="spermeFreezingPlaceChange" retourok="spermeCongelationChange" retourko="spermeFreezingPlaceChange"/>
