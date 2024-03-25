@@ -13,4 +13,6 @@ values
 ;
 alter table sperme_mesure add column concentration double precision;
 COMMENT ON COLUMN sperme_mesure.concentration IS E'Concentration, en milliard/mL';
+insert into dbversion(dbversion_number, dbversion_date) values ('24.1', '2024-03-25');
+
 

@@ -3,8 +3,8 @@
 CAUTION: Do not modify this file unless you know what you are doing.
  Unexpected results may occur if the code is changed deliberately.
 -->
-<dbmodel pgmodeler-ver="1.1.0" use-changelog="false" max-obj-count="171"
-	 last-position="-20,0" last-zoom="1" scene-rect="-20,0,3819.15,3941.52"
+<dbmodel pgmodeler-ver="1.1.1" use-changelog="false" max-obj-count="171"
+	 last-position="383,1623" last-zoom="0.65" scene-rect="-20,0,3819.15,4081.52"
 	 default-owner="postgres"
 	 layers="Default layer"
 	 active-layers="0"
@@ -3394,7 +3394,7 @@ Le premier chiffre correspond au lundi]]> </comment>
 	<role name="quinton"/>
 	<comment> <![CDATA[Table des mesures de vitesse de congélation]]> </comment>
 	<tag name="repro"/>
-	<position x="2560" y="3400"/>
+	<position x="2560" y="3540"/>
 	<column name="sperme_freezing_measure_id" not-null="true" sequence="public.sperme_freezing_measure_sperme_freezing_measure_id_seq">
 		<type name="integer" length="0"/>
 	</column>
@@ -3424,7 +3424,7 @@ Le premier chiffre correspond au lundi]]> </comment>
 	<role name="quinton"/>
 	<comment> <![CDATA[Emplacement des paillettes]]> </comment>
 	<tag name="repro"/>
-	<position x="2140" y="3400"/>
+	<position x="2140" y="3540"/>
 	<column name="sperme_freezing_place_id" not-null="true" sequence="public.sperme_freezing_place_sperme_freezing_place_id_seq">
 		<type name="integer" length="0"/>
 	</column>
@@ -3459,7 +3459,7 @@ Le premier chiffre correspond au lundi]]> </comment>
 	<role name="quinton"/>
 </sequence>
 
-<table name="sperme_mesure" layers="0" collapse-mode="1" max-obj-count="14" z-value="0">
+<table name="sperme_mesure" layers="0" collapse-mode="1" max-obj-count="15" z-value="0">
 	<schema name="public"/>
 	<role name="quinton"/>
 	<comment> <![CDATA[Table des mesures de qualité du sperme]]> </comment>
@@ -3508,6 +3508,10 @@ Le premier chiffre correspond au lundi]]> </comment>
 	</column>
 	<column name="sperme_congelation_id">
 		<type name="integer" length="0"/>
+	</column>
+	<column name="concentration">
+		<type name="double precision" length="0"/>
+		<comment> <![CDATA[Concentration, en milliard/mL]]> </comment>
 	</column>
 	<constraint name="sperme_mesure_pk" type="pk-constr" table="public.sperme_mesure">
 		<columns names="sperme_mesure_id" ref-type="src-columns"/>
@@ -3691,7 +3695,7 @@ Le premier chiffre correspond au lundi]]> </comment>
 <view name="v_bassin_alim_quotidien" layers="0" collapse-mode="1" max-obj-count="0" z-value="0">
 	<schema name="public"/>
 	<role name="quinton"/>
-	<position x="20" y="3400"/>
+	<position x="20" y="3540"/>
 	<simplecol name="poisson_id" type="integer"/>
 	<simplecol name="bassin_id" type="integer"/>
 	<simplecol name="bassin_nom" type="character varying"/>
@@ -3733,7 +3737,7 @@ Le premier chiffre correspond au lundi]]> </comment>
 <view name="v_distribution" layers="0" collapse-mode="1" max-obj-count="0" z-value="0">
 	<schema name="public"/>
 	<role name="quinton"/>
-	<position x="380" y="3400"/>
+	<position x="380" y="3540"/>
 	<simplecol name="repartition_id" type="integer"/>
 	<simplecol name="distribution_id" type="integer"/>
 	<simplecol name="bassin_id" type="integer"/>
@@ -3783,7 +3787,7 @@ Le premier chiffre correspond au lundi]]> </comment>
 <view name="v_gender_selection" layers="0" collapse-mode="1" max-obj-count="0" z-value="0">
 	<schema name="public"/>
 	<role name="quinton"/>
-	<position x="880" y="3400"/>
+	<position x="880" y="3540"/>
 	<simplecol name="gender_selection_id" type="integer"/>
 	<simplecol name="poisson_id" type="integer"/>
 	<simplecol name="gender_methode_id" type="integer"/>
@@ -3809,7 +3813,7 @@ Le premier chiffre correspond au lundi]]> </comment>
 <view name="v_parent_poisson_ntile" layers="0" collapse-mode="1" max-obj-count="0" z-value="0">
 	<schema name="public"/>
 	<role name="quinton"/>
-	<position x="3000" y="3680"/>
+	<position x="3000" y="3820"/>
 	<simplecol name="poisson_id" type="integer"/>
 	<simplecol name="parent_id" type="integer"/>
 	<simplecol name="ntile" type="integer"/>
@@ -3822,7 +3826,7 @@ Le premier chiffre correspond au lundi]]> </comment>
 <view name="v_parents" layers="0" collapse-mode="1" max-obj-count="0" z-value="0">
 	<schema name="public"/>
 	<role name="quinton"/>
-	<position x="3000" y="3400"/>
+	<position x="3000" y="3540"/>
 	<simplecol name="poisson_id" type="integer"/>
 	<simplecol name="parent1_id" type="integer"/>
 	<simplecol name="parent2_id" type="integer"/>
@@ -3843,7 +3847,7 @@ Le premier chiffre correspond au lundi]]> </comment>
 <view name="v_pittag_by_poisson" layers="0" collapse-mode="1" max-obj-count="0" z-value="0">
 	<schema name="public"/>
 	<role name="quinton"/>
-	<position x="1300" y="3400"/>
+	<position x="1300" y="3540"/>
 	<simplecol name="poisson_id" type="integer"/>
 	<simplecol name="pittag_valeur" type="text"/>
 	<definition> <![CDATA[SELECT pittag.poisson_id,
@@ -3856,7 +3860,7 @@ Le premier chiffre correspond au lundi]]> </comment>
 	<schema name="public"/>
 	<role name="quinton"/>
 	<tag name="bassin"/>
-	<position x="1740" y="3400"/>
+	<position x="1740" y="3540"/>
 	<simplecol name="poisson_id" type="integer"/>
 	<simplecol name="bassin_id" type="integer"/>
 	<simplecol name="bassin_nom" type="character varying"/>
@@ -3878,7 +3882,7 @@ Le premier chiffre correspond au lundi]]> </comment>
 <view name="v_poisson_last_bassin" layers="0" collapse-mode="1" max-obj-count="0" z-value="0">
 	<schema name="public"/>
 	<role name="quinton"/>
-	<position x="880" y="3680"/>
+	<position x="880" y="3820"/>
 	<simplecol name="poisson_id" type="integer"/>
 	<simplecol name="bassin_id" type="integer"/>
 	<simplecol name="bassin_nom" type="character varying"/>
@@ -3901,7 +3905,7 @@ Le premier chiffre correspond au lundi]]> </comment>
 <view name="v_poisson_last_lf" layers="0" collapse-mode="1" max-obj-count="0" z-value="0">
 	<schema name="public"/>
 	<role name="quinton"/>
-	<position x="3240" y="3400"/>
+	<position x="3240" y="3540"/>
 	<simplecol name="poisson_id" type="integer"/>
 	<simplecol name="longueur_fourche" type="real"/>
 	<simplecol name="morphologie_date" type="timestamp"/>
@@ -3921,7 +3925,7 @@ Le premier chiffre correspond au lundi]]> </comment>
 <view name="v_poisson_last_lt" layers="0" collapse-mode="1" max-obj-count="0" z-value="0">
 	<schema name="public"/>
 	<role name="quinton"/>
-	<position x="1280" y="3680"/>
+	<position x="1280" y="3820"/>
 	<simplecol name="poisson_id" type="integer"/>
 	<simplecol name="longueur_totale" type="real"/>
 	<simplecol name="morphologie_date" type="timestamp"/>
@@ -3941,7 +3945,7 @@ Le premier chiffre correspond au lundi]]> </comment>
 <view name="v_poisson_last_masse" layers="0" collapse-mode="1" max-obj-count="0" z-value="0">
 	<schema name="public"/>
 	<role name="quinton"/>
-	<position x="1740" y="3680"/>
+	<position x="1740" y="3820"/>
 	<simplecol name="poisson_id" type="integer"/>
 	<simplecol name="masse" type="real"/>
 	<simplecol name="morphologie_date" type="timestamp"/>
@@ -3961,7 +3965,7 @@ Le premier chiffre correspond au lundi]]> </comment>
 <view name="v_prenom_parent_femelle" layers="0" collapse-mode="1" max-obj-count="0" z-value="0">
 	<schema name="public"/>
 	<role name="quinton"/>
-	<position x="2140" y="3680"/>
+	<position x="2140" y="3820"/>
 	<simplecol name="poisson_id" type="integer"/>
 	<simplecol name="mere" type="text"/>
 	<definition> <![CDATA[SELECT pp.poisson_id,
@@ -3975,7 +3979,7 @@ Le premier chiffre correspond au lundi]]> </comment>
 <view name="v_prenom_parents" layers="0" collapse-mode="1" max-obj-count="0" z-value="0">
 	<schema name="public"/>
 	<role name="quinton"/>
-	<position x="2560" y="3680"/>
+	<position x="2560" y="3820"/>
 	<simplecol name="poisson_id" type="integer"/>
 	<simplecol name="parents" type="text"/>
 	<definition> <![CDATA[SELECT pp.poisson_id,
@@ -4002,7 +4006,7 @@ Le premier chiffre correspond au lundi]]> </comment>
 <view name="v_sperme_congelation_date" layers="0" collapse-mode="1" max-obj-count="0" z-value="0">
 	<schema name="public"/>
 	<role name="quinton"/>
-	<position x="3240" y="3680"/>
+	<position x="3240" y="3820"/>
 	<simplecol name="sperme_id" type="integer"/>
 	<simplecol name="congelation_dates" type="text"/>
 	<definition> <![CDATA[SELECT sperme_congelation.sperme_id,
@@ -4014,7 +4018,7 @@ Le premier chiffre correspond au lundi]]> </comment>
 <view name="v_transfert_last_bassin_for_poisson" layers="0" collapse-mode="1" max-obj-count="0" z-value="0">
 	<schema name="public"/>
 	<role name="quinton"/>
-	<position x="1300" y="3500"/>
+	<position x="1300" y="3640"/>
 	<simplecol name="poisson_id" type="integer"/>
 	<simplecol name="transfert_date_last" type="date"/>
 	<definition> <![CDATA[SELECT transfert.poisson_id,
@@ -4036,7 +4040,7 @@ Le premier chiffre correspond au lundi]]> </comment>
 <view name="v_vie_modele" layers="0" collapse-mode="1" max-obj-count="0" z-value="0">
 	<schema name="public"/>
 	<role name="quinton"/>
-	<position x="20" y="3680"/>
+	<position x="20" y="3820"/>
 	<simplecol name="vie_modele_id" type="integer"/>
 	<simplecol name="annee" type="integer"/>
 	<simplecol name="couleur" type="character varying"/>

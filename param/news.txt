@@ -1,5 +1,15 @@
 Nouveautés
 ==========
+Version 24.1.0 du 25 mars 2024
+------------------------------
+Nouveautés concernant la congélation du sperme :
+- la liste des spermes disponibles a été complétée
+- en saisie des congélations, diverses améliorations (calcul automatique du volume, etc.)
+- la gestion du stockage a été déportée dans Collec-Science :
+- les visotubes sont générés directement dans Collec-Science
+- la liste des visotubes générés pour un prélèvement est récupérée depuis Collec-Science
+- la liste de tous les visotubes disponibles peut être visualisée (par interrogation automatique de Collec-Science), soit globalement, soit par année
+
 Version 24.0.0 du 13 février 2024
 ---------------------------------
 Corrections de bugs :

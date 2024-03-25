@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ESFC\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-13 08:55+0100\n"
+"POT-Creation-Date: 2024-03-25 10:01+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Poedit 3.4.1\n"
+"X-Generator: Poedit 3.4.2\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 #. (itstool) path: menu/item@label
@@ -232,6 +232,7 @@ msgstr "List of crossbreds performed"
 
 #. (itstool) path: item/item@label
 #: ../../../param/menu.xml:39
+#: ../../../display/templates/repro/spermeCongelationListAll.tpl:90
 msgid "Liste des spermes congelés"
 msgstr "List of frozen sperms"
 
@@ -1425,6 +1426,36 @@ msgstr "Some batches are not assigned to specific basins"
 msgid "La génération de la fiche d'alimentation a échoué"
 msgstr "Generation of the food sheet failed"
 
+#: ../../../modules/repro/spermeCongelation.php:45
+#: ../../../modules/repro/spermeCongelation.php:127
+msgid ""
+"La récupération des informations en provenance de Collec-Science a échoué. "
+"Si le problème persiste, contactez l'administrateur de l'application"
+msgstr ""
+"Recovery of information from Collec-Science has failed. If the problem "
+"persists, contact the application administrator"
+
+#: ../../../modules/repro/spermeCongelation.php:174
+msgid "La création du visotube a échoué"
+msgstr "Creation of the visotube has failed"
+
+#: ../../../modules/repro/spermeCongelation.php:180
+msgid ""
+"Le nombre de paillettes à stocker n'est pas suffisant pour remplir tous les "
+"visotubes demandés"
+msgstr ""
+"The number of straws to be stored is not sufficient to fill all the "
+"visotubes required"
+
+#: ../../../modules/repro/spermeCongelation.php:189
+msgid "Tous les visotubes demandés n'ont pas pu être créés"
+msgstr "Not all the visotubes requested could be created"
+
+#: ../../../modules/repro/spermeCongelation.php:191
+#, php-format
+msgid "%s visotubes créés"
+msgstr "%s visotubes created"
+
 #: ../../../modules/repro/lot.php:80
 #, php-format
 msgid ""
@@ -1538,7 +1569,7 @@ msgid "Salinité"
 msgstr "Salinity"
 
 #: ../../../modules/bassin/analyseEau.php:174
-#: ../../../display/templates/repro/spermeMesureList.tpl:17
+#: ../../../display/templates/repro/spermeMesureList.tpl:18
 #: ../../../display/templates/repro/spermeList.tpl:12
 #: ../../../display/templates/bassin/circuitEauDisplay.tpl:192
 msgid "pH"
@@ -1741,7 +1772,6 @@ msgstr "New analysis..."
 #: ../../../display/templates/repro/spermeMesureList.tpl:10
 #: ../../../display/templates/repro/poissonEchographieList.tpl:5
 #: ../../../display/templates/repro/psEvenementList.tpl:5
-#: ../../../display/templates/repro/spermeCongelationListAll.tpl:40
 #: ../../../display/templates/repro/devenirList.tpl:11
 #: ../../../display/templates/repro/lotMesureList.tpl:9
 #: ../../../display/templates/repro/poissonBiopsieList.tpl:4
@@ -1777,30 +1807,35 @@ msgid "Qualité"
 msgstr "Quality"
 
 #: ../../../display/templates/repro/spermeMesureList.tpl:12
+#: ../../../display/templates/repro/spermeCongelationListAll.tpl:116
+msgid "Concentration (milliard/mL)"
+msgstr "Concentration (billion/mL)"
+
+#: ../../../display/templates/repro/spermeMesureList.tpl:13
 #: ../../../display/templates/repro/spermeList.tpl:7
 msgid "Motilité initiale"
 msgstr "Initial motility"
 
-#: ../../../display/templates/repro/spermeMesureList.tpl:13
+#: ../../../display/templates/repro/spermeMesureList.tpl:14
 #: ../../../display/templates/repro/spermeList.tpl:8
 msgid "Tx survie initial"
 msgstr "Initial survival rate"
 
-#: ../../../display/templates/repro/spermeMesureList.tpl:14
+#: ../../../display/templates/repro/spermeMesureList.tpl:15
 #: ../../../display/templates/repro/spermeList.tpl:9
 msgid "Motilité 60\""
 msgstr "Motility 60\""
 
-#: ../../../display/templates/repro/spermeMesureList.tpl:15
+#: ../../../display/templates/repro/spermeMesureList.tpl:16
 #: ../../../display/templates/repro/spermeList.tpl:10
 msgid "Tx survie 60\""
 msgstr "Survival rate 60\""
 
-#: ../../../display/templates/repro/spermeMesureList.tpl:16
+#: ../../../display/templates/repro/spermeMesureList.tpl:17
 msgid "Temps survie"
 msgstr "Survival time"
 
-#: ../../../display/templates/repro/spermeMesureList.tpl:18
+#: ../../../display/templates/repro/spermeMesureList.tpl:19
 msgid "Nbre paillettes utilisées"
 msgstr "Number of spangles used"
 
@@ -1899,7 +1934,7 @@ msgstr "Daily food"
 #: ../../../display/templates/repro/lotSearch.tpl:21
 #: ../../../display/templates/repro/sequenceList.tpl:42
 #: ../../../display/templates/repro/sequenceList.tpl:114
-#: ../../../display/templates/repro/spermeCongelationListAll.tpl:14
+#: ../../../display/templates/repro/spermeCongelationListAll.tpl:62
 #: ../../../display/templates/repro/sequenceChange.tpl:16
 #: ../../../display/templates/repro/poissonCampagneChange.tpl:39
 #: ../../../display/templates/repro/vieModeleList.tpl:8
@@ -1911,7 +1946,7 @@ msgstr "Year:"
 #: ../../../display/templates/repro/devenirCampagneList.tpl:19
 #: ../../../display/templates/repro/lotSearch.tpl:34
 #: ../../../display/templates/repro/sequenceList.tpl:54
-#: ../../../display/templates/repro/spermeCongelationListAll.tpl:29
+#: ../../../display/templates/repro/spermeCongelationListAll.tpl:77
 #: ../../../display/templates/repro/vieModeleList.tpl:20
 #: ../../../display/templates/repro/croisementListAll.tpl:29
 #: ../../../display/templates/repro/poissonCampagneList.tpl:118
@@ -1932,7 +1967,7 @@ msgid "Destination des poissons"
 msgstr "Fish usage"
 
 #: ../../../display/templates/repro/biopsieChange.tpl:10
-#: ../../../display/templates/repro/spermeCongelationChange.tpl:50
+#: ../../../display/templates/repro/spermeCongelationChange.tpl:81
 #: ../../../display/templates/repro/poissonCampagneChange.tpl:3
 #: ../../../display/templates/repro/spermeFreezingPlaceChange.tpl:5
 #: ../../../display/templates/repro/injectionChange.tpl:3
@@ -1954,7 +1989,7 @@ msgid "Retour à la liste des poissons"
 msgstr "Back to the list of fish"
 
 #: ../../../display/templates/repro/biopsieChange.tpl:14
-#: ../../../display/templates/repro/spermeCongelationChange.tpl:55
+#: ../../../display/templates/repro/spermeCongelationChange.tpl:86
 #: ../../../display/templates/repro/poissonCampagneChange.tpl:14
 #: ../../../display/templates/repro/spermeFreezingPlaceChange.tpl:10
 #: ../../../display/templates/repro/injectionChange.tpl:7
@@ -2063,7 +2098,7 @@ msgid "Commentaire général :"
 msgstr "Main comment:"
 
 #: ../../../display/templates/repro/biopsieChange.tpl:186
-#: ../../../display/templates/repro/spermeCongelationChange.tpl:217
+#: ../../../display/templates/repro/spermeCongelationChange.tpl:286
 #: ../../../display/templates/repro/sequenceChange.tpl:56
 #: ../../../display/templates/repro/poissonCampagneChange.tpl:90
 #: ../../../display/templates/repro/spermeFreezingPlaceChange.tpl:80
@@ -2153,7 +2188,7 @@ msgid "Valider"
 msgstr "Save and return"
 
 #: ../../../display/templates/repro/biopsieChange.tpl:188
-#: ../../../display/templates/repro/spermeCongelationChange.tpl:219
+#: ../../../display/templates/repro/spermeCongelationChange.tpl:288
 #: ../../../display/templates/repro/sequenceChange.tpl:58
 #: ../../../display/templates/repro/poissonCampagneChange.tpl:92
 #: ../../../display/templates/repro/spermeFreezingPlaceChange.tpl:82
@@ -2241,7 +2276,7 @@ msgid "Documents associés"
 msgstr "Associated documents"
 
 #: ../../../display/templates/repro/biopsieChange.tpl:203
-#: ../../../display/templates/repro/spermeCongelationChange.tpl:223
+#: ../../../display/templates/repro/spermeCongelationChange.tpl:292
 #: ../../../display/templates/repro/sequenceChange.tpl:65
 #: ../../../display/templates/repro/spermeFreezingPlaceChange.tpl:89
 #: ../../../display/templates/repro/saliniteChange.tpl:72
@@ -2490,77 +2525,98 @@ msgstr "Daily/specific growth rate:"
 msgid "Recalculer"
 msgstr "Recalculate"
 
-#: ../../../display/templates/repro/spermeCongelationChange.tpl:11
+#: ../../../display/templates/repro/spermeCongelationChange.tpl:29
 msgid "Température relevée"
 msgstr "Temperature measured"
 
-#: ../../../display/templates/repro/spermeCongelationChange.tpl:61
+#: ../../../display/templates/repro/spermeCongelationChange.tpl:64
+msgid "Confirmez-vous la génération des visotubes dans Collec-Science ?"
+msgstr "Can you confirm the generation of visotubes in Collec-Science?"
+
+#: ../../../display/templates/repro/spermeCongelationChange.tpl:92
 #: ../../../display/templates/repro/spermeMesureChange.tpl:14
 msgid "Retour au prélèvement"
 msgstr "Back to sampling"
 
-#: ../../../display/templates/repro/spermeCongelationChange.tpl:63
+#: ../../../display/templates/repro/spermeCongelationChange.tpl:94
 msgid "Modification d'une congélation de sperme"
 msgstr "Edit as sperm freeze"
 
-#: ../../../display/templates/repro/spermeCongelationChange.tpl:81
+#: ../../../display/templates/repro/spermeCongelationChange.tpl:108
+#: ../../../display/templates/repro/spermeDisplay.tpl:46
+msgid "Congélation"
+msgstr "Freezing"
+
+#: ../../../display/templates/repro/spermeCongelationChange.tpl:116
+msgid "Vitesse de congélation"
+msgstr "Freezing speed"
+
+#: ../../../display/templates/repro/spermeCongelationChange.tpl:123
+msgid "Analyses effectuées"
+msgstr "Analyses performed"
+
+#: ../../../display/templates/repro/spermeCongelationChange.tpl:130
+msgid "Emplacements de congélation"
+msgstr "Freeze locations"
+
+#: ../../../display/templates/repro/spermeCongelationChange.tpl:146
 msgid "Date de congélation:"
 msgstr "Freezing date:"
 
-#: ../../../display/templates/repro/spermeCongelationChange.tpl:91
-msgid "Volume total congelé (ml) :"
-msgstr "Total volume frozen (ml):"
-
-#: ../../../display/templates/repro/spermeCongelationChange.tpl:100
+#: ../../../display/templates/repro/spermeCongelationChange.tpl:156
 msgid "Volume de sperme (ml) :"
 msgstr "Sperm volume (ml):"
 
-#: ../../../display/templates/repro/spermeCongelationChange.tpl:109
+#: ../../../display/templates/repro/spermeCongelationChange.tpl:165
 msgid "Nombre total de paillettes :"
 msgstr "Total number of straws:"
 
-#: ../../../display/templates/repro/spermeCongelationChange.tpl:118
-msgid "Volume par paillette :"
-msgstr "Volume by straw:"
+#: ../../../display/templates/repro/spermeCongelationChange.tpl:174
+msgid "Volume par paillette (mL) :"
+msgstr "Volume by straw (mL):"
 
-#: ../../../display/templates/repro/spermeCongelationChange.tpl:127
+#: ../../../display/templates/repro/spermeCongelationChange.tpl:187
+msgid "Volume total congelé (mL) :"
+msgstr "Total volume frozen (mL):"
+
+#: ../../../display/templates/repro/spermeCongelationChange.tpl:196
 msgid "Nombre total de visotubes :"
 msgstr "Total number of visotubes:"
 
-#: ../../../display/templates/repro/spermeCongelationChange.tpl:136
+#: ../../../display/templates/repro/spermeCongelationChange.tpl:205
 #: ../../../display/templates/repro/spermeChangeCorps.tpl:56
 msgid "Dilueur utilisé : "
 msgstr "Thinner used: "
 
-#: ../../../display/templates/repro/spermeCongelationChange.tpl:141
-#: ../../../display/templates/repro/spermeCongelationChange.tpl:168
+#: ../../../display/templates/repro/spermeCongelationChange.tpl:210
+#: ../../../display/templates/repro/spermeCongelationChange.tpl:237
 #: ../../../display/templates/repro/spermeChangeCorps.tpl:26
 #: ../../../display/templates/repro/spermeChangeCorps.tpl:61
 #: ../../../display/templates/parametre/evenementTypeChange.tpl:41
 msgid "Choisissez..."
 msgstr "Please choose..."
 
-#: ../../../display/templates/repro/spermeCongelationChange.tpl:154
+#: ../../../display/templates/repro/spermeCongelationChange.tpl:223
 msgid "Volume de dilueur utilisé (ml) :"
 msgstr "Volume of diluent used (ml):"
 
-#: ../../../display/templates/repro/spermeCongelationChange.tpl:163
+#: ../../../display/templates/repro/spermeCongelationChange.tpl:232
 msgid "Conservateur utilisé : "
 msgstr "Preservative used: "
 
-#: ../../../display/templates/repro/spermeCongelationChange.tpl:181
+#: ../../../display/templates/repro/spermeCongelationChange.tpl:250
 msgid "Volume de conservateur utilisé (ml) :"
 msgstr "Volume of preservative used (ml):"
 
-#: ../../../display/templates/repro/spermeCongelationChange.tpl:190
+#: ../../../display/templates/repro/spermeCongelationChange.tpl:259
 msgid "Nb de paillettes utilisées en repro:"
 msgstr "Number of straws used in reproduction:"
 
-#: ../../../display/templates/repro/spermeCongelationChange.tpl:199
+#: ../../../display/templates/repro/spermeCongelationChange.tpl:268
 msgid "Opérateur :"
 msgstr "Operator:"
 
-#: ../../../display/templates/repro/spermeCongelationChange.tpl:208
+#: ../../../display/templates/repro/spermeCongelationChange.tpl:276
 #: ../../../display/templates/repro/injectionChange.tpl:73
 #: ../../../display/templates/repro/spermeChangeCorps.tpl:74
 #: ../../../display/templates/repro/psEvenementChange.tpl:27
@@ -2577,17 +2633,78 @@ msgstr "Operator:"
 msgid "Commentaire :"
 msgstr "Comment:"
 
-#: ../../../display/templates/repro/spermeCongelationChange.tpl:228
-msgid "Vitesse de congélation"
-msgstr "Freezing speed"
+#: ../../../display/templates/repro/spermeCongelationChange.tpl:319
+msgid "Nombre de visotubes à générer dans Collec-Science :"
+msgstr "Number of visotubes to be generated in Collec-Science:"
 
-#: ../../../display/templates/repro/spermeCongelationChange.tpl:243
-msgid "Liste des analyses effectuées"
-msgstr "List of analyses performed"
+#: ../../../display/templates/repro/spermeCongelationChange.tpl:328
+msgid "Nombre total de paillettes à générer dans Collec-Science :"
+msgstr "Total number of straws to generate in collec-Science:"
 
-#: ../../../display/templates/repro/spermeCongelationChange.tpl:249
-msgid "Liste des emplacements de congélation"
-msgstr "List of freeze locations"
+#: ../../../display/templates/repro/spermeCongelationChange.tpl:337
+msgid "Nombre de paillettes par visotube :"
+msgstr "Number of straws by visotube:"
+
+#: ../../../display/templates/repro/spermeCongelationChange.tpl:345
+msgid "Premier numéro de numérotation du visotube :"
+msgstr "First visotube number:"
+
+#: ../../../display/templates/repro/spermeCongelationChange.tpl:353
+msgid "Générer les visotubes dans Collec-Science"
+msgstr "Generate visotubes in Collec-Science"
+
+#: ../../../display/templates/repro/spermeCongelationChange.tpl:357
+msgid "Les visotubes vont être créés avec le nom :"
+msgstr "Visotubes will be created with the name:"
+
+#: ../../../display/templates/repro/spermeCongelationChange.tpl:358
+msgid ""
+"X est un compteur généré à partir de la valeur indiquée dans le champ "
+"\"Premier numéro du visotube\""
+msgstr ""
+"X is a counter generated from the value indicated in the \"First visotube "
+"number\" field"
+
+#: ../../../display/templates/repro/spermeCongelationChange.tpl:360
+msgid "Le nombre de paillettes sera ajusté pour le dernier visotube."
+msgstr "The number of straws will be adjusted for the last visotube."
+
+#: ../../../display/templates/repro/spermeCongelationChange.tpl:365
+msgid "Liste des visotubes présents dans Collec-Science"
+msgstr "List of visotubes in Collec-Science"
+
+#: ../../../display/templates/repro/spermeCongelationChange.tpl:371
+#: ../../../display/templates/repro/spermeCongelationListAll.tpl:162
+msgid "UID"
+msgstr "UID"
+
+#: ../../../display/templates/repro/spermeCongelationChange.tpl:372
+#: ../../../display/templates/repro/spermeCongelationListAll.tpl:163
+msgid "Identifiant"
+msgstr "Identifier"
+
+#: ../../../display/templates/repro/spermeCongelationChange.tpl:373
+#: ../../../display/templates/repro/spermeCongelationListAll.tpl:164
+msgid "Nombre de paillettes initial"
+msgstr "Initial number of straws"
+
+#: ../../../display/templates/repro/spermeCongelationChange.tpl:374
+#: ../../../display/templates/repro/spermeCongelationListAll.tpl:165
+msgid "Nombre de paillettes restant"
+msgstr "Number of straws remaining"
+
+#: ../../../display/templates/repro/spermeCongelationChange.tpl:375
+#: ../../../display/templates/repro/spermeCongelationListAll.tpl:166
+msgid "Canister"
+msgstr "Canister 020202-2014-06-04-X"
+
+#: ../../../display/templates/repro/spermeCongelationChange.tpl:408
+msgid "Total :"
+msgstr "Total:"
+
+#: ../../../display/templates/repro/spermeCongelationChange.tpl:418
+msgid "Ancien stockage (obsolète)"
+msgstr "Old storage (legacy)"
 
 #: ../../../display/templates/repro/sequenceList.tpl:13
 msgid ""
@@ -2634,44 +2751,58 @@ msgid ""
 msgstr ""
 "Initialization concerns the basins designated for reproduction, in operation"
 
-#: ../../../display/templates/repro/spermeCongelationListAll.tpl:19
+#: ../../../display/templates/repro/spermeCongelationListAll.tpl:67
 #: ../../../display/templates/repro/croisementListAll.tpl:19
 msgid "Toutes les années"
 msgstr "All years"
 
-#: ../../../display/templates/repro/spermeCongelationListAll.tpl:41
+#: ../../../display/templates/repro/spermeCongelationListAll.tpl:97
+msgid "Liste des visotubes stockés"
+msgstr "List of stored visotubes"
+
+#: ../../../display/templates/repro/spermeCongelationListAll.tpl:108
+#: ../../../display/templates/repro/spermeCongelationList.tpl:10
+#: ../../../display/templates/repro/spermeUtiliseList.tpl:11
+msgid "Date de congélation"
+msgstr "Date of freezing"
+
+#: ../../../display/templates/repro/spermeCongelationListAll.tpl:109
 #: ../../../display/templates/repro/croisementChange.tpl:109
 #: ../../../display/templates/repro/spermeUtiliseList.tpl:9
 #: ../../../display/templates/anomalie/anomalieList.tpl:60
 msgid "Poisson"
 msgstr "Fish"
 
-#: ../../../display/templates/repro/spermeCongelationListAll.tpl:42
+#: ../../../display/templates/repro/spermeCongelationListAll.tpl:110
 msgid "Volume congelé"
 msgstr "Frozen volume"
 
-#: ../../../display/templates/repro/spermeCongelationListAll.tpl:43
+#: ../../../display/templates/repro/spermeCongelationListAll.tpl:111
 msgid "Volume de sperme"
 msgstr "Sperm volume"
 
-#: ../../../display/templates/repro/spermeCongelationListAll.tpl:44
+#: ../../../display/templates/repro/spermeCongelationListAll.tpl:112
 msgid "Nombre de visotubes"
 msgstr "Number of visotubes"
 
-#: ../../../display/templates/repro/spermeCongelationListAll.tpl:45
+#: ../../../display/templates/repro/spermeCongelationListAll.tpl:113
 msgid "Nombre de paillettes"
 msgstr "Number of straws"
 
-#: ../../../display/templates/repro/spermeCongelationListAll.tpl:46
+#: ../../../display/templates/repro/spermeCongelationListAll.tpl:114
 #: ../../../display/templates/repro/spermeCongelationList.tpl:18
 msgid "Volume par paillette"
 msgstr "Volume by straw"
 
-#: ../../../display/templates/repro/spermeCongelationListAll.tpl:47
-msgid "Nombre de paillettes utilisées"
-msgstr "Number of used straws"
+#: ../../../display/templates/repro/spermeCongelationListAll.tpl:115
+msgid "Date de la dernière analyse"
+msgstr "Last analysis date"
 
-#: ../../../display/templates/repro/spermeCongelationListAll.tpl:48
+#: ../../../display/templates/repro/spermeCongelationListAll.tpl:117
+msgid "Qualité estimée"
+msgstr "Estimated quality"
+
+#: ../../../display/templates/repro/spermeCongelationListAll.tpl:118
 #: ../../../display/templates/repro/spermeCongelationList.tpl:19
 msgid "Opérateur"
 msgstr "Operator"
@@ -2853,10 +2984,6 @@ msgstr "Individual weight"
 #: ../../../display/templates/repro/spermeDisplay.tpl:6
 msgid "Détail d'un prélèvement de sperme"
 msgstr "Detail of a sperm sample"
-
-#: ../../../display/templates/repro/spermeDisplay.tpl:46
-msgid "Congélation"
-msgstr "Freezing"
 
 #: ../../../display/templates/repro/injectionChange.tpl:9
 msgid "Modification d'une injection"
@@ -3437,11 +3564,6 @@ msgstr "Dosing"
 msgid "Nouvelle congélation de sperme..."
 msgstr "New sperm freeze..."
 
-#: ../../../display/templates/repro/spermeCongelationList.tpl:10
-#: ../../../display/templates/repro/spermeUtiliseList.tpl:11
-msgid "Date de congélation"
-msgstr "Date of freezing"
-
 #: ../../../display/templates/repro/spermeCongelationList.tpl:11
 msgid "Volume total (ml)"
 msgstr "Total volume (ml)"
@@ -3811,31 +3933,35 @@ msgstr "Date/time of measurement:"
 msgid "Qualité globale :"
 msgstr "Global quality:"
 
-#: ../../../display/templates/repro/spermeMesureChangeCorps.tpl:33
+#: ../../../display/templates/repro/spermeMesureChangeCorps.tpl:32
 msgid "Nbre de paillettes utilisées pour l'analyse :"
 msgstr "Number of straws used for analysis:"
 
-#: ../../../display/templates/repro/spermeMesureChangeCorps.tpl:42
+#: ../../../display/templates/repro/spermeMesureChangeCorps.tpl:40
+msgid "Concentration (en milliard/mL) :"
+msgstr "Concentration (in billion/mL):"
+
+#: ../../../display/templates/repro/spermeMesureChangeCorps.tpl:49
 msgid "Motilité initiale (1 à 5) :"
 msgstr "Initial motility (1-5):"
 
-#: ../../../display/templates/repro/spermeMesureChangeCorps.tpl:51
+#: ../../../display/templates/repro/spermeMesureChangeCorps.tpl:58
 msgid "Taux de survie initial (en %) :"
 msgstr "Initial survival rate (%):"
 
-#: ../../../display/templates/repro/spermeMesureChangeCorps.tpl:59
+#: ../../../display/templates/repro/spermeMesureChangeCorps.tpl:66
 msgid "Motilité à 60\" (1 à 5):"
 msgstr "Motility at 60\" (1-5):"
 
-#: ../../../display/templates/repro/spermeMesureChangeCorps.tpl:67
+#: ../../../display/templates/repro/spermeMesureChangeCorps.tpl:74
 msgid "taux de survie à 60\" (en %) :"
 msgstr "survival rate at 60\" (%):"
 
-#: ../../../display/templates/repro/spermeMesureChangeCorps.tpl:75
+#: ../../../display/templates/repro/spermeMesureChangeCorps.tpl:82
 msgid "Temps de survie à 5% (en secondes) :"
 msgstr "Survival time at 5% (in seconds):"
 
-#: ../../../display/templates/repro/spermeMesureChangeCorps.tpl:83
+#: ../../../display/templates/repro/spermeMesureChangeCorps.tpl:90
 #: ../../../display/templates/bassin/analyseEauChange.tpl:97
 #: ../../../display/templates/bassin/analyseEauDetail.tpl:33
 msgid "pH :"
