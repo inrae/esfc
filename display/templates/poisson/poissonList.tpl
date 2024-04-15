@@ -1,15 +1,62 @@
 <script>
     $(document).ready(function(){ 
+        var columns = ["id","pittag","matricule","prenom","sexe","status","cohort","birth_date","dead_date","basin","weight","fork_length","total_length","cumulative_temperature"];
+        var buttons = [
+				{
+                extend: 'csv',
+                text: 'csv',
+                filename: '{t}poissons{/t}',
+                customize: function (csv) {
+                    var split_csv = csv.split("\n");
+                    //set headers
+                    split_csv[0] = '"id","pittag","matricule","prenom","sexe","status","cohort","birth_date","dead_date","basin","weight","fork_length","total_length","cumulative_temperature"';
+                    csv = split_csv.join("\n");
+                    return csv;
+                }
+            },
+            {
+                extend: 'copy',
+                text: '{t}Copier{/t}',
+                customize: function (csv) {
+                    var split_csv = csv.split("\n");
+                    //set headers
+                    split_csv[3] = 'id\tpittag\tmatricule\tprenom\tsexe\tstatus\tcohort\tbirth_date\tdead_date\tbasin\tweight\tfork_length\ttotal_length\tcumulative_temperature';
+                    split_csv.shift();
+                    split_csv.shift();
+                    split_csv.shift();
+                    csv = split_csv.join("\n");
+                    return csv;
+                }
+            },
+            {
+                extend: 'excelHtml5',
+                text: '{t}Excel{/t}',
+                filename: '{t}poissons{/t}',
+                header: true,
+                title: '',
+                customize: function (xlsx) {
+                    var sheet = xlsx.xl.worksheets['sheet1.xml'];
+                    var columns = ["id","pittag","matricule","prenom","sexe","status","cohort","birth_date","dead_date","basin","weight","fork_length","total_length","cumulative_temperature"];
+                    var line = 2;
+                    columns.forEach(function (item, index) {
+                        var c = String.fromCharCode(65 + index);
+                        $('c[r='+c+line+'] t', sheet).attr( 's', '0' );
+                        $('c[r='+c+line+'] t', sheet).html(item);
+                    });
+                }
+            
+            }
+        ];
         var tableList = $( '#cpoissonList' ).DataTable( {
-					dom: 'Birtp',
+					dom: 'Bfirtp',
 					"language": dataTableLanguage,
 					"paging": false,
 					"searching": true,
 					"stateSave": false,
 					"stateDuration": 60 * 60 * 24 * 30,
-					
+					"buttons": buttons
 				});
-        $( '#cpoissonList thead th' ).each( function () {
+        /*$( '#cpoissonList thead th' ).each( function () {
 				var title = $( this ).text();
 				var size = title.trim().length;
 				if ( size > 0 ) {
@@ -28,7 +75,7 @@
 			} );
 			$( ".searchInput" ).hover( function () {
 				$( this ).focus();
-			} );
+			} );*/
     });
 </script>
 {include file="poisson/poissonSearch.tpl"}
