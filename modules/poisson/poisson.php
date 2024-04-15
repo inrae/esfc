@@ -255,7 +255,20 @@ switch ($t_module["param"]) {
 		/*
 		 * delete record
 		 */
-		dataDelete($dataClass, $id);
+		try {
+			$bdd->beginTransaction();
+			$ret = dataDelete($dataClass, $id, true);
+			if ($ret) {
+				$bdd->commit();
+				$module_coderetour = 1;
+			} else {
+				$bdd->rollback();
+				$message->set($dataClass->getErrorData(1),true);
+			}
+		} catch (Exception $e) {
+			$module_coderetour = -1;
+			$bdd->rollback();
+		}
 		break;
 	case "getListeAjaxJson":
 		/*

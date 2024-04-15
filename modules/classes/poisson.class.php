@@ -322,24 +322,18 @@ class Poisson extends ObjetBDD
         }
         if ($retour == 0) {
             /*
-             * Vérification des événements
+             * Suppression dans les tables liées
+             */
+            /**
+             * Evenements
              */
             if (!isset($this->evenement)) {
                 $this->evenement = $this->classInstanciate("Evenement", "evenement.class.php");
             }
             $listeEvenement = $this->evenement->getEvenementByPoisson($id);
-            if (is_array($listeEvenement) && count($listeEvenement) > 0) {
-                $retour = -1;
-                $this->errorData[] = array(
-                    "code" => 0,
-                    "message" => "Le poisson contient des événements qui doivent être supprimés préalablement"
-                );
+            foreach ($listeEvenement as $event) {
+                $this->evenement->supprimer($event["evenement_id"]);
             }
-        }
-        if ($retour == 0) {
-            /*
-             * Suppression dans les tables liées
-             */
             /*
              * Documents
              */
@@ -361,7 +355,16 @@ class Poisson extends ObjetBDD
             if (!isset($this->pittag)) {
                 $this->pittag = $this->classInstanciate("Pittag", "pittag.class.php");
             }
+            test("pittag");
             $this->pittag->supprimerChamp($id, "poisson_id");
+            /**
+             * Suppression de la parente
+             */
+            if (!isset($this->parent_poisson)) {
+                $this->parent_poisson = $this->classInstanciate("ParentPoisson", "parentPoisson.class.php");
+            }
+            test("parent");
+            $this->parent_poisson->supprimerChamp($id, "poisson_id");
             /*
              * Suppression du poisson
              */
@@ -392,11 +395,13 @@ class Poisson extends ObjetBDD
                 (date_debut, case when date_fin is null then '2050-12-31' else date_fin end)
 				and poisson_id = :poisson_id
 				order by date_debut, date_fin";
-        $bassins = $this->getListeParamAsPrepared($sql, array(
-            "date_debut" => $date_debut,
-            "date_fin" => $date_fin,
-            "poisson_id" => $poisson_id
-        )
+        $bassins = $this->getListeParamAsPrepared(
+            $sql,
+            array(
+                "date_debut" => $date_debut,
+                "date_fin" => $date_fin,
+                "poisson_id" => $poisson_id
+            )
         );
         $temperature = 0;
         foreach ($bassins as $bassin) {
