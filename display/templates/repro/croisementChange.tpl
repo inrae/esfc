@@ -118,7 +118,7 @@
                                 {$poissonSequence[lst].pittag_valeur}</td>
                             <td class="center">{$poissonSequence[lst].sexe_libelle_court}</td>
                             <td class="center">
-                                <input name="poisson_campagne_id[]" type="checkbox"
+                                <input name="poisson_campagne_id[]" type="checkbox" class="form-control"
                                     value="{$poissonSequence[lst].poisson_campagne_id}" {if
                                     $poissonSequence[lst].selected==1}checked{/if}>
                             </td>

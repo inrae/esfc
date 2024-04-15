@@ -12,3 +12,14 @@
  group by p.poisson_id, p.matricule, p.prenom
  )
  ;
+ CREATE OR REPLACE VIEW public.v_vie_modele
+AS SELECT vm.vie_modele_id,
+    vm.annee,
+    vm.couleur,
+    vm.vie_implantation_id,
+    vm.vie_implantation_id2,
+    i.vie_implantation_libelle,
+    i2.vie_implantation_libelle AS vie_implantation_libelle2
+   FROM vie_modele vm
+     JOIN vie_implantation i ON vm.vie_implantation_id = i.vie_implantation_id
+     LEFT OUTER JOIN vie_implantation i2 ON vm.vie_implantation_id2 = i2.vie_implantation_id;
