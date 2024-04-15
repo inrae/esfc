@@ -71,6 +71,7 @@
 	<bassinDelete action="modules/bassin/bassin.php" param="delete" droits="bassinAdmin" retourok="bassinList" retourko="bassinChange"  modulebefore="bassinChange"/>
 	<bassinCalculMasseAjax action="modules/bassin/bassin.php" param="calculMasseAjax"  type="ajax" droits="consult" />
 	<bassinRecapAlim action="modules/bassin/bassin.php" param="recapAlim"  modulebefore="bassinList" type="smarty" droits="consult" />
+	<bassinPoissonTransfert action="modules/bassin/bassin.php" param="bassinPoissonTransfert" modulebefore="bassinDisplay,bassinWrite,bassinPoissonTransfert" droits="bassinGestion" retourok="bassinDisplay" retourko="bassinDisplay"/>
 	
 	<bassinEvenementChange action="modules/bassin/bassinEvenement.php" param="change" droits="bassinGestion" type="smarty" />
 	<bassinEvenementWrite action="modules/bassin/bassinEvenement.php" param="write" droits="bassinGestion" retourok="bassinDisplay" retourko="bassinEvenementChange" modulebefore="bassinEvenementChange" />
