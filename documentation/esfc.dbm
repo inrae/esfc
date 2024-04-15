@@ -4,7 +4,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
  Unexpected results may occur if the code is changed deliberately.
 -->
 <dbmodel pgmodeler-ver="1.1.1" use-changelog="false" max-obj-count="171"
-	 last-position="383,1623" last-zoom="0.65" scene-rect="-20,0,3819.15,4081.52"
+	 last-position="213,1826" last-zoom="0.65" scene-rect="-20,0,3819.15,4081.52"
 	 default-owner="postgres"
 	 layers="Default layer"
 	 active-layers="0"
@@ -3982,11 +3982,17 @@ Le premier chiffre correspond au lundi]]> </comment>
 	<position x="2560" y="3820"/>
 	<simplecol name="poisson_id" type="integer"/>
 	<simplecol name="parents" type="text"/>
-	<definition> <![CDATA[SELECT pp.poisson_id,
-    array_to_string(array_agg(p.prenom ORDER BY p.sexe_id DESC, p.prenom), ' '::text) AS parents
-   FROM (parent_poisson pp
-     JOIN poisson p ON ((pp.parent_id = p.poisson_id)))
-  GROUP BY pp.poisson_id;;]]> </definition>
+	<definition> <![CDATA[select p.poisson_id,
+ array_to_string (array_agg(
+ case when length(ppp.prenom) > 0 then
+ ppp.matricule || ' ('|| ppp.prenom || ')'  else  ppp.matricule end
+ order by ppp.sexe_id desc, ppp.matricule
+ ),', ') as parents
+ from poisson p
+ join parent_poisson pp on (p.poisson_id = pp.poisson_id)
+ join poisson ppp on (pp.parent_id = ppp.poisson_id)
+ where p.poisson_statut_id = 1
+ group by p.poisson_id, p.matricule, p.prenom]]> </definition>
 </view>
 
 <view name="v_prenom_parents_male" layers="0" collapse-mode="1" max-obj-count="0" z-value="0">
