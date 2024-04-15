@@ -19,6 +19,7 @@
 		$('a[data-toggle="tab"]').on('shown.bs.tab', function () {
 			localStorage.setItem(moduleName + "Tab", $(this).attr("id"));
 		});
+		var db = $("#dernier_bassin_connu").val();
 
 		$("#bassin_origine").change(function () {
 			/*
@@ -248,6 +249,9 @@
 					{$bselect = 0}
 					{if $dataTransfert.bassin_origine > 0}
 					{$bselect = $dataTransfert.bassin_origine}
+					{else}
+					{$dataTransfert.bassin_origine = $dataTransfert.dernier_bassin_connu}
+					{$bselect = $dataTransfert.dernier_bassin_connu}
 					{/if}
 					<div class="row">
 						<div class="col-md-6 form-horizontal">
@@ -256,13 +260,15 @@
 									{t}Bassin d'origine :{/t}<span class="red">*</span>
 								</label>
 								<div class="col-md-8">
-									<select class="form-control ok" name="bassin_origine" id="bassin_origine" data-tabicon="oktransfert">
+									<select class="form-control" name="bassin_origine" id="bassin_origine" 
+									{if $bselect > 0}readonly{/if}
+									>
 										<option value="" {if $bselect==0} selected {/if}>
 											{t}Sélectionnez le bassin d'origine...{/t}
 										</option>
 										{section name=lst loop=$bassinList}
-										<option value="{$bassinList[lst].bassin_id}" {if
-											$bassinList[lst].bassin_id==$bselect} selected {/if}>
+										<option value="{$bassinList[lst].bassin_id}" 
+										{if $bassinList[lst].bassin_id==$bselect} selected {/if}>
 											{$bassinList[lst].bassin_nom}
 										</option>
 										{/section}

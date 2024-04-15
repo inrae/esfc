@@ -37,11 +37,10 @@
                 customize: function (xlsx) {
                     var sheet = xlsx.xl.worksheets['sheet1.xml'];
                     var columns = ["id","pittag","matricule","prenom","sexe","status","cohort","birth_date","dead_date","basin","weight","fork_length","total_length","cumulative_temperature"];
-                    var line = 2;
+                    var line = 1;
                     columns.forEach(function (item, index) {
                         var c = String.fromCharCode(65 + index);
-                        $('c[r='+c+line+'] t', sheet).attr( 's', '0' );
-                        $('c[r='+c+line+'] t', sheet).html(item);
+                        $('c[r='+c+line+'] t', sheet).text(item);
                     });
                 }
             
