@@ -1,5 +1,20 @@
 <script>
 	$(document).ready(function () {
+		var myStorage = window.localStorage;
+		try{
+         var asbc = myStorage.getItem("searchByColumn");
+         if (asbc == 1) {
+            $("#activateSearchByColumn").prop("checked", 1);
+         }  
+        }catch (Exception) {}
+        
+        $("#activateSearchByColumn").change(function() {
+            var asbc = 0;
+            if (this.checked) { 
+                asbc = 1;
+            }
+            myStorage.setItem("searchByColumn", asbc);
+        });
 		/*	$("select").change(function () {
 				$("#search").submit();
 			} );
@@ -204,6 +219,10 @@
 				<div class="col-md-1">
 					<input id="dateFinTemp" class="datepicker form-control" name="dateFinTemp"
 						value="{$poissonSearch.dateFinTemp}">
+				</div>
+				<label for="activateSearchByColumn" class="control-label col-sm-3">{t}Activer la recherche par colonne :{/t}</label>
+				<div class="col-sm-1">
+					<input type="checkbox" id="activateSearchByColumn" class="form-control" >
 				</div>
 			</div>
 		</div>

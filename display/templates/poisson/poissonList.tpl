@@ -1,8 +1,17 @@
 <script>
     $(document).ready(function(){ 
+        var searchByColumn = 0;
+        var myStorage = window.localStorage;
+        try {
+		searchByColumn = myStorage.getItem("searchByColumn");
+		if (!searchByColumn) {
+			searchByColumn = 0;
+		}
+        } catch (Exception) { }
         var columns = ["id","pittag","matricule","prenom","sexe","status","cohort","birth_date","dead_date","basin","weight","fork_length","total_length","cumulative_temperature"];
-        var buttons = [
-				{
+
+        var buttons = [];
+        var csv = {
                 extend: 'csv',
                 text: 'csv',
                 filename: '{t}poissons{/t}',
@@ -13,8 +22,8 @@
                     csv = split_csv.join("\n");
                     return csv;
                 }
-            },
-            {
+            };
+           var copy = {
                 extend: 'copy',
                 text: '{t}Copier{/t}',
                 customize: function (csv) {
@@ -27,8 +36,8 @@
                     csv = split_csv.join("\n");
                     return csv;
                 }
-            },
-            {
+            };
+            var excel = {
                 extend: 'excelHtml5',
                 text: '{t}Excel{/t}',
                 filename: '{t}poissons{/t}',
@@ -44,18 +53,30 @@
                     });
                 }
             
-            }
-        ];
+            };
+        if (searchByColumn == 0) {
+            buttons = [csv, copy, excel];
         var tableList = $( '#cpoissonList' ).DataTable( {
-					dom: 'Bfirtp',
-					"language": dataTableLanguage,
-					"paging": false,
-					"searching": true,
-					"stateSave": false,
-					"stateDuration": 60 * 60 * 24 * 30,
-					"buttons": buttons
-				});
-        /*$( '#cpoissonList thead th' ).each( function () {
+                dom: 'Bfirtp',
+                "language": dataTableLanguage,
+                "paging": false,
+                "searching": true,
+                "stateSave": false,
+                "stateDuration": 60 * 60 * 24 * 30,
+                "buttons": buttons
+            });
+        } else {
+            buttons = [csv, copy];
+            var tableList = $( '#cpoissonList' ).DataTable( {
+                dom: 'Birtp',
+                "language": dataTableLanguage,
+                "paging": false,
+                "searching": true,
+                "stateSave": false,
+                "stateDuration": 60 * 60 * 24 * 30,
+                "buttons": buttons
+            });
+            $( '#cpoissonList thead th' ).each( function () {
 				var title = $( this ).text();
 				var size = title.trim().length;
 				if ( size > 0 ) {
@@ -74,7 +95,8 @@
 			} );
 			$( ".searchInput" ).hover( function () {
 				$( this ).focus();
-			} );*/
+			} );
+        }
     });
 </script>
 {include file="poisson/poissonSearch.tpl"}
