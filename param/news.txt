@@ -1,5 +1,19 @@
 Nouveautés
 ==========
+Version 24.2.0 du 17 avril 2024
+-------------------------------
+Corrections de bugs :
+- il n'était plus possible de modifier une requête SQL
+- la suppression des poissons ne fonctionnait pas si les parents étaient renseignés
+- dans les modules dédiés à la reproduction, l'affichage des parents posait problème pour ceux ne disposant pas de prénoms
+- il est maintenant possible de créer des modèles de VIE avec un seul point d'accrochage
+- depuis la liste des poissons, l'export par les boutons (CSV, COPY, EXCEL) ne contenait pas les entêtes de colonnes
+
+Nouveautés :
+- lors de la création d'un transfert vers un bassin, le bassin d'origine est renseigné par défaut
+- depuis le détail d'un bassin, il est maintenant possible de transférer un ou plusieurs poissons vers un autre bassin en une seule opération
+- il est maintenant possible d'exporter la liste des spermes congelés en CSV, COPY ou EXCEL
+
 Version 24.1.0 du 25 mars 2024
 ------------------------------
 Nouveautés concernant la congélation du sperme :

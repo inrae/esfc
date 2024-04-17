@@ -1,5 +1,19 @@
 News
 ==========
+Version 24.2.0 of 17 April 2024
+-------------------------------
+Bug fixes :
+- it was no longer possible to modify an SQL query
+- deleting fish did not work if the parents were entered
+- in modules dedicated to reproduction, displaying parents was problematic for those without first names
+- it is now possible to create VIE models with a single attachment point
+- from the fish list, the export buttons (CSV, COPY, EXCEL) did not contain the column headers
+
+New features:
+- when creating a transfer to a basin, the basin of origin is filled in by default
+- from the details of a basin, it is now possible to transfer one or more fish to another basin in a single operation
+- it is now possible to export the list of frozen sperm as a CSV, COPY or EXCEL file
+
 Version 24.1.0 of 25 March 2024
 ------------------------------
 New information on semen freezing:
@@ -24,7 +38,7 @@ New features:
 Version 23.2.0 of 7 December 2023
 ---------------------------------
 Bug fixes :
-- creating event types for ponds was not successful
+- creating event types for basins was not successful
 - deleting a breeding lot did not work
 
 New features:
@@ -52,7 +66,7 @@ Bug fixes :
 - when creating a new destination for a lot, it is now possible to create a derived lot by indicating the number of fish in the new lot and retaining the breeding information.
 
 New features:
-- in the menu, entries that used to link to the home page now display the corresponding sub-menus
+- in the menu, entries that used to link to the home page now display the corresbasining sub-menus
 - when a new pittag is created, the fish's matricule takes the value of the most recent pittag
 - it is now possible to search for fish by basin
 - in the fish search module, it is now possible to select any label using a column search mechanism
@@ -71,7 +85,7 @@ Version 2.0 of 9 August 2023
 What's new?
 - complete redesign of the interface, using a new version of the execution engine
 - addition, on the home page, of a graph showing changes in mortality by category or cohort
-- addition of a method for calculating the mass of fish present in a pond by sampling
+- addition of a method for calculating the mass of fish present in a basin by sampling
 - addition of a function for importing fish measurements from a CSV file
 - when viewing a fish, a graph is displayed showing its growth rate
 - support for English and American (date formatting)
@@ -93,7 +107,7 @@ Substantial changes to semen management:
 - it is no longer possible to enter samples from a sequence; they must be entered from the detail sheet for a fish in breeding.
 - it is now possible to indicate the preservative used
 - when freezing, it is now possible to indicate several storage locations for straws
-- to monitor the freezing stage, it is now possible to enter temperature readings, and the programme will display the corresponding curve
+- to monitor the freezing stage, it is now possible to enter temperature readings, and the programme will display the corresbasining curve
 - when straws are used (either for spawning or for analysis), the total number of straws used is calculated and updated
 - it is now possible to enter several different measurements, either from frozen straws or from the initial sample.
 
@@ -122,7 +136,7 @@ Version 1.6.8 dated 18 May 2017
 Corrections:
 - when creating an event, a row was systematically created in the ultrasound table
 - when creating an ultrasound/event, the import did not work if 2 photos were uploaded at the same time
-- there was a bug in calculating the mass of fish in a pond
+- there was a bug in calculating the mass of fish in a basin
 - when modifying the activity status of a pool, an error message was displayed
 
 Improvements :
@@ -195,8 +209,8 @@ General changes :
 - when loading a photo, it is now possible to indicate the date it was created
 - events linked to water circuits can be entered
 - you can now search for a fish using its computer number (fish_id)
-- ponds can now be searched by name
-- from the list of tanks, it is now possible to generate a CSV file containing a weekly summary (total quantity of feed distributed, leftovers, corresponding fish mass)
+- basins can now be searched by name
+- from the list of tanks, it is now possible to generate a CSV file containing a weekly summary (total quantity of feed distributed, leftovers, corresbasining fish mass)
 - blood tests can now be entered as part of a general event (fish)
 - information on genetic samples (fin, reference) can now be entered within an event
 - from the list of fish, it is now possible to calculate cumulative daily temperatures over a given period.
@@ -216,7 +230,7 @@ Version 1.5 of 2 February 2016
 ----------------------------
 Bug fixes:
 - The display and management of photos have been corrected. Uploading documents now requires compliance with the rights in force in all cases
-- It was not possible to delete a salinity reading in breeding ponds.
+- It was not possible to delete a salinity reading in breeding basins.
 
 Changes :
 - transfers carried out during the year are now displayed in the details sheet for a breeder
@@ -264,7 +278,7 @@ Improvements :
 Version 1.3.1 of 20 May 2015
 ----------------------------
 Bug fixes:
-- When modifying an event, the original pond is not entered.
+- When modifying an event, the original basin is not entered.
 
 Version 1.3 of 18 May 2015
 --------------------------
@@ -305,10 +319,10 @@ Correction of a bug :
 Version 1.1.2 dated 4 September 2014
 ---------------------------------
 Bug fix:
-- when duplicating distribution sheets, ponds that have become inactive, or whose reared fish type has changed (adult -> juvenile) are excluded from the new sheet.
+- when duplicating distribution sheets, basins that have become inactive, or whose reared fish type has changed (adult -> juvenile) are excluded from the new sheet.
 Minor changes: 
-- the list of fish displayed in the search screen now includes the last known pond and measurements
-- in the display of a pond, the individual and total mass of the fish has been added to the list
+- the list of fish displayed in the search screen now includes the last known basin and measurements
+- in the display of a basin, the individual and total mass of the fish has been added to the list
 
 Version 1.1.1 of 31 July 2014
 --------------------------------
