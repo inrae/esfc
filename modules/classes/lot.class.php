@@ -153,7 +153,7 @@ class Lot extends ObjetBDD
 	 */
 	function getDetail($lot_id)
 	{
-		$where = "where l.lot_id = :lot_id";
+		$where = " where l.lot_id = :lot_id";
 		$data = $this->getDataParam($where, array("lot_id" => $lot_id));
 		if (is_array($data)) {
 			return $data[0];

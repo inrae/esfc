@@ -1,15 +1,87 @@
 <script>
     $(document).ready(function(){ 
+        var searchByColumn = 0;
+        var myStorage = window.localStorage;
+        try {
+		searchByColumn = myStorage.getItem("searchByColumn");
+		if (!searchByColumn) {
+			searchByColumn = 0;
+		}
+        } catch (Exception) { }
+        var columns = ["id","pittag","matricule","prenom","sexe","status","cohort","birth_date","dead_date","basin","weight","fork_length","total_length","cumulative_temperature"];
+        var filename = "{t}poissons{/t}";
+        var header_csv = "";
+        var header_copy = "";
+        columns.forEach((val) => {
+            header_csv += '"'+ val + '",';
+            header_copy += val + "\t";
+        });
+        var buttons = [];
+        var csv = {
+                extend: 'csv',
+                text: 'csv',
+                filename: '{t}poissons{/t}',
+                customize: function (csv) {
+                    var split_csv = csv.split("\n");
+                    //set headers
+                    split_csv[0] = header_csv;
+                    csv = split_csv.join("\n");
+                    return csv;
+                }
+            };
+           var copy = {
+                extend: 'copy',
+                text: '{t}Copier{/t}',
+                customize: function (csv) {
+                    var split_csv = csv.split("\n");
+                    //set headers
+                    split_csv[3] = header_copy;
+                    split_csv.shift();
+                    split_csv.shift();
+                    split_csv.shift();
+                    csv = split_csv.join("\n");
+                    return csv;
+                }
+            };
+            var excel = {
+                extend: 'excelHtml5',
+                text: '{t}Excel{/t}',
+                filename: '{t}poissons{/t}',
+                header: true,
+                title: '',
+                customize: function (xlsx) {
+                    var sheet = xlsx.xl.worksheets['sheet1.xml'];
+                    var line = 1;
+                    columns.forEach(function (item, index) {
+                        var c = String.fromCharCode(65 + index);
+                        $('c[r='+c+line+'] t', sheet).text(item);
+                    });
+                }
+            
+            };
+        if (searchByColumn == 0) {
+            buttons = [csv, copy, excel];
         var tableList = $( '#cpoissonList' ).DataTable( {
-					dom: 'Birtp',
-					"language": dataTableLanguage,
-					"paging": false,
-					"searching": true,
-					"stateSave": false,
-					"stateDuration": 60 * 60 * 24 * 30,
-					
-				});
-        $( '#cpoissonList thead th' ).each( function () {
+                dom: 'Bfirtp',
+                "language": dataTableLanguage,
+                "paging": false,
+                "searching": true,
+                "stateSave": false,
+                "stateDuration": 60 * 60 * 24 * 30,
+                "buttons": buttons
+            });
+        } else {
+            buttons = [csv, copy];
+            var tableList = $( '#cpoissonList' ).DataTable( {
+                dom: 'Birtp',
+                "language": dataTableLanguage,
+                "paging": false,
+                "searching": true,
+                "stateSave": false,
+                "stateDuration": 60 * 60 * 24 * 30,
+                "buttons": buttons
+            });
+            $( '#cpoissonList thead th' ).each( function () {
 				var title = $( this ).text();
 				var size = title.trim().length;
 				if ( size > 0 ) {
@@ -29,6 +101,7 @@
 			$( ".searchInput" ).hover( function () {
 				$( this ).focus();
 			} );
+        }
     });
 </script>
 {include file="poisson/poissonSearch.tpl"}

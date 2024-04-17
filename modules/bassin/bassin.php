@@ -81,6 +81,15 @@ switch ($t_module["param"]) {
 		$vue->set($id, "parent_id");
 		require_once 'modules/document/documentFunctions.php';
 		$vue->set(getListeDocument("bassin", $id, $_REQUEST["document_limit"], $_REQUEST["document_offset"]), "dataDoc");
+		/**
+		 * Ajout des informations pour le transfert des poissons
+		 */
+		include_once "modules/classes/evenementType.class.php";
+		$eventType = new Evenement_type($bdd, $ObjetBDDParam);
+		$vue->set($eventType->getListe("evenement_type_actif desc, evenement_type_libelle"), "evntType");
+		$dataBassin["site_id"] > 0 ? $siteId = $dataBassin["site_id"] : $siteId = 0;
+		$vue->set($dataClass->getListBassin($siteId, 1), "bassinListActif");
+		$vue->set(date($_SESSION["MASKDATE"]), "currentDate");
 		/*
 		 * Affichage
 		 */
@@ -129,5 +138,41 @@ switch ($t_module["param"]) {
 		break;
 	case "recapAlim":
 		$vue->set($dataClass->getRecapAlim($_REQUEST, $_SESSION["searchBassin"]->getParam()));
+		break;
+	case "bassinPoissonTransfert":
+		include_once "modules/classes/evenement.class.php";
+		include_once "modules/classes/transfert.class.php";
+		$event = new Evenement($bdd, $ObjetBDDParam);
+		$transfert = new Transfert($bdd, $ObjetBDDParam);
+		try {
+			$bdd->beginTransaction();
+			$nb = 0;
+			$data = [
+				"evenement_id"=>0,
+				"evenement_type_id"=>$_POST["evenement_type_id"],
+				"evenement_date"=>$_POST["evenement_date"],
+				"commentaire" => $_REQUEST["commentaire"],
+				"bassin_origine" =>$_POST["bassin_origine"],
+				"bassin_destination"=>$_POST["bassin_destination"],
+				"transfert_date"=>$_POST["evenement_date"],
+				"transfert_id"=>0
+			];
+		foreach($_POST["poissons"] as $poisson_id) {
+			$data["poisson_id"] = $poisson_id;
+			$data["evenement_id"] = $event->ecrire($data);
+			$transfert->ecrire($data);
+			$data["evenement_id"] = 0;
+			$nb ++;
+		}
+		$bdd->commit();
+		$message->set(sprintf(_("%s poissons transférés"), $nb));
+		$module_coderetour = 1;
+		} catch (Exception $e) {
+			$bdd->rollback();
+			$message->set("{t}Une erreur est survenue pendant le transfert des poissons", true);
+			$message->set($e->getMessage());
+			$message->setSyslog($e->getMessage());
+			$module_coderetour = -1;
+		}
 		break;
 }

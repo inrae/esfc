@@ -24,7 +24,7 @@ class VieModele extends ObjetBDD
 			),
 			"vie_implantation_id2" => array(
 				"type" => 1,
-				"requis" => 1
+				"requis" => 0
 			),
 			"annee" => array(
 				"type" => 1,
@@ -32,7 +32,7 @@ class VieModele extends ObjetBDD
 			),
 			"couleur" => array(
 				"type" => 0,
-				"requis" => 0
+				"requis" => 1
 			)
 		);
 		parent::__construct($bdd, $param);
@@ -52,7 +52,7 @@ class VieModele extends ObjetBDD
 					v1.vie_implantation_libelle, v2.vie_implantation_libelle as vie_implantation_libelle2
 					from vie_modele vm
 					join vie_implantation v1 on (vm.vie_implantation_id = v1.vie_implantation_id)
-					join vie_implantation v2 on (vm.vie_implantation_id2 = v2.vie_implantation_id)
+					left outer join vie_implantation v2 on (vm.vie_implantation_id2 = v2.vie_implantation_id)
 					where annee = :annee
 					order by vie_modele_id";
 		return $this->getListeParamAsPrepared($sql, array("annee" => $annee));
