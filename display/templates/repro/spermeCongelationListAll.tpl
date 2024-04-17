@@ -21,6 +21,66 @@
         $("#annee").change(function () {
             Cookies.set('annee', $(this).val(), { expires: 180, secure: true });
         });
+        var buttons = [];
+        var header= ["frozen_date","fish","frozen_volume","sperme_volume","number_of_visotubes","number_sperm_straws","volume_by_straw","last_analysis_date","concentration","estimated_quality","operator"];
+        var filename = "{t}spermes_congeles{/t}";
+        var header_csv = "";
+        var header_copy = "";
+        header.forEach((val) => {
+            header_csv += '"'+ val + '",';
+            header_copy += val + "\t";
+        });
+        var csv = {
+                extend: 'csv',
+                text: 'csv',
+                filename: filename,
+                customize: function (csv) {
+                    var split_csv = csv.split("\n");
+                    //set headers
+                    split_csv[0] = header_csv;
+                    csv = split_csv.join("\n");
+                    return csv;
+                }
+            };
+           var copy = {
+                extend: 'copy',
+                text: '{t}Copier{/t}',
+                customize: function (csv) {
+                    var split_csv = csv.split("\n");
+                    //set headers
+                    split_csv[3] = header_copy;
+                    split_csv.shift();
+                    split_csv.shift();
+                    split_csv.shift();
+                    csv = split_csv.join("\n");
+                    return csv;
+                }
+            };
+            var excel = {
+                extend: 'excelHtml5',
+                text: '{t}Excel{/t}',
+                filename: filename,
+                header: true,
+                title: '',
+                customize: function (xlsx) {
+                    var sheet = xlsx.xl.worksheets['sheet1.xml'];
+                    var line = 1;
+                    header.forEach(function (item, index) {
+                        var c = String.fromCharCode(65 + index);
+                        $('c[r='+c+line+'] t', sheet).text(item);
+                    });
+                }
+            };
+        buttons = [csv, copy, excel];
+        var tableList = $( '#listAll' ).DataTable( {
+                dom: 'Bfirtp',
+                "language": dataTableLanguage,
+                "paging": false,
+                "searching": true,
+                "stateSave": false,
+                "stateDuration": 60 * 60 * 24 * 30,
+                "buttons": buttons
+            });
         /*var scrolly = "2000pt";
         var tableList = $('#listAll').DataTable({
             "order": [[0, "desc"], [1, "asc"]],
@@ -102,7 +162,7 @@
             <div class="tab-pane active in" id="nav-congelation" role="tabpanel" aria-labelledby="tab-congelation">
                 <div class="row">
                     <div class="col-lg-12">
-                        <table id="listAll" class="table table-bordered table-hover datatable-searching">
+                        <table id="listAll" class="table table-bordered table-hover">
                             <thead>
                                 <tr>
                                     <th>{t}Date de congélation{/t}</th>

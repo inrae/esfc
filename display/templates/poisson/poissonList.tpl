@@ -9,7 +9,13 @@
 		}
         } catch (Exception) { }
         var columns = ["id","pittag","matricule","prenom","sexe","status","cohort","birth_date","dead_date","basin","weight","fork_length","total_length","cumulative_temperature"];
-
+        var filename = "{t}poissons{/t}";
+        var header_csv = "";
+        var header_copy = "";
+        columns.forEach((val) => {
+            header_csv += '"'+ val + '",';
+            header_copy += val + "\t";
+        });
         var buttons = [];
         var csv = {
                 extend: 'csv',
@@ -18,7 +24,7 @@
                 customize: function (csv) {
                     var split_csv = csv.split("\n");
                     //set headers
-                    split_csv[0] = '"id","pittag","matricule","prenom","sexe","status","cohort","birth_date","dead_date","basin","weight","fork_length","total_length","cumulative_temperature"';
+                    split_csv[0] = header_csv;
                     csv = split_csv.join("\n");
                     return csv;
                 }
@@ -29,7 +35,7 @@
                 customize: function (csv) {
                     var split_csv = csv.split("\n");
                     //set headers
-                    split_csv[3] = 'id\tpittag\tmatricule\tprenom\tsexe\tstatus\tcohort\tbirth_date\tdead_date\tbasin\tweight\tfork_length\ttotal_length\tcumulative_temperature';
+                    split_csv[3] = header_copy;
                     split_csv.shift();
                     split_csv.shift();
                     split_csv.shift();
@@ -45,7 +51,6 @@
                 title: '',
                 customize: function (xlsx) {
                     var sheet = xlsx.xl.worksheets['sheet1.xml'];
-                    var columns = ["id","pittag","matricule","prenom","sexe","status","cohort","birth_date","dead_date","basin","weight","fork_length","total_length","cumulative_temperature"];
                     var line = 1;
                     columns.forEach(function (item, index) {
                         var c = String.fromCharCode(65 + index);
