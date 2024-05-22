@@ -155,7 +155,6 @@ class Poisson extends ObjetBDD
                 $sql .= ",es." . $dataSearch["eventSearch"] . "_date as event_date";
                 $and = " and ";
                 $this->colonnes["event_date"] = array("type" => 2);
-                $order .= ",event_date";
             }
         }
         if (strlen($dataSearch["cohorte"]) > 0) {
@@ -169,7 +168,7 @@ class Poisson extends ObjetBDD
         /**
          * Recherche des temperatures cumulees
          */
-        if ($dataSearch["displayCumulTemp"] == 1) {
+        if ($dataSearch["displayCumulTemp"] == 1 and count($data) < 51) {
             foreach ($data as $key => $value) {
                 $data[$key]["temperature"] = $this->calcul_temperature($value["poisson_id"], $dataSearch["dateDebutTemp"], $dataSearch["dateFinTemp"]);
             }

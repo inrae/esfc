@@ -50,6 +50,10 @@
             <dd>{$dataPoisson.commentaire}</dd>
         </dl>
         {/if}
+        <dl class="dl-horizontal">
+            <dt>{t}Cumul de température sur l'année écoulée :{/t}</dt>
+            <dd>{$cumulTemp}</dd>
+        </dl>
     </div>
     <div class="col-md-6">
         <fieldset>

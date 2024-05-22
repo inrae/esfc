@@ -192,7 +192,7 @@
 			<div class="form-group">
 
 				<label for="displayCumulTemp0" class="control-label col-md-2">
-					{t}Afficher : le cumul des températures (calcul long) ?{/t}
+					{t}Afficher : le cumul des températures (calcul si moins de 50 poissons) ?{/t}
 				</label>
 				<div class="col-md-1">
 					<label class="radio-inline ">

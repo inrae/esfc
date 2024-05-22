@@ -142,10 +142,10 @@
 			"paging": false,
 			"scrollY":scroll,
 			"scrollX":true,
-			fixedHeader: {
+			/*fixedHeader: {
             header: true,
             footer: true
-        }
+        	}*/
 		} );
 		$( '.datatable-searching' ).DataTable( {
 			"language": dataTableLanguage,
@@ -163,10 +163,10 @@
 			"searching": true,
 			"scrollY":scroll,
 			"scrollX":true,
-			fixedHeader: {
+			/*fixedHeader: {
             header: true,
             footer: true
-        }
+        	}*/
 		} );
 		$( '.datatable-nopaging-nosort' ).DataTable( {
 			"language": dataTableLanguage,
@@ -174,10 +174,10 @@
 			"searching": false,
 			"ordering": false,
 			"scrollY":scroll,
-			fixedHeader: {
+			/*fixedHeader: {
             header: true,
             footer: true
-        }
+        	}*/
 		} );
 		$( '.datatable-nosort' ).DataTable( {
 			"language": dataTableLanguage,
@@ -196,10 +196,10 @@
 			"paging": false,
 			"scrollY":scroll,
 			"scrollX":true,
-			fixedHeader: {
+			/*fixedHeader: {
             header: true,
             footer: true
-        },
+        	},*/
 			"searching": true,
 			buttons: [
 				'copyHtml5',

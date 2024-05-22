@@ -166,6 +166,16 @@ switch ($t_module["param"]) {
 		$parente = new Parente($bdd, $ObjetBDDParam);
 		$vue->set($parente->getListByPoisson($id), "dataParente");
 
+		/**
+		 * Calcul du cumul de température sur l'année écoulée
+		 */
+		$dateStart = new DateTime();
+		$dateStart->modify("-1 year");
+		$vue->set(
+			$dataClass->calcul_temperature($id, $dateStart->format($_SESSION["MASKDATE"]), date($_SESSION["MASKDATE"])),
+			"cumulTemp"
+		);
+
 		/*
 		 * Gestion des documents associes
 		 */
@@ -263,7 +273,7 @@ switch ($t_module["param"]) {
 				$module_coderetour = 1;
 			} else {
 				$bdd->rollback();
-				$message->set($dataClass->getErrorData(1),true);
+				$message->set($dataClass->getErrorData(1), true);
 			}
 		} catch (Exception $e) {
 			$module_coderetour = -1;
