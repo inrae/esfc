@@ -147,7 +147,7 @@
                                 <span class="red">*</span>
                             </label>
                             <div class="col-md-8">
-                                <input id="congelation_date" class="form-control datepicker" name="congelation_date"
+                                <input id="congelation_date" class="form-control datetimepicker" name="congelation_date"
                                     value="{$data.congelation_date}" required>
                             </div>
                         </div>
@@ -355,7 +355,7 @@
                         </div>
                         <div class="bg-info">
                             {t}Les visotubes vont être créés avec le nom :{/t}
-                            {$data.matricule}-{$data.sperme_date}-X ({t}X est un compteur généré à partir de la valeur indiquée dans le champ "Premier numéro du visotube"{/t}).
+                            {$data.matricule}-{$data.congelation_date_label}-X ({t}matricule-date congélation-heure congélation-X ,où X est un compteur généré à partir de la valeur indiquée dans le champ "Premier numéro du visotube"{/t}).
                             <br>
                             {t}Le nombre de paillettes sera ajusté pour le dernier visotube.{/t}
                         </div>
@@ -365,7 +365,7 @@
                     <legend>{t}Liste des visotubes présents dans Collec-Science{/t}</legend>
                     {$totalInitial = 0}
                     {$totalRestant = 0}
-                    <table class="datatable table table-bordered table-hover" data-order='[[1,"ASC"]]'>
+                    <table id="visotubesTable" class="table table-bordered table-hover" data-order='[[1,"ASC"]]'>
                         <thead>
                             <tr>
                                 <th>{t}UID{/t}</th>

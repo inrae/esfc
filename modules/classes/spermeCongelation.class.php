@@ -31,7 +31,7 @@ class SpermeCongelation extends ObjetBDD
             ),
 
             "congelation_date" => array(
-                "type" => 2,
+                "type" => 3,
                 "requis" => 1
             ),
             "congelation_volume" => array(
@@ -95,8 +95,10 @@ class SpermeCongelation extends ObjetBDD
     function lire($id, bool $getDefault = true, int $parentValue = 0): array
     {
         if ($id > 0) {
-            $sql = "select sc.*, poisson_campagne_id, matricule,
-            sequence_id, sperme_date::date
+            $sql = "select sc.*, 
+                to_char(congelation_date, 'YYYYMMDD-HH24MI') as congelation_date_label,
+                poisson_campagne_id, matricule,
+                sequence_id, sperme_date::date
                 from sperme_congelation sc
                 join sperme using (sperme_id)
                 join poisson_campagne using (poisson_campagne_id)

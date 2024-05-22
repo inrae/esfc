@@ -38,6 +38,9 @@ switch ($t_module["param"]) {
         }
         $url = $_SESSION["CSAddress"] . "/" . $_SESSION["CSApiConsultUrl"];
         try {
+            /**
+             * @var String
+             */
             $result_json = apiCall("POST", $url, $_SESSION["CSCertificatePath"], $search, $_SESSION["CSDebugMode"]);
             $result = json_decode($result_json, true);
             $vue->set($result, "visotubes");
@@ -116,10 +119,13 @@ switch ($t_module["param"]) {
             "token" => $_SESSION["CSToken"],
             "collection_id" => $_SESSION["CSCollectionId"],
             /*"sample_type_id" => $_SESSION["CSSampleTypeName"],*/
-            "name" => $data["matricule"] . "-" . $data["sperme_date"]
+            "name" => $data["matricule"] . "-" . $data["congelation_date_label"]
         );
         $url = $_SESSION["CSAddress"] . "/" . $_SESSION["CSApiConsultUrl"];
         try {
+            /**
+             * @var String
+             */
             $result_json = apiCall("POST", $url, $_SESSION["CSCertificatePath"], $search, $_SESSION["CSDebugMode"]);
             $result = json_decode($result_json, true);
             $vue->set($result, "visotubes");
@@ -146,7 +152,7 @@ switch ($t_module["param"]) {
     case "generateVisotube":
         $data = $dataClass->lire($id, $_POST["sperme_id"]);
         $nbPaillettesStockees = 0;
-        $visotubeRadical = $data["matricule"] . "-" . $data["sperme_date"] . "-";
+        $visotubeRadical = $data["matricule"] . "-" . $data["congelation_date_label"] . "-";
         $visotubeNumber = 0;
         $visotube = array(
             "login" => $_SESSION["CSLogin"],
@@ -168,6 +174,9 @@ switch ($t_module["param"]) {
                     }
                     $visotube["multiple_value"] = $nbPaillettes;
                     $nbPaillettesStockees += $nbPaillettes;
+                    /**
+                     * @var String
+                     */
                     $result_json = apiCall("POST", $url, $_SESSION["CSCertificatePath"], $visotube, $_SESSION["CSDebugMode"]);
                     $result = json_decode($result_json, true);
                     if ($result["error_code"] != 200) {

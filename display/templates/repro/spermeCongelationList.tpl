@@ -23,7 +23,7 @@
     <tbody>
         {section name=lst loop=$congelation}
         <tr>
-            <td>
+            <td class="nowrap">
                 {if $droits["reproGestion"] == 1}
                 <a
                     href="index.php?module=spermeCongelationChange&sperme_congelation_id={$congelation[lst].sperme_congelation_id}&poisson_campagne_id={$dataPoisson.poisson_campagne_id}&sperme_id={$congelation[lst].sperme_id}">

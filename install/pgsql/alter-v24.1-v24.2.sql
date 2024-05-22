@@ -23,3 +23,4 @@ AS SELECT vm.vie_modele_id,
    FROM vie_modele vm
      JOIN vie_implantation i ON vm.vie_implantation_id = i.vie_implantation_id
      LEFT OUTER JOIN vie_implantation i2 ON vm.vie_implantation_id2 = i2.vie_implantation_id;
+insert into dbversion(dbversion_number, dbversion_date) values ('24.2', '2024-04-17');
