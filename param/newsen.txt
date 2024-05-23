@@ -1,5 +1,11 @@
 News
 ==========
+Version 24.2.1 of 22 May 2024
+-----------------------------
+Bug fixes:
+- the generation of visotubes of frozen sperm in Collec-Science did not take into account the possibility of several freezings in the same day for the same fish
+- the cumulative temperature calculation crashed the server if too many fish were selected. The calculation is now only available for less than 50 fish, but the annual total can be consulted in the fish details.
+
 Version 24.2.0 of 17 April 2024
 -------------------------------
 Bug fixes :

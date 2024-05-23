@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ESFC\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-04-17 10:11+0200\n"
+"POT-Creation-Date: 2024-05-23 08:36+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -232,7 +232,7 @@ msgstr "List of crossbreds performed"
 
 #. (itstool) path: item/item@label
 #: ../../../param/menu.xml:39
-#: ../../../display/templates/repro/spermeCongelationListAll.tpl:150
+#: ../../../display/templates/repro/spermeCongelationListAll.tpl:120
 msgid "Liste des spermes congelés"
 msgstr "List of frozen sperms"
 
@@ -816,8 +816,8 @@ msgid "Labels in English/US"
 msgstr "Labels in English/US"
 
 #: ../../../param/param.default.inc.php:12
-msgid "17/04/2024"
-msgstr "04/17/2024"
+msgid "22/05/2024"
+msgstr "2024-05-22"
 
 #: ../../../framework/ldap/ldap.class.php:74
 msgid "Impossible de se connecter au serveur LDAP"
@@ -1418,7 +1418,7 @@ msgid ""
 "sperme n'est pas possible"
 msgstr ""
 "The fish is not attached to any sequence, so it is not possible to enter a "
-"sperm sample."
+"sperm sample"
 
 #: ../../../modules/repro/lotAlim.php:61
 #, php-format
@@ -1436,8 +1436,8 @@ msgstr "Some batches are not assigned to specific basins"
 msgid "La génération de la fiche d'alimentation a échoué"
 msgstr "Generation of the food sheet failed"
 
-#: ../../../modules/repro/spermeCongelation.php:45
-#: ../../../modules/repro/spermeCongelation.php:127
+#: ../../../modules/repro/spermeCongelation.php:48
+#: ../../../modules/repro/spermeCongelation.php:133
 msgid ""
 "La récupération des informations en provenance de Collec-Science a échoué. "
 "Si le problème persiste, contactez l'administrateur de l'application"
@@ -1445,11 +1445,11 @@ msgstr ""
 "Recovery of information from Collec-Science has failed. If the problem "
 "persists, contact the application administrator"
 
-#: ../../../modules/repro/spermeCongelation.php:174
+#: ../../../modules/repro/spermeCongelation.php:183
 msgid "La création du visotube a échoué"
 msgstr "Creation of the visotube has failed"
 
-#: ../../../modules/repro/spermeCongelation.php:180
+#: ../../../modules/repro/spermeCongelation.php:189
 msgid ""
 "Le nombre de paillettes à stocker n'est pas suffisant pour remplir tous les "
 "visotubes demandés"
@@ -1457,11 +1457,11 @@ msgstr ""
 "The number of straws to be stored is not sufficient to fill all the "
 "visotubes required"
 
-#: ../../../modules/repro/spermeCongelation.php:189
+#: ../../../modules/repro/spermeCongelation.php:198
 msgid "Tous les visotubes demandés n'ont pas pu être créés"
 msgstr "Not all the visotubes requested could be created"
 
-#: ../../../modules/repro/spermeCongelation.php:191
+#: ../../../modules/repro/spermeCongelation.php:200
 #, php-format
 msgid "%s visotubes créés"
 msgstr "%s visotubes created"
@@ -1508,7 +1508,7 @@ msgstr "%s status changed"
 msgid "Bienvenue"
 msgstr "Welcome"
 
-#: ../../../modules/poisson/poisson.php:289
+#: ../../../modules/poisson/poisson.php:299
 #: ../../../modules/poisson/evenement.php:417
 #, php-format
 msgid "Aucun poisson ne correspond au pittag %s"
@@ -1822,7 +1822,7 @@ msgid "Qualité"
 msgstr "Quality"
 
 #: ../../../display/templates/repro/spermeMesureList.tpl:12
-#: ../../../display/templates/repro/spermeCongelationListAll.tpl:176
+#: ../../../display/templates/repro/spermeCongelationListAll.tpl:146
 msgid "Concentration (milliard/mL)"
 msgstr "Concentration (billion/mL)"
 
@@ -1949,7 +1949,7 @@ msgstr "Daily food"
 #: ../../../display/templates/repro/lotSearch.tpl:21
 #: ../../../display/templates/repro/sequenceList.tpl:42
 #: ../../../display/templates/repro/sequenceList.tpl:114
-#: ../../../display/templates/repro/spermeCongelationListAll.tpl:122
+#: ../../../display/templates/repro/spermeCongelationListAll.tpl:92
 #: ../../../display/templates/repro/sequenceChange.tpl:16
 #: ../../../display/templates/repro/poissonCampagneChange.tpl:39
 #: ../../../display/templates/repro/vieModeleList.tpl:8
@@ -1961,7 +1961,7 @@ msgstr "Year:"
 #: ../../../display/templates/repro/devenirCampagneList.tpl:19
 #: ../../../display/templates/repro/lotSearch.tpl:34
 #: ../../../display/templates/repro/sequenceList.tpl:54
-#: ../../../display/templates/repro/spermeCongelationListAll.tpl:137
+#: ../../../display/templates/repro/spermeCongelationListAll.tpl:107
 #: ../../../display/templates/repro/vieModeleList.tpl:20
 #: ../../../display/templates/repro/croisementListAll.tpl:29
 #: ../../../display/templates/repro/poissonCampagneList.tpl:118
@@ -2676,11 +2676,11 @@ msgstr "Visotubes will be created with the name:"
 
 #: ../../../display/templates/repro/spermeCongelationChange.tpl:358
 msgid ""
-"X est un compteur généré à partir de la valeur indiquée dans le champ "
-"\"Premier numéro du visotube\""
+"matricule-date congélation-heure congélation-X ,où X est un compteur généré "
+"à partir de la valeur indiquée dans le champ \"Premier numéro du visotube\""
 msgstr ""
-"X is a counter generated from the value indicated in the \"First visotube "
-"number\" field"
+"serial number-date-time-X, where X is a counter generated from the value "
+"indicated in the \"First visotube number\" field"
 
 #: ../../../display/templates/repro/spermeCongelationChange.tpl:360
 msgid "Le nombre de paillettes sera ajusté pour le dernier visotube."
@@ -2691,27 +2691,27 @@ msgid "Liste des visotubes présents dans Collec-Science"
 msgstr "List of visotubes in Collec-Science"
 
 #: ../../../display/templates/repro/spermeCongelationChange.tpl:371
-#: ../../../display/templates/repro/spermeCongelationListAll.tpl:222
+#: ../../../display/templates/repro/spermeCongelationListAll.tpl:192
 msgid "UID"
 msgstr "UID"
 
 #: ../../../display/templates/repro/spermeCongelationChange.tpl:372
-#: ../../../display/templates/repro/spermeCongelationListAll.tpl:223
+#: ../../../display/templates/repro/spermeCongelationListAll.tpl:193
 msgid "Identifiant"
 msgstr "Identifier"
 
 #: ../../../display/templates/repro/spermeCongelationChange.tpl:373
-#: ../../../display/templates/repro/spermeCongelationListAll.tpl:224
+#: ../../../display/templates/repro/spermeCongelationListAll.tpl:194
 msgid "Nombre de paillettes initial"
 msgstr "Initial number of straws"
 
 #: ../../../display/templates/repro/spermeCongelationChange.tpl:374
-#: ../../../display/templates/repro/spermeCongelationListAll.tpl:225
+#: ../../../display/templates/repro/spermeCongelationListAll.tpl:195
 msgid "Nombre de paillettes restant"
 msgstr "Number of straws remaining"
 
 #: ../../../display/templates/repro/spermeCongelationChange.tpl:375
-#: ../../../display/templates/repro/spermeCongelationListAll.tpl:226
+#: ../../../display/templates/repro/spermeCongelationListAll.tpl:196
 msgid "Canister"
 msgstr "Canister 020202-2014-06-04-X"
 
@@ -2782,58 +2782,58 @@ msgstr "Copy"
 msgid "Excel"
 msgstr "Excel"
 
-#: ../../../display/templates/repro/spermeCongelationListAll.tpl:127
+#: ../../../display/templates/repro/spermeCongelationListAll.tpl:97
 #: ../../../display/templates/repro/croisementListAll.tpl:19
 msgid "Toutes les années"
 msgstr "All years"
 
-#: ../../../display/templates/repro/spermeCongelationListAll.tpl:157
+#: ../../../display/templates/repro/spermeCongelationListAll.tpl:127
 msgid "Liste des visotubes stockés"
 msgstr "List of stored visotubes"
 
-#: ../../../display/templates/repro/spermeCongelationListAll.tpl:168
+#: ../../../display/templates/repro/spermeCongelationListAll.tpl:138
 #: ../../../display/templates/repro/spermeCongelationList.tpl:10
 #: ../../../display/templates/repro/spermeUtiliseList.tpl:11
 msgid "Date de congélation"
 msgstr "Date of freezing"
 
-#: ../../../display/templates/repro/spermeCongelationListAll.tpl:169
+#: ../../../display/templates/repro/spermeCongelationListAll.tpl:139
 #: ../../../display/templates/repro/croisementChange.tpl:109
 #: ../../../display/templates/repro/spermeUtiliseList.tpl:9
 #: ../../../display/templates/anomalie/anomalieList.tpl:60
 msgid "Poisson"
 msgstr "Fish"
 
-#: ../../../display/templates/repro/spermeCongelationListAll.tpl:170
+#: ../../../display/templates/repro/spermeCongelationListAll.tpl:140
 msgid "Volume congelé"
 msgstr "Frozen volume"
 
-#: ../../../display/templates/repro/spermeCongelationListAll.tpl:171
+#: ../../../display/templates/repro/spermeCongelationListAll.tpl:141
 msgid "Volume de sperme"
 msgstr "Sperm volume"
 
-#: ../../../display/templates/repro/spermeCongelationListAll.tpl:172
+#: ../../../display/templates/repro/spermeCongelationListAll.tpl:142
 msgid "Nombre de visotubes"
 msgstr "Number of visotubes"
 
-#: ../../../display/templates/repro/spermeCongelationListAll.tpl:173
+#: ../../../display/templates/repro/spermeCongelationListAll.tpl:143
 msgid "Nombre de paillettes"
 msgstr "Number of straws"
 
-#: ../../../display/templates/repro/spermeCongelationListAll.tpl:174
+#: ../../../display/templates/repro/spermeCongelationListAll.tpl:144
 #: ../../../display/templates/repro/spermeCongelationList.tpl:18
 msgid "Volume par paillette"
 msgstr "Volume by straw"
 
-#: ../../../display/templates/repro/spermeCongelationListAll.tpl:175
+#: ../../../display/templates/repro/spermeCongelationListAll.tpl:145
 msgid "Date de la dernière analyse"
 msgstr "Last analysis date"
 
-#: ../../../display/templates/repro/spermeCongelationListAll.tpl:177
+#: ../../../display/templates/repro/spermeCongelationListAll.tpl:147
 msgid "Qualité estimée"
 msgstr "Estimated quality"
 
-#: ../../../display/templates/repro/spermeCongelationListAll.tpl:178
+#: ../../../display/templates/repro/spermeCongelationListAll.tpl:148
 #: ../../../display/templates/repro/spermeCongelationList.tpl:19
 msgid "Opérateur"
 msgstr "Operator"
@@ -2993,7 +2993,7 @@ msgid "Nbre de jours"
 msgstr "Number of days"
 
 #: ../../../display/templates/repro/lotMesureList.tpl:11
-#: ../../../display/templates/poisson/poissonDetail.tpl:96
+#: ../../../display/templates/poisson/poissonDetail.tpl:100
 #: ../../../display/templates/poisson/evenementChange.tpl:825
 msgid "Mortalité"
 msgstr "Mortality"
@@ -4737,23 +4737,27 @@ msgstr "caught on"
 msgid "né le"
 msgstr "born on"
 
-#: ../../../display/templates/poisson/poissonDetail.tpl:56
+#: ../../../display/templates/poisson/poissonDetail.tpl:54
+msgid "Cumul de température sur l'année écoulée :"
+msgstr "Cumulative temperature over the past year:"
+
+#: ../../../display/templates/poisson/poissonDetail.tpl:60
 msgid "Liste des parents"
 msgstr "List of parents"
 
-#: ../../../display/templates/poisson/poissonDetail.tpl:61
+#: ../../../display/templates/poisson/poissonDetail.tpl:65
 msgid "Nouveau parent..."
 msgstr "New parent..."
 
-#: ../../../display/templates/poisson/poissonDetail.tpl:72
+#: ../../../display/templates/poisson/poissonDetail.tpl:76
 msgid "Liste des (pit)tags attribués"
 msgstr "List of attributed pittags"
 
-#: ../../../display/templates/poisson/poissonDetail.tpl:77
+#: ../../../display/templates/poisson/poissonDetail.tpl:81
 msgid "Nouveau pittag ou étiquette..."
 msgstr "New pittag or label..."
 
-#: ../../../display/templates/poisson/poissonDetail.tpl:87
+#: ../../../display/templates/poisson/poissonDetail.tpl:91
 #: ../../../display/templates/poisson/evenementChange.tpl:783
 msgid "Sortie du stock"
 msgstr "Out of stock"
@@ -5328,8 +5332,8 @@ msgid "Recherche par bassin :"
 msgstr "Search by basin:"
 
 #: ../../../display/templates/poisson/poissonSearch.tpl:195
-msgid "Afficher : le cumul des températures (calcul long) ?"
-msgstr "Display: cumulative temperatures (long calculation)?"
+msgid "Afficher : le cumul des températures (calcul si moins de 50 poissons) ?"
+msgstr "Display: cumulative temperatures (calculated if less than 50 fishes)?"
 
 #: ../../../display/templates/poisson/poissonSearch.tpl:210
 #: ../../../display/templates/bassin/bassinList.tpl:11
@@ -5517,7 +5521,7 @@ msgid ""
 "d'appariement est proposé pendant l'importation"
 msgstr ""
 "The names of the columns in the file may be different, and a matching "
-"mechanism is proposed during import."
+"mechanism is proposed during import"
 
 #: ../../../display/templates/poisson/sortieList.tpl:8
 msgid "Sevrage/Commentaire"
@@ -7238,11 +7242,11 @@ msgstr "Last release"
 
 #: ../../../display/templates/framework/utils/lastRelease.tpl:20
 msgid "Version actuelle : "
-msgstr "Current version:"
+msgstr "Current version: "
 
 #: ../../../display/templates/framework/utils/lastRelease.tpl:21
 msgid "Dernière version publiée : "
-msgstr "Last release published:"
+msgstr "Last release published: "
 
 #: ../../../display/templates/framework/utils/lastRelease.tpl:23
 msgid ""

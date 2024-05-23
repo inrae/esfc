@@ -1,5 +1,11 @@
 Nouveautés
 ==========
+Version 24.2.1 du 22 mai 2024
+-----------------------------
+Corrections de bugs :
+- la génération des visotubes de sperme congelé dans Collec-Science ne prenait pas en compte la possibilité de plusieurs congélations dans la même journée pour le même poisson
+- le calcu du cumul des températures plantait le serveur si trop de poissons étaient sélectionnés. Le calcul n'est maintenant disponible que pour moins de 50 poissons, mais le cumul annuel est consultable dans le détail du poisson
+
 Version 24.2.0 du 17 avril 2024
 -------------------------------
 Corrections de bugs :

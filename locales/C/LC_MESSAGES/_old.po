@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ESFC\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-04-17 10:00+0200\n"
+"POT-Creation-Date: 2024-04-17 10:11+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -816,8 +816,8 @@ msgid "Labels in English/US"
 msgstr "Labels in English/US"
 
 #: ../../../param/param.default.inc.php:12
-msgid "13/02/2024"
-msgstr "13/02/2024"
+msgid "17/04/2024"
+msgstr "17/04/2024"
 
 #: ../../../framework/ldap/ldap.class.php:74
 msgid "Impossible de se connecter au serveur LDAP"
@@ -4109,6 +4109,14 @@ msgstr "Activate dual authentification"
 msgid "Mot de passe"
 msgstr "Password"
 
+#: ../../../display/templates/about_en.tpl:1
+msgid "À propos de ESFC"
+msgstr "About ESFC"
+
+#: ../../../display/templates/about_en.tpl:3
+msgid "Version %1 du %2."
+msgstr "Version %1 of %2."
+
 #: ../../../display/templates/parametre/spermeConservateurChange.tpl:1
 msgid "Modification d'un conservateur de sperme"
 msgstr "Edit sperm preservative"
@@ -7253,14 +7261,6 @@ msgstr "Contents"
 #: ../../../display/templates/documentation/quoideneuf.tpl:1
 msgid "Les nouveautés..."
 msgstr "News..."
-
-#: ../../../display/templates/about.tpl:1
-msgid "À propos de ESFC"
-msgstr "About ESFC"
-
-#: ../../../display/templates/about.tpl:3
-msgid "Version %1 du %2."
-msgstr "Version %1 of %2."
 
 #: ../../../display/templates/main.tpl:29
 msgid "Affichage par catégorie"
