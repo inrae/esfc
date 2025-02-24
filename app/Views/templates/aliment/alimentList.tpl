@@ -1,12 +1,12 @@
 <h2>{t}Aliments distribués{/t}</h2>
-    {if $droits["bassinAdmin"] == 1}
-    <a href="index.php?module=alimentChange&aliment_id=0">
+    {if $rights["bassinAdmin"] == 1}
+    <a href="alimentChange?aliment_id=0">
         Nouveau...
     </a>
     {/if}
     <div class="row">
         <div class="col-md-6">
-            <table class="table table-bordered table-hover datatable" id="calimentList">
+            <table class="table table-bordered table-hover datatable display" id="calimentList">
                 <thead>
                     <tr>
                         <th>{t}libellé{/t}
@@ -23,8 +23,8 @@
                     {section name=lst loop=$data}
                     <tr>
                         <td>
-                            {if $droits["bassinAdmin"] == 1}
-                            <a href="index.php?module=alimentChange&aliment_id={$data[lst].aliment_id}">
+                            {if $rights["bassinAdmin"] == 1}
+                            <a href="alimentChange?aliment_id={$data[lst].aliment_id}">
                                 {$data[lst].aliment_libelle}
                             </a>
                             {else}

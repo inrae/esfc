@@ -43,20 +43,19 @@
 		<h2>{t}Détail du poisson{/t} {$dataPoisson.matricule} {$dataPoisson.prenom} {$dataPoisson.pittag_valeur}
 			{$dataPoisson.categorie_libelle} {$dataPoisson.sexe_libelle}
 			{$dataPoisson.poisson_statut_libelle} (id:{$dataPoisson.poisson_id})</h2>
-		<a href="index.php?module={$poissonDetailParent}">
+		<a href="{$poissonDetailParent}">
 			<img src="display/images/list.png" height="25">
 			{t}Retour à la liste des poissons{/t}
 		</a>
-		{if $droits.poissonGestion == 1}
-		<a href="index.php?module=evenementChange&poisson_id={$dataPoisson.poisson_id}&evenement_id=0">
+		{if $rights.poissonGestion == 1}
+		<a href="evenementChange?poisson_id={$dataPoisson.poisson_id}&evenement_id=0">
 			<img src="display/images/event.png" height="25">
 			{t}Nouvel événement...{/t}
 		</a>
 		{/if}
 	</div>
 	<div class="col-md-4 form-horizontal">
-		<form id="poissonNew" method="post" action="index.php">
-			<input type="hidden" name="module" value="poissonGetFromTag">
+		<form id="poissonNew" method="post" action="poissonGetFromTag">
 			<input type="hidden" name="poisson_id" value="{$dataPoisson.poisson_id}">
 			<div class="form-group">
 				<label for="newtag" class="control-label col-md-4">
@@ -69,7 +68,7 @@
 					<button type="submit" class="btn btn-primary" id="newtagButton" disabled>{t}Rechercher{/t}</button>
 				</div>
 			</div>
-		</form>
+		{$csrf}</form>
 	</div>
 </div>
 
@@ -153,8 +152,8 @@
 	<div class="tab-content" id="nav-tabContent">
 		<div class="tab-pane active in" id="nav-detail" role="tabpanel" aria-labelledby="tab-detail">
 			<div class="row">
-				{if $droits["poissonGestion"]==1}
-				<a href="index.php?module=poissonChange&poisson_id={$dataPoisson.poisson_id}">
+				{if $rights["poissonGestion"]==1}
+				<a href="poissonChange?poisson_id={$dataPoisson.poisson_id}">
 					{t}Modifier les informations...{/t}
 				</a>
 				{/if}
@@ -162,9 +161,9 @@
 			{include file="poisson/poissonDetail.tpl"}
 		</div>
 		<div class="tab-pane fade" id="nav-event" role="tabpanel" aria-labelledby="tab-event">
-			{if $droits["poissonGestion"]==1}
+			{if $rights["poissonGestion"]==1}
 			<div class="row">
-				<a href="index.php?module=evenementChange&poisson_id={$dataPoisson.poisson_id}&evenement_id=0">
+				<a href="evenementChange?poisson_id={$dataPoisson.poisson_id}&evenement_id=0">
 					Nouvel événement...
 				</a>
 			</div>
@@ -191,9 +190,9 @@
 				<div class="col-md-6">
 					<fieldset>
 						<legend>{t}Campagnes de reproduction{/t}</legend>
-						{if $droits.reproGestion == 1}
+						{if $rights.reproGestion == 1}
 						<a
-							href="index.php?module=poissonCampagneChange&poisson_id={$dataPoisson.poisson_id}&poisson_campagne_id=0">
+							href="poissonCampagneChange?poisson_id={$dataPoisson.poisson_id}&poisson_campagne_id=0">
 							{t}Pré-sélectionner le poisson pour une campagne de reproduction{/t}
 						</a>
 						{/if}
@@ -268,9 +267,9 @@
 		</div>
 		<div class="tab-pane fade" id="nav-anomalie" role="tabpanel" aria-labelledby="tab-anomalie">
 			<div class="col-md-6">
-				{if $droits["poissonGestion"] == 1}
+				{if $rights["poissonGestion"] == 1}
 				<a
-					href="index.php?module=anomalieChange&poisson_id={$dataPoisson.poisson_id}&anomalie_db_id=0&module_origine=poissonDisplay">
+					href="anomalieChange?poisson_id={$dataPoisson.poisson_id}&anomalie_db_id=0&module_origine=poissonDisplay">
 					{t}Créer une anomalie manuellement{/t}
 				</a>
 				{/if}

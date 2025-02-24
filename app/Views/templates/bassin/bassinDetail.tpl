@@ -36,7 +36,7 @@
             <dt><label>{t}Circuit d'eau :{/t}</label></dt>
             <dd>
                 <a style="display:inline;"
-                    href="index.php?module=circuitEauDisplay&circuit_eau_id={$dataBassin.circuit_eau_id}">
+                    href="circuitEauDisplay?circuit_eau_id={$dataBassin.circuit_eau_id}">
                     {$dataBassin.circuit_eau_libelle}
                 </a>
             </dd>

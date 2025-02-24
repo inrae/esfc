@@ -19,8 +19,7 @@
 
 <h2>{t}Séquences de reproduction{/t}</h2>
 
-<form method="get" action="index.php" id="search">
-	<input type="hidden" name="module" value="sequenceList">
+<form method="get" action="sequenceList" id="search">
 	<input type="hidden" name="isSearch" value="1">
 	<div class="row">
 		<div class="col-md-8 col-lg-6 form-horizontal">
@@ -56,16 +55,16 @@
 			</div>
 		</div>
 	</div>
-</form>
+{$csrf}</form>
 
 <div class="row">
 	<div class="col-md-6">
 		<fieldset>
 			<legend>{t}Séquences{/t}</legend>
-			<a href="index.php?module=sequenceChange&sequence_id=0">
+			<a href="sequenceChange?sequence_id=0">
 				{t}Nouvelle séquence pour l'année{/t}
 			</a>
-			<table class="table table-bordered table-hover datatable-nopaging-nosearching" id="csequenceList">
+			<table class="table table-bordered table-hover datatable-nopaging-nosearching display" id="csequenceList">
 				<thead>
 					<tr>
 						<th>{t}Site{/t}</th>
@@ -78,7 +77,7 @@
 					<tr>
 						<td>{$data[lst].site_name}</td>
 						<td>
-							<a href="index.php?module=sequenceDisplay&sequence_id={$data[lst].sequence_id}">
+							<a href="sequenceDisplay?sequence_id={$data[lst].sequence_id}">
 								{$data[lst].sequence_nom}
 							</a>
 						</td>
@@ -92,8 +91,8 @@
 	<div class="col-md-6">
 		<fieldset>
 			<legend>{t}Bassins{/t}</legend>
-			{if $droits.reproGestion == 1}
-			<form id="initForm" method="post" action="index.php?module=bassinCampagneInit">
+			{if $rights.reproGestion == 1}
+			<form id="initForm" method="post" action="bassinCampagneInit">
 				<div class="row">
 					<div class="col-md-12 form-horizontal">
 						<div class="form-group">
@@ -136,7 +135,7 @@
 						</div>
 					</div>
 				</div>
-			</form>
+			{$csrf}</form>
 			{/if}
 			<div class="row">
 				{include file="repro/bassinCampagneList.tpl"}

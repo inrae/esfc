@@ -5,11 +5,11 @@
 		$(".duration").inputmask("99:99");
 	});
 </script>
-<a href="index.php?module={$poissonDetailParent}&sequence_id={$sequence_id}">
+<a href="{$poissonDetailParent}&sequence_id={$sequence_id}">
 	<img src="display/images/display.png" height="25">
 	{t}Retour à la liste des poissons{/t}
 </a>&nbsp;
-<a href="index.php?module=poissonCampagneDisplay&poisson_campagne_id={$data.poisson_campagne_id}">
+<a href="poissonCampagneDisplay?poisson_campagne_id={$data.poisson_campagne_id}">
 	<img src="display/images/fish.svg" height="25">
 	{t}Retour au reproducteur{/t}
 </a>
@@ -21,8 +21,7 @@
 
 <div class="row">
 	<div class="col-md-6">
-		<form class="form-horizontal" id="biopsieForm" method="post" action="index.php" enctype="multipart/form-data">
-			<input type="hidden" name="action" value="Write">
+		<form class="form-horizontal" id="biopsieForm" method="post" action="biopsieWrite" enctype="multipart/form-data">			
 			<input type="hidden" name="moduleBase" value="biopsie">
 			<input type="hidden" name="biopsie_id" value="{$data.biopsie_id}">
 			<input type="hidden" name="poisson_campagne_id" value="{$data.poisson_campagne_id}">
@@ -184,11 +183,11 @@
 
 			<div class="form-group center">
 				<button type="submit" class="btn btn-primary button-valid">{t}Valider{/t}</button>
-				{if $data.biopsie_id > 0 &&$droits["reproAdmin"] == 1}
+				{if $data.biopsie_id > 0 &&$rights["reproAdmin"] == 1}
 				<button class="btn btn-danger button-delete">{t}Supprimer{/t}</button>
 				{/if}
 			</div>
-		</form>
+		{$csrf}</form>
 	</div>
 	{if $data.biopsie_id > 0}
 	<div class="col-md-6">

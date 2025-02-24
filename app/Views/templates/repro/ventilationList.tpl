@@ -11,9 +11,9 @@
         {section name=lst loop=$dataVentilation}
         <tr>
             <td>
-                {if $droits.poissonGestion==1 || $droits.reproGestion == 1}
+                {if $rights.poissonGestion==1 || $rights.reproGestion == 1}
                 <a
-                    href="index.php?module=ventilationChange&poisson_id={$dataVentilation[lst].poisson_id}&ventilation_id={$dataVentilation[lst].ventilation_id}&poisson_campagne_id={$poisson_campagne_id}">
+                    href="ventilationChange?poisson_id={$dataVentilation[lst].poisson_id}&ventilation_id={$dataVentilation[lst].ventilation_id}&poisson_campagne_id={$poisson_campagne_id}">
                     {$dataVentilation[lst].ventilation_date}
                 </a>
                 {else}

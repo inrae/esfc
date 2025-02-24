@@ -13,12 +13,12 @@
 		{section name=lst loop=$lots}
 		<tr>
 			<td>
-				<a href="index.php?module=lotDisplay&lot_id={$lots[lst].lot_id}&sequence_id={$lots[lst].sequence_id}">
+				<a href="lotDisplay?lot_id={$lots[lst].lot_id}&sequence_id={$lots[lst].sequence_id}">
 					{$lots[lst].lot_nom}
 				</a>
 			</td>
 			<td>
-				<a href="index.php?module=bassinDisplay&bassin_id={$lots[lst].bassin_id}">
+				<a href="bassinDisplay?bassin_id={$lots[lst].bassin_id}">
 					{$lots[lst].bassin_nom}
 				</a>
 			</td>

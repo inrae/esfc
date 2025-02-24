@@ -1,11 +1,11 @@
 <h2>{t}Méthodes de détermination de la cohorte{/t}</h2>
-{if $droits["paramAdmin"] == 1}
-<a href="index.php?module=cohorteTypeChange&cohorte_type_id=0">
+{if $rights["paramAdmin"] == 1}
+<a href="cohorteTypeChange?cohorte_type_id=0">
 Nouveau...
 </a>
 {/if}
 
-<table class="table table-bordered table-hover datatable" id="ccohorteTypeList" class="tableliste">
+<table class="table table-bordered table-hover datatable display" id="ccohorteTypeList" class="tableliste">
 <thead>
 <tr>
 <th>{t}libellé{/t}</th>
@@ -15,8 +15,8 @@ Nouveau...
 {section name=lst loop=$data}
 <tr>
 <td>
-{if $droits["paramAdmin"] == 1}
-<a href="index.php?module=cohorteTypeChange&cohorte_type_id={$data[lst].cohorte_type_id}">
+{if $rights["paramAdmin"] == 1}
+<a href="cohorteTypeChange?cohorte_type_id={$data[lst].cohorte_type_id}">
 {$data[lst].cohorte_type_libelle}
 </a>
 {else}

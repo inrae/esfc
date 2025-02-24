@@ -1,8 +1,8 @@
-<a href="index.php?module={$poissonDetailParent}&sequence_id={$sequence_id}">
+<a href="{$poissonDetailParent}&sequence_id={$sequence_id}">
 	<img src="display/images/display.png" height="25">
 	{t}Retour à la liste des poissons{/t}
 </a>&nbsp;
-<a href="index.php?module=poissonCampagneDisplay&poisson_campagne_id={$data.poisson_campagne_id}">
+<a href="poissonCampagneDisplay?poisson_campagne_id={$data.poisson_campagne_id}">
 	<img src="display/images/fish.svg" height="25">
 	{t}Retour au reproducteur{/t}
 </a>
@@ -14,8 +14,7 @@
 
 <div class="row">
 	<div class="col-md-6">
-		<form class="form-horizontal" id="injectionForm" method="post" action="index.php">
-			<input type="hidden" name="action" value="Write">
+		<form class="form-horizontal" id="injectionForm" method="post" action="injectionWrite">			
 			<input type="hidden" name="moduleBase" value="injection">
 			<input type="hidden" name="injection_id" value="{$data.injection_id}">
 			<input type="hidden" name="poisson_campagne_id" value="{$data.poisson_campagne_id}">
@@ -77,12 +76,12 @@
 				</div>
 				<div class="form-group center">
 					<button type="submit" class="btn btn-primary button-valid">{t}Valider{/t}</button>
-					{if $data.injection_id > 0 &&$droits["reproGestion"] == 1}
+					{if $data.injection_id > 0 &&$rights["reproGestion"] == 1}
 					<button class="btn btn-danger button-delete">{t}Supprimer{/t}</button>
 					{/if}
 				</div>
 			</div>
-		</form>
+		{$csrf}</form>
 	</div>
 </div>
 

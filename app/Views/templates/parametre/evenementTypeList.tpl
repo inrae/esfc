@@ -1,11 +1,11 @@
 <h2>{t}Types d'événements{/t}</h2>
-{if $droits["paramAdmin"] == 1}
-<a href="index.php?module=evenementTypeChange&evenement_type_id=0">
+{if $rights["paramAdmin"] == 1}
+<a href="evenementTypeChange?evenement_type_id=0">
     Nouveau...
 </a>
 {/if}
 
-<table class="table table-bordered table-hover datatable" id="cevenementTypeList" class="tableliste">
+<table class="table table-bordered table-hover datatable display" id="cevenementTypeList" class="tableliste">
     <thead>
         <tr>
             <th>{t}libellé{/t}</th>
@@ -17,8 +17,8 @@
         {section name=lst loop=$data}
         <tr>
             <td>
-                {if $droits["paramAdmin"] == 1}
-                <a href="index.php?module=evenementTypeChange&evenement_type_id={$data[lst].evenement_type_id}">
+                {if $rights["paramAdmin"] == 1}
+                <a href="evenementTypeChange?evenement_type_id={$data[lst].evenement_type_id}">
                     {$data[lst].evenement_type_libelle}
                 </a>
                 {else}

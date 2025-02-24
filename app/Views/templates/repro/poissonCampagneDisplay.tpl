@@ -187,7 +187,7 @@
 		}
 	});
 </script>
-<a href="index.php?module={$poissonDetailParent}&sequence_id={$sequence_id}">
+<a href="{$poissonDetailParent}&sequence_id={$sequence_id}">
 	<img src="display/images/list.png" height="25">
 	{t}Retour à la liste des poissons{/t}
 </a>
@@ -290,9 +290,9 @@
 		</ul>
 		<div class="tab-content" id="nav-tabContent">
 			<div class="tab-pane active in" id="nav-detail" role="tabpanel" aria-labelledby="tab-detail">
-				{if $droits["reproGestion"]==1}
+				{if $rights["reproGestion"]==1}
 				<a
-					href="index.php?module=poissonCampagneChange&poisson_campagne_id={$dataPoisson.poisson_campagne_id}&poisson_id={$dataPoisson.poisson_id}">
+					href="poissonCampagneChange?poisson_campagne_id={$dataPoisson.poisson_campagne_id}&poisson_id={$dataPoisson.poisson_id}">
 					<img src="display/images/edit.gif" height="25">
 					{t}Modifier les informations générales...{/t}
 				</a>
@@ -318,10 +318,10 @@
 				</div>
 			</div>
 			<div class="tab-pane fade" id="nav-reproduction" role="tabpanel" aria-labelledby="tab-reproduction">
-				{if $droits["reproGestion"]==1}
+				{if $rights["reproGestion"]==1}
 				<div class="row">
 					<a
-						href="index.php?module=poissonSequenceChange&poisson_campagne_id={$dataPoisson.poisson_campagne_id}&poisson_sequence_id=0&sequence_id=0">
+						href="poissonSequenceChange?poisson_campagne_id={$dataPoisson.poisson_campagne_id}&poisson_sequence_id=0&sequence_id=0">
 						{t}Rattacher une nouvelle séquence...{/t}
 					</a>
 				</div>
@@ -329,10 +329,10 @@
 				{include file="repro/poissonSequenceList.tpl"}
 			</div>
 			<div class="tab-pane fade" id="nav-echographie" role="tabpanel" aria-labelledby="tab-echographie">
-				{if $droits["reproGestion"]==1}
+				{if $rights["reproGestion"]==1}
 				<div class="row">
 					<a
-						href="index.php?module=echographieChange&poisson_id={$dataPoisson.poisson_id}&poisson_campagne_id={$dataPoisson.poisson_campagne_id}&echographie_id=0">
+						href="echographieChange?poisson_id={$dataPoisson.poisson_id}&poisson_campagne_id={$dataPoisson.poisson_campagne_id}&echographie_id=0">
 						{t}Nouvelle échographie (nouvel événement)...{/t}
 					</a>
 				</div>
@@ -346,9 +346,9 @@
 			</div>
 			{if $dataPoisson.sexe_libelle_court == "m"}
 			<div class="tab-pane fade" id="nav-sperme" role="tabpanel" aria-labelledby="tab-sperme">
-				{if $droits["reproGestion"]==1}
+				{if $rights["reproGestion"]==1}
 				<div class="row">
-					<a href="index.php?module=spermeChange&poisson_id={$dataPoisson.poisson_id}&sperme_id=0&poisson_campagne_id={$dataPoisson.poisson_campagne_id}">
+					<a href="spermeChange?poisson_id={$dataPoisson.poisson_id}&sperme_id=0&poisson_campagne_id={$dataPoisson.poisson_campagne_id}">
 						{t}Nouveau prélèvement de sperme...{/t}
 					</a>
 				</div>
@@ -358,9 +358,9 @@
 			{/if}
 
 			<div class="tab-pane fade" id="nav-sanguin" role="tabpanel" aria-labelledby="tab-sanguin">
-				{if $droits["reproGestion"]==1}
+				{if $rights["reproGestion"]==1}
 				<div class="row">
-					<a href="index.php?module=dosageSanguinChange&poisson_id={$dataPoisson.poisson_id}&dosage_sanguin_id=0&poisson_campagne_id={$dataPoisson.poisson_campagne_id}">
+					<a href="dosageSanguinChange?poisson_id={$dataPoisson.poisson_id}&dosage_sanguin_id=0&poisson_campagne_id={$dataPoisson.poisson_campagne_id}">
 						{t}Nouveau dosage sanguin...{/t}
 					</a>
 				</div>
@@ -374,9 +374,9 @@
 				{include file="repro/psEvenementList.tpl"}
 			</div>
 			<div class="tab-pane fade" id="nav-ventilation" role="tabpanel" aria-labelledby="tab-ventilation">
-				{if $droits["reproGestion"]==1}
+				{if $rights["reproGestion"]==1}
 				<div class="row">
-					<a href="index.php?module=ventilationChange&poisson_id={$dataPoisson.poisson_id}&ventilation_id=0&poisson_campagne_id={$dataPoisson.poisson_campagne_id}">
+					<a href="ventilationChange?poisson_id={$dataPoisson.poisson_id}&ventilation_id=0&poisson_campagne_id={$dataPoisson.poisson_campagne_id}">
 						{t}Nouvelle mesure...{/t}
 					</a>
 				</div>
@@ -384,9 +384,9 @@
 				{include file="repro/ventilationList.tpl"}
 			</div>
 			<div class="tab-pane fade" id="nav-injection" role="tabpanel" aria-labelledby="tab-injection">
-				{if $droits["reproGestion"]==1}
+				{if $rights["reproGestion"]==1}
 				<div class="row">
-					<a href="index.php?module=injectionChange&poisson_id={$dataPoisson.poisson_id}&injection_id=0&poisson_campagne_id={$dataPoisson.poisson_campagne_id}">
+					<a href="injectionChange?poisson_id={$dataPoisson.poisson_id}&injection_id=0&poisson_campagne_id={$dataPoisson.poisson_campagne_id}">
 						{t}Nouvelle injection...{/t}
 					</a>
 				</div>
@@ -395,9 +395,9 @@
 			</div>
 			{if $dataPoisson.sexe_libelle_court == "f"}
 			<div class="tab-pane fade" id="nav-biopsie" role="tabpanel" aria-labelledby="tab-biopsie">
-				{if $droits["reproGestion"]==1}
+				{if $rights["reproGestion"]==1}
 				<div class="row">
-					<a href="index.php?module=biopsieChange&poisson_id={$dataPoisson.poisson_id}&biopsie_id=0&poisson_campagne_id={$dataPoisson.poisson_campagne_id}">
+					<a href="biopsieChange?poisson_id={$dataPoisson.poisson_id}&biopsie_id=0&poisson_campagne_id={$dataPoisson.poisson_campagne_id}">
 						{t}Nouvelle biopsie...{/t}
 					</a>
 				</div>

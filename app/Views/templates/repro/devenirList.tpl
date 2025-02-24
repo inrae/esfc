@@ -1,8 +1,8 @@
 
-<table class="table table-bordered table-hover datatable-nopaging-nosearching" id="devenirList" data-order='[[1,"asc"],[2,"asc"]]'>
+<table class="table table-bordered table-hover datatable-nopaging-nosearching display" id="devenirList" data-order='[[1,"asc"],[2,"asc"]]'>
     <thead>
         <tr>
-            {if $droits["reproGestion"] == 1}
+            {if $rights["reproGestion"] == 1}
             <th class="center">
                 <img src="display/images/edit.gif" height="25">
             </th>
@@ -17,10 +17,10 @@
     <tbody>
         {section name=lst loop=$dataDevenir}
         <tr>
-            {if $droits["reproGestion"] == 1}
+            {if $rights["reproGestion"] == 1}
             <td class="center">
                 <a
-                    href="index.php?module=devenir{$devenirOrigine}Change&devenir_id={$dataDevenir[lst].devenir_id}&devenirOrigine={$devenirOrigine}&lot_id={$dataDevenir[lst].lot_id}">
+                    href="devenir{$devenirOrigine}Change?devenir_id={$dataDevenir[lst].devenir_id}&devenirOrigine={$devenirOrigine}&lot_id={$dataDevenir[lst].lot_id}">
                     <img src="display/images/edit.gif" height="25">
                 </a>
             </td>

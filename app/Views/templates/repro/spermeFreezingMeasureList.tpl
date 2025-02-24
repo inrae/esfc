@@ -1,10 +1,10 @@
-{if $droits["reproGestion"] == 1}
+{if $rights["reproGestion"] == 1}
 <a
-    href="index.php?module=spermeFreezingMeasureChange&sperme_freezing_measure_id=0&sperme_congelation_id={$data.sperme_congelation_id}&poisson_campagne_id={$dataPoisson.poisson_campagne_id}">
+    href="spermeFreezingMeasureChange?sperme_freezing_measure_id=0&sperme_congelation_id={$data.sperme_congelation_id}&poisson_campagne_id={$dataPoisson.poisson_campagne_id}">
     {t}Nouvelle mesure de température...{/t}
 </a>
 {/if}
-<table class="table table-bordered table-hover datatable-nopaging-nosearching" id="csperme">
+<table class="table table-bordered table-hover datatable-nopaging-nosearching display" id="csperme">
     <thead>
         <tr>
             <th>{t}Date/heure{/t}</th>
@@ -15,9 +15,9 @@
         {section name=lst loop=$freezingMeasure}
         <tr>
             <td>
-                {if $droits["reproGestion"] == 1}
+                {if $rights["reproGestion"] == 1}
                 <a
-                    href="index.php?module=spermeFreezingMeasureChange&sperme_freezing_measure_id={$freezingMeasure[lst].sperme_freezing_measure_id}&sperme_congelation_id={$data.sperme_congelation_id}&poisson_campagne_id={$dataPoisson.poisson_campagne_id}">
+                    href="spermeFreezingMeasureChange?sperme_freezing_measure_id={$freezingMeasure[lst].sperme_freezing_measure_id}&sperme_congelation_id={$data.sperme_congelation_id}&poisson_campagne_id={$dataPoisson.poisson_campagne_id}">
                     {$freezingMeasure[lst].measure_date}
                 </a>
                 {else}

@@ -21,8 +21,7 @@
         <legend>
             {t}Mortalité cumulée{/t}
         </legend>
-        <form id="refresh" action="index.php" method="get" class="form-inline">
-            <input type="hidden" name="module" value="default">
+        <form id="refresh" action="default" method="get" class="form-inline">
                 <div class="radio">
                     <label>
                     <input type="radio" class="type" name="type" id="type1" value="1" {if $type == 1}checked{/if}>
@@ -38,7 +37,7 @@
                 <label class="control-label">{t}Nombre d'années à afficher :{/t}</label>
                 <input type="number" id="nbyears" name="nbyears" value="{$nbyears}" class="form-control">
                 <button class="btn btn-primary" type="submit">{t}Afficher{/t}</button>
-        </form>
+        {$csrf}</form>
         
         <div class="center">
         <div id="mortality"></div>

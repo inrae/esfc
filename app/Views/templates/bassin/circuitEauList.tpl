@@ -2,10 +2,10 @@
 {include file="bassin/circuitEauSearch.tpl"}
 
 {if $isSearch == 1}
-{if $droits["bassinAdmin"] == 1}
+{if $rights["bassinAdmin"] == 1}
 <div class="row">
     <div class="col-lg-12">
-        <a href="index.php?module=circuitEauChange&circuit_eau_id=0">
+        <a href="circuitEauChange?circuit_eau_id=0">
             {t}Nouveau...{/t}
         </a>
     </div>
@@ -14,12 +14,12 @@
 
 <div class="row">
     <div class="col-md-4">
-        <table class="table table-bordered table-hover datatable" id="ccircuitEauList" class="tableliste">
+        <table class="table table-bordered table-hover datatable display" id="ccircuitEauList" class="tableliste">
             <thead>
                 <tr>
                     <th>{t}libellé{/t}</th>
                     <th>{t}En service{/t}</th>
-                    {if $droits["bassinGestion"] == 1}
+                    {if $rights["bassinGestion"] == 1}
                     <th>{t}Nouvelles données{/t}</th>
                     {/if}
                     <th>{t}Dernière analyse{/t}</th>
@@ -29,25 +29,25 @@
                 {section name=lst loop=$data}
                 <tr>
                     <td>
-                        <a href="index.php?module=circuitEauDisplay&circuit_eau_id={$data[lst].circuit_eau_id}">
+                        <a href="circuitEauDisplay?circuit_eau_id={$data[lst].circuit_eau_id}">
                             {$data[lst].circuit_eau_libelle}
                         </a>
                     </td>
                     <td class="center">
                         {if $data[lst].circuit_eau_actif == 1}{t}oui{/t}{else}{t}non{/t}{/if}
                     </td>
-                    {if $droits["bassinGestion"] == 1}
+                    {if $rights["bassinGestion"] == 1}
                     <td>
                         <div class="center">
                             <a
-                                href="index.php?module=analyseEauChange&analyse_eau_id=0&circuit_eau_id={$data[lst].circuit_eau_id}&origine=List">
+                                href="analyseEauChange?analyse_eau_id=0&circuit_eau_id={$data[lst].circuit_eau_id}&origine=List">
                                 <img src="display/images/sonde.png" height="20" border="0">
                             </a>
                         </div>
                     </td>
                     {/if}
                     <td class="center">
-                        <a href="index.php?module=circuitEauList&circuit_eau_id={$data[lst].circuit_eau_id}">
+                        <a href="circuitEauList?circuit_eau_id={$data[lst].circuit_eau_id}">
                             <img src="display/images/eprouvette.png" height="20" border="0">
                         </a>
                     </td>

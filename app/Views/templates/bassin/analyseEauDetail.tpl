@@ -1,6 +1,6 @@
-{if $droits.bassinGestion == 1}
+{if $rights.bassinGestion == 1}
 <a
-    href="index.php?module=analyseEauChange&analyse_eau_id={$dataAnalyse.analyse_eau_id}&circuit_eau_id={$dataAnalyse.circuit_eau_id}&origine=List">
+    href="analyseEauChange?analyse_eau_id={$dataAnalyse.analyse_eau_id}&circuit_eau_id={$dataAnalyse.circuit_eau_id}&origine=List">
     Modifier les résultats de l'analyse...
 </a>
 {/if}

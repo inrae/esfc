@@ -1,7 +1,6 @@
 <div class="row">
 	<div class="col-md-6 form-horizontal">
-		<form id="repartitionForm" method="post" action="index.php">
-			<input type="hidden" name="module" value="repartitionCreate">
+		<form id="repartitionForm" method="post" action="repartitionCreate">
 			<input type="hidden" name="repartition_id" value="0">
 			<div class="form-group">
 				<label for="categorie_id" class="control-label col-md-4">
@@ -65,6 +64,6 @@
 					<input class="btn btn-primary button-valid" type="submit" value="Enregistrer">
 				</div>
 			</div>
-		</form>
+		{$csrf}</form>
 	</div>
 </div>

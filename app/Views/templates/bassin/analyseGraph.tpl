@@ -13,8 +13,7 @@
 <h2>{t}Visualisation des analyses d'eau des circuits actifs{/t}</h2>
 <div class="row">
     <div class="col-md-8">
-        <form method="get" action="index.php" class="form-horizontal">
-            <input type="hidden" name="module" value="analyseGraph">
+        <form method="get" action="analyseGraph" class="form-horizontal">
             <div class="row">
                 <label for="site_id" class="control-label col-md-2">
                     {t}Site :{/t}
@@ -80,7 +79,7 @@
                     </button>
                 </div>
             </div>
-        </form>
+        {$csrf}</form>
     </div>
 </div>
 

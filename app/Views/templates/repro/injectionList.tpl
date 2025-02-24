@@ -13,9 +13,9 @@
         {section name=lst loop=$injections}
         <tr>
             <td>
-                {if $droits["reproGestion"] == 1}
+                {if $rights["reproGestion"] == 1}
                 <a
-                    href="index.php?module=injectionChange&injection_id={$injections[lst].injection_id}&poisson_campagne_id={$dataPoisson.poisson_campagne_id}">
+                    href="injectionChange?injection_id={$injections[lst].injection_id}&poisson_campagne_id={$dataPoisson.poisson_campagne_id}">
                     {$injections[lst].injection_date}
                 </a>
                 {else}

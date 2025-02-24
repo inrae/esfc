@@ -83,8 +83,7 @@
             });
     });
 </script>
-<form method="get" action="index.php" id="search">
-    <input type="hidden" name="module" value="spermeCongelationList">
+<form method="get" action="spermeCongelationList" id="search">
     <div class="row">
         <div class="col-md-6 col-lg-6 form-horizontal">
             <div class="form-group">
@@ -109,7 +108,7 @@
             </div>
         </div>
     </div>
-</form>
+{$csrf}</form>
 <div class="row">
     <div class="col-xs-12">
         <ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -152,9 +151,9 @@
                                 {foreach $spermes as $sperme}
                                 <tr>
                                     <td class="nowrap">
-                                        {if $droits.reproGestion == 1}
+                                        {if $rights.reproGestion == 1}
                                         <a
-                                            href="index.php?module=spermeCongelationChange&sperme_id={$sperme.sperme_id}&sperme_congelation_id={$sperme.sperme_congelation_id}&poisson_campagne_id={$sperme.poisson_campagne_id}&sequence_id={$sperme.sequence_id}">
+                                            href="spermeCongelationChange?sperme_id={$sperme.sperme_id}&sperme_congelation_id={$sperme.sperme_congelation_id}&poisson_campagne_id={$sperme.poisson_campagne_id}&sequence_id={$sperme.sequence_id}">
                                             {$sperme.congelation_date}
                                             {else}
                                             {$sperme.congelation_date}
@@ -162,7 +161,7 @@
                                     </td>
                                     <td>
                                         <a
-                                            href="index.php?module=poissonCampagneDisplay&poisson_campagne_id={$sperme.poisson_campagne_id}">
+                                            href="poissonCampagneDisplay?poisson_campagne_id={$sperme.poisson_campagne_id}">
                                             {$sperme.matricule}&nbsp;{$sperme.prenom}
                                         </a>
                                     </td>

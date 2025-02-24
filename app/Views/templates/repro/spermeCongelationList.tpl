@@ -1,10 +1,10 @@
-{if $droits["reproGestion"] == 1}
+{if $rights["reproGestion"] == 1}
 <a
-    href="index.php?module=spermeCongelationChange&sperme_congelation_id=0&sperme_id={$data.sperme_id}&poisson_campagne_id={$dataPoisson.poisson_campagne_id}">
+    href="spermeCongelationChange?sperme_congelation_id=0&sperme_id={$data.sperme_id}&poisson_campagne_id={$dataPoisson.poisson_campagne_id}">
     {t}Nouvelle congélation de sperme...{/t}
 </a>
 {/if}
-<table class="table table-bordered table-hover datatable-nopaging-nosearching" id="csperme">
+<table class="table table-bordered table-hover datatable-nopaging-nosearching display" id="csperme">
     <thead>
         <tr>
             <th>{t}Date de congélation{/t}</th>
@@ -24,9 +24,9 @@
         {section name=lst loop=$congelation}
         <tr>
             <td class="nowrap">
-                {if $droits["reproGestion"] == 1}
+                {if $rights["reproGestion"] == 1}
                 <a
-                    href="index.php?module=spermeCongelationChange&sperme_congelation_id={$congelation[lst].sperme_congelation_id}&poisson_campagne_id={$dataPoisson.poisson_campagne_id}&sperme_id={$congelation[lst].sperme_id}">
+                    href="spermeCongelationChange?sperme_congelation_id={$congelation[lst].sperme_congelation_id}&poisson_campagne_id={$dataPoisson.poisson_campagne_id}&sperme_id={$congelation[lst].sperme_id}">
                     {$congelation[lst].congelation_date}
                 </a>
                 {else}

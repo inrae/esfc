@@ -1,7 +1,6 @@
 <div class="row">
 	<div class="col-md-6">
-		<form class="form-horizontal" id="psEvenementForm" method="post" action="index.php">
-			<input type="hidden" name="action" value="Write">
+		<form class="form-horizontal" id="psEvenementForm" method="post" action="psEvenementWrite">
 			<input type="hidden" name="moduleBase" value="psEvenement">
 			<input type="hidden" name="poisson_sequence_id" value="{$dataPsEvenement.poisson_sequence_id}">
 			<input type="hidden" name="ps_evenement_id" value="{$dataPsEvenement.ps_evenement_id}">
@@ -28,15 +27,15 @@
 				<div class="col-md-8">
 					<input id="ps_commentaire" class="form-control" name="ps_commentaire"
 						value="{$dataPsEvenement.ps_commentaire}">
-
 				</div>
 			</div>
 			<div class="form-group center">
 				<button type="submit" class="btn btn-primary button-valid">{t}Valider{/t}</button>
-				{if $dataPsEvenement.ps_evenement_id > 0 &&$droits["reproAdmin"] == 1}
+				{if $dataPsEvenement.ps_evenement_id > 0 &&$rights["reproAdmin"] == 1}
 				<button class="btn btn-danger button-delete">{t}Supprimer{/t}</button>
+				{/if}
 			</div>
-			{/if}
+			{$csrf}
 		</form>
 	</div>
 </div>

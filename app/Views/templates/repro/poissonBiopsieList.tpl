@@ -19,8 +19,8 @@
         {section name=lst loop=$dataBiopsie}
         <tr>
             <td>
-                {if $droits.reproGestion == 1}
-                <a href="index.php?module=biopsieChange&biopsie_id={$dataBiopsie[lst].biopsie_id}&poisson_campagne_id={$dataPoisson.poisson_campagne_id}">
+                {if $rights.reproGestion == 1}
+                <a href="biopsieChange?biopsie_id={$dataBiopsie[lst].biopsie_id}&poisson_campagne_id={$dataPoisson.poisson_campagne_id}">
                     {$dataBiopsie[lst].biopsie_date}
                 </a>
                 {else}

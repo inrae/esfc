@@ -11,7 +11,7 @@
         <tr>
             <td>
                 <a
-                    href="index.php?module=echographieChange&echographie_id={$echographies[lst].echographie_id}&poisson_campagne_id={$dataPoisson.poisson_campagne_id}">
+                    href="echographieChange?echographie_id={$echographies[lst].echographie_id}&poisson_campagne_id={$dataPoisson.poisson_campagne_id}">
                     {$echographies[lst].echographie_date}
                 </a>
             </td>

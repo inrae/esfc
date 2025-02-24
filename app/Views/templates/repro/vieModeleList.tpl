@@ -1,6 +1,5 @@
 <H2>Modèles d'implantation de marques VIE</H2>
-<form method="get" action="index.php" id="search">
-    <input type="hidden" name="module" value="vieModeleList">
+<form method="get" action="vieModeleList" id="search">
     <div class="row">
         <div class="col-md-6 form-horizontal">
             <div class="form-group">
@@ -22,12 +21,12 @@
             </div>
         </div>
     </div>
-</form>
+{$csrf}</form>
 
-{if $droits.reproGestion == 1}
-<a href="index.php?module=vieModeleChange&vie_modele_id=0">Nouveau modèle d'implantation VIE...</a>
+{if $rights.reproGestion == 1}
+<a href="vieModeleChange?vie_modele_id=0">Nouveau modèle d'implantation VIE...</a>
 {/if}
-<table class="table table-bordered table-hover datatable" id="cvieModelelist">
+<table class="table table-bordered table-hover datatable display" id="cvieModelelist">
     <thead>
         <tr>
             <th>{t}Couleur{/t}</th>
@@ -39,8 +38,8 @@
         {section name=lst loop=$data}
         <tr>
             <td>
-                {if $droits.reproGestion == 1}
-                <a href="index.php?module=vieModeleChange&vie_modele_id={$data[lst].vie_modele_id}">
+                {if $rights.reproGestion == 1}
+                <a href="vieModeleChange?vie_modele_id={$data[lst].vie_modele_id}">
                     {$data[lst].couleur}
                 </a>
                 {else}

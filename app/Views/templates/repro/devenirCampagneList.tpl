@@ -1,5 +1,4 @@
-<form method="get" action="index.php" id="search">
-	<input type="hidden" name="module" value="devenirList">
+<form method="get" action=devenirList"" id="search">
 	<div class="row">
 		<div class="col-md-6 form-horizontal">
 			<div class="form-group">
@@ -21,6 +20,6 @@
 			</div>
 		</div>
 	</div>
-</form>
+{$csrf}</form>
 <h2>{t}Destination des poissons{/t}</h2>
 {include file="repro/devenirList.tpl"}

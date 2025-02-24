@@ -12,8 +12,8 @@
 {section name=lst loop=$dataSortie}
 <tr>
 <td>
-{if $droits["poissonGestion"]==1}
-<a href="index.php?module=evenementChange&poisson_id={$dataSortie[lst].poisson_id}&evenement_id={$dataSortie[lst].evenement_id}">
+{if $rights["poissonGestion"]==1}
+<a href="evenementChange?poisson_id={$dataSortie[lst].poisson_id}&evenement_id={$dataSortie[lst].evenement_id}">
 {$dataSortie[lst].evenement_type_libelle}
 </a>
 {else}

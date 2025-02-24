@@ -1,4 +1,4 @@
-{if $droits.reproGestion == 1}
+{if $rights.reproGestion == 1}
 <script>
 	$('document').ready(function () {
 		var clicked = 1;
@@ -24,11 +24,10 @@
 		});
 	});
 </script>
-<a href="index.php?module=lotChange&lot_id=0&sequence_id={$data.sequence_id}">
+<a href="lotChange?lot_id=0&sequence_id={$data.sequence_id}">
 	{t}Nouveau lot de larves...{/t}
 </a>
-<form name="alimJuv" method="post" action="index.php">
-	<input type="hidden" name="module" value="lotalimGenerate">
+<form name="alimJuv" method="post" action="lotalimGenerate">
 	{/if}
 	<table class="table table-bordered table-hover datatable ok" id="clotlist" data-tabicon="oklot">
 		<thead>
@@ -44,7 +43,7 @@
 				<th>{t}Marque VIE{/t}</th>
 				<th>{t}Date de marquage VIE{/t}</th>
 				<th>{t}Lot parent{/t}</th>
-				{if $droits.reproGestion == 1}
+				{if $rights.reproGestion == 1}
 				<th>{t}Fiche alim.{/t}
 					<div class="center">
 						<input type="checkbox" id="bassinCheck" checked value="1">
@@ -57,20 +56,20 @@
 			{section name=lst loop=$lots}
 			<tr>
 				<td>
-					<a href="index.php?module=lotDisplay&lot_id={$lots[lst].lot_id}&sequence_id={$lots[lst].sequence_id}">
+					<a href="lotDisplay?lot_id={$lots[lst].lot_id}&sequence_id={$lots[lst].sequence_id}">
 						{$lots[lst].lot_nom}
 					</a>
 				</td>
 				<td>{$lots[lst].parents}</td>
 				<td class="center">
-					<a href="index.php?module=sequenceDisplay&sequence_id={$lots[lst].sequence_id}">
+					<a href="sequenceDisplay?sequence_id={$lots[lst].sequence_id}">
 						{$lots[lst].site_name} - {$lots[lst].sequence_nom}
 						&nbsp;
 						{$lots[lst].croisement_nom}
 					</a>
 				</td>
 				<td>
-					<a href="index.php?module=bassinDisplay&bassin_id={$lots[lst].bassin_id}">
+					<a href="bassinDisplay?bassin_id={$lots[lst].bassin_id}">
 						{$lots[lst].bassin_nom}
 					</a>
 				</td>
@@ -85,11 +84,11 @@
 				</td>
 				<td>{$lots[lst].vie_date_marquage}</td>
 				<td>
-					<a href="index.php?module=lotDisplay&lot_id={$lots[lst].parent_lot_id}">
+					<a href="lotDisplay?lot_id={$lots[lst].parent_lot_id}">
 						{$lots[lst].parent_lot_nom}
 					</a>
 				</td>
-				{if $droits.reproGestion == 1}
+				{if $rights.reproGestion == 1}
 				<td class="center">
 					<input type="checkbox" class="check" name="lots[]" value="{$lots[lst].lot_id}" checked>
 				</td>
@@ -99,7 +98,7 @@
 		</tbody>
 	</table>
 
-	{if $droits.reproGestion == 1}
+	{if $rights.reproGestion == 1}
 	<fieldset>
 		<legend>{t}Alimentation quotidienne{/t}</legend>
 		<div class="row">
@@ -134,5 +133,5 @@
 				</div>
 			</div>
 		</div>
-</form>
+{$csrf}</form>
 {/if}

@@ -10,8 +10,7 @@
 </script>
 <div class="row">
 	<div class="col-md-6">
-		<form class="form-horizontal" id="recalcul" method="post" action="index.php">
-			<input type="hidden" name="module" value="poissonCampagneRecalcul">
+		<form class="form-horizontal" id="recalcul" method="post" action="poissonCampagneRecalcul">
 			<input type="hidden" name="poisson_id" value="{$dataPoisson.poisson_id}">
 			<input type="hidden" name="annee" value="{$dataPoisson.annee}">
 			<input type="hidden" name="poisson_campagne_id" value="{$dataPoisson.poisson_campagne_id}">
@@ -25,7 +24,7 @@
 					</div>
 				</div>
 				<div class="col-md-2 center">
-					<a href=index.php?module=poissonDisplay&poisson_id={$dataPoisson.poisson_id}>
+					<a href=poissonDisplay?poisson_id={$dataPoisson.poisson_id}>
 						<img src="display/images/sturio.png" height="25"
 							title="{t}Accéder à la fiche détaillée du poisson{/t}">
 					</a>
@@ -52,10 +51,10 @@
 					</div>
 				</div>
 				<div class="col-md-4 center">
-					<input type="submit" class="btn btn-danger" value="{t}Recalculer{/t}" {if $droits.reproGestion
+					<input type="submit" class="btn btn-danger" value="{t}Recalculer{/t}" {if $rights.reproGestion
 						!=1}disabled{/if}>
 				</div>
 			</div>
-		</form>
+		{$csrf}</form>
 	</div>
 </div>

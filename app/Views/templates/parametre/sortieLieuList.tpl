@@ -1,11 +1,11 @@
 <h2>{t}Lieux de lâchers/destination des poissons{/t}</h2>
-{if $droits["paramAdmin"] == 1}
-<a href="index.php?module=sortieLieuChange&sortie_lieu_id=0">
+{if $rights["paramAdmin"] == 1}
+<a href="sortieLieuChange?sortie_lieu_id=0">
 Nouveau...
 </a>
 {/if}
 
-<table class="table table-bordered table-hover datatable" id="csortieLieuList" class="tableliste">
+<table class="table table-bordered table-hover datatable display" id="csortieLieuList" class="tableliste">
 <thead>
 <tr>
 <th>{t}Lieu{/t}</th>
@@ -19,8 +19,8 @@ Nouveau...
 {section name=lst loop=$data}
 <tr>
 <td>
-{if $droits["paramAdmin"] == 1}
-<a href="index.php?module=sortieLieuChange&sortie_lieu_id={$data[lst].sortie_lieu_id}">
+{if $rights["paramAdmin"] == 1}
+<a href="sortieLieuChange?sortie_lieu_id={$data[lst].sortie_lieu_id}">
 {$data[lst].localisation}
 </a>
 {else}

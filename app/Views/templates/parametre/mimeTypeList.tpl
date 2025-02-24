@@ -1,11 +1,11 @@
 <h2>{t}Types de fichiers importables{/t}</h2>
-{if $droits["paramAdmin"] == 1}
-<a href="index.php?module=mimeTypeChange&mime_type_id=0">
+{if $rights["paramAdmin"] == 1}
+<a href="mimeTypeChange?mime_type_id=0">
 Nouveau...
 </a>
 {/if}
 
-<table class="table table-bordered table-hover datatable" id="cmimeTypeList" class="tableliste">
+<table class="table table-bordered table-hover datatable display" id="cmimeTypeList" class="tableliste">
 <thead>
 <tr>
 <th>{t}extension{/t}</th>
@@ -16,8 +16,8 @@ Nouveau...
 {section name=lst loop=$data}
 <tr>
 <td>
-{if $droits["paramAdmin"] == 1}
-<a href="index.php?module=mimeTypeChange&mime_type_id={$data[lst].mime_type_id}">
+{if $rights["paramAdmin"] == 1}
+<a href="mimeTypeChange?mime_type_id={$data[lst].mime_type_id}">
 {$data[lst].extension}
 </a>
 {else}

@@ -1,8 +1,7 @@
 <h2>{t}Affichage de la liste des lots de poissons issus de la reproduction{/t}</h2>
 <div class="row">
 	<div class="col-md-6 col-lg-6 form-horizontal">
-		<form method="get" action="index.php" id="search">
-			<input type="hidden" name="module" value="lotList">
+		<form method="get" action="lotList" id="search">
 			<div class="form-group">
 				<label for="site_id" class="control-label col-md-2">
 					{t}Site :{/t}
@@ -34,7 +33,7 @@
 					<input type="submit" class="btn btn-success" value="{t}Rechercher{/t}">
 				</div>
 			</div>
-		</form>
+		{$csrf}</form>
 	</div>
 </div>
 <div class="row">

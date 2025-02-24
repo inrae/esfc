@@ -29,7 +29,7 @@
 		});
 	});
 </script>
-{if $droits["gestion"] == 1 }
+{if $rights["manage"] == 1 }
 <a href="#" id="documentChangeActivate">Saisir un nouveau document...</a>
 <div id="documentChange" hidden="true">
 	{include file="document/documentChange.tpl"}
@@ -45,7 +45,7 @@
 					<th>{t}Description{/t}</th>
 					<th>{t}Taille{/t}</th>
 					<th>{t}Date d'import{/t}</th>
-					{if $droits["gestion"] == 1}
+					{if $rights["manage"] == 1}
 					<th>{t}Supprimer{/t}</th>
 					{/if}
 				</tr>
@@ -56,21 +56,21 @@
 					<td class="center">
 						{if in_array($dataDoc[lst].mime_type_id, array(4, 5, 6)) }
 						<a class="image-popup-no-margins"
-							href="index.php?module=documentGet&document_id={$dataDoc[lst].document_id}&document_name={$dataDoc[lst].photo_preview}&attached=0&phototype=1"
+							href="documentGet&document_id={$dataDoc[lst].document_id}&document_name={$dataDoc[lst].photo_preview}&attached=0&phototype=1"
 							title="aperçu de la photo : {substr($dataDoc[lst].photo_name, strrpos($dataDoc[lst].photo_name, '/') + 1)}">
-							<img src="index.php?module=documentGet&document_id={$dataDoc[lst].document_id}&document_name={$dataDoc[lst].thumbnail_name}&attached=0&phototype=2"
+							<img src="documentGet&document_id={$dataDoc[lst].document_id}&document_name={$dataDoc[lst].thumbnail_name}&attached=0&phototype=2"
 								height="30">
 						</a>
 						{elseif $dataDoc[lst].mime_type_id == 1}
 						<a class="image-popup-no-margins"
-							href="index.php?module=documentGet&document_id={$dataDoc[lst].document_id}&&document_name={$dataDoc[lst].thumbnail_name}&attached=0&phototype=2"
+							href="documentGet&document_id={$dataDoc[lst].document_id}&&document_name={$dataDoc[lst].thumbnail_name}&attached=0&phototype=2"
 							title="aperçu du document : {substr($dataDoc[lst].thumbnail_name, strrpos($dataDoc[lst].thumbnail_name, '/') + 1)}">
-							<img src="index.php?module=documentGet&document_id={$dataDoc[lst].document_id}&document_name={$dataDoc[lst].thumbnail_name}&attached=0&phototype=2"
+							<img src="documentGet&document_id={$dataDoc[lst].document_id}&document_name={$dataDoc[lst].thumbnail_name}&attached=0&phototype=2"
 								height="30">
 						</a>
 						{/if}
 					<td>
-						<a href="index.php?module=documentGet&document_id={$dataDoc[lst].document_id}&filename={$dataDoc[lst].photo_name}&attached=1"
+						<a href="documentGet&document_id={$dataDoc[lst].document_id}&filename={$dataDoc[lst].photo_name}&attached=1"
 							title="document original">
 							{$dataDoc[lst].document_nom}
 						</a>
@@ -78,10 +78,10 @@
 					<td>{$dataDoc[lst].document_description}</td>
 					<td>{$dataDoc[lst].size}</td>
 					<td>{$dataDoc[lst].document_date_import}</td>
-					{if $droits["gestion"] == 1}
+					{if $rights["manage"] == 1}
 					<td>
 						<div class="center">
-							<a href="index.php?module=documentDelete&document_id={$dataDoc[lst].document_id}&moduleParent={$moduleParent}&parentIdName={$parentIdName}&parent_id={$parent_id}&parentType={$parentType}"
+							<a href="documentDelete?document_id={$dataDoc[lst].document_id}&moduleParent={$moduleParent}&parentIdName={$parentIdName}&parent_id={$parent_id}&parentType={$parentType}"
 								onclick="return confirm('{t}Confirmez-vous la suppression ?{/t}');">
 								<img src="display/images/corbeille.png" height="20">
 							</a>

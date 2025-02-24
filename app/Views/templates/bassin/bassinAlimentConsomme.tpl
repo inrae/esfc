@@ -1,5 +1,4 @@
-<form method="get" action="index.php" class="form-horizontal col-md-8">
-	<input type="hidden" name="module" value="bassinDisplay">
+<form method="get" action="bassinDisplay" class="form-horizontal col-md-8">
 	<input type="hidden" name="bassin_id" value="{$dataBassin.bassin_id}">
 	<div class="row">
 		<label class="control-label col-md-2">{t}Date de départ :{/t}</label>
@@ -14,7 +13,7 @@
 			<input class="button btn-success" value="{t}Rechercher{/t}" type="submit">
 		</div>
 	</div>
-</form>
+{$csrf}</form>
 <div class="col-lg-12">
 	<div class="row">
 		<table id="calimList" class="table datatable table-hover table-bordered">

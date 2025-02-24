@@ -1,11 +1,11 @@
 <h2>{t}Modification d'un type d'événement{/t}</h2>
 
-<a href="index.php?module=evenementTypeList">{t}Retour à la liste{/t}</a>
+<a href="evenementTypeList">{t}Retour à la liste{/t}</a>
 
 <div class="row">
     <div class="col-md-6">
-        <form class="form-horizontal" id="evenementTypeForm" method="post" action="index.php">
-            <input type="hidden" name="action" value="Write">
+        <form class="form-horizontal" id="evenementTypeForm" method="post" action="evenementTypeWrite">
+            
             <input type="hidden" name="moduleBase" value="evenementType">
             <input type="hidden" name="evenement_type_id" value="{$data.evenement_type_id}">
             <div class="form-group">
@@ -49,11 +49,11 @@
             </div>
             <div class="form-group center">
                 <button type="submit" class="btn btn-primary button-valid">{t}Valider{/t}</button>
-                {if $data.evenement_type_id > 0 &&$droits["paramAdmin"] == 1}
+                {if $data.evenement_type_id > 0 &&$rights["paramAdmin"] == 1}
                 <button class="btn btn-danger button-delete">{t}Supprimer{/t}</button>
                 {/if}
             </div>
-        </form>
+        {$csrf}</form>
     </div>
 </div>
 

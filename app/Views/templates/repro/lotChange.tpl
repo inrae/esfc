@@ -1,17 +1,17 @@
-<a href="index.php?module=lotList">
+<a href="lotList">
 	<img src="display/images/list.png" height="25">
 	{t}Retour à la liste des lots{/t}
 </a>
 {if $sequence.sequence_id > 0}
 &nbsp;
-<a href="index.php?module=sequenceDisplay&sequence_id={$sequence.sequence_id}">
+<a href="sequenceDisplay?sequence_id={$sequence.sequence_id}">
 	<img src="display/images/sexe.svg" height="25">
 	{t}Retour à la séquence{/t} {$sequence.sequence_nom} {$sequence.sequence_date_debut}
 </a>
 {/if}
 {if $data.lot_id > 0}
 &nbsp;
-<a href="index.php?module=lotDisplay&lot_id={$data.lot_id}">
+<a href="lotDisplay?lot_id={$data.lot_id}">
 	<img src="display/images/fishlot.svg" height="25">
 	{t}Retour au détail du lot{/t}
 </a>
@@ -20,8 +20,7 @@
 
 <div class="row">
 	<div class="col-md-6">
-		<form class="form-horizontal" id="lotForm" method="post" action="index.php">
-			<input type="hidden" name="action" value="Write">
+		<form class="form-horizontal" id="lotForm" method="post" action="lotWrite">			
 			<input type="hidden" name="moduleBase" value="lot">
 			<input type="hidden" name="lot_id" value="{$data.lot_id}">
 			<div class="form-group">
@@ -107,11 +106,11 @@
 			</fieldset>
 			<div class="form-group center">
 				<button type="submit" class="btn btn-primary button-valid">{t}Valider{/t}</button>
-				{if $data.lot_id > 0 &&$droits["reproAdmin"] == 1}
+				{if $data.lot_id > 0 &&$rights["reproAdmin"] == 1}
 				<button class="btn btn-danger button-delete">{t}Supprimer{/t}</button>
 				{/if}
 			</div>
-		</form>
+		{$csrf}</form>
 	</div>
 </div>
 

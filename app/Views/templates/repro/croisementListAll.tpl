@@ -5,8 +5,7 @@
         });
     });
 </script>
-<form method="get" action="index.php" id="search">
-    <input type="hidden" name="module" value="croisementList">
+<form method="get" action="croisementList" id="search">
     <div class="row">
         <div class="col-md-6 col-lg-6 form-horizontal">
             <div class="form-group">
@@ -31,7 +30,7 @@
             </div>
         </div>
     </div>
-</form>
+{$csrf}</form>
 <div class="row">
     <div class="col-lg-10">
         <table class="datatable-export table table-bordered" data-order='[[0,"desc"],[1,"asc"],[2,"asc"]]'>
@@ -49,13 +48,13 @@
                 <tr>
                     <td>{$cross.croisement_date}</td>
                     <td>
-                        <a href="index.php?module=sequenceDisplay&sequence_id={$cross.sequence_id}">
+                        <a href="sequenceDisplay?sequence_id={$cross.sequence_id}">
                             {$cross.sequence_nom}
                         </a>
                     </td>
                     <td>
                         <a
-                            href="index.php?module=croisementDisplay&croisement_id={$cross.croisement_id}&sequence_id={$cross.sequence_id}">
+                            href="croisementDisplay?croisement_id={$cross.croisement_id}&sequence_id={$cross.sequence_id}">
                             {$cross.croisement_nom}
                         </a>
                     </td>

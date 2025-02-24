@@ -1,8 +1,8 @@
-<a href="index.php?module=lotList">
+<a href="lotList">
     <img src="display/images/list.png" height="25">
     {t}Retour à la liste des lots{/t}
 </a>&nbsp;
-<a href="index.php?module=lotDisplay&lot_id={$data.lot_id}">
+<a href="lotDisplay?lot_id={$data.lot_id}">
     <img src="display/images/fishlot.svg" height="25">
     {t}Retour au lot{/t}
 </a>
@@ -14,8 +14,7 @@
 
 <div class="row">
     <div class="col-md-6">
-        <form class="form-horizontal" id="bassinLotForm" method="post" action="index.php">
-            <input type="hidden" name="action" value="Write">
+        <form class="form-horizontal" id="bassinLotForm" method="post" action="bassinLot">            
             <input type="hidden" name="moduleBase" value="bassinLot">
             <input type="hidden" name="bassin_lot_id" value="{$data.bassin_lot_id}">
             <input type="hidden" name="lot_id" value="{$data.lot_id}">
@@ -55,11 +54,11 @@
 
             <div class="form-group center">
                 <button type="submit" class="btn btn-primary button-valid">{t}Valider{/t}</button>
-                {if $data.bassin_lot_id > 0 &&$droits["reproAdmin"] == 1}
+                {if $data.bassin_lot_id > 0 &&$rights["reproAdmin"] == 1}
                 <button class="btn btn-danger button-delete">{t}Supprimer{/t}</button>
                 {/if}
             </div>
-        </form>
+        {$csrf}</form>
     </div>
 </div>
 <span class="red">*</span><span class="messagebas">{t}Champ obligatoire{/t}</span>

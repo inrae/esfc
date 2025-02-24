@@ -1,15 +1,14 @@
 <h2>{t}Modification d'un bassin{/t}</h2>
-<a href="index.php?module={$bassinParentModule}">
+<a href="{$bassinParentModule}">
     {t}Retour à la liste des bassins{/t}
 </a>
 {if $data.bassin_id > 0}
 >
-<a href="index.php?module=bassinDisplay&bassin_id={$data.bassin_id}">{t}Retour au bassin{/t}</a>
+<a href="bassinDisplay?bassin_id={$data.bassin_id}">{t}Retour au bassin{/t}</a>
 {/if}
 <div class="row">
     <div class="col-md-6">
-        <form class="form-horizontal" id="bassinform" method="post" action="index.php">
-            <input type="hidden" name="action" value="Write">
+        <form class="form-horizontal" id="bassinform" method="post" action="bassinWrite">         
             <input type="hidden" name="moduleBase" value="bassin">
             <input type="hidden" name="bassin_id" value="{$data.bassin_id}">
             <div class="form-group">
@@ -182,11 +181,11 @@
 
             <div class="form-group center">
                 <button type="submit" class="btn btn-primary button-valid">{t}Valider{/t}</button>
-                {if $data.bassin_id > 0 &&$droits["bassinAdmin"] == 1}
+                {if $data.bassin_id > 0 &&$rights["bassinAdmin"] == 1}
                 <button class="btn btn-danger button-delete">{t}Supprimer{/t}</button>
                 {/if}
             </div>
-        </form>
+        {$csrf}</form>
     </div>
 </div>
 

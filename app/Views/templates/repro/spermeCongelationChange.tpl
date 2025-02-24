@@ -76,18 +76,18 @@
     });
 </script>
 
-<a href="index.php?module={$poissonDetailParent}&sequence_id={$data.sequence_id}">
+<a href="{$poissonDetailParent}&sequence_id={$data.sequence_id}">
     <img src="display/images/display.png" height="25">
     {t}Retour à la liste des poissons{/t}
 </a>
 &nbsp;
-<a href="index.php?module=poissonCampagneDisplay&poisson_campagne_id={$dataPoisson.poisson_campagne_id}">
+<a href="poissonCampagneDisplay?poisson_campagne_id={$dataPoisson.poisson_campagne_id}">
     <img src="display/images/fish.svg" height="25">
     {t}Retour au reproducteur{/t}
 </a>
 &nbsp;
 <a
-    href="index.php?module=spermeChange&sperme_id={$data.sperme_id}&poisson_campagne_id={$dataPoisson.poisson_campagne_id}">
+    href="spermeChange?sperme_id={$data.sperme_id}&poisson_campagne_id={$dataPoisson.poisson_campagne_id}">
     <img src="display/images/eprouvette.png" height="25">
     {t}Retour au prélèvement{/t}
 </a>
@@ -135,8 +135,7 @@
         <div class="tab-content" id="nav-tabContent">
             <div class="tab-pane active in" id="nav-congelation" role="tabpanel" aria-labelledby="tab-congelation">
                 <div class="col-md-6">
-                    <form class="form-horizontal" id="spermeForm" method="post" action="index.php">
-                        <input type="hidden" name="action" value="Write">
+                    <form class="form-horizontal" id="spermeForm" method="post" action="spermeCongelationWrite">                        
                         <input type="hidden" name="moduleBase" value="spermeCongelation">
                         <input type="hidden" name="sperme_id" value="{$data.sperme_id}">
                         <input type="hidden" name="sperme_congelation_id" value="{$data.sperme_congelation_id}">
@@ -284,11 +283,11 @@
 
                         <div class="form-group center">
                             <button type="submit" class="btn btn-primary button-valid">{t}Valider{/t}</button>
-                            {if $data.sperme_congelation_id > 0 &&$droits["reproGestion"] == 1}
+                            {if $data.sperme_congelation_id > 0 &&$rights["reproGestion"] == 1}
                             <button class="btn btn-danger button-delete">{t}Supprimer{/t}</button>
                             {/if}
                         </div>
-                    </form>
+                    {$csrf}</form>
                     <span class="red">*</span><span class="messagebas">{t}Champ obligatoire{/t}</span>
                 </div>
             </div>
@@ -308,8 +307,7 @@
             </div>
             <div class="tab-pane fade" id="nav-storage" role="tabpanel" aria-labelledby="tab-storage">
                 <div class="row">
-                    <form id="generateVisotubes" method="post" action="index.php" class="form-horizontal">
-                        <input name="module" type="hidden" value="spermeCongelationVisotubes">
+                    <form id="generateVisotubes" method="post" action="spermeCongelationVisotubes" class="form-horizontal">
                         <input type="hidden" name="sperme_congelation_id" value="{$data.sperme_congelation_id}">
                         <input type="hidden" name="sperme_id" value="{$data.sperme_id}">
                         <input type="hidden" name="sperme_congelation_id" value="{$data.sperme_congelation_id}">
@@ -359,7 +357,7 @@
                             <br>
                             {t}Le nombre de paillettes sera ajusté pour le dernier visotube.{/t}
                         </div>
-                    </form>
+                    {$csrf}</form>
                 </div>
                 <fieldset>
                     <legend>{t}Liste des visotubes présents dans Collec-Science{/t}</legend>

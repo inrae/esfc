@@ -13,8 +13,8 @@
 {section name=lst loop=$dataTransfert}
 <tr>
 <td>
-{if $droits["poissonGestion"]==1}
-<a href="index.php?module=evenementChange&poisson_id={$dataTransfert[lst].poisson_id}&evenement_id={$dataTransfert[lst].evenement_id}">
+{if $rights["poissonGestion"]==1}
+<a href="evenementChange?poisson_id={$dataTransfert[lst].poisson_id}&evenement_id={$dataTransfert[lst].evenement_id}">
 {$dataTransfert[lst].evenement_type_libelle}
 </a>
 {else}
@@ -24,13 +24,13 @@
 <td>{$dataTransfert[lst].transfert_date}</td>
 <td>
 {if $dataTransfert[lst].bassin_origine > 0}
-<a href="index.php?module=bassinDisplay&bassin_id={$dataTransfert[lst].bassin_origine}">
+<a href="bassinDisplay?bassin_id={$dataTransfert[lst].bassin_origine}">
 {$dataTransfert[lst].bassin_origine_nom}</a>
 {/if}
 </td>
 <td>
 {if $dataTransfert[lst].bassin_destination > 0}
-<a href="index.php?module=bassinDisplay&bassin_id={$dataTransfert[lst].bassin_destination}">
+<a href="bassinDisplay?bassin_id={$dataTransfert[lst].bassin_destination}">
 {$dataTransfert[lst].bassin_destination_nom}</a>
 {/if}
 </td>

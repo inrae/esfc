@@ -53,8 +53,7 @@
 
 <!-- Appariement-->
 {if $matching == 1}
-<form id="matching" method="post" action="index.php">
-    <input type="hidden" name="module" value="morphologieImportControl">
+<form id="matching" method="post" action="morphologieImportControl">
     <div class="row">
         <fieldset class="col-md-6">
             <legend>{t}Appariement des colonnes{/t}</legend>
@@ -108,17 +107,16 @@
         </div>
     </div>
     
-</form>
+{$csrf}</form>
 {/if}
 
 <!-- Lancement de l'import -->
 {if $controleOk == 1}
 <div class="row col-md-8">
-    <form id="importForm" method="post" action="index.php">
-        <input type="hidden" name="module" value="morphologieImportExec">
+    <form id="importForm" method="post" action="morphologieImportExec">
         {t}Contrôles OK.{/t} {t 1=$filename}Vous pouvez réaliser l'import du fichier (%1) :{/t}
         <button type="submit" class="btn btn-danger">{t}Déclencher l'import{/t}</button>
-    </form>
+    {$csrf}</form>
 </div>
 {/if}
 
@@ -148,8 +146,7 @@
 
 <div class="row">
     <div class="col-md-6">
-        <form class="form-horizontal" id="controlForm" method="post" action="index.php" enctype="multipart/form-data">
-            <input type="hidden" name="module" value="morphologieImportMatching">
+        <form class="form-horizontal" id="controlForm" method="post" action="morphologieImportMatching" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="upfile" class="control-label col-md-4"><span class="red">*</span>
                     {t}Nom du fichier à importer (CSV) :{/t}
@@ -162,9 +159,6 @@
                 <label for="separator" class="control-label col-md-4">{t}Séparateur utilisé :{/t}</label>
                 <div class="col-md-8">
                     <select id="separator" name="separator" class="form-control">
-                        <!--<option value="," {if $separator=="," }selected{/if}>{t}Virgule{/t}</option>
-                        <option value=";" {if $separator==";" }selected{/if}>{t}Point-virgule{/t}</option>
-                        <option value="tab" {if $separator=="tab" }selected{/if}>{t}Tabulation{/t}</option>-->
                         <option value="," >{t}Virgule{/t}</option>
                         <option value=";" >{t}Point-virgule{/t}</option>
                         <option value="tab" >{t}Tabulation{/t}</option>
@@ -192,7 +186,7 @@
             <div class="form-group center">
                 <button type="submit" class="btn btn-primary">{t}Apparier les colonnes{/t}</button>
             </div>
-        </form>
+        {$csrf}</form>
     </div>
 </div>
 <div class="row">

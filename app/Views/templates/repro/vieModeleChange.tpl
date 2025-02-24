@@ -1,12 +1,11 @@
-<a href="index.php?module=vieModeleList">
+<a href="vieModeleList">
     <img src="display/images/list.png" height="25">
     {t}Retour à la liste{/t}
 </a>
 <h2>{t}Modification d'un modèle de marquage VIE{/t}</h2>
 <div class="row">
     <div class="col-md-6">
-        <form class="form-horizontal" id="vieModeleForm" method="post" action="index.php">
-            <input type="hidden" name="action" value="Write">
+        <form class="form-horizontal" id="vieModeleForm" method="post" action="vieModeleWrite">            
             <input type="hidden" name="moduleBase" value="vieModele">
             <input type="hidden" name="vie_modele_id" value="{$data.vie_modele_id}">
             <input type="hidden" name="annee" value="{$data.annee}">
@@ -55,11 +54,11 @@
 
             <div class="form-group center">
                 <button type="submit" class="btn btn-primary button-valid">{t}Valider{/t}</button>
-                {if $data.vie_modele_id > 0 &&$droits["reproGestion"] == 1}
+                {if $data.vie_modele_id > 0 &&$rights["reproGestion"] == 1}
                 <button class="btn btn-danger button-delete">{t}Supprimer{/t}</button>
                 {/if}
             </div>
-        </form>
+        {$csrf}</form>
     </div>
 </div>
 

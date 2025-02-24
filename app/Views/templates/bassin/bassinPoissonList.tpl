@@ -1,5 +1,5 @@
 
-<table class="table table-bordered table-hover datatable" id="cbassinList" class="tableliste">
+<table class="table table-bordered table-hover datatable display" id="cbassinList" class="tableliste">
 <thead>
 <tr>
 <th>{t}Bassin{/t}</th>
@@ -11,7 +11,7 @@
 {section name=lst loop=$dataBassin}
 <tr>
 <td>
-<a href="index.php?module=bassinDisplay&bassin_id={$dataBassin[lst].bassin_id}">
+<a href="bassinDisplay?bassin_id={$dataBassin[lst].bassin_id}">
 {$dataBassin[lst].bassin_nom}
 </a>
 </td>

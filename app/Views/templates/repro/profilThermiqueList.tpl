@@ -1,4 +1,4 @@
-<table class="table table-bordered table-hover datatable" id="cprofilThermiqueList" class="tableliste">
+<table class="table table-bordered table-hover datatable display" id="cprofilThermiqueList" class="tableliste">
 <thead>
 <tr>
 <th>{t}Date/heure{/t}</th>
@@ -10,8 +10,8 @@
 {section name=lst loop=$profilThermiques}
 <tr>
 <td>
-{if $droits.reproGestion == 1}
-<a href="index.php?module=profilThermiqueChange&profil_thermique_id={$profilThermiques[lst].profil_thermique_id}&bassin_campagne_id={$profilThermiques[lst].bassin_campagne_id}">
+{if $rights.reproGestion == 1}
+<a href="profilThermiqueChange?profil_thermique_id={$profilThermiques[lst].profil_thermique_id}&bassin_campagne_id={$profilThermiques[lst].bassin_campagne_id}">
 {$profilThermiques[lst].pf_datetime}
 </a>
 {else}

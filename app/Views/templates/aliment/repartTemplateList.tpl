@@ -2,16 +2,16 @@
 {include file="aliment/repartTemplateSearch.tpl"}
 <div class="col-lg-8">
 	{if $isSearch == 1}
-	{if $droits.bassinAdmin == 1}
+	{if $rights.bassinAdmin == 1}
 	<div class="row">
-		<a href="index.php?module=repartTemplateChange&repart_template_id=0">{t}Nouvelle répartition...{/t}</a>
+		<a href="repartTemplateChange?repart_template_id=0">{t}Nouvelle répartition...{/t}</a>
 	</div>
 	{/if}
 
-	<table class="table table-bordered table-hover datatable" id="crepartTemplateList">
+	<table class="table table-bordered table-hover datatable display" id="crepartTemplateList">
 		<thead>
 			<tr>
-				{if $droits.bassinAdmin == 1}
+				{if $rights.bassinAdmin == 1}
 				<th>{t}Modif{/t}</th>
 				{/if}
 				<th>{t}Date de création{/t}</th>
@@ -23,9 +23,9 @@
 		<tbody>
 			{section name=lst loop=$data}
 			<tr>
-				{if $droits.bassinAdmin == 1}
+				{if $rights.bassinAdmin == 1}
 				<td>
-					<a href="index.php?module=repartTemplateChange&repart_template_id={$data[lst].repart_template_id}">
+					<a href="repartTemplateChange?repart_template_id={$data[lst].repart_template_id}">
 						<div class="center"><img src="display/images/edit.gif" height="20"></div>
 					</a>
 				</td>

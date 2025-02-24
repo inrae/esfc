@@ -1,10 +1,10 @@
 
-{if $droits["bassinGestion"] == 1}
-<a href="index.php?module=circuitEvenementChange&circuit_evenement_id=0&circuit_eau_id={$data.circuit_eau_id}">
+{if $rights["bassinGestion"] == 1}
+<a href="circuitEvenementChange?circuit_evenement_id=0&circuit_eau_id={$data.circuit_eau_id}">
 Nouvel événement...
 </a>
 {/if}
-<table class="table table-bordered table-hover datatable" id="ccircuitEvenementList" class="tableliste">
+<table class="table table-bordered table-hover datatable display" id="ccircuitEvenementList" class="tableliste">
 <thead>
 <tr>
 <th>{t}Évenement{/t}</th>
@@ -16,8 +16,8 @@ Nouvel événement...
 {section name=lst loop=$dataCircuitEvnt}
 <tr>
 <td>
-{if $droits["bassinGestion"] == 1}
-<a href="index.php?module=circuitEvenementChange&circuit_evenement_id={$dataCircuitEvnt[lst].circuit_evenement_id}&circuit_eau_id={$dataCircuitEvnt[lst].circuit_eau_id}">
+{if $rights["bassinGestion"] == 1}
+<a href="circuitEvenementChange?circuit_evenement_id={$dataCircuitEvnt[lst].circuit_evenement_id}&circuit_eau_id={$dataCircuitEvnt[lst].circuit_eau_id}">
 {$dataCircuitEvnt[lst].circuit_evenement_type_libelle}
 </a>
 {else}

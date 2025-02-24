@@ -54,7 +54,7 @@
 		});
 	});
 </script>
-<a href="index.php?module=repartitionList">
+<a href="repartitionList">
 	<img src="display/images/list.png" height="25">
 	{t}Retour à la liste{/t}
 </a>
@@ -65,8 +65,7 @@
 </h2>
 <div class="col-lg-12">
 	<div class="row">
-		<form class="form-horizontal" id="repartitionForm" method="post" action="index.php">
-			<input type="hidden" name="action" value="Write">
+		<form class="form-horizontal" id="repartitionForm" method="post" action="repartitionResteWrite">
 			<input type="hidden" name="moduleBase" value="repartitionReste">
 			<input type="hidden" name="repartition_id" value="{$data.repartition_id}">
 			<input type="hidden" name="date_debut_periode" value="{$data.date_debut_periode}">
@@ -132,6 +131,6 @@
 					<button type="submit" class="btn btn-primary button-valid">{t}Valider{/t}</button>
 				</div>
 			</div>
-		</form>
+		{$csrf}</form>
 	</div>
 </div>

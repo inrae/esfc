@@ -108,13 +108,13 @@
 {if $isSearch == 1}
 <div class="row">
     <div class="col-md-12">
-        {if $droits.poissonGestion == 1}
-        <a href="index.php?module=poissonChange&poisson_id=0">
+        {if $rights.poissonGestion == 1}
+        <a href="poissonChange?poisson_id=0">
             <img src="display/images/fish.png" height="25">
             {t}Nouveau poisson...{/t}
         </a>&nbsp;
         {/if}
-        <a href="index.php?module=evenementGetAllCSV">
+        <a href="evenementGetAllCSV">
             <img src="display/images/csv.svg" height="25">
             {t}Liste de tous les événements pour les poissons sélectionnés au format CSV{/t}
         </a>
@@ -150,21 +150,21 @@
         <tr>
             <td>
                 {if $data[lst].poisson_id!=$data[lst.index_prev].poisson_id}
-                <a href="index.php?module=poissonDisplay&poisson_id={$data[lst].poisson_id}">
+                <a href="poissonDisplay?poisson_id={$data[lst].poisson_id}">
                     {$data[lst].poisson_id}
                 </a>
                 {/if}
             </td>
             <td>
                 {if $data[lst].poisson_id!=$data[lst.index_prev].poisson_id}
-                <a href="index.php?module=poissonDisplay&poisson_id={$data[lst].poisson_id}">
+                <a href="poissonDisplay?poisson_id={$data[lst].poisson_id}">
                     {$data[lst].pittag_valeur}
                 </a>
                 {/if}
             </td>
             <td>
                 {if $data[lst].poisson_id!=$data[lst.index_prev].poisson_id}
-                <a href="index.php?module=poissonDisplay&poisson_id={$data[lst].poisson_id}">
+                <a href="poissonDisplay?poisson_id={$data[lst].poisson_id}">
                     {$data[lst].matricule}
                 </a>
                 {else}
@@ -173,7 +173,7 @@
             </td>
             <td>
                 {if $data[lst].poisson_id!=$data[lst.index_prev].poisson_id}
-                <a href="index.php?module=poissonDisplay&poisson_id={$data[lst].poisson_id}">
+                <a href="poissonDisplay?poisson_id={$data[lst].poisson_id}">
                     {$data[lst].prenom}
                 </a>
                 {/if}
@@ -197,7 +197,7 @@
             <td class="center">{$data[lst].mortalite_date}</td>
             <td>
                 {if $data[lst].bassin_id > 0}
-                <a href=index.php?module=bassinDisplay&bassin_id={$data[lst].bassin_id}>
+                <a href=bassinDisplay?bassin_id={$data[lst].bassin_id}>
                     {$data[lst].bassin_nom}
                 </a>
                 {/if}

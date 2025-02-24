@@ -25,13 +25,12 @@
         });
     });
 </script>
-<form id="fBassinPoisson" action="index.php" method="post">
-    <input type="hidden" name="module" value="bassinPoissonTransfert">
+<form id="fBassinPoisson" action="bassinPoissonTransfert" method="post">
     <input type="hidden" name="bassin_id" value="{$dataBassin.bassin_id}">
-    <table id="cbassinPoissonList" class="table table-bordered table-hover datatable-nopaging" data-order='[[1,"asc"]]'>
+    <table id="cbassinPoissonList" class="table table-bordered table-hover datatable-nopaging display" data-order='[[1,"asc"]]'>
         <thead>
             <tr>
-            <tr>{if $droits.bassinGestion == 1}
+            <tr>{if $rights.bassinGestion == 1}
                 <th class="center">
                     <input type="checkbox" id="checkPoissonSelect">
                 </th>
@@ -49,14 +48,14 @@
             {assign var=mt value=0}
             {section name=lst loop=$dataPoisson}
             <tr>
-                {if $droits.bassinGestion == 1}
+                {if $rights.bassinGestion == 1}
                 <td class="center">
                     <input type="checkbox" class="checkPoisson" name="poissons[]"
                         value="{$dataPoisson[lst].poisson_id}">
                 </td>
                 {/if}
                 <td>
-                    <a href="index.php?module=poissonDisplay&poisson_id={$dataPoisson[lst].poisson_id}">
+                    <a href="poissonDisplay?poisson_id={$dataPoisson[lst].poisson_id}">
                         {$dataPoisson[lst].matricule}
                     </a>
                 </td>
@@ -138,4 +137,4 @@
             </div>
         </div>
     </div>
-</form>
+{$csrf}</form>

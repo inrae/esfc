@@ -2,8 +2,7 @@
 
 <div class="row">
     <div class="col-md-6">
-        <form id="documentForm" class="form-horizontal" method="post" action="index.php" enctype="multipart/form-data">
-            <input type="hidden" name="module" value="sondeExec">
+        <form id="documentForm" class="form-horizontal" method="post" action="sondeExec" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="sonde_id" class="control-label col-md-4">{t}Modèle d'importation :{/t}</label>
                 <div class="col-md-8">
@@ -30,6 +29,6 @@
                     <input type="submit" class="btn btn-primary button-valid" value="{t}Importer les données de sonde{/t}">
                 </div>
             </div>
-        </form>
+        {$csrf}</form>
     </div>
 </div>

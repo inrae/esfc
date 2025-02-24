@@ -1,7 +1,6 @@
 <div class="row">
     <div class="col-md-6">
-        <form class="form-horizontal" id="documentForm" method="post" action="index.php" enctype="multipart/form-data">
-            <input type="hidden" name="action" value="Write">
+        <form class="form-horizontal" id="documentForm" method="post" action="documentWrite" enctype="multipart/form-data">            
             <input type="hidden" name="moduleBase" value="document">
             <input type="hidden" name="document_id" value="0">
             <input type="hidden" name="parent_id" value="{$parent_id}">
@@ -26,6 +25,6 @@
                     <button type="submit" class="btn btn-primary button-valid">{t}Valider{/t}</button>
                 </div>
             </div>
-        </form>
+        {$csrf}</form>
     </div>
 </div>

@@ -1,5 +1,5 @@
-{if $droits["reproGestion"] == 1}
-<a href="index.php?module=croisementChange&croisement_id=0&sequence_id={$dataSequence.sequence_id}">
+{if $rights["reproGestion"] == 1}
+<a href="croisementChange?croisement_id=0&sequence_id={$dataSequence.sequence_id}">
     Nouveau croisement...
 </a>
 {/if}
@@ -49,8 +49,8 @@
         {/if}
         <tr>
             <td>
-                {if $droits["reproGestion"] == 1}
-                <a href="index.php?module=croisementDisplay&croisement_id={$croisements[lst].croisement_id}">
+                {if $rights["reproGestion"] == 1}
+                <a href="croisementDisplay?croisement_id={$croisements[lst].croisement_id}">
                     {$croisements[lst].sequence_nom} {$croisements[lst].croisement_nom}
                 </a>
                 {else}

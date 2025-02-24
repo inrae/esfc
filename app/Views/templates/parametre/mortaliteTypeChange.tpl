@@ -1,11 +1,11 @@
 <h2>{t}Modification d'un type de mortalite{/t}</h2>
 
-<a href="index.php?module=mortaliteTypeList">{t}Retour à la liste{/t}</a>
+<a href="mortaliteTypeList">{t}Retour à la liste{/t}</a>
 
 <div class="row">
     <div class="col-md-6">
-        <form class="form-horizontal" id="mortaliteTypeForm" method="post" action="index.php">
-            <input type="hidden" name="action" value="Write">
+        <form class="form-horizontal" id="mortaliteTypeForm" method="post" action="mortaliteTypeWrite">
+
             <input type="hidden" name="moduleBase" value="mortaliteType">
             <input type="hidden" name="mortalite_type_id" value="{$data.mortalite_type_id}">
             <div class="form-group">
@@ -20,8 +20,11 @@
 
             <div class="form-group center">
                 <button type="submit" class="btn btn-primary button-valid">{t}Valider{/t}</button>
+                {if $data.mortalite_type_id > 0}
                 <button class="btn btn-danger button-delete">{t}Supprimer{/t}</button>
+                {/if}
             </div>
+            {$csrf}
         </form>
     </div>
 </div>

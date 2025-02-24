@@ -1,7 +1,6 @@
 {include file="bassin/bassinSearch.tpl"}
 {if $isSearch == 1}
-<form name="f_distrib" method="get" action="index.php" class="form-horizontal col-lg-8">
-    <input type="hidden" name="module" value="bassinRecapAlim">
+<form name="f_distrib" method="get" action="bassinRecapAlim" class="form-horizontal col-lg-8">
     <div class="row">
         <div class="col-md-12">
             <div class="row">
@@ -22,18 +21,18 @@
             </div>
         </div>
     </div>
-</form>
+{$csrf}</form>
 
-{if $droits.bassinGestion == 1}
+{if $rights.bassinGestion == 1}
 <div class="col-md-12">
     <div class="row">
-        <a href="index.php?module=bassinChange&bassin_id=0">Nouveau bassin...</a>
+        <a href="bassinChange?bassin_id=0">Nouveau bassin...</a>
     </div>
 </div>
 {/if}
 <div class="col-lg-12">
     <div class="row">
-        <table class="table table-bordered table-hover datatable" id="cbassinList">
+        <table class="table table-bordered table-hover datatable display" id="cbassinList">
             <thead>
                 <tr>
                 <th>{t}Nom{/t}</th>
@@ -52,7 +51,7 @@
             {section name=lst loop=$data}
                 <tr>
                 <td>
-                <a href="index.php?module=bassinDisplay&bassin_id={$data[lst].bassin_id}">
+                <a href="bassinDisplay?bassin_id={$data[lst].bassin_id}">
                 {$data[lst].bassin_nom}
                 </a>
                 </td>
@@ -61,7 +60,7 @@
                 <td>{$data[lst].bassin_type_libelle}</td>
                 <td>{$data[lst].bassin_usage_libelle}</td>
                 <td>
-                <a href="index.php?module=circuitEauDisplay&circuit_eau_id={$data[lst].circuit_eau_id}">
+                <a href="circuitEauDisplay?circuit_eau_id={$data[lst].circuit_eau_id}">
                 {$data[lst].circuit_eau_libelle}
                 </a>
                 </td>

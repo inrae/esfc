@@ -1,6 +1,6 @@
 
-{if $droits.poissonGestion==1 || $droits.reproGestion == 1}
-<a href="index.php?module=ventilationChange&poisson_id={$dataPoisson.poisson_id}&ventilation_id=0&poisson_campagne_id={$poisson_campagne_id}">Nouvelle mesure...</a>
+{if $rights.poissonGestion==1 || $rights.reproGestion == 1}
+<a href="ventilationChange?poisson_id={$dataPoisson.poisson_id}&ventilation_id=0&poisson_campagne_id={$poisson_campagne_id}">Nouvelle mesure...</a>
 {/if}
 <table class="table table-bordered table-hover datatable-nopaging-nosearching ok" id="cventilationList"  data-order='[[0,"desc"]]' data-tabicon="okreproduction">
 <thead>
@@ -14,8 +14,8 @@
 {section name=lst loop=$dataVentilation}
 <tr>
 <td>
-{if $droits.poissonGestion==1 || $droits.reproGestion == 1}
-<a href="index.php?module=ventilationChange&poisson_id={$dataVentilation[lst].poisson_id}&ventilation_id={$dataVentilation[lst].ventilation_id}&poisson_campagne_id={$poisson_campagne_id}">
+{if $rights.poissonGestion==1 || $rights.reproGestion == 1}
+<a href="ventilationChange?poisson_id={$dataVentilation[lst].poisson_id}&ventilation_id={$dataVentilation[lst].ventilation_id}&poisson_campagne_id={$poisson_campagne_id}">
 {$dataVentilation[lst].ventilation_date}
 </a>
 {else}

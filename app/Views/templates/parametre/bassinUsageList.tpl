@@ -1,11 +1,11 @@
 <h2>{t}Utilisations des bassins{/t}</h2>
-{if $droits["paramAdmin"] == 1}
-<a href="index.php?module=bassinUsageChange&bassin_usage_id=0">
+{if $rights["paramAdmin"] == 1}
+<a href="bassinUsageChange?bassin_usage_id=0">
 Nouveau...
 </a>
 {/if}
 
-<table class="table table-bordered table-hover datatable" id="cbassinUsageList" class="tableliste">
+<table class="table table-bordered table-hover datatable display" id="cbassinUsageList" class="tableliste">
 <thead>
 <tr>
 <th>{t}libellé{/t}</th>
@@ -16,8 +16,8 @@ Nouveau...
 {section name=lst loop=$data}
 <tr>
 <td>
-{if $droits["paramAdmin"] == 1}
-<a href="index.php?module=bassinUsageChange&bassin_usage_id={$data[lst].bassin_usage_id}">
+{if $rights["paramAdmin"] == 1}
+<a href="bassinUsageChange?bassin_usage_id={$data[lst].bassin_usage_id}">
 {$data[lst].bassin_usage_libelle}
 </a>
 {else}

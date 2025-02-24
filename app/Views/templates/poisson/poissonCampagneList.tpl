@@ -13,8 +13,8 @@
 {section name=lst loop=$dataRepro}
 <tr>
 <td>
-{if $droits.reproConsult==1}
-<a href="index.php?module=poissonCampagneDisplay&poisson_campagne_id={$dataRepro[lst].poisson_campagne_id}">
+{if $rights.reproConsult==1}
+<a href="poissonCampagneDisplay?poisson_campagne_id={$dataRepro[lst].poisson_campagne_id}">
 {$dataRepro[lst].annee}
 </a>
 {else}

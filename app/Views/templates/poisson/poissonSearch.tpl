@@ -37,9 +37,8 @@
 		});
 	});
 </script>
-<form method="get" action="index.php" id="search" class="col-lg-12 form-horizontal">
+<form method="get" action=poissonList"" id="search" class="col-lg-12 form-horizontal">
 	<input type="hidden" name="isSearch" value="1">
-	<input type="hidden" name="module" value="poissonList">
 	<div class="row">
 		<div class="form-group">
 			<label class="control-label col-md-2" for="texte">
@@ -227,4 +226,4 @@
 			</div>
 		</div>
 	</div>
-</form>
+{$csrf}</form>

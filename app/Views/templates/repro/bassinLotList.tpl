@@ -1,10 +1,10 @@
-{if $droits["reproGestion"] == 1}
-<a href="index.php?module=bassinLotChange&bassin_lot_id=0&lot_id={$dataLot.lot_id}">
+{if $rights["reproGestion"] == 1}
+<a href="bassinLotChange?bassin_lot_id=0&lot_id={$dataLot.lot_id}">
     Nouvelle affectation de bassin...
 </a>
 {/if}
 
-<table class="table table-bordered table-hover datatable" id="cBassinLot" class="tableliste">
+<table class="table table-bordered table-hover datatable display" id="cBassinLot" class="tableliste">
     <thead>
         <tr>
             <th>{t}Date de début d'utilisation{/t}</th>
@@ -16,8 +16,8 @@
         {section name=lst loop=$bassinLot}
         <tr>
             <td class="center">
-                {if $droits["reproGestion"] == 1}
-                <a href="index.php?module=bassinLotChange&bassin_lot_id={$bassinLot[lst].bassin_lot_id}&lot_id={$dataLot.lot_id}">
+                {if $rights["reproGestion"] == 1}
+                <a href="bassinLotChange?bassin_lot_id={$bassinLot[lst].bassin_lot_id}&lot_id={$dataLot.lot_id}">
                     {$bassinLot[lst].bl_date_arrivee}
                 </a>
                 {else}

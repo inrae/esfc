@@ -46,16 +46,15 @@
 </script>
 
 <h2>{t}Saisie-modification d'une analyse d'eau{/t}</h2>
-<a href="index.php?module=circuitEauList&circuit_eau_id={$data.circuit_eau_id}">
+<a href="circuitEauList?circuit_eau_id={$data.circuit_eau_id}">
 	{t}Retour à la liste des circuits d'eau{/t}
 </a> >
-<a href="index.php?module=circuitEauDisplay&circuit_eau_id={$data.circuit_eau_id}">
+<a href="circuitEauDisplay?circuit_eau_id={$data.circuit_eau_id}">
 	{t}Retour au circuit d'eau{/t} {$dataCircuitEau.circuit_eau_libelle}
 </a>
 <div class="row">
 	<div class="col-md-6">
-		<form class="form-horizontal" id="analyseEauForm" method="post" action="index.php">
-			<input id="module" type="hidden" name="module" value="analyseEauWrite{$origine}">
+		<form class="form-horizontal" id="analyseEauForm" method="post" action="analyseEauWrite{$origine}">
 			<input type="hidden" name="analyse_eau_id" value="{$data.analyse_eau_id}">
 			<input type="hidden" name="circuit_eau_id" value="{$data.circuit_eau_id}">
 			<div class="form-group center">
@@ -244,12 +243,12 @@
 
 				<div class="form-group center">
 					<button type="submit" class="btn btn-primary button-valid">{t}Valider{/t}</button>
-					{if $data.analyse_eau_id > 0 &&$droits["bassinAdmin"] == 1}
+					{if $data.analyse_eau_id > 0 &&$rights["bassinAdmin"] == 1}
 					<button id="delete" class="btn btn-danger button-delete">{t}Supprimer{/t}</button>
 					{/if}
 				</div>
 			</div>
-		</form>
+		{$csrf}</form>
 	</div>
 </div>
 

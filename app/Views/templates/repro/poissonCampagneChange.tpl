@@ -1,15 +1,15 @@
-<a href="index.php?module={$poissonDetailParent}">
+<a href="{$poissonDetailParent}">
     <img src="display/images/display.png" height="25">
     {t}Retour à la liste des poissons{/t}
 </a>
 
-<a href="index.php?module=poissonDisplay&poisson_id={$dataPoisson.poisson_id}">
+<a href="poissonDisplay?poisson_id={$dataPoisson.poisson_id}">
     <img src="display/images/sturio.png" height="25">
     {t}Retour au poisson{/t}
 </a>
 
 {if $data.poisson_campagne_id > 0}
-<a href="index.php?module=poissonCampagneDisplay&poisson_campagne_id={$data.poisson_campagne_id}">
+<a href="poissonCampagneDisplay?poisson_campagne_id={$data.poisson_campagne_id}">
     <img src="display/images/fish.svg" height="25">
     {t}Retour au reproducteur{/t}
 </a>
@@ -22,8 +22,7 @@
 
 <div class="row">
     <div class="col-md-6">
-        <form class="form-horizontal" id="poissonCampagneForm" method="post" action="index.php">
-            <input type="hidden" name="action" value="Write">
+        <form class="form-horizontal" id="poissonCampagneForm" method="post" action="poissonCampagneWrite">            
             <input type="hidden" name="moduleBase" value="poissonCampagne">
             <input type="hidden" name="poisson_campagne_id" value="{$data.poisson_campagne_id}">
             <input type="hidden" name="poisson_id" value="{$data.poisson_id}">
@@ -88,10 +87,10 @@
 
             <div class="form-group center">
                 <button type="submit" class="btn btn-primary button-valid">{t}Valider{/t}</button>
-                {if $data.poisson_campagne_id > 0 &&$droits["reproAdmin"] == 1}
+                {if $data.poisson_campagne_id > 0 &&$rights["reproAdmin"] == 1}
                 <button class="btn btn-danger button-delete">{t}Supprimer{/t}</button>
                 {/if}
             </div>
-        </form>
+        {$csrf}</form>
     </div>
 </div>

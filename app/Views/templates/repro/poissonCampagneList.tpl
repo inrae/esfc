@@ -62,8 +62,7 @@
 	});
 //
 </script>
-<form method="get" action="index.php" id="search">
-	<input type="hidden" name="module" value="poissonCampagneList">
+<form method="get" action="poissonCampagneList" id="search">
 	<input type="hidden" name="isSearch" value="1">
 	<div class="row">
 		<div class="col-md-6 col-lg-6 form-horizontal">
@@ -123,13 +122,13 @@
 			<div id="graphiqueMasse"></div>
 		</div>
 	</div>
-</form>
+{$csrf}</form>
 
 {if $dataSearch.isSearch == 1}
 <div class="row">
 	<div class="col-md-3">
-		{if $droits.reproGestion == 1}
-		<a id="campagneinit" href="index.php?module=poissonCampagneInit&annee={$dataSearch.annee}">
+		{if $rights.reproGestion == 1}
+		<a id="campagneinit" href="poissonCampagneInit&annee={$dataSearch.annee}">
 			{t}Ajouter tous les adultes vivants à la campagne...{/t}
 		</a>
 		{/if}
@@ -138,10 +137,9 @@
 
 
 
-<form id="clistform" method="post" action="index.php">
-	<input type="hidden" name="module" value="poissonCampagneChangeStatut">
+<form id="clistform" method="post" action="poissonCampagneChangeStatut">
 	<div class="row">
-		<table class="table table-bordered table-hover datatable" id="cpoissonList">
+		<table class="table table-bordered table-hover datatable display" id="cpoissonList">
 			<thead>
 				<tr>
 					<th>{t}Données d'élevage{/t}</th>
@@ -162,13 +160,13 @@
 				{section name=lst loop=$data}
 				<tr>
 					<td class="center">
-						<a href=index.php?module=poissonDisplay&poisson_id={$data[lst].poisson_id}>
+						<a href=poissonDisplay?poisson_id={$data[lst].poisson_id}>
 							<img src="display/images/fish.png" height="24"
 								title="Accéder à la fiche détaillée du poisson">
 						</a>
 					<td>
 						<a
-							href="index.php?module=poissonCampagneDisplay&poisson_campagne_id={$data[lst].poisson_campagne_id}">
+							href="poissonCampagneDisplay?poisson_campagne_id={$data[lst].poisson_campagne_id}">
 							{$data[lst].matricule} {$data[lst].prenom} {$data[lst].pittag_valeur}
 						</a>
 						{if $data[lst].poisson_statut_id != 1} ({$data[lst].poisson_statut_libelle}){/if}
@@ -179,7 +177,7 @@
 					<td class="center">{$data[lst].sexe_libelle_court}</td>
 					<td class="right">{$data[lst].masse}</td>
 					<td class="center  {if $graphique_id == $data[lst].poisson_id} selected{/if}">
-						<a href="index.php?module=poissonCampagneList&graphique_id={$data[lst].poisson_id}">
+						<a href="poissonCampagneList?graphique_id={$data[lst].poisson_id}">
 							<img src="display/images/chart.png" height="25">
 						</a>
 					</td>
@@ -226,5 +224,5 @@
 			</fieldset>
 		</div>
 	</div>
-</form>
+{$csrf}</form>
 {/if}

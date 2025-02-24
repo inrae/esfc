@@ -34,7 +34,7 @@
     <dl class="dl-horizontal">
         <dt>{t}Lot parent :{/t}</dt>
         <dd>
-            <a href="index.php?module=lotDisplay&lot_id={$dataLot.parent_lot_id}">
+            <a href="lotDisplay?lot_id={$dataLot.parent_lot_id}">
                 {$dataLot.parent_lot_nom}
             </a>
         </dd>

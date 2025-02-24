@@ -1,11 +1,11 @@
 <h2>{t}Méthodes de détermination du sexe{/t}</h2>
-{if $droits["paramAdmin"] == 1}
-<a href="index.php?module=genderMethodeChange&gender_methode_id=0">
+{if $rights["paramAdmin"] == 1}
+<a href="genderMethodeChange?gender_methode_id=0">
 Nouveau...
 </a>
 {/if}
 
-<table class="table table-bordered table-hover datatable" id="cgenderMethodeList" class="tableliste">
+<table class="table table-bordered table-hover datatable display" id="cgenderMethodeList" class="tableliste">
 <thead>
 <tr>
 <th>{t}libellé{/t}</th>
@@ -15,8 +15,8 @@ Nouveau...
 {section name=lst loop=$data}
 <tr>
 <td>
-{if $droits["paramAdmin"] == 1}
-<a href="index.php?module=genderMethodeChange&gender_methode_id={$data[lst].gender_methode_id}">
+{if $rights["paramAdmin"] == 1}
+<a href="genderMethodeChange?gender_methode_id={$data[lst].gender_methode_id}">
 {$data[lst].gender_methode_libelle}
 </a>
 {else}

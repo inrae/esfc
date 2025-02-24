@@ -1,9 +1,9 @@
-<a href="index.php?module=sequenceList">
+<a href="sequenceList">
     <img src="display/images/list.png" height="25">
     Retour à la liste des séquences
 </a>
 &nbsp;
-<a href="index.php?module=sequenceDisplay&sequence_id={$data.sequence_id}">
+<a href="sequenceDisplay?sequence_id={$data.sequence_id}">
     <img src="display/images/sexe.svg" height="25">
     {t}Retour à la séquence{/t}
     {$dataSequence.annee} {$dataSequence.sequence_date_debut} - {$dataSequence.site_name} {$dataSequence.sequence_nom}
@@ -11,8 +11,8 @@
 
 <h2>{t}Détail du croisement{/t} <i>{$data.parents}</i></h2>
 <div class="col-md-4">
-    {if $droits.reproGestion == 1}
-    <a href="index.php?module=croisementChange&croisement_id={$data.croisement_id}&sequence_id={$data.sequence_id}">
+    {if $rights.reproGestion == 1}
+    <a href="croisementChange?croisement_id={$data.croisement_id}&sequence_id={$data.sequence_id}">
         <img src="display/images/edit.gif" height="25">
         {t}Modifier...{/t}
     </a>

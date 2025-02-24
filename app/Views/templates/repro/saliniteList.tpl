@@ -1,4 +1,4 @@
-<table class="table table-bordered table-hover datatable" id="csaliniteList" class="tableliste">
+<table class="table table-bordered table-hover datatable display" id="csaliniteList" class="tableliste">
 <thead>
 <tr>
 <th>{t}Date/heure{/t}</th>
@@ -10,8 +10,8 @@
 {section name=lst loop=$salinites}
 <tr>
 <td>
-{if $droits.reproGestion == 1}
-<a href="index.php?module=saliniteChange&salinite_id={$salinites[lst].salinite_id}&bassin_campagne_id={$salinites[lst].bassin_campagne_id}">
+{if $rights.reproGestion == 1}
+<a href="saliniteChange?salinite_id={$salinites[lst].salinite_id}&bassin_campagne_id={$salinites[lst].bassin_campagne_id}">
 {$salinites[lst].salinite_datetime}
 </a>
 {else}

@@ -66,7 +66,7 @@ $(document).ready(function() {
 } );
 </script>
 <h2>{t}Détail d'un bassin{/t}</h2>
-<a href="index.php?module={$bassinParentModule}">Retour à la liste des bassins</a>
+<a href="{$bassinParentModule}">Retour à la liste des bassins</a>
 <table class="tablemulticolonne">
 <tr>
 <td>
@@ -74,14 +74,14 @@ $(document).ready(function() {
 {include file="bassin/bassinDetail.tpl"}
 
 <label>Usage du bassin pour la reproduction</label> : 
-{if $droits.reproGestion == 1}
-<form name="cbassincampagne" method="post" action="index.php?module=bassinCampagneWrite">
+{if $rights.reproGestion == 1}
+<form name="cbassincampagne" method="post" action="bassinCampagneWrite">
 <input name="bassin_utilisation" value="{$dataBassinCampagne.bassin_utilisation}" class="commentaire">
 <input type="hidden" name="bassin_campagne_id" value="{$dataBassinCampagne.bassin_campagne_id}">
 <input type="hidden" name="annee" value="{$dataBassinCampagne.annee}">
 <input type="hidden" name="bassin_id" value="{$dataBassinCampagne.bassin_id}">
 <input class="submit" type="submit" value="Enregistrer">
-</form>
+{$csrf}</form>
 {else}
 {$dataBassinCampagne.bassin_utilisation}
 {/if}
@@ -106,8 +106,8 @@ $(document).ready(function() {
 <td>
 <fieldset>
 <legend>{t}Profil thermique - températures prévues et relevés des analyses d'eau{/t}</legend>
-{if $droits.reproGestion == 1}
-<a href="index.php?module=profilThermiqueChange&profil_thermique_id=0&bassin_campagne_id={$dataBassinCampagne.bassin_campagne_id}">
+{if $rights.reproGestion == 1}
+<a href="profilThermiqueChange?profil_thermique_id=0&bassin_campagne_id={$dataBassinCampagne.bassin_campagne_id}">
 Nouvelle température prévue...
 </a>
 {/if}
@@ -119,8 +119,8 @@ Nouvelle température prévue...
 <td>
 <fieldset>
 <legend>{t}Évolution de la salinité - salinités prévues et relevés des analyses d'eau{/t}</legend>
-{if $droits.reproGestion == 1}
-<a href="index.php?module=saliniteChange&salinite_id=0&bassin_campagne_id={$dataBassinCampagne.bassin_campagne_id}">
+{if $rights.reproGestion == 1}
+<a href="saliniteChange?salinite_id=0&bassin_campagne_id={$dataBassinCampagne.bassin_campagne_id}">
 Nouvelle salinité prévue...
 </a>
 {/if}

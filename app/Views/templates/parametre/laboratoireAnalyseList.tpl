@@ -1,11 +1,11 @@
 <h2>{t}Laboratoires d'analyse{/t}</h2>
-{if $droits["paramAdmin"] == 1}
-<a href="index.php?module=laboratoireAnalyseChange&laboratoire_analyse_id=0">
+{if $rights["paramAdmin"] == 1}
+<a href="laboratoireAnalyseChange?laboratoire_analyse_id=0">
 Nouveau...
 </a>
 {/if}
 
-<table class="table table-bordered table-hover datatable" id="claboratoireAnalyseList" class="tableliste">
+<table class="table table-bordered table-hover datatable display" id="claboratoireAnalyseList" class="tableliste">
 <thead>
 <tr>
 <th>{t}libellé{/t}</th>
@@ -16,8 +16,8 @@ Nouveau...
 {section name=lst loop=$data}
 <tr>
 <td>
-{if $droits["paramAdmin"] == 1}
-<a href="index.php?module=laboratoireAnalyseChange&laboratoire_analyse_id={$data[lst].laboratoire_analyse_id}">
+{if $rights["paramAdmin"] == 1}
+<a href="laboratoireAnalyseChange?laboratoire_analyse_id={$data[lst].laboratoire_analyse_id}">
 {$data[lst].laboratoire_analyse_libelle}
 </a>
 {else}

@@ -1,10 +1,10 @@
-{if $droits.reproGestion == 1}
+{if $rights.reproGestion == 1}
 <a
-    href="index.php?module=spermeMesureChange&sperme_mesure_id=0&sperme_id={$data.sperme_id}&sperme_congelation_id={$data.sperme_congelation_id}&poisson_campagne_id={$dataPoisson.poisson_campagne_id}">
+    href="spermeMesureChange?sperme_mesure_id=0&sperme_id={$data.sperme_id}&sperme_congelation_id={$data.sperme_congelation_id}&poisson_campagne_id={$dataPoisson.poisson_campagne_id}">
     {t}Nouvelle analyse...{/t}
 </a>
 {/if}
-<table class="table table-bordered table-hover datatable-nopaging-nosearching" id="spermeMesureList">
+<table class="table table-bordered table-hover datatable-nopaging-nosearching display" id="spermeMesureList">
     <thead>
         <tr>
             <th>{t}Date{/t}</th>
@@ -23,9 +23,9 @@
         {section name=lst loop=$dataMesure}
         <tr>
             <td>
-                {if $droits.reproGestion == 1}
+                {if $rights.reproGestion == 1}
                 <a
-                    href="index.php?module=spermeMesureChange&sperme_mesure_id={$dataMesure[lst].sperme_mesure_id}&sperme_id={$data.sperme_id}&sperme_congelation_id={$dataMesure[lst].sperme_congelation_id}&poisson_campagne_id={$data.poisson_campagne_id}">
+                    href="spermeMesureChange?sperme_mesure_id={$dataMesure[lst].sperme_mesure_id}&sperme_id={$data.sperme_id}&sperme_congelation_id={$dataMesure[lst].sperme_congelation_id}&poisson_campagne_id={$data.poisson_campagne_id}">
                     {$dataMesure[lst].sperme_mesure_date}
                 </a>
                 {else}

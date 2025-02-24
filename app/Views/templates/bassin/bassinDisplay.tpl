@@ -22,7 +22,7 @@
 </script>
 
 <h2>{t}Détail du bassin{/t} {$dataBassin.bassin_nom}</h2>
-<a href="index.php?module={$bassinParentModule}">{t}Retour à la liste{/t}</a>
+<a href="{$bassinParentModule}">{t}Retour à la liste{/t}</a>
 
 <div class="row">
     <div class="col-xs-12">
@@ -65,9 +65,9 @@
         </ul>
         <div class="tab-content" id="nav-tabContent">
             <div class="tab-pane active in" id="nav-detail" role="tabpanel" aria-labelledby="tab-detail">
-                {if $droits["bassinGestion"]==1}
+                {if $rights["bassinGestion"]==1}
                 <div class="row">
-                    <a href="index.php?module=bassinChange&bassin_id={$dataBassin.bassin_id}">
+                    <a href="bassinChange?bassin_id={$dataBassin.bassin_id}">
                         {t}Modifier...{/t}
                     </a>
                 </div>

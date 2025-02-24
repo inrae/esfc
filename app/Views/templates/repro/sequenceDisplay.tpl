@@ -25,13 +25,13 @@
     });
 </script>
 
-<a href="index.php?module=sequenceList">
+<a href="sequenceList">
     <img src="display/images/repro.png" height="25">
     {t}Retour à la liste des séquences{/t}
 </a>
-{if $droits["reproGestion"]==1}
+{if $rights["reproGestion"]==1}
 &nbsp;
-<a href="index.php?module=sequenceChange&sequence_id={$dataSequence.sequence_id}">
+<a href="sequenceChange?sequence_id={$dataSequence.sequence_id}">
     <img src="display/images/edit.gif" height="25">
     {t}Modifier les informations générales de la séquence...{/t}
 </a>

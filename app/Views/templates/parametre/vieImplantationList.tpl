@@ -1,11 +1,11 @@
 <h2>{t}Emplacements d'implantation des marques VIE{/t}</h2>
-{if $droits["paramAdmin"] == 1}
-<a href="index.php?module=vieImplantationChange&vie_implantation_id=0">
+{if $rights["paramAdmin"] == 1}
+<a href="vieImplantationChange?vie_implantation_id=0">
 Nouveau...
 </a>
 {/if}
 
-<table class="table table-bordered table-hover datatable" id="cvie_implantationList" class="tableliste">
+<table class="table table-bordered table-hover datatable display" id="cvie_implantationList" class="tableliste">
 <thead>
 <tr>
 <th>{t}Nom de l'emplacement d'implantation{/t}</th>
@@ -15,8 +15,8 @@ Nouveau...
 {section name=lst loop=$data}
 <tr>
 <td>
-{if $droits["paramAdmin"] == 1||$droits.reproAdmin == 1}
-<a href="index.php?module=vieImplantationChange&vie_implantation_id={$data[lst].vie_implantation_id}">
+{if $rights["paramAdmin"] == 1||$rights.reproAdmin == 1}
+<a href="vieImplantationChange?vie_implantation_id={$data[lst].vie_implantation_id}">
 {$data[lst].vie_implantation_libelle}
 </a>
 {else}

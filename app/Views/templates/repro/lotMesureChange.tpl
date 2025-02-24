@@ -1,17 +1,16 @@
-<a href="index.php?module=lotList">
+<a href="lotList">
 	<img src="display/images/list.png" height="25">
 	{t}Retour à la liste des lots{/t}
 </a>
 &nbsp;
-<a href="index.php?module=lotDisplay&lot_id={$data.lot_id}">
+<a href="lotDisplay?lot_id={$data.lot_id}">
 	<img src="display/images/fishlot.svg" height="25">
 	{t}Retour au lot{/t} {$dataLot.lot_nom} {$dataLot.eclosion_date}
 </a>
 <h2>{t}Mesures pour le lot{/t}</h2>
 <div class="row">
 	<div class="col-md-6">
-		<form class="form-horizontal" id="lotMesureForm" method="post" action="index.php">
-			<input type="hidden" name="action" value="Write">
+		<form class="form-horizontal" id="lotMesureForm" method="post" action="lotMesureWrite">			
 			<input type="hidden" name="moduleBase" value="lotMesure">
 			<input type="hidden" name="lot_mesure_id" value="{$data.lot_mesure_id}">
 			<input type="hidden" name="lot_id" value="{$data.lot_id}">
@@ -62,11 +61,11 @@
 
 			<div class="form-group center">
 				<button type="submit" class="btn btn-primary button-valid">{t}Valider{/t}</button>
-				{if $data.lot_mesure_id > 0 &&$droits["reproGestion"] == 1}
+				{if $data.lot_mesure_id > 0 &&$rights["reproGestion"] == 1}
 				<button class="btn btn-danger button-delete">{t}Supprimer{/t}</button>
 				{/if}
 			</div>
-		</form>
+		{$csrf}</form>
 	</div>
 </div>
 

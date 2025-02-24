@@ -1,8 +1,7 @@
 <div class="row">
     <div class="col-lg-8 col-md-12">
-        <form method="get" action="index.php" class="form-horizontal">
+        <form method="get" action="anomalieList" class="form-horizontal">
             <input type="hidden" name="isSearch" value="1">
-            <input type="hidden" name="module" value="anomalieList">
             <div class="row">
                 <div class="form-group">
                     <label for="statut0" class="control-label col-md-3">
@@ -47,14 +46,14 @@
                     </div>
                 </div>
             </div>
-        </form>
+        {$csrf}</form>
     </div>
 </div>
 {if $isSearch == 1}
-<table class="table table-bordered table-hover datatable" id="canomalieList" class="tableliste">
+<table class="table table-bordered table-hover datatable display" id="canomalieList" class="tableliste">
     <thead>
         <tr>
-            {if $droits["poissonAdmin"] == 1}
+            {if $rights["poissonAdmin"] == 1}
             <th>{t}Modif{/t}</th>
             {/if}
             <th>{t}Poisson{/t}</th>
@@ -69,10 +68,10 @@
     <tbody>
         {section name=lst loop=$dataAnomalie}
         <tr>
-            {if $droits["poissonAdmin"] == 1}
+            {if $rights["poissonAdmin"] == 1}
             <td>
                 <div class="center">
-                    <a href="index.php?module=anomalieChange&anomalie_db_id={$dataAnomalie[lst].anomalie_db_id}">
+                    <a href="anomalieChange?anomalie_db_id={$dataAnomalie[lst].anomalie_db_id}">
                         <img src="display/images/edit.gif" height="20">
                     </a>
                 </div>
@@ -80,7 +79,7 @@
             {/if}
             <td>
                 {if $dataAnomalie[lst].poisson_id > 0}
-                <a href="index.php?module=poissonDisplay&poisson_id={$dataAnomalie[lst].poisson_id}">
+                <a href="poissonDisplay?poisson_id={$dataAnomalie[lst].poisson_id}">
                     {$dataAnomalie[lst].matricule}
                     {if strlen($dataAnomalie[lst].matricule) == 0}
                     {$dataAnomalie[lst].prenom}
@@ -91,9 +90,9 @@
                 </a>
                 {/if}
             <td>
-                {if $dataAnomalie[lst].evenement_id > 0 && $droits["poissonGestion"] == 1}
+                {if $dataAnomalie[lst].evenement_id > 0 && $rights["poissonGestion"] == 1}
                 <a
-                    href="index.php?module=evenementChange&poisson_id={$dataAnomalie[lst].poisson_id}&evenement_id={$dataAnomalie[lst].evenement_id}">
+                    href="evenementChange?poisson_id={$dataAnomalie[lst].poisson_id}&evenement_id={$dataAnomalie[lst].evenement_id}">
                     {$dataAnomalie[lst].evenement_type_libelle}
                 </a>
                 {else}

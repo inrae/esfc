@@ -1,9 +1,9 @@
-<a href="index.php?module={$poissonDetailParent}&sequence_id={$sequence_id}">
+<a href="{$poissonDetailParent}&sequence_id={$sequence_id}">
     <img src="display/images/list.png" height="25">
     {t}Retour à la liste des poissons{/t}
 </a>
 <a
-    href="index.php?module=poissonCampagneDisplay&poisson_campagne_id={$data.poisson_campagne_id}&sequence_id={$data.sequence_id}">
+    href="poissonCampagneDisplay?poisson_campagne_id={$data.poisson_campagne_id}&sequence_id={$data.sequence_id}">
     <img src="display/images/fish.svg" height="25">
     {t}Retour au reproducteur{/t}
 </a>
@@ -13,8 +13,7 @@
 
 <div class="row">
     <div class="col-md-6">
-        <form class="form-horizontal" id="poissonSequenceForm" method="post" action="index.php">
-            <input type="hidden" name="action" value="Write">
+        <form class="form-horizontal" id="poissonSequenceForm" method="post" action="poissonSequenceWrite">            
             <input type="hidden" name="moduleBase" value="poissonSequence">
             <input type="hidden" name="poisson_sequence_id" value="{$data.poisson_sequence_id}">
             <input type="hidden" name="poisson_campagne_id" value="{$data.poisson_campagne_id}">
@@ -78,27 +77,27 @@
             {if $dataPoisson.sexe_id == 1}
             <fieldset>
                 <legend>{t}Prélèvements de sperme{/t}</legend>
-                <a href="index.php?module=poissonCampagneDisplay&poisson_campagne_id={$data.poisson_campagne_id}">
+                <a href="poissonCampagneDisplay?poisson_campagne_id={$data.poisson_campagne_id}">
                     <img src="display/images/eprouvette.png" height="18">
                     {t}Accédez à la fiche du poisson pour réaliser la saisie{/t}
                 </a>
             </fieldset>
             {/if}
-            {if $droits.reproGestion == 1}
+            {if $rights.reproGestion == 1}
             <div class="form-group center">
                 <button type="submit" class="btn btn-primary button-valid">{t}Valider{/t}</button>
-                {if $data.poisson_sequence_id > 0 && $droits["reproAdmin"] == 1}
+                {if $data.poisson_sequence_id > 0 && $rights["reproAdmin"] == 1}
                 <button class="btn btn-danger button-delete">{t}Supprimer{/t}</button>
                 {/if}
                 {/if}
             </div>
-        </form>
+        {$csrf}</form>
     </div>
     <div class="col-md-6">
         {if $data.poisson_sequence_id > 0}
-        {if $droits.reproGestion == 1 }
+        {if $rights.reproGestion == 1 }
         <a
-            href="index.php?module=psEvenementChange&ps_evenement_id=0&poisson_sequence_id={$data.poisson_sequence_id}&sequence_id={$data.sequence_id}&poisson_campagne_id={$data.poisson_campagne_id}">
+            href="psEvenementChange?ps_evenement_id=0&poisson_sequence_id={$data.poisson_sequence_id}&sequence_id={$data.sequence_id}&poisson_campagne_id={$data.poisson_campagne_id}">
             <img src="display/images/event.png" height="25">
             {t}Nouvel événement...{/t}
         </a>
@@ -107,7 +106,7 @@
         {/if}
         {/if}
         <div class="row">
-            <table id="cpsEvenement" class="table table-hover table-bordered datatable-nopaging-nosearching">
+            <table id="cpsEvenement" class="table table-hover table-bordered datatable-nopaging-nosearching display">
                 <thead>
                     <tr>
                         <th>{t}Date{/t}</th>
@@ -119,9 +118,9 @@
                     {section name=lst loop=$evenements}
                     <tr>
                         <td>
-                            {if $droits.reproGestion == 1}
+                            {if $rights.reproGestion == 1}
                             <a
-                                href="index.php?module=psEvenementChange&ps_evenement_id={$evenements[lst].ps_evenement_id}&poisson_sequence_id={$data.poisson_sequence_id}&sequence_id={$data.sequence_id}&poisson_campagne_id={$data.poisson_campagne_id}">
+                                href="psEvenementChange?ps_evenement_id={$evenements[lst].ps_evenement_id}&poisson_sequence_id={$data.poisson_sequence_id}&sequence_id={$data.sequence_id}&poisson_campagne_id={$data.poisson_campagne_id}">
                                 {$evenements[lst].ps_datetime}
                             </a>
                             {else}

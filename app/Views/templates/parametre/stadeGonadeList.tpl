@@ -1,11 +1,11 @@
 <h2>{t}Stades de maturation des gonades{/t}</h2>
-{if $droits["paramAdmin"] == 1}
-<a href="index.php?module=stadeGonadeChange&stade_gonade_id=0">
+{if $rights["paramAdmin"] == 1}
+<a href="stadeGonadeChange?stade_gonade_id=0">
 Nouveau...
 </a>
 {/if}
 
-<table class="table table-bordered table-hover datatable" id="stadeGonadeList" class="tableliste">
+<table class="table table-bordered table-hover datatable display" id="stadeGonadeList" class="tableliste">
 <thead>
 <tr>
 <th>{t}libellé{/t}</th>
@@ -15,8 +15,8 @@ Nouveau...
 {section name=lst loop=$data}
 <tr>
 <td>
-{if $droits["paramAdmin"] == 1}
-<a href="index.php?module=stadeGonadeChange&stade_gonade_id={$data[lst].stade_gonade_id}">
+{if $rights["paramAdmin"] == 1}
+<a href="stadeGonadeChange?stade_gonade_id={$data[lst].stade_gonade_id}">
 {$data[lst].stade_gonade_libelle}
 </a>
 {else}

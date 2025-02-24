@@ -1,11 +1,11 @@
 <h2>{t}Produits utilisés pour l'anesthésie{/t}</h2>
-{if $droits["paramAdmin"] == 1}
-<a href="index.php?module=anesthesieProduitChange&anesthesie_produit_id=0">
+{if $rights["paramAdmin"] == 1}
+<a href="anesthesieProduitChange?anesthesie_produit_id=0">
 Nouveau...
 </a>
 {/if}
 
-<table class="table table-bordered table-hover datatable" id="cproduitList" class="tableliste">
+<table class="table table-bordered table-hover datatable display" id="cproduitList" class="tableliste">
 <thead>
 <tr>
 <th>{t}Nom du produit{/t}</th>
@@ -16,8 +16,8 @@ Nouveau...
 {section name=lst loop=$data}
 <tr>
 <td>
-{if $droits["paramAdmin"] == 1||$droits.reproAdmin == 1}
-<a href="index.php?module=anesthesieProduitChange&anesthesie_produit_id={$data[lst].anesthesie_produit_id}">
+{if $rights["paramAdmin"] == 1||$rights.reproAdmin == 1}
+<a href="anesthesieProduitChange?anesthesie_produit_id={$data[lst].anesthesie_produit_id}">
 {$data[lst].anesthesie_produit_libelle}
 </a>
 {else}

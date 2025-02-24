@@ -1,5 +1,5 @@
-<a href="index.php?module={$poissonDetailParent}&sperme_qualite_id={$sperme_qualite_id}">Retour à la liste des poissons</a>&nbsp;
-<a href="index.php?module=poissonCampagneDisplay&poisson_campagne_id={$data.poisson_campagne_id}">
+<a href="{$poissonDetailParent}&sperme_qualite_id={$sperme_qualite_id}">Retour à la liste des poissons</a>&nbsp;
+<a href="poissonCampagneDisplay?poisson_campagne_id={$data.poisson_campagne_id}">
 Retour au reproducteur
 </a>
 {include file="repro/poissonCampagneDetail.tpl"}

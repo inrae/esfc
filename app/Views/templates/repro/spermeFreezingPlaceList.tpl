@@ -1,10 +1,10 @@
-{if $droits["reproGestion"] == 1}
+{if $rights["reproGestion"] == 1}
 <a
-    href="index.php?module=spermeFreezingPlaceChange&sperme_freezing_place_id=0&sperme_congelation_id={$data.sperme_congelation_id}&poisson_campagne_id={$dataPoisson.poisson_campagne_id}">
+    href="spermeFreezingPlaceChange?sperme_freezing_place_id=0&sperme_congelation_id={$data.sperme_congelation_id}&poisson_campagne_id={$dataPoisson.poisson_campagne_id}">
     {t}Nouvel emplacement de congélation...{/t}
 </a>
 {/if}
-<table class="table table-bordered table-hover datatable-nopaging-nosearching" id="emplacementCongelationId">
+<table class="table table-bordered table-hover datatable-nopaging-nosearching display" id="emplacementCongelationId">
     <thead>
         <tr>
             <th>{t}Cuve{/t}</th>
@@ -17,9 +17,9 @@
         {section name=lst loop=$place}
         <tr>
             <td>
-                {if $droits["reproGestion"] == 1}
+                {if $rights["reproGestion"] == 1}
                 <a
-                    href="index.php?module=spermeFreezingPlaceChange&sperme_freezing_place_id={$place[lst].sperme_freezing_place_id}&sperme_congelation_id={$data.sperme_congelation_id}&poisson_campagne_id={$dataPoisson.poisson_campagne_id}">
+                    href="spermeFreezingPlaceChange?sperme_freezing_place_id={$place[lst].sperme_freezing_place_id}&sperme_congelation_id={$data.sperme_congelation_id}&poisson_campagne_id={$dataPoisson.poisson_campagne_id}">
                     {$place[lst].cuve_libelle}
                 </a>
                 {else}

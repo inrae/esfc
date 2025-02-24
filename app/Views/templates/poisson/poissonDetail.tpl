@@ -34,7 +34,7 @@
         <dl class="dl-horizontal">
             <dt>{t}Bassin :{/t}</dt>
             <dd>
-                <a href="index.php?module=bassinDisplay&bassin_id={$dataPoisson.bassin_id}">
+                <a href="bassinDisplay?bassin_id={$dataPoisson.bassin_id}">
                     {$dataPoisson.bassin_nom}
                 </a>
             </dd>
@@ -58,10 +58,10 @@
     <div class="col-md-6">
         <fieldset>
             <legend>{t}Liste des parents{/t}</legend>
-            {if $droits["poissonGestion"]==1}
+            {if $rights["poissonGestion"]==1}
             <div class="row">
                 <div class="col-lg-12">
-                   <a href="index.php?module=parentPoissonChange&poisson_id={$dataPoisson.poisson_id}&parent_poisson_id=0">
+                   <a href="parentPoissonChange?poisson_id={$dataPoisson.poisson_id}&parent_poisson_id=0">
                     {t}Nouveau parent...{/t}
                 </a> 
                 </div>
@@ -74,10 +74,10 @@
     <div class="col-md-6">
         <fieldset>
             <legend>{t}Liste des (pit)tags attribués{/t}</legend>
-            {if $droits["poissonGestion"]==1}
+            {if $rights["poissonGestion"]==1}
             <div class="row">
                 <div class="col-lg-12">
-                    <a href="index.php?module=pittagChange&poisson_id={$dataPoisson.poisson_id}&pittag_id=0">
+                    <a href="pittagChange?poisson_id={$dataPoisson.poisson_id}&pittag_id=0">
                     {t}Nouveau pittag ou étiquette...{/t}
                 </a>
                 </div>

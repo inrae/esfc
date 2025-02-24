@@ -1,11 +1,11 @@
 <h2>{t}Liste des métaux analysés{/t}</h2>
-{if $droits["paramAdmin"] == 1}
-<a href="index.php?module=metalChange&metal_id=0">
+{if $rights["paramAdmin"] == 1}
+<a href="metalChange?metal_id=0">
 Nouveau...
 </a>
 {/if}
 
-<table class="table table-bordered table-hover datatable" id="cmetalList" class="tableliste">
+<table class="table table-bordered table-hover datatable display" id="cmetalList" class="tableliste">
 <thead>
 <tr>
 <th>{t}Nom du metal{/t}</th>
@@ -17,8 +17,8 @@ Nouveau...
 {section name=lst loop=$data}
 <tr>
 <td>
-{if $droits["paramAdmin"] == 1||$droits.reproAdmin == 1}
-<a href="index.php?module=metalChange&metal_id={$data[lst].metal_id}">
+{if $rights["paramAdmin"] == 1||$rights.reproAdmin == 1}
+<a href="metalChange?metal_id={$data[lst].metal_id}">
 {$data[lst].metal_nom}
 </a>
 {else}

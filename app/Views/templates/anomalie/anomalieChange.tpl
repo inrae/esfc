@@ -17,18 +17,18 @@
 	});
 </script>
 {if $module_origine == "poissonDisplay"}
-<a href="index.php?module={$poissonDetailParent}">
+<a href="{$poissonDetailParent}">
 	<img src="display/images/display.png" height="25">
 	{t}Retour à la liste des poissons{/t}
 </a>
 
-<a href="index.php?module=poissonDisplay&poisson_id={$dataPoisson.poisson_id}">
+<a href="poissonDisplay?poisson_id={$dataPoisson.poisson_id}">
 	<img src="display/images/sturio.png" height="25">
 	{t}Retour au poisson{/t} {$dataPoisson.matricule} {$dataPoisson.prenom} {$dataPoisson.pittag_valeur} {$dataPoisson.categorie_libelle} {$dataPoisson.sexe_libelle}
 	{$dataPoisson.poisson_statut_libelle} (id:{$dataPoisson.poisson_id})
 </a>
 {else}
-<a href="index.php?module=anomalieList">
+<a href="anomalieList">
 	<img src="display/images/anomalie.svg" height="25">
 	{t}Retour à la liste des anomalies{/t}
 </a>
@@ -37,8 +37,7 @@
 
 <div class="row">
 	<div class="col-md-6">
-		<form class="form-horizontal" id="anomalieForm" method="post" action="index.php">
-			<input type="hidden" name="action" value="Write">
+		<form class="form-horizontal" id="anomalieForm" method="post" action="{if $module_origine == "poissonDisplay"}poissonAnomalie{else}anomalie{/if}Write">			
 			<input type="hidden" name="moduleBase"
 				value='{if $module_origine == "poissonDisplay"}poissonAnomalie{else}anomalie{/if}'>
 			<input type="hidden" name="anomalie_db_id" value="{$data.anomalie_db_id}">
@@ -73,7 +72,7 @@
 				<div class="col-md-8">
 					<div class="form-control" id="poisson">
 						{if $data.poisson_id > 0}
-						<a href="index.php?module=poissonDisplay&poisson_id={$data.poisson_id}"
+						<a href="poissonDisplay?poisson_id={$data.poisson_id}"
 							onclick='return confirm("Vous allez quitter la saisie en cours. Confirmez-vous cette opération ?")'>
 							{$data.matricule} {$data.prenom} {$data.pittag_valeur}
 						</a>
@@ -125,11 +124,11 @@
 
 			<div class="form-group center">
 				<button type="submit" class="btn btn-primary button-valid">{t}Valider{/t}</button>
-				{if $data.anomalie_db_id > 0 &&$droits["poissonAdmin"] == 1}
+				{if $data.anomalie_db_id > 0 &&$rights["poissonAdmin"] == 1}
 				<button class="btn btn-danger button-delete">{t}Supprimer{/t}</button>
 				{/if}
 			</div>
-		</form>
+		{$csrf}</form>
 	</div>
 </div>
 

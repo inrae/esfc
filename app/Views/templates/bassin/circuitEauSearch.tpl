@@ -1,8 +1,7 @@
 <div class="col-md-8">
 	<div class="row">
-		<form method="get" action="index.php" class="form-horizontal">
+		<form method="get" action="circuitEauList" class="form-horizontal">
 			<input type="hidden" name="isSearch" value="1">
-			<input type="hidden" name="module" value="circuitEauList">
 			<div class="row">
 				<div class="form-group">
 					<label for="circuit_eau_libelle" class="control-label col-md-3">
@@ -66,6 +65,6 @@
 				</div>
 
 			</div>
-		</form>
+		{$csrf}</form>
 	</div>
 </div>

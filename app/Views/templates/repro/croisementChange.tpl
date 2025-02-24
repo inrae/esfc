@@ -1,22 +1,21 @@
-<a href="index.php?module=sequenceList">
+<a href="sequenceList">
     <img src="display/images/list.png" height="25">
     {t}Retour à la liste des séquences{/t}
 </a>
 &nbsp;
-<a href="index.php?module=sequenceDisplay&sequence_id={$data.sequence_id}">
+<a href="sequenceDisplay?sequence_id={$data.sequence_id}">
     <img src="display/images/sexe.svg" height="25">
     {t}Retour à la séquence{/t}
     {$dataSequence.annee} {$dataSequence.sequence_date_debut} - {$dataSequence.site_name} {$dataSequence.sequence_nom}
 </a>
 &nbsp;
 {if $data.croisement_id > 0}
-<a href="index.php?module=croisementDisplay&croisement_id={$data.croisement_id}">
+<a href="croisementDisplay?croisement_id={$data.croisement_id}">
     <img src="display/images/repro.png" height="25">
     {t}Retour au croisement{/t} {$data.croisement_nom}
 </a>
 {/if}
-<form class="form-horizontal" id="croisementForm" method="post" action="index.php">
-    <input type="hidden" name="action" value="Write">
+<form class="form-horizontal" id="croisementForm" method="post" action="croisementWrite">    
     <input type="hidden" name="moduleBase" value="croisement">
     <input type="hidden" name="croisement_id" value="{$data.croisement_id}">
     <input type="hidden" name="sequence_id" value="{$data.sequence_id}">
@@ -24,7 +23,7 @@
         <div class="col-md-6">
             <div class="form-group center">
                 <button type="submit" class="btn btn-primary button-valid">{t}Valider{/t}</button>
-                {if $data.croisement_id > 0 &&$droits["reproAdmin"] == 1}
+                {if $data.croisement_id > 0 &&$rights["reproAdmin"] == 1}
                 <button class="btn btn-danger button-delete">{t}Supprimer{/t}</button>
                 {/if}
             </div>
@@ -103,7 +102,7 @@
         <div class="col-md-6">
             <fieldset>
                 <legend>{t}Poissons utilisés pour la reproduction :{/t}</legend>
-                <table class="table table-bordered table-hover datatable-nopaging-nosearching" id="poissonReproTableId">
+                <table class="table table-bordered table-hover datatable-nopaging-nosearching display" id="poissonReproTableId">
                     <thead>
                         <tr>
                             <th>{t}Poisson{/t}</th>
@@ -129,7 +128,7 @@
             </fieldset>
         </div>
     </div>
-</form>
+{$csrf}</form>
 
 
 <span class="red">*</span><span class="messagebas">{t}Champ obligatoire{/t}</span>

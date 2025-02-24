@@ -1,11 +1,11 @@
 <h2>{t}Modification d'un type d'utilisation des bassins{/t}</h2>
 
-<a href="index.php?module=bassinUsageList">{t}Retour à la liste{/t}</a>
+<a href="bassinUsageList">{t}Retour à la liste{/t}</a>
 
 <div class="row">
     <div class="col-md-6">
-        <form class="form-horizontal" id="bassinUsageForm" method="post" action="index.php">
-            <input type="hidden" name="action" value="Write">
+        <form class="form-horizontal" id="bassinUsageForm" method="post" action="bassinUsageWrite">
+            
             <input type="hidden" name="moduleBase" value="bassinUsage">
             <input type="hidden" name="bassin_usage_id" value="{$data.bassin_usage_id}">
             <div class="form-group">
@@ -39,11 +39,11 @@
 
             <div class="form-group center">
                 <button type="submit" class="btn btn-primary button-valid">{t}Valider{/t}</button>
-                {if $data.bassin_usage_id > 0 &&$droits["paramAdmin"] == 1}
+                {if $data.bassin_usage_id > 0 &&$rights["paramAdmin"] == 1}
                 <button class="btn btn-danger button-delete">{t}Supprimer{/t}</button>
                 {/if}
             </div>
-        </form>
+        {$csrf}</form>
     </div>
 </div>
 

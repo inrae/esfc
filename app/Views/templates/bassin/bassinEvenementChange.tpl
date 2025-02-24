@@ -1,12 +1,11 @@
-<a href="index.php?module={$bassinParentModule}">{t}Retour à la liste des bassins{/t}</a>
-> <a href="index.php?module=bassinDisplay&bassin_id={$data.bassin_id}">{t}Retour au bassin{/t}</a>
+<a href="{$bassinParentModule}">{t}Retour à la liste des bassins{/t}</a>
+> <a href="bassinDisplay?bassin_id={$data.bassin_id}">{t}Retour au bassin{/t}</a>
 <h2>{t}Modification d'un événement survenu dans le bassin{/t} {$dataBassin.bassin_nom}
 </h2>
 
 <div class="row">
 	<div class="col-md-6">
-		<form class="form-horizontal" id="bassinEvenementForm" method="post" action="index.php">
-			<input type="hidden" name="action" value="Write">
+		<form class="form-horizontal" id="bassinEvenementForm" method="post" action="bassinEvenement">			
 			<input type="hidden" name="moduleBase" value="bassinEvenement">
 			<input type="hidden" name="bassin_evenement_id" value="{$data.bassin_evenement_id}">
 			<input type="hidden" name="bassin_id" value="{$data.bassin_id}">
@@ -42,10 +41,10 @@
 
 			<div class="form-group center">
 				<button type="submit" class="btn btn-primary button-valid">{t}Valider{/t}</button>
-				{if $data.bassin_evenement_id > 0 &&$droits["bassinAdmin"] == 1}
+				{if $data.bassin_evenement_id > 0 &&$rights["bassinAdmin"] == 1}
 				<button class="btn btn-danger button-delete">{t}Supprimer{/t}</button>
 				{/if}
-		</form>
+		{$csrf}</form>
 	</div>
 </div>
 </div>

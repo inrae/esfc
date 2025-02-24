@@ -21,17 +21,17 @@
 	});
 </script>
 
-<a href="index.php?module=sequenceList">
+<a href="sequenceList">
 	<img src="display/images/list.png" height="25">
 	{t}Retour à la liste des séquences{/t}
 </a>
 &nbsp;
-<a href="index.php?module=sequenceDisplay&sequence_id={$croisementData.sequence_id}">
+<a href="sequenceDisplay?sequence_id={$croisementData.sequence_id}">
 	<img src="display/images/sexe.svg" height="25">
 	{t}Retour à la séquence{/t} {$dataSequence.sequence_nom} {$dataSequence.sequence_date_debut}
 </a>
 &nbsp;
-<a href="index.php?module=croisementDisplay&croisement_id={$croisementData.croisement_id}">
+<a href="croisementDisplay?croisement_id={$croisementData.croisement_id}">
 	<img src="display/images/repro.png" height="25">
 	{t}Retour au croisement{/t} {$croisementData.parents}
 </a>
@@ -39,8 +39,7 @@
 
 <div class="row">
 	<div class="col-md-6">
-		<form class="form-horizontal" id="spermeUtiliseForm" method="post" action="index.php">
-			<input type="hidden" name="action" value="Write">
+		<form class="form-horizontal" id="spermeUtiliseForm" method="post" action="spermeUtiliseWrite">			
 			<input type="hidden" name="moduleBase" value="spermeUtilise">
 			<input type="hidden" name="sperme_utilise_id" value="{$data.sperme_utilise_id}">
 			<input type="hidden" name="croisement_id" value="{$data.croisement_id}">
@@ -87,11 +86,11 @@
 
 			<div class="form-group center">
 				<button type="submit" class="btn btn-primary button-valid">{t}Valider{/t}</button>
-				{if $data.sperme_utilise_id > 0 && $droits["reproGestion"] == 1}
+				{if $data.sperme_utilise_id > 0 && $rights["reproGestion"] == 1}
 				<button class="btn btn-danger button-delete">{t}Supprimer{/t}</button>
 				{/if}
 			</div>
-		</form>
+		{$csrf}</form>
 	</div>
 </div>
 

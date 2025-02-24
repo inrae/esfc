@@ -23,13 +23,13 @@
 		});
 	});
 </script>
-<a href="index.php?module=poissonList">
+<a href="poissonList">
 	<img src="display/images/display.png" height="25">
 	{t}Retour à la liste des poissons{/t}
 </a>
 {if $data.poisson_id > 0}
 >
-<a href="index.php?module=poissonDisplay&poisson_id={$data.poisson_id}">
+<a href="poissonDisplay?poisson_id={$data.poisson_id}">
 	<img src="display/images/sturio.png" height="25">
 	{t}Retour au poisson{/t}
 </a>
@@ -38,8 +38,7 @@
 
 <div class="row">
 	<div class="col-md-6">
-		<form class="form-horizontal" id="poissonForm" method="post" action="index.php">
-			<input type="hidden" name="action" value="Write">
+		<form class="form-horizontal" id="poissonForm" method="post" action="poisson">			
 			<input type="hidden" name="moduleBase" value="poisson">
 			<input type="hidden" name="poisson_id" value="{$data.poisson_id}">
 			<input type="hidden" name="sexe_id" value="{$data.sexe_id}">
@@ -208,11 +207,11 @@
 
 			<div class="form-group center">
 				<button type="submit" class="btn btn-primary button-valid">{t}Valider{/t}</button>
-				{if $data.poisson_id > 0 &&$droits["poissonAdmin"] == 1}
+				{if $data.poisson_id > 0 &&$rights["poissonAdmin"] == 1}
 				<button class="btn btn-danger button-delete">{t}Supprimer{/t}</button>
 				{/if}
 			</div>
-		</form>
+		{$csrf}</form>
 	</div>
 </div>
 

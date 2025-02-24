@@ -1,6 +1,5 @@
-<form method="get" action="index.php" id="search">
+<form method="get" action="repartTemplateList" id="search">
 	<input type="hidden" name="isSearch" value="1">
-	<input type="hidden" name="module" value="repartTemplateList">
 	<div class="col-md-6 form-horizontal" id="tableaffichage">
 		<div class="row">
 			<div class="form-group">
@@ -34,4 +33,4 @@
 			</div>
 		</div>
 	</div>
-</form>
+{$csrf}</form>

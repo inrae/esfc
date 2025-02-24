@@ -19,9 +19,9 @@
         {section name=lst loop=$spermes}
         <tr>
             <td>
-                {if $droits["reproGestion"] == 1}
+                {if $rights["reproGestion"] == 1}
                 <a
-                    href="index.php?module=spermeChange&sperme_id={$spermes[lst].sperme_id}&poisson_campagne_id={$dataPoisson.poisson_campagne_id}">
+                    href="spermeChange?sperme_id={$spermes[lst].sperme_id}&poisson_campagne_id={$dataPoisson.poisson_campagne_id}">
                     {$spermes[lst].sperme_date}
                 </a>
                 {else}

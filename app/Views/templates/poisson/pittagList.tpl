@@ -12,8 +12,8 @@
 {section name=lst loop=$dataPittag}
 <tr>
 <td>
-{if $droits["poissonGestion"]==1}
-<a href="index.php?module=pittagChange&poisson_id={$dataPittag[lst].poisson_id}&pittag_id={$dataPittag[lst].pittag_id}">
+{if $rights["poissonGestion"]==1}
+<a href="pittagChange?poisson_id={$dataPittag[lst].poisson_id}&pittag_id={$dataPittag[lst].pittag_id}">
 {$dataPittag[lst].pittag_valeur}
 </a>
 {else}

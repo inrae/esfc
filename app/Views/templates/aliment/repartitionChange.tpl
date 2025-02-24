@@ -103,7 +103,7 @@
 			*/
 			var cle = $(this).data("cle");
 			var masse_id = "#distribution_masse_" + cle;
-			var url = "index.php?module=bassinCalculMasseAjax";
+			var url = "bassinCalculMasseAjax";
 			$.getJSON(url, { "bassin_id": cle }, function (data) {
 				$(masse_id).val(data.val);
 				$(masse_id).trigger("change");
@@ -176,16 +176,15 @@
 		});
 	});
 </script>
-<a href="index.php?module=repartitionList">
+<a href="repartitionList">
 	<img src="display/images/list.png" height="25">
 	{t}Retour à la liste{/t}
 </a>
-<a href="index.php?module=repartitionPrint&repartition_id={$data.repartition_id}" id="repartitionPrint">
+<a href="repartitionPrint&repartition_id={$data.repartition_id}" id="repartitionPrint">
 	<img src="display/images/print.svg" height="25">
 	{t}Imprimer la répartition{/t}
 </a>
-<form id="repartitionForm" method="post" action="index.php">
-	<input type="hidden" name="action" value="Write">
+<form id="repartitionForm" method="post" action="repartitionWrite">
 	<input type="hidden" name="moduleBase" value="repartition">
 	<input type="hidden" name="repartition_id" value="{$data.repartition_id}">
 
@@ -200,7 +199,7 @@
 					<button type="submit" class="btn btn-primary button-valid">
 						{t}Valider{/t}
 					</button>
-					{if $data.repartition_id > 0 &&$droits["bassinAdmin"] == 1}
+					{if $data.repartition_id > 0 &&$rights["bassinAdmin"] == 1}
 					<button class="btn btn-danger button-delete">
 						{t}Supprimer{/t}
 					</button>
@@ -554,6 +553,6 @@
 			</div>
 		</div>
 	</div>
-</form>
+{$csrf}</form>
 
 <span class="red">*</span><span class="messagebas">{t}Champ obligatoire{/t}</span>

@@ -1,6 +1,5 @@
-<form method="get" action="index.php" id="searchRepartition">
+<form method="get" action="repartitionList" id="searchRepartition">
 	<input type="hidden" name="isSearch" value="1">
-	<input type="hidden" name="module" value="repartitionList">
 	<div class="col-md-8 col-lg 6 form-horizontal">
 		<div class="row">
 			<div class="form-group">
@@ -54,4 +53,4 @@
 			</div>
 		</div>
 	</div>
-</form>
+{$csrf}</form>

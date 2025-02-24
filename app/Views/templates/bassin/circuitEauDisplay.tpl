@@ -24,7 +24,7 @@
     ({if $data.circuit_eau_actif == 1}{t}en service{/t}{else}{t}hors service{/t}{/if})</h2>
 <div class="row">
     <div class="col-lg-12">
-        <a href="index.php?module=circuitEauList">
+        <a href="circuitEauList">
             {t}Retour à la liste des circuits d'eau{/t}
         </a>
     </div>
@@ -61,9 +61,9 @@
                     <label>{t}Site :{/t}</label> {$data.site_name}
                 </div>
                 {/if}
-                {if $droits["bassinGestion"]==1}
+                {if $rights["bassinGestion"]==1}
                 <div class="row">
-                    <a href="index.php?module=circuitEauChange&circuit_eau_id={$data.circuit_eau_id}">
+                    <a href="circuitEauChange?circuit_eau_id={$data.circuit_eau_id}">
                         {t}Modifier le nom ou l'activité du circuit d'eau...{/t}
                     </a>
                 </div>
@@ -85,7 +85,7 @@
                                 {foreach $dataBassin as $bassin}
                                 <tr>
                                     <td>
-                                        <a href="index.php?module=bassinDisplay&bassin_id={$bassin.bassin_id}">{$bassin.bassin_nom}
+                                        <a href="bassinDisplay?bassin_id={$bassin.bassin_id}">{$bassin.bassin_nom}
                                         </a>
                                     </td>
                                     <td>{$bassin.bassin_description}</td>
@@ -110,9 +110,8 @@
             </div>
             <div class="tab-pane fade" id="nav-analyze" role="tabpanel" aria-labelledby="tab-analyze">
                 <div class="row">
-                    <form method="get" action="index.php" class="form-horizontal col-md-8">
+                    <form method="get" action="circuitEauDisplay" class="form-horizontal col-md-8">
                         <input type="hidden" name="isSearch" value="1">
-                        <input type="hidden" name="module" value="circuitEauDisplay">
                         <input type="hidden" name="circuit_eau_id" value="{$data.circuit_eau_id}">
                         <div class="form-group">
                             <label class="control-label col-md-4" for="analyse_date">
@@ -145,15 +144,15 @@
                                 <input class="btn btn-primary button-valid" type="submit" value="{t}Rechercher{/t}">
                             </div>
                         </div>
-                    </form>
+                    {$csrf}</form>
                 </div>
 
                 <td colspan="2">
 
                 </td>
-                {if $droits.bassinGestion == 1}
+                {if $rights.bassinGestion == 1}
                 <div class="row">
-                    <a href="index.php?module=analyseEauChange&analyse_eau_id=0&circuit_eau_id={$data.circuit_eau_id}">
+                    <a href="analyseEauChange?analyse_eau_id=0&circuit_eau_id={$data.circuit_eau_id}">
                         {t}Nouvelle analyse...{/t}
                     </a>
                 </div>
@@ -167,7 +166,7 @@
                                 <tr>
                                     <td>
                                         {if $dataSearch.offset > 0}
-                                        <a href="index.php?module=circuitEauDisplay&circuit_eau_id={$data.circuit_eau_id}&previous=1"
+                                        <a href="circuitEauDisplay?circuit_eau_id={$data.circuit_eau_id}&previous=1"
                                             title="Données précédentes">
                                             &lt;{t}précédent{/t}
                                         </a>
@@ -177,7 +176,7 @@
                                         <div class="center">{t}Tri de la requête par date descendante{/t}</div>
                                     </td>
                                     <td class="right">
-                                        <a href="index.php?module=circuitEauDisplay&circuit_eau_id={$data.circuit_eau_id}&next=1"
+                                        <a href="circuitEauDisplay?circuit_eau_id={$data.circuit_eau_id}&next=1"
                                             title="Données suivantes">
                                             {t}suivant{/t}&gt;
                                         </a>
@@ -208,9 +207,9 @@
                                 {section name=lst loop=$dataAnalyse}
                                 <tr>
                                     <td>
-                                        {if $droits.bassinGestion == 1}
+                                        {if $rights.bassinGestion == 1}
                                         <a
-                                            href="index.php?module=analyseEauChange&analyse_eau_id={$dataAnalyse[lst].analyse_eau_id}&circuit_eau_id={$data.circuit_eau_id}">
+                                            href="analyseEauChange?analyse_eau_id={$dataAnalyse[lst].analyse_eau_id}&circuit_eau_id={$data.circuit_eau_id}">
                                             {$dataAnalyse[lst].analyse_eau_date}
                                         </a>
                                         {else}

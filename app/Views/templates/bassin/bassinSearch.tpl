@@ -1,7 +1,6 @@
-<form method="get" action="index.php" id="search" class="form-horizontal col-lg-8">
+<form method="get" action="bassinList" id="search" class="form-horizontal col-lg-8">
 	<div class="row">
 		<input type="hidden" name="isSearch" value="1">
-		<input type="hidden" name="module" value="bassinList">
 		<div class="col-md-12">
 			<div class="row">
 				<div class="form-group">
@@ -108,4 +107,4 @@
 			</div>
 		</div>
 	</div>
-</form>
+{$csrf}</form>

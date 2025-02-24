@@ -1,10 +1,9 @@
 <h2>{t}Modification d'un aliment{/t}</h2>
 
-<a href="index.php?module=alimentList">{t}Retour à la liste{/t}</a>
+<a href="alimentList">{t}Retour à la liste{/t}</a>
 <div class="row">
     <div class="col-md-6">
-        <form class="form-horizontal" id="alimentForm" method="post" action="index.php">
-            <input type="hidden" name="action" value="Write">
+        <form class="form-horizontal" id="alimentForm" method="post" action="alimentWrite">
             <input type="hidden" name="moduleBase" value="aliment">
             <input type="hidden" name="aliment_id" value="{$data.aliment_id}">
             <div class="form-group">
@@ -58,11 +57,11 @@
 
             <div class="form-group center">
                 <button type="submit" class="btn btn-primary button-valid">{t}Valider{/t}</button>
-                {if $data.aliment_id > 0 &&$droits["bassinAdmin"] == 1}
+                {if $data.aliment_id > 0 &&$rights["bassinAdmin"] == 1}
                     <button class="btn btn-danger button-delete">{t}Supprimer{/t}</button>
                 {/if}
             </div>
-        </form>
+        {$csrf}</form>
     </div>
 </div>
 

@@ -1,11 +1,10 @@
 <h2>{t}Modification d'une zone d'implantation des bassins{/t}</h2>
 
-<a href="index.php?module=bassinZoneList">{t}Retour à la liste{/t}</a>
+<a href="bassinZoneList">{t}Retour à la liste{/t}</a>
 
 <div class="row">
     <div class="col-md-6">
-        <form class="form-horizontal" id="bassinZoneForm" method="post" action="index.php">
-            <input type="hidden" name="action" value="Write">
+        <form class="form-horizontal" id="bassinZoneForm" method="post" action="bassinZoneWrite">            
             <input type="hidden" name="moduleBase" value="bassinZone">
             <input type="hidden" name="bassin_zone_id" value="{$data.bassin_zone_id}">
             <div class="form-group">
@@ -19,11 +18,11 @@
 
             <div class="form-group center">
                 <button type="submit" class="btn btn-primary button-valid">{t}Valider{/t}</button>
-                {if $data.bassin_zone_id > 0 &&$droits["paramAdmin"] == 1}
+                {if $data.bassin_zone_id > 0 &&$rights["paramAdmin"] == 1}
                 <button class="btn btn-danger button-delete">{t}Supprimer{/t}</button>
                 {/if}
             </div>
-        </form>
+        {$csrf}</form>
     </div>
 </div>
 

@@ -1,9 +1,9 @@
-{if $droits["reproGestion"] == 1}
-<a href="index.php?module=spermeUtiliseChange&sperme_utilise_id=0&croisement_id={$data.croisement_id}">
+{if $rights["reproGestion"] == 1}
+<a href="spermeUtiliseChange?sperme_utilise_id=0&croisement_id={$data.croisement_id}">
     {t}Nouveau...{/t}
 </a>
 {/if}
-<table class="table table-bordered table-hover datatable-nopaging-nosearching" id="cspermeUtilise">
+<table class="table table-bordered table-hover datatable-nopaging-nosearching display" id="cspermeUtilise">
     <thead>
         <tr>
             <th>{t}Poisson{/t}</th>
@@ -16,9 +16,9 @@
         {section name=lst loop=$spermesUtilises}
         <tr>
             <td>
-                {if $droits["reproGestion"] == 1}
+                {if $rights["reproGestion"] == 1}
                 <a
-                    href="index.php?module=spermeUtiliseChange&sperme_utilise_id={$spermesUtilises[lst].sperme_utilise_id}&croisement_id={$data.croisement_id}">
+                    href="spermeUtiliseChange?sperme_utilise_id={$spermesUtilises[lst].sperme_utilise_id}&croisement_id={$data.croisement_id}">
                     {$spermesUtilises[lst].matricule} {$spermesUtilises[lst].prenom}
                 </a>
                 {else}
