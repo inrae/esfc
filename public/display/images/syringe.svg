@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+ <path d="m104.86 4.3331-4.5625 4.4688 5.6562 5.7812-12.656 12.438 8.3125 8.5 12.688-12.438 5.6562 5.7812 4.5625-4.4688-19.656-20.062zm-16.219 18.219-47.031 46.062 17.344 17.719 47-46.094-17.312-17.688zm-40.906 52.406-10.344 10.125 1.3125 1.3438-32.125 30.25-1.5938 5.9688 35.844-34.062 1.7188 1.75 10.344-10.094-5.1562-5.2812z" fill="#c0c0c0" fill-rule="evenodd" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="8"/>
+ <g transform="translate(183.22 -198.69)">
+  <path transform="translate(-183.22 198.69)" d="m39.366 85.817-32.785 30.863-1.5963 5.9758 36.437-34.663-2.0554-2.1756z" fill="#c0c0c0" fill-rule="evenodd"/>
+  <path transform="matrix(.69985 .71429 -.71429 .69985 -183.22 198.69)" d="m78.138-47.523h24.779v65.829h-24.779z" fill="#0ff" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2563"/>
+  <path transform="matrix(.69985 .71429 -.71429 .69985 -183.22 198.69)" d="m84.579-71.088h11.897v23.358h-11.897z" fill="#0ff" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2563"/>
+  <path transform="matrix(.69985 .71429 -.71429 .69985 -183.22 198.69)" d="m76.486-71.888h28.082v6.4108h-28.082z" fill="#0ff" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2563"/>
+  <path transform="matrix(.69985 .71429 -.71429 .69985 -183.22 198.69)" d="m86.948 18.371h7.3671v14.464h-7.3671z" fill="#f00" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2563"/>
+  <path d="m-128.32 255.91 32.261-0.12225-28.065 27.851-16.315-16.085 12.119-11.644z" fill="#f00"/>
+  <path transform="translate(-183.22 198.69)" d="m65.953 78.746-8.0208-8.1863" fill="#0ff" fill-rule="evenodd" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2563"/>
+  <path transform="translate(-183.22 198.69)" d="m74.549 70.324-8.0208-8.1863" fill="#0ff" fill-rule="evenodd" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2563"/>
+  <path transform="translate(-183.22 198.69)" d="m83.144 61.902-8.0208-8.1863" fill="#0ff" fill-rule="evenodd" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2563"/>
+  <path transform="translate(-183.22 198.69)" d="m91.74 53.48-8.0208-8.1863" fill="#0ff" fill-rule="evenodd" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2563"/>
+ </g>
+</svg>
