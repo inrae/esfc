@@ -72,13 +72,13 @@ class Aliment extends PpciModel
 	 */
 	function getListeActif()
 	{
-		$sql = "select * from aliment where actif = 1 order by aliment_libelle";
+		$sql = "SELECT * from aliment where actif = 1 order by aliment_libelle";
 		return $this->getListeParam($sql);
 	}
 
 	function getListe($order = ""): array
 	{
-		$sql = "select * from aliment 
+		$sql = "SELECT * from aliment 
 				join aliment_type using (aliment_type_id)
 				order by aliment_libelle";
 		return $this->getListeParam($sql);

@@ -52,7 +52,7 @@ class Salinite extends PpciModel
     function getListFromBassinCampagne(int $bassin_campagne_id, int $type_id = 0)
     {
         $param["bci"] = $bassin_campagne_id;
-        $sql = "select salinite_id, bassin_campagne_id, profil_thermique_type_id,
+        $sql = "SELECT salinite_id, bassin_campagne_id, profil_thermique_type_id,
 					salinite_datetime, salinite_tx,
 					profil_thermique_type_libelle
 					from salinite
@@ -79,7 +79,7 @@ class Salinite extends PpciModel
         $param["bci"] = $bassin_campagne_id;
        
             if ($type_id == 1) {
-                $sql = "select distinct analyse_eau_date as salinite_datetime,
+                $sql = "SELECT distinct analyse_eau_date as salinite_datetime,
 				salinite as salinite_tx
 				from analyse_eau
 				join circuit_eau using (circuit_eau_id)
@@ -92,7 +92,7 @@ class Salinite extends PpciModel
 				";
             $param["annee"] = $annee;
             } elseif ($type_id == 2) {
-                $sql = "select  salinite_datetime, salinite_tx
+                $sql = "SELECT  salinite_datetime, salinite_tx
 				from salinite
 				where bassin_campagne_id = :bci
 				and profil_thermique_type_id = 2

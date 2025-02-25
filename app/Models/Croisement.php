@@ -101,7 +101,7 @@ class Croisement extends PpciModel
 	 */
 	function getListFromSequence(int $sequence_id)
 	{
-		$sql = "select croisement_id, sequence_id, croisement_qualite_id, croisement_qualite_libelle,
+		$sql = "SELECT croisement_id, sequence_id, croisement_qualite_id, croisement_qualite_libelle,
 					croisement_date, ovocyte_masse, ovocyte_densite, tx_fecondation, tx_survie_estime,
 					sequence_nom, croisement_nom
 					from croisement
@@ -127,7 +127,7 @@ class Croisement extends PpciModel
 	 */
 	function getListFromAnnee(int $annee)
 	{
-		$sql = "select croisement_id, sequence_id, croisement_qualite_id, croisement_qualite_libelle,
+		$sql = "SELECT croisement_id, sequence_id, croisement_qualite_id, croisement_qualite_libelle,
 					croisement_date, ovocyte_masse, ovocyte_densite, tx_fecondation, tx_survie_estime
 					from croisement
 					join sequence using (sequence_id)
@@ -155,7 +155,7 @@ class Croisement extends PpciModel
 		$parents = "";
 		$new = true;
 		if ($croisement_id > 0 && is_numeric($croisement_id)) {
-			$sql = "select matricule, prenom, sexe_libelle_court
+			$sql = "SELECT matricule, prenom, sexe_libelle_court
 						from poisson_croisement
 						join poisson_campagne using (poisson_campagne_id)
 						join poisson using (poisson_id)
@@ -186,7 +186,7 @@ class Croisement extends PpciModel
 	 */
 	function getPoissonsFromCroisement(int $croisement_id)
 	{
-		$sql = "select poisson_campagne_id 
+		$sql = "SELECT poisson_campagne_id 
 					from poisson_croisement
 					where croisement_id = :id:";
 		return $this->getListeParamAsPrepared($sql, array("id" => $croisement_id));
@@ -199,7 +199,7 @@ class Croisement extends PpciModel
 	 */
 	function getPoissonIdFromCroisement(int $croisement_id)
 	{
-		$sql = "select poisson_id
+		$sql = "SELECT poisson_id
 					from poisson_croisement
 					join poisson_campagne using (poisson_campagne_id)
 					join poisson using (poisson_id)
@@ -209,7 +209,7 @@ class Croisement extends PpciModel
 
 	/**
 	 * Retourne la liste de tous les poissons de la sequence, avec le fait q'ils soient
-	 * selectionnes ou non dans le croisement considere
+	 * SELECTionnes ou non dans le croisement considere
 	 *
 	 * @param int $croisement_id        	
 	 * @param int $sequence_id        	
@@ -236,14 +236,14 @@ class Croisement extends PpciModel
 			/*
 			 * Recherche des poissons attaches au croisement
 			 */
-			$sql = "select poisson_campagne_id 
+			$sql = "SELECT poisson_campagne_id 
 						from poisson_croisement
 						where croisement_id = :croisement_id:";
 			$poissonCroisement = $this->getListeParamAsPrepared($sql, array("croisement_id" => $croisement_id));
 			foreach ($data as $key => $value) {
 				foreach ($poissonCroisement as $value1) {
 					if ($value["poisson_campagne_id"] == $value1["poisson_campagne_id"]) {
-						$data[$key]["selected"] = 1;
+						$data[$key]["SELECTed"] = 1;
 					}
 				}
 			}
@@ -258,7 +258,7 @@ class Croisement extends PpciModel
 	 */
 	function getDetail($id)
 	{
-		$sql = "select * from croisement
+		$sql = "SELECT * from croisement
 					left outer join croisement_qualite using (croisement_qualite_id)";
 		$where = " where croisement_id = :id: ";
 		$data = $this->lireParamAsPrepared($sql . $where, array("id" => $id));
@@ -274,7 +274,7 @@ class Croisement extends PpciModel
 	function getListCroisements(int $year = 0)
 	{
 		$this->fields["croisement_date"]["type"] = 2;
-		$sql = "select croisement_id, croisement_nom, croisement_date, croisement_qualite_libelle,  
+		$sql = "SELECT croisement_id, croisement_nom, croisement_date, croisement_qualite_libelle,  
 				sequence_id, annee, sequence_nom, 
 				parents
 				from croisement

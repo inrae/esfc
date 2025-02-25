@@ -46,7 +46,7 @@ class Evenement_type extends PpciModel
     }
     function getListe($order = ""): array
     {
-        $sql = "select evenement_type_id, evenement_type_libelle, evenement_type_actif, poisson_statut_id, poisson_statut_libelle
+        $sql = "SELECT evenement_type_id, evenement_type_libelle, evenement_type_actif, poisson_statut_id, poisson_statut_libelle
                 from evenement_type
                 left outer join poisson_statut using (poisson_statut_id)";
         if (!empty($order)) {

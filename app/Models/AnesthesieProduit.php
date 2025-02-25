@@ -39,7 +39,7 @@ class Anesthesie_produit extends PpciModel
 
     function getListeActif($actif = -1)
     {
-        $sql = "select * from anesthesie_produit";
+        $sql = "SELECT * from anesthesie_produit";
         $data = array();
         if ($actif > -1) {
             $where = " where anesthesie_produit_actif = :actif: ";

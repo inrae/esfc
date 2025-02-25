@@ -11,7 +11,7 @@ use Ppci\Models\PpciModel;
 class Sperme extends PpciModel
 {
 
-    private $sql = "select distinct on (sperme_date, sperme_id) sperme_id, poisson_campagne_id, sperme_date,
+    private $sql = "SELECT distinct on (sperme_date, sperme_id) sperme_id, poisson_campagne_id, sperme_date,
 					sequence_id, sequence_nom,
 					 sperme_commentaire, 
 					sperme_qualite_libelle,
@@ -181,7 +181,7 @@ class Sperme extends PpciModel
         $sql = $this->sql . " ,congelation_date, sg.sperme_congelation_id, sg.nb_paillette, sg.nb_paillettes_utilisees ";
         $from = $this->from . " left outer join sperme_congelation sg using (sperme_id) ";
         $where = " where poisson_id in (
-					select poisson_id from croisement
+					SELECT poisson_id from croisement
 					join poisson_croisement using (croisement_id)
 					join poisson_campagne using (poisson_campagne_id)
 					where croisement_id = :id:
@@ -189,7 +189,7 @@ class Sperme extends PpciModel
                     or sperme.sequence_id = croisement.sequence_id))
                     ";
         $order = " order by prenom, matricule, sperme_date";
-        $sql = "with req as ($sql $from $where ) select * from req $order";
+        $sql = "with req as ($sql $from $where ) SELECT * from req $order";
         return $this->getListeParamAsPrepared($sql, array("id" => $croisement_id));
     }
 
@@ -205,7 +205,7 @@ class Sperme extends PpciModel
             /*
              * Recherche de l'identifiant correspondant
              */
-            $sql = "select sperme_id from sperme where poisson_campagne_id = :poissonCampagneId
+            $sql = "SELECT sperme_id from sperme where poisson_campagne_id = :poissonCampagneId
 					and sequence_id = :sequence_id";
             $data = $this->lireParamAsPrepared($sql, array(
                 "poissonCampagneId"=>$poissonCampagneId, 

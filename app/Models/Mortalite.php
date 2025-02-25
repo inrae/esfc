@@ -84,7 +84,7 @@ class Mortalite extends PpciModel
      */
     function getListByPoisson(int $poisson_id)
     {
-        $sql = "select mortalite_id, mortalite.poisson_id, mortalite_date, mortalite_commentaire,
+        $sql = "SELECT mortalite_id, mortalite.poisson_id, mortalite_date, mortalite_commentaire,
 					mortalite_type_libelle, evenement_type_libelle, mortalite.evenement_id
 					from mortalite 
 					left outer join mortalite_type using (mortalite_type_id)
@@ -102,7 +102,7 @@ class Mortalite extends PpciModel
      */
     function getDataByEvenement(int $evenement_id)
     {
-        $sql = "select * from mortalite where evenement_id = :id:";
+        $sql = "SELECT * from mortalite where evenement_id = :id:";
         return $this->lireParamAsPrepared($sql, array("id" => $evenement_id));
     }
     /**
@@ -124,13 +124,13 @@ class Mortalite extends PpciModel
             $col = "cohorte";
         }
         $sql = "with req as (
-            select $col, mortalite_date, row_number() over (order by mortalite_date) as nombre_cumule
+            SELECT $col, mortalite_date, row_number() over (order by mortalite_date) as nombre_cumule
             from mortalite
             join poisson using (poisson_id)
             join categorie using (categorie_id)
             where mortalite_date >= (date(:lastdate:) - interval '$duration')
             )
-            select distinct $col as typology, mortalite_date, max(nombre_cumule) over (partition by $col, mortalite_date) as nombre_cumule
+            SELECT distinct $col as typology, mortalite_date, max(nombre_cumule) over (partition by $col, mortalite_date) as nombre_cumule
             from req
             order by $col, mortalite_date";
 

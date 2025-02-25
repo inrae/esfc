@@ -55,7 +55,7 @@ class AnalyseMetal extends PpciModel
 	function getListeFromAnalyse(int $analyse_id): ?array
 	{
 		if ($analyse_id > 0) {
-			$sql = "select analyse_metal_id, analyse_eau_id, metal_id, 
+			$sql = "SELECT analyse_metal_id, analyse_eau_id, metal_id, 
 					mesure, mesure_seuil, metal_nom, metal_unite
 					from analyse_metal
 					join metal using (metal_id)

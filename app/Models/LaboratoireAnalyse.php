@@ -43,7 +43,7 @@ class LaboratoireAnalyse extends PpciModel
 	 */
 	function getListeActif()
 	{
-		$sql = "select * from laboratoire_analyse
+		$sql = "SELECT * from laboratoire_analyse
 				where laboratoire_analyse_actif = 1
 				order by laboratoire_analyse_libelle";
 		return $this->getListeParam($sql);

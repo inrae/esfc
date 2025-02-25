@@ -65,7 +65,7 @@ class Evenement extends PpciModel
      */
     function getEvenementByPoisson(int $poisson_id)
     {
-        $sql = "select evenement_id, poisson_id, evenement_date, evenement_type_libelle,
+        $sql = "SELECT evenement_id, poisson_id, evenement_date, evenement_type_libelle,
  					evenement_commentaire
                 from evenement
  					left outer join evenement_type using (evenement_type_id)
@@ -81,7 +81,7 @@ class Evenement extends PpciModel
      */
     function getEvenementIdByPoissonDate(int $poisson_id, string $date): int
     {
-        $sql = "select evenement_id from evenement
+        $sql = "SELECT evenement_id from evenement
                 where poisson_id = :poisson_id: and evenement_date = :date:";
         $data = $this->lireParamAsPrepared($sql, array("poisson_id" => $poisson_id, "date" => $date));
         if ($data["evenement_id"] > 0) {
@@ -99,7 +99,7 @@ class Evenement extends PpciModel
      */
     function getAllEvenements(array $dataSearch)
     {
-        $sql = "select p.poisson_id, matricule, prenom, cohorte, pittag_valeur,					 
+        $sql = "SELECT p.poisson_id, matricule, prenom, cohorte, pittag_valeur,					 
  					e.evenement_id, evenement_type_id, evenement_type_libelle,
  					evenement_date, evenement_commentaire,
  					mortalite_date, mortalite_commentaire, mortalite_type_id, mortalite_type_libelle,
@@ -110,7 +110,7 @@ class Evenement extends PpciModel
  					b1.bassin_nom as bassin_origine_nom, b2.bassin_nom as bassin_destination_nom,
  					echographie_commentaire, cliche_nb, cliche_ref,
  					cohorte_determination, cohorte_commentaire, cohorte_type_id, cohorte_type_libelle,
- 					gender_methode_id, gender_methode_libelle, gs.sexe_id, sexe_libelle, gender_selection_commentaire,
+ 					gender_methode_id, gender_methode_libelle, gs.sexe_id, sexe_libelle, gender_SELECTion_commentaire,
 					anesthesie_produit_libelle, anesthesie_dosage, anesthesie_commentaire,
 					tx_e2, tx_e2_texte, tx_calcium, tx_hematocrite, dosage_sanguin_commentaire,
                     parente_id, parente_commentaire, determination_parente_libelle
@@ -132,7 +132,7 @@ class Evenement extends PpciModel
  					left outer join echographie on (e.evenement_id = echographie.evenement_id)
  					left outer join cohorte on (e.evenement_id = cohorte.evenement_id)
  					left outer join cohorte_type using (cohorte_type_id)
- 					left outer join gender_selection gs on (e.evenement_id = gs.evenement_id)
+ 					left outer join gender_SELECTion gs on (e.evenement_id = gs.evenement_id)
  					left outer join gender_methode using (gender_methode_id)
 					left outer join anesthesie on (e.evenement_id = anesthesie.evenement_id)
 					left outer join anesthesie_produit using (anesthesie_produit_id)
@@ -190,7 +190,7 @@ class Evenement extends PpciModel
         $tables = array(
             "pathologie",
             "morphologie",
-            "gender_selection",
+            "gender_SELECTion",
             "transfert",
             "anomalie_db",
             "cohorte",

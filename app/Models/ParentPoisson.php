@@ -45,7 +45,7 @@ class ParentPoisson extends PpciModel
      */
     function getListParent(int $poisson_id)
     {
-        $sql = "select parent_poisson_id, par.poisson_id, parent_id, matricule, pittag_valeur, prenom, sexe_libelle, cohorte
+        $sql = "SELECT parent_poisson_id, par.poisson_id, parent_id, matricule, pittag_valeur, prenom, sexe_libelle, cohorte
 					from parent_poisson par
 					join poisson pois on (par.parent_id = pois.poisson_id)
 					left outer join sexe using (sexe_id)
@@ -62,7 +62,7 @@ class ParentPoisson extends PpciModel
      */
     function readAvecParent($id)
     {
-        $sql = "select parent_poisson_id, parent_poisson.poisson_id, parent_id,
+        $sql = "SELECT parent_poisson_id, parent_poisson.poisson_id, parent_id,
 				matricule, prenom, pittag_valeur
 				from parent_poisson
 				join poisson on (parent_poisson.parent_id = poisson.poisson_id)
@@ -79,7 +79,7 @@ class ParentPoisson extends PpciModel
      */
     function readEnfant(int $parent_id)
     {
-        $sql = "select parent_poisson_id, parent_poisson.poisson_id, parent_id,
+        $sql = "SELECT parent_poisson_id, parent_poisson.poisson_id, parent_id,
 				matricule, prenom, pittag_valeur
 				from parent_poisson
 				join poisson on (parent_poisson.poisson_id = poisson.poisson_id)

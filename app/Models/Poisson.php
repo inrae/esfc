@@ -83,7 +83,7 @@ class Poisson extends PpciModel
     function getListeSearch($dataSearch)
     {
         $data = array();
-        $sql = "select distinct poisson_id, s.sexe_id, matricule, prenom, cohorte, capture_date, date_naissance,
+        $sql = "SELECT distinct poisson_id, s.sexe_id, matricule, prenom, cohorte, capture_date, date_naissance,
                 s.sexe_libelle, s.sexe_libelle_court, poisson_statut_libelle,commentaire,
 					pittag_valeur,
 					m.mortalite_date,
@@ -182,7 +182,7 @@ class Poisson extends PpciModel
      */
     function getDetail(int $poisson_id)
     {
-        $sql = "select p.poisson_id, sexe_id, matricule, prenom, cohorte, capture_date, sexe_libelle, sexe_libelle_court, poisson_statut_libelle,
+        $sql = "SELECT p.poisson_id, sexe_id, matricule, prenom, cohorte, capture_date, sexe_libelle, sexe_libelle_court, poisson_statut_libelle,
 					pittag_valeur, p.poisson_statut_id, date_naissance,poisson_statut_id,
 					bassin_nom, b.bassin_id, b.site_id, site_name, 
 					categorie_id, categorie_libelle, commentaire
@@ -207,7 +207,7 @@ class Poisson extends PpciModel
     {
         if (!empty($libelle)) {
             $libelle = "%" . $libelle . "%";
-            $sql = "select poisson.poisson_id, matricule, prenom, pittag_valeur 
+            $sql = "SELECT poisson.poisson_id, matricule, prenom, pittag_valeur 
 					from poisson
 					left outer join v_pittag_by_poisson using (poisson_id)
 					where upper(matricule) like upper(:libelle:) 
@@ -222,7 +222,7 @@ class Poisson extends PpciModel
 
     function getPoissonIdFromTag($pittag)
     {
-        $sql = "select poisson_id 
+        $sql = "SELECT poisson_id 
         from poisson
         join pittag using (poisson_id)
         where upper(pittag_valeur) = upper(:pittag:)";
@@ -385,7 +385,7 @@ class Poisson extends PpciModel
         /**
          * Recherche des bassins frequentes
          */
-        $sql = "select pb.* from v_poisson_bassins pb
+        $sql = "SELECT pb.* from v_poisson_bassins pb
             where (:date_debut:, :date_fin:) overlaps 
                 (date_debut, case when date_fin is null then '2050-12-31' else date_fin end)
 				and poisson_id = :poisson_id:
@@ -408,15 +408,15 @@ class Poisson extends PpciModel
              * Calcul du total de la temperature
              */
             $sqltemp = "with gs as (
-				select generate_series('" . $bassin["date_debut"] . "'::date, '" . $bassin["date_fin"] . "'::date, interval ' 1 day') as date_jour
+				SELECT generate_series('" . $bassin["date_debut"] . "'::date, '" . $bassin["date_fin"] . "'::date, interval ' 1 day') as date_jour
 				)
-				select  sum( ae.temperature) as temperature
+				SELECT  sum( ae.temperature) as temperature
 				from gs, analyse_eau ae, circuit_eau ce, bassin b
 				where b.circuit_eau_id = ce.circuit_eau_id 
 				and b.bassin_id = :bassin_id:
 				and ae.circuit_eau_id = ce.circuit_eau_id
 				and ae.analyse_eau_id = 
-				(select a2.analyse_eau_id from analyse_eau a2
+				(SELECT a2.analyse_eau_id from analyse_eau a2
 				join circuit_eau ce2 using (circuit_eau_id)
 				where a2.temperature is not null
 				and a2.analyse_eau_date <= gs.date_jour
@@ -437,7 +437,7 @@ class Poisson extends PpciModel
      */
     function getListCohortes(): array
     {
-        $sql = "select distinct cohorte from poisson  where cohorte is not null order by cohorte";
+        $sql = "SELECT distinct cohorte from poisson  where cohorte is not null order by cohorte";
         return $this->getListeParam($sql);
     }
 }

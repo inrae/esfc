@@ -79,14 +79,14 @@ class DocumentSturio extends DocumentAttach
 						else document_date_creation
 						end desc, document_date_import desc";
 			if ($type == "poisson") {
-				$sql = "select document_id, document_date_import, document_nom,
+				$sql = "SELECT document_id, document_date_import, document_nom,
  						document_description, size, mime_type_id,
  						document_date_creation
  						from document
  						join poisson_document using (document_id)
  						where poisson_id = :id:
  						union
- 						select document_id, document_date_import, document_nom,
+ 						SELECT document_id, document_date_import, document_nom,
  						document_description, size, mime_type_id,
  						document_date_creation
  						from document
@@ -97,7 +97,7 @@ class DocumentSturio extends DocumentAttach
 				$data["id1"] = $id;
 				$where = " where poisson_id = :id1:";
 			} else {
-				$sql = "select " . $type . "_id, document_id, document_date_import,
+				$sql = "SELECT " . $type . "_id, document_id, document_date_import,
 					document_nom, document_description, size, mime_type_id,
  					document_date_creation
 					from document
@@ -124,7 +124,7 @@ class DocumentSturio extends DocumentAttach
 				$offset = 0;
 			$limit = " limit " . $limit;
 			$offset = " offset " . $offset;
-			$commande = "select * from ($sql $where) as a  $order $limit $offset";
+			$commande = "SELECT * from ($sql $where) as a  $order $limit $offset";
 			$liste = $this->getListeParam($commande, $data);
 			/*
 			 * Stockage des photos dans le dossier temporaire

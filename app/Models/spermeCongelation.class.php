@@ -5,7 +5,7 @@ use Ppci\Models\PpciModel;
 class SpermeCongelation extends PpciModel
 {
 
-    private $sql = "select sperme_congelation_id, sperme_id, congelation_date, congelation_volume,
+    private $sql = "SELECT sperme_congelation_id, sperme_id, congelation_date, congelation_volume,
 			sperme_dilueur_id, sperme_dilueur_libelle, nb_paillette, 
 			nb_visotube, sperme_congelation_commentaire,
             sperme_conservateur_id, sperme_conservateur_libelle,
@@ -97,7 +97,7 @@ class SpermeCongelation extends PpciModel
     function read($id, bool $getDefault = true, int $parentValue = 0): array
     {
         if ($id > 0) {
-            $sql = "select sc.*, 
+            $sql = "SELECT sc.*, 
                 to_char(congelation_date, 'YYYYMMDD-HH24MI') as congelation_date_label,
                 poisson_campagne_id, matricule,
                 sequence_id, sperme_date::date
@@ -113,7 +113,7 @@ class SpermeCongelation extends PpciModel
     }
     
     function getAllCongelations(int $year = 0) {
-        $sql = "select sc.sperme_congelation_id, sc.sperme_id,            
+        $sql = "SELECT sc.sperme_congelation_id, sc.sperme_id,            
         poisson_campagne_id, sequence_id,
         congelation_date, congelation_volume, nb_paillette, paillette_volume, nb_visotube, 
         nb_paillettes_utilisees, volume_sperme,operateur,
@@ -123,7 +123,7 @@ class SpermeCongelation extends PpciModel
         join poisson_campagne using (poisson_campagne_id)
         join poisson using (poisson_id)
         left outer join sperme_mesure sm on (sm.sperme_mesure_id = 
-        (select sperme_mesure_id from sperme_mesure sm2 where sm2.sperme_id = s.sperme_id order by sperme_mesure_id desc limit 1)
+        (SELECT sperme_mesure_id from sperme_mesure sm2 where sm2.sperme_id = s.sperme_id order by sperme_mesure_id desc limit 1)
         )
         left outer join sperme_qualite sq using (sperme_qualite_id)";
                 $data = array();

@@ -76,7 +76,7 @@ class SpermeUtilise extends PpciModel
      */
     function getListFromCroisement(int $croisement_id)
     {
-        $sql = "select sperme_utilise_id, matricule, prenom,
+        $sql = "SELECT sperme_utilise_id, matricule, prenom,
 					sperme_date, congelation_date,
 					volume_utilise, nb_paillette_croisement
 					from sperme_utilise su

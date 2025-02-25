@@ -56,7 +56,7 @@ class BassinLot extends PpciModel
 	 */
 	function getListeFromLot(int $lot_id)
 	{
-		$sql = "select bassin_lot_id, lot_id, bassin_id, 
+		$sql = "SELECT bassin_lot_id, lot_id, bassin_id, 
 					bl_date_arrivee, bl_date_depart,
 					bassin_nom
 					from bassin_lot
@@ -105,7 +105,7 @@ class BassinLot extends PpciModel
 	{
 		if ($lot_id > 0 && strlen($bl_date_arrivee) > 0) {
 			$bl_date_arrivee = $this->formatDateLocaleVersDB($bl_date_arrivee);
-			$sql = "select * from bassin_lot
+			$sql = "SELECT * from bassin_lot
 				where bl_date_arrivee < :date_arrivee:
 						and lot_id = :lot_id:
 				order by bl_date_arrivee desc
@@ -130,7 +130,7 @@ class BassinLot extends PpciModel
 	{
 		if ($lot_id > 0  && strlen($date) > 0) {
 			$date = $this->formatDateLocaleVersDB($date);
-			$sql = "select bassin_id, lot_id, bl_date_arrivee, bl_date_depart,
+			$sql = "SELECT bassin_id, lot_id, bl_date_arrivee, bl_date_depart,
 					bassin_nom
 					from bassin_lot
 					join bassin using (bassin_id)

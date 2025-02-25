@@ -66,7 +66,7 @@ class Anomalie_db extends PpciModel
 	function read(int $id, bool $getDefault = true, $parentValue = 0): array
 	{
 
-		$sql = "select anomalie_db_id, anomalie_db_date, anomalie_db.poisson_id, anomalie_db_commentaire, 
+		$sql = "SELECT anomalie_db_id, anomalie_db_date, anomalie_db.poisson_id, anomalie_db_commentaire, 
 				anomalie_db_type_libelle, evenement_type_libelle, anomalie_db.evenement_id,
 					anomalie_db_statut, anomalie_db_date_traitement, anomalie_db_type_id,
 					matricule, prenom, pittag_valeur
@@ -91,7 +91,7 @@ class Anomalie_db extends PpciModel
 	 */
 	function getListByPoisson($poisson_id)
 	{
-		$sql = "select anomalie_db_id, anomalie_db.poisson_id, anomalie_db_date, anomalie_db_commentaire,
+		$sql = "SELECT anomalie_db_id, anomalie_db.poisson_id, anomalie_db_date, anomalie_db_commentaire,
 					anomalie_db_type_libelle, anomalie_db_type_id,
 					evenement_id, evenement_type_libelle, 
 					anomalie_db.evenement_id,
@@ -111,7 +111,7 @@ class Anomalie_db extends PpciModel
 	 */
 	function getListeSearch($dataSearch)
 	{
-		$sql = "select anomalie_db_id, anomalie_db_date, anomalie_db.poisson_id, anomalie_db_commentaire, 
+		$sql = "SELECT anomalie_db_id, anomalie_db_date, anomalie_db.poisson_id, anomalie_db_commentaire, 
 				anomalie_db_type_libelle, anomalie_db_type_id,
 				evenement_id, evenement_type_libelle, 
 				anomalie_db.evenement_id,

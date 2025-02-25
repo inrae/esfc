@@ -62,7 +62,7 @@ class Morphologie extends PpciModel
      */
     function getListeByPoisson(int $poisson_id)
     {
-        $sql = "select morphologie_id, m.poisson_id, longueur_fourche, longueur_totale, 
+        $sql = "SELECT morphologie_id, m.poisson_id, longueur_fourche, longueur_totale, 
                     masse, circonference, morphologie_date, morphologie_commentaire, 
 					m.evenement_id, evenement_type_libelle
 					from morphologie m
@@ -80,7 +80,7 @@ class Morphologie extends PpciModel
      */
     function getMasseLast(int $poisson_id)
     {
-        $sql = "select masse from v_poisson_last_masse
+        $sql = "SELECT masse from v_poisson_last_masse
 					where  poisson_id = :poisson_id:";
         return $this->lireParamAsPrepared($sql, array("poisson_id" => $poisson_id));
     }
@@ -96,7 +96,7 @@ class Morphologie extends PpciModel
     function getListMasseFromPoisson(int $poisson_id, string $date_from, string $date_to)
     {
 
-        $sql = "select poisson_id, morphologie_date, masse 
+        $sql = "SELECT poisson_id, morphologie_date, masse 
 					from morphologie
 					where poisson_id = :poisson_id:
 					and morphologie_date between :date_from: and :date_to:
@@ -120,7 +120,7 @@ class Morphologie extends PpciModel
      */
     function getMasseBeforeDate($poisson_id, $date)
     {
-        $sql = "select masse, morphologie_date from morphologie
+        $sql = "SELECT masse, morphologie_date from morphologie
 					where morphologie_date < :date:
 					and poisson_id = :poisson_id:
 					order by morphologie_date desc
@@ -142,7 +142,7 @@ class Morphologie extends PpciModel
     {
         $date_from = $annee . "-01-01";
         $date_to = $annee . "-05-31";
-        $sql = "select masse, morphologie_date from morphologie
+        $sql = "SELECT masse, morphologie_date from morphologie
 					where morphologie_date between :date_from: and :date_to:
 					and poisson_id = :poisson_id:
 					order by morphologie_date asc
@@ -162,7 +162,7 @@ class Morphologie extends PpciModel
      */
     function getDataByEvenement(int $evenement_id)
     {
-        $sql = "select * from morphologie where evenement_id = :id:";
+        $sql = "SELECT * from morphologie where evenement_id = :id:";
         return $this->lireParamAsPrepared($sql, array("id" => $evenement_id));
     }
 

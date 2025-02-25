@@ -50,7 +50,7 @@ class CircuitEau extends PpciModel
 	function read($id, $getDefault = true, $parentValue = 0): array
 	{
 		if ($id > 0) {
-			$sql = "select circuit_eau_id, circuit_eau_libelle, circuit_eau_actif,
+			$sql = "SELECT circuit_eau_id, circuit_eau_libelle, circuit_eau_actif,
 					site_id, site_name
 					from circuit_eau
 					left outer join site using (site_id)
@@ -71,7 +71,7 @@ class CircuitEau extends PpciModel
 	function getListeSearch($data)
 	{
 		$param = array();
-		$sql = "select * 
+		$sql = "SELECT * 
 				from circuit_eau
 				left outer join site using (site_id)";
 		$order = ' order by circuit_eau_libelle';
@@ -105,7 +105,7 @@ class CircuitEau extends PpciModel
 	 */
 	function getIdFromName($name)
 	{
-		$sql = "select circuit_eau_id from circuit_eau where circuit_eau_libelle = :name:";
+		$sql = "SELECT circuit_eau_id from circuit_eau where circuit_eau_libelle = :name:";
 		return $this->lireParamAsPrepared($sql, array("name" => $name));
 	}
 }

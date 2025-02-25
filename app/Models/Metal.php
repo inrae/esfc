@@ -52,7 +52,7 @@ class Metal extends PpciModel
 	function getListActif($actif = 1)
 	{
 		$actif = $this->encodeData($actif);
-		$sql = "select * from metal";
+		$sql = "SELECT * from metal";
 		$order = " order by metal_nom";
 		$param = [];
 		$where = "";
@@ -71,7 +71,7 @@ class Metal extends PpciModel
 	 */
 	function getListActifInconnu(array $analyse)
 	{
-		$sql = "select * from metal";
+		$sql = "SELECT * from metal";
 		$order = " order by metal_nom";
 		$where = " where metal_actif = 1";
 		$param = array();

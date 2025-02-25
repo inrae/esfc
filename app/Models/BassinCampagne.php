@@ -59,11 +59,11 @@ class BassinCampagne extends PpciModel
 		/*
 			 * Recherche des bassins de reproduction
 			 */
-		$sql = "select bassin_id from bassin 
+		$sql = "SELECT bassin_id from bassin 
 					where bassin_usage_id = 7 
 					and actif = 1
 					and bassin_id not in (
-					select distinct c.bassin_id from bassin_campagne c where annee = :annee: )";
+					SELECT distinct c.bassin_id from bassin_campagne c where annee = :annee: )";
 		$liste = $this->getListeParamAsPrepared($sql, array("annee" => $annee));
 		foreach ($liste as $value) {
 			$data = array();
@@ -82,7 +82,7 @@ class BassinCampagne extends PpciModel
 	 */
 	function getListFromAnnee($annee, $site_id = 0)
 	{
-		$sql = "select bassin_id, bassin_campagne_id, annee, bassin_nom, bassin_utilisation,
+		$sql = "SELECT bassin_id, bassin_campagne_id, annee, bassin_nom, bassin_utilisation,
 					site_id, site_name
 					from bassin_campagne
 					join bassin using (bassin_id)

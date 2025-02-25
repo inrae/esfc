@@ -59,7 +59,7 @@ class LotMesure extends PpciModel
 	 */
 	function getListFromLot(int $lot_id)
 	{
-		$sql = "select lot_mesure_id, lot_id, lot_mesure_date, nb_jour, lot_mortalite,
+		$sql = "SELECT lot_mesure_id, lot_id, lot_mesure_date, nb_jour, lot_mortalite,
 					lot_mesure_masse, lot_mesure_masse_indiv
 					from lot_mesure
 					where lot_id = :id:
@@ -107,7 +107,7 @@ class LotMesure extends PpciModel
 		 * Recuperation de la mortalite totale
 		 */
 		$param = array("lot_id" => $lot_id, "date" => $date);
-		$sql = "select sum(lot_mortalite) as lot_mortalite
+		$sql = "SELECT sum(lot_mortalite) as lot_mortalite
 					from lot_mesure
 					where lot_mesure_date <= :date:
 						and lot_id = :lot_id:";
@@ -117,7 +117,7 @@ class LotMesure extends PpciModel
 		/*
 		 * Recuperation de la derniere masse individuelle connue
 		 */
-		$sql = "select lot_mesure_masse_indiv 
+		$sql = "SELECT lot_mesure_masse_indiv 
 					from lot_mesure
 					where lot_mesure_date <= :date:
 						and lot_id = :lot_id: 

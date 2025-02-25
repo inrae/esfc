@@ -58,7 +58,7 @@ class Pathologie extends PpciModel
      */
     function getListByPoisson(int $poisson_id)
     {
-        $sql = "select pathologie_id, patho.poisson_id, pathologie_date, pathologie_commentaire,
+        $sql = "SELECT pathologie_id, patho.poisson_id, pathologie_date, pathologie_commentaire,
 					pathologie_type_libelle, evenement_type_libelle, patho.evenement_id
 					from pathologie patho
 					left outer join pathologie_type using (pathologie_type_id)
@@ -76,7 +76,7 @@ class Pathologie extends PpciModel
      */
     function getDataByEvenement(int $evenement_id)
     {
-        $sql = "select * from pathologie where evenement_id = :id:";
+        $sql = "SELECT * from pathologie where evenement_id = :id:";
         return $this->lireParamAsPrepared($sql, array("id" => $evenement_id));
     }
 }

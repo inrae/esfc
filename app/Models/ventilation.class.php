@@ -11,7 +11,7 @@ class Ventilation extends PpciModel
 {
 
     
-    private $sql = "select * from ventilation";
+    private $sql = "SELECT * from ventilation";
 
     private $order = " order by ventilation_date desc";
 

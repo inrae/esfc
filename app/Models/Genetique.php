@@ -14,7 +14,7 @@ class Genetique extends PpciModel
 {
 
 
-    private $sql = "select * from genetique g
+    private $sql = "SELECT * from genetique g
 			left outer join nageoire using (nageoire_id)
 			join evenement using (evenement_id)
 			left outer join evenement_type using (evenement_type_id)";

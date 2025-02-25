@@ -38,7 +38,7 @@ class SpermeCaracteristique extends PpciModel
     function getFromSperme(int $sperme_id = 0)
     {
 
-        $sql = "select s.sperme_caracteristique_id, s.sperme_caracteristique_libelle, sperme_id
+        $sql = "SELECT s.sperme_caracteristique_id, s.sperme_caracteristique_libelle, sperme_id
 					from sperme_caracteristique s
 					left outer join sperme_caract c on (s.sperme_caracteristique_id = c.sperme_caracteristique_id 
 					and c.sperme_id = :id:)

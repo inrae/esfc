@@ -37,7 +37,7 @@ class AlimentCategorie extends PpciModel
 	function getListeFromAliment(int $aliment_id): ?array
 	{
 		if ($aliment_id > 0) {
-			$sql = "select * from aliment_categorie
+			$sql = "SELECT * from aliment_categorie
 				where aliment_id =  :aliment_id:";
 			return $this->getListeParamAsPrepared($sql, array("aliment_id" => $aliment_id));
 		} else {

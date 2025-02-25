@@ -46,7 +46,7 @@ class SpermeFreezingMeasure extends PpciModel
          * Recherche de la derniere date enregistree
          */
         if ($parentValue > 0) {
-            $sql = "select measure_date as mt from sperme_freezing_measure" .
+            $sql = "SELECT measure_date as mt from sperme_freezing_measure" .
                 " where sperme_congelation_id = :id:" .
                 " order by measure_date desc limit 1";
             $last = $this->lireParamAsPrepared($sql, array("id" => $parentValue));

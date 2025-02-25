@@ -62,7 +62,7 @@ class Transfert extends PpciModel
      */
     function getListByPoisson(int $poisson_id, int $annee = 0)
     {
-        $sql = 'select transfert_id, transfert.poisson_id, bassin_origine, bassin_destination, transfert_date, evenement_id,
+        $sql = 'SELECT transfert_id, transfert.poisson_id, bassin_origine, bassin_destination, transfert_date, evenement_id,
 					ori.bassin_nom as "bassin_origine_nom", dest.bassin_nom as "bassin_destination_nom",
 					evenement_id, evenement_type_libelle, transfert_commentaire
 					from transfert
@@ -90,7 +90,7 @@ class Transfert extends PpciModel
      */
     function getListPoissonPresentByBassin(int $bassin_id)
     {
-        $sql = 'select distinct t.poisson_id,matricule, prenom, cohorte, t.transfert_date, 
+        $sql = 'SELECT distinct t.poisson_id,matricule, prenom, cohorte, t.transfert_date, 
 					(case when t.bassin_destination is not null then t.bassin_destination else t.bassin_origine end) as "bassin_id",
 					bassin_nom, sexe_libelle_court,
 					pittag_valeur, masse
@@ -115,7 +115,7 @@ class Transfert extends PpciModel
     function getDataByEvenement(int $evenement_id)
     {
 
-        $sql = "select * from transfert where evenement_id = :evenement_id";
+        $sql = "SELECT * from transfert where evenement_id = :evenement_id";
         return $this->lireParamAsPrepared($sql, array("evenement_id" => $evenement_id));
     }
 

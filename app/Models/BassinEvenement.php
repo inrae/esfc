@@ -54,7 +54,7 @@ class BassinEvenement extends PpciModel
 	 */
 	function getListeByBassin($bassin_id)
 	{
-		$sql = "select * from bassin_evenement
+		$sql = "SELECT * from bassin_evenement
 					natural join bassin_evenement_type
 					where bassin_id = :id:
 					order by bassin_evenement_date desc";

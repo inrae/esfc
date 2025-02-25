@@ -42,7 +42,7 @@ class LotRepartTemplate extends PpciModel
 	 */
 	function getFromAge(int $age)
 	{
-		$sql = "select * from lot_repart_template
+		$sql = "SELECT * from lot_repart_template
 				where age = :age:";
 		return $this->lireParamAsPrepared($sql, array("age" => $age));
 	}

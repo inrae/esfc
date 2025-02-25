@@ -13,7 +13,7 @@ use Ppci\Models\PpciModel;
 class DosageSanguin extends PpciModel
 {
 	public PoissonCampagne $poissonCampagne;
-	private $sql = "select dosage_sanguin_id, poisson_campagne_id, dosage_sanguin_date, 
+	private $sql = "SELECT dosage_sanguin_id, poisson_campagne_id, dosage_sanguin_date, 
 					tx_e2, tx_e2_texte, tx_calcium, tx_hematocrite,
 					dosage_sanguin_commentaire,
 					ds.poisson_id, evenement_id,
@@ -87,7 +87,7 @@ class DosageSanguin extends PpciModel
 	 */
 	function getdataByEvenement(int $id)
 	{
-		$sql = "select * from dosage_sanguin where evenement_id = :id:";
+		$sql = "SELECT * from dosage_sanguin where evenement_id = :id:";
 		return $this->lireParamAsPrepared($sql, array("id" => $id));
 	}
 

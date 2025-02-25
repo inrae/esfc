@@ -88,7 +88,7 @@ class Bassin extends PpciModel
 	function getListeSearch($dataSearch)
 	{
 		if (is_array($dataSearch)) {
-			$sql = "select bassin_id, bassin_nom, bassin_description, actif,
+			$sql = "SELECT bassin_id, bassin_nom, bassin_description, actif,
 					bassin_type_libelle, bassin_usage_libelle, bassin_zone_libelle, 
 					bassin.circuit_eau_id, circuit_eau_libelle,
 					longueur, largeur_diametre, surface, hauteur_eau, volume, mode_calcul_masse,
@@ -169,7 +169,7 @@ class Bassin extends PpciModel
 	function getDetail($bassinId)
 	{
 
-		$sql = "select bassin_id, bassin_nom, bassin_description, actif,
+		$sql = "SELECT bassin_id, bassin_nom, bassin_description, actif,
 					bassin_type_libelle, bassin_usage_libelle, bassin_zone_libelle, 
 					bassin.circuit_eau_id, circuit_eau_libelle,
 					bassin.site_id, site_name, mode_calcul_masse
@@ -193,7 +193,7 @@ class Bassin extends PpciModel
 	 */
 	function getListeFromUsage(int $actif = -1, int $usage = 0)
 	{
-		$sql = "select * from bassin ";
+		$sql = "SELECT * from bassin ";
 		$where = " where ";
 		$data = array();
 		$bwhere = false;
@@ -221,7 +221,7 @@ class Bassin extends PpciModel
 	 */
 	function getListeByCircuitEau($circuitId)
 	{
-		$sql = "select bassin_id, bassin_nom, bassin_description, actif
+		$sql = "SELECT bassin_id, bassin_nom, bassin_description, actif
 				,bassin_usage_libelle, bassin_zone_libelle, bassin_type_libelle, mode_calcul_masse
 				from bassin
 				left outer join bassin_usage using (bassin_usage_id)
@@ -275,14 +275,14 @@ class Bassin extends PpciModel
 				/**
 				 * Get the last date of measure of the mass from fish
 				 */
-				$sql = "select max(morphologie_date) as date_max from morphologie where poisson_id in ($ids)";
+				$sql = "SELECT max(morphologie_date) as date_max from morphologie where poisson_id in ($ids)";
 				$this->autoFormatDate = false;
 				$dataMax = $this->lireParam($sql, $a_ids);
 				$date_max = $dataMax["date_max"];
 				/**
 				 * get the mass of fish
 				 */
-				$sql = "select count(*) as nb, sum(masse) as masse from morphologie
+				$sql = "SELECT count(*) as nb, sum(masse) as masse from morphologie
 					where poisson_id in ($ids)
 					and morphologie_date = :date_max:";
 				$a_ids["date_max"] = $date_max;
@@ -310,7 +310,7 @@ class Bassin extends PpciModel
 			$dateFin = $this->formatDateLocaleVersDB($data["dateFin"]);
 			$this->generateWhere($search);
 			$sql = "with dq as (
-				select bassin_id, bassin_nom, date_trunc('week', distrib_quotidien_date) as week,
+				SELECT bassin_id, bassin_nom, date_trunc('week', distrib_quotidien_date) as week,
 				sum(total_distribue) as total_distribue,
 				sum(reste) as restes
 				from distrib_quotidien
@@ -319,7 +319,7 @@ class Bassin extends PpciModel
 				" and distrib_quotidien_date between :dateDebut and :dateFin
 				group by bassin_id, bassin_nom, week
 				order by bassin_id, week)
-				select dq.*, f_bassin_masse_at_date(dq.bassin_id, week::timestamp) as poissons_masse
+				SELECT dq.*, f_bassin_masse_at_date(dq.bassin_id, week::timestamp) as poissons_masse
 				from dq";
 			$this->dataRequest["dateDebut"] = $dateDebut;
 			$this->dataRequest["dateFin"] = $dateFin;
@@ -332,7 +332,7 @@ class Bassin extends PpciModel
 	function getListBassin(int $site_id = 0, int $is_actif = 1)
 	{
 		$param = array();
-		$sql = "select bassin_id, bassin_nom, bassin_zone_libelle, bassin_type_libelle, site_id, site_name
+		$sql = "SELECT bassin_id, bassin_nom, bassin_zone_libelle, bassin_type_libelle, site_id, site_name
 			from bassin
 			left join site using (site_id)
 			left outer join bassin_zone using (bassin_zone_id)

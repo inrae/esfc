@@ -92,7 +92,7 @@ class Biopsie extends PpciModel
 	 */
 	function getListeFromPoissonCampagne(int $poisson_campagne_id)
 	{
-		$sql = "select * from biopsie 
+		$sql = "SELECT * from biopsie 
 					left outer join biopsie_technique_calcul using (biopsie_technique_calcul_id)
 					where poisson_campagne_id = :id:
 					order by biopsie_date";
@@ -106,7 +106,7 @@ class Biopsie extends PpciModel
 	 */
 	function getPoissonId($id)
 	{
-		$sql = "select poisson_id from biopsie
+		$sql = "SELECT poisson_id from biopsie
 					 join poisson_campagne using (poisson_campagne_id)
 					where biopsie_id = :id:";
 		$data = $this->lireParamAsPrepared($sql, array("id" => $id));
@@ -121,7 +121,7 @@ class Biopsie extends PpciModel
 		if (!isset($this->documentSturio)) {
 			$this->documentSturio = new DocumentSturio;
 		}
-		$sql = "select document_id from biopsie_document
+		$sql = "SELECT document_id from biopsie_document
 				where biopsie_id = :id:";
 		$docs = $this->getListeParamAsPrepared($sql, array("id" => $id));
 		foreach ($docs as $doc) {

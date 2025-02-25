@@ -11,7 +11,7 @@ use Ppci\Models\PpciModel;
 class SpermeMesure extends PpciModel
 {
 
-    private $sql = "select sperme_mesure_id, sperme_id, sperme_mesure_date,
+    private $sql = "SELECT sperme_mesure_id, sperme_id, sperme_mesure_date,
 			motilite_initiale, tx_survie_initial, motilite_60, tx_survie_60, temps_survie,
 			sperme_ph, nb_paillette_utilise, sperme_qualite_id, sperme_qualite_libelle,
             sperme_congelation_id, concentration

@@ -51,7 +51,7 @@ class Sequence extends PpciModel
 	function read($id, bool $getDefault = true, int $parent = 0)
 	{
 		if ($id > 0) {
-			$sql = "select sequence_id, sequence_nom, annee, sequence_date_debut,
+			$sql = "SELECT sequence_id, sequence_nom, annee, sequence_date_debut,
 					site_id, site_name
 					from sequence
 					left outer join site using (site_id)
@@ -82,7 +82,7 @@ class Sequence extends PpciModel
 	function getListeByYear(int $annee, $site_id = 0)
 	{
 
-		$sql = "select sequence_id, sequence_nom, annee, sequence_date_debut,
+		$sql = "SELECT sequence_id, sequence_nom, annee, sequence_date_debut,
 				site_id, site_name
 				from sequence
 				left outer join site using (site_id)

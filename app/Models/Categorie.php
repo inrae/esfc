@@ -49,7 +49,7 @@ class Categorie extends PpciModel
 	 */
 	function getListeSansLot()
 	{
-		$sql = "select * from categorie
+		$sql = "SELECT * from categorie
 				where categorie_id in (1, 2)
 				order by categorie_id";
 		return ($this->getListeParam($sql));

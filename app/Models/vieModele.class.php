@@ -49,7 +49,7 @@ class VieModele extends PpciModel
 	function getModelesFromAnnee(int $annee)
 	{
 
-		$sql = "select vie_modele_id, vm.vie_implantation_id, vie_implantation_id2,
+		$sql = "SELECT vie_modele_id, vm.vie_implantation_id, vie_implantation_id2,
 					annee, couleur,
 					v1.vie_implantation_libelle, v2.vie_implantation_libelle as vie_implantation_libelle2
 					from vie_modele vm
@@ -67,7 +67,7 @@ class VieModele extends PpciModel
 	 */
 	function getAllModeles()
 	{
-		$sql = "select * from v_vie_modele order by annee desc, couleur, vie_modele_id";
+		$sql = "SELECT * from v_vie_modele order by annee desc, couleur, vie_modele_id";
 		return $this->getListeParam($sql);
 	}
 }

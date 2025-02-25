@@ -79,7 +79,7 @@ class DistribQuotidien extends PpciModel
 	function readFromDate(int $bassin_id, $distrib_date)
 	{
 		$distribDate = $this->formatDateLocaleVersDB($distrib_date);
-		$sql = "select * from distrib_quotidien
+		$sql = "SELECT * from distrib_quotidien
 					where bassin_id = :bassin_id 
 					and distrib_quotidien_date = :distrib_date: ";
 		return ($this->lireParamAsPrepared($sql, array("bassin_id" => $bassin_id, "distrib_date" => $distribDate)));
@@ -97,7 +97,7 @@ class DistribQuotidien extends PpciModel
 
 		$date_debut = $this->formatDateLocaleVersDB($date_debut);
 		$date_fin = $this->formatDateLocaleVersDB($date_fin);
-		$sql = "select distinct aliment_id, aliment_libelle_court
+		$sql = "SELECT distinct aliment_id, aliment_libelle_court
 				from distrib_quotidien
 					join aliment_quotidien using (aliment_quotidien_id)
 					join aliment using (aliment_id)
@@ -116,9 +116,9 @@ class DistribQuotidien extends PpciModel
 		$date_debut = $this->db->escape($this->formatDateLocaleVersDB($date_debut));
 		$date_fin = $this->db->escape($this->formatDateLocaleVersDB($date_fin));
 		/**
-		 * Preparation de la premiere commande de selection du crosstab
+		 * Preparation de la premiere commande de SELECTion du crosstab
 		 */
-		$sql1 = "select distrib_quotidien_id, bassin_nom, distrib_quotidien_date, 
+		$sql1 = "SELECT distrib_quotidien_id, bassin_nom, distrib_quotidien_date, 
 				total_distribue, reste, 
 				aliment_libelle_court, quantite
 				from distrib_quotidien
@@ -132,7 +132,7 @@ class DistribQuotidien extends PpciModel
 		/**
 		 * Recuperation de la liste des libellés des aliments
 		 */
-		$sql2 = "select distinct aliment_libelle_court
+		$sql2 = "SELECT distinct aliment_libelle_court
 					from distrib_quotidien
 					natural join aliment_quotidien
 					natural join aliment
@@ -140,7 +140,7 @@ class DistribQuotidien extends PpciModel
 					and distrib_quotidien_date <= $date_fin
 					and bassin_id = $bassin_id
 					order by 1";
-		$sql3 = "select distinct aliment_libelle_court
+		$sql3 = "SELECT distinct aliment_libelle_court
 					from distrib_quotidien
 					natural join aliment_quotidien
 					natural join aliment
@@ -167,7 +167,7 @@ class DistribQuotidien extends PpciModel
 		/*
 			 * Preparation de la requete
 			 */
-		$sql = "select * from crosstab ('" . $sql1 . "'::varchar, '" . $sql3 . "'::varchar)
+		$sql = "SELECT * from crosstab ('" . $sql1 . "'::varchar, '" . $sql3 . "'::varchar)
 			AS ( " . $as . " )";
 		return $this->getListeParam($sql);
 	}
@@ -182,7 +182,7 @@ class DistribQuotidien extends PpciModel
 		 * Recuperation de la cle, si existante
 		 */
 		$date = $this->formatDateLocaleVersDB($data["distrib_quotidien_date"]);
-		$sql = "select distrib_quotidien_id from distrib_quotidien
+		$sql = "SELECT distrib_quotidien_id from distrib_quotidien
 				where bassin_id = :bassin_id:
 				and distrib_quotidien_date = :date:";
 		$dataCle = $this->lireParamAsPrepared($sql, array(

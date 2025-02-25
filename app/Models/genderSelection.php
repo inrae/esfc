@@ -5,7 +5,7 @@ namespace App\Models;
 use Ppci\Models\PpciModel;
 
 /**
- * ORM de gestion de la table gender_selection
+ * ORM de gestion de la table gender_SELECTion
  *
  * @author quinton
  *        
@@ -16,9 +16,9 @@ class GenderSelection extends PpciModel
 
     function __construct()
     {
-        $this->table = "gender_selection";
+        $this->table = "gender_SELECTion";
         $this->fields = array(
-            "gender_selection_id" => array(
+            "gender_SELECTion_id" => array(
                 "type" => 1,
                 "key" => 1,
                 "requis" => 1,
@@ -35,13 +35,13 @@ class GenderSelection extends PpciModel
             "sexe_id" => array(
                 "type" => 1
             ),
-            "gender_selection_date" => array(
+            "gender_SELECTion_date" => array(
                 "type" => 2
             ),
             "evenement_id" => array(
                 "type" => 1
             ),
-            "gender_selection_commentaire" => array(
+            "gender_SELECTion_commentaire" => array(
                 "type" => 0
             )
         );
@@ -81,15 +81,15 @@ class GenderSelection extends PpciModel
      */
     function getListByPoisson($poisson_id)
     {
-        $sql = "select gender_selection_id, g.poisson_id, gender_selection_date, gender_selection_commentaire,
+        $sql = "SELECT gender_SELECTion_id, g.poisson_id, gender_SELECTion_date, gender_SELECTion_commentaire,
 					gender_methode_libelle, sexe_libelle_court, sexe_libelle, g.evenement_id,
 					evenement_type_libelle
-					from gender_selection g
+					from gender_SELECTion g
 					left outer join gender_methode using (gender_methode_id)
 					left outer join sexe using (sexe_id)
 					left outer join evenement using (evenement_id)
 					left outer join evenement_type using (evenement_type_id)
-					where g.poisson_id = :id: order by gender_selection_date desc";
+					where g.poisson_id = :id: order by gender_SELECTion_date desc";
         return $this->getListeParamAsPrepared($sql, array("id" => $poisson_id));
     }
 
@@ -101,7 +101,7 @@ class GenderSelection extends PpciModel
      */
     function getDataByEvenement(int $evenement_id)
     {
-        $sql = "select * from gender_selection where evenement_id = :id:";
+        $sql = "SELECT * from gender_SELECTion where evenement_id = :id:";
         return $this->lireParamAsPrepared($sql, array("id" => $evenement_id));
     }
 }

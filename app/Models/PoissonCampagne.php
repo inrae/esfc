@@ -124,10 +124,10 @@ class PoissonCampagne extends PpciModel
 		/*
 		 * recherche des adultes qui n'existent pas dans la table poisson_campagne pour l'annee consideree
 		 */
-		$sql = "select p.poisson_id from poisson p
+		$sql = "SELECT p.poisson_id from poisson p
 				where categorie_id = 1
 				and poisson_statut_id = 1
-				and p.poisson_id not in (select c.poisson_id from poisson_campagne c where annee = :annee:)";
+				and p.poisson_id not in (SELECT c.poisson_id from poisson_campagne c where annee = :annee:)";
 		$liste = $this->getListeParamAsPrepared($sql, array("annee" => $annee));
 		/*
 		 * Traitement de chaque occurence de la liste
@@ -178,7 +178,7 @@ class PoissonCampagne extends PpciModel
 	 */
 	function readFromPoissonAnnee(int $poisson_id, int $annee)
 	{
-		$sql = "select * from poisson_campagne
+		$sql = "SELECT * from poisson_campagne
 					where poisson_id = :poisson_id:
 					and annee = :annee:";
 		return $this->lireParam($sql, ["poisson_id" => $poisson_id, "annee" => $annee]);
@@ -193,7 +193,7 @@ class PoissonCampagne extends PpciModel
 	function getListForDisplay($param)
 	{
 		$liste = array();
-		$sql = "select poisson_campagne_id, poisson_id,
+		$sql = "SELECT poisson_campagne_id, poisson_id,
 					matricule, prenom, pittag_valeur, cohorte,
 				tx_croissance_journalier, specific_growth_rate,
 				sexe_libelle, sexe_libelle_court, masse,
@@ -242,7 +242,7 @@ class PoissonCampagne extends PpciModel
 	{
 		$annees = "";
 		if ($poisson_id > 0) {
-			$sql = "select distinct annee
+			$sql = "SELECT distinct annee
 					from poisson_campagne
 					join poisson_croisement using(poisson_campagne_id)
 					where poisson_id = :poisson_id:
@@ -269,7 +269,7 @@ class PoissonCampagne extends PpciModel
 	 */
 	function getListSequence(int $poisson_id, $annee, bool $isPoissonCampagne = true)
 	{
-		$sql = "select distinct sequence_id, s.annee, sequence_nom, sequence_date_debut
+		$sql = "SELECT distinct sequence_id, s.annee, sequence_nom, sequence_date_debut
 					from sequence s
 					join poisson_sequence using (sequence_id)
 					join poisson_campagne using (poisson_campagne_id) where";
@@ -338,7 +338,7 @@ class PoissonCampagne extends PpciModel
 	 */
 	function getAnnees()
 	{
-		$sql = "select distinct annee from poisson_campagne order by annee desc";
+		$sql = "SELECT distinct annee from poisson_campagne order by annee desc";
 		$data = $this->getListeParam($sql);
 		$years = array();
 		$current = date('Y');
@@ -359,7 +359,7 @@ class PoissonCampagne extends PpciModel
 	function read($id, $getDefault = false, $parentValue = 0): array
 	{
 		if ($id > 0) {
-			$sql = "select poisson_campagne_id, poisson_id, matricule, prenom, pittag_valeur, cohorte,
+			$sql = "SELECT poisson_campagne_id, poisson_id, matricule, prenom, pittag_valeur, cohorte,
 				annee, tx_croissance_journalier, specific_growth_rate,
 				sexe_libelle, sexe_libelle_court, masse, sexe_id,
 				repro_statut_id, repro_statut_libelle,
@@ -412,7 +412,7 @@ class PoissonCampagne extends PpciModel
 	 */
 	function getListFromPoisson(int $poisson_id)
 	{
-		$sql = "select poisson_campagne_id, poisson_id, annee,
+		$sql = "SELECT poisson_campagne_id, poisson_id, annee,
 					masse, tx_croissance_journalier, specific_growth_rate,
 					repro_statut_id, repro_statut_libelle
 					from poisson_campagne

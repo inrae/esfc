@@ -46,7 +46,7 @@ class Parente extends PpciModel
 
     function getListByPoisson(int $poisson_id)
     {
-        $sql = "select parente_id, parente.poisson_id, parente_date, parente_commentaire,
+        $sql = "SELECT parente_id, parente.poisson_id, parente_date, parente_commentaire,
 					determination_parente_libelle, evenement_type_libelle, parente.evenement_id
 					from parente
 					left outer join determination_parente using (determination_parente_id)
@@ -64,7 +64,7 @@ class Parente extends PpciModel
      */
     function getDataByEvenement(int $evenement_id)
     {
-        $sql = "select * from parente where evenement_id = :id:";
+        $sql = "SELECT * from parente where evenement_id = :id:";
         return $this->lireParamAsPrepared($sql, array("id" => $evenement_id));
     }
 }

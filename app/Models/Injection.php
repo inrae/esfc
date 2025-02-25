@@ -45,7 +45,7 @@ class Injection extends PpciModel {
 	 */
 	function getListFromPoissonCampagne(int $poisson_campagne_id) {
 
-			$sql = "select injection_id, poisson_campagne_id, sequence_id, injection_date,
+			$sql = "SELECT injection_id, poisson_campagne_id, sequence_id, injection_date,
 					sequence_nom, injection_dose, injection_commentaire,
 					hormone_id, hormone_nom, hormone_unite
 					from injection

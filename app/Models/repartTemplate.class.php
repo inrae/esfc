@@ -47,7 +47,7 @@ class RepartTemplate extends PpciModel
 	 */
 	function getListSearch($param)
 	{
-		$sql = "select * from repart_template
+		$sql = "SELECT * from repart_template
 				left outer join categorie using (categorie_id)";
 		$asql = array();
 		$order = " order by repart_template_date desc";
@@ -79,7 +79,7 @@ class RepartTemplate extends PpciModel
 		/**
 		 * Verification que le modele n'a pas été utilisé
 		 */
-		$sql = "select count(*) as nb from distribution where repart_template_id = :id:";
+		$sql = "SELECT count(*) as nb from distribution where repart_template_id = :id:";
 		$rs = $this->getListeParamAsPrepared($sql, array("id"=>$id));
 		if ($rs[0]["nb"] == 0) {
 			/*
@@ -102,7 +102,7 @@ class RepartTemplate extends PpciModel
 	 */
 	function getListActifFromCategorie($categorie_id)
 	{
-		$sql = "select * from repart_template
+		$sql = "SELECT * from repart_template
 					where actif = 1 
 					and categorie_id = :id:
 					order by repart_template_libelle";

@@ -64,7 +64,7 @@ class Echographie extends PpciModel
      */
     function getListByPoisson(int $poisson_id)
     {
-        $sql = "select echographie_id, evenement_id, e.poisson_id, 
+        $sql = "SELECT echographie_id, evenement_id, e.poisson_id, 
 					echographie_date, echographie_commentaire, 
 					cliche_nb, cliche_ref, stade_oeuf_libelle, stade_gonade_libelle,
 					evenement_type_libelle
@@ -87,7 +87,7 @@ class Echographie extends PpciModel
     function getDataByEvenement(int $evenement_id)
     {
 
-        $sql = "select * from echographie 
+        $sql = "SELECT * from echographie 
 				where evenement_id = :id:";
         return $this->lireParamAsPrepared($sql, array("id" => $evenement_id));
     }
@@ -101,7 +101,7 @@ class Echographie extends PpciModel
      */
     function getListByYear(int $poisson_id, int $annee)
     {
-        $sql = "select echographie_id, evenement_id, e.poisson_id, 
+        $sql = "SELECT echographie_id, evenement_id, e.poisson_id, 
 					echographie_date, echographie_commentaire, 
 					cliche_nb, cliche_ref, stade_oeuf_libelle, stade_gonade_libelle,
 					evenement_type_libelle

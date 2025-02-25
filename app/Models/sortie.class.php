@@ -78,7 +78,7 @@ class Sortie extends PpciModel
      */
     function getListByPoisson(int $poisson_id)
     {
-        $sql = "select sortie_id, sortie.poisson_id, sortie_date, sortie_commentaire,
+        $sql = "SELECT sortie_id, sortie.poisson_id, sortie_date, sortie_commentaire,
 					localisation, evenement_type_libelle, sortie.evenement_id, sevre
 					from sortie
 					left outer join sortie_lieu using (sortie_lieu_id)
@@ -96,7 +96,7 @@ class Sortie extends PpciModel
      */
     function getDataByEvenement(int $evenement_id)
     {
-        $sql = "select sortie_id, poisson_id, sortie_date, sortie_commentaire,
+        $sql = "SELECT sortie_id, poisson_id, sortie_date, sortie_commentaire,
 					localisation, evenement_id, sortie_lieu_id, sevre
 					from sortie
 					left outer join sortie_lieu using (sortie_lieu_id)

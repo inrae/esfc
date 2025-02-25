@@ -47,7 +47,7 @@ class Bassin_usage extends PpciModel
 	 */
 	function getListe(string $order = ""): array
 	{
-		$sql = "select * from bassin_usage
+		$sql = "SELECT * from bassin_usage
 				left outer join categorie using (categorie_id)";
 		if (strlen($order) > 0)
 			$sql .= " order by " . $order;

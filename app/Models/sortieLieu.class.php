@@ -49,7 +49,7 @@ class SortieLieu extends PpciModel
      */
     function getListeActif(int $actif = -1)
     {
-        $sql = "select sortie_lieu_id, localisation, longitude_dd, latitude_dd,
+        $sql = "SELECT sortie_lieu_id, localisation, longitude_dd, latitude_dd,
 				actif, poisson_statut_id, poisson_statut_libelle
 				from sortie_lieu
 				left outer join poisson_statut using (poisson_statut_id)

@@ -302,7 +302,7 @@ class Distribution extends PpciModel
 	 */
 	function getFromRepartition(int $repartition_id)
 	{
-		$sql = "select t1.distribution_id, t1.repartition_id, t1.bassin_id,
+		$sql = "SELECT t1.distribution_id, t1.repartition_id, t1.bassin_id,
 				t1.repart_template_id, t1.reste_zone_calcul, t1.evol_taux_nourrissage,
 				t1.taux_nourrissage, t1.total_distribue, t1.distribution_consigne,
 				t1.ration_commentaire, t1.distribution_masse, t1.distribution_jour,
@@ -398,7 +398,7 @@ class Distribution extends PpciModel
 		/*
 			 * Recuperation des bassins du même type
 			 */
-		$sql = "select distinct bassin_id, bassin_nom
+		$sql = "SELECT distinct bassin_id, bassin_nom
 						from bassin
 						join bassin_usage using (bassin_usage_id)
 						where actif = 1
@@ -409,7 +409,7 @@ class Distribution extends PpciModel
 			$param["site_id"] = $site_id;
 		}
 		$sql .= " and bassin_id not in
-						(select bassin_id from distribution where repartition_id = :repartition_id:)
+						(SELECT bassin_id from distribution where repartition_id = :repartition_id:)
 						order by bassin_nom";
 		$dataBassin = $this->getListeParamAsPrepared($sql, $param);
 		/*
@@ -436,7 +436,7 @@ class Distribution extends PpciModel
 	 */
 	function calculDistribution(int $repartition_id)
 	{
-		$sql = 'select bassin_nom, aliment_id, taux_nourrissage, evol_taux_nourrissage, total_distribue, repart_alim_taux, 
+		$sql = 'SELECT bassin_nom, aliment_id, taux_nourrissage, evol_taux_nourrissage, total_distribue, repart_alim_taux, 
 					round (total_distribue * repart_alim_taux / 100) as "quantite",
 					round (total_distribue * repart_alim_taux  * matin / 10000) as "quantiteMatin",
 					round (total_distribue * repart_alim_taux * midi / 10000) as "quantiteMidi",
@@ -460,7 +460,7 @@ class Distribution extends PpciModel
 	 */
 	function getListeAlimentFromRepartition(int $repartition_id, $order = "adulte")
 	{
-		$sql = "select distinct aliment_id, aliment_libelle_court, aliment_type_id
+		$sql = "SELECT distinct aliment_id, aliment_libelle_court, aliment_type_id
 				from distribution
 					join repart_template using (repart_template_id)
 					join repart_aliment using (repart_template_id)

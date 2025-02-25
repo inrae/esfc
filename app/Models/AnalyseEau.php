@@ -122,7 +122,7 @@ class AnalyseEau extends PpciModel
 	function getDetailByCircuitEau($id, $dateRef = null, int $limit = 1, int $offset = 0): ?array
 	{
 		if ($id > 0 && is_numeric($id)) {
-			$sql = "select * from analyse_eau
+			$sql = "SELECT * from analyse_eau
 					join circuit_eau using (circuit_eau_id)
 					left outer join laboratoire_analyse using (laboratoire_analyse_id)";
 			if (is_null($dateRef))
@@ -183,7 +183,7 @@ class AnalyseEau extends PpciModel
 		$dateAnalyse = $this->encodeData($dateAnalyse);
 		$dateAnalyse = $this->formatDateLocaleVersDB($dateAnalyse, 3);
 		if (strlen($dateAnalyse) > 0 && is_numeric($bassin_id) && $bassin_id > 0) {
-			$sql = "select analyse_eau_id
+			$sql = "SELECT analyse_eau_id
 					from analyse_eau
 					natural join circuit_eau
 					natural join bassin
@@ -203,7 +203,7 @@ class AnalyseEau extends PpciModel
 	function getIdFromDateCircuit($dateAnalyse, $circuit_id)
 	{
 		$dateAnalyse = $this->formatDateLocaleVersDB($dateAnalyse, 3);
-		$sql = "select analyse_eau_id from analyse_eau 
+		$sql = "SELECT analyse_eau_id from analyse_eau 
 				where circuit_eau_id = :circuit_id:
 				and analyse_eau_date = :date_analyse:";
 		return ($this->lireParamAsPrepared($sql, array("circuit_id" => $circuit_id, "date_analyse" => $dateAnalyse)));
@@ -224,7 +224,7 @@ class AnalyseEau extends PpciModel
 		if (in_array($attribut, array("temperature", "o2_pc", "salinite", "ph", "nh4", "n_nh4", "no2", "n_no2", "no3", "n_no3"))) {
 			$date_from = $this->formatDateLocaleVersDB($date_from);
 			$date_to = $this->formatDateLocaleVersDB($date_to);
-			$sql = "select circuit_eau_id, analyse_eau_date, " . $attribut . "
+			$sql = "SELECT circuit_eau_id, analyse_eau_date, " . $attribut . "
 			from analyse_eau 
 			where circuit_eau_id = :circuit_id: and analyse_eau_date::date between :date_from: and :date_to: 
 			order by analyse_eau_date";

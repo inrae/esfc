@@ -163,7 +163,7 @@ class SearchPoisson extends SearchParam
 			"morphologie" => _("Morphologie"),
 			"mortalite" => _("Mortalite"),
 			"parente" => _("Détermination des parents"),
-			"gender_selection" => _("Détermination du sexe"),
+			"gender_SELECTion" => _("Détermination du sexe"),
 			"pathologie" => _("Pathologie"),
 			"echographie" => _("Échographie"),
 			"dosage_sanguin" => _("Dosage sanguin"),

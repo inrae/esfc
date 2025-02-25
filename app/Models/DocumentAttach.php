@@ -159,7 +159,7 @@ class DocumentAttach extends PpciModel
 	 */
 	function getData(int $id)
 	{
-		$sql = "select document_id, document_nom, content_type, mime_type_id, extension, document_date_creation
+		$sql = "SELECT document_id, document_nom, content_type, mime_type_id, extension, document_date_creation
 				from document
 				join mime_type using (mime_type_id)
 				where document_id = :id:";

@@ -51,7 +51,7 @@ class Cohorte extends PpciModel
      */
     function getListByPoisson(int $poisson_id)
     {
-        $sql = "select cohorte_id, cohorte.poisson_id, cohorte_date, cohorte_commentaire,
+        $sql = "SELECT cohorte_id, cohorte.poisson_id, cohorte_date, cohorte_commentaire,
 					cohorte_determination, evenement_type_libelle, cohorte.evenement_id,
 					cohorte_type_id, cohorte_type_libelle
 					from cohorte
@@ -70,7 +70,7 @@ class Cohorte extends PpciModel
      */
     function getDataByEvenement(int $evenement_id)
     {
-        $sql = "select * from cohorte where evenement_id = :id:";
+        $sql = "SELECT * from cohorte where evenement_id = :id:";
         return $this->lireParamAsPrepared($sql, array("id" => $evenement_id));
     }
 

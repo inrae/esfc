@@ -100,7 +100,7 @@ class Lot extends PpciModel
 	{
 		$data = array();
 		if (strlen($where) > 0) {
-			$sql = "select l.lot_id, l.lot_nom, l.croisement_id, l.nb_larve_initial, l.nb_larve_compte,
+			$sql = "SELECT l.lot_id, l.lot_nom, l.croisement_id, l.nb_larve_initial, l.nb_larve_compte,
 					croisement_date,
 					sequence_id, s.annee, sequence_nom, croisement_nom, l.eclosion_date, l.vie_date_marquage,
 					l.vie_modele_id, couleur, vie_implantation_libelle, vie_implantation_libelle2,
@@ -171,7 +171,7 @@ class Lot extends PpciModel
 	 */
 	function getNbLarveFromCroisement($croisement_id)
 	{
-		$sql = "select sum(nb_larve_initial) as total_larve_initial, 
+		$sql = "SELECT sum(nb_larve_initial) as total_larve_initial, 
 					sum(nb_larve_compte) as total_larve_compte
 				from lot
 				where croisement_id = :croisement_id:";
@@ -185,7 +185,7 @@ class Lot extends PpciModel
 	 */
 	function getFromVieModele($vie_modele_id)
 	{
-		$sql = "select * from lot where vie_modele_id = :id:";
+		$sql = "SELECT * from lot where vie_modele_id = :id:";
 		return $this->lireParamAsPrepared($sql, array("id" => $vie_modele_id));
 	}
 	/**
@@ -195,7 +195,7 @@ class Lot extends PpciModel
 	 */
 	function getParents($lot_id)
 	{
-		$sql = "select poisson_id
+		$sql = "SELECT poisson_id
 				from lot
 				join poisson_croisement using (croisement_id)
 				join poisson_campagne using (poisson_campagne_id)
@@ -212,7 +212,7 @@ class Lot extends PpciModel
 	function getListAfterDate($dateDebut)
 	{
 		$dateDebut = $this->formatDateLocaleVersDB($dateDebut);
-		$sql = "select lot_id, lot_nom, croisement_id, nb_larve_initial, eclosion_date,
+		$sql = "SELECT lot_id, lot_nom, croisement_id, nb_larve_initial, eclosion_date,
 					s.annee, sequence_nom
 				from lot
 				join croisement using (croisement_id)
@@ -249,7 +249,7 @@ class Lot extends PpciModel
 			$i++;
 		}
 		if ($i > 1) {
-			$sql = "select lot_id, lot_nom, croisement_id, nb_larve_initial, eclosion_date,
+			$sql = "SELECT lot_id, lot_nom, croisement_id, nb_larve_initial, eclosion_date,
 					s.annee, sequence_nom
 				from lot
 				join croisement using (croisement_id)
@@ -266,7 +266,7 @@ class Lot extends PpciModel
 		 * Search if the lot is referenced by another
 		 */
 		$data = array("lot_id" => $lot_id);
-		$sql = "select count(*) as nb from lot where parent_lot_id = :lot_id:";
+		$sql = "SELECT count(*) as nb from lot where parent_lot_id = :lot_id:";
 		$res = $this->lireParamAsPrepared($sql, $data);
 		if ($res["nb"] > 0) {
 			throw new PpciException(_("Le lot a été partagé en un ou plusieurs lots, sa suppression n'est pas possible"));
@@ -274,7 +274,7 @@ class Lot extends PpciModel
 		/**
 		 * Search if exists devenir item
 		 */
-		$sql = "select count(*) as nb from devenir where lot_id = :lot_id";
+		$sql = "SELECT count(*) as nb from devenir where lot_id = :lot_id";
 		$res = $this->lireParamAsPrepared($sql, $data);
 		if ($res["nb"] > 0) {
 			throw new PpciException(_("Des destinations ont été enregistrées pour les poissons du lot, sa suppression n'est pas possible"));

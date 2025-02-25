@@ -19,7 +19,7 @@ use Ppci\Models\PpciModel;
 class Devenir extends PpciModel
 {
 	public Lot $lot;
-	private $sql = "select d1.*, dt1.devenir_type_libelle, sl1.localisation,
+	private $sql = "SELECT d1.*, dt1.devenir_type_libelle, sl1.localisation,
 			c.categorie_libelle, lot_nom,
 			d2.devenir_date as devenir_date_parent, dt2.devenir_type_libelle as devenir_type_libelle_parent,
 			c2.categorie_libelle as categorie_libelle_parent,
@@ -123,7 +123,7 @@ class Devenir extends PpciModel
 			/**
 			 * Search for preexistant sublots
 			 */
-			$sql = "select count(*) as nb from lot where parent_lot_id = :lot_id:";
+			$sql = "SELECT count(*) as nb from lot where parent_lot_id = :lot_id:";
 			$count = $this->lireParamAsPrepared($sql, array("lot_id" => $data["lot_id"]));
 			$nb = $count["nb"] + 1;
 			$dataLot = $this->lot->lire($data["lot_id"]);

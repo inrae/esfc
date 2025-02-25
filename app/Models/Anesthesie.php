@@ -59,7 +59,7 @@ class Anesthesie extends PpciModel
      */
     function getDataByEvenement($evenement_id)
     {
-        $sql = "select * from anesthesie
+        $sql = "SELECT * from anesthesie
 					join anesthesie_produit using (anesthesie_produit_id)
 				where evenement_id = :id:";
         return $this->lireParamAsPrepared($sql, array("id" => $evenement_id));
@@ -73,7 +73,7 @@ class Anesthesie extends PpciModel
      */
     function getListByPoisson(int $poisson_id): ?array
     {
-        $sql = "select anesthesie_id, evenement_id, e.poisson_id,
+        $sql = "SELECT anesthesie_id, evenement_id, e.poisson_id,
                 anesthesie_date, anesthesie_commentaire,
                 evenement_type_libelle,
                 anesthesie_produit_libelle,

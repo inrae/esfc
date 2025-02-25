@@ -47,7 +47,7 @@ class MimeType extends PpciModel
 	function getTypeMime($extension): ?int
 	{
 		$extension = strtolower($extension);
-		$sql = "select mime_type_id from mime_type where extension = :extension:";
+		$sql = "SELECT mime_type_id from mime_type where extension = :extension:";
 		$res = $this->lireParamAsPrepared($sql, array("extension" => $extension));
 		return $res["mime_type_id"];
 	}
