@@ -1,5 +1,7 @@
-<?php 
+<?php
+
 namespace App\Models;
+
 use Ppci\Models\PpciModel;
 
 /**
@@ -52,10 +54,13 @@ class Metal extends PpciModel
 		$actif = $this->encodeData($actif);
 		$sql = "select * from metal";
 		$order = " order by metal_nom";
+		$param = [];
 		$where = "";
-		if ($actif == 1 || $actif == 0)
-			$where = " where actif = " . $actif;
-		return $this->getListeParam($sql . $where . $order);
+		if ($actif == 1 || $actif == 0) {
+			$where = " where actif = :actif:";
+			$param = ["actif" => $actif];
+		}
+		return $this->getListeParam($sql . $where . $order, $param);
 	}
 
 	/**

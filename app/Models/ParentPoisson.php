@@ -1,5 +1,7 @@
-<?php 
+<?php
+
 namespace App\Models;
+
 use Ppci\Models\PpciModel;
 
 /**
@@ -11,7 +13,7 @@ use Ppci\Models\PpciModel;
 class ParentPoisson extends PpciModel
 {
 
-    
+
     function __construct()
     {
         $this->table = "parent_poisson";
@@ -79,7 +81,7 @@ class ParentPoisson extends PpciModel
     {
         $sql = "select parent_poisson_id, parent_poisson.poisson_id, parent_id,
 				matricule, prenom, pittag_valeur
-				from " . $this->table . "
+				from parent_poisson
 				join poisson on (parent_poisson.poisson_id = poisson.poisson_id)
 				left outer join v_pittag_by_poisson pit on (poisson.poisson_id = pit.poisson_id)
 				where parent_id = :id:";

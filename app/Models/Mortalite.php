@@ -1,5 +1,7 @@
-<?php 
+<?php
+
 namespace App\Models;
+
 use Ppci\Models\PpciModel;
 
 /**
@@ -12,7 +14,7 @@ class Mortalite extends PpciModel
 {
     public Poisson $poisson;
 
-    
+
     function __construct()
     {
         $this->table = "mortalite";
@@ -52,7 +54,7 @@ class Mortalite extends PpciModel
      *
      * @see ObjetBDD::ecrire()
      */
-    function write($data):int
+    function write($data): int
     {
         $mortalite_id = parent::write($data);
         if ($mortalite_id > 0 && $data["poisson_id"] > 0) {
@@ -60,7 +62,7 @@ class Mortalite extends PpciModel
              * Lecture du poisson
              */
             if (!isset($this->poisson)) {
-                $this->poisson = $this->classInstanciate("Poisson", "poisson.class.php");
+                $this->poisson = new Poisson;
             }
             $dataPoisson = $this->poisson->lire($data["poisson_id"]);
             if ($dataPoisson["poisson_id"] > 0 && $dataPoisson["poisson_statut_id"] == 1) {
@@ -126,7 +128,7 @@ class Mortalite extends PpciModel
             from mortalite
             join poisson using (poisson_id)
             join categorie using (categorie_id)
-            where mortalite_date >= (date(:lastdate) - interval '$duration')
+            where mortalite_date >= (date(:lastdate:) - interval '$duration')
             )
             select distinct $col as typology, mortalite_date, max(nombre_cumule) over (partition by $col, mortalite_date) as nombre_cumule
             from req

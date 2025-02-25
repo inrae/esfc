@@ -1,5 +1,7 @@
-<?php 
+<?php
+
 namespace App\Models;
+
 use Ppci\Models\PpciModel;
 
 /**
@@ -11,7 +13,7 @@ use Ppci\Models\PpciModel;
 class Pathologie extends PpciModel
 {
 
-    
+
     function __construct()
     {
 

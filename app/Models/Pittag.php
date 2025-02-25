@@ -1,5 +1,7 @@
-<?php 
+<?php
+
 namespace App\Models;
+
 use Ppci\Models\PpciModel;
 
 /**
@@ -12,7 +14,7 @@ class Pittag extends PpciModel
 {
     public Poisson $poisson;
 
-    
+
     function __construct()
     {
         $this->table = "pittag";
@@ -58,7 +60,7 @@ class Pittag extends PpciModel
 					pittag_type_id, pittag_commentaire
 					from pittag
 					left outer join pittag_type using (pittag_type_id)
-					where poisson_id = :poisson_id order by pittag_date_pose desc, pittag_id desc";
+					where poisson_id = :poisson_id: order by pittag_date_pose desc, pittag_id desc";
         if ($limit > 0 && is_numeric($limit)) {
             $sql .= " limit " . $limit;
         }
@@ -84,12 +86,12 @@ class Pittag extends PpciModel
         $sql = "select pittag_id, pittag_date_pose, pittag_valeur, matricule
                 from pittag
                 join poisson using (poisson_id)
-                where poisson_id = :poisson_id
+                where poisson_id = :poisson_id:
                 order by pittag_date_pose desc limit 1";
         $last = $this->lireParamAsPrepared($sql, $param);
         if ($last["pittag_id"] != $last["matricule"]) {
             if (!isset($this->poisson)) {
-                $this->poisson = $this->classInstanciate("Poisson", "poisson.class.php");
+                $this->poisson = new Poisson;
             }
             $dpoisson = $this->poisson->lire($data["poisson_id"]);
             if ($dpoisson["poisson_id"] > 0) {
@@ -98,6 +100,5 @@ class Pittag extends PpciModel
             }
         }
         return $id;
-
     }
 }

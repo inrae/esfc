@@ -1,17 +1,9 @@
-<?php 
+<?php
+
 namespace App\Models;
+
+use Ppci\Libraries\PpciException;
 use Ppci\Models\PpciModel;
-class FichierException extends Exception
-{
-}
-
-class HeaderException extends Exception
-{
-}
-
-class ImportMorphologieException extends Exception
-{
-}
 
 class MorphologieImport
 {
@@ -21,20 +13,15 @@ class MorphologieImport
     private $handle;
     private $fileColumn = array();
     public $nbTreated = 0;
-    private $colonnes = array();
+    private $fields = array();
     public $minevent = 9999999;
     public $maxevent = 0;
-    public PDO $bdd;
     public array $ObjetBDDParam;
     private $poisson, $evenement, $morphologie;
     public $classpath = "modules/classes";
     public array $headerLine;
 
-    function __construct()
-    {
-        $this->bdd = $bdd;
-        $this->ObjetBDDParam = $ObjetBDDParam;
-    }
+    function __construct() {}
 
     function initFile($filename, $separator = ",", array $colonnes, $utf8_encode = false, $headernumber = 1)
     {
@@ -55,17 +42,8 @@ class MorphologieImport
                 $this->readLine();
             }
             $this->headerLine = $this->readLine();
-            /*$range = 0;
-            for ($range = 0; $range < count($data); $range++) {
-                $value = $data[$range];
-                if (in_array($value, $this->fields)) {
-                    $this->fileColumn[$range] = $value;
-                } else {
-                    throw new HeaderException(sprintf(_('La colonne %1$s n\'est pas reconnue (%2$s)'), $range, $value));
-                }
-            }*/
         } else {
-            throw new FichierException(sprintf(_("Le fichier %s n'a pas été trouvé ou n'est pas lisible"), $filename));
+            throw new PpciException(sprintf(_("Le fichier %s n'a pas été trouvé ou n'est pas lisible"), $filename));
         }
     }
 
@@ -125,13 +103,13 @@ class MorphologieImport
          * Inhibition du traitement des dates par la classe
          */
         if (!isset($this->poisson)) {
-            $this->poisson = $this->classInstanciate("Poisson", "poisson.class.php");
+            $this->poisson = new Poisson;
         }
         if (!isset($this->evenement)) {
-            $this->evenement = $this->classInstanciate("Evenement", "evenement.class.php");
+            $this->evenement = new Evenement;
         }
         if (!isset($this->morphologie)) {
-            $this->morphologie = $this->classInstanciate("Morphologie", "morphologie.class.php");
+            $this->morphologie = new Morphologie;
         }
         $this->evenement->autoFormatDate = false;
         $this->morphologie->autoFormatDate = false;
@@ -147,7 +125,7 @@ class MorphologieImport
              */
             $resControle = $this->controlLine($line);
             if (!$resControle["code"]) {
-                throw new ImportMorphologieException("Line $num : " . $resControle["message"]);
+                throw new PpciException("Line $num : " . $resControle["message"]);
             }
 
             /**
@@ -200,8 +178,8 @@ class MorphologieImport
                 if ($evenement_id > $this->maxevent) {
                     $this->maxevent = $evenement_id;
                 }
-            } catch (Exception $pe) {
-                throw new ImportMorphologieException(sprintf(_("Ligne %s : une erreur est survenue lors de l'enregistrement"), $num) . " - " . $pe->getMessage());
+            } catch (\Exception $pe) {
+                throw new PpciException(sprintf(_("Ligne %s : une erreur est survenue lors de l'enregistrement"), $num) . " - " . $pe->getMessage());
             }
             $this->nbTreated++;
         }
@@ -210,7 +188,7 @@ class MorphologieImport
     function controlAll()
     {
         if (!isset($this->poisson)) {
-            $this->poisson = $this->classInstanciate("Poisson", "poisson.class.php");
+            $this->poisson = new Poisson;
         }
         $num = 1;
         $retour = array();
@@ -283,23 +261,7 @@ class MorphologieImport
         }
         return $retour;
     }
-    /**
-     * Instanciate a DB Class
-     *
-     * @param string $className
-     * @param string $classFile
-     * @param boolean $pathAbsolute
-     * @return object
-     */
-    function classInstanciate(string $className, string $classFile, bool $pathAbsolute = false)
-    {
-        $pathAbsolute ? $path = $classFile : $path = $this->classpath . "/" . $classFile;
-        include_once $path;
-        if (!isset($this->bdd)) {
-            throw new ObjetBDDException(sprintf(_("La connexion à la base de données n'est pas disponible pour instancier la classe %s"), $className));
-        }
-        return new $className($this->bdd, $this->ObjetBDDParam);
-    }
+
 
     /**
      * Fonction reformatant la date en testant le format francais, puis standard

@@ -1,5 +1,7 @@
-<?php 
+<?php
+
 namespace App\Models;
+
 use Ppci\Models\PpciModel;
 
 /**
@@ -11,7 +13,7 @@ use Ppci\Models\PpciModel;
 class Morphologie extends PpciModel
 {
 
-    
+
     function __construct()
     {
         $this->table = "morphologie";
@@ -60,7 +62,8 @@ class Morphologie extends PpciModel
      */
     function getListeByPoisson(int $poisson_id)
     {
-        $sql = "select morphologie_id, m.poisson_id, longueur_fourche, longueur_totale, masse, circonference, morphologie_date, morphologie_commentaire, 
+        $sql = "select morphologie_id, m.poisson_id, longueur_fourche, longueur_totale, 
+                    masse, circonference, morphologie_date, morphologie_commentaire, 
 					m.evenement_id, evenement_type_libelle
 					from morphologie m
 					left outer join evenement using (evenement_id)
@@ -78,7 +81,7 @@ class Morphologie extends PpciModel
     function getMasseLast(int $poisson_id)
     {
         $sql = "select masse from v_poisson_last_masse
-					where  poisson_id = :poisson_id";
+					where  poisson_id = :poisson_id:";
         return $this->lireParamAsPrepared($sql, array("poisson_id" => $poisson_id));
     }
 
@@ -95,8 +98,8 @@ class Morphologie extends PpciModel
 
         $sql = "select poisson_id, morphologie_date, masse 
 					from morphologie
-					where poisson_id = :poisson_id
-					and morphologie_date between :date_from and :date_to
+					where poisson_id = :poisson_id:
+					and morphologie_date between :date_from: and :date_to:
 					order by morphologie_date";
         return $this->getListeParamAsPrepared(
             $sql,
@@ -118,8 +121,8 @@ class Morphologie extends PpciModel
     function getMasseBeforeDate($poisson_id, $date)
     {
         $sql = "select masse, morphologie_date from morphologie
-					where morphologie_date < :date
-					and poisson_id = :poisson_id
+					where morphologie_date < :date:
+					and poisson_id = :poisson_id:
 					order by morphologie_date desc
 					limit 1";
         return $this->lireParamAsPrepared($sql, array(
@@ -140,8 +143,8 @@ class Morphologie extends PpciModel
         $date_from = $annee . "-01-01";
         $date_to = $annee . "-05-31";
         $sql = "select masse, morphologie_date from morphologie
-					where morphologie_date between :date_from and :date_to
-					and poisson_id = :poisson_id
+					where morphologie_date between :date_from: and :date_to:
+					and poisson_id = :poisson_id:
 					order by morphologie_date asc
 					limit 1";
         return $this->lireParamAsPrepared($sql, array(
@@ -163,15 +166,16 @@ class Morphologie extends PpciModel
         return $this->lireParamAsPrepared($sql, array("id" => $evenement_id));
     }
 
-    function generateGraphAsJson(array $data = array()):array{
+    function generateGraphAsJson(array $data = array()): array
+    {
         $result = array();
         $dc = array();
-        $max = array(0=>0, 1=>0);
+        $max = array(0 => 0, 1 => 0);
         if ($_SESSION["FORMATDATE"] = "fr") {
-			$dateFormat = "%d/%m/%Y";
-		} else {
-			$dateFormat = "/%Y%/m%/d";
-		}
+            $dateFormat = "%d/%m/%Y";
+        } else {
+            $dateFormat = "/%Y%/m%/d";
+        }
         $k = array(
             _("masse"),
             _("longueur fourche"),
@@ -180,12 +184,12 @@ class Morphologie extends PpciModel
         $vdate = array();
         $vval = array();
         for ($i =  0; $i < 3; $i++) {
-            $dc["xs"][$k[$i]] = "x".$i + 1 ;
-            $vdate[$i] = array("x".$i + 1);
+            $dc["xs"][$k[$i]] = "x" . $i + 1;
+            $vdate[$i] = array("x" . $i + 1);
             $vval[$i] = array($k[$i]);
             $max[$i] = 0;
         }
-		foreach ($data as $row) {
+        foreach ($data as $row) {
             if (!empty($row["masse"])) {
                 $vdate[0][] = $row["morphologie_date"];
                 $vval[0][] = $row["masse"];

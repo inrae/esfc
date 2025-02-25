@@ -1,32 +1,31 @@
-<?php 
+<?php
+
 namespace App\Models;
+
 use Ppci\Models\PpciModel;
+
 /**
- * ORM de la table pathologie_type
+ * ORM de gestion de la table nageoire
  *
  * @author quinton
  *        
  */
-class Pathologie_type extends PpciModel
+class Nageoire extends PpciModel
 {
 
-    
     function __construct()
     {
-        $this->table = "pathologie_type";
+        $this->table = "nageoire";
         $this->fields = array(
-            "pathologie_type_id" => array(
+            "nageoire_id" => array(
                 "type" => 1,
                 "key" => 1,
                 "requis" => 1,
                 "defaultValue" => 0
             ),
-            "pathologie_type_libelle" => array(
+            "nageoire_libelle" => array(
                 "type" => 0,
                 "requis" => 1
-            ),
-            "pathologie_type_libelle_court" => array(
-                "type" => 0
             )
         );
         parent::__construct();

@@ -1,5 +1,7 @@
-<?php 
+<?php
+
 namespace App\Models;
+
 use Ppci\Models\PpciModel;
 
 /**
@@ -11,12 +13,7 @@ class PoissonCampagne extends PpciModel
 {
 
 	public Morphologie $morphologie;
-	/**
-	 *
-	 * @param
-	 *        	instance ADODB
-	 *
-	 */
+
 	public function __construct()
 	{
 		$this->table = "poisson_campagne";
@@ -52,9 +49,7 @@ class PoissonCampagne extends PpciModel
 				"defaultValue" => 1
 			)
 		);
-		if (!is_array($param))
-			$param = array();
-		
+
 		parent::__construct();
 	}
 
@@ -80,7 +75,7 @@ class PoissonCampagne extends PpciModel
 		$result = array();
 
 		if (!isset($this->morphologie)) {
-			$this->morphologie = $this->classInstanciate("Morphologie", "morphologie.class.php");
+			$this->morphologie = new Morphologie;
 		}
 		if (is_null($annee)) {
 			$annee = $this->getYear();
@@ -132,7 +127,7 @@ class PoissonCampagne extends PpciModel
 		$sql = "select p.poisson_id from poisson p
 				where categorie_id = 1
 				and poisson_statut_id = 1
-				and p.poisson_id not in (select c.poisson_id from poisson_campagne c where annee = :annee)";
+				and p.poisson_id not in (select c.poisson_id from poisson_campagne c where annee = :annee:)";
 		$liste = $this->getListeParamAsPrepared($sql, array("annee" => $annee));
 		/*
 		 * Traitement de chaque occurence de la liste
@@ -184,9 +179,9 @@ class PoissonCampagne extends PpciModel
 	function readFromPoissonAnnee(int $poisson_id, int $annee)
 	{
 		$sql = "select * from poisson_campagne
-					where poisson_id = " . $poisson_id . "
-					and annee = " . $annee;
-		return $this->lireParam($sql);
+					where poisson_id = :poisson_id:
+					and annee = :annee:";
+		return $this->lireParam($sql, ["poisson_id" => $poisson_id, "annee" => $annee]);
 	}
 
 	/**
@@ -214,13 +209,13 @@ class PoissonCampagne extends PpciModel
 				left outer join v_poisson_last_bassin using (poisson_id)
 				";
 		$psql = array("annee" => $param["annee"]);
-		$where = " where annee = :annee";
+		$where = " where annee = :annee:";
 		if ($param["repro_statut_id"] > 0) {
-			$where .= " and repro_statut_id = :repro_statut_id";
+			$where .= " and repro_statut_id = :repro_statut_id:";
 			$psql["repro_statut_id"] = $param["repro_statut_id"];
 		}
 		if ($param["site_id"] > 0) {
-			$where .= " and site_id = :site_id";
+			$where .= " and site_id = :site_id:";
 			$psql["site_id"] = $param["site_id"];
 		}
 		$order = " order by sexe_libelle, prenom";
@@ -246,11 +241,11 @@ class PoissonCampagne extends PpciModel
 	function getAnneeCroisement(int $poisson_id)
 	{
 		$annees = "";
-		if ($poisson_id > 0 && is_numeric($poisson_id)) {
+		if ($poisson_id > 0) {
 			$sql = "select distinct annee
 					from poisson_campagne
 					join poisson_croisement using(poisson_campagne_id)
-					where poisson_id = :poisson_id
+					where poisson_id = :poisson_id:
 					order by annee";
 			$liste = $this->getListeParamAsPrepared($sql, array("poisson_id" => $poisson_id));
 			$virgule = false;
@@ -277,13 +272,14 @@ class PoissonCampagne extends PpciModel
 		$sql = "select distinct sequence_id, s.annee, sequence_nom, sequence_date_debut
 					from sequence s
 					join poisson_sequence using (sequence_id)
-					join poisson_campagne using (poisson_campagne_id)where";
+					join poisson_campagne using (poisson_campagne_id) where";
 		$param = array("poisson_id" => $poisson_id);
 		$and = " ";
 		if (!$isPoissonCampagne) {
 			if (is_array($annee)) {
 				$sql .= " s.annee in (";
 				$comma = false;
+				$i = 0;
 				foreach ($annee as $an) {
 					if (is_numeric($an)) {
 						if ($comma) {
@@ -291,20 +287,22 @@ class PoissonCampagne extends PpciModel
 						} else {
 							$comma = true;
 						}
-						$sql .= $an;
+						$sql .= ":an$i:";
+						$param["an$i"] = $an;
+						$i++;
 					}
 				}
 				$sql .= ")";
 			} else {
-				$sql .= " s.annee = :annee";
+				$sql .= " s.annee = :annee:";
 				$param["annee"] = $annee;
 			}
 			$and = " and ";
 		}
 		if ($isPoissonCampagne) {
-			$sql .= $and."poisson_campagne_id = :poisson_id";
+			$sql .= $and . "poisson_campagne_id = :poisson_id:";
 		} else {
-			$sql .= " and poisson_id = :poisson_id";
+			$sql .= " and poisson_id = :poisson_id:";
 		}
 		$sql .= " order by sequence_date_debut, sequence_nom";
 		return $this->getListeParamAsPrepared($sql, $param);
@@ -358,7 +356,7 @@ class PoissonCampagne extends PpciModel
 	 *
 	 * @see ObjetBDD::lire()
 	 */
-	function read($id, $getDefault = false, $parentValue = 0)
+	function read($id, $getDefault = false, $parentValue = 0): array
 	{
 		if ($id > 0) {
 			$sql = "select poisson_campagne_id, poisson_id, matricule, prenom, pittag_valeur, cohorte,
@@ -385,7 +383,7 @@ class PoissonCampagne extends PpciModel
 	 *
 	 * @see ObjetBDD::ecrire()
 	 */
-	function write($data):int
+	function write($data): int
 	{
 		if ($data["poisson_campagne_id"] == 0) {
 			/*
@@ -419,7 +417,7 @@ class PoissonCampagne extends PpciModel
 					repro_statut_id, repro_statut_libelle
 					from poisson_campagne
 					join repro_statut using (repro_statut_id)
-					where poisson_id = :poisson_id
+					where poisson_id = :poisson_id:
 					order by annee desc";
 		return $this->getListeParamAsPrepared($sql, array("poisson_id" => $poisson_id));
 	}
@@ -468,7 +466,7 @@ class PoissonCampagne extends PpciModel
 						AND ae.analyse_eau_date between b.date_debut
 						AND CASE WHEN b.date_fin IS NULL THEN 'now'::text::date ELSE b.date_fin END
 						)
-					where poisson_id =:poisson_id
+					where poisson_id =:poisson_id:
 					and temperature is not null
 					order by analyse_eau_date";
 		} else {
@@ -484,9 +482,9 @@ class PoissonCampagne extends PpciModel
 						AND pt.pf_datetime between b.date_debut
 						AND CASE WHEN b.date_fin IS NULL THEN 'now'::text::date ELSE b.date_fin END
 						)
-					where poisson_id = :poisson_id
-					and annee = :annee
-					and profil_thermique_type_id = :profil_thermique_type_id 
+					where poisson_id = :poisson_id:
+					and annee = :annee:
+					and profil_thermique_type_id = :profil_thermique_type_id: 
 					order by pf_datetime";
 			$param["profil_thermique_type_id"] = $profil_thermique_type_id;
 		}

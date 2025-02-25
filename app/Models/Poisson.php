@@ -1,5 +1,7 @@
-<?php 
+<?php
+
 namespace App\Models;
+
 use Ppci\Models\PpciModel;
 
 /**
@@ -22,7 +24,7 @@ class Poisson extends PpciModel
     public DocumentLie $documentLie;
     public Pittag $pittag;
     public DocumentSturio $documentSturio;
-    
+
     function __construct()
     {
         $this->table = "poisson";
@@ -105,52 +107,52 @@ class Poisson extends PpciModel
         $where = " where ";
         $and = "";
         if ($dataSearch["statut"] > 0) {
-            $where .= $and . " poisson_statut_id = :poisson_statut_id";
+            $where .= $and . " poisson_statut_id = :poisson_statut_id:";
             $param["poisson_statut_id"] = $dataSearch["statut"];
             $and = " and ";
         }
         if ($dataSearch["categorie"] > 0) {
-            $where .= $and . " categorie_id = :categorie_id";
+            $where .= $and . " categorie_id = :categorie_id:";
             $param["categorie_id"] = $dataSearch["categorie"];
             $and = " and ";
         }
         if ($dataSearch["sexe"] > 0) {
-            $where .= $and . " sexe_id = :sexe_id";
+            $where .= $and . " sexe_id = :sexe_id:";
             $param["sexe_id"] = $dataSearch["sexe"];
             $and = " and ";
         }
         if (strlen($dataSearch["texte"]) > 0) {
-            $ftexte = "%" . mb_strtoupper($dataSearch["texte"], 'UTF-8') . "%";
-            $where .= $and . " (upper(matricule) like :texte
-						or upper(prenom) like :texte
-						or upper(pittag_valeur) like :texte";
+            $ftexte = "%" . strtoupper($dataSearch["texte"]) . "%";
+            $where .= $and . " (upper(matricule) like :texte:
+						or upper(prenom) like :texte:
+						or upper(pittag_valeur) like :texte:";
             $param["texte"] = $ftexte;
             if (is_numeric($dataSearch["texte"])) {
-                $where .= " or poisson_id = :poisson_id";
+                $where .= " or poisson_id = :poisson_id:";
                 $param["poisson_id"] = $dataSearch["texte"];
             }
             $where .= ")";
             $and = " and ";
         }
         if ($dataSearch["site_id"] > 0) {
-            $where .= $and . " site_id = :site_id ";
+            $where .= $and . " site_id = :site_id: ";
             $param["site_id"] = $dataSearch["site_id"];
             $and = " and ";
         }
         if ($dataSearch["bassin_id"] > 0) {
-            $where .= $and . " bassin_id = :bassin_id ";
+            $where .= $and . " bassin_id = :bassin_id: ";
             $param["bassin_id"] = $dataSearch["bassin_id"];
             $and = " and ";
         }
         if (strlen($dataSearch["eventSearch"]) > 0) {
             if (key_exists($dataSearch["eventSearch"], $_SESSION["searchPoisson"]->getSearchByEvent())) {
                 $from .= " join " . $dataSearch["eventSearch"] . " es using (poisson_id)";
-                $where .= $and . "es." . $dataSearch["eventSearch"] . "_date" . " between :dateFromEvent and :dateToEvent";
+                $where .= $and . "es." . $dataSearch["eventSearch"] . "_date" . " between :dateFromEvent: and :dateToEvent:";
                 $param["dateFromEvent"] = $this->formatDateLocaleVersDB($dataSearch["dateFromEvent"]);
                 $param["dateToEvent"] = $this->formatDateLocaleVersDB($dataSearch["dateToEvent"]);
                 $sql .= ",es." . $dataSearch["eventSearch"] . "_date as event_date";
                 $and = " and ";
-                $this->fields["event_date"] = array("type" => 2);
+                $this->dateFields[] = "event_date";
             }
         }
         if (strlen($dataSearch["cohorte"]) > 0) {
@@ -158,7 +160,7 @@ class Poisson extends PpciModel
             $param["cohorte"] = $dataSearch["cohorte"];
         }
         if (strlen($where) > 7) {
-            $this->fields["mortalite_date"] = array("type" => 2);
+            $this->dateFields[] = "mortalite_date";
             $data = $this->getListeParamAsPrepared($sql . $from . $where, $param);
         }
         /**
@@ -191,7 +193,7 @@ class Poisson extends PpciModel
 					  left outer join v_pittag_by_poisson using (poisson_id)
                       left outer join v_poisson_last_bassin b using (poisson_id)
                       left outer join site on (b.site_id = site.site_id)
-					 where p.poisson_id = :poisson_id";
+					 where p.poisson_id = :poisson_id:";
         return $this->lireParamAsPrepared($sql, array("poisson_id" => $poisson_id));
     }
 
@@ -208,9 +210,9 @@ class Poisson extends PpciModel
             $sql = "select poisson.poisson_id, matricule, prenom, pittag_valeur 
 					from poisson
 					left outer join v_pittag_by_poisson using (poisson_id)
-					where upper(matricule) like upper(:libelle) 
-					or upper(prenom) like upper(:libelle)
-					or upper(pittag_valeur) like upper(:libelle)
+					where upper(matricule) like upper(:libelle:) 
+					or upper(prenom) like upper(:libelle:)
+					or upper(pittag_valeur) like upper(:libelle:)
 					order by matricule, pittag_valeur, prenom";
             return $this->getListeParamAsPrepared($sql, array("libelle" => $libelle));
         } else {
@@ -223,7 +225,7 @@ class Poisson extends PpciModel
         $sql = "select poisson_id 
         from poisson
         join pittag using (poisson_id)
-        where upper(pittag_valeur) = upper(:pittag)";
+        where upper(pittag_valeur) = upper(:pittag:)";
         $data = $this->lireParamAsPrepared($sql, array("pittag" => $pittag));
         if ($data["poisson_id"] > 0) {
             return $data["poisson_id"];
@@ -239,7 +241,7 @@ class Poisson extends PpciModel
      *
      * @see ObjetBDD::ecrire()
      */
-    function write($data):int
+    function write($data): int
     {
         /*
          * Recuperation des donnees de naissance, si vie_modele_id est renseigne
@@ -247,7 +249,7 @@ class Poisson extends PpciModel
         $dataLot = array();
         if ($data["vie_modele_id"] > 0) {
             if (!isset($this->lot)) {
-                $this->lot = $this->classInstanciate("Lot", "lot.class.php");
+                $this->lot = new Lot;
             }
             $dataLot = $this->lot->getFromVieModele($data["vie_modele_id"]);
             if ($dataLot["lot_id"] > 0) {
@@ -302,12 +304,12 @@ class Poisson extends PpciModel
          * Recherche des poissons "enfants"
          */
         if (!isset($this->parent_poisson)) {
-            $this->parent_poisson = $this->classInstanciate("ParentPoisson", "parentPoisson.class.php");
+            $this->parent_poisson = new ParentPoisson;
         }
         $listeEnfant = $this->parent_poisson->lireEnfant($id);
         if (is_array($listeEnfant) == true && count($listeEnfant) > 0) {
             $detailEnfant = "";
-            foreach ($listeEnfant as $key => $value)
+            foreach ($listeEnfant as $value)
                 $detailEnfant .= $value["matricule"] . " ";
             $retour = -1;
             $this->errorData[] = array(
@@ -323,7 +325,7 @@ class Poisson extends PpciModel
              * Evenements
              */
             if (!isset($this->evenement)) {
-                $this->evenement = $this->classInstanciate("Evenement", "evenement.class.php");
+                $this->evenement = new Evenement;
             }
             $listeEvenement = $this->evenement->getEvenementByPoisson($id);
             foreach ($listeEvenement as $event) {
@@ -333,32 +335,30 @@ class Poisson extends PpciModel
              * Documents
              */
             if (!isset($this->documentLie)) {
-                require_once $this->classpath . "/documentLie.class.php";
-                $this->documentLie = new DocumentLie($this->connection, $this->paramori, "poisson");
+                $this->documentLie = new DocumentLie("poisson");
             }
             if (!isset($this->documentSturio)) {
-                $this->documentSturio = $this->classInstanciate("DocumentSturio", "documentSturio.class.php");
+                $this->documentSturio = new DocumentSturio;
             }
             $listeDocument = $this->documentLie->getListeDocument($id);
             foreach ($listeDocument as $value) {
-                if ($value["document_id"] > 0)
+                if ($value["document_id"] > 0) {
                     $this->documentSturio->supprimer($value["document_id"]);
+                }
             }
             /*
              * Pittag
              */
             if (!isset($this->pittag)) {
-                $this->pittag = $this->classInstanciate("Pittag", "pittag.class.php");
+                $this->pittag = new Pittag;
             }
-            test("pittag");
             $this->pittag->supprimerChamp($id, "poisson_id");
             /**
              * Suppression de la parente
              */
             if (!isset($this->parent_poisson)) {
-                $this->parent_poisson = $this->classInstanciate("ParentPoisson", "parentPoisson.class.php");
+                $this->parent_poisson = new ParentPoisson;
             }
-            test("parent");
             $this->parent_poisson->supprimerChamp($id, "poisson_id");
             /*
              * Suppression du poisson
@@ -386,9 +386,9 @@ class Poisson extends PpciModel
          * Recherche des bassins frequentes
          */
         $sql = "select pb.* from v_poisson_bassins pb
-            where (:date_debut, :date_fin) overlaps 
+            where (:date_debut:, :date_fin:) overlaps 
                 (date_debut, case when date_fin is null then '2050-12-31' else date_fin end)
-				and poisson_id = :poisson_id
+				and poisson_id = :poisson_id:
 				order by date_debut, date_fin";
         $bassins = $this->getListeParamAsPrepared(
             $sql,
@@ -413,7 +413,7 @@ class Poisson extends PpciModel
 				select  sum( ae.temperature) as temperature
 				from gs, analyse_eau ae, circuit_eau ce, bassin b
 				where b.circuit_eau_id = ce.circuit_eau_id 
-				and b.bassin_id = " . $bassin["bassin_id"] . "
+				and b.bassin_id = :bassin_id:
 				and ae.circuit_eau_id = ce.circuit_eau_id
 				and ae.analyse_eau_id = 
 				(select a2.analyse_eau_id from analyse_eau a2
@@ -423,7 +423,7 @@ class Poisson extends PpciModel
 				and ce.circuit_eau_id = ce2.circuit_eau_id
 				order by a2.analyse_eau_date desc limit 1)
 				";
-            $dataTotal = $this->lireParam($sqltemp);
+            $dataTotal = $this->lireParam($sqltemp, ["bassin_id" => $bassin["bassin_id"]]);
             if ($dataTotal["temperature"] > 0)
                 $temperature += $dataTotal["temperature"];
         }
