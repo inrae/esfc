@@ -1,5 +1,7 @@
-<?php 
+<?php
+
 namespace App\Models;
+
 use Ppci\Models\PpciModel;
 
 class SpermeCongelation extends PpciModel
@@ -85,16 +87,15 @@ class SpermeCongelation extends PpciModel
      */
     function getListFromSperme(int $sperme_id)
     {
-        $where = " where sperme_id = :sperme_id";
+        $where = " where sperme_id = :sperme_id:";
         $order = " order by congelation_date";
         $arg = array(
             "sperme_id" => $sperme_id
-        );
-        ;
+        );;
         return $this->getListeParamAsPrepared($this->sql . $where . $order, $arg);
     }
 
-    function read($id, bool $getDefault = true, int $parentValue = 0): array
+    function read($id, bool $getDefault = true, $parentValue = 0): array
     {
         if ($id > 0) {
             $sql = "SELECT sc.*, 
@@ -111,8 +112,9 @@ class SpermeCongelation extends PpciModel
             return $this->getDefaultValue($parentValue);
         }
     }
-    
-    function getAllCongelations(int $year = 0) {
+
+    function getAllCongelations(int $year = 0)
+    {
         $sql = "SELECT sc.sperme_congelation_id, sc.sperme_id,            
         poisson_campagne_id, sequence_id,
         congelation_date, congelation_volume, nb_paillette, paillette_volume, nb_visotube, 
@@ -126,12 +128,12 @@ class SpermeCongelation extends PpciModel
         (SELECT sperme_mesure_id from sperme_mesure sm2 where sm2.sperme_id = s.sperme_id order by sperme_mesure_id desc limit 1)
         )
         left outer join sperme_qualite sq using (sperme_qualite_id)";
-                $data = array();
-		if ($year > 0) {
-			$sql .= " where annee = :year";
-			$data["year"] = $year;
-		}
-        $this->fields["sperme_mesure_date"] = ["type"=>2];
-		return $this->getListeParamAsPrepared($sql, $data);
+        $data = array();
+        if ($year > 0) {
+            $sql .= " where annee = :year:";
+            $data["year"] = $year;
+        }
+        $this->dateFields[] = "sperme_mesure_date";
+        return $this->getListeParamAsPrepared($sql, $data);
     }
 }

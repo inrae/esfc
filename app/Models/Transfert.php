@@ -1,5 +1,7 @@
-<?php 
+<?php
+
 namespace App\Models;
+
 use Ppci\Models\PpciModel;
 
 /**
@@ -71,10 +73,10 @@ class Transfert extends PpciModel
 					left outer join bassin dest on (bassin_destination = dest.bassin_id)
 					left outer join evenement using (evenement_id)
 					left outer join evenement_type using (evenement_type_id)';
-        $where = ' where transfert.poisson_id = :poisson_id';
+        $where = ' where transfert.poisson_id = :poisson_id:';
         $param = array("poisson_id" => $poisson_id);
         if ($annee > 0) {
-            $where .= " and extract(year from transfert_date) = :annee";
+            $where .= " and extract(year from transfert_date) = :annee:";
             $param["annee"] = $annee;
         }
 
@@ -101,7 +103,7 @@ class Transfert extends PpciModel
 					left outer join v_pittag_by_poisson pittag on (pittag.poisson_id = poisson.poisson_id)
 					left outer join v_poisson_last_masse vmasse on (t.poisson_id = vmasse.poisson_id)
 					left outer join sexe using (sexe_id)
-					where  poisson_statut_id = 1 and bassin.bassin_id = :bassin_id
+					where  poisson_statut_id = 1 and bassin.bassin_id = :bassin_id:
  					order by matricule';
         return $this->getListeParamAsPrepared($sql, array("bassin_id" => $bassin_id));
     }
@@ -115,7 +117,7 @@ class Transfert extends PpciModel
     function getDataByEvenement(int $evenement_id)
     {
 
-        $sql = "SELECT * from transfert where evenement_id = :evenement_id";
+        $sql = "SELECT * from transfert where evenement_id = :evenement_id:";
         return $this->lireParamAsPrepared($sql, array("evenement_id" => $evenement_id));
     }
 
@@ -126,7 +128,7 @@ class Transfert extends PpciModel
      *
      * @see ObjetBDD::ecrire()
      */
-    function write($data):int
+    function write($data): int
     {
         $transfert_id = parent::write($data);
         if ($transfert_id > 0 && $data["bassin_destination"] > 0 && $data["poisson_id"] > 0) {
@@ -134,7 +136,7 @@ class Transfert extends PpciModel
              * Recuperation de l'usage du bassin
              */
             if (!isset($this->bassin)) {
-                $this->bassin = $this->classInstanciate("Bassin", "bassin.class.php");
+                $this->bassin = new Bassin;
             }
             $dataBassin = $this->bassin->lire($data["bassin_destination"]);
             if ($dataBassin["bassin_usage_id"] == 1) {
@@ -142,7 +144,7 @@ class Transfert extends PpciModel
                  * Recuperation du poisson
                  */
                 if (!isset($this->poisson)) {
-                    $this->poisson = $this->classInstanciate("Poisson", "poisson.class.php");
+                    $this->poisson = new Poisson;
                 }
                 $dataPoisson = $this->poisson->lire($data["poisson_id"]);
                 if ($dataPoisson["poisson_categorie_id"] == 2) {

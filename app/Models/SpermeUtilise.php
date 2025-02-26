@@ -1,5 +1,7 @@
-<?php 
+<?php
+
 namespace App\Models;
+
 use Ppci\Models\PpciModel;
 
 /**
@@ -47,7 +49,7 @@ class SpermeUtilise extends PpciModel
      * {@inheritdoc}
      * @see ObjetBDD::ecrire()
      */
-    function write($data):int
+    function write($data): int
     {
         /*
          * Recuperation des donnees anciennes pour lire le nombre de paillettes precedemment utilisees
@@ -58,7 +60,7 @@ class SpermeUtilise extends PpciModel
         if ($retour > 0) {
             if (($dataold["nb_paillette_croisement"] > 0 || $data["nb_paillette_croisement"] > 0) && $data["sperme_congelation_id"] > 0) {
                 if (!isset($this->spermeCongelation)) {
-                    $this->spermeCongelation = $this->classInstanciate("SpermeCongelation", "spermeCongelation.class.php");
+                    $this->spermeCongelation = new SpermeCongelation;
                 }
                 $dsc = $this->spermeCongelation->lire($data["sperme_congelation_id"]);
                 $dsc["nb_paillettes_utilisees"] = $dsc["nb_paillettes_utilisees"] - $dataold["nb_paillette_croisement"] + $data["nb_paillette_croisement"];

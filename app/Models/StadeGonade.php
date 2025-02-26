@@ -1,5 +1,7 @@
-<?php 
+<?php
+
 namespace App\Models;
+
 use Ppci\Models\PpciModel;
 
 /**
@@ -8,19 +10,19 @@ use Ppci\Models\PpciModel;
  * Encoding : UTF-8
  * Copyright 2017 - All rights reserved
  */
-class StadeOeuf extends PpciModel
+class StadeGonade extends PpciModel
 {
 	function __construct()
 	{
-		$this->table = "stade_oeuf";
+		$this->table = "stade_gonade";
 		$this->fields = array(
-			"stade_oeuf_id" => array(
+			"stade_gonade_id" => array(
 				"type" => 1,
 				"key" => 1,
 				"requis" => 1,
 				"defaultValue" => 0
 			),
-			"stade_oeuf_libelle" => array(
+			"stade_gonade_libelle" => array(
 				"type" => 0,
 				"requis" => 1
 			)

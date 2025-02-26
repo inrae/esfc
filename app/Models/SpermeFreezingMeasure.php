@@ -51,9 +51,9 @@ class SpermeFreezingMeasure extends PpciModel
                 " order by measure_date desc limit 1";
             $last = $this->lireParamAsPrepared($sql, array("id" => $parentValue));
             if (strlen($last["mt"]) > 0) {
-                $time = new DateTime($last["mt"]);
+                $time = new \DateTime($last["mt"]);
                 date_add($time, new \DateInterval("PT1M"));
-                $data["measure_date"] = $this->formatDateDBversLocal(date_format($time, "Y-m-d H:i:s"), 3);
+                $data["measure_date"] = $this->formatDatetimeDBversLocal(date_format($time, "Y-m-d H:i:s"));
             }
         }
         return $data;

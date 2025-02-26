@@ -1,5 +1,7 @@
-<?php 
+<?php
+
 namespace App\Models;
+
 use Ppci\Models\PpciModel;
 
 /**
@@ -38,7 +40,7 @@ class Sperme extends PpciModel
     {
 
         $this->table = "sperme";
-                $this->fields = array(
+        $this->fields = array(
             "sperme_id" => array(
                 "type" => 1,
                 "key" => 1,
@@ -81,7 +83,7 @@ class Sperme extends PpciModel
      *
      * @see ObjetBDD::ecrire()
      */
-    function write($data):int
+    function write($data): int
     {
         $id = parent::write($data);
         if ($id > 0 && strlen($_REQUEST["sperme_mesure_date"]) > 0) {
@@ -95,7 +97,7 @@ class Sperme extends PpciModel
              * Ecriture des mesures realisees lors du prelevement
              */
             if (!isset($this->spermeMesure)) {
-                $this->spermeMesure = $this->classInstanciate("SpermeMesure", "spermeMesure.class.php");
+                $this->spermeMesure = new SpermeMesure;
             }
             $this->spermeMesure->ecrire($data);
         }
@@ -109,17 +111,17 @@ class Sperme extends PpciModel
      *
      * @see ObjetBDD::supprimer()
      */
-    function supprimer(int $id)
+    function supprimer($id)
     {
-        if (is_numeric($id) && $id > 0) {
+        if ($id > 0) {
             /**
              * Suppression des informations rattachees
              */
             if (!isset($this->spermeCaract)) {
-                $this->spermeCaract = $this->classInstanciate("SpermeCaract", "spermeCaract.class.php");
+                $this->spermeCaract = new SpermeCaract;
             }
             if (!isset($this->spermeMesure)) {
-                $this->spermeMesure = $this->classInstanciate("SpermeMesure", "spermeMesure.class.php");
+                $this->spermeMesure = new SpermeMesure;
             }
             $this->spermeCaract->supprimerChamp($id, "sperme_id");
             $this->spermeMesure->supprimerChamp($id, "sperme_id");
@@ -149,22 +151,20 @@ class Sperme extends PpciModel
      */
     function getListPotentielFromPoissons(array $poissons)
     {
-        /*
-         * Verification que les poissons contiennent bien des valeurs numeriques
-         */
-
         if (count($poissons) > 0) {
             $where = " where poisson_id in (";
             $comma = "";
+            $i = 0;
+            $param = [];
             foreach ($poissons as $value) {
-                if (is_numeric($value)) {
-                    $where .= $comma . $value;
-                    $comma = ",";
-                }
+                $where .= $comma . ":id$i:";
+                $param["id$i"] = $value;
+                $comma = ",";
+                $i++;
             }
             $where .= ")";
             $order = " order by matricule, sperme_date";
-            return $this->getListeParam($this->sql . $this->from . $where . $order);
+            return $this->getListeParam($this->sql . $this->from . $where . $order, $param);
         } else {
             return array();
         }
@@ -202,17 +202,17 @@ class Sperme extends PpciModel
      */
     function readFromSequence(int $poissonCampagneId, int $sequenceId)
     {
-            /*
+        /*
              * Recherche de l'identifiant correspondant
              */
-            $sql = "SELECT sperme_id from sperme where poisson_campagne_id = :poissonCampagneId
+        $sql = "SELECT sperme_id from sperme where poisson_campagne_id = :poissonCampagneId
 					and sequence_id = :sequence_id";
-            $data = $this->lireParamAsPrepared($sql, array(
-                "poissonCampagneId"=>$poissonCampagneId, 
-                "sequence_id"=>$sequenceId
-            ));
-            $data["sperme_id"] > 0 ? $id = $data["sperme_id"] : $id = 0;
-            return $this->lire($id, false);
+        $data = $this->lireParamAsPrepared($sql, array(
+            "poissonCampagneId" => $poissonCampagneId,
+            "sequence_id" => $sequenceId
+        ));
+        $data["sperme_id"] > 0 ? $id = $data["sperme_id"] : $id = 0;
+        return $this->lire($id, false);
     }
 
     /**
@@ -220,12 +220,12 @@ class Sperme extends PpciModel
      *
      * @see ObjetBDD::lire()
      */
-    function read($id, $getDefault = false, $defaultValue = 0)
+    function read($id, $getDefault = false, $defaultValue = 0): array
     {
         $data = parent::lire($id, $getDefault, $defaultValue);
         if ($data["sperme_id"] > 0) {
             if (!isset($this->spermeMesure)) {
-                $this->spermeMesure = $this->classInstanciate("SpermeMesure", "spermeMesure.class.php");
+                $this->spermeMesure = new SpermeMesure;
             }
             $dataMesure = $this->spermeMesure->getFromSpermeDate($data["sperme_id"]);
             foreach ($dataMesure as $key => $value)

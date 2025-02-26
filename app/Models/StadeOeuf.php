@@ -1,25 +1,28 @@
-<?php 
+<?php
+
 namespace App\Models;
+
 use Ppci\Models\PpciModel;
+
 /**
- * ORM de gestion de la table vie_implantation
- *
- * @author quinton
- *        
+ * Created : 3 févr. 2017
+ * Creator : quinton
+ * Encoding : UTF-8
+ * Copyright 2017 - All rights reserved
  */
-class VieImplantation extends PpciModel
+class StadeOeuf extends PpciModel
 {
 	function __construct()
 	{
-		$this->table = "vie_implantation";
+		$this->table = "stade_oeuf";
 		$this->fields = array(
-			"vie_implantation_id" => array(
+			"stade_oeuf_id" => array(
 				"type" => 1,
 				"key" => 1,
 				"requis" => 1,
 				"defaultValue" => 0
 			),
-			"vie_implantation_libelle" => array(
+			"stade_oeuf_libelle" => array(
 				"type" => 0,
 				"requis" => 1
 			)

@@ -1,27 +1,24 @@
-<?php 
+<?php
+
 namespace App\Models;
+
 use Ppci\Models\PpciModel;
-/**
- * ORM de gestion de la table sperme_aspect
- *
- * @author quinton
- *        
- */
-class SpermeAspect extends PpciModel
+
+class SpermeConservateur extends PpciModel
 {
 
     function __construct()
     {
-        $this->table = "sperme_aspect";
+        $this->table = "sperme_conservateur";
+        // Definition des formats des colonnes, et des controles a leur appliquer
         $this->fields = array(
-            "sperme_aspect_id" => array(
+            "sperme_conservateur_id" => array(
                 "type" => 1,
-                "key" => 1,
                 "requis" => 1,
+                "key" => 1,
                 "defaultValue" => 0
             ),
-            "sperme_aspect_libelle" => array(
-                "type" => 0,
+            "sperme_conservateur_libelle" => array(
                 "requis" => 1
             )
         );

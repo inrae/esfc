@@ -1,5 +1,7 @@
-<?php 
+<?php
+
 namespace App\Models;
+
 use Ppci\Models\PpciModel;
 
 /**
@@ -43,7 +45,7 @@ class SpermeMesure extends PpciModel
             "sperme_mesure_date" => array(
                 "type" => 3,
                 "requis" => 1,
-                "defaultValue" => "getDateHeure"
+                "defaultValue" => $this->getDateTime()
             ),
             "motilite_initiale" => array(
                 "type" => 1
@@ -79,7 +81,7 @@ class SpermeMesure extends PpciModel
      *
      * @see ObjetBDD::ecrire()
      */
-    function write($data):int
+    function write($data): int
     {
         if ($data["sperme_mesure_id"] > 0) {
             $dataold = $this->lire($data["sperme_mesure_id"]);
@@ -90,8 +92,8 @@ class SpermeMesure extends PpciModel
              * Modification du nombre de paillettes utilisees
              */
             $data["sperme_mesure_id"] = $id;
-            if (!isset ($this->spermeCongelation)) {
-                $this->spermeCongelation = $this->classInstanciate("SpermeCongelation", "spermeCongelation.class.php");
+            if (!isset($this->spermeCongelation)) {
+                $this->spermeCongelation = new SpermeCongelation;
             }
             $dsc = $this->spermeCongelation->lire($data["sperme_congelation_id"]);
             $dsc["nb_paillettes_utilisees"] = $dsc["nb_paillettes_utilisees"] - $dataold["nb_paillette_utilise"] + $data["nb_paillette_utilise"];

@@ -1,6 +1,9 @@
-<?php 
+<?php
+
 namespace App\Models;
+
 use Ppci\Models\PpciModel;
+
 /**
  * ORM de gestion de la table ventilation
  *
@@ -10,7 +13,7 @@ use Ppci\Models\PpciModel;
 class Ventilation extends PpciModel
 {
 
-    
+
     private $sql = "SELECT * from ventilation";
 
     private $order = " order by ventilation_date desc";
@@ -54,13 +57,12 @@ class Ventilation extends PpciModel
      */
     function getListByPoisson(int $poisson_id, int $annee = 0)
     {
-
-            $where = " where poisson_id = :poisson_id";
-            $param = array("poisson_id"=>$poisson_id);
-            if ( $annee > 0) {
-                $where .= " and extract(year from ventilation_date) = :annee";
-                $param["annee"] = $annee;
-            }
-            return $this->getListeParamAsPrepared($this->sql . $where . $this->order, $param);
+        $where = " where poisson_id = :poisson_id:";
+        $param = array("poisson_id" => $poisson_id);
+        if ($annee > 0) {
+            $where .= " and extract(year from ventilation_date) = :annee:";
+            $param["annee"] = $annee;
+        }
+        return $this->getListeParamAsPrepared($this->sql . $where . $this->order, $param);
     }
 }

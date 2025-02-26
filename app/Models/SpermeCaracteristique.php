@@ -1,5 +1,7 @@
-<?php 
+<?php
+
 namespace App\Models;
+
 use Ppci\Models\PpciModel;
 
 /**
@@ -37,7 +39,6 @@ class SpermeCaracteristique extends PpciModel
      */
     function getFromSperme(int $sperme_id = 0)
     {
-
         $sql = "SELECT s.sperme_caracteristique_id, s.sperme_caracteristique_libelle, sperme_id
 					from sperme_caracteristique s
 					left outer join sperme_caract c on (s.sperme_caracteristique_id = c.sperme_caracteristique_id 

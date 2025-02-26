@@ -1,10 +1,13 @@
-<?php 
+<?php
+
 namespace App\Models;
+
 use Ppci\Models\PpciModel;
+
 class SortieLieu extends PpciModel
 {
 
-    
+
     function __construct()
     {
         $this->table = "sortie_lieu";
@@ -56,7 +59,7 @@ class SortieLieu extends PpciModel
 				";
         $param = array();
         if ($actif > -1) {
-            $where = " where actif = :actif";
+            $where = " where actif = :actif:";
             $param["actif"] = $actif;
         } else {
             $where = "";
@@ -71,7 +74,7 @@ class SortieLieu extends PpciModel
      *
      * @see ObjetBDD::ecrire()
      */
-    function write($data):int
+    function write($data): int
     {
         /*
          * Preparation du point geometrique
