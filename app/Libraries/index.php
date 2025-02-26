@@ -21,10 +21,4 @@ class Xx extends PpciLibrary {
             $this->id = $_REQUEST[$this->keyName];
         }
     }
-
-namespace App\Libraries;
-
-class PpciExtends
-{
-    function deleteChildrenForGroup(int $this->id) {}
-}
+$this->message->set( _("Bienvenue"));
