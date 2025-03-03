@@ -1,85 +1,72 @@
-<?php 
+<?php
+
 namespace App\Libraries;
 
+use App\Models\Biopsie as ModelsBiopsie;
+use App\Models\BiopsieTechniqueCalcul;
+use App\Models\DocumentLie;
+use App\Models\DocumentSturio;
+use App\Models\PoissonCampagne;
 use Ppci\Libraries\PpciException;
 use Ppci\Libraries\PpciLibrary;
 use Ppci\Models\PpciModel;
 
-class  extends PpciLibrary { 
-    /**
-     * @var 
-     */
-    protected PpciModel $dataclass;
-    private $keyName;
+class Biopsie extends PpciLibrary
+{
+	/**
+	 * @var 
+	 */
+	protected PpciModel $dataclass;
+	public $keyName;
 
-    function __construct()
-    {
-        parent::__construct();
-        $this->dataclass = new ;
-        $this->keyName = "";
-        if (isset($_REQUEST[$this->keyName])) {
-            $this->id = $_REQUEST[$this->keyName];
-        }
-    }
-
-/**
- * @author Eric Quinton
- * @copyright Copyright (c) 2015, IRSTEA / Eric Quinton
- * @license http://www.cecill.info/licences/Licence_CeCILL-C_V1-fr.html LICENCE DE LOGICIEL LIBRE CeCILL-C
- *  Creation 6 mars 2015
- */
-require_once 'modules/classes/biopsie.class.php';
-$this->dataclass = new Biopsie;
-$keyName = "biopsie_id";
-$this->id = $_REQUEST[$keyName];
-if (isset($this->vue)) {
-	if (isset($_SESSION["sequence_id"])) {
-		$this->vue->set($_SESSION["sequence_id"], "sequence_id");
+	function __construct()
+	{
+		parent::__construct();
+		$this->dataclass = new ModelsBiopsie;
+		$this->keyName = "biopsie_id";
+		if (isset($_REQUEST[$this->keyName])) {
+			$this->id = $_REQUEST[$this->keyName];
+		}
 	}
-	$this->vue->set($_SESSION["poissonDetailParent"], "poissonDetailParent");
-}
-	function change(){
-$this->vue=service('Smarty');
-		/*
-		 * open the form to modify the record
-		 * If is a new record, generate a new record with default value :
-		 * $_REQUEST["idParent"] contains the identifiant of the parent record
-		 */
-		require_once 'modules/classes/poissonCampagne.class.php';
-		$poissonCampagne = new poissonCampagne;
-		$data = $this->dataRead( $this->id, "repro/biopsieChange.tpl", $_REQUEST["poisson_campagne_id"]);
+	function change()
+	{
+		$this->vue = service('Smarty');
+		$poissonCampagne = new PoissonCampagne;
+		$data = $this->dataRead($this->id, "repro/biopsieChange.tpl", $_REQUEST["poisson_campagne_id"]);
 		$this->vue->set($poissonCampagne->lire($data["poisson_campagne_id"]), "dataPoisson");
-		/*
+		/**
 		 * Recuperation des methodes de calcul
 		 */
-		require_once "modules/classes/biopsieTechniqueCalcul.class.php";
 		$biopsieTechniqueCalcul = new BiopsieTechniqueCalcul;
 		$this->vue->set($biopsieTechniqueCalcul->getListe(1), "techniqueCalcul");
-		/*
+		/**
 		 * Gestion des documents associes
 		 */
 		$this->vue->set("biopsieChange", "moduleParent");
 		$this->vue->set("biopsie", "parentType");
 		$this->vue->set("biopsie_id", "parentIdName");
 		$this->vue->set($this->id, "parent_id");
-		require_once 'modules/document/documentFunctions.php';
 		$this->vue->set(getListeDocument("biopsie", $this->id, $_REQUEST["document_limit"], $_REQUEST["document_offset"]), "dataDoc");
+		if (isset($_SESSION["sequence_id"])) {
+			$this->vue->set($_SESSION["sequence_id"], "sequence_id");
 		}
-	    function write() {
-    try {
-                        $this->id = $this->dataWrite($_REQUEST);
-            $_REQUEST[$this->keyName] = $this->id;
-            return true;
-        } catch (PpciException $e) {
-            return false;
-        }
-            
-		
-		/*
+		$this->vue->set($_SESSION["poissonDetailParent"], "poissonDetailParent");
+		return $this->vue->send();
+	}
+	function write()
+	{
+		try {
+			$this->id = $this->dataWrite($_REQUEST);
+			$_REQUEST[$this->keyName] = $this->id;
+			return true;
+		} catch (PpciException $e) {
+			return false;
+		}
+		/**
 		 * Traitement des photos a importer
 		 */
 		if ($this->id > 0 && !empty($_FILES["documentName"])) {
-			/*
+			/**
 			 * Preparation de files
 			 */
 			$files = array();
@@ -98,14 +85,12 @@ $this->vue=service('Smarty');
 				$files[] = $fdata;
 			}
 			if ($files[0]["error"] == 0) {
-				require_once "modules/classes/documentSturio.class.php";
 				$documentSturio = new DocumentSturio;
-				require_once "modules/classes/documentLie.class.php";
-				$documentLie = new DocumentLie($bdd, $ObjetBDDParam, 'biopsie');
+				$documentLie = new DocumentLie('biopsie');
 				foreach ($files as $file) {
 					$document_id = $documentSturio->ecrire($file, _("Calcul du diamètre moyen de l'ovocyte - ") . $_REQUEST["biopsie_date"]);
 					if ($document_id > 0) {
-						/*
+						/**
 					 * Ecriture de l'enregistrement en table liee
 					 */
 						$data = array(
@@ -113,7 +98,7 @@ $this->vue=service('Smarty');
 							"biopsie_id" => $this->id
 						);
 						$documentLie->ecrire($data);
-						/*
+						/**
 					 * Ajout de l'information pour le poisson
 					 */
 						$documentPoisson = new DocumentLie($bdd, $ObjetBDDParam, "poisson");
@@ -123,17 +108,17 @@ $this->vue=service('Smarty');
 				}
 			}
 		}
-
-		}
-	   function delete() {
-		/*
+	}
+	function delete()
+	{
+		/**
 		 * delete record
 		 */
-		 try {
-            $this->dataDelete($this->id);
-            return true;
-        } catch (PpciException $e) {
-            return false;
-        }
+		try {
+			$this->dataDelete($this->id);
+			return true;
+		} catch (PpciException $e) {
+			return false;
 		}
+	}
 }

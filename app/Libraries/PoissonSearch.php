@@ -10,7 +10,7 @@ class  extends PpciLibrary {
      * @var 
      */
     protected PpciModel $dataclass;
-    private $keyName;
+    public $keyName;
 
     function __construct()
     {
@@ -30,7 +30,7 @@ class  extends PpciLibrary {
  *  code permettant de preparer l'affichage de la fenetre de recherche des poissons
  *  a utiliser avec la commande : require "modules/poisson/poissonSearch.php"
  */
-/*
+/**
  * Gestion des variables de recherche
  */
 if (!isset($_SESSION["searchPoisson"])) {
@@ -43,7 +43,7 @@ if ($_SESSION["searchPoisson"]->isSearch() == 1) {
 	$this->vue->set(1, "isSearch");
 }
 $this->vue->set($dataSearch, "poissonSearch");
-/*
+/**
  * Integration des tables necessaires pour la  recherche
  */
 require_once "modules/classes/sexe.class.php";

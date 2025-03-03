@@ -10,7 +10,7 @@ class  extends PpciLibrary {
      * @var 
      */
     protected PpciModel $dataclass;
-    private $keyName;
+    public $keyName;
 
     function __construct()
     {
@@ -36,7 +36,7 @@ $this->id = $_REQUEST[$keyName];
 
 	function list(){
 $this->vue=service('Smarty');
-		/*
+		/**
 		 * Display the list of all records of the table
 		 */
 		$this->vue->set($this->dataclass->getListe(2), "data");
@@ -44,11 +44,6 @@ $this->vue=service('Smarty');
 		}
 	function change(){
 $this->vue=service('Smarty');
-		/*
-		 * open the form to modify the record
-		 * If is a new record, generate a new record with default value :
-		 * $_REQUEST["idParent"] contains the identifiant of the parent record
-		 */
 		$this->dataRead( $this->id, "parametre/vieImplantationChange.tpl");
 		}
 	    function write() {
@@ -59,11 +54,9 @@ $this->vue=service('Smarty');
         } catch (PpciException $e) {
             return false;
         }
-            
-		
-		}
+}
 	   function delete() {
-		/*
+		/**
 		 * delete record
 		 */
 		 try {

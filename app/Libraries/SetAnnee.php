@@ -10,7 +10,7 @@ class  extends PpciLibrary {
      * @var 
      */
     protected PpciModel $dataclass;
-    private $keyName;
+    public $keyName;
 
     function __construct()
     {

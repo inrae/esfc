@@ -18,7 +18,7 @@ class BassinCampagne extends  PpciLibrary
 	 * @var 
 	 */
 	protected PpciModel $dataclass;
-	private $keyName;
+	public $keyName;
 
 	function __construct()
 	{
@@ -32,18 +32,18 @@ class BassinCampagne extends  PpciLibrary
 	function display()
 	{
 		$this->vue = service('Smarty');
-		/*
+		/**
 		 * Display the detail of the record
 		 */
 		$data = $this->dataclass->lire($this->id);
 		$this->vue->set($data, "dataBassinCampagne");
 		$this->vue->set("repro/bassinCampagneDisplay.tpl", "corps");
-		/*
+		/**
 		 * Recuperation des donnees du profil thermique
 		 */
 		$profilThermique = new ProfilThermique;
 		$this->vue->set($profilThermique->getListFromBassinCampagne($this->id), "profilThermiques");
-		/*
+		/**
 		 * Calcul des donnees pour le graphique
 		 */
 
@@ -60,12 +60,12 @@ class BassinCampagne extends  PpciLibrary
 			$this->vue->set($x, "pfx" . $i);
 			$this->vue->set($y, "pfy" . $i);
 		}
-		/*
+		/**
 		 * Donnes de salinite
 		 */
 		$salinite = new Salinite;
 		$this->vue->set($salinite->getListFromBassinCampagne($this->id), "salinites");
-		/*
+		/**
 		 * Calcul des donnees pour le graphique
 		 */
 		for ($i = 1; $i < 3; $i++) {
@@ -82,21 +82,21 @@ class BassinCampagne extends  PpciLibrary
 			$this->vue->set($x, "sx" . $i);
 			$this->vue->set($y, "sy" . $i);
 		}
-		/*
+		/**
 		 * Recuperation des donnees du bassin
 		 */
 		$bassin = new Bassin;
 		$this->vue->set($bassin->lire($data["bassin_id"]), "dataBassin");
-		/*
+		/**
 		 * Recuperation de la liste des poissons presents
 		 */
 		$transfert = new Transfert;
 		$this->vue->set($transfert->getListPoissonPresentByBassin($data["bassin_id"]), "dataPoisson");
-		/*
+		/**
 		 * Calcul de la date du jour
 		 */
 		$this->vue->set(date("d/m/Y"), "dateJour");
-		/*
+		/**
 		 * Recuperation des evenements
 		*/
 		$bassinEvenement = new BassinEvenement;
@@ -116,7 +116,7 @@ class BassinCampagne extends  PpciLibrary
 	}
 	function delete()
 	{
-		/*
+		/**
 		 * delete record
 		 */
 		try {
@@ -128,7 +128,7 @@ class BassinCampagne extends  PpciLibrary
 	}
 	function init()
 	{
-		/*
+		/**
 		 * Initialisation des bassins pour la campagne
 		 */
 		if ($_REQUEST["annee"] > 0) {

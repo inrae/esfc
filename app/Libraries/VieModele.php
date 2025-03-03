@@ -10,7 +10,7 @@ class  extends PpciLibrary {
      * @var 
      */
     protected PpciModel $dataclass;
-    private $keyName;
+    public $keyName;
 
     function __construct()
     {
@@ -37,12 +37,12 @@ require "modules/repro/setAnnee.php";
 
 	function list(){
 $this->vue=service('Smarty');
-		/*
+		/**
 		 * Display the list of all records of the table
 		 */
 		$this->vue->set($this->dataclass->getModelesFromAnnee($_SESSION["annee"]), "data");
 		$this->vue->set("repro/vieModeleList.tpl", "corps");
-		/*
+		/**
 		 * Lecture des annees
 		 */
 		require_once 'modules/classes/poissonCampagne.class.php';
@@ -51,17 +51,12 @@ $this->vue=service('Smarty');
 		}
 	function change(){
 $this->vue=service('Smarty');
-		/*
-		 * open the form to modify the record
-		 * If is a new record, generate a new record with default value :
-		 * $_REQUEST["idParent"] contains the identifiant of the parent record
-		 */
 		$data = $this->dataRead( $this->id, "repro/vieModeleChange.tpl");
 		if ($this->id == 0) {
 			$data["annee"] = $_SESSION["annee"];
 			$this->vue->set($data, "data");
 		}
-		/*
+		/**
 		 * Recuperation des emplacements d'implantation des marques vie
 		 */
 		require_once "modules/classes/vieImplantation.class.php";
@@ -77,11 +72,9 @@ $this->vue=service('Smarty');
         } catch (PpciException $e) {
             return false;
         }
-            
-		
-		}
+}
 	   function delete() {
-		/*
+		/**
 		 * delete record
 		 */
 		 try {

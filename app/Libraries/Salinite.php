@@ -10,7 +10,7 @@ class  extends PpciLibrary {
      * @var 
      */
     protected PpciModel $dataclass;
-    private $keyName;
+    public $keyName;
 
     function __construct()
     {
@@ -35,13 +35,13 @@ $this->id = $_REQUEST[$keyName];
 
 	function list(){
 $this->vue=service('Smarty');
-		/*
+		/**
 		 * Display the list of all records of the table
 		 */
 		}
 	function display(){
 $this->vue=service('Smarty');
-		/*
+		/**
 		 * Display the detail of the record
 		 */
 		$this->vue->set($this->dataclass->lire($this->id), "data");
@@ -51,13 +51,8 @@ $this->vue=service('Smarty');
 		$this->id = 0;
 	function change(){
 $this->vue=service('Smarty');
-		/*
-		 * open the form to modify the record
-		 * If is a new record, generate a new record with default value :
-		 * $_REQUEST["idParent"] contains the identifiant of the parent record
-		 */
 		$data = $this->dataRead( $this->id, "repro/saliniteChange.tpl", $_REQUEST["bassin_campagne_id"]);
-		/*
+		/**
 		 * Recuperation des donnees du bassin
 		 */
 		require_once 'modules/classes/bassin.class.php';
@@ -65,12 +60,12 @@ $this->vue=service('Smarty');
 		$bassin = new Bassin;
 		$this->vue->set($bassinCampagne->lire($data["bassin_campagne_id"]), "dataBassinCampagne");
 		$this->vue->set($bassin->lire($dataBassinCampagne["bassin_id"]), "dataBassin");
-		/*
+		/**
 		 * Recuperation des donnees de salinite deja existantes
 		 */
 		$salinites = $this->dataclass->getListFromBassinCampagne($data["bassin_campagne_id"]);
 		$this->vue->set($salinites, "salinites");
-		/*
+		/**
 		 * Assignation des valeurs par defaut en prenant en reference la derniere valeur entree
 		 */
 		$nbProfil = count($salinites);
@@ -88,11 +83,9 @@ $this->vue=service('Smarty');
         } catch (PpciException $e) {
             return false;
         }
-            
-		
-		}
+}
 	   function delete() {
-		/*
+		/**
 		 * delete record
 		 */
 		 try {

@@ -10,7 +10,7 @@ class  extends PpciLibrary {
      * @var 
      */
     protected PpciModel $dataclass;
-    private $keyName;
+    public $keyName;
 
     function __construct()
     {
@@ -32,7 +32,7 @@ require_once 'modules/classes/ventilation.class.php';
 $this->dataclass = new Ventilation;
 $keyName = "ventilation_id";
 $this->id = $_REQUEST[$keyName];
-/*
+/**
  * Passage en parametre de la liste parente
  */
 if (isset ($this->vue)){
@@ -41,13 +41,8 @@ if (isset ($this->vue)){
 
 	function change(){
 $this->vue=service('Smarty');
-		/*
-		 * open the form to modify the record
-		 * If is a new record, generate a new record with default value :
-		 * $_REQUEST["idParent"] contains the identifiant of the parent record
-		 */
 		$data = $this->dataRead( $this->id, "poisson/ventilationChange.tpl", $_REQUEST["poisson_id"]);
-		/*
+		/**
 		 * Lecture du poisson
 		*/
 		require_once "modules/classes/poisson.class.php";
@@ -64,11 +59,9 @@ $this->vue=service('Smarty');
         } catch (PpciException $e) {
             return false;
         }
-            
-		
-		}
+}
 	   function delete() {
-		/*
+		/**
 		 * delete record
 		 */
 		 try {

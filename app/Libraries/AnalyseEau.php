@@ -19,7 +19,7 @@ class AnalyseEau extends PpciLibrary
 	 * @var ModelsAnalyseEau
 	 */
 	protected PpciModel $dataclass;
-	private $keyName;
+	public $keyName;
 
 	function __construct()
 	{
@@ -37,23 +37,18 @@ class AnalyseEau extends PpciLibrary
 	function change()
 	{
 		$this->vue = service('Smarty');
-		/*
-		 * open the form to modify the record
-		 * If is a new record, generate a new record with default value :
-		 * $_REQUEST["idParent"] contains the identifiant of the parent record
-		 */
 		$data = $this->dataRead($this->id, "bassin/analyseEauChange.tpl", $_REQUEST["circuit_eau_id"]);
-		/*
+		/**
 		 * Lecture des donnees concernant le circuit d'eau
 		 */
 		$circuitEau = new CircuitEau;
 		$this->vue->set($circuitEau->lire($_REQUEST["circuit_eau_id"]), "dataCircuitEau");
-		/*
+		/**
 		 * Lecture des laboratoires
 		 */
 		$laboratoireAnalyse = new LaboratoireAnalyse;
 		$this->vue->set($laboratoireAnalyse->getListeActif(), "laboratoire");
-		/*
+		/**
 		 * Forcage de la date de reference (date de recherche) si creation d'un nouvel enregistrement
 		 */
 		if ($this->id == 0) {
@@ -62,7 +57,7 @@ class AnalyseEau extends PpciLibrary
 			$this->vue->set($data, "data");
 		}
 		$this->vue->set($_REQUEST["origine"], "origine");
-		/*
+		/**
 		 * Recuperation des analyses de metaux
 		 */
 		$dataMetal = array();
@@ -70,7 +65,7 @@ class AnalyseEau extends PpciLibrary
 			$analyseMetal = new AnalyseMetal;
 			$dataMetal = $analyseMetal->getListeFromAnalyse($this->id);
 		}
-		/*
+		/**
 		 * Recuperation de la liste des metaux non analyses, mais actifs
 		 */
 		$metal = new Metal;
@@ -99,7 +94,7 @@ class AnalyseEau extends PpciLibrary
 	}
 	function delete()
 	{
-		/*
+		/**
 		 * delete record
 		 */
 		try {

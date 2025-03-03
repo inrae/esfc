@@ -8,6 +8,7 @@ use App\Models\DistribQuotidien;
 use App\Models\Evenement;
 use App\Models\Evenement_type;
 use App\Models\SearchAlimentation;
+use App\Models\SearchBassin;
 use App\Models\Site;
 use App\Models\Transfert;
 use Ppci\Libraries\PpciException;
@@ -20,7 +21,7 @@ class Bassin extends PpciLibrary
 	 * @var 
 	 */
 	protected PpciModel $dataclass;
-	private $keyName;
+	public $keyName;
 
 	function __construct()
 	{
@@ -34,19 +35,23 @@ class Bassin extends PpciLibrary
 		} else {
 			$this->id = -1;
 		}
+		if (!isset ($_SESSION["searchBassin"])) {
+			$_SESSION["searchBassin"] = new SearchBassin;
+		}
+		$_SESSION["bassinParentModule"] = "bassinListniv2";
 		helper("esfc");
 	}
 	function list()
 	{
 		$this->vue = service('Smarty');
-		/*
+		/**
 		 * Display the list of all records of the table
 		 */
 		$_SESSION["searchBassin"]->setParam($_REQUEST);
 		if ($_SESSION["searchBassin"]->isSearch() == 1) {
 			$this->vue->set($this->dataclass->getListeSearch($_SESSION["searchBassin"]->getParam()), "data");
 		}
-		/*
+		/**
 		 * Preparation des dates pour la generation du recapitulatif des aliments
 		 */
 		!isset($_REQUEST["dateFin"]) ? $dateFin = date("d/m/Y") : $dateFin = $_REQUEST["dateFin"];
@@ -62,26 +67,26 @@ class Bassin extends PpciLibrary
 	function display()
 	{
 		$this->vue = service('Smarty');
-		/*
+		/**
 		 * Display the detail of the record
 		 */
 		$data = $this->dataclass->getDetail($this->id);
 		$this->vue->set($data, "dataBassin");
-		/*
+		/**
 		 * Recuperation de la liste des poissons presents
 		 */
 		$transfert = new Transfert;
 		$this->vue->set($transfert->getListPoissonPresentByBassin($this->id), "dataPoisson");
-		/*
+		/**
 		 * Recuperation des evenements
 		 */
 		$bassinEvenement = new BassinEvenement;
 		$this->vue->set($bassinEvenement->getListeByBassin($this->id), "dataBassinEvnt");
-		/*
+		/**
 		 * Recuperation des aliments consommés sur la période déterminée
 		 */
 		$distribQuotidien = new DistribQuotidien;
-		/*
+		/**
 		 * Dates de recherche
 		 */
 		if (!isset($_SESSION["searchAlimentation"])) {
@@ -92,7 +97,7 @@ class Bassin extends PpciLibrary
 		$this->vue->set($param, "searchAlim");
 		$this->vue->set($distribQuotidien->getListeConsommation($this->id, $param["date_debut"], $param["date_fin"]), "dataAlim");
 		$this->vue->set($distribQuotidien->alimentListe, "alimentListe");
-		/*
+		/**
 		 * Gestion des documents associes
 		 */
 		$this->vue->set("bassinDisplay", "moduleParent");
@@ -108,7 +113,7 @@ class Bassin extends PpciLibrary
 		$data["site_id"] > 0 ? $siteId = $data["site_id"] : $siteId = 0;
 		$this->vue->set($this->dataclass->getListBassin($siteId, 1), "bassinListActif");
 		$this->vue->set(date($_SESSION["date"]["maskdate"]), "currentDate");
-		/*
+		/**
 		 * Affichage
 		 */
 		$this->vue->set("bassin/bassinDisplay.tpl", "corps");
@@ -120,13 +125,8 @@ class Bassin extends PpciLibrary
 	function change()
 	{
 		$this->vue = service('Smarty');
-		/*
-		 * open the form to modify the record
-		 * If is a new record, generate a new record with default value :
-		 * $_REQUEST["idParent"] contains the identifiant of the parent record
-		 */
 		$this->dataRead($this->id, "bassin/bassinChange.tpl");
-		/*
+		/**
 		 * Integration des tables de parametres
 		 */
 		bassinParamAssocie($this->vue);
@@ -147,7 +147,7 @@ class Bassin extends PpciLibrary
 	}
 	function delete()
 	{
-		/*
+		/**
 		 * delete record
 		 */
 		try {

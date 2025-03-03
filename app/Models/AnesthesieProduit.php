@@ -10,7 +10,7 @@ use Ppci\Models\PpciModel;
  * @author quinton
  *        
  */
-class Anesthesie_produit extends PpciModel
+class AnesthesieProduit extends PpciModel
 {
 
     

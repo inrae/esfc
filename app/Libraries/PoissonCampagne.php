@@ -1,55 +1,57 @@
-<?php 
+<?php
+
 namespace App\Libraries;
 
+use App\Models\Biopsie;
+use App\Models\DosageSanguin;
+use App\Models\Echographie;
+use App\Models\Injection;
+use App\Models\Morphologie;
+use App\Models\Poisson;
+use App\Models\PoissonCampagne as ModelsPoissonCampagne;
+use App\Models\PoissonSequence;
+use App\Models\PsEvenement;
+use App\Models\ReproStatut;
+use App\Models\SearchRepro;
+use App\Models\Site;
+use App\Models\Sperme;
+use App\Models\Transfert;
+use App\Models\Ventilation;
 use Ppci\Libraries\PpciException;
 use Ppci\Libraries\PpciLibrary;
 use Ppci\Models\PpciModel;
 
-class  extends PpciLibrary { 
-    /**
-     * @var 
-     */
-    protected PpciModel $dataclass;
-    private $keyName;
+class PoissonCampagne extends PpciLibrary
+{
+	/**
+	 * @var 
+	 */
+	protected PpciModel $dataclass;
+	public $keyName;
 
-    function __construct()
-    {
-        parent::__construct();
-        $this->dataclass = new ;
-        $this->keyName = "";
-        if (isset($_REQUEST[$this->keyName])) {
-            $this->id = $_REQUEST[$this->keyName];
-        }
-    }
-
-/**
- * @author Eric Quinton
- * @copyright Copyright (c) 2015, IRSTEA / Eric Quinton
- * @license http://www.cecill.info/licences/Licence_CeCILL-C_V1-fr.html LICENCE DE LOGICIEL LIBRE CeCILL-C
- *  Creation 5 mars 2015
- */
-require_once 'modules/classes/poissonCampagne.class.php';
-$this->dataclass = new PoissonCampagne;
-$keyName = "poisson_campagne_id";
-$this->id = $_REQUEST[$keyName];
-/*
- * Prepositionnement de l'annee
- */
-require "modules/repro/setAnnee.php";
-
-if (isset ($this->vue) && isset($_SESSION["sequence_id"])) {
-	$this->vue->set($_SESSION["sequence_id"], "sequence_id");
-}
-
-	function list(){
-$this->vue=service('Smarty');
-		/*
+	function __construct()
+	{
+		parent::__construct();
+		$this->dataclass = new ModelsPoissonCampagne;
+		$this->keyName = "poisson_campagne_id";
+		if (isset($_REQUEST[$this->keyName])) {
+			$this->id = $_REQUEST[$this->keyName];
+		}
+	}
+	function list()
+	{
+		$this->vue = service('Smarty');
+		if (isset($this->vue) && isset($_SESSION["sequence_id"])) {
+			$this->vue->set($_SESSION["sequence_id"], "sequence_id");
+		}
+		setAnneesRepro($this->vue);
+		/**
 		 * Display the list of all records of the table
 		 */
 		$this->vue->htmlVars[] = "massex";
 		$this->vue->htmlVars[] = "massey";
 		if (!isset($_SESSION["searchRepro"])) {
-			$_SESSION["searchRepro"] = new SearchRepro();
+			$_SESSION["searchRepro"] = new SearchRepro;
 		}
 		$_SESSION["searchRepro"]->setParam($_REQUEST);
 		$dataSearch = $_SESSION["searchRepro"]->getParam();
@@ -58,40 +60,36 @@ $this->vue=service('Smarty');
 		}
 		$this->vue->set($dataSearch, "dataSearch");
 		$this->vue->set("repro/poissonCampagneList.tpl", "corps");
-		/*
+		/**
 		 * Lecture de la liste des statuts
 		 */
-		require_once "modules/classes/reproStatut.class.php";
 		$reproStatut = new ReproStatut;
 		$this->vue->set($reproStatut->getListe(1), "dataReproStatut");
-		/*
+		/**
 		 * Passage en parametre de la liste parente
 		 */
 		$_SESSION["poissonDetailParent"] = "poissonCampagneList";
 		/**
 		 * Site
 		 */
-		require_once 'modules/classes/site.class.php';
 		$site = new Site;
 		$this->vue->set($site->getListe(2), "site");
 
-		/*
+		/**
 		 * Affichage du graphique d'evolution de la masse
 		 */
 		if ($_REQUEST["graphique_id"] > 0) {
-			require_once 'modules/classes/morphologie.class.php';
 			$morphologie = new Morphologie;
 			$date_from = ($_SESSION["annee"] - 5) . "-01-01";
 			$date_to = $_SESSION["annee"] . "-12-31";
 			$dataMorpho = $morphologie->getListMasseFromPoisson($_REQUEST["graphique_id"], $date_from, $date_to);
-			/*
+			/**
 			 * Lecture des donnees du poisson
 			 */
-			require_once "modules/classes/poisson.class.php";
 			$poisson = new Poisson;
 			$dataPoisson = $poisson->lire($_REQUEST["graphique_id"]);
-			$this->vue->set($_REQUEST["graphique_id"],"graphique_id");
-			/*
+			$this->vue->set($_REQUEST["graphique_id"], "graphique_id");
+			/**
 			 * Preparation des donnees pour le graphique
 			 */
 			$x = "'x'";
@@ -100,41 +98,36 @@ $this->vue=service('Smarty');
 				$x .= ",'" . $value["morphologie_date"] . "'";
 				$y .= "," . $value["masse"];
 			}
-			//printr ( $x );
-			//printr ( $y );
 			$this->vue->set($dataPoisson["prenom"] . " " . $dataPoisson["matricule"], "poisson_nom");
 			$this->vue->set($x, "massex");
 			$this->vue->set($y, "massey");
 		}
+		return $this->vue->send();
+	}
+
+	function display()
+	{
+		$this->vue = service('Smarty');
+		if (isset($this->vue) && isset($_SESSION["sequence_id"])) {
+			$this->vue->set($_SESSION["sequence_id"], "sequence_id");
 		}
-	function display(){
-$this->vue=service('Smarty');
-		/*
+		setAnneesRepro($this->vue);
+		/**
 		 * Display the detail of the record
 		 */
 		$data = $this->dataclass->lire($this->id);
 		$this->vue->set($data, "dataPoisson");
-		/*
+		/**
 		 * Passage en parametre de la liste parente
 		 */
 		$this->vue->set($_SESSION["poissonDetailParent"], "poissonDetailParent");
-		/*
+		/**
 		 * Module de retour au poisson
 		 */
 		$_SESSION["poissonParent"] = "poissonCampagneDisplay";
-		/*
+		/**
 		 * Lecture des tables liees
 		 */
-		require_once 'modules/classes/dosageSanguin.class.php';
-		require_once 'modules/classes/biopsie.class.php';
-		require_once 'modules/classes/poissonSequence.class.php';
-		require_once "modules/classes/psEvenement.class.php";
-		require_once 'modules/classes/echographie.class.php';
-		require_once 'modules/classes/injection.class.php';
-		require_once 'modules/classes/sperme.class.php';
-		require_once 'modules/classes/transfert.class.php';
-		require_once 'modules/classes/ventilation.class.php';
-		require_once 'modules/classes/documentSturio.class.php';
 		$dosageSanguin = new DosageSanguin;
 		$biopsie = new Biopsie;
 		$poissonSequence = new PoissonSequence;
@@ -154,48 +147,46 @@ $this->vue=service('Smarty');
 		$this->vue->set($spermes = $sperme->getListFromPoissonCampagne($this->id), "spermes");
 		$this->vue->set($transfert->getListByPoisson($data["poisson_id"], $_SESSION["annee"]), "dataTransfert");
 		$this->vue->set($ventilation->getListByPoisson($data["poisson_id"], $_SESSION["annee"]), "dataVentilation");
-		if (is_numeric($this->id)) {
+		if ($this->id > 0) {
 			$this->vue->set($this->id, "poisson_campagne_id");
 		}
-		/*
+		/**
 		 * Recuperation des photos associees aux evenements
 		 */
 		$this->vue->set("poissonCampagneDisplay", "moduleParent");
 		$this->vue->set("evenement", "parentType");
 		$this->vue->set("poisson_campagne_id", "parentIdName");
 		$this->vue->set($this->id, "parent_id");
-		/*
+		/**
 		 * Generation de la liste des evenements issus des echographies
 		 */
 		$a_id = array();
 		foreach ($dataEcho as $value) {
 			$a_id[] = $value["evenement_id"];
 		}
-		require_once 'modules/document/documentFunctions.php';
 		$this->vue->set(getListeDocument("evenement", $a_id, $_REQUEST["document_limit"], $_REQUEST["document_offset"]), "dataDoc");
 		$this->vue->set("repro/poissonCampagneDisplay.tpl", "corps");
 		if (isset($_REQUEST["sequence_id"])) {
 			$this->vue->set($_REQUEST["sequence_id"], "sequence_id");
 		}
-		/*
+		/**
 		 * Recherche des temperatures pour le graphique
 		 */
-		$dateMini = new DateTime();
-		$dateMaxi = new DateTime("1967-01-01");
-		// if ($_REQUEST ["graphicsEnabled"] == 1) {
+		$dateMini = new \DateTime();
+		$dateMaxi = new \DateTime("1967-01-01");
 		for ($i = 1; $i < 3; $i++) {
 			$datapf = $this->dataclass->getTemperatures($data["poisson_id"], $_SESSION["annee"], $i);
 			$x = "'x" . $i . "'";
 			if ($i == 1) {
-				$y = "'"._("constaté")."'";
+				$y = "'" . _("constaté") . "'";
 			} else {
-				$y = "'"._('prévu')."'";
+				$y = "'" . _('prévu') . "'";
 			}
 			foreach ($datapf as $value) {
 				$x .= ",'" . $value["pf_datetime"] . "'";
 				$y .= "," . $value["pf_temperature"];
 				$datetime = explode(" ", $value["pf_datetime"]);
-				$d = DateTime::createFromFormat("d/m/Y", $datetime[0]);
+				$d = \DateTime::createFromFormat("d/m/Y", $datetime[0]);
 				if ($d < $dateMini)
 					$dateMini = $d;
 				if ($d > $dateMaxi)
@@ -207,8 +198,7 @@ $this->vue=service('Smarty');
 			$this->vue->htmlVars[] = "pfy" . $i;
 		}
 		$this->vue->set(1, "graphicsEnabled");
-		// }
-		/*
+		/**
 		 * Recherche des donnees pour les taux sanguins et les injections
 		 */
 		$e2y = "'E2'";
@@ -242,7 +232,7 @@ $this->vue=service('Smarty');
 					$maxca = $value["tx_calcium"];
 				}
 			}
-			/*
+			/**
 			 * Ajout du taux d'hematocrite, et calcul des courbes corrigees de E2 et Ca
 			 */
 			if ($value["tx_hematocrite"] > 0) {
@@ -255,7 +245,7 @@ $this->vue=service('Smarty');
 					$e2hy .= "," . ($value["tx_e2"] / 100 * $value["tx_hematocrite"]);
 				}
 			}
-			$d = DateTime::createFromFormat("d/m/Y", $value["dosage_sanguin_date"]);
+			$d = \DateTime::createFromFormat("d/m/Y", $value["dosage_sanguin_date"]);
 			if ($d < $dateMini) {
 				$dateMini = $d;
 			}
@@ -266,14 +256,14 @@ $this->vue=service('Smarty');
 		if ($maxca == 0) {
 			$maxca = 1;
 		}
-		/*
+		/**
 		 * Recuperation des injections
 		 */
 		foreach ($injections as $key => $value) {
 			$datetime = explode(" ", $value["injection_date"]);
 			$ix .= ",'" . $datetime[0] . "'";
 			$iy .= "," . $maxca;
-			$d = DateTime::createFromFormat("d/m/Y", $datetime[0]);
+			$d = \DateTime::createFromFormat("d/m/Y", $datetime[0]);
 			if ($d < $dateMini) {
 				$dateMini = $d;
 			}
@@ -281,26 +271,26 @@ $this->vue=service('Smarty');
 				$dateMaxi = $d;
 			}
 		}
-		/*
+		/**
 		 * Recuperation des expulsions
 		 */
 		if ($data["sexe_libelle_court"] == "f") {
 			foreach ($sequences as $key => $value) {
 				if (strlen($value["ovocyte_expulsion_date"]) > 0) {
 					$datetime = explode(" ", $value["ovocyte_expulsion_date"]);
-					$d = DateTime::createFromFormat("d/m/Y", $datetime[0]);
+					$d = \DateTime::createFromFormat("d/m/Y", $datetime[0]);
 					$expx .= ",'" . $datetime[0] . "'";
 					$expy .= "," . $maxca;
 				}
 			}
-			/*
+			/**
 			 * Recherche des donnees concernant les biopsies
 			 */
 
-			foreach ($biopsies as $key => $value) {
+			foreach ($biopsies as $value) {
 				if (strlen($value["biopsie_date"]) > 0) {
 					$datetime = explode(" ", $value["biopsie_date"]);
-					$d = DateTime::createFromFormat("d/m/Y", $datetime[0]);
+					$d = \DateTime::createFromFormat("d/m/Y", $datetime[0]);
 					if ($d < $dateMini) {
 						$dateMini = $d;
 					}
@@ -312,7 +302,7 @@ $this->vue=service('Smarty');
 						$opiy .= "," . $value["tx_opi"];
 					}
 					if (strlen($value["ringer_t50"]) > 0) {
-						$duree = explode(() {", $value["ringer_t50"]);
+						$duree = explode(":", $value["ringer_t50"]);
 						$dureeCalc = $duree[0] + ($duree[1] / 60);
 						if ($dureeCalc > 0) {
 							$t50x .= ",'" . $datetime[0] . "'";
@@ -326,11 +316,11 @@ $this->vue=service('Smarty');
 				}
 			}
 		} else {
-			foreach ($spermes as $key => $value) {
+			foreach ($spermes as $value) {
 				$datetime = explode(" ", $value["sperme_date"]);
 				$expx .= ",'" . $datetime[0] . "'";
 				$expy .= "," . $maxca;
-				$d = DateTime::createFromFormat("d/m/Y", $datetime[0]);
+				$d = \DateTime::createFromFormat("d/m/Y", $datetime[0]);
 				if ($d < $dateMini) {
 					$dateMini = $d;
 				}
@@ -363,59 +353,35 @@ $this->vue=service('Smarty');
 			$this->vue->set($$gv, $gv);
 			$this->vue->htmlVars[] = $gv;
 		}
-		/*
-		$this->vue->set($e2x, "e2x");
-		$this->vue->set($e2y, "e2y");
-		$this->vue->set($cax, "cax");
-		$this->vue->set($cay, "cay");
-		$this->vue->set($thx, "thx");
-		$this->vue->set($thy, "thy");
-		$this->vue->set($e2hy, "e2hy");
-		$this->vue->set($cahy, "cahy");
-		$this->vue->set($ix, "ix");
-		$this->vue->set($iy, "iy");
-		$this->vue->set($expx, "expx");
-		$this->vue->set($expy, "expy");
-		$this->vue->set($opix, "opix");
-		$this->vue->set($opiy, "opiy");
-		$this->vue->set($t50x, "t50x");
-		$this->vue->set($t50y, "t50y");
-		$this->vue->set($diamx, "diamx");
-		$this->vue->set($diamy, "diamy");
-		*/
-		/*
+		/**
 		 * Ajout de 3 jours aux bornes des graphiques
 		 */
-		$interval = new DateInterval("P1D");
+		$interval = new \DateInterval("P1D");
 		date_sub($dateMini, $interval);
 		date_add($dateMaxi, $interval);
 		$this->vue->set(date_format($dateMini, 'd/m/Y'), "dateMini");
 		$this->vue->set(date_format($dateMaxi, 'd/m/Y'), "dateMaxi");
-		$this->vue->htmlVars[] ="dateMini";
+		$this->vue->htmlVars[] = "dateMini";
 		$this->vue->htmlVars[] = "dateMaxi";
-		}
-	function change(){
-$this->vue=service('Smarty');
-		/*
-		 * open the form to modify the record
-		 * If is a new record, generate a new record with default value :
-		 * $_REQUEST["idParent"] contains the identifiant of the parent record
-		 */
-		$data = $this->dataRead( $this->id, "repro/poissonCampagneChange.tpl", $_REQUEST["poisson_id"]);
-		/*
+		return $this->vue->send();
+	}
+
+	function change()
+	{
+		$this->vue = service('Smarty');
+		$this->dataRead($this->id, "repro/poissonCampagneChange.tpl", $_REQUEST["poisson_id"]);
+		/**
 		 * Lecture des informations concernant le poisson
 		 */
-		require_once 'modules/classes/poisson.class.php';
 		$poisson = new Poisson;
 
 		$this->vue->set($poisson->getDetail($_REQUEST["poisson_id"]), "dataPoisson");
-		/*
+		/**
 		 * Lecture de la table des statuts
 		 */
-		require_once 'modules/classes/reproStatut.class.php';
 		$reproStatut = new ReproStatut;
 		$this->vue->set($reproStatut->getListe(1), "reproStatut");
-		/*
+		/**
 		 * Calcul des annees de campagne potentielles
 		 */
 		$anneeCourante = date('Y');
@@ -424,53 +390,50 @@ $this->vue=service('Smarty');
 			$annees[] = $i;
 		}
 		$this->vue->set($annees, "annees");
-		/*
+		/**
 		 * Passage en parametre de la liste parente
 		 */
 		$this->vue->set($_SESSION["poissonDetailParent"], "poissonDetailParent");
 		$this->vue->set($_SESSION["poissonParent"], "poissonParent");
+		return $this->vue->send();
+	}
+	function write()
+	{
+		try {
+			$this->id = $this->dataWrite($_REQUEST);
+			$_REQUEST[$this->keyName] = $this->id;
+			return true;
+		} catch (PpciException $e) {
+			return false;
 		}
-	    function write() {
-    try {
-                        $this->id = $this->dataWrite($_REQUEST);
-            $_REQUEST[$this->keyName] = $this->id;
-            return true;
-        } catch (PpciException $e) {
-            return false;
-        }
-            
-		
-		}
-	   function delete() {
-		/*
+	}
+	function delete()
+	{
+		/**
 		 * delete record
 		 */
-		if (is_array($this->id)) {
-			$nb = 0;
-			foreach ($this->id as $key => $value) {
-				if (is_numeric($value) && $value > 0) {
-					$ret = $this->dataclass->supprimer($value);
-					if ($ret > 0) {
+		try {
+			if (is_array($this->id)) {
+				$nb = 0;
+				foreach ($this->id as $value) {
+					if ($value > 0) {
+						$this->dataclass->supprimer($value);
 						$nb++;
-						$log->setLog($_SESSION["login"], get_class($this->dataclass) . "-delete", $this->id);
-					} else {
-						$this->message->set($this->dataclass->getErrorData());
 					}
 				}
+				$this->message->set(sprintf(_("%s poissons déselectionnés"), $nb));
+			} else {
+				$this->dataDelete($this->id);
 			}
-			$module_coderetour = 2;
-			$this->message->set(sprintf(_("%s poissons déselectionnés"), $nb));
-		} else {
-			 try {
-            $this->dataDelete($this->id);
-            return true;
-        } catch (PpciException $e) {
-            return false;
-        }
+			return true;
+		} catch (PpciException $e) {
+			return false;
 		}
-		}
-	   function campagneInit() {
-		/*
+	}
+	function campagneInit()
+	{
+		$this->vue = service('Smarty');
+		/**
 		 * Affiche la fenêtre d'intialisation de la campagne
 		 */
 		$anneeCourante = date("Y");
@@ -480,41 +443,44 @@ $this->vue=service('Smarty');
 		}
 		$this->vue->set($annees, "annees");
 		$this->vue->set("repro/campagneInit.tpl", "corps");
-		}
-	   function init() {
+		return $this->vue->send();
+	}
+	function init()
+	{
 		$nb = $this->dataclass->initCampagne($_REQUEST["annee"]);
 		$this->message->set(sprintf(_("%s poisson(s) ajouté(s)"), $nb));
-		$module_coderetour = 1;
-		}
-	   function changeStatut() {
+		return true;
+	}
+	function changeStatut()
+	{
 		if ($_REQUEST["repro_statut_id"] > 0) {
-			if (is_array($this->id)) {
-				$nb = 0;
-				foreach ($this->id as $key => $value) {
-					if (is_numeric($value) && $value > 0) {
-						$ret = $this->dataclass->changeStatut($value, $_REQUEST["repro_statut_id"]);
-						if ($ret > 0) {
+			try {
+				if (is_array($this->id)) {
+					$nb = 0;
+					foreach ($this->id as $key => $value) {
+						if ($value > 0) {
+							$this->dataclass->changeStatut($value, $_REQUEST["repro_statut_id"]);
 							$nb++;
-							$log->setLog($_SESSION["login"], get_class($this->dataclass) . "-delete", $this->id);
-						} else {
-							$this->message->set($this->dataclass->getErrorData());
 						}
 					}
+				} else {
+					if ($this->dataclass->changeStatut($this->id, $_REQUEST["repro_statut_id"]) > 0) {
+						$nb = 1;
+					}
 				}
-			} else {
-				if ($this->dataclass->changeStatut($this->id, $_REQUEST["repro_statut_id"]) > 0) {
-					$nb = 1;
-				}
+				$this->message->set(sprintf(_("%s statuts modifiés"), $nb));
+				return true;
+			} catch (PpciException) {
+				return false;
 			}
-			$this->message->set(sprintf(_("%s statuts modifiés"), $nb));
 		}
-		$module_coderetour = 1;
-		}
-	   function recalcul() {
-		/*
+	}
+	function recalcul()
+	{
+		/**
 		 * Recalcul des taux de croissance
 		 */
 		$this->dataclass->initCampagnePoisson($_REQUEST["poisson_id"], $_REQUEST["annee"]);
-		$module_coderetour = 1;
-		}
+		return true;
+	}
 }

@@ -13,7 +13,7 @@ class AnesthesieProduit extends PpciLibrary
      * @var 
      */
     protected PpciModel $dataclass;
-    private $keyName;
+    public $keyName;
 
     function __construct()
     {
@@ -27,7 +27,7 @@ class AnesthesieProduit extends PpciLibrary
     function list()
     {
         $this->vue = service('Smarty');
-        /*
+        /**
 		 * Display the list of all records of the table
 		 */
         $this->vue->set($this->dataclass->getListe(2), "data");
@@ -37,7 +37,7 @@ class AnesthesieProduit extends PpciLibrary
     function change()
     {
         $this->vue = service('Smarty');
-        /*
+        /**
 		 * open the form to modify the record
 		 * If is a new record, generate a new record with default value :
 		 * $_REQUEST["idParent"] contains the identifiant of the parent record
@@ -57,7 +57,7 @@ class AnesthesieProduit extends PpciLibrary
     }
     function delete()
     {
-        /*
+        /**
 		 * delete record
 		 */
         try {

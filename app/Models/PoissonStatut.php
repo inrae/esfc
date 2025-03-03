@@ -5,26 +5,26 @@ namespace App\Models;
 use Ppci\Models\PpciModel;
 
 /**
- * ORM de la table cohorte_type
+ * ORM de la table poisson_statut
  *
  * @author quinton
  *        
  */
-class Cohorte_type extends PpciModel
+class PoissonStatut extends PpciModel
 {
 
-    
+
     function __construct()
     {
-        $this->table = "cohorte_type";
+        $this->table = "poisson_statut";
         $this->fields = array(
-            "cohorte_type_id" => array(
+            "poisson_statut_id" => array(
                 "type" => 1,
                 "key" => 1,
                 "requis" => 1,
                 "defaultValue" => 0
             ),
-            "cohorte_type_libelle" => array(
+            "poisson_statut_libelle" => array(
                 "type" => 0,
                 "requis" => 1
             )

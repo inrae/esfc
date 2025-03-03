@@ -10,7 +10,7 @@ use Ppci\Models\PpciModel;
  * @author quinton
  *        
  */
-class Evenement_type extends PpciModel
+class EvenementType extends PpciModel
 {
 
     /**

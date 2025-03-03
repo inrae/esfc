@@ -10,7 +10,7 @@ class  extends PpciLibrary {
      * @var 
      */
     protected PpciModel $dataclass;
-    private $keyName;
+    public $keyName;
 
     function __construct()
     {
@@ -32,7 +32,7 @@ require_once 'modules/classes/spermeCongelation.class.php';
 $this->dataclass = new SpermeCongelation;
 $keyName = "sperme_congelation_id";
 $this->id = $_REQUEST[$keyName];
-/*
+/**
  * Passage en parametre de la liste parente
  */
 if (isset ($this->vue)) {
@@ -73,40 +73,40 @@ $this->vue=service('Smarty');
         }
     function change(){
 $this->vue=service('Smarty');
-        /*
+        /**
          * open the form to modify the record
          * If is a new record, generate a new record with default value :
          * $_REQUEST["idParent"] contains the identifiant of the parent record
          */
         $data = $this->dataRead( $this->id, "repro/spermeCongelationChange.tpl", $_REQUEST["sperme_id"]);
-        /*
+        /**
          * Recherche des dilueurs
          */
         require_once "modules/classes/spermeDilueur.class.php";
         $dilueur = new SpermeDilueur;
         $this->vue->set($dilueur->getListe(2), "spermeDilueur");
-        /*
+        /**
          * Recherche des conservateurs
          */
         require_once "modules/classes/spermeConservateur.class.php";
         $conservateur = new SpermeConservateur;
         $this->vue->set($conservateur->getListe(2), "spermeConservateur");
 
-        /*
+        /**
          * Recherche des emplacements de conservation
          */
         require_once "modules/classes/spermeFreezingPlace.class.php";
         $freezingPlace = new SpermeFreezingPlace;
         $this->vue->set($freezingPlace->getListFromParent($this->id, 1), "place");
 
-        /*
+        /**
          * Recherche des mesures de temperature
          */
         require_once "modules/classes/spermeFreezingMeasure.class.php";
         $freezingMeasure = new SpermeFreezingMeasure;
         $dataMeasure = $freezingMeasure->getListFromParent($this->id, 1);
         $this->vue->set($dataMeasure, "freezingMeasure");
-        /*
+        /**
          * Preparation des donnees pour le graphique
          */
 
@@ -120,14 +120,14 @@ $this->vue=service('Smarty');
         $this->vue->set($y, "my");
         $this->vue->htmlVars[] = "mx";
         $this->vue->htmlVars[] = "my";
-        /*
+        /**
          * Donnees du poisson
          */
         require_once 'modules/classes/poissonCampagne.class.php';
         $poissonCampagne = new PoissonCampagne;
         $this->vue->set($poissonCampagne->lire($_REQUEST["poisson_campagne_id"]), "dataPoisson");
 
-        /*
+        /**
          * Recherche des mesures de qualite rattachees
          */
         require_once "modules/classes/spermeMesure.class.php";
@@ -166,16 +166,16 @@ $this->vue=service('Smarty');
             return false;
         }
             
-        /*
+        /**
          * write record in database
          */
-        $this->id = dataWrite($this->dataclass, $_REQUEST);
+        $this->id = $this->dataWrite( $_REQUEST);
         if ($this->id > 0) {
             $_REQUEST[$keyName] = $this->id;
         }
         }
        function delete() {
-        /*
+        /**
          * delete record
          */
          try {
@@ -218,7 +218,7 @@ $this->vue=service('Smarty');
                     if ($result["error_code"] != 200) {
                         $this->message->set(_("La création du visotube a échoué"), true);
                         $this->message->set($result["error_code"] . " : " . $result["error_message"]);
-                        $module_coderetour = -1;
+                        return false;
                         }
                     }
                 } else {
@@ -228,7 +228,7 @@ $this->vue=service('Smarty');
             }
         } catch (ApiCurlException $e) {
             $this->message->set($e->getMessage(), true);
-            $module_coderetour = -1;
+            return false;
         }
         if ($visotubeNumber < $_POST["visotubesNb"]) {
             $this->message->set(_("Tous les visotubes demandés n'ont pas pu être créés"));

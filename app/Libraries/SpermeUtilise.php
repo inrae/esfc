@@ -10,7 +10,7 @@ class  extends PpciLibrary {
      * @var 
      */
     protected PpciModel $dataclass;
-    private $keyName;
+    public $keyName;
 
     function __construct()
     {
@@ -38,26 +38,21 @@ if (isset($this->vue)) {
 
 	function change(){
 $this->vue=service('Smarty');
-		/*
-		 * open the form to modify the record
-		 * If is a new record, generate a new record with default value :
-		 * $_REQUEST["idParent"] contains the identifiant of the parent record
-		 */
 		$this->dataRead( $this->id, "repro/spermeUtiliseChange.tpl", $_REQUEST["croisement_id"]);
-		/*
+		/**
 		 * Recuperation du croisement
 		 */
 		require_once 'modules/classes/croisement.class.php';
 		$croisement = new Croisement;
 		$croisementData = $croisement->getDetail($_REQUEST["croisement_id"]);
 		$this->vue->set($croisementData, "croisementData");
-		/*
+		/**
 		 * Lecture de la sequence
 		 */
 		require_once "modules/classes/sequence.class.php";
 		$sequence = new Sequence;
 		$this->vue->set($sequence->lire($croisementData["sequence_id"]), "dataSequence");
-		/*
+		/**
 		 * Recuperation de la liste des spermes potentiels
 		 */
 		require_once "modules/classes/sperme.class.php";
@@ -72,11 +67,9 @@ $this->vue=service('Smarty');
         } catch (PpciException $e) {
             return false;
         }
-            
-		
-		}
+}
 	   function delete() {
-		/*
+		/**
 		 * delete record
 		 */
 		 try {

@@ -15,7 +15,7 @@ class BassinEvenement extends PpciLibrary
 	 * @var 
 	 */
 	protected PpciModel $dataclass;
-	private $keyName;
+	public $keyName;
 
 	function __construct()
 	{
@@ -29,18 +29,13 @@ class BassinEvenement extends PpciLibrary
 	function change()
 	{
 		$this->vue = service('Smarty');
-		/*
-		 * open the form to modify the record
-		 * If is a new record, generate a new record with default value :
-		 * $_REQUEST["idParent"] contains the identifiant of the parent record
-		 */
 		$this->dataRead($this->id, "bassin/bassinEvenementChange.tpl", $_REQUEST["bassin_id"]);
-		/*
+		/**
 		 * Lecture des types d'événements
 		 */
 		$bassinEvenementType = new BassinEvenementType;
 		$this->vue->set($bassinEvenementType->getListe(1), "dataEvntType");
-		/*
+		/**
 		 * Lecture du bassin
 		 */
 		$bassin = new Bassin;
@@ -60,7 +55,7 @@ class BassinEvenement extends PpciLibrary
 	}
 	function delete()
 	{
-		/*
+		/**
 		 * delete record
 		 */
 		try {

@@ -10,7 +10,7 @@ class  extends PpciLibrary {
      * @var 
      */
     protected PpciModel $dataclass;
-    private $keyName;
+    public $keyName;
 
     function __construct()
     {
@@ -33,7 +33,7 @@ $this->dataclass = new Sequence;
 $keyName = "sequence_id";
 $this->id = $_REQUEST[$keyName];
 
-/*
+/**
  * Prepositionnement de l'annee
 */
 require "modules/repro/setAnnee.php";
@@ -41,7 +41,7 @@ require "modules/repro/setAnnee.php";
 $this->vue=service('Smarty');
 		$this->vue->set($this->dataclass->getListeByYear($_SESSION["annee"], $_REQUEST["site_id"]), "data");
 		$this->vue->set("repro/sequenceList.tpl", "corps");
-		/*
+		/**
 		 * Recuperation des donnees concernant les bassins
 		 */
 		require_once 'modules/classes/bassinCampagne.class.php';
@@ -55,7 +55,7 @@ $this->vue=service('Smarty');
 		}
 	function display(){
 $this->vue=service('Smarty');
-		/*
+		/**
 		 * Display the detail of the record
 		 */
 		$this->vue->set($this->dataclass->lire($this->id), "dataSequence");
@@ -65,13 +65,13 @@ $this->vue=service('Smarty');
 		$this->vue->set($poissonSequence->getListFromSequence($this->id), "dataPoissons");
 		$_SESSION["poissonDetailParent"] = "sequenceDisplay";
 		$_SESSION["sequence_id"] = $this->id;
-		/*
+		/**
 		 * Préparation des croisements
 		 */
 		require_once 'modules/classes/croisement.class.php';
 		$croisement = new Croisement;
 		$croisements = $croisement->getListFromSequence($this->id);
-		/*
+		/**
 		 * Recuperation du nombre de larves comptees
 		 */
 		require_once 'modules/classes/lot.class.php';
@@ -81,21 +81,16 @@ $this->vue=service('Smarty');
 			$croisements[$key]["total_larve_compte"] = $totalLot["total_larve_compte"];
 		}
 		$this->vue->set($croisements, "croisements");
-		/*
+		/**
 		 * Preparation des lots
 		 */
 		$this->vue->set($lot->getLotBySequence($this->id), "lots");
 		}
 	function change(){
 $this->vue=service('Smarty');
-		/*
-		 * open the form to modify the record
-		 * If is a new record, generate a new record with default value :
-		 * $_REQUEST["idParent"] contains the identifiant of the parent record
-		 */
 		$data = $this->dataRead( $this->id, "repro/sequenceChange.tpl");
 		if ($this->id == 0) {
-			/*
+			/**
 			 * Positionnement correct de la session par rapport à l'année courante
 			 */
 			$data["annee"] = $_SESSION["annee"];
@@ -113,11 +108,9 @@ $this->vue=service('Smarty');
         } catch (PpciException $e) {
             return false;
         }
-            
-		
-		}
+}
 	   function delete() {
-		/*
+		/**
 		 * delete record
 		 */
 		 try {

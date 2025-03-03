@@ -10,7 +10,7 @@ class  extends PpciLibrary {
      * @var 
      */
     protected PpciModel $dataclass;
-    private $keyName;
+    public $keyName;
 
     function __construct()
     {
@@ -34,10 +34,10 @@ $keyName = "repart_template_id";
 $this->id = $_REQUEST[$keyName];
 	function list(){
 $this->vue=service('Smarty');
-		/*
+		/**
 		 * Display the list of all records of the table
 		 */
-		/*
+		/**
 		 * Gestion des variables de recherche
 		 */
 		if (!isset($_SESSION["searchRepartTemplate"])) {
@@ -54,7 +54,7 @@ $this->vue=service('Smarty');
 		$this->vue->set($dataSearch, "repartTemplateSearch");
 		$this->vue->set($data, "data");
 		$this->vue->set("aliment/repartTemplateList.tpl", "corps");
-		/*
+		/**
 		 * Recherche de la categorie
 		 */
 		require_once "modules/classes/categorie.class.php";
@@ -63,19 +63,14 @@ $this->vue=service('Smarty');
 		}
 	function change(){
 $this->vue=service('Smarty');
-		/*
-		 * open the form to modify the record
-		 * If is a new record, generate a new record with default value :
-		 * $_REQUEST["idParent"] contains the identifiant of the parent record
-		 */
 		$data = $this->dataRead( $this->id, "aliment/repartTemplateChange.tpl");
-		/*
+		/**
 		 * Lecture des categories
 		 */
 		require_once "modules/classes/categorie.class.php";
 		$categorie = new Categorie;
 		$this->vue->set($categorie->getListe(2), "categorie");
-		/*
+		/**
 		 * Recuperation des aliments associés
 		 */
 		if ($data["categorie_id"] > 0 && $this->id > 0) {
@@ -93,13 +88,13 @@ $this->vue=service('Smarty');
             return false;
         }
             
-		/*
+		/**
 		 * write record in database
 		 */
-		$this->id = dataWrite($this->dataclass, $_REQUEST);
+		$this->id = $this->dataWrite( $_REQUEST);
 		if ($this->id > 0) {
 			$_REQUEST[$keyName] = $this->id;
-			/*
+			/**
 			 * Preparation des aliments
 			 */
 			$data = array();
@@ -110,7 +105,7 @@ $this->vue=service('Smarty');
 					$data[$val[0]][$nom] = $value;
 				}
 			}
-			/*
+			/**
 			 * Mise en table
 			 */
 			require_once "modules/classes/repartAliment.class.php";
@@ -128,12 +123,12 @@ $this->vue=service('Smarty');
 			}
 			if ($error == 1) {
 				$this->message->set(_("Problème lors de l'enregistrement"), true);
-				$module_coderetour = -1;
+				return false;
 			}
 		}
 		}
 	   function delete() {
-		/*
+		/**
 		 * delete record
 		 */
 		 try {

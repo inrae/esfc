@@ -1,76 +1,62 @@
-<?php 
+<?php
+
 namespace App\Libraries;
 
+use App\Models\DosageSanguin as ModelsDosageSanguin;
+use App\Models\PoissonCampagne;
 use Ppci\Libraries\PpciException;
 use Ppci\Libraries\PpciLibrary;
 use Ppci\Models\PpciModel;
 
-class  extends PpciLibrary { 
+class DosageSanguin extends PpciLibrary
+{
     /**
      * @var 
      */
     protected PpciModel $dataclass;
-    private $keyName;
+    public $keyName;
 
     function __construct()
     {
         parent::__construct();
-        $this->dataclass = new ;
-        $this->keyName = "";
+        $this->dataclass = new ModelsDosageSanguin;
+        $this->keyName = "dosage_sanguin_id";
         if (isset($_REQUEST[$this->keyName])) {
             $this->id = $_REQUEST[$this->keyName];
         }
     }
-
-/**
- * @author Eric Quinton
- * @copyright Copyright (c) 2015, IRSTEA / Eric Quinton
- * @license http://www.cecill.info/licences/Licence_CeCILL-C_V1-fr.html LICENCE DE LOGICIEL LIBRE CeCILL-C
- *  Creation 6 mars 2015
- */
-
-require_once 'modules/classes/dosageSanguin.class.php';
-require_once 'modules/classes/poissonCampagne.class.php';
-$this->dataclass = new DosageSanguin;
-$keyName = "dosage_sanguin_id";
-$this->id = $_REQUEST[$keyName];
-if (isset($this->vue)) {
-	if (isset($_SESSION["sequence_id"])) {
-		$this->vue->set($_SESSION["sequence_id"], "sequence_id");
-	}
-	$this->vue->set($_SESSION["poissonDetailParent"], "poissonDetailParent");
-}
-	function change(){
-$this->vue=service('Smarty');
-		/*
-		 * open the form to modify the record
-		 * If is a new record, generate a new record with default value :
-		 * $_REQUEST["idParent"] contains the identifiant of the parent record
-		 */
-		$poissonCampagne = new poissonCampagne;
-		$data = $this->dataRead( $this->id, "repro/dosageSanguinChange.tpl", $_REQUEST["poisson_campagne_id"]);
-		$this->vue->set($poissonCampagne->lire($data["poisson_campagne_id"]), "dataPoisson");
-		}
-	    function write() {
-    try {
-                        $this->id = $this->dataWrite($_REQUEST);
+    function change()
+    {
+        $this->vue = service('Smarty');
+        $poissonCampagne = new PoissonCampagne;
+        $data = $this->dataRead($this->id, "repro/dosageSanguinChange.tpl", $_REQUEST["poisson_campagne_id"]);
+        $this->vue->set($poissonCampagne->lire($data["poisson_campagne_id"]), "dataPoisson");
+        if (isset($_SESSION["sequence_id"])) {
+            $this->vue->set($_SESSION["sequence_id"], "sequence_id");
+        }
+        $this->vue->set($_SESSION["poissonDetailParent"], "poissonDetailParent");
+        return $this->vue->send();
+    }
+    function write()
+    {
+        try {
+            $this->id = $this->dataWrite($_REQUEST);
             $_REQUEST[$this->keyName] = $this->id;
             return true;
         } catch (PpciException $e) {
             return false;
         }
-            
-		
-		}
-	   function delete() {
-		/*
+    }
+    function delete()
+    {
+        /**
 		 * delete record
 		 */
-		 try {
+        try {
             $this->dataDelete($this->id);
             return true;
         } catch (PpciException $e) {
             return false;
         }
-		}
+    }
 }

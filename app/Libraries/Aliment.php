@@ -16,7 +16,7 @@ class Aliment extends PpciLibrary
 	 * @var ModelsAliment
 	 */
 	protected PpciModel $dataclass;
-	private $keyName;
+	public $keyName;
 
 	function __construct()
 	{
@@ -31,7 +31,7 @@ class Aliment extends PpciLibrary
 	function list()
 	{
 		$this->vue = service('Smarty');
-		/*
+		/**
 		 * Display the list of all records of the table
 		 */
 		$this->vue->set($this->dataclass->getListe(2), "data");
@@ -41,28 +41,23 @@ class Aliment extends PpciLibrary
 	function change()
 	{
 		$this->vue = service('Smarty');
-		/*
-		 * open the form to modify the record
-		 * If is a new record, generate a new record with default value :
-		 * $_REQUEST["idParent"] contains the identifiant of the parent record
-		 */
 		$this->dataRead( $this->id, "aliment/alimentChange.tpl");
-		/*
+		/**
 		 * Recuperation des types d'aliment
 		 */
 		$alimentType = new AlimentType;
 		$this->vue->set($alimentType->getListe(1), "alimentType");
-		/*
+		/**
 		 * Recuperation des categories
 		 */
 		$categorie = new Categorie;
 		$dataCategorie = $categorie->getListe(2);
-		/*
+		/**
 		 * Recuperation des categories actuellement associees
 		 */
 		$alimentCategorie = new AlimentCategorie;
 		$dataAC = $alimentCategorie->getListeFromAliment($this->id);
-		/*
+		/**
 		 * Assignation de la valeur recuperee aux categories
 		 */
 		foreach ($dataCategorie as $key => $value) {
@@ -86,7 +81,7 @@ class Aliment extends PpciLibrary
 	}
 	function delete()
 	{
-		/*
+		/**
 		 * delete record
 		 */
 		try {

@@ -10,7 +10,7 @@ class  extends PpciLibrary {
      * @var 
      */
     protected PpciModel $dataclass;
-    private $keyName;
+    public $keyName;
 
     function __construct()
     {
@@ -34,10 +34,10 @@ $keyName = "repartition_id";
 $this->id = $_REQUEST[$keyName];
 	function list(){
 $this->vue=service('Smarty');
-		/*
+		/**
 		 * Display the list of all records of the table
 		 */
-		/*
+		/**
 		 * Gestion des variables de recherche
 		 */
 		if (!isset($_SESSION["searchRepartition"])) {
@@ -58,7 +58,7 @@ $this->vue=service('Smarty');
 		if ($_SESSION["searchRepartition"]->isSearch() == 1) {
 			$this->vue->set(1, "isSearch");
 			$dataList = $this->dataclass->getListSearch($dataSearch);
-			/*
+			/**
 			 * Preparation de la creation ex-nihilo d'une repartition
 			 */
 			$jour = date("w");
@@ -93,7 +93,7 @@ $this->vue=service('Smarty');
 		$site = new Site;
 		$this->vue->set($site->getListe(2), "site");
 		$this->vue->set("aliment/repartitionList.tpl", "corps");
-		/*
+		/**
 		 * Recherche de la categorie
 		 */
 		require_once "modules/classes/categorie.class.php";
@@ -102,16 +102,11 @@ $this->vue=service('Smarty');
 		}
 	function change(){
 $this->vue=service('Smarty');
-		/*
-		 * open the form to modify the record
-		 * If is a new record, generate a new record with default value :
-		 * $_REQUEST["idParent"] contains the identifiant of the parent record
-		 */
 		$data = $this->dataRead( $this->id, "aliment/repartitionChange.tpl");
 		if (empty($data["site_id"])) {
 			$data["site_id"] = 1;
 		}
-		/*
+		/**
 		 * Recherche de la categorie
 		 */
 		require_once "modules/classes/categorie.class.php";
@@ -120,14 +115,14 @@ $this->vue=service('Smarty');
 		require_once 'modules/classes/site.class.php';
 		$site = new Site;
 		$this->vue->set($site->getListe(2), "site");
-		/*
+		/**
 		 * Recuperation des bassins associes et des distributions
 		 */
 		if ($data["categorie_id"] > 0) {
 			require_once "modules/classes/distribution.class.php";
 			$distribution = new Distribution;
 			$this->vue->set($distribution->getFromRepartitionWithBassin($this->id, $data["categorie_id"], $data["site_id"]), "dataBassin");
-			/*
+			/**
 			 * Recuperation des modèles de distribution actifs
 			 */
 			require_once "modules/classes/repartTemplate.class.php";
@@ -136,16 +131,16 @@ $this->vue=service('Smarty');
 		}
 		}
 	   function create() {
-		/*
+		/**
 		 * Creation d'une repartition vierge
 		 */
-		$this->id = dataWrite($this->dataclass, $_REQUEST);
+		$this->id = $this->dataWrite( $_REQUEST);
 		if ($this->id > 0) {
 			$_REQUEST[$keyName] = $this->id;
 		}
 		}
 	   function duplicate() {
-		/*
+		/**
 		 * Creation d'une nouvelle repartition a partir d'une existante
 		 */
 		if ($this->id > 0) {
@@ -156,7 +151,7 @@ $this->vue=service('Smarty');
 			} else {
 				$this->message->set(_("Erreur lors de la création d'une nouvelle distribution"), true);
 				$this->message->set($this->dataclass->getErrorData(1));
-				$module_coderetour = -1;
+				return false;
 			}
 		}
 		}
@@ -169,13 +164,13 @@ $this->vue=service('Smarty');
             return false;
         }
             
-		/*
+		/**
 		 * write record in database
 		 */
-		$this->id = dataWrite($this->dataclass, $_REQUEST);
+		$this->id = $this->dataWrite( $_REQUEST);
 		if ($this->id > 0) {
 			$_REQUEST[$keyName] = $this->id;
-			/*
+			/**
 			 * Preparation des informations concernant les bassins
 			 */
 			$data = array();
@@ -186,7 +181,7 @@ $this->vue=service('Smarty');
 					$data[$val[0]][$nom] = $value;
 				}
 			}
-			/*
+			/**
 			 * Mise en table des données de bassins
 			 */
 			require_once "modules/classes/distribution.class.php";
@@ -204,12 +199,12 @@ $this->vue=service('Smarty');
 			}
 			if ($error == 1) {
 				$this->message->set(_("Problème lors de l'enregistrement"), true);
-				$module_coderetour = -1;
+				return false;
 			}
 		}
 		}
 	   function delete() {
-		/*
+		/**
 		 * delete record
 		 */
 		 try {
@@ -220,7 +215,7 @@ $this->vue=service('Smarty');
         }
 		}
 	   function print() {
-		/*
+		/**
 		 * Imprime le tableau de répartition
 		 */
 		if ($this->id > 0) {
@@ -228,14 +223,14 @@ $this->vue=service('Smarty');
 			$data = $this->dataclass->lire($this->id);
 			require_once "modules/classes/distribution.class.php";
 			$distribution = new Distribution;
-			/*
+			/**
 			 * Recuperation de la liste des aliments utilises
 			 */
 			if ($data["categorie_id"] == 1)
 				$dataAliment = $distribution->getListeAlimentFromRepartition($this->id);
 			elseif ($data["categorie_id"] == 2)
 				$dataAliment = $distribution->getListeAlimentFromRepartition($this->id, "juvenile");
-			/*
+			/**
 			 * Recuperation des distributions prevues
 			 */
 			$dataDistrib = $distribution->calculDistribution($this->id);
@@ -251,14 +246,14 @@ $this->vue=service('Smarty');
 	   function resteChange() {
 		$this->vue->set($data = $this->dataclass->lireWithCategorie($this->id), "data");
 		$this->vue->set("aliment/repartitionResteChange.tpl", "corps");
-		/*
+		/**
 		 * preparation de la saisie des restes
 		 */
 		require_once "modules/classes/distribution.class.php";
 		$distribution = new Distribution;
 		$dataBassin = $distribution->getFromRepartition($this->id);
 
-		/*
+		/**
 		 * Preparation du tableau de dates
 		 */
 		$dateDebut = DateTime::createFromFormat('d/m/Y', $data['date_debut_periode']);
@@ -278,14 +273,14 @@ $this->vue=service('Smarty');
 		for ($i = 0; $i <= $nbJour; $i++) {
 			$dateArray[$i]["libelle"] = $jour[$dateDebut->format("w")];
 			$dateArray[$i]["numJour"] = $i;
-			/*
+			/**
 			 * Calcul du total distribue
 			 */
 			$dateDebut->add(new DateInterval('P1D'));
 		}
 		$this->vue->set($dateArray, "dateArray");
 		$this->vue->set($nbJour + 1, "nbJour");
-		/*
+		/**
 		 * Mise en forme des donnees
 		 */
 		foreach ($dataBassin as $key => $value) {
@@ -299,14 +294,14 @@ $this->vue=service('Smarty');
 		$this->vue->set($dataBassin, "dataBassin");
 		}
 	   function resteWrite() {
-		/*
+		/**
 		 * Ecriture de la saisie des restes
 		 */
 		if ($this->id > 0) {
-			/*
+			/**
 			 * Traitement de chaque distribution
 			 */
-			/*
+			/**
 			 * Preparation des informations concernant les bassins
 			*/
 			$data = array();
@@ -319,14 +314,14 @@ $this->vue=service('Smarty');
 			}
 			require_once "modules/classes/distribution.class.php";
 			$distribution = new Distribution;
-			/*
+			/**
 			 * Traitement de chaque bassin
 			 */
 			foreach ($data as $key => $value) {
 				$value["date_debut_periode"] = $_REQUEST["date_debut_periode"];
 				$value["date_fin_periode"] = $_REQUEST["date_fin_periode"];
 				$value["repartition_id"] = $_REQUEST["repartition_id"];
-				/*
+				/**
 				 * On divise le total_distribue par le nombre de jours
 				 */
 				/*if ($_REQUEST ["nbJour"] > 0) {
@@ -338,12 +333,12 @@ $this->vue=service('Smarty');
 					$this->message->set($distribution->getErrorData(1));
 				}
 			}
-			/*
+			/**
 			 * Traitement des erreurs potentielles
 			 */
 			if ($error == 1) {
 				$this->message->set(_("Problème lors de l'enregistrement"), true);
-				$module_coderetour = -1;
+				return false;
 			} else {
 
 				$this->message->set(_("Opération effectuée"));

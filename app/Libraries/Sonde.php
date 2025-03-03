@@ -10,7 +10,7 @@ class  extends PpciLibrary {
      * @var 
      */
     protected PpciModel $dataclass;
-    private $keyName;
+    public $keyName;
 
     function __construct()
     {
@@ -39,16 +39,16 @@ $this->id = $_REQUEST[$keyName];
             return false;
         }
             
-        /*
+        /**
          * write record in database
          */
-        $this->id = dataWrite($this->dataclass, $_REQUEST);
+        $this->id = $this->dataWrite( $_REQUEST);
         if ($this->id > 0) {
             $_REQUEST[$keyName] = $this->id;
         }
         }
        function delete() {
-        /*
+        /**
          * delete record
          */
          try {
@@ -75,7 +75,7 @@ $this->id = $_REQUEST[$keyName];
         } catch (Exception $e) {
             $this->message->set("Echec d'importation des données ", true);
             $this->message->set($e->getMessage());
-            $module_coderetour = -1;
+            return false;
         }
         }
 }

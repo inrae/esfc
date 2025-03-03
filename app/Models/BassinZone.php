@@ -10,7 +10,7 @@ use Ppci\Models\PpciModel;
  * @author quinton
  *        
  */
-class Bassin_zone extends PpciModel
+class BassinZone extends PpciModel
 {
 	/**
 	 * Constructeur de la classe

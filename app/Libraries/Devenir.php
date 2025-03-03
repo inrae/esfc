@@ -1,69 +1,63 @@
-<?php 
+<?php
+
 namespace App\Libraries;
 
+use App\Models\Categorie;
+use App\Models\Devenir as ModelsDevenir;
+use App\Models\DevenirType;
+use App\Models\Lot;
+use App\Models\SortieLieu;
 use Ppci\Libraries\PpciException;
 use Ppci\Libraries\PpciLibrary;
 use Ppci\Models\PpciModel;
 
-class  extends PpciLibrary { 
-    /**
-     * @var 
-     */
-    protected PpciModel $dataclass;
-    private $keyName;
+class Devenir extends PpciLibrary
+{
+	/**
+	 * @var 
+	 */
+	protected PpciModel $dataclass;
+	public $keyName;
 
-    function __construct()
-    {
-        parent::__construct();
-        $this->dataclass = new ;
-        $this->keyName = "";
-        if (isset($_REQUEST[$this->keyName])) {
-            $this->id = $_REQUEST[$this->keyName];
-        }
-    }
-
-/**
- * @author : quinton
- * @date : 1 févr. 2016
- * @encoding : UTF-8
- * (c) 2016 - All rights reserved
- */
-require_once 'modules/classes/devenir.class.php';
-$this->dataclass = new Devenir;
-$keyName = "devenir_id";
-$this->id = $_REQUEST[$keyName];
-
-	function list(){
-$this->vue=service('Smarty');
+	function __construct()
+	{
+		parent::__construct();
+		$this->dataclass = new ModelsDevenir;
+		$this->keyName = "devenir_id";
+		if (isset($_REQUEST[$this->keyName])) {
+			$this->id = $_REQUEST[$this->keyName];
+		}
+	}
+	function list()
+	{
+		$this->vue = service('Smarty');
 		require "modules/repro/setAnnee.php";
 		$this->vue->set($this->dataclass->getListeFull($_SESSION["annee"]), "dataDevenir");
 		$this->vue->set("repro/devenirCampagneList.tpl", "corps");
-		}
-	function change(){
-$this->vue=service('Smarty');
-		$data = $this->dataRead( $this->id, "repro/devenirChange.tpl", $_REQUEST["lot_id"]);
+		return $this->vue->send();
+	}
+	function change()
+	{
+		$this->vue = service('Smarty');
+		$data = $this->dataRead($this->id, "repro/devenirChange.tpl", $_REQUEST["lot_id"]);
 		$this->vue->set($_REQUEST["devenirOrigine"], "devenirOrigine");
-		/*
+		/**
 		 * Lecture des tables de parametres
 		 */
-		require_once 'modules/classes/categorie.class.php';
 		$categorie = new Categorie;
 		$this->vue->set($categorie->getListe(1), "categories");
-		require_once 'modules/classes/sortieLieu.class.php';
 		$sortie = new SortieLieu;
 		$this->vue->set($sortie->getListe(2), "sorties");
-		require_once "modules/classes/devenirType.class.php";
 		$devenirType = new DevenirType;
 		$this->vue->set($devenirType->getListe(1), "devenirType");
-		/*
+		/**
 		 * Lecture du lot
 		 */
 		if ($data["lot_id"] > 0) {
-			require_once 'modules/classes/lot.class.php';
 			$lot = new Lot;
 			$this->vue->set($lot->getDetail($data["lot_id"]), "dataLot");
 		}
-		/*
+		/**
 		 * Recuperation de la liste des devenirs parents potentiels
 		 */
 		if ($data["lot_id"] > 0) {
@@ -75,27 +69,27 @@ $this->vue=service('Smarty');
 		}
 		$parents = $this->dataclass->getParentsPotentiels($data["devenir_id"], $lotId, $annee);
 		$this->vue->set($parents, "devenirParent");
+	}
+	function write()
+	{
+		try {
+			$this->id = $this->dataWrite($_REQUEST);
+			$_REQUEST[$this->keyName] = $this->id;
+			return true;
+		} catch (PpciException $e) {
+			return false;
 		}
-	    function write() {
-    try {
-                        $this->id = $this->dataWrite($_REQUEST);
-            $_REQUEST[$this->keyName] = $this->id;
-            return true;
-        } catch (PpciException $e) {
-            return false;
-        }
-            
-		
-		}
-	   function delete() {
-		/*
+	}
+	function delete()
+	{
+		/**
 		 * delete record
 		 */
-		 try {
-            $this->dataDelete($this->id);
-            return true;
-        } catch (PpciException $e) {
-            return false;
-        }
+		try {
+			$this->dataDelete($this->id);
+			return true;
+		} catch (PpciException $e) {
+			return false;
 		}
+	}
 }

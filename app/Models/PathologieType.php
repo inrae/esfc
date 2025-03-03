@@ -10,7 +10,7 @@ use Ppci\Models\PpciModel;
  * @author quinton
  *        
  */
-class Pathologie_type extends PpciModel
+class PathologieType extends PpciModel
 {
 
 

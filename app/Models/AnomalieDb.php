@@ -10,7 +10,7 @@ use Ppci\Models\PpciModel;
  * @license http://www.cecill.info/licences/Licence_CeCILL-C_V1-fr.html LICENCE DE LOGICIEL LIBRE CeCILL-C
  *  Creation 14 mars 2014
  */
-class Anomalie_db extends PpciModel
+class AnomalieDb extends PpciModel
 {
 	/**
 	 * Constructeur de la classe

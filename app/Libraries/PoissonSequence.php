@@ -10,7 +10,7 @@ class  extends PpciLibrary {
      * @var 
      */
     protected PpciModel $dataclass;
-    private $keyName;
+    public $keyName;
 
     function __construct()
     {
@@ -35,11 +35,6 @@ $this->id = $_REQUEST[$keyName];
 
 	function change(){
 $this->vue=service('Smarty');
-		/*
-		 * open the form to modify the record
-		 * If is a new record, generate a new record with default value :
-		 * $_REQUEST["idParent"] contains the identifiant of the parent record
-		 */
 		$data = $this->dataRead( $this->id, "repro/poissonSequenceChange.tpl", $_REQUEST["poisson_campagne_id"]);
 		require_once "modules/classes/poissonCampagne.class.php";
 		$poissonCampagne = new PoissonCampagne;
@@ -47,7 +42,7 @@ $this->vue=service('Smarty');
 		require_once "modules/classes/psEvenement.class.php";
 		$psEvenement = new PsEvenement;
 		$this->vue->set($psEvenement->getListeFromPoissonSequence($this->id), "evenements");
-		/*
+		/**
 		 * Recherche les donnees concernant la production de sperme
 		 */
 		require_once 'modules/classes/sperme.class.php';
@@ -59,19 +54,19 @@ $this->vue=service('Smarty');
 		require_once 'modules/repro/spermeFunction.php';
 		initSpermeChange($dataSperme["sperme_id"]);
 
-		/*
+		/**
 		 * Recuperation de la liste des sequences
 		 */
 		require_once "modules/classes/sequence.class.php";
 		$sequence = new Sequence;
 		$this->vue->set($sequence->getListeByYear($_SESSION['annee']), "sequences");
-		/*
+		/**
 		 * Recuperation des statuts
 		 */
 		require_once "modules/classes/psStatut.class.php";
 		$psStatut = new PsStatut;
 		$this->vue->set($psStatut->getListe(1), "statuts");
-		/*
+		/**
 		 * Passage en parametre de la liste parente
 		 */
 		$this->vue->set($_SESSION["poissonDetailParent"], "poissonDetailParent");
@@ -88,11 +83,11 @@ $this->vue=service('Smarty');
             return false;
         }
             
-		/*
+		/**
 		 * write record in database
 		 */
 		require_once 'modules/classes/sperme.class.php';
-		$this->id = dataWrite($this->dataclass, $_REQUEST);
+		$this->id = $this->dataWrite( $_REQUEST);
 		if ($this->id > 0) {
 			$_REQUEST[$keyName] = $this->id;
 			if (strlen($_REQUEST["sperme_date"]) > 0 || $_REQUEST["sperme_id"] > 0) {
@@ -103,7 +98,7 @@ $this->vue=service('Smarty');
 		}
 		}
 	   function delete() {
-		/*
+		/**
 		 * delete record
 		 */
 		 try {

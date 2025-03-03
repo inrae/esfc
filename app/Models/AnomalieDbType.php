@@ -10,7 +10,7 @@ use Ppci\Models\PpciModel;
  * @author quinton
  *        
  */
-class Anomalie_db_type extends PpciModel
+class AnomalieDbType extends PpciModel
 {
 	/**
 	 * Constructeur

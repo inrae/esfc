@@ -7,7 +7,7 @@ use Ppci\Models\PpciModel;
  * @author quinton
  *        
  */
-class Gender_methode extends PpciModel
+class GenderMethode extends PpciModel
 {
 
     

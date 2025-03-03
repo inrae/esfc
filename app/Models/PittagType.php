@@ -10,7 +10,7 @@ use Ppci\Models\PpciModel;
  * @author quinton
  *        
  */
-class Pittag_type extends PpciModel
+class PittagType extends PpciModel
 {
 
 

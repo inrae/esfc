@@ -10,7 +10,7 @@ use Ppci\Models\PpciModel;
  * @author quinton
  *        
  */
-class Mortalite_type extends PpciModel
+class MortaliteType extends PpciModel
 {
 
     function __construct()

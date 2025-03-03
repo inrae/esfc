@@ -10,7 +10,7 @@ class  extends PpciLibrary {
      * @var 
      */
     protected PpciModel $dataclass;
-    private $keyName;
+    public $keyName;
 
     function __construct()
     {
@@ -41,33 +41,33 @@ function initSpermeChange($sperme_id = 0)
 	if (is_null($sperme_id)) {
 		$sperme_id = 0;
 	}
-	/*
+	/**
 	 * Lecture de sperme_qualite
 	 */
 	$spermeAspect = new SpermeAspect;
 	$this->vue->set($spermeAspect->getListe(1), "spermeAspect");
-	/*
+	/**
 	 * Recherche des caracteristiques particulieres
 	*/
 	$caract = new SpermeCaracteristique;
 	$this->vue->set($caract->getFromSperme($sperme_id), "spermeCaract");
-	/*
+	/**
 	 * Recherche des dilueurs
 	*/
 	$dilueur = new SpermeDilueur;
 	$this->vue->set($dilueur->getListe(2), "spermeDilueur");
 
-	/*
+	/**
 	 * Recherche de la qualite de la semence, pour les analyses realisees en meme temps
 	 */
 	$qualite = new SpermeQualite;
 	$this->vue->set($qualite->getListe(1), "spermeQualite");
-	/*
+	/**
 	 * Recherche des congelations associees
 	 */
 	$congelation = new SpermeCongelation;
 	$this->vue->set($congelation->getListFromSperme($sperme_id), "congelation");
-	/*
+	/**
 	 * Recherche des analyses realisees
 	 */
 	$mesure = new SpermeMesure;
