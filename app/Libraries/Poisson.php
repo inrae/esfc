@@ -51,7 +51,8 @@ class Poisson extends PpciLibrary
 	function list()
 	{
 		$this->vue = service('Smarty');
-		require "modules/poisson/poissonSearch.php";
+		$poissonSearch = new PoissonSearch;
+		$dataSearch = $poissonSearch->getSearchParam($this->vue);
 		if ($_SESSION["searchPoisson"]->isSearch() == 1) {
 			$data = $this->dataclass->getListeSearch($dataSearch);
 			$this->vue->set($data, "data");

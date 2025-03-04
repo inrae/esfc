@@ -8,6 +8,12 @@ use App\Models\BassinZone;
 use App\Models\CircuitEau;
 use App\Models\DocumentSturio;
 use App\Models\PoissonCampagne;
+use App\Models\SpermeAspect;
+use App\Models\SpermeCaracteristique;
+use App\Models\SpermeCongelation;
+use App\Models\SpermeDilueur;
+use App\Models\SpermeMesure;
+use App\Models\SpermeQualite;
 
 function bassinParamAssocie($vue)
 {
@@ -78,4 +84,41 @@ function setAnneesRepro($vue = null)
         $vue->set($_SESSION["annees"], "annees");
         $vue->set($_SESSION["annee"], "annee");
     }
+}
+function initSpermeChange($vue, $sperme_id = 0)
+{
+	if (is_null($sperme_id)) {
+		$sperme_id = 0;
+	}
+	/**
+	 * Lecture de sperme_qualite
+	 */
+	$spermeAspect = new SpermeAspect;
+	$vue->set($spermeAspect->getListe(1), "spermeAspect");
+	/**
+	 * Recherche des caracteristiques particulieres
+	*/
+	$caract = new SpermeCaracteristique;
+	$vue->set($caract->getFromSperme($sperme_id), "spermeCaract");
+	/**
+	 * Recherche des dilueurs
+	*/
+	$dilueur = new SpermeDilueur;
+	$vue->set($dilueur->getListe(2), "spermeDilueur");
+
+	/**
+	 * Recherche de la qualite de la semence, pour les analyses realisees en meme temps
+	 */
+	$qualite = new SpermeQualite;
+	$vue->set($qualite->getListe(1), "spermeQualite");
+	/**
+	 * Recherche des congelations associees
+	 */
+	$congelation = new SpermeCongelation;
+	$vue->set($congelation->getListFromSperme($sperme_id), "congelation");
+	/**
+	 * Recherche des analyses realisees
+	 */
+	$mesure = new SpermeMesure;
+	$vue->set($mesure->getListFromSperme($sperme_id), "dataMesure");
 }

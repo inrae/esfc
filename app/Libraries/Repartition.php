@@ -1,47 +1,44 @@
-<?php 
+<?php
+
 namespace App\Libraries;
 
+use App\Models\Categorie;
+use App\Models\Distribution;
+use App\Models\Repartition as ModelsRepartition;
+use App\Models\RepartitionAdulte;
+use App\Models\RepartitionJuvenile;
+use App\Models\RepartTemplate;
+use App\Models\SearchRepartition;
+use App\Models\Site;
 use Ppci\Libraries\PpciException;
 use Ppci\Libraries\PpciLibrary;
 use Ppci\Models\PpciModel;
 
-class  extends PpciLibrary { 
-    /**
-     * @var 
-     */
-    protected PpciModel $dataclass;
-    public $keyName;
+class Repartition extends PpciLibrary
+{
+	/**
+	 * @var 
+	 */
+	protected PpciModel $dataclass;
+	public $keyName;
 
-    function __construct()
-    {
-        parent::__construct();
-        $this->dataclass = new ;
-        $this->keyName = "";
-        if (isset($_REQUEST[$this->keyName])) {
-            $this->id = $_REQUEST[$this->keyName];
-        }
-    }
-
-/**
- * @author Eric Quinton
- * @copyright Copyright (c) 2014, IRSTEA / Eric Quinton
- * @license http://www.cecill.info/licences/Licence_CeCILL-C_V1-fr.html LICENCE DE LOGICIEL LIBRE CeCILL-C
- *  Creation 21 mars 2014
- */
-require_once 'modules/classes/repartition.class.php';
-$this->dataclass = new Repartition;
-$keyName = "repartition_id";
-$this->id = $_REQUEST[$keyName];
-	function list(){
-$this->vue=service('Smarty');
-		/**
-		 * Display the list of all records of the table
-		 */
+	function __construct()
+	{
+		parent::__construct();
+		$this->dataclass = new ModelsRepartition;
+		$this->keyName = "repartition_id";
+		if (isset($_REQUEST[$this->keyName])) {
+			$this->id = $_REQUEST[$this->keyName];
+		}
+	}
+	function list()
+	{
+		$this->vue = service('Smarty');
 		/**
 		 * Gestion des variables de recherche
 		 */
 		if (!isset($_SESSION["searchRepartition"])) {
-			$_SESSION["searchRepartition"] = new SearchRepartition();
+			$_SESSION["searchRepartition"] = new SearchRepartition;
 		}
 		$_SESSION["searchRepartition"]->setParam($_REQUEST);
 		$dataSearch = $_SESSION["searchRepartition"]->getParam();
@@ -72,10 +69,10 @@ $this->vue=service('Smarty');
 				6 => 2
 			);
 			$data = array();
-			$date = new DateTime();
-			$date->add(new DateInterval('P' . $jour_array[$jour] . 'D'));
+			$date = new \DateTime();
+			$date->add(new \DateInterval('P' . $jour_array[$jour] . 'D'));
 			$data["date_debut_periode"] = $date->format('d/m/Y');
-			$date->add(new DateInterval('P6D'));
+			$date->add(new \DateInterval('P6D'));
 			$data["date_fin_periode"] = $date->format('d/m/Y');
 			$data["repartition_id"] = 0;
 			$data["lundi"] = 1;
@@ -89,87 +86,82 @@ $this->vue=service('Smarty');
 		}
 		$this->vue->set($dataSearch, "repartitionSearch");
 		$this->vue->set($dataList, "dataList");
-		require_once 'modules/classes/site.class.php';
 		$site = new Site;
 		$this->vue->set($site->getListe(2), "site");
 		$this->vue->set("aliment/repartitionList.tpl", "corps");
 		/**
 		 * Recherche de la categorie
 		 */
-		require_once "modules/classes/categorie.class.php";
 		$categorie = new Categorie;
 		$this->vue->set($categorie->getListeSansLot(), "categorie");
-		}
-	function change(){
-$this->vue=service('Smarty');
-		$data = $this->dataRead( $this->id, "aliment/repartitionChange.tpl");
+		return $this->vue->send();
+	}
+	function change()
+	{
+		$this->vue = service('Smarty');
+		$data = $this->dataRead($this->id, "aliment/repartitionChange.tpl");
 		if (empty($data["site_id"])) {
 			$data["site_id"] = 1;
 		}
 		/**
 		 * Recherche de la categorie
 		 */
-		require_once "modules/classes/categorie.class.php";
 		$categorie = new Categorie;
 		$this->vue->set($categorie->getListe(2), "categorie");
-		require_once 'modules/classes/site.class.php';
 		$site = new Site;
 		$this->vue->set($site->getListe(2), "site");
 		/**
 		 * Recuperation des bassins associes et des distributions
 		 */
 		if ($data["categorie_id"] > 0) {
-			require_once "modules/classes/distribution.class.php";
 			$distribution = new Distribution;
 			$this->vue->set($distribution->getFromRepartitionWithBassin($this->id, $data["categorie_id"], $data["site_id"]), "dataBassin");
 			/**
 			 * Recuperation des modèles de distribution actifs
 			 */
-			require_once "modules/classes/repartTemplate.class.php";
 			$template = new RepartTemplate;
 			$this->vue->set($template->getListActifFromCategorie($data["categorie_id"]), "dataTemplate");
+			return $this->vue->send();
 		}
-		}
-	   function create() {
+	}
+	function create()
+	{
 		/**
 		 * Creation d'une repartition vierge
 		 */
-		$this->id = $this->dataWrite( $_REQUEST);
-		if ($this->id > 0) {
-			$_REQUEST[$keyName] = $this->id;
+		try {
+			$this->id = $this->dataWrite($_REQUEST);
+			$_REQUEST[$this->keyName] = $this->id;
+			return true;
+		} catch (PpciException) {
+			return false;
 		}
-		}
-	   function duplicate() {
+	}
+	function duplicate()
+	{
 		/**
 		 * Creation d'une nouvelle repartition a partir d'une existante
 		 */
 		if ($this->id > 0) {
-			$ret = $this->dataclass->duplicate($this->id);
-			if ($ret > 0) {
-				$module_coderetour = 1;
-				$_REQUEST[$keyName] = $ret;
-			} else {
+			try {
+				$_REQUEST[$this->keyName] = $this->dataclass->duplicate($this->id);
+				return true;
+			} catch (PpciException) {
 				$this->message->set(_("Erreur lors de la création d'une nouvelle distribution"), true);
-				$this->message->set($this->dataclass->getErrorData(1));
 				return false;
 			}
+		} else {
+			return false;
 		}
-		}
-	    function write() {
-    try {
-                        $this->id = $this->dataWrite($_REQUEST);
-            $_REQUEST[$this->keyName] = $this->id;
-            return true;
-        } catch (PpciException $e) {
-            return false;
-        }
-            
-		/**
-		 * write record in database
-		 */
-		$this->id = $this->dataWrite( $_REQUEST);
-		if ($this->id > 0) {
-			$_REQUEST[$keyName] = $this->id;
+	}
+	function write()
+	{
+		try {
+			/**
+			 * write record in database
+			 */
+			$this->id = $this->dataWrite($_REQUEST);
+			$_REQUEST[$this->keyName] = $this->id;
 			/**
 			 * Preparation des informations concernant les bassins
 			 */
@@ -184,44 +176,37 @@ $this->vue=service('Smarty');
 			/**
 			 * Mise en table des données de bassins
 			 */
-			require_once "modules/classes/distribution.class.php";
 			$distribution = new Distribution;
-			$error = 0;
 			foreach ($data as $key => $value) {
 				if ($value["distribution_id"] > 0 || $value["total_distribue"] > 0) {
 					$value["repartition_id"] = $this->id;
-					$this->idDistrib = $distribution->ecrire($value);
-					if (!$this->idDistrib > 0) {
-						$error = 1;
-						$this->message->set($distribution->getErrorData(1));
-					}
+					$distribution->ecrire($value);
 				}
 			}
-			if ($error == 1) {
-				$this->message->set(_("Problème lors de l'enregistrement"), true);
-				return false;
-			}
+		} catch (PpciException) {
+			$this->message->set(_("Problème lors de l'enregistrement"), true);
+			return false;
 		}
-		}
-	   function delete() {
+	}
+	function delete()
+	{
 		/**
 		 * delete record
 		 */
-		 try {
-            $this->dataDelete($this->id);
-            return true;
-        } catch (PpciException $e) {
-            return false;
-        }
+		try {
+			$this->dataDelete($this->id);
+			return true;
+		} catch (PpciException $e) {
+			return false;
 		}
-	   function print() {
+	}
+	function print()
+	{
 		/**
 		 * Imprime le tableau de répartition
 		 */
 		if ($this->id > 0) {
-			require_once 'modules/classes/tableauRepartition.class.php';
 			$data = $this->dataclass->lire($this->id);
-			require_once "modules/classes/distribution.class.php";
 			$distribution = new Distribution;
 			/**
 			 * Recuperation de la liste des aliments utilises
@@ -235,29 +220,29 @@ $this->vue=service('Smarty');
 			 */
 			$dataDistrib = $distribution->calculDistribution($this->id);
 			if ($data["categorie_id"] == 1) {
-				$tableau = new RepartitionAdulte();
+				$tableau = new RepartitionAdulte;
 			} elseif ($data["categorie_id"] == 2) {
-				$tableau = new RepartitionJuvenile();
+				$tableau = new RepartitionJuvenile;
 			}
 			$tableau->setData($data, $dataDistrib, $dataAliment);
 			$tableau->exec();
 		}
-		}
-	   function resteChange() {
+	}
+	function resteChange()
+	{
 		$this->vue->set($data = $this->dataclass->lireWithCategorie($this->id), "data");
 		$this->vue->set("aliment/repartitionResteChange.tpl", "corps");
 		/**
 		 * preparation de la saisie des restes
 		 */
-		require_once "modules/classes/distribution.class.php";
 		$distribution = new Distribution;
 		$dataBassin = $distribution->getFromRepartition($this->id);
 
 		/**
 		 * Preparation du tableau de dates
 		 */
-		$dateDebut = DateTime::createFromFormat('d/m/Y', $data['date_debut_periode']);
-		$dateFin = DateTime::createFromFormat('d/m/Y', $data["date_fin_periode"]);
+		$dateDebut = \DateTime::createFromFormat('d/m/Y', $data['date_debut_periode']);
+		$dateFin = \DateTime::createFromFormat('d/m/Y', $data["date_fin_periode"]);
 		$dateDiff = date_diff($dateDebut, $dateFin, true);
 		$nbJour = $dateDiff->format("%a");
 		$jour = array(
@@ -269,14 +254,13 @@ $this->vue=service('Smarty');
 			5 => "ven",
 			6 => "sam"
 		);
-		$total_distribue = 0;
 		for ($i = 0; $i <= $nbJour; $i++) {
 			$dateArray[$i]["libelle"] = $jour[$dateDebut->format("w")];
 			$dateArray[$i]["numJour"] = $i;
 			/**
 			 * Calcul du total distribue
 			 */
-			$dateDebut->add(new DateInterval('P1D'));
+			$dateDebut->add(new \DateInterval('P1D'));
 		}
 		$this->vue->set($dateArray, "dateArray");
 		$this->vue->set($nbJour + 1, "nbJour");
@@ -292,59 +276,47 @@ $this->vue=service('Smarty');
 			}
 		}
 		$this->vue->set($dataBassin, "dataBassin");
-		}
-	   function resteWrite() {
+		return $this->vue->send();
+	}
+	function resteWrite()
+	{
 		/**
 		 * Ecriture de la saisie des restes
 		 */
 		if ($this->id > 0) {
-			/**
-			 * Traitement de chaque distribution
-			 */
-			/**
-			 * Preparation des informations concernant les bassins
-			*/
-			$data = array();
-			foreach ($_REQUEST as $key => $value) {
-				if (preg_match('/[0-9]+$/', $key, $val)) {
-					$pos = strrpos($key, "_");
-					$nom = substr($key, 0, $pos);
-					$data[$val[0]][$nom] = $value;
-				}
-			}
-			require_once "modules/classes/distribution.class.php";
-			$distribution = new Distribution;
-			/**
-			 * Traitement de chaque bassin
-			 */
-			foreach ($data as $key => $value) {
-				$value["date_debut_periode"] = $_REQUEST["date_debut_periode"];
-				$value["date_fin_periode"] = $_REQUEST["date_fin_periode"];
-				$value["repartition_id"] = $_REQUEST["repartition_id"];
+			try {
 				/**
-				 * On divise le total_distribue par le nombre de jours
+				 * Traitement de chaque distribution
 				 */
-				/*if ($_REQUEST ["nbJour"] > 0) {
-					$value ["total_distribue"] = $value ["total_distribue"] / $_REQUEST ["nbJour"];
-				}*/
-				$this->idDistrib = $distribution->ecrireReste($value);
-				if (!$this->idDistrib > 0) {
-					$error = 1;
-					$this->message->set($distribution->getErrorData(1));
+				/**
+				 * Preparation des informations concernant les bassins
+				 */
+				$data = array();
+				foreach ($_REQUEST as $key => $value) {
+					if (preg_match('/[0-9]+$/', $key, $val)) {
+						$pos = strrpos($key, "_");
+						$nom = substr($key, 0, $pos);
+						$data[$val[0]][$nom] = $value;
+					}
 				}
-			}
-			/**
-			 * Traitement des erreurs potentielles
-			 */
-			if ($error == 1) {
-				$this->message->set(_("Problème lors de l'enregistrement"), true);
-				return false;
-			} else {
-
+				$distribution = new Distribution;
+				/**
+				 * Traitement de chaque bassin
+				 */
+				foreach ($data as $key => $value) {
+					$value["date_debut_periode"] = $_REQUEST["date_debut_periode"];
+					$value["date_fin_periode"] = $_REQUEST["date_fin_periode"];
+					$value["repartition_id"] = $_REQUEST["repartition_id"];
+					$distribution->ecrireReste($value);
+				}
 				$this->message->set(_("Opération effectuée"));
-				$module_coderetour = 1;
-				$log->setLog($_SESSION["login"], get_class($this->dataclass) . "-write", $this->id);
+				$this->log->setLog($_SESSION["login"], get_class($this->dataclass) . "-write", $this->id);
+				return true;
+			} catch (PpciException) {
+				return false;
 			}
+		} else {
+			return false;
 		}
-		}
+	}
 }

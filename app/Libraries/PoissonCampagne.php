@@ -37,6 +37,7 @@ class PoissonCampagne extends PpciLibrary
 		if (isset($_REQUEST[$this->keyName])) {
 			$this->id = $_REQUEST[$this->keyName];
 		}
+		helper("esfc");
 	}
 	function list()
 	{

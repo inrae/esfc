@@ -1,11 +1,14 @@
-<?php 
+<?php
+
 namespace App\Libraries;
 
+use App\Models\PsEvenement as ModelsPsEvenement;
 use Ppci\Libraries\PpciException;
 use Ppci\Libraries\PpciLibrary;
 use Ppci\Models\PpciModel;
 
-class  extends PpciLibrary { 
+class PsEvenement extends PpciLibrary
+{
     /**
      * @var 
      */
@@ -15,58 +18,47 @@ class  extends PpciLibrary {
     function __construct()
     {
         parent::__construct();
-        $this->dataclass = new ;
-        $this->keyName = "";
+        $this->dataclass = new ModelsPsEvenement;
+        $this->keyName = "ps_evenement_id";
         if (isset($_REQUEST[$this->keyName])) {
             $this->id = $_REQUEST[$this->keyName];
         }
     }
-
-/**
- * @author Eric Quinton
- * @copyright Copyright (c) 2015, IRSTEA / Eric Quinton
- * @license http://www.cecill.info/licences/Licence_CeCILL-C_V1-fr.html LICENCE DE LOGICIEL LIBRE CeCILL-C
- *  Creation 10 mars 2015
- */
-
-require_once 'modules/classes/psEvenement.class.php';
-$this->dataclass = new PsEvenement;
-$keyName = "ps_evenement_id";
-$this->id = $_REQUEST[$keyName];
-if (isset($this->vue)) {
-	if (isset($_SESSION["sequence_id"])) {
-		$this->vue->set($_SESSION["sequence_id"], "sequence_id");
-	}
-	$this->vue->set($_SESSION["poissonDetailParent"], "poissonDetailParent");
-}
-	function change(){
-$this->vue=service('Smarty');
-		$dataPsEvenement = $this->dataclass->lire($this->id, true, $_REQUEST["poisson_sequence_id"]);
-		/**
-		 * Affectation des donnees a smarty
-		 */
-		$this->vue->set($dataPsEvenement, "dataPsEvenement");
-		$this->vue->set($this->id, "ps_evenement_id");
-		$module_coderetour = 1;
-		}
-	    function write() {
-    try {
-                        $this->id = $this->dataWrite($_REQUEST);
+    function change()
+    {
+        $this->vue = service('Smarty');
+        if (isset($_SESSION["sequence_id"])) {
+            $this->vue->set($_SESSION["sequence_id"], "sequence_id");
+        }
+        $this->vue->set($_SESSION["poissonDetailParent"], "poissonDetailParent");
+        $dataPsEvenement = $this->dataclass->lire($this->id, true, $_REQUEST["poisson_sequence_id"]);
+        /**
+         * Affectation des donnees a smarty
+         */
+        $this->vue->set($dataPsEvenement, "dataPsEvenement");
+        $this->vue->set($this->id, "ps_evenement_id");
+        return $this->vue->send();
+    }
+    function write()
+    {
+        try {
+            $this->id = $this->dataWrite($_REQUEST);
             $_REQUEST[$this->keyName] = $this->id;
             return true;
         } catch (PpciException $e) {
             return false;
         }
-}
-	   function delete() {
-		/**
-		 * delete record
-		 */
-		 try {
+    }
+    function delete()
+    {
+        /**
+         * delete record
+         */
+        try {
             $this->dataDelete($this->id);
             return true;
         } catch (PpciException $e) {
             return false;
         }
-		}
+    }
 }
