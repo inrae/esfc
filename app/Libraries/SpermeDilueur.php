@@ -1,11 +1,14 @@
-<?php 
+<?php
+
 namespace App\Libraries;
 
+use App\Models\SpermeDilueur as ModelsSpermeDilueur;
 use Ppci\Libraries\PpciException;
 use Ppci\Libraries\PpciLibrary;
 use Ppci\Models\PpciModel;
 
-class  extends PpciLibrary { 
+class SpermeDilueur extends PpciLibrary
+{
     /**
      * @var 
      */
@@ -15,53 +18,48 @@ class  extends PpciLibrary {
     function __construct()
     {
         parent::__construct();
-        $this->dataclass = new ;
-        $this->keyName = "";
+        $this->dataclass = new ModelsSpermeDilueur;
+        $this->keyName = "sperme_dilueur_id";
         if (isset($_REQUEST[$this->keyName])) {
             $this->id = $_REQUEST[$this->keyName];
         }
     }
-
-/**
- * @author : quinton
- * @date : 16 mars 2016
- * @encoding : UTF-8
- * (c) 2016 - All rights reserved
- */
-require_once 'modules/classes/spermeDilueur.class.php';
-$this->dataclass = new SpermeDilueur;
-$keyName = "sperme_dilueur_id";
-$this->id = $_REQUEST[$keyName];
-	function list(){
-$this->vue=service('Smarty');
-		/**
-		 * Display the list of all records of the table
-		 */
-		$this->vue->set($this->dataclass->getListe(2), "data");
-		$this->vue->set("parametre/spermeDilueurList.tpl", "corps");
-		}
-	function change(){
-$this->vue=service('Smarty');
-		$this->dataRead( $this->id, "parametre/spermeDilueurChange.tpl");
-		}
-	    function write() {
-    try {
-                        $this->id = $this->dataWrite($_REQUEST);
+    function list()
+    {
+        $this->vue = service('Smarty');
+        /**
+         * Display the list of all records of the table
+         */
+        $this->vue->set($this->dataclass->getListe(2), "data");
+        $this->vue->set("parametre/spermeDilueurList.tpl", "corps");
+        return $this->vue->send();
+    }
+    function change()
+    {
+        $this->vue = service('Smarty');
+        $this->dataRead($this->id, "parametre/spermeDilueurChange.tpl");
+        return $this->vue->send();
+    }
+    function write()
+    {
+        try {
+            $this->id = $this->dataWrite($_REQUEST);
             $_REQUEST[$this->keyName] = $this->id;
             return true;
         } catch (PpciException $e) {
             return false;
         }
-}
-	   function delete() {
-		/**
-		 * delete record
-		 */
-		 try {
+    }
+    function delete()
+    {
+        /**
+         * delete record
+         */
+        try {
             $this->dataDelete($this->id);
             return true;
         } catch (PpciException $e) {
             return false;
         }
-		}
+    }
 }

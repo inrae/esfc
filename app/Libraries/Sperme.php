@@ -1,47 +1,40 @@
-<?php 
+<?php
+
 namespace App\Libraries;
 
+use App\Models\PoissonCampagne;
+use App\Models\PoissonSequence;
+use App\Models\Sperme as ModelsSperme;
+use App\Models\SpermeAspect;
+use App\Models\SpermeCaracteristique;
+use App\Models\SpermeCongelation;
+use App\Models\SpermeDilueur;
+use App\Models\SpermeMesure;
+use App\Models\SpermeQualite;
 use Ppci\Libraries\PpciException;
 use Ppci\Libraries\PpciLibrary;
 use Ppci\Models\PpciModel;
 
-class  extends PpciLibrary { 
-    /**
-     * @var 
-     */
-    protected PpciModel $dataclass;
-    public $keyName;
+class Sperme extends PpciLibrary
+{
+	/**
+	 * @var 
+	 */
+	protected PpciModel $dataclass;
+	public $keyName;
 
-    function __construct()
-    {
-        parent::__construct();
-        $this->dataclass = new ;
-        $this->keyName = "";
-        if (isset($_REQUEST[$this->keyName])) {
-            $this->id = $_REQUEST[$this->keyName];
-        }
-    }
-
-/**
- * @author Eric Quinton
- * @copyright Copyright (c) 2015, IRSTEA / Eric Quinton
- * @license http://www.cecill.info/licences/Licence_CeCILL-C_V1-fr.html LICENCE DE LOGICIEL LIBRE CeCILL-C
- *  Creation 25 mars 2015
- */
-
-require_once 'modules/classes/sperme.class.php';
-$this->dataclass = new Sperme;
-$keyName = "sperme_id";
-$this->id = $_REQUEST[$keyName];
-/**
- * Passage en parametre de la liste parente
- */
-if (isset($this->vue)) {
-	$this->vue->set($_SESSION["poissonDetailParent"], "poissonDetailParent");
-}
-
-	function display(){
-$this->vue=service('Smarty');
+	function __construct()
+	{
+		parent::__construct();
+		$this->dataclass = new ModelsSperme;
+		$this->keyName = "sperme_id";
+		if (isset($_REQUEST[$this->keyName])) {
+			$this->id = $_REQUEST[$this->keyName];
+		}
+	}
+	function display()
+	{
+		$this->vue = service('Smarty');
 		/**
 		 * Display the detail of the record
 		 */
@@ -49,20 +42,20 @@ $this->vue=service('Smarty');
 		/**
 		 * Recherche des caracteristiques particulieres
 		 */
-		require_once "modules/classes/spermeCaracteristique.class.php";
 		$caract = new SpermeCaracteristique;
 		$this->vue->set($caract->getFromSperme($this->id), "spermeCaract");
 		/**
 		 * Recherche des mesures effectuees
 		 */
-		require_once "modules/classes/spermeMesure.class.php";
 		$mesure = new SpermeMesure;
 		$this->vue->set($mesure->getListFromSperme($this->id), "dataMesure");
 		$this->vue->set("repro/spermeDisplay.tpl", "corps");
-		}
-	function change(){
-$this->vue=service('Smarty');
-		require_once 'modules/classes/poissonCampagne.class.php';
+		$this->vue->set($_SESSION["poissonDetailParent"], "poissonDetailParent");
+		return $this->vue->send();
+	}
+	function change()
+	{
+		$this->vue = service('Smarty');
 		$poissonCampagne = new PoissonCampagne;
 		$this->vue->set($poissonCampagne->lire($_REQUEST["poisson_campagne_id"]), "dataPoisson");
 		$sequences = $poissonCampagne->getListSequence($_REQUEST["poisson_campagne_id"], $_SESSION["annee"]);
@@ -71,49 +64,77 @@ $this->vue=service('Smarty');
 			$this->message->set(_("Le poisson n'est rattaché à aucune séquence, la saisie d'un prélèvement de sperme n'est pas possible"), true);
 		} else {
 			$this->vue->set($sequences, "sequences");
-			$data = $this->dataRead( $this->id, "repro/spermeChange.tpl", $_REQUEST["poisson_campagne_id"]);
-			require_once 'modules/repro/spermeFunction.php';
-			initSpermeChange($this->id);
+			$data = $this->dataRead($this->id, "repro/spermeChange.tpl", $_REQUEST["poisson_campagne_id"]);
+			$this->initSpermeChange($this->id);
 			/**
 			 * Donnees du poisson
 			 */
 			if (!isset($_REQUEST["poisson_campagne_id"])) {
 				$_REQUEST["poisson_campagne_id"] = $data["poisson_campagne_id"];
 			}
+			$this->vue->set($_SESSION["poissonDetailParent"], "poissonDetailParent");
+			return $this->vue->send();
 		}
-		}
-	    function write() {
-    try {
-                        $this->id = $this->dataWrite($_REQUEST);
-            $_REQUEST[$this->keyName] = $this->id;
-            return true;
-        } catch (PpciException $e) {
-            return false;
-        }
-            
-		/**
-		 * write record in database
-		 */
-		$this->id = $this->dataWrite( $_REQUEST);
-		if ($this->id > 0) {
-			$_REQUEST[$keyName] = $this->id;
-			/**
-			 * Mise a jour du statut du poisson_sequence
-			 */
-			require_once 'modules/classes/poissonSequence.class.php';
+	}
+	function write()
+	{
+		try {
+			$this->id = $this->dataWrite($_REQUEST);
+			$_REQUEST[$this->keyName] = $this->id;
 			$poissonSequence = new PoissonSequence;
 			$poissonSequence->updateStatutFromPoissonCampagne($_REQUEST["poisson_campagne_id"], $_REQUEST["sequence_id"], 4);
+			return true;
+		} catch (PpciException $e) {
+			return false;
 		}
-		}
-	   function delete() {
+	}
+	function delete()
+	{
 		/**
 		 * delete record
 		 */
-		 try {
-            $this->dataDelete($this->id);
-            return true;
-        } catch (PpciException $e) {
-            return false;
-        }
+		try {
+			$this->dataDelete($this->id);
+			return true;
+		} catch (PpciException $e) {
+			return false;
 		}
+	}
+	function initSpermeChange($sperme_id = 0)
+	{
+		if (is_null($sperme_id)) {
+			$sperme_id = 0;
+		}
+		/**
+		 * Lecture de sperme_qualite
+		 */
+		$spermeAspect = new SpermeAspect;
+		$this->vue->set($spermeAspect->getListe(1), "spermeAspect");
+		/**
+		 * Recherche des caracteristiques particulieres
+		 */
+		$caract = new SpermeCaracteristique;
+		$this->vue->set($caract->getFromSperme($sperme_id), "spermeCaract");
+		/**
+		 * Recherche des dilueurs
+		 */
+		$dilueur = new SpermeDilueur;
+		$this->vue->set($dilueur->getListe(2), "spermeDilueur");
+
+		/**
+		 * Recherche de la qualite de la semence, pour les analyses realisees en meme temps
+		 */
+		$qualite = new SpermeQualite;
+		$this->vue->set($qualite->getListe(1), "spermeQualite");
+		/**
+		 * Recherche des congelations associees
+		 */
+		$congelation = new SpermeCongelation;
+		$this->vue->set($congelation->getListFromSperme($sperme_id), "congelation");
+		/**
+		 * Recherche des analyses realisees
+		 */
+		$mesure = new SpermeMesure;
+		$this->vue->set($mesure->getListFromSperme($sperme_id), "dataMesure");
+	}
 }

@@ -1,82 +1,75 @@
-<?php 
+<?php
+
 namespace App\Libraries;
 
+use App\Models\Croisement;
+use App\Models\Sequence;
+use App\Models\Sperme;
+use App\Models\SpermeUtilise as ModelsSpermeUtilise;
 use Ppci\Libraries\PpciException;
 use Ppci\Libraries\PpciLibrary;
 use Ppci\Models\PpciModel;
 
-class  extends PpciLibrary { 
-    /**
-     * @var 
-     */
-    protected PpciModel $dataclass;
-    public $keyName;
+class SpermeUtilise extends PpciLibrary
+{
+	/**
+	 * @var 
+	 */
+	protected PpciModel $dataclass;
+	public $keyName;
 
-    function __construct()
-    {
-        parent::__construct();
-        $this->dataclass = new ;
-        $this->keyName = "";
-        if (isset($_REQUEST[$this->keyName])) {
-            $this->id = $_REQUEST[$this->keyName];
-        }
-    }
-
-/**
- * @author : quinton
- * @date : 17 mars 2016
- * @encoding : UTF-8
- * (c) 2016 - All rights reserved
- */
-require_once 'modules/classes/spermeUtilise.class.php';
-$this->dataclass = new SpermeUtilise;
-$keyName = "sperme_utilise_id";
-$this->id = $_REQUEST[$keyName];
-if (isset($this->vue)) {
-	$this->vue->set($_SESSION["poissonDetailParent"], "poissonDetailParent");
-}
-
-	function change(){
-$this->vue=service('Smarty');
-		$this->dataRead( $this->id, "repro/spermeUtiliseChange.tpl", $_REQUEST["croisement_id"]);
+	function __construct()
+	{
+		parent::__construct();
+		$this->dataclass = new ModelsSpermeUtilise;
+		$this->keyName = "sperme_utilise_id";
+		if (isset($_REQUEST[$this->keyName])) {
+			$this->id = $_REQUEST[$this->keyName];
+		}
+	}
+	function change()
+	{
+		$this->vue = service('Smarty');
+		$this->dataRead($this->id, "repro/spermeUtiliseChange.tpl", $_REQUEST["croisement_id"]);
 		/**
 		 * Recuperation du croisement
 		 */
-		require_once 'modules/classes/croisement.class.php';
 		$croisement = new Croisement;
 		$croisementData = $croisement->getDetail($_REQUEST["croisement_id"]);
 		$this->vue->set($croisementData, "croisementData");
 		/**
 		 * Lecture de la sequence
 		 */
-		require_once "modules/classes/sequence.class.php";
 		$sequence = new Sequence;
 		$this->vue->set($sequence->lire($croisementData["sequence_id"]), "dataSequence");
 		/**
 		 * Recuperation de la liste des spermes potentiels
 		 */
-		require_once "modules/classes/sperme.class.php";
 		$sperme = new Sperme;
 		$this->vue->set($sperme->getListPotentielFromCroisement($_REQUEST["croisement_id"]), "spermes");
+		$this->vue->set($_SESSION["poissonDetailParent"], "poissonDetailParent");
+		return $this->vue->send();
+	}
+	function write()
+	{
+		try {
+			$this->id = $this->dataWrite($_REQUEST);
+			$_REQUEST[$this->keyName] = $this->id;
+			return true;
+		} catch (PpciException $e) {
+			return false;
 		}
-	    function write() {
-    try {
-                        $this->id = $this->dataWrite($_REQUEST);
-            $_REQUEST[$this->keyName] = $this->id;
-            return true;
-        } catch (PpciException $e) {
-            return false;
-        }
-}
-	   function delete() {
+	}
+	function delete()
+	{
 		/**
 		 * delete record
 		 */
-		 try {
-            $this->dataDelete($this->id);
-            return true;
-        } catch (PpciException $e) {
-            return false;
-        }
+		try {
+			$this->dataDelete($this->id);
+			return true;
+		} catch (PpciException $e) {
+			return false;
 		}
+	}
 }
