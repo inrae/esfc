@@ -32,7 +32,7 @@ class AnomalieDb extends PpciModel
 			"anomalie_db_date" => array(
 				"type" => 2,
 				"requis" => 1,
-				"defaultValue" => "getDateJour"
+				"defaultValue" => date('Y-m-d')
 			),
 			"anomalie_db_type_id" => array(
 				"type" => 1,
@@ -65,7 +65,6 @@ class AnomalieDb extends PpciModel
 	 */
 	function read(int $id, bool $getDefault = true, $parentValue = 0): array
 	{
-
 		$sql = "SELECT anomalie_db_id, anomalie_db_date, anomalie_db.poisson_id, anomalie_db_commentaire, 
 				anomalie_db_type_libelle, evenement_type_libelle, anomalie_db.evenement_id,
 					anomalie_db_statut, anomalie_db_date_traitement, anomalie_db_type_id,
@@ -79,7 +78,7 @@ class AnomalieDb extends PpciModel
 					where anomalie_db_id = :id:";
 		$data = $this->lireParamAsPrepared($sql, array("id" => $id));
 		if (empty($data)) {
-			$data = $this->getDefaultValue($parentValue);
+			$data = $this->getDefaultValues($parentValue);
 		}
 		return $data;
 	}

@@ -57,7 +57,7 @@ class CircuitEau extends PpciModel
 					where circuit_eau_id = :cei:";
 			$data = $this->lireParamAsPrepared($sql, array("cei" => $id));
 		} else {
-			$data = $this->getDefaultValue();
+			$data = $this->getDefaultValues();
 		}
 		return $data;
 	}

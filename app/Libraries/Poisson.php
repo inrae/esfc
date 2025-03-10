@@ -64,6 +64,7 @@ class Poisson extends PpciLibrary
 	function display()
 	{
 		$this->vue = service('Smarty');
+		helper("esfc");
 		/**
 		 * Display the detail of the record
 		 */
@@ -185,7 +186,7 @@ class Poisson extends PpciLibrary
 		$dateStart = new \DateTime();
 		$dateStart->modify("-1 year");
 		$this->vue->set(
-			$this->dataclass->calcul_temperature($this->id, $dateStart->format($_SESSION["MASKDATE"]), date($_SESSION["MASKDATE"])),
+			$this->dataclass->calcul_temperature($this->id, $dateStart->format($_SESSION["date"]["maskdate"]), date($_SESSION["date"]["maskdate"])),
 			"cumulTemp"
 		);
 
@@ -196,8 +197,7 @@ class Poisson extends PpciLibrary
 		$this->vue->set("poisson", "parentType");
 		$this->vue->set("poisson_id", "parentIdName");
 		$this->vue->set($this->id, "parent_id");
-		require_once 'modules/document/documentFunctions.php';
-		$this->vue->set(getListeDocument("poisson", $this->id, $_REQUEST["document_limit"], $_REQUEST["document_offset"]), "dataDoc");
+		$this->vue->set(getListeDocument("poisson", $this->id, $this->vue, $_REQUEST["document_limit"], $_REQUEST["document_offset"]), "dataDoc");
 		/**
 		 * Affichage
 		 */
@@ -286,7 +286,8 @@ class Poisson extends PpciLibrary
 		}
 		return $this->vue->send();
 	}
-	function getPoissonFromTag () {
+	function getPoissonFromTag()
+	{
 		if (!empty($_POST["newtag"])) {
 			$poissonId = $this->dataclass->getPoissonIdFromTag($_POST["newtag"]);
 			if ($poissonId > 0) {

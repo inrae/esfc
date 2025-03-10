@@ -373,7 +373,7 @@ class PoissonCampagne extends PpciModel
 				where poisson_campagne_id = :id:";
 			$data = parent::lireParamAsPrepared($sql, array("id" => $id));
 		} else {
-			$data = parent::getDefaultValue($parentValue);
+			$data = parent::getDefaultValues($parentValue);
 		}
 		return $data;
 	}

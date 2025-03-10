@@ -293,7 +293,7 @@ class MorphologieImport
             $date = $date1[0] . " " . $date1[1];
             $mask = $_SESSION["MASKDATELONG"];
         } else {
-            $mask = $_SESSION["MASKDATE"];
+            $mask = $_SESSION["date"]["maskdate"];
         }
         $result = date_parse_from_format($mask, $date);
         if ($result["warning_count"] > 0) {

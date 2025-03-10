@@ -2,7 +2,7 @@
 
 namespace App\Libraries;
 
-use App\Models\Anomalie_db_type;
+use App\Models\AnomalieDbType;
 use Ppci\Libraries\PpciException;
 use Ppci\Libraries\PpciLibrary;
 use Ppci\Models\PpciModel;
@@ -18,7 +18,7 @@ class AnomalieDbType extends PpciLibrary
     function __construct()
     {
         parent::__construct();
-        $this->dataclass = new Anomalie_db_type;
+        $this->dataclass = new AnomalieDbType;
         $this->keyName = "anomalie_db_type_id";
         if (isset($_REQUEST[$this->keyName])) {
             $this->id = $_REQUEST[$this->keyName];

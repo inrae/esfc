@@ -55,7 +55,7 @@ class Sequence extends PpciModel
 					where sequence_id = :sequence_id:";
 			$data = $this->lireParamAsPrepared($sql, array("sequence_id" => $id));
 		} else {
-			$data = $this->getDefaultValue();
+			$data = $this->getDefaultValues();
 			$data["site_id"] = $_SESSION["site_id"];
 		}
 		return $data;

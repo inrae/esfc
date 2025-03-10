@@ -37,7 +37,7 @@
 		});
 	});
 </script>
-<form method="get" action=poissonList"" id="search" class="col-lg-12 form-horizontal">
+<form method="get" action="poissonList" id="search" class="col-lg-12 form-horizontal">
 	<input type="hidden" name="isSearch" value="1">
 	<div class="row">
 		<div class="form-group">

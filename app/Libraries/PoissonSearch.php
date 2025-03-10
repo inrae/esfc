@@ -4,6 +4,7 @@ namespace App\Libraries;
 
 use App\Models\Bassin;
 use App\Models\Categorie;
+use App\Models\Poisson;
 use App\Models\PoissonStatut;
 use App\Models\SearchPoisson;
 use App\Models\Sexe;
@@ -12,6 +13,10 @@ use Ppci\Libraries\PpciLibrary;
 
 class PoissonSearch extends PpciLibrary
 {
+    function __construct()
+    {
+        $this->dataclass = new Poisson;
+    }
 
     /**
      * Gestion des variables de recherche

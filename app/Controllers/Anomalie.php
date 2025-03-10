@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use \Ppci\Controllers\PpciController;
 use App\Libraries\Anomalie as LibrariesAnomalie;
+use App\Libraries\Poisson;
 
 class Anomalie extends PpciController
 {
@@ -23,7 +24,12 @@ class Anomalie extends PpciController
     function write()
     {
         if ($this->lib->write()) {
-            return $this->lib->list();
+            if ($_REQUEST["module_origine"] == "poissonDisplay") {
+                $poisson = new Poisson;
+                return $poisson->display();
+            } else {
+                return $this->lib->list();
+            }
         } else {
             return $this->lib->change();
         }
@@ -31,7 +37,12 @@ class Anomalie extends PpciController
     function delete()
     {
         if ($this->lib->delete()) {
-            return $this->lib->list();
+            if ($_REQUEST["module_origine"] == "poissonDisplay") {
+                $poisson = new Poisson;
+                return $poisson->display();
+            } else {
+                return $this->lib->list();
+            }
         } else {
             return $this->lib->change();
         }

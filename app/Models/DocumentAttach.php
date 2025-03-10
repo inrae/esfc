@@ -2,11 +2,8 @@
 namespace App\Models;
 
 use Config\App;
+use Ppci\Libraries\PpciException;
 use Ppci\Models\PpciModel;
-
-class DocumentException extends Exception
-{
-}
 
 /**
  * Orm de gestion de la table document :
@@ -98,7 +95,7 @@ class DocumentAttach extends PpciModel
 				$data["size"] = $file["size"];
 				$data["mime_type_id"] = $mime_type_id;
 				$data["document_description"] = $description;
-				$data["document_date_import"] = date($_SESSION["MASKDATE"]);
+				$data["document_date_import"] = date($_SESSION["date"]["maskdate"]);
 				$data["document_date_creation"] = $document_date_creation;
 				$dataDoc = array();
 
@@ -110,17 +107,15 @@ class DocumentAttach extends PpciModel
 				 * Ecriture du document
 				 */
 				$dataBinaire = fread(fopen($file["tmp_name"], "r"), $file["size"]);
-				
-
-				$dataDoc["data"] = pg_escape_bytea($dataBinaire);
-				if ($extension == "pdf" || $extension == "png" || $extension == "jpg") {
-					$image = new Imagick();
-					$image->readImageBlob($dataBinaire);
-					$image->setiteratorindex(0);
-					$image->resizeimage(200, 200, Imagick::FILTER_LANCZOS, 1, true);
-					$image->setformat("png");
-					$dataDoc["thumbnail"] = pg_escape_bytea($image->getimageblob());
-				}
+				$dataDoc["data"] = pg_escape_bytea($this->db->connID, $dataBinaire);
+                if ($extension == "pdf" || $extension == "png" || $extension == "jpg") {
+                    $image = new \Imagick();
+                    $image->readImageBlob($dataBinaire);
+                    $image->setiteratorindex(0);
+                    $image->resizeimage(200, 200, \imagick::FILTER_LANCZOS, 1, true);
+                    $image->setformat("png");
+                    $dataDoc["thumbnail"] = pg_escape_bytea($this->db->connID, $image->getimageblob());
+                }
 				/**
 					 * suppression du stockage temporaire
 					 */
@@ -135,10 +130,10 @@ class DocumentAttach extends PpciModel
 				}
 				return $id;
 			} else {
-				throw new DocumentException(_("Le type MIME du fichier n'est pas reconnu"));
+				throw new PpciException(_("Le type MIME du fichier n'est pas reconnu"));
 			}
 		} else {
-			throw new DocumentException(_("Pas de fichier chargé"));
+			throw new PpciException(_("Pas de fichier chargé"));
 		}
 	}
 	/**
@@ -312,7 +307,7 @@ class DocumentAttach extends PpciModel
 					6
 				)) && $docRef != NULL) {
 					try {
-						$image = new Imagick();
+						$image = new \Imagick();
 						$image->readImageFile($docRef);
 						if ($i == 1) {
 							/*
@@ -334,11 +329,11 @@ class DocumentAttach extends PpciModel
 								}
 							}
 							if ($resize == 1)
-								$image->resizeImage($resx, $resy, imagick::FILTER_LANCZOS, 1);
+								$image->resizeImage($resx, $resy, \Imagick::FILTER_LANCZOS, 1);
 						}
 						$document = $image->getimageblob();
 						$writeOk = true;
-					} catch (Exception $e) {
+					} catch (\Exception) {
 					};
 				} else {
 					/*
@@ -349,7 +344,7 @@ class DocumentAttach extends PpciModel
 						$writeOk = true;
 						$document = stream_get_contents($docRef);
 						if ($document == false) {
-							throw new DocumentException(_("Unable to read the document"));
+							throw new PpciException(_("Un problème est survenu au moment de lire le document"));
 						}
 					}
 				}

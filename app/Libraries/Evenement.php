@@ -204,7 +204,7 @@ class Evenement extends PpciLibrary
             $this->vue->set("evenement", "parentType");
             $this->vue->set("evenement_id", "parentIdName");
             $this->vue->set($this->id, "parent_id");
-            require_once 'modules/document/documentFunctions.php';
+            helper("esfc");
             $this->vue->set(getListeDocument("evenement", $this->id, $_REQUEST["document_limit"], $_REQUEST["document_offset"]), "dataDoc");
         }
         return $this->vue->send();
@@ -361,7 +361,6 @@ class Evenement extends PpciLibrary
              * Creation d'une nouvelle anomalie a traiter en cas de souci
              */
             if ($_REQUEST["anomalie_flag"] > 0) {
-                require_once "modules/classes/anomalie.class.php";
                 $anomalie = new AnomalieDb;
                 $_REQUEST["anomalie_id"] = 0;
                 $_REQUEST["anomalie_db_date"] = $_REQUEST["evenement_date"];

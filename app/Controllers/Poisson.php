@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Libraries\Anomalie;
 use \Ppci\Controllers\PpciController;
 use App\Libraries\Poisson as LibrariesPoisson;
 
@@ -47,5 +48,21 @@ class Poisson extends PpciController
     function getPoissonFromTag()
     {
         return $this->lib->getPoissonFromTag();
+    }
+    function anomalieWrite() {
+        $anomalie = new Anomalie;
+        if ($anomalie->write()) {
+            return $this->lib->display();
+        }else {
+            return $anomalie->change();
+        }
+    }
+    function anomalieDelete() {
+        $anomalie = new Anomalie;
+        if ($anomalie->delete()) {
+            return $this->lib->display();
+        }else {
+            return $anomalie->change();
+        }
     }
 }

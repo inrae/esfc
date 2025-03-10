@@ -37,11 +37,11 @@ class SpermeFreezingMeasure extends PpciModel
      * pour recuperer le cas echeant l'heure de derniere mesure, augmentee
      * d'une minute
      * {@inheritDoc}
-     * @see ObjetBDD::getDefaultValue()
+     * @see ObjetBDD::getDefaultValues()
      */
-    function getDefaultValue($parentValue = 0): array
+    function getDefaultValues($parentValue = 0): array
     {
-        $data = parent::getDefaultValue($parentValue);
+        $data = parent::getDefaultValues($parentValue);
         /*
          * Recherche de la derniere date enregistree
          */

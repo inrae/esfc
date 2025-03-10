@@ -88,7 +88,7 @@ class PsEvenement extends PpciModel
     function read($id, $getDefault = true, $parentValue = 0): array
     {
         if ($id == 0) {
-            $data = $this->getDefaultValue($parentValue);
+            $data = $this->getDefaultValues($parentValue);
         } else {
             $data = parent::lire($id, $getDefault, $parentValue);
         }

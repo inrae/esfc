@@ -109,7 +109,7 @@ class SpermeCongelation extends PpciModel
                 where sperme_congelation_id = :id:";
             return $this->lireParamAsPrepared($sql, array("id" => $id));
         } else {
-            return $this->getDefaultValue($parentValue);
+            return $this->getDefaultValues($parentValue);
         }
     }
 

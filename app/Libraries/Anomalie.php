@@ -2,8 +2,8 @@
 
 namespace App\Libraries;
 
-use App\Models\Anomalie_db;
-use App\Models\Anomalie_db_type;
+use App\Models\AnomalieDb;
+use App\Models\AnomalieDbType;
 use App\Models\Poisson;
 use App\Models\SearchAnomalie;
 use Ppci\Libraries\PpciException;
@@ -21,7 +21,7 @@ class Anomalie extends PpciLibrary
 	function __construct()
 	{
 		parent::__construct();
-		$this->dataclass = new Anomalie_db;
+		$this->dataclass = new AnomalieDb;
 		$this->keyName = "anomalie_db_id";
 		if (isset($_REQUEST[$this->keyName])) {
 			$this->id = $_REQUEST[$this->keyName];
@@ -47,7 +47,7 @@ class Anomalie extends PpciLibrary
 		/**
 		 * Recuperation des types d'anomalie
 		 */
-		$anomalieType = new Anomalie_db_type;
+		$anomalieType = new AnomalieDbType;
 		$this->vue->set($anomalieType->getListe(), "anomalieType");
 		return $this->vue->send();
 	}
@@ -84,8 +84,7 @@ class Anomalie extends PpciLibrary
 		 * Passage en parametre de la liste parente
 		*/
 		$this->vue->set($_SESSION["poissonDetailParent"], "poissonDetailParent");
-		require_once "modules/classes/anomalie_db_type.class.php";
-		$anomalieType = new Anomalie_db_type;
+		$anomalieType = new AnomalieDbType;
 		$this->vue->set($anomalieType->getListe(), "anomalieType");
 		if ($_REQUEST["module_origine"] == "poissonDisplay") {
 			$this->vue->set("poissonDisplay", "module_origine");
