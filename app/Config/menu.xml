@@ -7,9 +7,9 @@
 
 <item module="poissonList" label="Poissons" tooltip="Liste des poissons">
 		<item module="poissonList" label="Poissons" tooltip="Liste des poissons" />
-		<item module="anomalieList" label="Anomalies" tooltip="Liste des anomalies détectées" droits="gestion"/>
+		<item module="anomalieList" label="Anomalies" tooltip="Liste des anomalies détectées" droits="manage"/>
 		<item divider="1" droits="requete"/>
-		<item module="morphologieImport" droits="gestion" label="Import des mesures" tooltip="Importation des morphologies à partir d'un fichier CSV"/>
+		<item module="morphologieImport" droits="manage" label="Import des mesures" tooltip="Importation des morphologies à partir d'un fichier CSV"/>
 		<item module="requestList" droits="requete" label="Requêtes sur la base de données" tooltip="Exécuter des requêtes sur la base de données"/>
 	</item>
 
@@ -77,7 +77,7 @@
 		<item divider="1" droits="consult"/>
 		<item module="anomalieTypeList" label="Types d'anomalies" tooltip="Liste des types d'anomalies détectés dans la base de données" droits="consult"/>
 		<item module="mimeTypeList" label="Types de fichiers" tooltip="Liste des types de fichiers importables" droits="consult"/>
-		<item divider="1" droits="gestion"/>
+		<item divider="1" droits="manage"/>
 		<item module="dbstructureSchema" droits="gestion,admin" label="Schéma de la base de données" tooltip="Schéma de la base de données"/>
 		<item module="dbstructureHtml" droits='gestion,admin' label="Structure de la base de données (HTML)" tooltip="Liste des tables et des colonnes"/>
 
