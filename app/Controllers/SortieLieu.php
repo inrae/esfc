@@ -1,32 +1,39 @@
 <?php
+
 namespace App\Controllers;
 
 use \Ppci\Controllers\PpciController;
 use App\Libraries\SortieLieu as LibrariesSortieLieu;
 
-class SortieLieu extends PpciController {
-protected $lib;
-function __construct() {
-$this->lib = new LibrariesSortieLieu();
-}
-function list() {
-return $this->lib->list();
-}
-function change() {
-return $this->lib->change();
-}
-function write() {
-if ($this->lib->write()) {
-return $this->list();
-} else {
-return $this->change();
-}
-}
-function delete() {
-if ($this->lib->delete()) {
-return $this->list();
-} else {
-return $this->change();
-}
-}
+class SortieLieu extends PpciController
+{
+    protected $lib;
+    function __construct()
+    {
+        $this->lib = new LibrariesSortieLieu();
+    }
+    function list()
+    {
+        return $this->lib->list();
+    }
+    function change()
+    {
+        return $this->lib->change();
+    }
+    function write()
+    {
+        if ($this->lib->write()) {
+            return $this->lib->list();
+        } else {
+            return $this->lib->change();
+        }
+    }
+    function delete()
+    {
+        if ($this->lib->delete()) {
+            return $this->lib->list();
+        } else {
+            return $this->lib->change();
+        }
+    }
 }

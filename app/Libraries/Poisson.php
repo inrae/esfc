@@ -286,4 +286,16 @@ class Poisson extends PpciLibrary
 		}
 		return $this->vue->send();
 	}
+	function getPoissonFromTag () {
+		if (!empty($_POST["newtag"])) {
+			$poissonId = $this->dataclass->getPoissonIdFromTag($_POST["newtag"]);
+			if ($poissonId > 0) {
+				$_REQUEST["poisson_id"] = $poissonId;
+				return $this->display();
+			} else {
+				$this->message->set(sprintf(_("Aucun poisson ne correspond au pittag %s"), $_POST["newtag"]), true);
+				return $this->display();
+			}
+		}
+	}
 }

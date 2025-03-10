@@ -23,17 +23,17 @@ class Aliment extends PpciController
     function write()
     {
         if ($this->lib->write()) {
-            return $this->list();
+            return $this->lib->list();
         } else {
-            return $this->change();
+            return $this->lib->change();
         }
     }
     function delete()
     {
         if ($this->lib->delete()) {
-            return $this->list();
+            return $this->lib->list();
         } else {
-            return $this->change();
+            return $this->lib->change();
         }
     }
 }
