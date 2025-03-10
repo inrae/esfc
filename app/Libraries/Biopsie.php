@@ -46,7 +46,7 @@ class Biopsie extends PpciLibrary
 		$this->vue->set("biopsie", "parentType");
 		$this->vue->set("biopsie_id", "parentIdName");
 		$this->vue->set($this->id, "parent_id");
-		$this->vue->set(getListeDocument("biopsie", $this->id, $_REQUEST["document_limit"], $_REQUEST["document_offset"]), "dataDoc");
+		$this->vue->set(getListeDocument("biopsie", $this->id, $this->vue, $_REQUEST["document_limit"], $_REQUEST["document_offset"]), "dataDoc");
 		if (isset($_SESSION["sequence_id"])) {
 			$this->vue->set($_SESSION["sequence_id"], "sequence_id");
 		}

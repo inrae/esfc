@@ -53,6 +53,9 @@
 			{t}Nouvel événement...{/t}
 		</a>
 		{/if}
+		<a href="poissonDisplay?poisson_id={$dataPoisson.poisson_id}">
+			<img src="display/images/refresh.png" height="25">
+		</a>
 	</div>
 	<div class="col-md-4 form-horizontal">
 		<form id="poissonNew" method="post" action="poissonGetFromTag">

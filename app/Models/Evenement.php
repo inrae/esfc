@@ -222,7 +222,7 @@ class Evenement extends PpciModel
              * search if a status must be updated
              */
             if (!isset($this->evenementType)) {
-                $this->evenementType = new Evenement_type;
+                $this->evenementType = new EvenementType;
             }
             $dtype = $this->evenementType->lire($data["evenement_type_id"]);
             if (!empty($dtype["poisson_statut_id"])) {

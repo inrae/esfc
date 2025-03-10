@@ -56,7 +56,7 @@ class Pittag extends PpciModel
     function getListByPoisson(int $poisson_id, int $limit = 0)
     {
         $param = array("poisson_id" => $poisson_id);
-        $sql = "SELECT pittag_id, poisson_id, pittag_date_pose, pittag_valeur, pittag_type_libelle,
+        $sql = "SELECT pittag_id, poisson_id, pittag_date_pose::date, pittag_valeur, pittag_type_libelle,
 					pittag_type_id, pittag_commentaire
 					from pittag
 					left outer join pittag_type using (pittag_type_id)
@@ -83,7 +83,7 @@ class Pittag extends PpciModel
          * Search it the pittag is the most recent
          */
         $param = array("poisson_id" => $data["poisson_id"]);
-        $sql = "SELECT pittag_id, pittag_date_pose, pittag_valeur, matricule
+        $sql = "SELECT pittag_id, pittag_date_pose::date, pittag_valeur, matricule
                 from pittag
                 join poisson using (poisson_id)
                 where poisson_id = :poisson_id:

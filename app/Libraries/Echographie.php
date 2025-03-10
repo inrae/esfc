@@ -48,7 +48,7 @@ class Echographie extends PpciLibrary
 		$this->vue->set("echographie_id", "parentIdName");
 		$this->vue->set($this->id, "parent_id");
 		helper("esfc");
-		$this->vue->set(getListeDocument("echographie", $this->id, $_REQUEST["document_limit"], $_REQUEST["document_offset"]), "dataDoc");
+		$this->vue->set(getListeDocument("echographie", $this->id, $this->vue, $_REQUEST["document_limit"], $_REQUEST["document_offset"]), "dataDoc");
 		if (isset($_SESSION["sequence_id"]))
 			$this->vue->set($_SESSION["sequence_id"], "sequence_id");
 		$this->vue->set($_SESSION["poissonDetailParent"], "poissonDetailParent");

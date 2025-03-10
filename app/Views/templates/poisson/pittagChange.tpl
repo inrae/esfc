@@ -23,7 +23,7 @@
                 </label>
                 <div class="col-md-8">
                     <input class="form-control" name="pittag_valeur" id="cpittag_valeur" value="{$data.pittag_valeur}"
-                        pattern="(([A-F0-9][A-F0-9])+|[0-9]+)" placeholder="01AB2C ou 12345"
+                        pattern="(([A-F0-9][A-F0-9])+|[0-9]+\.+[0-9]+)" placeholder="01AB2C ou 12345"
                         title="{t}Nombre hexadécimal ou numérique{/t}" autofocus>
                 </div>
             </div>

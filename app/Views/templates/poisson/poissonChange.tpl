@@ -38,7 +38,7 @@
 
 <div class="row">
 	<div class="col-md-6">
-		<form class="form-horizontal" id="poissonForm" method="post" action="poisson">			
+		<form class="form-horizontal" id="poissonForm" method="post" action="poissonWrite">			
 			<input type="hidden" name="moduleBase" value="poisson">
 			<input type="hidden" name="poisson_id" value="{$data.poisson_id}">
 			<input type="hidden" name="sexe_id" value="{$data.sexe_id}">

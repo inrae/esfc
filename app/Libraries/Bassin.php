@@ -108,7 +108,7 @@ class Bassin extends PpciLibrary
 		/**
 		 * Ajout des informations pour le transfert des poissons
 		 */
-		$eventType = new Evenement_type;
+		$eventType = new EvenementType;
 		$this->vue->set($eventType->getListe("evenement_type_actif desc, evenement_type_libelle"), "evntType");
 		$data["site_id"] > 0 ? $siteId = $data["site_id"] : $siteId = 0;
 		$this->vue->set($this->dataclass->getListBassin($siteId, 1), "bassinListActif");

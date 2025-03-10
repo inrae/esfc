@@ -205,7 +205,7 @@ class Evenement extends PpciLibrary
             $this->vue->set("evenement_id", "parentIdName");
             $this->vue->set($this->id, "parent_id");
             helper("esfc");
-            $this->vue->set(getListeDocument("evenement", $this->id, $_REQUEST["document_limit"], $_REQUEST["document_offset"]), "dataDoc");
+            $this->vue->set(getListeDocument("evenement", $this->id, $this->vue, $_REQUEST["document_limit"], $_REQUEST["document_offset"]), "dataDoc");
         }
         return $this->vue->send();
     }

@@ -80,6 +80,7 @@ class DocumentAttach extends PpciModel
 	 */
 	function write($file, $description = "", $document_date_creation = ""):int
 	{
+		printA($file);
 		if ($file["error"] == 0 && $file["size"] > 0) {
 			/*
 			 * Recuperation de l'extension
