@@ -21,7 +21,7 @@
         <legend>
             {t}Mortalité cumulée{/t}
         </legend>
-        <form id="refresh" action="default" method="get" class="form-inline">
+        <form id="refresh" action="/" method="get" class="form-inline">
                 <div class="radio">
                     <label>
                     <input type="radio" class="type" name="type" id="type1" value="1" {if $type == 1}checked{/if}>

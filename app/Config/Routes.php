@@ -5,6 +5,7 @@ use CodeIgniter\Router\RouteCollection;
 /**
  * @var RouteCollection $routes
  */
+$routes->add('/','Defaultpage::display');
 $routes->add('dbstructureHtml', '\Ppci\Controllers\Structure::html');
 $routes->add('dbstructureGacl', '\Ppci\Controllers\Structure::gacl');
 $routes->add('pittagTypeList', 'PittagType::list');
