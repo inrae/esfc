@@ -66,12 +66,6 @@ class Sperme extends PpciLibrary
 			$this->vue->set($sequences, "sequences");
 			$data = $this->dataRead($this->id, "repro/spermeChange.tpl", $_REQUEST["poisson_campagne_id"]);
 			$this->initSpermeChange($this->id);
-			/**
-			 * Donnees du poisson
-			 */
-			if (!isset($_REQUEST["poisson_campagne_id"])) {
-				$_REQUEST["poisson_campagne_id"] = $data["poisson_campagne_id"];
-			}
 			$this->vue->set($_SESSION["poissonDetailParent"], "poissonDetailParent");
 			return $this->vue->send();
 		}

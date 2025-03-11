@@ -1,4 +1,4 @@
-<a href="{$poissonDetailParent}&sequence_id={$data.sequence_id}">
+<a href="{$poissonDetailParent}?sequence_id={$data.sequence_id}">
     <img src="display/images/display.png" height="25">
     {t}Retour à la liste des poissons{/t}
 </a>&nbsp;
@@ -15,7 +15,7 @@
 
 <div class="row">
     <div class="col-lg-4 col-md-12">
-        <form class="form-horizontal" id="spermeForm" method="post" action="spermeWrite">            
+        <form class="form-horizontal" id="spermeForm" method="post" action="spermeWrite">
             <input type="hidden" name="moduleBase" value="sperme">
             <div class="form-group">
                 <label for="" class="control-label col-md-4">
@@ -40,10 +40,11 @@
                 <button class="btn btn-danger button-delete">{t}Supprimer{/t}</button>
                 {/if}
             </div>
-        {$csrf}</form>
+            {$csrf}
+        </form>
     </div>
 
-
+    {if $data.sperme_id > 0}
     <div class="col-lg-8 col-md-12">
         <h3>
             <img src="display/images/analyse.png" height="25">
@@ -52,12 +53,12 @@
         {include file="repro/spermeMesureList.tpl"}
 
         <!-- Ajout de l'affichage des congelations -->
-        {if $data.sperme_id > 0}
+
         <h3>
             <img src="display/images/congelation.svg" height="25">
             {t}Congélations{/t}
         </h3>
         {include file="repro/spermeCongelationList.tpl"}
-        {/if}
     </div>
+    {/if}
 </div>

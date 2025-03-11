@@ -62,7 +62,7 @@ class Sperme extends PpciModel
             "sperme_date" => array(
                 "type" => 3,
                 "requis" => 1,
-                "defaultValue" => "getDateHeure"
+                "defaultValue" => date ($_SESSION["date"]["maskdatelong"])
             ),
             "sperme_volume" => array(
                 "type" => 1
@@ -220,9 +220,9 @@ class Sperme extends PpciModel
      *
      * @see ObjetBDD::lire()
      */
-    function read($id, $getDefault = false, $defaultValue = 0): array
+    function read($id, $getDefault = true, $defaultValue = 0): array
     {
-        $data = parent::read($id);
+        $data = parent::read($id, $getDefault,$defaultValue);
         if ($data["sperme_id"] > 0) {
             if (!isset($this->spermeMesure)) {
                 $this->spermeMesure = new SpermeMesure;
@@ -230,6 +230,9 @@ class Sperme extends PpciModel
             $dataMesure = $this->spermeMesure->getFromSpermeDate($data["sperme_id"]);
             foreach ($dataMesure as $key => $value)
                 $data[$key] = $value;
+        }
+        if (!$data["sperme_mesure_id"]> 0) {
+            $data["sperme_mesure_id"] = 0;
         }
         return $data;
     }
