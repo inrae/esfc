@@ -183,6 +183,9 @@ class PoissonCampagne extends PpciModel
 					and annee = :annee:";
 		return $this->lireParam($sql, ["poisson_id" => $poisson_id, "annee" => $annee]);
 	}
+	function lireFromPoissonAnnee(int $poisson_id, int $annee) {
+		return $this->readFromPoissonAnnee($poisson_id,$annee);
+	}
 
 	/**
 	 * retourne les poissons retenus pour une année
@@ -462,7 +465,7 @@ class PoissonCampagne extends PpciModel
 					 join circuit_eau ce using (circuit_eau_id)
 					 join bassin_campagne bc on bc.bassin_id = b.bassin_id
 				     JOIN analyse_eau ae ON (ae.circuit_eau_id = ce.circuit_eau_id
-						and extract (year from analyse_eau_date) = :annee
+						and extract (year from analyse_eau_date) = :annee:
 						AND ae.analyse_eau_date between b.date_debut
 						AND CASE WHEN b.date_fin IS NULL THEN 'now'::text::date ELSE b.date_fin END
 						)

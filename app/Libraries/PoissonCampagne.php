@@ -165,7 +165,7 @@ class PoissonCampagne extends PpciLibrary
 		foreach ($dataEcho as $value) {
 			$a_id[] = $value["evenement_id"];
 		}
-		$this->vue->set(getListeDocument("evenement", $a_id, $_REQUEST["document_limit"], $_REQUEST["document_offset"]), "dataDoc");
+		$this->vue->set(getListeDocument("evenement", $a_id, $this->vue, $_REQUEST["document_limit"], $_REQUEST["document_offset"]), "dataDoc");
 		$this->vue->set("repro/poissonCampagneDisplay.tpl", "corps");
 		if (isset($_REQUEST["sequence_id"])) {
 			$this->vue->set($_REQUEST["sequence_id"], "sequence_id");
