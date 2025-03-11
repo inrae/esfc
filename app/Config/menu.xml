@@ -13,7 +13,7 @@
 		<item module="requestList" droits="requete" label="Requêtes sur la base de données" tooltip="Exécuter des requêtes sur la base de données"/>
 	</item>
 
-	<item module="bassinList" label="Bassins" tooltip="Liste des bassins" droits="consult">
+	<item module="bassin" label="Bassins" tooltip="Liste des bassins" droits="consult">
 		<item module="bassinList" label="Bassins" tooltip="Liste des bassins"/>
 		<item module="circuitEauList" label="Circuits d'eau" tooltip="Liste des circuits d'eau"/>
 		<item module="sondeImport" label="Import sondes" tooltip="Importation des résultats d'analyses effectuées avec les sondes" droits="bassinGestion"/>
@@ -63,7 +63,7 @@
 			<item module="circuitEvenementTypeList" label="Types d'événements sur les circuits d'eau" tooltip="Liste des types d'événements pouvant survenir sur les circuits d'eau" droits="consult"/>
 		</item>
 
-		<item module="reproduction" label="Reproduction" tooltip="Paramètres associés à la reproduction" droits="consult">
+		<item module="paramReproduction" label="Reproduction" tooltip="Paramètres associés à la reproduction" droits="consult">
 			<item module="hormoneList" label="Hormones" tooltip="Liste des hormones utilisées" droits="consult"/>
 			<item module="anesthesieProduitList" label="Produits d'anesthésie" tooltip="Liste des produits d'anesthésie utilisés" droits="consult"/>
 			<item module="vieImplantationList" label="Implantation VIE" tooltip="Liste des emplacements d'implantation des marques VIE" droits="consult"/>
