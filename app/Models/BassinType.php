@@ -12,13 +12,6 @@ use Ppci\Models\PpciModel;
  */
 class BassinType extends PpciModel
 {
-	/**
-	 * Constructeur de la classe
-	 *
-	 * @param
-	 *        	instance ADODB $bdd
-	 * @param array $param        	
-	 */
 	function __construct()
 	{
 		$this->table = "bassin_type";

@@ -5,7 +5,7 @@
 
 <div class="row">
 	<div class="col-md-6">
-		<form class="form-horizontal" id="bassinEvenementForm" method="post" action="bassinEvenement">			
+		<form class="form-horizontal" id="bassinEvenementForm" method="post" action="bassinEvenementWrite">			
 			<input type="hidden" name="moduleBase" value="bassinEvenement">
 			<input type="hidden" name="bassin_evenement_id" value="{$data.bassin_evenement_id}">
 			<input type="hidden" name="bassin_id" value="{$data.bassin_id}">

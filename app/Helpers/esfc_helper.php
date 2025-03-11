@@ -2,10 +2,6 @@
 
 namespace App\Libraries;
 
-use app\Models\BassinType;
-use app\Models\BassinUsage;
-use App\Models\BassinZone;
-use App\Models\CircuitEau;
 use App\Models\DocumentSturio;
 use App\Models\PoissonCampagne;
 use App\Models\SpermeAspect;
@@ -15,18 +11,6 @@ use App\Models\SpermeDilueur;
 use App\Models\SpermeMesure;
 use App\Models\SpermeQualite;
 use Ppci\Libraries\PpciException;
-
-function bassinParamAssocie($vue)
-{
-    $bassin_type = new BassinType;
-    $vue->set($bassin_type->getListe(2), "bassin_type");
-    $bassin_usage = new BassinUsage;
-    $vue->set($bassin_usage->getListe(2), "bassin_usage");
-    $bassin_zone = new BassinZone;
-    $vue->set($bassin_zone->getListe(2), "bassin_zone");
-    $circuit_eau = new CircuitEau;
-    $vue->set($circuit_eau->getListe(2), "circuit_eau");
-}
 
 function getListeDocument($type, array|int $id, $vue, $limit = "", $offset = 0)
 {
@@ -190,4 +174,3 @@ function apiCall($method, $url, $certificate_path = "", $data = array(), $modeDe
     curl_close($curl);
     return $res;
 }
-

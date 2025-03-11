@@ -50,6 +50,7 @@ class Bassin extends PpciController
     }
     function bassinPoissonTransfert()
     {
-        return $this->lib->bassinPoissonTransfert();
+        $this->lib->bassinPoissonTransfert();
+        return $this->lib->display();
     }
 }

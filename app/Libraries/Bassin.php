@@ -4,9 +4,14 @@ namespace App\Libraries;
 
 use App\Models\Bassin as ModelsBassin;
 use App\Models\BassinEvenement;
+use App\Models\BassinType;
+use App\Models\BassinUsage;
+use App\Models\BassinZone;
+use App\Models\CircuitEau;
 use App\Models\DistribQuotidien;
 use App\Models\Evenement;
 use App\Models\Evenement_type;
+use App\Models\EvenementType;
 use App\Models\SearchAlimentation;
 use App\Models\SearchBassin;
 use App\Models\Site;
@@ -35,7 +40,7 @@ class Bassin extends PpciLibrary
 		} else {
 			$this->id = -1;
 		}
-		if (!isset ($_SESSION["searchBassin"])) {
+		if (!isset($_SESSION["searchBassin"])) {
 			$_SESSION["searchBassin"] = new SearchBassin;
 		}
 		$_SESSION["bassinParentModule"] = "bassinListniv2";
@@ -48,9 +53,12 @@ class Bassin extends PpciLibrary
 		 * Display the list of all records of the table
 		 */
 		$_SESSION["searchBassin"]->setParam($_REQUEST);
+		$searchParam = $_SESSION["searchBassin"]->getParam();
 		if ($_SESSION["searchBassin"]->isSearch() == 1) {
-			$this->vue->set($this->dataclass->getListeSearch($_SESSION["searchBassin"]->getParam()), "data");
+			$this->vue->set($this->dataclass->getListeSearch($searchParam), "data");
+			$this->vue->set(1, "isSearch");
 		}
+		$this->vue->set($searchParam, "bassinSearch");
 		/**
 		 * Preparation des dates pour la generation du recapitulatif des aliments
 		 */
@@ -60,8 +68,7 @@ class Bassin extends PpciLibrary
 		$this->vue->set($dateFin, "dateFin");
 		$this->vue->set("bassin/bassinList.tpl", "corps");
 		$_SESSION["bassinParentModule"] = "bassinList";
-		$site = new Site;
-		$this->vue->set($site->getListe(2), "site");
+		$this->bassinParamAssocie($this->vue);
 		return $this->vue->send();
 	}
 	function display()
@@ -129,7 +136,7 @@ class Bassin extends PpciLibrary
 		/**
 		 * Integration des tables de parametres
 		 */
-		bassinParamAssocie($this->vue);
+		$this->bassinParamAssocie($this->vue);
 		$this->vue->set($_SESSION["bassinParentModule"], "bassinParentModule");
 		$site = new Site;
 		$this->vue->set($site->getListe(2), "site");
@@ -159,7 +166,7 @@ class Bassin extends PpciLibrary
 	}
 	function calculMasseAjax()
 	{
-		$this->vue = service ("AjaxView");
+		$this->vue = service("AjaxView");
 		if ($_REQUEST["bassin_id"] > 0) {
 			$masse = $this->dataclass->calculMasse($_REQUEST["bassin_id"]);
 			$this->vue->set(array("val" => $masse));
@@ -168,7 +175,7 @@ class Bassin extends PpciLibrary
 	}
 	function recapAlim()
 	{
-		$this->vue=service('Smarty');
+		$this->vue = service('Smarty');
 		$this->vue->set($this->dataclass->getRecapAlim($_REQUEST, $_SESSION["searchBassin"]->getParam()));
 		return $this->vue->send();
 	}
@@ -208,4 +215,17 @@ class Bassin extends PpciLibrary
 			return false;
 		}
 	}
+	function bassinParamAssocie($vue)
+{
+    $bassin_type = new BassinType;
+    $vue->set($bassin_type->getListe(2), "bassin_type");
+    $bassin_usage = new BassinUsage;
+    $vue->set($bassin_usage->getListe(2), "bassin_usage");
+    $bassin_zone = new BassinZone;
+    $vue->set($bassin_zone->getListe(2), "bassin_zone");
+    $circuit_eau = new CircuitEau;
+    $vue->set($circuit_eau->getListe(2), "circuit_eau");
+    $site = new Site;
+    $vue->set($site->getListe(2), "site");
+}
 }

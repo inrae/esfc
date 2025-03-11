@@ -29,7 +29,6 @@
     <input type="hidden" name="bassin_id" value="{$dataBassin.bassin_id}">
     <table id="cbassinPoissonList" class="table table-bordered table-hover datatable-nopaging display" data-order='[[1,"asc"]]'>
         <thead>
-            <tr>
             <tr>{if $rights.bassinGestion == 1}
                 <th class="center">
                     <input type="checkbox" id="checkPoissonSelect">
