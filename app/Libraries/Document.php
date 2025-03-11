@@ -20,6 +20,9 @@ class Document extends PpciLibrary
 	function __construct()
 	{
 		parent::__construct();
+		/**
+		 * @var DocumentSturio
+		 */
 		$this->dataclass = new DocumentSturio;
 		$this->keyName = "document_id";
 		if (isset($_REQUEST[$this->keyName])) {
@@ -57,14 +60,6 @@ class Document extends PpciLibrary
 	}
 	function write()
 	{
-		try {
-			$this->id = $this->dataWrite($_REQUEST);
-			$_REQUEST[$this->keyName] = $this->id;
-			return true;
-		} catch (PpciException $e) {
-			return false;
-		}
-
 		/**
 		 * write record in database
 		 */
@@ -75,49 +70,42 @@ class Document extends PpciLibrary
 			try {
 				$files = formatFiles();
 				foreach ($files as $file) {
-					$this->id = $this->dataclass->ecrire($file, $_REQUEST["document_description"], $_REQUEST["document_date_creation"]);
+					$this->id = $this->dataclass->write($file, $_REQUEST["document_description"], $_REQUEST["document_date_creation"]);
 					if ($this->id > 0) {
-						$_REQUEST[$keyName] = $this->id;
+						$_REQUEST[$this->keyName] = $this->id;
 						/**
 						 * Ecriture de l'enregistrement en table liee
 						 */
-						$documentLie = new DocumentLie($bdd, $ObjetBDDParam, $_REQUEST["parentType"]);
+						$documentLie = new DocumentLie( $_REQUEST["parentType"]);
 						$data = array(
 							"document_id" => $this->id,
 							$_REQUEST["parentIdName"] => $_REQUEST["parent_id"]
 						);
-						$documentLie->ecrire($data);
+						$documentLie->write($data);
 					}
 				}
 			} catch (PpciException $e) {
 				$this->message->set($e->getMessage(), true);
 			}
-			$log->setLog($_SESSION["login"], get_class($this->dataclass) . "-write", $this->id);
+			$this->log->setLog($_SESSION["login"], get_class($this->dataclass) . "-write", $this->id);
 		}
 		/**
 		 * Retour au module initial
 		 */
 		$_REQUEST[$_REQUEST["parentIdName"]] = $_REQUEST["parent_id"];
-		return true;
 	}
 	function delete()
 	{
 		/**
 		 * delete record
 		 */
+		$_REQUEST[$_REQUEST["parentIdName"]] = $_REQUEST["parent_id"];
 		try {
 			$this->dataDelete($this->id);
 			return true;
 		} catch (PpciException $e) {
 			return false;
 		}
-		/**
-		 * Retour au module initial
-		*/
-		$t_module["retoursuppr"] = $_REQUEST['moduleParent'];
-		$t_module["retourok"] = $_REQUEST['moduleParent'];
-		$t_module["retourko"] = $_REQUEST['moduleParent'];
-		$_REQUEST[$_REQUEST["parentIdName"]] = $_REQUEST["parent_id"];
 	}
 	function get()
 	{

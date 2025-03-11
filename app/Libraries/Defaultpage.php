@@ -10,6 +10,7 @@ class Defaultpage extends PpciLibrary
 
     function display()
     {
+        $this->vue = service("smarty");
         /**
          * Generate the graph of mortality
          */
@@ -64,7 +65,6 @@ class Defaultpage extends PpciLibrary
                 $dc["columns"][] = $vval;
                 $i++;
             }
-            $this->vue = service("smarty");
             $this->vue->set(json_encode($dc), "data");
             $this->vue->htmlVars[] = "data";
             $this->vue->set($dateFormat, "dateFormat");

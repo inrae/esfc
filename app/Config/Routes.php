@@ -195,7 +195,7 @@ $routes->add('repartitionResteChange', 'Repartition::resteChange');
 $routes->add('repartitionResteWrite', 'Repartition::resteWrite');
 $routes->add('documentChange', 'Document::change');
 $routes->post('documentWrite', 'Document::write');
-$routes->post('documentDelete', 'Document::delete');
+$routes->add('documentDelete', 'Document::delete');
 $routes->add('documentGet', 'Document::get');
 $routes->add('documentChangeData', 'Document::changeData');
 $routes->add('documentWriteData', 'Document::writeData');

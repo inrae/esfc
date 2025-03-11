@@ -40,13 +40,12 @@ class DocumentSturio extends DocumentAttach
 		 * Suppression dans les tables liées
 		 */
 		$param = array("id" => $id);
-		$sql = "delete from :tablename: where document_id = :id:";
 		foreach ($this->modules as $value) {
 			$tablename = $value . "_document";
 			$sql = "delete from $tablename where document_id = :id:";
-			$this->executeAsPrepared($sql, $param);
+			$this->executeQuery($sql, $param, true);
 		}
-		//return parent::supprimer($id);
+		return parent::supprimer($id);
 	}
 	/**
 	 * Retourne la liste des documents associes au type (evenement, poisson, bassin) et à la clé correspondante
@@ -129,11 +128,11 @@ class DocumentSturio extends DocumentAttach
 			/*
 			 * Stockage des photos dans le dossier temporaire
 			 */
-			foreach ($liste as $key => $value) {
+			/*foreach ($liste as $key => $value) {
 				$liste[$key]["photo_name"] = $this->generateFileName($value["document_id"], 0, $this->resolution);
 				$liste[$key]["photo_preview"] = $this->generateFileName($value["document_id"], 1, $this->resolution);
 				$liste[$key]["thumbnail_name"] = $this->generateFileName($value["document_id"], 2, $this->resolution);
-			}
+			}*/
 			return $liste;
 		} else {
 			return array();

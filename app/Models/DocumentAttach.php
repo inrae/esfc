@@ -80,7 +80,6 @@ class DocumentAttach extends PpciModel
 	 */
 	function write($file, $description = "", $document_date_creation = ""):int
 	{
-		printA($file);
 		if ($file["error"] == 0 && $file["size"] > 0) {
 			/*
 			 * Recuperation de l'extension
@@ -127,7 +126,7 @@ class DocumentAttach extends PpciModel
 				$id = parent::write($data);
 				if ($id > 0) {
 					$sql = "update " . $this->table . " set data = '" . $dataDoc["data"] . "', thumbnail = '" . $dataDoc["thumbnail"] . "' where document_id = " . $id;
-					$this->executeSQL($sql);
+					$this->executeSQL($sql, null, true);
 				}
 				return $id;
 			} else {
@@ -296,66 +295,47 @@ class DocumentAttach extends PpciModel
 				 */
 			$phototype == 2 ? $colonne = "thumbnail" : $colonne = "data";
 			$filename = $this->generateFileName($id, $phototype, $resolution);
-			if (strlen($filename) > 0 && !file_exists($filename)) {
-				/*
-					 * Recuperation des donnees concernant la photo
-					 */
-				// if ($i != 1)
-				$docRef = $this->getBlobReference($id, $colonne);
-				if (in_array($data["mime_type_id"], array(
-					4,
-					5,
-					6
-				)) && $docRef != NULL) {
-					try {
+			if (!file_exists($filename)) {
+				try {
+					$sql = "select $colonne as picture from document where document_id = :id:";
+					$data = $this->readParam($sql, ["id" => $id]);
+					if (empty($data)) {
+						throw new PpciException(_("Le document demandé n'existe pas"));
+					}
+					if (($data["mime_type_id"] == 4 || $data["mime_type_id"] == 5 || $data["mime_type_id"] == 6)) {
 						$image = new \Imagick();
-						$image->readImageFile($docRef);
-						if ($i == 1) {
-							/*
-								 * Redimensionnement de l'image
-								 */
-							$resize = 0;
-							$geo = $image->getimagegeometry();
-							if ($geo["width"] > $resolution || $geo["height"] > $resolution) {
-								$resize = 1;
-								/*
-									 * Calcul de la résolution dans les deux sens
-									 */
-								if ($geo["width"] > $resolution) {
-									$resx = $resolution;
-									$resy = $geo["height"] * ($resolution / $geo["width"]);
-								} else {
-									$resy = $resolution;
-									$resx = $geo["width"] * ($resolution / $geo["height"]);
+						try {
+							$image->readImageBlob(pg_unescape_bytea($data["picture"]));
+							if ($phototype == 1) {
+								$resize = false;
+								$geo = $image->getimagegeometry();
+								if ($geo["width"] > $resolution || $geo["height"] > $resolution) {
+									$resize = true;
+									if ($resize) {
+										/*
+									* Mise a l'image de la photo
+									*/
+										$image->resizeImage($resolution, $resolution, \Imagick::FILTER_LANCZOS, 1, true);
+									}
 								}
 							}
-							if ($resize == 1)
-								$image->resizeImage($resx, $resy, \Imagick::FILTER_LANCZOS, 1);
+							/**
+							 * Ecriture de la photo
+							 */
+							$image->writeImage($filename);
+						} catch (\ImagickException $ie) {
+							throw new PpciException(sprintf(_("Impossible de lire la photo %s : "),  $id) . $ie->getMessage());
 						}
-						$document = $image->getimageblob();
-						$writeOk = true;
-					} catch (\Exception) {
-					};
-				} else {
-					/*
-						 * Autres types de documents : ecriture directe du contenu
+					} else {
+						/**
+						 * Others docs
 						 */
-					// rewind ( $docRef );
-					if ($data["mime_type_id"] == 1 && $i == 2 || $i == 0) {
-						$writeOk = true;
-						$document = stream_get_contents($docRef);
-						if ($document == false) {
-							throw new PpciException(_("Un problème est survenu au moment de lire le document"));
-						}
+						$handle = fopen($filename, 'wb');
+						fwrite($handle, pg_unescape_bytea($data["picture"]));
+						fclose($handle);
 					}
-				}
-				/*
-					 * Ecriture du document dans le dossier temporaire
-					 */
-				if ($writeOk == true) {
-					$handle = fopen($filename, 'wb');
-					fwrite($handle, $document);
-					fclose($handle);
+				} catch (PpciException $e) {
+					throw new PpciException($e->getMessage());
 				}
 			}
 		}
