@@ -22,7 +22,7 @@
                     {t}Unité utilisée pour quantifier les injections :{/t}
                 </label>
                 <div class="col-md-8">
-                    <input id="hormone_unite" class="form-control" name="" type="text" value="{$data.hormone_unite}">
+                    <input id="hormone_unite" class="form-control" name="hormone_unite" type="text" value="{$data.hormone_unite}">
 
                 </div>
             </div>

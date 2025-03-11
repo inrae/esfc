@@ -63,6 +63,8 @@ class AnalyseMetal extends PpciModel
 					order by metal_nom
 					";
 			return $this->getListeParam($sql, ["analyse_id" => $analyse_id]);
+		} else {
+			return [];
 		}
 	}
 	/**

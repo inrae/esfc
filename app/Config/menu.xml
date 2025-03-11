@@ -53,7 +53,7 @@
 		</item>
 
 		<item module="sites" label="Sites et bassins" tooltip="Paramètres concernant les sites et les bassins" droits="consult">
-			<item module="siteListe" label="Sites" tooltip="Liste des sites" droits="consult"/>
+			<item module="siteList" label="Sites" tooltip="Liste des sites" droits="consult"/>
 			<item module="bassinTypeList" label="Types de bassins" tooltip="Liste des types de bassins" droits="consult"/>
 			<item module="bassinUsageList" label="Usages des bassins" tooltip="Liste des types d'usage des bassins" droits="consult"/>
 			<item module="bassinZoneList" label="Zones d'implantation" tooltip="Liste des zones d'implantation des bassins" droits="consult"/>
@@ -75,7 +75,7 @@
 		</item>
 
 		<item divider="1" droits="consult"/>
-		<item module="anomalieTypeList" label="Types d'anomalies" tooltip="Liste des types d'anomalies détectés dans la base de données" droits="consult"/>
+		<item module="anomalieDbTypeList" label="Types d'anomalies" tooltip="Liste des types d'anomalies détectés dans la base de données" droits="consult"/>
 		<item module="mimeTypeList" label="Types de fichiers" tooltip="Liste des types de fichiers importables" droits="consult"/>
 		<item divider="1" droits="manage"/>
 		<item module="dbstructureSchema" droits="gestion,admin" label="Schéma de la base de données" tooltip="Schéma de la base de données"/>

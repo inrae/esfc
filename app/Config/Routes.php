@@ -6,8 +6,6 @@ use CodeIgniter\Router\RouteCollection;
  * @var RouteCollection $routes
  */
 $routes->add('/','Defaultpage::display');
-$routes->add('dbstructureHtml', '\Ppci\Controllers\Structure::html');
-$routes->add('dbstructureGacl', '\Ppci\Controllers\Structure::gacl');
 $routes->add('pittagTypeList', 'PittagType::list');
 $routes->add('pittagTypeChange', 'PittagType::change');
 $routes->post('pittagTypeWrite', 'PittagType::write');
@@ -309,7 +307,6 @@ $routes->add('siteList', 'Site::list');
 $routes->add('siteChange', 'Site::change');
 $routes->post('siteWrite', 'Site::write');
 $routes->post('siteDelete', 'Site::delete');
-$routes->add('dbstructureSchema', '\Ppci\Controllers\Structure::schema');
 $routes->add('parametres', '\Ppci\Controllers\Submenu::parametres');
 $routes->add('paramPoisson', '\Ppci\Controllers\Submenu::index');
 $routes->add('sites', '\Ppci\Controllers\Submenu::index');

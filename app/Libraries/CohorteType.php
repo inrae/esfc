@@ -19,7 +19,7 @@ class CohorteType extends PpciLibrary
     {
         parent::__construct();
         $this->dataclass = new ModelsCohorteType;
-        $this->keyName = "";
+        $this->keyName = "cohorte_type_id";
         if (isset($_REQUEST[$this->keyName])) {
             $this->id = $_REQUEST[$this->keyName];
         }

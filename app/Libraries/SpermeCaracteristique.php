@@ -2,7 +2,7 @@
 
 namespace App\Libraries;
 
-use App\Models\SpermeCaract;
+use App\Models\SpermeCaracteristique as ModelsSpermeCaracteristique;
 use Ppci\Libraries\PpciException;
 use Ppci\Libraries\PpciLibrary;
 use Ppci\Models\PpciModel;
@@ -18,7 +18,7 @@ class SpermeCaracteristique extends PpciLibrary
     function __construct()
     {
         parent::__construct();
-        $this->dataclass = new SpermeCaract;
+        $this->dataclass = new ModelsSpermeCaracteristique;
         $this->keyName = "sperme_caracteristique_id";
         if (isset($_REQUEST[$this->keyName])) {
             $this->id = $_REQUEST[$this->keyName];

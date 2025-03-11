@@ -2,7 +2,7 @@
 
 namespace App\Libraries;
 
-use App\Models\Anesthesie_produit;
+use App\Models\AnesthesieProduit as ModelsAnesthesieProduit;
 use Ppci\Libraries\PpciException;
 use Ppci\Libraries\PpciLibrary;
 use Ppci\Models\PpciModel;
@@ -18,7 +18,7 @@ class AnesthesieProduit extends PpciLibrary
     function __construct()
     {
         parent::__construct();
-        $this->dataclass = new Anesthesie_produit;
+        $this->dataclass = new ModelsAnesthesieProduit;
         $this->keyName = "anesthesie_produit_id";
         if (isset($_REQUEST[$this->keyName])) {
             $this->id = $_REQUEST[$this->keyName];

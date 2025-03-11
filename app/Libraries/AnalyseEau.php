@@ -86,7 +86,7 @@ class AnalyseEau extends PpciLibrary
 			$this->id = $this->dataWrite($_REQUEST);
 			$_REQUEST[$this->keyName] = $this->id;
 			$analyseMetal = new AnalyseMetal;
-			$analyseMetal->ecrireGlobal($_REQUEST, $this->id);
+			$analyseMetal->writeGlobal($_REQUEST, $this->id);
 			return true;
 		} catch (PpciException $e) {
 			return false;
