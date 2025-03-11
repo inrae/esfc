@@ -42,18 +42,17 @@ class PoissonSequence extends PpciLibrary
 		 * Recherche les donnees concernant la production de sperme
 		 */
 		$sperme = new Sperme;
-		$dataSperme = $sperme->lireFromSequence($data["poisson_campagne_id"], $data["sequence_id"]);
+		$dataSperme = $sperme->readFromSequence($data["poisson_campagne_id"], $data["sequence_id"]);
 		foreach ($dataSperme as $key => $value)
 			$data[$key] = $value;
 		$this->vue->set($data, "data");
 		helper("esfc");
-		initSpermeChange($dataSperme["sperme_id"]);
-
+		initSpermeChange($this->vue,$dataSperme["sperme_id"]);
 		/**
 		 * Recuperation de la liste des sequences
 		 */
 		$sequence = new Sequence;
-		$this->vue->set($sequence->getListeByYear($_SESSION['annee']), "sequences");
+		$this->vue->set($sequence->getListeByYear($_SESSION['annee'], 0, $data["sequence_id"]), "sequences");
 		/**
 		 * Recuperation des statuts
 		 */
@@ -66,6 +65,7 @@ class PoissonSequence extends PpciLibrary
 		if (isset($_REQUEST["sequence_id"])) {
 			$this->vue->set($_REQUEST["sequence_id"], "sequence_id");
 		}
+		return $this->vue->send();
 	}
 	function write()
 	{

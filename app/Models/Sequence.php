@@ -76,15 +76,22 @@ class Sequence extends PpciModel
 	 *
 	 * @param int $annee        	
 	 */
-	function getListeByYear(int $annee, $site_id = 0)
+	function getListeByYear(int $annee, $site_id = 0, $sequence_id = 0)
 	{
-
+		$param = [];
 		$sql = "SELECT sequence_id, sequence_nom, annee, sequence_date_debut,
 				site_id, site_name
 				from sequence
-				left outer join site using (site_id)
-				where annee = :annee: ";
-		$param = array("annee" => $annee);
+				left outer join site using (site_id)";
+		if ($sequence_id > 0) {
+			$where = " where annee = (select annee
+				from sequence s1 where s1.sequence_id = :sequence_id:)";
+			$param["sequence_id"] = $sequence_id;
+		} else {
+			$where = " where annee = :annee: ";
+			$param["annee"] = $annee;
+		}
+		$sql .= $where;
 		if ($site_id > 0) {
 			$sql .= " and site_id = :site_id:";
 			$param["site_id"] = $site_id;

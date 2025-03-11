@@ -2,7 +2,10 @@
 
 namespace App\Libraries;
 
+use App\Models\DocumentLie;
+use App\Models\DocumentSturio;
 use App\Models\Echographie as ModelsEchographie;
+use App\Models\Evenement;
 use App\Models\PoissonCampagne;
 use App\Models\StadeGonade;
 use App\Models\StadeOeuf;
@@ -31,7 +34,7 @@ class Echographie extends PpciLibrary
 	{
 		$this->vue = service('Smarty');
 		$poissonCampagne = new PoissonCampagne;
-		$data = $this->dataRead($this->id, "repro/echographieChange.tpl", $_REQUEST["poisson_id"]);
+		$this->dataRead($this->id, "repro/echographieChange.tpl", $_REQUEST["poisson_id"]);
 		$this->vue->set($poissonCampagne->lire($_REQUEST["poisson_campagne_id"]), "dataPoisson");
 		/**
 		 * Tables des stades
@@ -57,10 +60,43 @@ class Echographie extends PpciLibrary
 	function write()
 	{
 		try {
-			$this->id = $this->dataWrite($_REQUEST);
+			if (empty($_REQUEST["evenement_id"])) {
+				// create a new evenement
+				$evenement = new Evenement;
+				$data = $_REQUEST;
+				$data ["evenement_date"] = $data["echographie_date"];
+				$data["evenement_type_id"] = $_SESSION["dbparams"]["code_type_evenement_pour_echographie"];
+				$data["evenement_id"] = $evenement->write($data);
+			}
+			$this->id = $this->dataWrite($data);
 			$_REQUEST[$this->keyName] = $this->id;
+			/**
+			 * Traitement des photos a importer
+			 */
+			if ($this->id > 0 && !empty($_FILES["documentName"]["name"][0])) {
+				/**
+				 * Preparation de files
+				 */
+				$files = formatFiles();
+				$documentSturio = new DocumentSturio;
+				foreach ($files as $file) {
+					$document_id = $documentSturio->write($file, $_REQUEST["document_description"]);
+					if ($document_id > 0) {
+						/**
+						 * Ecriture de l'enregistrement en table liee
+						 */
+						$documentLie = new DocumentLie('evenement');
+						$data = array(
+							"document_id" => $document_id,
+							"evenement_id" => $data["evenement_id"]
+						);
+						$documentLie->write($data);
+					}
+				}
+			}
 			return true;
 		} catch (PpciException $e) {
+			$this->message->set($e->getMessage(), true);
 			return false;
 		}
 	}

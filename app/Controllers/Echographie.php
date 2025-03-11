@@ -24,7 +24,7 @@ class Echographie extends PpciController
         if ($this->lib->write()) {
             return $this->poissonCampagne->display();
         } else {
-            return $this->lib->change();
+            return $this->poissonCampagne->display();
         }
     }
     function delete()

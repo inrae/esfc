@@ -44,6 +44,7 @@ class Sequence extends PpciLibrary
 		$_SESSION["bassinParentModule"] = "sequenceList";
 		$site = new Site;
 		$this->vue->set($site->getListe(2), "site");
+		$this->vue->set($_SESSION["annees"],"annees");
 		return $this->vue->send();
 	}
 	function display()

@@ -88,6 +88,7 @@ class Evenement extends PpciLibrary
         if (isset($_REQUEST[$this->keyName])) {
             $this->id = $_REQUEST[$this->keyName];
         }
+        helper("esfc");
     }
     function change()
     {
@@ -284,19 +285,19 @@ class Evenement extends PpciLibrary
             if (strlen($_REQUEST["echographie_commentaire"]) > 0 || $_REQUEST["stade_gonade_id"] > 0 || $_REQUEST["stade_oeuf_id"] > 0 || $_FILES["documentName"]['error'] == 0 || $_FILES["documentName"]['error'][0] == 0) {
                 $echographie = new Echographie;
                 $_REQUEST["echographie_date"] = $_REQUEST["evenement_date"];
-                $echographie_id = $echographie->ecrire($_REQUEST);
+                $echographie_id = $echographie->write($_REQUEST);
 
                 /**
                  * Traitement des photos a importer
                  */
-                if ($echographie_id > 0 && isset($_FILES["documentName"])) {
+                if ($echographie_id > 0 && !empty($_FILES["documentName"]["name"][0])) {
                     /**
                      * Preparation de files
                      */
                     $files = formatFiles();
                     $documentSturio = new DocumentSturio;
                     foreach ($files as $file) {
-                        $document_id = $documentSturio->ecrire($file, $_REQUEST["document_description"]);
+                        $document_id = $documentSturio->write($file, $_REQUEST["document_description"]);
                         if ($document_id > 0) {
                             /**
                              * Ecriture de l'enregistrement en table liee
@@ -306,7 +307,7 @@ class Evenement extends PpciLibrary
                                 "document_id" => $document_id,
                                 "evenement_id" => $this->id
                             );
-                            $documentLie->ecrire($data);
+                            $documentLie->write($data);
                         }
                     }
                 }
@@ -389,6 +390,7 @@ class Evenement extends PpciLibrary
             return true;
         } catch (PpciException $e) {
             $db->transRollback();
+            $this->message->set($e->getMessage(),true);
             return false;
         }
     }

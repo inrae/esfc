@@ -36,21 +36,21 @@
 					<td class="center">
 						{if in_array($dataDoc[lst].mime_type_id, array(4, 5, 6)) }
 						<a class="image-popup-no-margins"
-							href="documentGet&document_id={$dataDoc[lst].document_id}&document_name={$dataDoc[lst].photo_preview}&attached=0&phototype=1"
+							href="documentGet?document_id={$dataDoc[lst].document_id}&document_name={$dataDoc[lst].photo_preview}&attached=0&phototype=1"
 							title="aperçu de la photo : {substr($dataDoc[lst].photo_name, strrpos($dataDoc[lst].photo_name, '/') + 1)}">
-							<img src="documentGet&document_id={$dataDoc[lst].document_id}&document_name={$dataDoc[lst].thumbnail_name}&attached=0&phototype=2"
+							<img src="documentGet?document_id={$dataDoc[lst].document_id}&document_name={$dataDoc[lst].thumbnail_name}&attached=0&phototype=2"
 								height="30">
 						</a>
 						{elseif $dataDoc[lst].mime_type_id == 1}
 						<a class="image-popup-no-margins"
-							href="documentGet&document_id={$dataDoc[lst].document_id}&&document_name={$dataDoc[lst].thumbnail_name}&attached=0&phototype=2"
+							href="documentGet?document_id={$dataDoc[lst].document_id}&&document_name={$dataDoc[lst].thumbnail_name}&attached=0&phototype=2"
 							title="aperçu du document : {substr($dataDoc[lst].thumbnail_name, strrpos($dataDoc[lst].thumbnail_name, '/') + 1)}">
-							<img src="documentGet&document_id={$dataDoc[lst].document_id}&document_name={$dataDoc[lst].thumbnail_name}&attached=0&phototype=2"
+							<img src="documentGet?document_id={$dataDoc[lst].document_id}&document_name={$dataDoc[lst].thumbnail_name}&attached=0&phototype=2"
 								height="30">
 						</a>
 						{/if}
 					<td>
-						<a href="documentGet&document_id={$dataDoc[lst].document_id}&filename={$dataDoc[lst].photo_name}&attached=1"
+						<a href="documentGet?document_id={$dataDoc[lst].document_id}&filename={$dataDoc[lst].photo_name}&attached=1"
 							title="document original">
 							{$dataDoc[lst].document_nom}
 						</a>

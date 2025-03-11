@@ -58,55 +58,36 @@ class Biopsie extends PpciLibrary
 		try {
 			$this->id = $this->dataWrite($_REQUEST);
 			$_REQUEST[$this->keyName] = $this->id;
-			return true;
-		} catch (PpciException $e) {
-			return false;
-		}
-		/**
-		 * Traitement des photos a importer
-		 */
-		if ($this->id > 0 && !empty($_FILES["documentName"])) {
 			/**
-			 * Preparation de files
+			 * Traitement des photos a importer
 			 */
-			$files = array();
-			$fdata = $_FILES['documentName'];
-			if (is_array($fdata['name'])) {
-				for ($i = 0; $i < count($fdata['name']); ++$i) {
-					$files[] = array(
-						'name' => $fdata['name'][$i],
-						'type' => $fdata['type'][$i],
-						'tmp_name' => $fdata['tmp_name'][$i],
-						'error' => $fdata['error'][$i],
-						'size' => $fdata['size'][$i]
-					);
-				}
-			} else {
-				$files[] = $fdata;
-			}
-			if ($files[0]["error"] == 0) {
+			if ($this->id > 0 && !empty($_FILES["documentName"]["name"][0])) {
+				/**
+				 * Preparation de files
+				 */
+				$files = formatFiles();
 				$documentSturio = new DocumentSturio;
-				$documentLie = new DocumentLie('biopsie');
 				foreach ($files as $file) {
-					$document_id = $documentSturio->ecrire($file, _("Calcul du diamètre moyen de l'ovocyte - ") . $_REQUEST["biopsie_date"]);
+					$document_id = $documentSturio->ecrire($file, $_REQUEST["document_description"]);
 					if ($document_id > 0) {
 						/**
-					 * Ecriture de l'enregistrement en table liee
-					 */
+						 * Ecriture de l'enregistrement en table liee
+						 */
+						$documentLie = new DocumentLie('biopsie');
 						$data = array(
 							"document_id" => $document_id,
 							"biopsie_id" => $this->id
 						);
 						$documentLie->ecrire($data);
-						/**
-					 * Ajout de l'information pour le poisson
-					 */
-						$documentPoisson = new DocumentLie($bdd, $ObjetBDDParam, "poisson");
-						$data["poisson_id"] = $this->dataclass->getPoissonId($this->id);
-						$documentPoisson->ecrire($data);
+						$documentPoisson = new DocumentLie( "poisson");
+							$data["poisson_id"] = $this->dataclass->getPoissonId($this->id);
+							$documentPoisson->ecrire($data);
 					}
 				}
+				return true;
 			}
+		} catch (PpciException $e) {
+			return false;
 		}
 	}
 	function delete()

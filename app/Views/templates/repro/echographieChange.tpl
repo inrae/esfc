@@ -12,11 +12,12 @@
 
 <div class="row">
     <div class="col-md-6">
-        <form class="form-horizontal" id="echographieForm" method="post" action="echographieWrite">            
+        <form class="form-horizontal" id="echographieForm" method="post" action="echographieWrite"  enctype="multipart/form-data">            
             <input type="hidden" name="moduleBase" value="echographie">
             <input type="hidden" name="echographie_id" value="{$data.echographie_id}">
-            <input type="hidden" name="poisson_id" value="{$data.poisson_id}"
+            <input type="hidden" name="poisson_id" value="{$data.poisson_id}">
             <input type="hidden" name="poisson_campagne_id" value="{$dataPoisson.poisson_campagne_id}">
+            <input type="hidden" name="evenement_id" value="{$data.evenement_id}">
             <div class="form-group">
                 <label for="echographie_date" class="control-label col-md-4">
                     {t}Date de l'échographie :{/t}<span class="red">*</span>

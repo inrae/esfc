@@ -28,6 +28,7 @@ class PoissonCampagne extends PpciLibrary
 	 */
 	protected PpciModel $dataclass;
 	public $keyName;
+	private $ids = [];
 
 	function __construct()
 	{
@@ -35,7 +36,12 @@ class PoissonCampagne extends PpciLibrary
 		$this->dataclass = new ModelsPoissonCampagne;
 		$this->keyName = "poisson_campagne_id";
 		if (isset($_REQUEST[$this->keyName])) {
-			$this->id = $_REQUEST[$this->keyName];
+			if (is_array ($_REQUEST["poisson_campagne_id"])) {
+				$this->ids = $_REQUEST["poisson_campagne_id"];
+			} else {
+				$this->id = $_REQUEST[$this->keyName];
+			}
+			
 		}
 		helper("esfc");
 	}
@@ -143,11 +149,11 @@ class PoissonCampagne extends PpciLibrary
 		$this->vue->set($biopsies = $biopsie->getListeFromPoissonCampagne($this->id), "dataBiopsie");
 		$this->vue->set($sequences = $poissonSequence->getListFromPoisson($this->id), "dataSequence");
 		$this->vue->set($psEvenement->getListeEvenementFromPoisson($this->id), "dataPsEvenement");
-		$this->vue->set($dataEcho = $echographie->getListByYear($data["poisson_id"], $_SESSION["annee"]), "dataEcho");
+		$this->vue->set($dataEcho = $echographie->getListByYear($data["poisson_id"], $data["annee"]), "dataEcho");
 		$this->vue->set($injections = $injection->getListFromPoissonCampagne($this->id), "injections");
 		$this->vue->set($spermes = $sperme->getListFromPoissonCampagne($this->id), "spermes");
-		$this->vue->set($transfert->getListByPoisson($data["poisson_id"], $_SESSION["annee"]), "dataTransfert");
-		$this->vue->set($ventilation->getListByPoisson($data["poisson_id"], $_SESSION["annee"]), "dataVentilation");
+		$this->vue->set($transfert->getListByPoisson($data["poisson_id"], $data["annee"]), "dataTransfert");
+		$this->vue->set($ventilation->getListByPoisson($data["poisson_id"], $data["annee"]), "dataVentilation");
 		if ($this->id > 0) {
 			$this->vue->set($this->id, "poisson_campagne_id");
 		}
@@ -456,9 +462,9 @@ class PoissonCampagne extends PpciLibrary
 	{
 		if ($_REQUEST["repro_statut_id"] > 0) {
 			try {
-				if (is_array($this->id)) {
+				if (!empty($this->ids)) {
 					$nb = 0;
-					foreach ($this->id as $key => $value) {
+					foreach ($this->ids as $value) {
 						if ($value > 0) {
 							$this->dataclass->changeStatut($value, $_REQUEST["repro_statut_id"]);
 							$nb++;

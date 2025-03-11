@@ -13,11 +13,11 @@ class Injection extends PpciController
     function __construct()
     {
         $this->lib = new LibrariesInjection();
+        $this->poissonCampagne = new PoissonCampagne;
     }
     function change()
     {
         return $this->lib->change();
-        $this->poissonCampagne = new PoissonCampagne;
     }
     function write()
     {

@@ -17,3 +17,7 @@ alter table gacl.logingestion add column if not exists lastattempt datetime;
 
 update gacl.aclgroup set groupe = 'manage' where groupe = 'gestion';
 update gacl.aclaco set aco = 'manage' where aco = 'gestion';
+insert into dbparam(dbparam_name, dbparam_value, dbparam_description, dbparam_description_en)
+values 
+('code_type_evenement_pour_echographie', '28', 'Code du type d''évenement lors de la création directe d''une échographie', 'Event type code when creating an ultrasound scan directly')
+;

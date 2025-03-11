@@ -205,14 +205,14 @@ class Sperme extends PpciModel
         /*
              * Recherche de l'identifiant correspondant
              */
-        $sql = "SELECT sperme_id from sperme where poisson_campagne_id = :poissonCampagneId
-					and sequence_id = :sequence_id";
+        $sql = "SELECT sperme_id from sperme where poisson_campagne_id = :poissonCampagneId:
+					and sequence_id = :sequence_id:";
         $data = $this->lireParamAsPrepared($sql, array(
             "poissonCampagneId" => $poissonCampagneId,
             "sequence_id" => $sequenceId
         ));
         $data["sperme_id"] > 0 ? $id = $data["sperme_id"] : $id = 0;
-        return $this->lire($id, false);
+        return $this->read($id, false);
     }
 
     /**
@@ -222,7 +222,7 @@ class Sperme extends PpciModel
      */
     function read($id, $getDefault = false, $defaultValue = 0): array
     {
-        $data = parent::lire($id, $getDefault, $defaultValue);
+        $data = parent::read($id);
         if ($data["sperme_id"] > 0) {
             if (!isset($this->spermeMesure)) {
                 $this->spermeMesure = new SpermeMesure;

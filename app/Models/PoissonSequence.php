@@ -55,7 +55,7 @@ class PoissonSequence extends PpciModel
 	 */
 	function read($id, bool $getDefault = true, $parentValue = 0): array
 	{
-		$data = parent::lire($id, $getDefault, $parentValue);
+		$data = parent::read($id, $getDefault, $parentValue);
 		$datetime = explode(" ", $data["ovocyte_expulsion_date"]);
 		$data["ovocyte_expulsion_date"] = $datetime[0];
 		$data["ovocyte_expulsion_time"] = $datetime[1];

@@ -206,7 +206,7 @@ class Evenement extends PpciModel
         $param = array("id" => $id);
         foreach ($tables as $table) {
             $sql = "delete from $table where evenement_id = :id:";
-            $this->executeAsPrepared($sql, $param);
+            $this->executeQuery($sql, $param, true);
         }
         /**
          * Suppression finale de l'evenement

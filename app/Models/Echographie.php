@@ -25,7 +25,8 @@ class Echographie extends PpciModel
             ),
             "evenement_id" => array(
                 "type" => 1,
-                "requis" => 1
+                "requis" => 1,
+                "defaultValue" => 0
             ),
             "poisson_id" => array(
                 "type" => 1,
