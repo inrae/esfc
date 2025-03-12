@@ -6,6 +6,8 @@ use CodeIgniter\Database\Query;
 use CodeIgniter\Model;
 use Ppci\Libraries\PpciException;
 
+use function PHPUnit\Framework\isNull;
+
 class PpciModel extends Model
 {
     protected array $fields = [];
@@ -413,6 +415,11 @@ class PpciModel extends Model
                 if (empty($data)) {
                     $data = $this->getDefaultValues($parentKey);
                 }
+            }
+        } else {
+            $data = $this->find($id);
+            if (isNull($data)) {
+                $data = [];
             }
         }
         if ($this->autoFormatDate) {

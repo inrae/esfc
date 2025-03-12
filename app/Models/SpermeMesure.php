@@ -96,6 +96,12 @@ class SpermeMesure extends PpciModel
                 $this->spermeCongelation = new SpermeCongelation;
             }
             $dsc = $this->spermeCongelation->lire($data["sperme_congelation_id"]);
+            if (empty ($dataold["nb_paillette_utilise"])) {
+                $dataold["nb_paillette_utilise"] = 0;
+            }
+            if (empty ($data["nb_paillette_utilise"])) {
+                $data["nb_paillette_utilise"] = 0;
+            }
             $dsc["nb_paillettes_utilisees"] = $dsc["nb_paillettes_utilisees"] - $dataold["nb_paillette_utilise"] + $data["nb_paillette_utilise"];
             $this->spermeCongelation->ecrire($dsc);
         }

@@ -2,6 +2,7 @@
 
 namespace App\Libraries;
 
+use App\Models\PoissonCampagne;
 use App\Models\PsEvenement as ModelsPsEvenement;
 use Ppci\Libraries\PpciException;
 use Ppci\Libraries\PpciLibrary;
@@ -31,12 +32,16 @@ class PsEvenement extends PpciLibrary
             $this->vue->set($_SESSION["sequence_id"], "sequence_id");
         }
         $this->vue->set($_SESSION["poissonDetailParent"], "poissonDetailParent");
-        $dataPsEvenement = $this->dataclass->lire($this->id, true, $_REQUEST["poisson_sequence_id"]);
-        /**
-         * Affectation des donnees a smarty
-         */
+        $dataPsEvenement = $this->dataclass->read($this->id, true, $_REQUEST["poisson_sequence_id"]);
+        $poissonCampagne = new PoissonCampagne;
+		$this->vue->set($poissonCampagne->lire($_REQUEST["poisson_campagne_id"]), "dataPoisson");
+        $this->vue->set($_SESSION["poissonDetailParent"], "poissonDetailParent");
+		if (isset($_REQUEST["sequence_id"])) {
+			$this->vue->set($_REQUEST["sequence_id"], "sequence_id");
+		}
         $this->vue->set($dataPsEvenement, "dataPsEvenement");
         $this->vue->set($this->id, "ps_evenement_id");
+        $this->vue->set("repro/psEvenementChange.tpl", "corps");
         return $this->vue->send();
     }
     function write()

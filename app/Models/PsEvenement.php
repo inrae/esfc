@@ -90,29 +90,13 @@ class PsEvenement extends PpciModel
         if ($id == 0) {
             $data = $this->getDefaultValues($parentValue);
         } else {
-            $data = parent::lire($id, $getDefault, $parentValue);
+            $data = parent::read($id, $getDefault, $parentValue);
         }
         if (!isset($this->poissonSequence)) {
             $this->poissonSequence = new PoissonSequence;
         }
         $dps = $this->poissonSequence->lire($parentValue);
         $data["poisson_campagne_id"] = $dps["poisson_campagne_id"];
-        $date = explode(" ", $data["ps_datetime"]);
-        $data["ps_date"] = $date[0];
-        $data["ps_time"] = $date[1];
         return $data;
-    }
-
-    /**
-     * Reecriture de la fonction ecrire pour generer le champ ps_datetime a partir
-     * des champs separes
-     * (non-PHPdoc)
-     *
-     * @see ObjetBDD::ecrire()
-     */
-    function write($data): int
-    {
-        $data["ps_datetime"] = $data["ps_date"] . " " . $data["ps_time"];
-        return parent::write($data);
     }
 }

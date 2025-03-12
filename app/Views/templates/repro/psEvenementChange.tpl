@@ -1,3 +1,20 @@
+<a href="{$poissonDetailParent}?sequence_id={$sequence_id}">
+    <img src="display/images/list.png" height="25">
+    {t}Retour à la liste des poissons{/t}
+</a>
+<a
+    href="poissonCampagneDisplay?poisson_campagne_id={$dataPoisson.poisson_campagne_id}&sequence_id={$sequence_id}">
+    <img src="display/images/fish.svg" height="25">
+    {t}Retour au reproducteur{/t}
+</a>
+<a href="poissonSequenceChange?poisson_sequence_id={$dataPsEvenement.poisson_sequence_id}&sequence_id={$sequence_id}&poisson_campagne_id={$dataPoisson.poisson_campagne_id}">
+	<img src="display/images/repro.png" height="25">
+	{t}Retour à la séquence{/t}
+</a>
+<h2>{t}Événement concernant le poisson pour la séquence considérée{/t} {$dataPoisson.matricule} {$dataPoisson.prenom} {$dataPoisson.pittag_valeur} -
+	{$dataPoisson.sexe_libelle}
+	{if $dataPoisson.poisson_statut_id != 1}- {$dataPoisson.poisson_statut_libelle}{/if}</h2>
+
 <div class="row">
 	<div class="col-md-6">
 		<form class="form-horizontal" id="psEvenementForm" method="post" action="psEvenementWrite">
@@ -6,15 +23,14 @@
 			<input type="hidden" name="ps_evenement_id" value="{$dataPsEvenement.ps_evenement_id}">
 			<input type="hidden" name="poisson_campagne_id" value="{$dataPsEvenement.poisson_campagne_id}">
 			<div class="form-group">
-				<label for="ps_date" class="control-label col-md-4">{t}Date :{/t}<span class="red">*</span></label>
+				<label for="ps_datetime" class="control-label col-md-4">{t}Date/heure :{/t}<span class="red">*</span></label>
 				<div class="col-md-8">
-					<input id="ps_date" class="form-control datepicker" class="date" name="ps_date" required
-						value="{$dataPsEvenement.ps_date}">
-					<input class="timepicker form-control" name="ps_time" required value="{$dataPsEvenement.ps_time}">
+					<input id="ps_datetime" class="form-control datetimepicker" name="ps_datetime" required
+						value="{$dataPsEvenement.ps_datetime}">
 				</div>
 			</div>
 			<div class="form-group">
-				<label for="ps_libelle" class="control-label col-md-4">{t}Libellé :{/t}<span
+				<label for="ps_libelle" class="control-label col-md-4">{t}Description :{/t}<span
 						class="red">*</span></label>
 				<div class="col-md-8">
 					<input id="ps_libelle" class="form-control" name="ps_libelle" required
