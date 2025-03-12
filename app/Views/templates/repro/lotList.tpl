@@ -24,7 +24,7 @@
 		});
 	});
 </script>
-<a href="lotChange?lot_id=0&sequence_id={$data.sequence_id}">
+<a href="lotChange?lot_id=0&sequence_id={$dataSequence.sequence_id}">
 	{t}Nouveau lot de larves...{/t}
 </a>
 <form name="alimJuv" method="post" action="lotalimGenerate">

@@ -38,6 +38,6 @@ class BassinCampagne extends PpciController
     function init()
     {
          $this->lib->init();
-         return $this->sequence->display();
+         return $this->sequence->list();
     }
 }

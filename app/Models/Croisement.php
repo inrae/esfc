@@ -243,7 +243,7 @@ class Croisement extends PpciModel
 			foreach ($data as $key => $value) {
 				foreach ($poissonCroisement as $value1) {
 					if ($value["poisson_campagne_id"] == $value1["poisson_campagne_id"]) {
-						$data[$key]["SELECTed"] = 1;
+						$data[$key]["selected"] = 1;
 					}
 				}
 			}

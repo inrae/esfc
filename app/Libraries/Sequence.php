@@ -45,6 +45,7 @@ class Sequence extends PpciLibrary
 		$site = new Site;
 		$this->vue->set($site->getListe(2), "site");
 		$this->vue->set($_SESSION["annees"],"annees");
+		$this->vue->set($_SESSION["annee"], "annee");
 		return $this->vue->send();
 	}
 	function display()

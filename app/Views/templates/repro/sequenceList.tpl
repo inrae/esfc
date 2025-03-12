@@ -10,7 +10,7 @@
 			}
 		});
 		$("#initForm").submit(function (event) {
-			if (!confirm("{t}Confirmez l'initialisation des bassins pour la campagne et le site considérés{/t}")) {
+			if (!confirm("{t}Confirmez cette opération{/t}")) {
 				event.preventDefault();
 			}
 		});

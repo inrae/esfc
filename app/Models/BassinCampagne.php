@@ -55,18 +55,20 @@ class BassinCampagne extends PpciModel
 	function initCampagne($annee)
 	{
 		$nb = 0;
-
-		/*
-			 * Recherche des bassins de reproduction
-			 */
+		/**
+		 * Recherche des bassins de reproduction
+		 */
 		$sql = "SELECT bassin_id from bassin 
-					where bassin_usage_id = 7 
+					where bassin_usage_id = :usage:
 					and actif = 1
 					and bassin_id not in (
 					SELECT distinct c.bassin_id from bassin_campagne c where annee = :annee: )";
-		$liste = $this->getListeParamAsPrepared($sql, array("annee" => $annee));
+		$liste = $this->getListeParamAsPrepared(
+			$sql,
+			array("annee" => $annee, "usage" => $_SESSION["dbparams"]["code_usage_bassin_pour_reproduction"])
+		);
+		$data = [];
 		foreach ($liste as $value) {
-			$data = array();
 			$data["bassin_id"] = $value["bassin_id"];
 			$data["annee"] = $annee;
 			if ($this->ecrire($data) > 0)

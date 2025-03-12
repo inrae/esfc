@@ -21,3 +21,7 @@ insert into dbparam(dbparam_name, dbparam_value, dbparam_description, dbparam_de
 values 
 ('code_type_evenement_pour_echographie', '28', 'Code du type d''évenement lors de la création directe d''une échographie', 'Event type code when creating an ultrasound scan directly')
 ;
+insert into dbparam(dbparam_name, dbparam_value, dbparam_description, dbparam_description_en)
+values 
+('code_usage_bassin_pour_reproduction', '7', 'Code du type d''usage du bassin utilisé pour la reproduction', 'Code for the type of use of the pool used for reproduction')
+;

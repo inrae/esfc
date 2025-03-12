@@ -88,8 +88,8 @@ class SpermeUtilise extends PpciModel
 					left outer join sperme_congelation sc on (sc.sperme_congelation_id = su.sperme_congelation_id)";
         $where = " where croisement_id = :id:";
         $order = " order by su.sperme_id";
-        $this->fields["sperme_date"]["type"] = 2;
-        $this->fields["congelation_date"]["type"] = 2;
+        $this->datetimeFields [] = "sperme_date";
+        $this->datetimeFields[] = "congelation_date";
         return $this->getListeParamAsPrepared($sql . $where . $order, array("id" => $croisement_id));
     }
 }
