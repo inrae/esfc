@@ -59,6 +59,9 @@ class SpermeCongelation extends PpciLibrary
              */
             $result_json = apiCall("POST", $url, $_SESSION["dbparams"]["CSCertificatePath"], $search, $_SESSION["dbparams"]["CSDebugMode"]);
             $result = json_decode($result_json, true);
+            if (isset($result["error_code"])) {
+                throw new PpciException($result["error_message"]);
+            }
             $this->vue->set($result, "visotubes");
         } catch (PpciException $e) {
             $this->message->set(_("La récupération des informations en provenance de Collec-Science a échoué. Si le problème persiste, contactez l'administrateur de l'application"), true);
@@ -141,6 +144,9 @@ class SpermeCongelation extends PpciLibrary
              */
             $result_json = apiCall("POST", $url, $_SESSION["dbparams"]["CSCertificatePath"], $search, $_SESSION["dbparams"]["CSDebugMode"]);
             $result = json_decode($result_json, true);
+            if (isset($result["error_code"])) {
+                throw new PpciException($result["error_message"]);
+            }
             $this->vue->set($result, "visotubes");
         } catch (PpciException $e) {
             $this->message->set(_("La récupération des informations en provenance de Collec-Science a échoué. Si le problème persiste, contactez l'administrateur de l'application"), true);

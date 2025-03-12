@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Libraries\Sperme;
 use \Ppci\Controllers\PpciController;
 use App\Libraries\SpermeCongelation as LibrariesSpermeCongelation;
 
@@ -18,16 +19,14 @@ class SpermeCongelation extends PpciController
     }
     function write()
     {
-        if ($this->lib->write()) {
-            return $this->lib->list();
-        } else {
+        if ($this->lib->write()) ;
             return $this->lib->change();
-        }
     }
     function delete()
     {
         if ($this->lib->delete()) {
-            return $this->lib->list();
+            $sperme = new Sperme;
+            return $sperme->change();
         } else {
             return $this->lib->change();
         }
@@ -38,6 +37,7 @@ class SpermeCongelation extends PpciController
     }
     function generateVisotube()
     {
-        return $this->lib->generateVisotube();
+        $this->lib->generateVisotube();
+        return $this->lib->change();
     }
 }

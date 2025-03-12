@@ -23,11 +23,8 @@ class Sperme extends PpciController
     }
     function write()
     {
-        if ($this->lib->write()) {
-            return $this->lib->display();
-        } else {
-            return $this->lib->change();
-        }
+        $this->lib->write();
+        return $this->lib->change();
     }
     function delete()
     {

@@ -363,7 +363,7 @@
                     <legend>{t}Liste des visotubes présents dans Collec-Science{/t}</legend>
                     {$totalInitial = 0}
                     {$totalRestant = 0}
-                    <table id="visotubesTable" class="table table-bordered table-hover" data-order='[[1,"ASC"]]'>
+                    <table id="visotubesTable" class="table table-bordered table-hover datatable-nopaging" data-order='[[1,"ASC"]]'>
                         <thead>
                             <tr>
                                 <th>{t}UID{/t}</th>
