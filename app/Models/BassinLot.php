@@ -82,7 +82,7 @@ class BassinLot extends PpciModel
 			 * Ecrit la date d'arrivee dans le bassin comme date de depart du bassin precedent
 			 */
 			$dataPrec = $this->getPrecedentBassin($data["lot_id"], $data["bl_date_arrivee"]);
-			if ($dataPrec["bassin_lot_id"] > 0 && strlen($dataPrec["bl_date_depart"]) == 0) {
+			if ($dataPrec["bassin_lot_id"] > 0 && $id != $dataPrec["bassin_lot_id"] && strlen($dataPrec["bl_date_depart"]) == 0) {
 				/*
 				 * Calcul de la veille de la date d'arrivee
 				 */

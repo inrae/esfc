@@ -14,7 +14,7 @@
 
 <div class="row">
     <div class="col-md-6">
-        <form class="form-horizontal" id="bassinLotForm" method="post" action="bassinLot">            
+        <form class="form-horizontal" id="bassinLotForm" method="post" action="bassinLotWrite">            
             <input type="hidden" name="moduleBase" value="bassinLot">
             <input type="hidden" name="bassin_lot_id" value="{$data.bassin_lot_id}">
             <input type="hidden" name="lot_id" value="{$data.lot_id}">

@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use \Ppci\Controllers\PpciController;
 use App\Libraries\Devenir as LibrariesDevenir;
+use App\Libraries\Lot;
 
 class Devenir extends PpciController
 {
@@ -23,7 +24,7 @@ class Devenir extends PpciController
     function write()
     {
         if ($this->lib->write()) {
-            return $this->lib->list();
+            return $this->goBack();
         } else {
             return $this->lib->change();
         }
@@ -31,9 +32,17 @@ class Devenir extends PpciController
     function delete()
     {
         if ($this->lib->delete()) {
-            return $this->lib->list();
+            return $this->goBack();
         } else {
             return $this->lib->change();
+        }
+    }
+    function goBack() {
+        if ($_REQUEST["devenirOrigine"] == "lot") {
+            $lot = new Lot;
+            return $lot->display();
+        } else {
+            return $this->lib->list();
         }
     }
 }

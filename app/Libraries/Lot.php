@@ -43,6 +43,12 @@ class Lot extends PpciLibrary
 		if (!isset($_SESSION["alimJuv"])) {
 			$_SESSION["alimJuv"] = new AlimJuv;
 		}
+		if ($_REQUEST["annee"] > 0) {
+			$_SESSION["annee"] = $_REQUEST["annee"];
+		}
+		if (!isset($_SESSION["annee"])) {
+			$_SESSION["annee"] = date("Y");
+		}
 		$this->vue->set($this->dataclass->getLotByAnnee($_SESSION["annee"]), "lots");
 		$this->vue->set("repro/lotSearch.tpl", "corps");
 		$this->vue->set($_SESSION["alimJuv"]->getParam(), "dataAlim");
@@ -105,7 +111,7 @@ class Lot extends PpciLibrary
 			);
 		} else {
 			$this->dataRead($this->id, "repro/lotChange.tpl");
-			if (isset($_REQUEST["sequence_id"])) {
+			if ($_REQUEST["sequence_id"] > 0) {
 				$sequence = new Sequence;
 				$this->vue->set($sequence->lire($_REQUEST["sequence_id"]), "sequence");
 			}

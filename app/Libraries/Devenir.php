@@ -27,13 +27,20 @@ class Devenir extends PpciLibrary
 		if (isset($_REQUEST[$this->keyName])) {
 			$this->id = $_REQUEST[$this->keyName];
 		}
+		helper("esfc");
 	}
 	function list()
 	{
 		$this->vue = service('Smarty');
-		require "modules/repro/setAnnee.php";
+		if ($_REQUEST["annee"] > 0) {
+			$_SESSION["annee"] = $_REQUEST["annee"];
+		}
+		if (!isset($_SESSION["annee"])) {
+			$_SESSION["annee"] = date("Y");
+		}
 		$this->vue->set($this->dataclass->getListeFull($_SESSION["annee"]), "dataDevenir");
 		$this->vue->set("repro/devenirCampagneList.tpl", "corps");
+		setAnneesRepro($this->vue);
 		return $this->vue->send();
 	}
 	function change()
@@ -69,6 +76,7 @@ class Devenir extends PpciLibrary
 		}
 		$parents = $this->dataclass->getParentsPotentiels($data["devenir_id"], $lotId, $annee);
 		$this->vue->set($parents, "devenirParent");
+		return $this->vue->send();
 	}
 	function write()
 	{

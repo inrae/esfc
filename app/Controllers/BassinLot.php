@@ -22,6 +22,7 @@ class BassinLot extends PpciController
     function write()
     {
         if ($this->lib->write()) {
+            
             return $this->lot->display();
         } else {
             return $this->lib->change();

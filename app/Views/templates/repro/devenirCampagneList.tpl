@@ -1,4 +1,4 @@
-<form method="get" action=devenirList"" id="search">
+<form method="get" action="devenirList" id="search">
 	<div class="row">
 		<div class="col-md-6 form-horizontal">
 			<div class="form-group">
