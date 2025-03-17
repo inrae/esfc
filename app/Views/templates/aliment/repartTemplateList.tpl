@@ -1,4 +1,4 @@
-<h2>{t}Modèles de répartion des aliments{/t}</h2>
+<h2>{t}Modèles de répartition des aliments{/t}</h2>
 {include file="aliment/repartTemplateSearch.tpl"}
 <div class="col-lg-8">
 	{if $isSearch == 1}

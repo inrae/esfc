@@ -180,7 +180,7 @@
 	<img src="display/images/list.png" height="25">
 	{t}Retour à la liste{/t}
 </a>
-<a href="repartitionPrint&repartition_id={$data.repartition_id}" id="repartitionPrint">
+<a href="repartitionPrint?repartition_id={$data.repartition_id}" id="repartitionPrint">
 	<img src="display/images/print.svg" height="25">
 	{t}Imprimer la répartition{/t}
 </a>

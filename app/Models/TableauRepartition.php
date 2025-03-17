@@ -204,8 +204,11 @@ class TableauRepartition extends TCPDF
 		if ($dateDebut == "") {
 			$dateDebut = date('d-m-Y');
 		}
-		$nomFichier = $this->param["nomFichier"] . "_" . $this->dateDebut->format("d-m-Y") . ".pdf";
-		$this->Output($nomFichier, "I");
+		$appParam = service ("AppConfig");
+		$nomFichier = $appParam->APP_temp."/".$this->param["nomFichier"] . "_" . $this->dateDebut->format("d-m-Y") . ".pdf";
+		$this->Output($nomFichier, "F");
+		$view = service ("PdfView");
+		$view->send(["filename"=>$nomFichier, "disposition"=>"inline"]);
 	}
 }
 

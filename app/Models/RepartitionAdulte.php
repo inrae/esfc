@@ -25,6 +25,9 @@ class RepartitionAdulte extends TableauRepartition
 		 * Preparation de l'entete du tableau
 		 */
 		$nbAlim = count($this->dataAliment);
+		if (!$nbAlim > 0) {
+			$nbAlim = 1;
+		}
 		$alimColumnSize = intval(130 / $nbAlim);
 		$alimColumnSizeMatin = intval($alimColumnSize / 2);
 		$alimColumnSizeSoir = $alimColumnSize - $alimColumnSizeMatin;

@@ -405,7 +405,7 @@ class Distribution extends PpciModel
 						and categorie_id = :categorie_id:";
 		$param = array("categorie_id" => $categorie_id, "repartition_id" => $repartition_id);
 		if ($site_id > 0) {
-			$sql .= " and site_id = :site_id";
+			$sql .= " and site_id = :site_id:";
 			$param["site_id"] = $site_id;
 		}
 		$sql .= " and bassin_id not in
