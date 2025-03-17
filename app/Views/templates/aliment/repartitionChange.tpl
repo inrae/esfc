@@ -180,14 +180,16 @@
 	<img src="display/images/list.png" height="25">
 	{t}Retour à la liste{/t}
 </a>
-<a href="repartitionPrint?repartition_id={$data.repartition_id}" id="repartitionPrint">
+<a href="repartitionPrint?repartition_id={$data.repartition_id}" id="repartitionPrint" target="_blank">
 	<img src="display/images/print.svg" height="25">
 	{t}Imprimer la répartition{/t}
 </a>
 <form id="repartitionForm" method="post" action="repartitionWrite">
 	<input type="hidden" name="moduleBase" value="repartition">
 	<input type="hidden" name="repartition_id" value="{$data.repartition_id}">
-
+	{if $data.repartition_id>0}
+	<input type="hidden" name="categorie_id" value="{$data.categorie_id}">
+	{/if}
 	<div class="col-lg-12">
 		<div class="col-lg-2 col-md-4">
 			<div class="row">

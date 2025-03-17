@@ -64,7 +64,7 @@ class DistribQuotidien extends PpciModel
 			$sql = "delete from distrib_quotidien
 					where distrib_quotidien_date = :dqd:
 					and bassin_id = :id:";
-			return $this->executeAsPrepared($sql, array("dqd" => $date, "id" => $bassin_id), true);
+			return $this->executeQuery($sql, array("dqd" => $date, "id" => $bassin_id), true);
 		} else {
 			return false;
 		}
@@ -80,7 +80,7 @@ class DistribQuotidien extends PpciModel
 	{
 		$distribDate = $this->formatDateLocaleVersDB($distrib_date);
 		$sql = "SELECT * from distrib_quotidien
-					where bassin_id = :bassin_id 
+					where bassin_id = :bassin_id:
 					and distrib_quotidien_date = :distrib_date: ";
 		return ($this->lireParamAsPrepared($sql, array("bassin_id" => $bassin_id, "distrib_date" => $distribDate)));
 	}

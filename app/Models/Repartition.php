@@ -104,7 +104,7 @@ class Repartition extends PpciModel
 		/*
 			 * Lecture des infos précédentes
 			 */
-		$dataPrec = $this->lire($id);
+		$dataPrec = $this->read($id);
 		if ($dataPrec["repartition_id"] > 0) {
 			$err = 0;
 			$data = $dataPrec;
@@ -150,7 +150,7 @@ class Repartition extends PpciModel
 						/*
 							 * Ecriture des nouvelles distributions
 							 */
-						$idDistribution = $this->distribution->ecrire($data);
+						$idDistribution = $this->distribution->write($data);
 						if (!$idDistribution > 0) {
 							$this->errorData[] = array(
 								"code" => 0,

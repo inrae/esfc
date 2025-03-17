@@ -39,7 +39,7 @@
                             <img src="display/images/bin.png" height="20">
                         </a>
                     <td>
-                        <a href="repartitionDuplicate&repartition_id={$dataList[lst].repartition_id}"
+                        <a href="repartitionDuplicate?repartition_id={$dataList[lst].repartition_id}"
                             title="Créer une nouvelle répartition à partir de celle-ci">
                             <div class="center"><img src="display/images/copy.png" height="20"></div>
                         </a>

@@ -94,7 +94,7 @@ class Distribution extends PpciModel
 	 */
 	function read($id, $getDefault = false, $parentValue = 0): array
 	{
-		$data = parent::lire($id, $getDefault, $parentValue);
+		$data = parent::read($id, $getDefault, $parentValue);
 		/*
 		 * Traitement des jours
 		 */
@@ -136,14 +136,14 @@ class Distribution extends PpciModel
 			/*
 			 * Relecture, pour récupérer les données de restes
 			 */
-			$data = $this->lire($id);
+			$data = $this->read($id);
 			/*
 			 * Ecriture de la repartition quotidienne des aliments
 			 */
 			if (!isset($this->repartition)) {
 				$this->repartition = new Repartition;
 			}
-			$dataRepartition = $this->repartition->lire($data["repartition_id"]);
+			$dataRepartition = $this->repartition->read($data["repartition_id"]);
 			$dateDebut = \DateTime::createFromFormat('d/m/Y', $dataRepartition['date_debut_periode']);
 			$dateFin = \DateTime::createFromFormat('d/m/Y', $dataRepartition["date_fin_periode"]);
 			$dateDiff = date_diff($dateDebut, $dateFin, true);
@@ -192,9 +192,9 @@ class Distribution extends PpciModel
 				 * Recuperation du numero de jour
 				 */
 				$numJour = date_format($dateDebut, "w");
-				if ($numJour == 0)
+				if ($numJour == 0) {
 					$numJour = 7;
-
+				}
 				/*
 				 * Ecriture de l'enregistrement distrib_quotidien
 				 */
@@ -217,7 +217,7 @@ class Distribution extends PpciModel
 				if ($distribJourSoir[$numJour - 1] == 1) {
 					$dataDistrib["total_distribue"] = $dataDistrib["total_distribue"] * 0.5;
 				}
-				$idDataDistrib = $this->distribQuotidien->ecrire($dataDistrib);
+				$idDataDistrib = $this->distribQuotidien->write($dataDistrib);
 				if ($idDataDistrib > 0 && $distribJour[$numJour - 1] == 1) {
 					/*
 					 * Ecriture des donnees quotidiennes des aliments
@@ -229,7 +229,7 @@ class Distribution extends PpciModel
 							"distrib_quotidien_id" => $idDataDistrib,
 							"quantite" => intval($dataDistrib["total_distribue"] * $taux / 100)
 						);
-						$this->alimentQuotidien->ecrire($dataAlimQuot);
+						$this->alimentQuotidien->write($dataAlimQuot);
 					}
 				}
 				$i++;
@@ -276,7 +276,7 @@ class Distribution extends PpciModel
 				/*
 					 * Lecture de l'enregistrement précédent, qui doit exister
 					 */
-				$dataDistrib = $this->distribQuotidien->lireFromDate($data["bassin_id"], $dateDebut->format("d/m/Y"));
+				$dataDistrib = $this->distribQuotidien->readFromDate($data["bassin_id"], $dateDebut->format("d/m/Y"));
 				if ($dataDistrib["distrib_quotidien_id"] > 0) {
 					$dataDistrib["reste"] = $data["reste_" . $i];
 					$ret1 = $this->distribQuotidien->ecrire($dataDistrib);
@@ -353,7 +353,7 @@ class Distribution extends PpciModel
 			$data[$key]["total_periode_distribue"] = 0;
 			$date_debut = date_create_from_format("d/m/Y", $dataRepart["date_debut_periode"]);
 			for ($i = 1; $i <= $nbJour; $i++) {
-				$dataDistrib = $this->distribQuotidien->lireFromDate($value["bassin_id"], $date_debut->format("d/m/Y"));
+				$dataDistrib = $this->distribQuotidien->readFromDate($value["bassin_id"], $date_debut->format("d/m/Y"));
 				$data[$key]["total_periode_distribue"] += $dataDistrib["total_distribue"];
 				$date_debut->add($p1d);
 			}
@@ -368,7 +368,7 @@ class Distribution extends PpciModel
 				 * Lecture des consommations et restes quotidiens
 				 */
 			for ($i = 1; $i <= $nbJour; $i++) {
-				$dataDistrib = $this->distribQuotidien->lireFromDate($value["bassin_id"], $dateDeb->format("d/m/Y"));
+				$dataDistrib = $this->distribQuotidien->readFromDate($value["bassin_id"], $dateDeb->format("d/m/Y"));
 				$data[$key]["total_periode_distrib_precedent"] += $dataDistrib["total_distribue"];
 				$data[$key]["reste_precedent"] += $dataDistrib["reste"];
 				$dateDeb->add($p1d);

@@ -418,7 +418,7 @@ class PpciModel extends Model
             }
         } else {
             $data = $this->find($id);
-            if (isNull($data)) {
+            if (!$data) {
                 $data = [];
             }
         }

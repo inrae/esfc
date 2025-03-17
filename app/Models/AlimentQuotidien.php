@@ -57,7 +57,7 @@ class AlimentQuotidien extends PpciModel
 					where distrib_quotidien.distrib_quotidien_id = aliment_quotidien.distrib_quotidien_id
 					and distrib_quotidien_date = :datedist:
 					and bassin_id = :bassin_id:";
-			$this->executeAsPrepared($sql, array("datedist" => $date, "bassin_id" => $bassin_id), true);
+			$this->executeQuery($sql, array("datedist" => $date, "bassin_id" => $bassin_id), true);
 		}
 	}
 }

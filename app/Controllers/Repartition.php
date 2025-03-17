@@ -22,11 +22,17 @@ class Repartition extends PpciController
     }
     function create()
     {
-        return $this->lib->create();
+        if ($this->lib->create()) {
+            return $this->lib->change();
+        }
     }
     function duplicate()
     {
-        return $this->lib->duplicate();
+        if ($this->lib->duplicate()) {
+            return $this->lib->change();
+        } else {
+            return $this->lib->list();
+        }
     }
     function write()
     {
