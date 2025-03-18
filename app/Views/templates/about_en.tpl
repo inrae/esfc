@@ -1,4 +1,4 @@
-<h2>About <b>APP</b></h2>
+<h2>About <b>Ex-Situ Fish Conservation</b></h2>
 <p>
 Version {$version} of {$versiondate}.
 </p>

@@ -2,11 +2,8 @@
 
 namespace Ppci\Models;
 
-use CodeIgniter\Database\Query;
 use CodeIgniter\Model;
 use Ppci\Libraries\PpciException;
-
-use function PHPUnit\Framework\isNull;
 
 class PpciModel extends Model
 {

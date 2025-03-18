@@ -14,7 +14,7 @@ Nouvelle requête...
 <th>{t}Id{/t}</th>
 <th>{t}Description{/t}</th>
 <th>{t}Date création{/t}</th>
-<th>{t}Date dernière<br>exécution{/t}</th>
+<th>{t}Date dernière exécution{/t}</th>
 <th>{t}Créateur (login){/t}</th>
 <th><img src="display/images/exec.png" height="25"></th>
 {if $rights["paramAdmin"] == 1}

@@ -1,2 +1,372 @@
 Nouveautés
-============
+==========
+Version 25.0.0 du 24 mars 2025
+------------------------------
+- migration de l'application vers le framework CodeIgniter avec le module equinton/ppci
+- corrections multiples dans l'ergonomie du logiciel
+
+Nouveautés :
+- ajout d'une catégorie "historique" pour les modèles de répartitions
+- ajout de la distribution du midi dans les fiches de répartition des aliments pour les juvéniles
+
+Version 24.2.1 du 22 mai 2024
+-----------------------------
+Corrections de bugs :
+- la génération des visotubes de sperme congelé dans Collec-Science ne prenait pas en compte la possibilité de plusieurs congélations dans la même journée pour le même poisson
+- le calcu du cumul des températures plantait le serveur si trop de poissons étaient sélectionnés. Le calcul n'est maintenant disponible que pour moins de 50 poissons, mais le cumul annuel est consultable dans le détail du poisson
+
+Version 24.2.0 du 17 avril 2024
+-------------------------------
+Corrections de bugs :
+- il n'était plus possible de modifier une requête SQL
+- la suppression des poissons ne fonctionnait pas si les parents étaient renseignés
+- dans les modules dédiés à la reproduction, l'affichage des parents posait problème pour ceux ne disposant pas de prénoms
+- il est maintenant possible de créer des modèles de VIE avec un seul point d'accrochage
+- depuis la liste des poissons, l'export par les boutons (CSV, COPY, EXCEL) ne contenait pas les entêtes de colonnes
+
+Nouveautés :
+- lors de la création d'un transfert vers un bassin, le bassin d'origine est renseigné par défaut
+- depuis le détail d'un bassin, il est maintenant possible de transférer un ou plusieurs poissons vers un autre bassin en une seule opération
+- il est maintenant possible d'exporter la liste des spermes congelés en CSV, COPY ou EXCEL
+
+Version 24.1.0 du 25 mars 2024
+------------------------------
+Nouveautés concernant la congélation du sperme :
+- la liste des spermes disponibles a été complétée
+- en saisie des congélations, diverses améliorations (calcul automatique du volume, etc.)
+- la gestion du stockage a été déportée dans Collec-Science :
+- les visotubes sont générés directement dans Collec-Science
+- la liste des visotubes générés pour un prélèvement est récupérée depuis Collec-Science
+- la liste de tous les visotubes disponibles peut être visualisée (par interrogation automatique de Collec-Science), soit globalement, soit par année
+
+Version 24.0.0 du 13 février 2024
+---------------------------------
+Corrections de bugs :
+- les champs "visotubes" étaient mal ortographiés
+- lors de la création d'une congélation de sperme, les infos rattachées étaient visibles
+- dans certains cas, une page blanche était affichée dans les modules de gestion du sperme
+
+Nouveautés :
+- en congélation du sperme, des informations complémentaires ont été rajoutées (opérateur, volume des paillettes)
+- deux listes sont maitenant disponibles : la liste de tous les croisements réalisés, et la liste des semences congelées
+
+Version 23.2.0 du 7 décembre 2023
+---------------------------------
+Corrections de bugs :
+- la création des types d'événements pour les bassins n'aboutissait pas
+- la suppression d'un lot de reproduction ne fonctionnait pas
+
+Nouveautés :
+- il est possible de réaliser une recherche par cohorte indépendament des autres critères
+- en choisissant le type d'évenement "mortalité", le statut du poisson est maintenant mis à jour
+- remplacement du composant date/heure par un composant plus moderne
+
+Version 23.1.0 du 19 septembre 2023
+-----------------------------
+Corrections de bugs :
+- il était impossible de créer ou modifier une distribution d'aliments
+- il était impossible de supprimer un poisson
+- la saisie d'un nouveau prélèvement de sperme était en erreur
+- le module repro, séquences et bassins était parfois en erreur
+- dans le module repro, le rattachement d'un poisson à une séquence (poisson mort) ne fonctionnait pas
+- dans le module repro, le nombre d'heures où le pourcentage maxi de maturation était atteint ne pouvait pas dépasser 23
+- il n'était pas possible de saisir une nouvelle injection pour une femelle
+- l'accès au module d'exécution des requêtes n'était plus possible
+- dans la liste des croisements, seul le prénom était affiché
+- la saisie d'un prélèvement de sperme n'aboutissait pas dans certains cas
+- dans la liste des poissons, la date de naissance n'était pas affichée
+- en modification d'un poisson, le type de marque préalablement enregistré ne s'affichait pas
+- la création d'un nouvel aliment ne fonctionnait pas
+- les lots ne peuvent plus être créés s'il n'y a pas de reproducteurs pour l'année de reproduction considérée
+- lors de la création d'une nouvelle destination d'un lot, il est possible de créer un lot dérivé en indiquant le nombre de poissons de ce nouveau lot et en conservant les informations sur la reproduction
+
+Nouveautés :
+- dans le menu, les entrées qui renvoyaient vers la page d'accueil affichent maintenant les sous-menus correspondants
+- lors de la création d'un nouveau pittag, le matricule du poisson prend la valeur du pittag le plus récent
+- il est maintenant possible de rechercher les poissons par bassin
+- dans le module de recherche des poissons, il est maintenant possible de sélectionner n'importe quel libellé avec un mécanisme de recherche par colonne
+- la procédure d'importation des mesures à partir d'un fichier CSV a été adaptée pour utiliser les noms des colonnes existantes dans le fichier original
+
+
+Version 2.0.1 du 21 août 2023
+-----------------------------
+Corrections de bugs :
+- la modification des bassins ne fonctionnait pas
+- la modification des poissons rattachés aux séquences, ainsi que la saisie des événements, ne fonctionnait pas
+- diverses anomalies impactaient les saisies des prélèvements de sperme
+
+Version 2.0 du 9 août 2023
+--------------------------
+Nouveautés :
+- refonte complète de l'interface, en utilisant un nouvelle version du moteur d'exécution
+- ajout, en page d'accueil, d'un graphique permettant de visualiser l'évolution des mortalités par catégorie ou par cohorte
+- ajout d'un mode de calcul de la masse des poissons présents dans un bassin par échantillonnage
+- ajout d'une fonction d'importation des mesures des poissons à partir d'un fichier CSV
+- en consultation d'un poisson, affichage d'un graphique permettant de visualiser l'évolution de sa croissance
+- support de l'anglais et de l'américain (formatage des dates)
+
+Version 1.8 du 18 février 2018
+-------------------------------
+Nouveautés :
+- ajout de la gestion des sites : il est maintenant possible de gérer un élevage réparti sur plusieurs sites
+- ajout d'un module d'importation des relevés de sonde d'analyse d'eau
+- génération d'un graphique permettant de visualiser les paramètres physico-chimiques d'un ou plusieurs circuits d'eau
+
+Version 1.7 du 13 décembre 2017
+-------------------------------
+Ajout d'un module permettant d'exécuter des requêtes directement dans la base de données
+
+Version 1.6.12 du 1er aout 2017
+-------------------------------
+Modifications substancielles dans la gestion du sperme :
+- la saisie des prélèvements n'est plus possible depuis une séquence, il faut la faire depuis la fiche détail d'un poisson en repro
+- il est possible d'indiquer le conservateur utilisé
+- lors de la congélation, il est possible maintenant d'indiquer plusieurs emplacements de stockage des paillettes
+- pour suivre l'étape de congélation, il est possible de saisir des relevés de température, et le programme affiche la courbe correspondante
+- lors de l'utilisation de paillettes (soit pour la repro, soit pour l'analyse), le nombre total de paillettes utilisées est calculé et mis à jour
+- il est maintenant possible de saisir plusieurs mesures différentes, soit à partir de paillettes congelées, soit à partir du prélèvement initial.
+
+Version 1.6.11 du 30 juin 2017
+-------------------------------
+Ajout de la détermination de la parenté d'un poisson
+Corrections de bugs :
+- il n'était pas possible de supprimer un croisement
+- il n'était pas possible de rajouter des adultes à un croisement
+
+Version 1.6.10 du 23 mai 2017
+--------------------------------
+Modifications dans la gestion des analyses d'eau :
+- les données réelles d'analyse d'eau sont maintenant saisies une seule fois et sont visibles dans le module repro
+
+Version 1.6.9 du 19 mai 2017
+--------------------------------
+Correction : 
+- dans le module "repro", en saisie des données de croissance d'un poisson, il n'était pas possible de saisir un nombre négatif
+
+Amélioration :
+- module "repro", détail d'un poisson : il est maintenant possible de recalculer les taux de croissance manuellement
+
+Version 1.6.8 du 18 mai 2017
+--------------------------------
+Corrections :
+- en création d'événement, une ligne était créée systématiquement dans la table échographie
+- lors de la création d'une échographie/événement, l'import ne fonctionnait pas si 2 photos étaient téléchargées en même temps
+- le calcul de la masse des poissons dans un bassin présentait un bug
+- lors de la modification du statut d'activité du bassin, un message d'erreur était affiché
+
+Améliorations :
+- les documents, photos... sont maintenant triées d'abord par date de création/prise de vue (les plus récentes en premier)
+- il est maintenant possible de modifier les informations générales d'une photo (nom, commentaire, date de prise de vue)
+- le statut d'activité des circuits d'eau est maintenant affiché dans la liste et dans le détail
+- lors de la recherche des poissons, la catégorie n'est plus obligatoire. La recherche n'est plus déclenchée automatiquement après changement dans une boite de sélection, et un contrôle a été rajouté pour ne déclencher la recherche que si un critère a été renseigné
+
+Version 1.6.7 du 21 mars 2017
+--------------------------------
+Améliorations :
+- en saisie d'un transfert (événement), le bassin d'origine est maintenant pré-renseigné
+- il est maintenant possible de créer une morphologie en ne saisissant qu'un commentaire
+- ajout d'une donnée morphologique : la circonférence du poisson
+
+Version 1.6.6 du 27 février 2017
+--------------------------------
+Améliorations :
+- ajout de la valeur oxygène dissous en % dans les analyses d'eau
+- mise à jour du composant dataTables, utilisé pour afficher les tableaux et exporter les données
+
+Version 1.6.5 du 3 février 2017
+--------------------------------
+Corrections :
+- la saisie de certaines dates fonctionnait mal (nombre de caractères autorisés trop faible)
+- certains libellés n'étaient pas assez explicites
+
+Améliorations :
+- il est maintenant possible de définir des stades de maturation des oeufs ou des gonades, pour les échographies (tables de paramètres)
+
+Version 1.6.4 du 2 novembre 2016
+--------------------------------
+Corrections :
+- il est maintenant possible de saisir plusieurs congélations de sperme (avec prise en compte dans les croisements)
+- il n'est plus indispensable de renseigner le commentaire de l'échographie si des photos sont sélectionnées lors de la création de l'événement
+
+Version 1.6.3 du 1er aout 2016
+----------------------------
+Corrections :
+- la saisie des dates/heures était incohérente et ne fonctionnait pas de manière optimale. Retour au composant d'origine, avec intégration des nouvelles versions et de la francisation
+
+Version 1.6.2 du 31 mai 2016
+----------------------------
+Corrections diverses :
+- la mesure de ventilation des géniteurs est maintenant exprimée en battements par seconde, et le nombre peut contenir des décimales
+- corrections diverses sur la saisie du sperme (la suppression était impossible, et la date de mesure est forcée à la date de collecte)
+- en gestion de la reproduction, l'année courante est maintenant systématiquement ajoutée à la liste des campagnes, pour pouvoir initialiser la nouvelle campagne (rajout des adultes vivants en une seule passe)
+
+Version 1.6.1 du 12 avril 2016
+----------------------------
+Corrections diverses :
+- saisie du sperme : changement d'un libellé dans l'écran de saisie, et vérification du bon enregistrement des données
+- en saisie d'événement (échographie), il n'était pas possible de saisir la date de création/prise de vue
+
+Améliorations :
+- les photos/documents sont affichés par 10, pour limiter le nombre de requêtes vers le serveur à l'ouverture d'une fiche
+
+Version 1.6 du 5 avril 2016
+----------------------------
+Modifications techniques :
+- les photos ne sont générées dans le fichier temporaire que si c'est nécessaire (gain en terme de performance lors du premier accès à un poisson)
+- les pièces jointes sont analysées avec un antivirus avant d'être stockées dans la base
+- tous les accès aux modules (réussite ou échec) sont maintenant tracés
+
+Évolutions générales :
+- les répartitions d'aliment peuvent maintenant être nommées (affichage également dans les fiches de répartition)
+- les anesthésies peuvent être renseignées
+- les mesures de ventilations peuvent être enregistrées
+- il est possible d'indiquer, au moment du chargement d'une photo, sa date de création
+- il est possible de saisir des événements liés aux circuits d'eau
+- la recherche d'un poisson peut maintenant être réalisée en utilisant son numéro informatique (poisson_id)
+- les bassins peuvent être recherchés maintenant à partir de leur nom
+- à partir de la liste des bassins, il est possible de générer un fichier CSV contenant un récapitulatif hebdomadaire (qté totale d'aliments distribués, restes, masse des poissons correspondante)
+- les dosages sanguins peuvent maintenant être saisis au sein d'un événement général (poisson)
+- il est possible de saisir les informations sur les prélèvements génétiques (nageoire, référence), dans un événement
+- à partir de la liste des poissons, il est possible de calculer le cumul des températures journalières sur une période donnée
+
+Évolutions pour les aspects liés à la reproduction :
+- le pH du sperme peut être renseigné, ainsi que ses caractéristiques
+- correction du libellé "nombre de larves estimé" en "nombre de larves initial"
+- ajout de l'affichage direct, dans les écrans de reproduction, des photos associées aux échographies
+- dans les graphiques, ajout du taux d'hématocrite, et des courbes Ca et E2 corrigées en fonction de ce taux
+- correction de bugs divers d'affichage, et ajout du statut du poisson s'il n'est pas vivant (dans le cas d'une utilisation du sperme congelé, p. e.)
+- refonte de la gestion du sperme, pour tenir compte des reproductions à partir de sperme congelé
+- pour la congélation du sperme, rajout du dilueur utilisé
+- il est possible maintenant d'utiliser du sperme congelé (le père concerné doit être rajouté dans les reproducteurs potentiels, même s'il est mort)
+- il est possible de subdiviser une destination d'un lot en d'autres destinations (notion de destination parente lors de la création d'une nouvelle)
+
+Version 1.5 du 2 février 2016
+----------------------------
+Corrections de bogues :
+- l'affichage et la gestion des photos ont été corrigés. Le téléchargement des pièces impose maintenant un respect des droits en vigueur, dans tous les cas de figure
+- il n'était pas possible de supprimer un relevé de salinité dans les bassins de reproduction
+
+Évolutions :
+- les transferts effectués dans l'année sont maintenant affichés dans la fiche de détail d'un reproducteur
+- le devenir d'un lot (lâcher en milieu naturel, stock captif...) peut maintenant être saisi
+- les différents lâchers ou rentrées dans le stock captif peuvent également être saisis sans passer par l'intermédiaire d'un lot, pour la reprise d'historique
+- la saisie de la température ou de la salinité constatés sont mis à jour dans les tables des analyses chimiques des bassins (circuits d'eau)
+
+Divers :
+- nettoyage du code et suppression des modules tiers non utilisés
+
+Version 1.4.3 du 28 septembre 2015
+----------------------------
+Corrections de bogues :
+- dans certains cas, il était impossible de supprimer un poisson (poisson indiqué comme parent sans raison)
+- la suppression d'un événement ne fonctionnait pas si certaines informations étaient renseignées
+
+Améliorations :
+- la saisie du matricule est maintenant obligatoire (le matricule est généré automatiquement dans la grille de saisie à partir du n° TAG)
+
+Améliorations techniques :
+- basculement vers la dernière version du framework (réorganisation des menus, modification du moteur d'accès aux données)
+- réécriture d'une partie du module de gestion des pièces jointes
+
+Version 1.4.2 du 3 août 2015
+----------------------------
+- Réactivation du module permettant l'export de tableaux pour 4 tableaux (liste des poissons, liste des poissons d'un bassin, liste des morphologies et des transferts effectués)
+- correction du calcul (en affichage) du nombre d'oeufs et d'ovocytes dans le module repro
+
+Version 1.4 du 5 juin 2015
+--------------------------
+Améliorations techniques :
+- implémentation de contrôles de sécurité complémentaires suite à audit sécurité
+- écriture d'un nouveau module de gestion des droits et abandon de phpgacl
+
+Version 1.3.2 du 26 mai 2015
+----------------------------
+Corrections de bogues :
+- l'import de documents était impossible après rajout d'une fonction de sécurité
+
+Améliorations :
+- implémentation de plusieurs mécanismes de sécurité
+- après sélection d'un poisson depuis un bassin, le retour vers la liste revient au bassin
+- il est maintenant possible de sélectionner les bassins pour lesquels la fiche d'alimentation doit être calculée (lots de larves)
+
+Version 1.3.1 du 20 mai 2015
+----------------------------
+Corrections de bogues :
+- En modification d'un événement, le bassin d'origine n'est pas renseigné
+
+Version 1.3 du 18 mai 2015
+--------------------------
+Améliorations :
+- modification de l'affichage des analyses d'eau
+- ajout d'une colonne de débit d'eau dans les analyses d'eau et de la saisie des métaux lourds
+- ajout de la gestion de l'alimentation des juvéniles traités par lots (stade post-larve)
+
+Corrections de bogues :
+- correction d'un problème de droits dans l'accès à la saisie des analyses des circuits d'eau
+- corrections de libellés
+- corrections d'anomalies liées au mode développement/production
+- correction de la navigation dans le module de gestion de la campagne de reproduction, pour un poisson
+
+Version 1.2.1 du 20 avril 2015
+------------------------------
+Correction d'un bug lors de la génération d'une nouvelle répartition : le numéro de la répartition précédente n'était pas restranscrit
+
+Version 1.2 du 14 avril 2015
+---------------------------------
+Création du module de gestion de la reproduction
+- première version opérationnelle
+
+Améliorations :
+- pour améliorer la performance, la liste des poissons s'affiche par défaut sans les mensurations, activables manuellement
+- à partir de la liste des poissons, il est possible de générer un fichier CSV comprenant l'ensemble des événements pour les poissons sélectionnés
+- les échographies peuvent être renseignées directement lors de la saisie d'un événement, les photos pouvant y être associées directement
+
+Corrections de bogues :
+- affichage des listes : le survol par la souris colore la ligne considérée
+- rajout d'une fonction dans ObjetBDD permettant de limiter les risques d'injection SQL, et modification de l'ensemble des classes pour gérer cet aspect (requêtes de sélection portant sur des chaînes de caractères)
+
+Version 1.1.3
+-------------
+Correction d'un bogue : 
+- les valeurs nulles dans l'écran de saisie des répartitions d'aliments généraient des anomalies dans les données.
+
+Version 1.1.2 du 4 septembre 2014
+---------------------------------
+Correction d'un bogue :
+- lors de la duplication des feuilles de distribution, les bassins qui sont devenus inactifs, ou dont le type de poisson élevé a changé (adulte -> juvénile) sont exclus de la nouvelle feuille
+Évolutions mineures : 
+- la liste des poissons affichée dans l'écran de recherche intègre maintenant le dernier bassin et les dernières mensurations connus
+- dans l'affichage d'un bassin, la masse individuelle et totale des poissons a été rajoutée à la liste
+
+Version 1.1.1 du 31 juillet 2014
+--------------------------------
+Correction de bogues et évolutions mineures :
+- il était impossible de créer un nouveau poisson (problème lié à l'enregistrement du sexe)
+- les personnes disposant du droit poissonAdmin n'avaient pas la possibilité de supprimer un poisson ou un événement. La correction a été également apportée à l'ensemble des pages de modifications incluant un bouton supprimer (vérification des droits nécessaires)
+- création d'un script permettant de supprimer un poisson de façon propre. Le poisson ne sera pas supprimé s'il existe des événements, ou si le poisson a des descendants déclarés. Une fois ces contrôles effectués, la suppression gère l'effacement des pittag et des documents associés
+- la fiche "alimentation juvénile" a été basculée en format paysage. Le total des aliments distribués sur une semaine est maintenant calculé systématiquement sur 7 jours, quelle que soit le nombre de jours de validité de la fiche
+- rajout d'une colonne commentaire dans le poisson, pour saisir des informations qui ne peuvent être stockées ailleurs
+
+Version 1.1 du 18 juin 2014
+---------------------------
+Correction de bogues :
+- le calcul des aliments distribués quotidiennement était erroné dans le cas où une distribution n'avait pas lieu un jour donné
+- après duplication d'une feuille de distribution, le programme refusait d'afficher la feuille en modification
+Rajout de fonctionnalités concernant la distribution :
+- rajout d'une zone permettant d'indiquer une distribution à 50 % certains jours
+- recalcul des restes et des taux de restes en prenant en compte les valeurs réellement rentrées quotidiennement, et non plus les informations de la distribution précédente
+
+Version 1.0.1 du 20 mai 2014
+----------------------------
+Version de production, comportant les corrections suivantes :
+- modification d'un poisson : il est maintenant possible de changer sa catégorie (juvénile, adulte...)
+- Saisie des répartitions : les modèles de distribution des aliments sont maintenant triés par nom, et non plus par date de création
+- correction du changement de statut lors de l'enregistrement d'un événement "mortalité"
+- Durée de la session : en l'absence de toute opération dans l'application, l'utilisateur est déconnecté au bout d'une heure (au lieu de 4 auparavant). Il s'agit d'une exigence de sécurité du RGS
+- Correction d'un élément du framework (ObjetBDD)
+
+
+Version 1.0 du 6 mai 2014
+-------------------------
+Version initiale de pré-production
+

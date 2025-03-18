@@ -1,2 +1,374 @@
 News
-====================
+==========
+Translated with Deepl Traduction
+
+Version 25.0.0 of 24 March 2025
+------------------------------
+- migration of the application to the CodeIgniter framework with the equinton/ppci module
+- multiple corrections to the software's ergonomics
+
+New features :
+- addition of a ‘history’ category for distribution models
+- addition of lunchtime distribution in feed allocation sheets for juveniles
+
+Version 24.2.1 of 22 May 2024
+-----------------------------
+Bug fixes:
+- the generation of visotubes of frozen sperm in Collec-Science did not take into account the possibility of several freezings in the same day for the same fish
+- the cumulative temperature calculation crashed the server if too many fish were selected. The calculation is now only available for less than 50 fish, but the annual total can be consulted in the fish details.
+
+Version 24.2.0 of 17 April 2024
+-------------------------------
+Bug fixes :
+- it was no longer possible to modify an SQL query
+- deleting fish did not work if the parents were entered
+- in modules dedicated to reproduction, displaying parents was problematic for those without first names
+- it is now possible to create VIE models with a single attachment point
+- from the fish list, the export buttons (CSV, COPY, EXCEL) did not contain the column headers
+
+New features:
+- when creating a transfer to a basin, the basin of origin is filled in by default
+- from the details of a basin, it is now possible to transfer one or more fish to another basin in a single operation
+- it is now possible to export the list of frozen sperm as a CSV, COPY or EXCEL file
+
+Version 24.1.0 of 25 March 2024
+------------------------------
+New information on semen freezing:
+- the list of available semen has been extended
+- various improvements have been made to freezing data entry (automatic calculation of volume, etc.)
+- storage management has been transferred to Collec-Science:
+- visotubes are generated directly in Collec-Science
+- the list of visotubes generated for a sample is retrieved from Collec-Science
+- the list of all available visotubes can be viewed (by automatic interrogation of Collec-Science), either globally or by year
+
+Version 24.0.0 of 13 February 2024
+---------------------------------
+Bug fixes :
+- the "visotubes" fields were incorrectly ortographed
+- when creating a sperm freeze, the attached information was visible
+- in some cases, a blank page was displayed in the sperm management modules
+
+New features:
+- in sperm freezing, additional information has been added (operator, volume of straws)
+- two lists are now available: the list of all crosses made, and the list of frozen semen
+
+Version 23.2.0 of 7 December 2023
+---------------------------------
+Bug fixes :
+- creating event types for basins was not successful
+- deleting a breeding lot did not work
+
+New features:
+- it is now possible to search by cohort independently of other criteria
+- by choosing the "mortality" event type, the status of the fish is now updated
+- replacement of the date/time component by a more modern component
+
+Version 23.1.0 of 19 September 2023
+-----------------------------
+Bug fixes :
+- it was impossible to create or modify a food distribution
+- it was not possible to delete a fish
+- entering a new sperm sample was incorrect
+- the breeding, sequences and basins module sometimes contained errors
+- in the breeding module, attaching a fish to a sequence (dead fish) did not work
+- in the breeding module, the number of hours when the maximum maturation percentage was reached could not exceed 23
+- it was not possible to enter a new injection for a female fish
+- access to the query execution module was no longer possible
+- in the list of crossbreeds, only the first name was displayed
+- entering a sperm sample was not successful in some cases
+- in the fish list, the date of birth was not displayed
+- when modifying a fish, the type of pittag previously saved was not displayed
+- creating a new feed did not work
+- lots could no longer be created if there were no breeding stock for the breeding year in question
+- when creating a new destination for a lot, it is now possible to create a derived lot by indicating the number of fish in the new lot and retaining the breeding information.
+
+New features:
+- in the menu, entries that used to link to the home page now display the corresbasining sub-menus
+- when a new pittag is created, the fish's matricule takes the value of the most recent pittag
+- it is now possible to search for fish by basin
+- in the fish search module, it is now possible to select any label using a column search mechanism
+- the procedure for importing measurements from a CSV file has been adapted to use the existing column names in the original file
+
+
+Version 2.0.1 of 21 August 2023
+-----------------------------
+Bug fixes :
+- modifying pools did not work
+- modifying the fish attached to sequences and entering events did not work
+- various anomalies were affecting the entry of sperm samples
+
+Version 2.0 of 9 August 2023
+--------------------------
+What's new?
+- complete redesign of the interface, using a new version of the execution engine
+- addition, on the home page, of a graph showing changes in mortality by category or cohort
+- addition of a method for calculating the mass of fish present in a basin by sampling
+- addition of a function for importing fish measurements from a CSV file
+- when viewing a fish, a graph is displayed showing its growth rate
+- support for English and American (date formatting)
+
+Version 1.8 dated 18 February 2018
+-------------------------------
+New features:
+- addition of site management: it is now possible to manage a farm spread over several sites
+- addition of a module for importing water analysis probe readings
+- generation of a graph displaying the physico-chemical parameters of one or more water circuits.
+
+Version 1.7 dated 13 December 2017
+-------------------------------
+Addition of a module for executing queries directly in the database
+
+Version 1.6.12 dated 1 August 2017
+-------------------------------
+Substantial changes to semen management:
+- it is no longer possible to enter samples from a sequence; they must be entered from the detail sheet for a fish in breeding.
+- it is now possible to indicate the preservative used
+- when freezing, it is now possible to indicate several storage locations for straws
+- to monitor the freezing stage, it is now possible to enter temperature readings, and the programme will display the corresbasining curve
+- when straws are used (either for spawning or for analysis), the total number of straws used is calculated and updated
+- it is now possible to enter several different measurements, either from frozen straws or from the initial sample.
+
+Version 1.6.11 dated 30 June 2017
+-------------------------------
+Added the determination of the parentage of a fish
+Bug fixes:
+- it was not possible to delete a crossover
+- it was not possible to add adults to a crossover
+
+Version 1.6.10 dated 23 May 2017
+--------------------------------
+Changes to water analysis management:
+- the actual water analysis data is now entered only once and is visible in the repro module.
+
+Version 1.6.9 dated 19 May 2017
+--------------------------------
+Correction: 
+- in the "repro" module, when entering growth data for a fish, it was not possible to enter a negative number
+
+Improvement:
+- repro" module, fish details: it is now possible to recalculate growth rates manually
+
+Version 1.6.8 dated 18 May 2017
+--------------------------------
+Corrections:
+- when creating an event, a row was systematically created in the ultrasound table
+- when creating an ultrasound/event, the import did not work if 2 photos were uploaded at the same time
+- there was a bug in calculating the mass of fish in a basin
+- when modifying the activity status of a pool, an error message was displayed
+
+Improvements :
+- documents, photos, etc. are now sorted first by date created/photographed (most recent first)
+- it is now possible to modify the general information about a photo (name, comment, date taken)
+- the activity status of water circuits is now displayed in the list and in detail
+- when searching for fish, the category is no longer mandatory. The search is no longer triggered automatically after a change in a selection box, and a check has been added to trigger the search only if a criterion has been entered.
+
+Version 1.6.7 dated 21 March 2017
+--------------------------------
+Improvements :
+- when entering a transfer (event), the basin of origin is now pre-labelled
+- it is now possible to create a morphology by entering only a comment
+- addition of morphological data: fish circumference
+
+Version 1.6.6 dated 27 February 2017
+--------------------------------
+Improvements:
+- addition of dissolved oxygen value in % in water analyses
+- update of the dataTables component, used to display tables and export data
+
+Version 1.6.5 dated 3 February 2017
+--------------------------------
+Corrections:
+- some dates were not working properly (too few characters allowed)
+- some labels were not explicit enough
+
+Improvements:
+- it is now possible to define egg or gonad maturation stages for ultrasound scans (parameter tables).
+
+
+Version 1.6.4 of 2 November 2016
+--------------------------------
+Corrections:
+- it is now possible to enter several sperm freezes (with consideration in crossbreeding)
+- it is no longer necessary to enter the ultrasound comment if photos are selected when the event is created.
+
+Version 1.6.3 of 1st August 2016
+----------------------------
+Corrections:
+- Date/time entry was inconsistent and did not work optimally. Return to the original component, with integration of new versions and francization.
+
+Version 1.6.2 dated 31 May 2016
+----------------------------
+Miscellaneous corrections:
+- the sire ventilation measurement is now expressed in beats per second, and the number can contain decimals
+- miscellaneous corrections to semen input (deletion was impossible, and the measurement date is forced to the collection date)
+- in reproduction management, the current year is now systematically added to the list of campaigns, to be able to initialise the new campaign (addition of living adults in a single pass).
+
+Version 1.6.1 of 12 April 2016
+----------------------------
+Miscellaneous corrections:
+- sperm entry: change of a wording in the entry screen, and check that data is correctly recorded
+- when entering an event (ultrasound scan), it was not possible to enter the date of creation/photo shooting
+
+Improvements:
+- photos/documents are displayed by 10, to limit the number of requests to the server when a form is opened.
+
+Version 1.6 of 5 April 2016
+----------------------------
+Technical changes:
+- photos are only generated in the temporary file if necessary (performance gain when a fish is accessed for the first time)
+- attachments are scanned for viruses before being stored in the database
+- all module accesses (successful or unsuccessful) are now tracked
+
+General changes :
+- feed allocations can now be named (also displayed in allocation sheets)
+- anaesthetics can be entered
+- ventilation measurements can be recorded
+- when loading a photo, it is now possible to indicate the date it was created
+- events linked to water circuits can be entered
+- you can now search for a fish using its computer number (fish_id)
+- basins can now be searched by name
+- from the list of tanks, it is now possible to generate a CSV file containing a weekly summary (total quantity of feed distributed, leftovers, corresbasining fish mass)
+- blood tests can now be entered as part of a general event (fish)
+- information on genetic samples (fin, reference) can now be entered within an event
+- from the list of fish, it is now possible to calculate cumulative daily temperatures over a given period.
+
+Developments in reproduction-related aspects:
+- the pH of the sperm can be entered, as well as its characteristics
+- correction of the wording "estimated number of larvae" to "initial number of larvae".
+- addition of direct display, in the reproduction screens, of photos associated with ultrasound scans
+- addition of haematocrit rate to graphs, and Ca and E2 curves corrected according to this rate
+- correction of various display bugs, and addition of the status of the fish if it is not alive (when using frozen sperm, for example)
+- overhaul of sperm management, to take account of breeding using frozen sperm
+- for the freezing of semen, addition of the diluent used
+- it is now possible to use frozen sperm (the father concerned must be added to the list of potential breeders, even if he is dead)
+- it is now possible to subdivide a batch destination into other destinations (notion of parent destination when creating a new one)
+
+Version 1.5 of 2 February 2016
+----------------------------
+Bug fixes:
+- The display and management of photos have been corrected. Uploading documents now requires compliance with the rights in force in all cases
+- It was not possible to delete a salinity reading in breeding basins.
+
+Changes :
+- transfers carried out during the year are now displayed in the details sheet for a breeder
+- the fate of a batch (release into the wild, captive stock, etc.) can now be entered
+- the various releases or re-entries into captive stock can also be entered without going through the intermediary of a batch, for the recovery of history
+- the temperature and salinity data entered are updated in the chemical analysis tables for the basins (water circuits).
+
+Miscellaneous :
+- code clean-up and removal of unused third-party modules
+
+Version 1.4.3 dated 28 September 2015
+----------------------------
+Bug fixes:
+- in some cases, it was impossible to delete a fish (fish indicated as parent for no reason)
+- deleting an event did not work if certain information was entered
+
+Improvements :
+- entering the registration number is now mandatory (the registration number is automatically generated in the entry grid from the TAG number)
+
+Technical improvements :
+- switch to the latest version of the framework (reorganisation of menus, modification of the data access engine)
+- rewriting of part of the attachment management module
+
+Version 1.4.2 dated 3 August 2015
+----------------------------
+- Reactivation of the module for exporting tables for 4 tables (list of fish, list of fish in a basin, list of morphologies and transfers carried out)
+- correction of the calculation (in display) of the number of eggs and oocytes in the repro module
+
+Version 1.4 of 5 June 2015
+--------------------------
+Technical improvements:
+- implementation of additional security checks following a security audit
+- writing a new rights management module and abandoning phpgacl
+
+Version 1.3.2 dated 26 May 2015
+----------------------------
+Bug fixes:
+- importing documents was impossible after adding a security function
+
+Improvements :
+- implementation of several security mechanisms
+- after selecting a fish from a pool, the list is returned to the pool itself
+- it is now possible to select the tanks for which the feed record is to be calculated (batches of larvae)
+
+Version 1.3.1 of 20 May 2015
+----------------------------
+Bug fixes:
+- When modifying an event, the original basin is not entered.
+
+Version 1.3 of 18 May 2015
+--------------------------
+Improvements :
+- modification to the display of water analyses
+- addition of a water flow column in water analyses and of heavy metal data entry
+- addition of feeding management for juveniles treated in batches (post-larval stage)
+
+Bug fixes :
+- correction of a problem with access rights for entering water circuit analyses
+- corrections to wording
+- correction of anomalies linked to development/production mode
+- corrected navigation in the breeding campaign management module, for a fish
+
+Version 1.2.1 of 20 April 2015
+------------------------------
+correction of a bug when generating a new allocation: the number of the previous allocation was not restranscribed
+
+Version 1.2 dated 14 April 2015
+---------------------------------
+Creation of the reproduction management module
+- first operational version
+
+Improvements:
+- to improve performance, the list of fish is displayed by default without measurements, which can be activated manually
+- from the list of fish, it is possible to generate a CSV file containing all the events for the fish selected
+- ultrasounds can be entered directly when an event is entered, and photos can be linked directly to them
+
+Bug fixes:
+- list display: mouse over colours the line in question
+- addition of a function in ObjetBDD to limit the risk of SQL injection, and modification of all the classes to manage this aspect (selection queries based on character strings)
+
+Version 1.1.3
+-------------
+Correction of a bug : 
+- Null values in the feed split entry screen were generating data anomalies.
+
+Version 1.1.2 dated 4 September 2014
+---------------------------------
+Bug fix:
+- when duplicating distribution sheets, basins that have become inactive, or whose reared fish type has changed (adult -> juvenile) are excluded from the new sheet.
+Minor changes: 
+- the list of fish displayed in the search screen now includes the last known basin and measurements
+- in the display of a basin, the individual and total mass of the fish has been added to the list
+
+Version 1.1.1 of 31 July 2014
+--------------------------------
+Minor bug fixes and enhancements:
+- it was impossible to create a new fish (problem related to recording the gender)
+- people with the fishAdmin right did not have the option of deleting a fish or an event. The correction was also made to all the modification pages including a delete button (check of the necessary rights)
+- creation of a script enabling a fish to be deleted cleanly. The fish will not be deleted if events exist, or if the fish has declared descendants. Once these checks have been carried out, deletion manages the deletion of the pittag and associated documents
+- the "juvenile feed" sheet has been switched to landscape format. The total feed distributed in a week is now calculated systematically over 7 days, regardless of the number of days the form is valid.
+- addition of a comment column in the fish, to enter information that cannot be stored elsewhere.
+
+Version 1.1 of 18 June 2014
+---------------------------
+Bug fixes:
+- the calculation of feed distributed daily was incorrect if a distribution did not take place on a given day
+- after duplicating a distribution sheet, the program refused to display the sheet being modified
+Addition of features relating to distribution:
+- addition of a field for indicating a 50% distribution on certain days
+- recalculation of leftovers and rates of leftovers by taking into account the values actually entered on a daily basis, and no longer the information from the previous distribution.
+
+Version 1.0.1 dated 20 May 2014
+----------------------------
+Production version, including the following corrections:
+- modification of a fish: it is now possible to change its category (juvenile, adult...)
+- Entering distributions: feed distribution models are now sorted by name, rather than by creation date
+- correction of the change of status when recording a "mortality" event
+- Session duration: if no operation is performed in the application, the user is disconnected after one hour (instead of 4 previously). This is a security requirement of the RGS.
+- Correction of a framework element (ObjetBDD)
+
+
+Version 1.0 of 6 May 2014
+-------------------------
+Initial pre-production version
