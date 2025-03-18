@@ -54,6 +54,9 @@
 	<label class="radio-inline">
 		<input id="actif0" type="radio" name="actif" value="0" {if $data.actif == 0}checked{/if}>{t}non{/t}
 	</label>
+	<label class="radio-inline">
+		<input id="actif2" type="radio" name="actif" value="2" {if $data.actif == 2}checked{/if}>{t}historique{/t}
+	</label>
 </div>
 </div>
 </fieldset>

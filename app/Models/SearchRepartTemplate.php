@@ -8,7 +8,7 @@ class SearchRepartTemplate extends SearchParam
 	{
 		$this->param = array(
 			"categorie_id" => 0,
-			"actif" => -1
+			"actif" => 1
 		);
 		$this->paramNum = array(
 			"categorie_id",
