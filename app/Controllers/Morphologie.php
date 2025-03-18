@@ -26,6 +26,10 @@ class Morphologie extends PpciController
     }
     function exec()
     {
-        return $this->lib->exec();
+        if ($this->lib->exec()) {
+            defaultPage();
+        } else {
+            return $this->lib->import();
+        }
     }
 }
