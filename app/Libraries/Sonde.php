@@ -63,13 +63,14 @@ class Sonde extends PpciLibrary
     }
     function importExec()
     {
+        helper("esfc");
         $files = formatFiles("sondeFileName");
         try {
             $result = $this->dataclass->importData($_REQUEST["sonde_id"], $files);
 
             $this->message->set($result . " analyses d'eau créées");
             return true;
-        } catch (PpciException $e) {
+        } catch (\Exception $e) {
             $this->message->set("Echec d'importation des données ", true);
             $this->message->set($e->getMessage());
             return false;

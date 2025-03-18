@@ -119,9 +119,9 @@ class AnalyseEau extends PpciModel
 	 * @param int $offset        	
 	 * @return array
 	 */
-	function getDetailByCircuitEau($id, $dateRef = null, int $limit = 1, int $offset = 0): ?array
+	function getDetailByCircuitEau(int $id, $dateRef = null, int $limit = 1, int $offset = 0): ?array
 	{
-		if ($id > 0 && is_numeric($id)) {
+		if ($id > 0) {
 			$sql = "SELECT * from analyse_eau
 					join circuit_eau using (circuit_eau_id)
 					left outer join laboratoire_analyse using (laboratoire_analyse_id)";
@@ -148,6 +148,8 @@ class AnalyseEau extends PpciModel
 				}
 			}
 			return $data;
+		} else {
+			return [];
 		}
 	}
 
@@ -155,9 +157,9 @@ class AnalyseEau extends PpciModel
 	 * Surcharge de la fonction supprimer, pour effacer les analyses de metaux lourds
 	 * (non-PHPdoc)
 	 *
-	 * @see ObjetBDD::supprimer()
+	 * @return bool
 	 */
-	function supprimer($id): bool
+	function supprimer($id)
 	{
 		if ($id > 0) {
 			/*
@@ -165,7 +167,7 @@ class AnalyseEau extends PpciModel
 			 */
 			$analyseMetal = new AnalyseMetal($this->connection, $this->paramori);
 			$analyseMetal->supprimerChamp($id, "analyse_eau_id");
-			return parent::supprimer($id);
+			return parent::delete($id);
 		} else {
 			return false;
 		}
@@ -202,7 +204,7 @@ class AnalyseEau extends PpciModel
 	 */
 	function getIdFromDateCircuit($dateAnalyse, $circuit_id)
 	{
-		$dateAnalyse = $this->formatDateLocaleVersDB($dateAnalyse, 3);
+		$dateAnalyse = $this->formatDateTimeLocaleToDB($dateAnalyse);
 		$sql = "SELECT analyse_eau_id from analyse_eau 
 				where circuit_eau_id = :circuit_id:
 				and analyse_eau_date = :date_analyse:";
