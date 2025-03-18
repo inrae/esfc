@@ -25,7 +25,7 @@
 						<option value="-1" {if $repartTemplateSearch.actif=="-1" }selected{/if}>{t}Indifférent{/t}</option>
 						<option value="1" {if $repartTemplateSearch.actif=="1" }selected{/if}>{t}Oui{/t}</option>
 						<option value="0" {if $repartTemplateSearch.actif=="0" }selected{/if}>{t}Non{/t}</option>
-						<option value="2" {if $repartTemplateSearch.actif=="0" }selected{/if}>{t}historique{/t}</option>
+						<option value="2" {if $repartTemplateSearch.actif=="2" }selected{/if}>{t}historique{/t}</option>
 					</select>
 				</div>
 				<div class="center col-md-2">
