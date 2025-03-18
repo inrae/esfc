@@ -22,8 +22,9 @@ class RepartitionJuvenile extends TableauRepartition
 		 */
 		$nbAlim = count($this->dataAliment);
 		$alimColumnSize = intval(240 / $nbAlim);
-		$alimColumnSizeMatin = intval($alimColumnSize / 2);
-		$alimColumnSizeSoir = $alimColumnSize - $alimColumnSizeMatin;
+		$alimColumnSizeMatin = intval($alimColumnSize / 3);
+		$alimColumnSizeMidi = $alimColumnSizeMatin;
+		$alimColumnSizeSoir = $alimColumnSize - $alimColumnSizeMatin - $alimColumnSizeMidi;
 		$largeurTotaleAlim = $nbAlim * $alimColumnSize;
 		$this->enteteTableau($alimColumnSize);
 		/**
@@ -67,6 +68,7 @@ class RepartitionJuvenile extends TableauRepartition
 			 */
 			$distrib[$i][$aliment[$value["aliment_id"]]]["repart_alim_taux"] = $value["repart_alim_taux"];
 			$distrib[$i][$aliment[$value["aliment_id"]]]["quantiteMatin"] = $value["quantiteMatin"];
+			$distrib[$i][$aliment[$value["aliment_id"]]]["quantiteMidi"] = $value["quantiteMidi"];
 			$distrib[$i][$aliment[$value["aliment_id"]]]["quantiteSoir"] = $value["quantiteSoir"];
 			$distrib[$i][$aliment[$value["aliment_id"]]]["aliment_type_id"] = $value["aliment_type_id"];
 		}
@@ -104,8 +106,10 @@ class RepartitionJuvenile extends TableauRepartition
 				}
 				$this->SetFillColor($this->color[$colorId]["R"], $this->color[$colorId]["G"], $this->color[$colorId]["B"]);
 				$this->Cell($alimColumnSizeMatin, $this->param["hl"], $value[$i]["quantiteMatin"], 1, 0, 'C', true);
+				$this->Cell($alimColumnSizeMatin, $this->param["hl"], $value[$i]["quantiteMidi"], 1, 0, 'C', true);
 				$this->Cell($alimColumnSizeSoir, $this->param["hl"], $value[$i]["quantiteSoir"], 1, 0, 'C', true);
 				$alimentTotal[$i]["matin"] += $value[$i]["quantiteMatin"];
+				$alimentTotal[$i]["midi"] += $value[$i]["quantiteMidi"];
 				$alimentTotal[$i]["soir"] += $value[$i]["quantiteSoir"];
 			}
 			$this->ln();
@@ -147,6 +151,7 @@ class RepartitionJuvenile extends TableauRepartition
 		 */
 		for ($i = 0; $i < $nbAlim; $i++) {
 			$this->Cell($alimColumnSizeMatin, 6, $alimentTotal[$i]["matin"], 1, 0, 'C', true);
+			$this->Cell($alimColumnSizeMatin, 6, $alimentTotal[$i]["midi"], 1, 0, 'C', true);
 			$this->Cell($alimColumnSizeSoir, 6, $alimentTotal[$i]["soir"], 1, 0, 'C', true);
 		}
 		$this->Ln();
