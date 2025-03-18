@@ -230,7 +230,8 @@ class Repartition extends PpciLibrary
 	}
 	function resteChange()
 	{
-		$this->vue->set($data = $this->dataclass->lireWithCategorie($this->id), "data");
+		$this->vue=service('Smarty');
+		$this->vue->set($data = $this->dataclass->readWithCategorie($this->id), "data");
 		$this->vue->set("aliment/repartitionResteChange.tpl", "corps");
 		/**
 		 * preparation de la saisie des restes
@@ -300,6 +301,7 @@ class Repartition extends PpciLibrary
 					}
 				}
 				$distribution = new Distribution;
+				$distribution->disableMandatoryField("repart_template_id");
 				/**
 				 * Traitement de chaque bassin
 				 */
@@ -307,12 +309,13 @@ class Repartition extends PpciLibrary
 					$value["date_debut_periode"] = $_REQUEST["date_debut_periode"];
 					$value["date_fin_periode"] = $_REQUEST["date_fin_periode"];
 					$value["repartition_id"] = $_REQUEST["repartition_id"];
-					$distribution->ecrireReste($value);
+					$distribution->writeReste($value);
 				}
 				$this->message->set(_("Opération effectuée"));
 				$this->log->setLog($_SESSION["login"], get_class($this->dataclass) . "-write", $this->id);
 				return true;
-			} catch (PpciException) {
+			} catch (PpciException $e) {
+				$this->message->set($e->getMessage(), true);
 				return false;
 			}
 		} else {

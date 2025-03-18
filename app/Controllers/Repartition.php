@@ -60,6 +60,10 @@ class Repartition extends PpciController
     }
     function resteWrite()
     {
-        return $this->lib->resteWrite();
+        if ( $this->lib->resteWrite()) {
+            return $this->lib->list();
+        } else {
+            return $this->lib->resteChange();
+        }
     }
 }

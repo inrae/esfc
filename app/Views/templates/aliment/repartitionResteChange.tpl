@@ -24,13 +24,14 @@
 			/*
 			* Calcul du pourcentage de reste
 			*/
-			nomChamp = "#total_distribue_" + cle;
+			nomChamp = "#total_periode_distribue_" + cle;
 			var totalDistrib = $(nomChamp).val();
-			if (isNaN(totalDistrib)) totalDistrib = 0;
+			if (!totalDistrib) totalDistrib = 0;
 			if (totalDistrib == "") totalDistrib = 0;
 			if (totalDistrib > 0) {
 				nomChamp = "#taux_reste_" + cle;
 				var taux = parseFloat(total) / parseFloat(totalDistrib) * 100;
+				console.log(taux);
 				$(nomChamp).val(taux);
 			}
 		});
@@ -42,9 +43,9 @@
 			/*
 			* Calcul du pourcentage de reste
 			*/
-			nomChamp = "#total_distribue_" + cle;
+			nomChamp = "#total_periode_distribue_" + cle;
 			var totalDistrib = $(nomChamp).val();
-			if (isNaN(totalDistrib)) totalDistrib = 0;
+			if (!totalDistrib) totalDistrib = 0;
 			if (totalDistrib == "") totalDistrib = 0;
 			if (totalDistrib > 0) {
 				nomChamp = "#taux_reste_" + cle;
