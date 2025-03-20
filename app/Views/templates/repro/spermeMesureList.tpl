@@ -9,7 +9,7 @@
         <tr>
             <th>{t}Date{/t}</th>
             <th>{t}Qualité{/t}</th>
-            <th>{t}Concentration (milliard/mL){/t}</th>
+            <th>{t}Concentration (millions/mL){/t}</th>
             <th>{t}Motilité initiale{/t}</th>
             <th>{t}Tx survie initial{/t}</th>
             <th>{t}Motilité 60"{/t}</th>

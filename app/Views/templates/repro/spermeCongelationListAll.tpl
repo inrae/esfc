@@ -142,7 +142,7 @@
                                     <th>{t}Nombre de paillettes{/t}</th>
                                     <th>{t}Volume par paillette{/t}</th>
                                     <th>{t}Date de la dernière analyse{/t}</th>
-                                    <th>{t}Concentration (milliard/mL){/t}</th>
+                                    <th>{t}Concentration (millions/mL){/t}</th>
                                     <th>{t}Qualité estimée{/t}</th>
                                     <th>{t}Opérateur{/t}</th>
                                 </tr>

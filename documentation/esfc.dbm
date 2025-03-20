@@ -3511,7 +3511,7 @@ Le premier chiffre correspond au lundi]]> </comment>
 	</column>
 	<column name="concentration">
 		<type name="double precision" length="0"/>
-		<comment> <![CDATA[Concentration, en milliard/mL]]> </comment>
+		<comment> <![CDATA[Concentration, en millions/mL]]> </comment>
 	</column>
 	<constraint name="sperme_mesure_pk" type="pk-constr" table="public.sperme_mesure">
 		<columns names="sperme_mesure_id" ref-type="src-columns"/>
