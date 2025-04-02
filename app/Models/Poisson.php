@@ -156,7 +156,7 @@ class Poisson extends PpciModel
             }
         }
         if (strlen($dataSearch["cohorte"]) > 0) {
-            $where .= $and . " cohorte = :cohorte";
+            $where .= $and . " cohorte = :cohorte:";
             $param["cohorte"] = $dataSearch["cohorte"];
         }
         if (strlen($where) > 7) {
