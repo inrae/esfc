@@ -146,17 +146,17 @@
         },
         {
             "name": "bjeavons/zxcvbn-php",
-            "version": "1.4.1",
-            "version_normalized": "1.4.1.0",
+            "version": "1.4.2",
+            "version_normalized": "1.4.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/bjeavons/zxcvbn-php.git",
-                "reference": "603e015f2c81118a8f42930140311d125eba6f8a"
+                "reference": "426f664501a0747beb8f3ee17ac30c7dd6327ffa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bjeavons/zxcvbn-php/zipball/603e015f2c81118a8f42930140311d125eba6f8a",
-                "reference": "603e015f2c81118a8f42930140311d125eba6f8a",
+                "url": "https://api.github.com/repos/bjeavons/zxcvbn-php/zipball/426f664501a0747beb8f3ee17ac30c7dd6327ffa",
+                "reference": "426f664501a0747beb8f3ee17ac30c7dd6327ffa",
                 "shasum": ""
             },
             "require": {
@@ -173,7 +173,7 @@
             "suggest": {
                 "ext-gmp": "Required for optimized binomial calculations (also requires PHP >= 7.3)"
             },
-            "time": "2024-11-21T22:10:41+00:00",
+            "time": "2025-02-24T16:47:20+00:00",
             "type": "library",
             "installation-source": "dist",
             "autoload": {
@@ -199,7 +199,7 @@
             ],
             "support": {
                 "issues": "https://github.com/bjeavons/zxcvbn-php/issues",
-                "source": "https://github.com/bjeavons/zxcvbn-php/tree/1.4.1"
+                "source": "https://github.com/bjeavons/zxcvbn-php/tree/1.4.2"
             },
             "install-path": "../bjeavons/zxcvbn-php"
         },
@@ -529,17 +529,17 @@
         },
         {
             "name": "equinton/ppci",
-            "version": "v1.1.1",
-            "version_normalized": "1.1.1.0",
+            "version": "v1.1.4",
+            "version_normalized": "1.1.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/equinton/ppci.git",
-                "reference": "273b8154667d6c78dd902e6c7337dc304513651b"
+                "reference": "a8601421dc2753a828c77c11081f612f89181e96"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/equinton/ppci/zipball/273b8154667d6c78dd902e6c7337dc304513651b",
-                "reference": "273b8154667d6c78dd902e6c7337dc304513651b",
+                "url": "https://api.github.com/repos/equinton/ppci/zipball/a8601421dc2753a828c77c11081f612f89181e96",
+                "reference": "a8601421dc2753a828c77c11081f612f89181e96",
                 "shasum": ""
             },
             "require": {
@@ -552,7 +552,7 @@
                 "smarty/smarty": "^4.0",
                 "spomky-labs/otphp": "~10.0"
             },
-            "time": "2025-02-18T13:40:36+00:00",
+            "time": "2025-04-10T14:36:14+00:00",
             "type": "library",
             "installation-source": "dist",
             "autoload": {
@@ -573,7 +573,7 @@
             "description": "PrototypePHP to CodeIgniter",
             "support": {
                 "issues": "https://github.com/equinton/ppci/issues",
-                "source": "https://github.com/equinton/ppci/tree/v1.1.1"
+                "source": "https://github.com/equinton/ppci/tree/v1.1.4"
             },
             "install-path": "../equinton/ppci"
         },
@@ -1374,17 +1374,17 @@
         },
         {
             "name": "phpoffice/phpspreadsheet",
-            "version": "4.0.0",
-            "version_normalized": "4.0.0.0",
+            "version": "4.1.0",
+            "version_normalized": "4.1.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/PHPOffice/PhpSpreadsheet.git",
-                "reference": "2d4b9f3582102aafb6b1378fff8a20eeeacfb31c"
+                "reference": "6ff18c3a8df3a945492f75ce455d77f7ad55dd5c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PHPOffice/PhpSpreadsheet/zipball/2d4b9f3582102aafb6b1378fff8a20eeeacfb31c",
-                "reference": "2d4b9f3582102aafb6b1378fff8a20eeeacfb31c",
+                "url": "https://api.github.com/repos/PHPOffice/PhpSpreadsheet/zipball/6ff18c3a8df3a945492f75ce455d77f7ad55dd5c",
+                "reference": "6ff18c3a8df3a945492f75ce455d77f7ad55dd5c",
                 "shasum": ""
             },
             "require": {
@@ -1430,7 +1430,7 @@
                 "mpdf/mpdf": "Option for rendering PDF with PDF Writer",
                 "tecnickcom/tcpdf": "Option for rendering PDF with PDF Writer"
             },
-            "time": "2025-02-08T02:28:25+00:00",
+            "time": "2025-03-02T06:52:24+00:00",
             "type": "library",
             "installation-source": "dist",
             "autoload": {
@@ -1476,7 +1476,7 @@
             ],
             "support": {
                 "issues": "https://github.com/PHPOffice/PhpSpreadsheet/issues",
-                "source": "https://github.com/PHPOffice/PhpSpreadsheet/tree/4.0.0"
+                "source": "https://github.com/PHPOffice/PhpSpreadsheet/tree/4.1.0"
             },
             "install-path": "../phpoffice/phpspreadsheet"
         },
@@ -3687,24 +3687,24 @@
         },
         {
             "name": "tecnickcom/tcpdf",
-            "version": "6.8.2",
-            "version_normalized": "6.8.2.0",
+            "version": "6.9.1",
+            "version_normalized": "6.9.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tecnickcom/TCPDF.git",
-                "reference": "f7a781073e1645062f163e058139e2f89355d420"
+                "reference": "ed27e28a4c478f7f4015b5e7e7b1912af9e85f2b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tecnickcom/TCPDF/zipball/f7a781073e1645062f163e058139e2f89355d420",
-                "reference": "f7a781073e1645062f163e058139e2f89355d420",
+                "url": "https://api.github.com/repos/tecnickcom/TCPDF/zipball/ed27e28a4c478f7f4015b5e7e7b1912af9e85f2b",
+                "reference": "ed27e28a4c478f7f4015b5e7e7b1912af9e85f2b",
                 "shasum": ""
             },
             "require": {
                 "ext-curl": "*",
                 "php": ">=7.1.0"
             },
-            "time": "2025-01-26T14:03:12+00:00",
+            "time": "2025-04-03T06:38:07+00:00",
             "type": "library",
             "installation-source": "dist",
             "autoload": {
@@ -3712,8 +3712,6 @@
                     "config",
                     "include",
                     "tcpdf.php",
-                    "tcpdf_parser.php",
-                    "tcpdf_import.php",
                     "tcpdf_barcodes_1d.php",
                     "tcpdf_barcodes_2d.php",
                     "include/tcpdf_colors.php",
@@ -3751,7 +3749,7 @@
             ],
             "support": {
                 "issues": "https://github.com/tecnickcom/TCPDF/issues",
-                "source": "https://github.com/tecnickcom/TCPDF/tree/6.8.2"
+                "source": "https://github.com/tecnickcom/TCPDF/tree/6.9.1"
             },
             "funding": [
                 {

@@ -48,12 +48,14 @@ class Gacltotp
      * Generate the QRCODE to display on the screen
      *
      */
-    function createQrCode()
+    function createQrCode($secret = null)
     {
+        if (!empty($secret)) {
+            $this->otp = TOTP::create($secret);
+        }
         $this->otp->setLabel($_SESSION["login"]);
         $dbparam = service("Dbparam");
         $this->otp->setIssuer($dbparam->getParam("otp_issuer"));
-        //include_once ROOTPATH . 'plugins/phpqrcode/qrlib.php';
         /**
          * @var App
          */
