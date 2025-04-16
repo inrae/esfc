@@ -143,31 +143,31 @@ class Evenement extends PpciLibrary
             /**
              * Lecture des tables associees
              */
+            $morphologie = new Morphologie;
+            $pathologie = new Pathologie;
+            $genderSelection = new GenderSelection;
+            $mortalite = new Mortalite;
+            $cohorte = new Cohorte;
+            $sortie = new Sortie;
+            $echographie = new Echographie;
+            $anesthesie = new Anesthesie;
+            $dosageSanguin = new DosageSanguin;
+            $genetique = new Genetique;
+            $parente = new Parente;
+            $transfert = new Transfert;
             if ($this->id > 0) {
-                $morphologie = new Morphologie;
                 $this->vue->set($morphologie->getDataByEvenement($this->id), "dataMorpho");
-                $pathologie = new Pathologie;
                 $this->vue->set($pathologie->getDataByEvenement($this->id), "dataPatho");
-                $genderSelection = new GenderSelection;
                 $this->vue->set($genderSelection->getDataByEvenement($this->id), "dataGender");
-                $mortalite = new Mortalite;
                 $this->vue->set($mortalite->getDataByEvenement($this->id), "dataMortalite");
-                $cohorte = new Cohorte;
                 $this->vue->set($cohorte->getDataByEvenement($this->id), "dataCohorte");
-                $sortie = new Sortie;
                 $this->vue->set($sortie->getDataByEvenement($this->id), "dataSortie");
-                $echographie = new Echographie;
                 $this->vue->set($echographie->getDataByEvenement($this->id), "dataEcho");
-                $anesthesie = new Anesthesie;
                 $dataAnesthesie = $anesthesie->getDataByEvenement($this->id);
-                $dosageSanguin = new DosageSanguin;
                 $this->vue->set($dosageSanguin->getDataByEvenement($this->id), "dataDosageSanguin");
-                $genetique = new Genetique;
                 $this->vue->set($genetique->getDataByEvenement($this->id), "dataGenetique");
                 $this->vue->set($dataAnesthesie, "dataAnesthesie");
-                $parente = new Parente;
                 $this->vue->set($parente->getDataByEvenement($this->id), "dataParente");
-
                 /**
                  * Recherche si le produit est toujours utilise
                  */
@@ -189,8 +189,24 @@ class Evenement extends PpciLibrary
                 /**
                  * Traitement particulier du transfert
                  */
-                $transfert = new Transfert;
+
                 $dataTransfert = $transfert->getDataByEvenement($this->id);
+            } else {
+                /**
+                 * Generate default data
+                 */
+                $this->vue->set(["morphologie_id" => 0], "dataMorpho");
+                $this->vue->set(["pathologie_id" => 0], "dataPatho");
+                $this->vue->set(["gender_selection_id" => 0], "dataGender");
+                $this->vue->set(["mortalite_id" => 0], "dataMortalite");
+                $this->vue->set(["cohorte_id" => 0], "dataCohorte");
+                $this->vue->set(["sortie_id" => 0], "dataSortie");
+                $this->vue->set(["echographie_id" => 0], "dataEcho");
+                $this->vue->set(["dosage_sanguin_id" => 0], "dataDosageSanguin");
+                $this->vue->set(["genetique_id" => 0], "dataGenetique");
+                $this->vue->set(["anesthesie_id" => 0], "dataAnesthesie");
+                $this->vue->set(["parente_id" => 0], "dataParente");
+                $dataTransfert = ["transfert_id" => 0];
             }
 
             if ($dataPoisson["bassin_id"] > 0) {
@@ -216,10 +232,10 @@ class Evenement extends PpciLibrary
         $db->transBegin();
         try {
             /**
-		 * write record in database
-		 */
+             * write record in database
+             */
             $this->id = $this->dataWrite($_REQUEST);
-
+            $_REQUEST["evenement_id"] = $this->id;
             /**
              * Ecriture des informations complementaires
              */
@@ -390,15 +406,15 @@ class Evenement extends PpciLibrary
             return true;
         } catch (PpciException $e) {
             $db->transRollback();
-            $this->message->set($e->getMessage(),true);
+            $this->message->set($e->getMessage(), true);
             return false;
         }
     }
     function delete()
     {
         /**
-		 * delete record
-		 */
+         * delete record
+         */
         try {
             $this->dataDelete($this->id);
             return true;
@@ -409,9 +425,9 @@ class Evenement extends PpciLibrary
     function getAllCSV()
     {
         /**
-		 * Retourne la liste de tous les événements pour les poissons sélectionnés, 
-		 * au format CSV
-		 */
+         * Retourne la liste de tous les événements pour les poissons sélectionnés, 
+         * au format CSV
+         */
         $export = new Export();
         $data = $this->dataclass->getAllEvenements($_SESSION["searchPoisson"]->getParam());
         if (is_array($data)) {
