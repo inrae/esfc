@@ -82,6 +82,9 @@ class Cohorte extends PpciModel
      */
     function write($data): int
     {
+            if (strlen($data["cohorte_id"]) == 0) {
+                $data["cohorte_id"] = 0;
+            }
         $ret = parent::write($data);
         if ($ret > 0 && $data["poisson_id"] > 0 && strlen($data["cohorte_determination"]) > 0) {
             /*

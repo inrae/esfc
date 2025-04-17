@@ -49,6 +49,12 @@ class Pathologie extends PpciModel
         );
         parent::__construct();
     }
+    function write($data):int {
+        if (strlen($data["pathologie_id"]) == 0) {
+            $data["pathologie_id"] = 0;
+        }
+        return parent::write($data);
+    }
 
     /**
      * Retourne la liste des pathologies pour un poisson

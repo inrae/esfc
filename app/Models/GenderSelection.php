@@ -56,6 +56,9 @@ class GenderSelection extends PpciModel
      */
     function write($data): int
     {
+        if (strlen($data["gender_selection_id"])== 0) {
+            $data["gender_selection_id"] = 0;
+        }
         $ret = parent::write($data);
         if ($ret > 0 && $data["poisson_id"] > 0) {
             /*

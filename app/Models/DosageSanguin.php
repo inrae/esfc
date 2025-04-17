@@ -67,6 +67,9 @@ class DosageSanguin extends PpciModel
 	 */
 	function write($data): int
 	{
+		if (strlen($data["dosage_sanguin_id"]) == 0) {
+			$data["dosage_sanguin_id"] = 0;
+		}
 		if ($data["poisson_campagne_id"] > 0) {
 			/*
 			 * Recherche du numero du poisson

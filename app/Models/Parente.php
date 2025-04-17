@@ -43,7 +43,13 @@ class Parente extends PpciModel
         );
         parent::__construct();
     }
-
+    function write($data): int
+    {
+        if (strlen($data["parente_id"]) == 0) {
+            $data["parente_id"] = 0;
+        }
+        return parent::write($data);
+    }
     function getListByPoisson(int $poisson_id)
     {
         $sql = "SELECT parente_id, parente.poisson_id, parente_date, parente_commentaire,
