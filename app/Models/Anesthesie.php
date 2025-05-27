@@ -51,6 +51,12 @@ class Anesthesie extends PpciModel
         parent::__construct();
     }
 
+    function write($data):int {
+        if (strlen($data["anesthesie_id"]) == 0) {
+            $data["anesthesie_id"] = 0;
+        }
+        return parent::write($data);
+    }
     /**
      * Retourne une anesthésie a partir du numero d'evenement
      *

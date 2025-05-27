@@ -40,6 +40,7 @@ class Rights extends RightsPpci
         "requestWrite" => ["param"],
         "requestDelete" => ["param"],
         "requestExec" => ["param"],
+        "requestExecCsv" => ["param"],
         "requestExecList" => ["param"],
         "requestWriteExec" => ["param"],
         "requestCopy" => ["param"],
@@ -48,7 +49,8 @@ class Rights extends RightsPpci
         "backupSend" => ["admin"],
         "systemShowServer" => ["admin"],
         "systemShowSession" => ["admin"],
-        "administration" => ["admin"],  
+        "administration" => ["admin"],
+        "totpShowCode" => ["consult"],
     ];
 
 }

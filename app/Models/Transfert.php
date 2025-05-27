@@ -130,6 +130,9 @@ class Transfert extends PpciModel
      */
     function write($data): int
     {
+        if (strlen($data["transfert_id"]) == 0) {
+            $data["transfert_id"] = 0;
+        }
         $transfert_id = parent::write($data);
         if ($transfert_id > 0 && $data["bassin_destination"] > 0 && $data["poisson_id"] > 0) {
             /*

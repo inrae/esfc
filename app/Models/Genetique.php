@@ -57,7 +57,13 @@ class Genetique extends PpciModel
         );
         parent::__construct();
     }
-
+    function write($data): int
+    {
+        if (strlen($data["genetique_id"]) == 0) {
+            $data["genetique_id"] = 0;
+        }
+        return parent::write($data);
+    }
     /**
      * Retourne la liste des releves pour un poisson
      *

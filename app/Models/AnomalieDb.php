@@ -58,6 +58,13 @@ class AnomalieDb extends PpciModel
 		);
 		parent::__construct();
 	}
+	function write($data): int
+	{
+		if (strlen($data["anomalie_db_id"]) == 0) {
+			$data["anomalie_db_id"] = 0;
+		}
+		return parent::write($data);
+	}
 	/**
 	 * Reecriture de la fonction lire pour recuperer les informations concernant le poisson
 	 * (non-PHPdoc)

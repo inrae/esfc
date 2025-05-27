@@ -52,6 +52,9 @@ class Sortie extends PpciModel
      */
     function write($data): int
     {
+        if (strlen($data["sortie_id"]) == 0) {
+            $data["sortie_id"] = 0;
+        }
         $sortie_id = parent::write($data);
         if ($sortie_id > 0 && $data["poisson_id"] > 0) {
             /*

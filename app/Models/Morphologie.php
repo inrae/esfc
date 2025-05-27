@@ -54,6 +54,12 @@ class Morphologie extends PpciModel
         parent::__construct();
     }
 
+    function write($data):int {
+        if (strlen($data["morphologie_id"]) == 0) {
+            $data["morphologie_id"] = 0;
+        }
+        return parent::write($data);
+    }
     /**
      * Fonction retournant la liste des donnees morphologiques pour un poisson
      *

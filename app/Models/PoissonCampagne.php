@@ -491,6 +491,8 @@ class PoissonCampagne extends PpciModel
 					order by pf_datetime";
 			$param["profil_thermique_type_id"] = $profil_thermique_type_id;
 		}
+		$this->datetimeFields[] = "pf_temperature";
+		$this->datetimeFields[] = "pf_datetime";
 		return $this->getListeParamAsPrepared($sql, $param);
 	}
 }

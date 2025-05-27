@@ -56,6 +56,13 @@ class Echographie extends PpciModel
         );
         parent::__construct();
     }
+    function write($data): int
+    {
+        if (strlen($data["echographie_id"]) == 0) {
+            $data["echographie_id"] = 0;
+        }
+        return parent::write($data);
+    }
 
     /**
      * Retourne la liste des echographies realisees pour un poisson

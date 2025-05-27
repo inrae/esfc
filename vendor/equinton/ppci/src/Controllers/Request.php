@@ -6,6 +6,7 @@ use Ppci\Controllers\PpciController;
 use CodeIgniter\HTTP\RequestInterface;
 use CodeIgniter\HTTP\ResponseInterface;
 use Ppci\Libraries\Request as RequestLib;
+use Ppci\Libraries\PpciException;
 
 class Request extends PpciController
 {
@@ -33,21 +34,29 @@ class Request extends PpciController
     }
     function writeExec() {
         if ($this->lib->write()) {
-            return $this->exec();
+            return $this->lib->exec();
         } else {
-            return $this->change();
+            return $this->lib->change();
         }
     }
     function delete()
     {
         if ($this->lib->delete()) {
-            return $this->list();
+            return $this->lib->list();
         } else {
-            return $this->change();
+            return $this->lib->change();
         }
     }
     function exec() {
         return $this->lib->exec();
+    }
+    function execCsv(){
+        try {
+            return $this->lib->execCsv();
+        } catch (PpciException $e) {
+            $this->message->set($e->getMessage(), true);
+            return $this->lib->change();
+        } 
     }
     function execList() {
         return $this->lib->execList();

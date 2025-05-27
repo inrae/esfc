@@ -56,6 +56,9 @@ class Mortalite extends PpciModel
      */
     function write($data): int
     {
+        if (strlen($data["mortalite_id"]) == 0) {
+            $data["mortalite_id"] = 0;
+        }
         $mortalite_id = parent::write($data);
         if ($mortalite_id > 0 && $data["poisson_id"] > 0) {
             /*

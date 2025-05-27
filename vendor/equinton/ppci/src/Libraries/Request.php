@@ -42,29 +42,24 @@ class Request extends PpciLibrary
         try {
             $vue->set($this->dataclass->exec($this->id), "result");
             return $vue->send();
-        } catch (\Exception $e) {
-            $this->message->set($e->getMessage());
+        } catch (PpciException $e) {
+            $this->message->set($e->getMessage(),true);
             return $this->change();
         }
     }
+    function execCsv() {
+        $this->vue = service('CsvView');
+        $this->vue->set($this->dataclass->exec($this->id));
+        return $this->vue->send($_SESSION["dbparams"]["APPLI_code"]."-".date("Y-m-d-Hi"), "\t");
+    }    
     function write()
     {
         try {
             $_REQUEST["body"] = hex2bin($_REQUEST["body"]);
             $this->id = $this->dataWrite($_REQUEST);
             return true;
-        } catch (\Exception $e) {
+        } catch (PpciException) {
             return false;
-        }
-    }
-    function writeExec()
-    {
-        try {
-            $_REQUEST["body"] = hex2bin($_REQUEST["body"]);
-            $this->id = $this->dataWrite($_REQUEST);
-            return $this->exec();
-        } catch (\Exception $e) {
-            return $this->change();
         }
     }
     function delete()

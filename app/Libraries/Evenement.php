@@ -143,31 +143,31 @@ class Evenement extends PpciLibrary
             /**
              * Lecture des tables associees
              */
+            $morphologie = new Morphologie;
+            $pathologie = new Pathologie;
+            $genderSelection = new GenderSelection;
+            $mortalite = new Mortalite;
+            $cohorte = new Cohorte;
+            $sortie = new Sortie;
+            $echographie = new Echographie;
+            $anesthesie = new Anesthesie;
+            $dosageSanguin = new DosageSanguin;
+            $genetique = new Genetique;
+            $parente = new Parente;
+            $transfert = new Transfert;
             if ($this->id > 0) {
-                $morphologie = new Morphologie;
                 $this->vue->set($morphologie->getDataByEvenement($this->id), "dataMorpho");
-                $pathologie = new Pathologie;
                 $this->vue->set($pathologie->getDataByEvenement($this->id), "dataPatho");
-                $genderSelection = new GenderSelection;
                 $this->vue->set($genderSelection->getDataByEvenement($this->id), "dataGender");
-                $mortalite = new Mortalite;
                 $this->vue->set($mortalite->getDataByEvenement($this->id), "dataMortalite");
-                $cohorte = new Cohorte;
                 $this->vue->set($cohorte->getDataByEvenement($this->id), "dataCohorte");
-                $sortie = new Sortie;
                 $this->vue->set($sortie->getDataByEvenement($this->id), "dataSortie");
-                $echographie = new Echographie;
                 $this->vue->set($echographie->getDataByEvenement($this->id), "dataEcho");
-                $anesthesie = new Anesthesie;
                 $dataAnesthesie = $anesthesie->getDataByEvenement($this->id);
-                $dosageSanguin = new DosageSanguin;
                 $this->vue->set($dosageSanguin->getDataByEvenement($this->id), "dataDosageSanguin");
-                $genetique = new Genetique;
                 $this->vue->set($genetique->getDataByEvenement($this->id), "dataGenetique");
                 $this->vue->set($dataAnesthesie, "dataAnesthesie");
-                $parente = new Parente;
                 $this->vue->set($parente->getDataByEvenement($this->id), "dataParente");
-
                 /**
                  * Recherche si le produit est toujours utilise
                  */
@@ -189,8 +189,24 @@ class Evenement extends PpciLibrary
                 /**
                  * Traitement particulier du transfert
                  */
-                $transfert = new Transfert;
+
                 $dataTransfert = $transfert->getDataByEvenement($this->id);
+            } else {
+                /**
+                 * Generate default data
+                 */
+                $this->vue->set(["morphologie_id" => 0], "dataMorpho");
+                $this->vue->set(["pathologie_id" => 0], "dataPatho");
+                $this->vue->set(["gender_selection_id" => 0], "dataGender");
+                $this->vue->set(["mortalite_id" => 0], "dataMortalite");
+                $this->vue->set(["cohorte_id" => 0], "dataCohorte");
+                $this->vue->set(["sortie_id" => 0], "dataSortie");
+                $this->vue->set(["echographie_id" => 0], "dataEcho");
+                $this->vue->set(["dosage_sanguin_id" => 0], "dataDosageSanguin");
+                $this->vue->set(["genetique_id" => 0], "dataGenetique");
+                $this->vue->set(["anesthesie_id" => 0], "dataAnesthesie");
+                $this->vue->set(["parente_id" => 0], "dataParente");
+                $dataTransfert = ["transfert_id" => 0];
             }
 
             if ($dataPoisson["bassin_id"] > 0) {
@@ -216,10 +232,10 @@ class Evenement extends PpciLibrary
         $db->transBegin();
         try {
             /**
-		 * write record in database
-		 */
+             * write record in database
+             */
             $this->id = $this->dataWrite($_REQUEST);
-
+            $_REQUEST["evenement_id"] = $this->id;
             /**
              * Ecriture des informations complementaires
              */
@@ -229,7 +245,7 @@ class Evenement extends PpciLibrary
             if ($_REQUEST["longueur_fourche"] > 0 || $_REQUEST["longueur_totale"] > 0 || $_REQUEST["masse"] > 0 || $_REQUEST["circonference"] > 0 || strlen($_REQUEST["morphologie_commentaire"]) > 0) {
                 $morphologie = new Morphologie;
                 $_REQUEST["morphologie_date"] = $_REQUEST["evenement_date"];
-                $morphologie->ecrire($_REQUEST);
+                $morphologie->write($_REQUEST);
             }
             /**
              * Pathologie
@@ -237,7 +253,7 @@ class Evenement extends PpciLibrary
             if ($_REQUEST["pathologie_type_id"] > 0) {
                 $pathologie = new Pathologie;
                 $_REQUEST["pathologie_date"] = $_REQUEST["evenement_date"];
-                $pathologie->ecrire($_REQUEST);
+                $pathologie->write($_REQUEST);
             }
             /**
              * Sexage
@@ -245,7 +261,7 @@ class Evenement extends PpciLibrary
             if ($_REQUEST["sexe_id"] > 0) {
                 $genderSelection = new GenderSelection;
                 $_REQUEST["gender_selection_date"] = $_REQUEST["evenement_date"];
-                $genderSelection->ecrire($_REQUEST);
+                $genderSelection->write($_REQUEST);
             }
             /**
              * Transfert
@@ -253,7 +269,7 @@ class Evenement extends PpciLibrary
             if ($_REQUEST["bassin_destination"] > 0) {
                 $transfert = new Transfert;
                 $_REQUEST["transfert_date"] = $_REQUEST["evenement_date"];
-                $transfert->ecrire($_REQUEST);
+                $transfert->write($_REQUEST);
             }
             /**
              * Mortalite
@@ -261,7 +277,7 @@ class Evenement extends PpciLibrary
             if ($_REQUEST["mortalite_type_id"] > 0) {
                 $mortalite = new Mortalite;
                 $_REQUEST["mortalite_date"] = $_REQUEST["evenement_date"];
-                $mortalite->ecrire($_REQUEST);
+                $mortalite->write($_REQUEST);
             }
             /**
              * Cohorte
@@ -269,7 +285,7 @@ class Evenement extends PpciLibrary
             if ($_REQUEST["cohorte_type_id"] > 0) {
                 $cohorte = new Cohorte;
                 $_REQUEST["cohorte_date"] = $_REQUEST["evenement_date"];
-                $cohorte->ecrire($_REQUEST);
+                $cohorte->write($_REQUEST);
             }
             /**
              * Sortie
@@ -277,7 +293,7 @@ class Evenement extends PpciLibrary
             if ($_REQUEST["sortie_lieu_id"] > 0) {
                 $sortie = new Sortie;
                 $_REQUEST["sortie_date"] = $_REQUEST["evenement_date"];
-                $sortie->ecrire($_REQUEST);
+                $sortie->write($_REQUEST);
             }
             /**
              * Echographie
@@ -318,7 +334,7 @@ class Evenement extends PpciLibrary
             if ($_REQUEST["anesthesie_produit_id"] > 0) {
                 $anesthesie = new Anesthesie;
                 $_REQUEST["anesthesie_date"] = $_REQUEST["evenement_date"];
-                $anesthesie->ecrire($_REQUEST);
+                $anesthesie->write($_REQUEST);
             }
             /**
              * Dosage sanguin
@@ -338,7 +354,7 @@ class Evenement extends PpciLibrary
             if ($flag == true) {
                 $_REQUEST["dosage_sanguin_date"] = $_REQUEST["evenement_date"];
                 $dosageSanguin = new DosageSanguin;
-                $dosageSanguin->ecrire($_REQUEST);
+                $dosageSanguin->write($_REQUEST);
             }
             /**
              * Prelevement genetique
@@ -346,7 +362,7 @@ class Evenement extends PpciLibrary
             if (strlen($_REQUEST["genetique_reference"]) > 0) {
                 $_REQUEST["genetique_date"] = $_REQUEST["evenement_date"];
                 $genetique = new Genetique;
-                $genetique->ecrire($_REQUEST);
+                $genetique->write($_REQUEST);
             }
 
             /**
@@ -355,7 +371,7 @@ class Evenement extends PpciLibrary
             if ($_REQUEST["determination_parente_id"] > 0) {
                 $_REQUEST["parente_date"] = $_REQUEST["evenement_date"];
                 $parente = new Parente;
-                $parente->ecrire($_REQUEST);
+                $parente->write($_REQUEST);
             }
 
             /**
@@ -367,7 +383,7 @@ class Evenement extends PpciLibrary
                 $_REQUEST["anomalie_db_date"] = $_REQUEST["evenement_date"];
                 $_REQUEST["anomalie_db_statut"] = 0;
                 $_REQUEST["anomalie_db_type_id"] = $_REQUEST["anomalie_flag"];
-                $anomalie->ecrire($_REQUEST);
+                $anomalie->write($_REQUEST);
             }
             /**
              * Gestion de la redirection vers un nouvel evenement pour un autre poisson
@@ -390,15 +406,15 @@ class Evenement extends PpciLibrary
             return true;
         } catch (PpciException $e) {
             $db->transRollback();
-            $this->message->set($e->getMessage(),true);
+            $this->message->set($e->getMessage(), true);
             return false;
         }
     }
     function delete()
     {
         /**
-		 * delete record
-		 */
+         * delete record
+         */
         try {
             $this->dataDelete($this->id);
             return true;
@@ -409,9 +425,9 @@ class Evenement extends PpciLibrary
     function getAllCSV()
     {
         /**
-		 * Retourne la liste de tous les événements pour les poissons sélectionnés, 
-		 * au format CSV
-		 */
+         * Retourne la liste de tous les événements pour les poissons sélectionnés, 
+         * au format CSV
+         */
         $export = new Export();
         $data = $this->dataclass->getAllEvenements($_SESSION["searchPoisson"]->getParam());
         if (is_array($data)) {
