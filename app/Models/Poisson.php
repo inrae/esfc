@@ -69,7 +69,8 @@ class Poisson extends PpciModel
             ),
             "vie_modele_id" => array(
                 "type" => 1
-            )
+            ),
+            "lot_id" => ["type" => 1]
         );
         parent::__construct();
     }
@@ -89,7 +90,8 @@ class Poisson extends PpciModel
 					m.mortalite_date,
 					categorie_id, categorie_libelle
                     , longueur_fourche, longueur_totale, masse
-                    , bassin_id, bassin_nom, site_id, site_name";
+                    , bassin_id, bassin_nom, site_id, site_name
+                    , lot_id, lot_nom";
         $from = " from poisson 
                     join sexe s using (sexe_id)
 					join poisson_statut using (poisson_statut_id)
@@ -100,7 +102,8 @@ class Poisson extends PpciModel
 				    left outer join v_poisson_last_lt using (poisson_id)
 					left outer join v_poisson_last_masse using (poisson_id)
                     left outer join v_poisson_last_bassin using (poisson_id)
-                    left outer join site using (site_id)  ";
+                    left outer join site using (site_id)
+                    left outer join lot using (lot_id)";
         /**
          * Preparation de la clause where
          */
@@ -185,7 +188,8 @@ class Poisson extends PpciModel
         $sql = "SELECT p.poisson_id, sexe_id, matricule, prenom, cohorte, capture_date, sexe_libelle, sexe_libelle_court, poisson_statut_libelle,
 					pittag_valeur, p.poisson_statut_id, date_naissance,poisson_statut_id,
 					bassin_nom, b.bassin_id, b.site_id, site_name, 
-					categorie_id, categorie_libelle, commentaire
+					categorie_id, categorie_libelle, commentaire,
+                    lot_id, lot_nom
                     from poisson p 
                      join sexe using (sexe_id)
 					  join poisson_statut using (poisson_statut_id)
@@ -193,6 +197,7 @@ class Poisson extends PpciModel
 					  left outer join v_pittag_by_poisson using (poisson_id)
                       left outer join v_poisson_last_bassin b using (poisson_id)
                       left outer join site on (b.site_id = site.site_id)
+                      left outer join lot using (lot_id)
 					 where p.poisson_id = :poisson_id:";
         return $this->lireParamAsPrepared($sql, array("poisson_id" => $poisson_id));
     }

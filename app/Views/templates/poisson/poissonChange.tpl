@@ -152,19 +152,34 @@
 					{t}Date de capture :{/t}
 				</label>
 				<div class="col-md-8">
-					<input class="form-control" name="capture_date" id="ccapture_date" class="datepicker"
+					<input class="form-control datepicker" name="capture_date" id="ccapture_date" 
 						value="{$data.capture_date}">
 
 				</div>
 			</div>
 
 			<div class="form-group">
-				<label for="" class="control-label col-md-4">
+				<label for="cdate_naissance" class="control-label col-md-4">
 					{t}Date de naissance :{/t}
 				</label>
 				<div class="col-md-8">
-					<input id="" class="form-control" name="date_naissance" id="cdate_naissance" class="datepicker"
+					<input class="form-control datepicker" name="date_naissance" id="cdate_naissance"
 						value="{$data.date_naissance}">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="lot_id" class="control-label col-md-4">
+					{t}Lot d'origine :{/t}
+				</label>
+				<div class="col-md-8">
+					<select id="lot_id" name="lot_id" class="form-control">
+						<option value="" {if $data.lot_id == ""}selected{/if}></option>
+						{foreach $lots as $lot}
+						<option value="{$lot.lot_id}" {if $lot.lot_id == $data.lot_id}selected{/if}>
+						{$lot.lot_nom}
+						</option>
+						{/foreach}
+					</select>
 				</div>
 			</div>
 
