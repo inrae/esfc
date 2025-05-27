@@ -213,6 +213,16 @@ class Bassin extends PpciModel
 		$order = " order by bassin_nom";
 		return ($this->getListeParamAsPrepared($sql . $where . $order, $data));
 	}
+	function getListFromCategorie(int $categorie_id, int $actif = 1): array
+	{
+		$sql = "SELECT bassin_id, bassin_nom, bassin_description, site_name
+				from bassin
+				join bassin_usage using (bassin_usage_id)
+				left outer join site using (site_id)
+				where categorie_id = :categorie_id: and actif = :actif:
+				order by bassin_nom";
+		return $this->getListParam($sql, ["categorie_id" => $categorie_id, "actif" => $actif]);
+	}
 	/**
 	 * Retourne la liste des bassins associes a un circuit d'eau
 	 *
