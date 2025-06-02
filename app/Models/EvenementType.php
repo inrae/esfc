@@ -54,4 +54,12 @@ class EvenementType extends PpciModel
         }
         return $this->getListeParam($sql . $order);
     }
+    function getListActive(): array
+    {
+        $sql = "SELECT evenement_type_id, evenement_type_libelle
+        from evenement_type
+        where evenement_type_actif = 1
+        order by evenement_type_libelle";
+        return $this->getListParam($sql);
+    }
 }

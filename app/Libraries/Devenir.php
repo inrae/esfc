@@ -2,7 +2,9 @@
 
 namespace App\Libraries;
 
+use App\Models\Bassin;
 use App\Models\Categorie;
+use App\Models\CreateFishFromBatch;
 use App\Models\Devenir as ModelsDevenir;
 use App\Models\DevenirType;
 use App\Models\Lot;
@@ -14,7 +16,7 @@ use Ppci\Models\PpciModel;
 class Devenir extends PpciLibrary
 {
 	/**
-	 * @var 
+	 * @var ModelsDevenir
 	 */
 	protected PpciModel $dataclass;
 	public $keyName;
@@ -76,15 +78,44 @@ class Devenir extends PpciLibrary
 		}
 		$parents = $this->dataclass->getParentsPotentiels($data["devenir_id"], $lotId, $annee);
 		$this->vue->set($parents, "devenirParent");
+		/**
+		 * Liste des bassins
+		 */
+		$bassin = new Bassin;
+		$this->vue->set($bassin->getListFromCategorie(3, 1), "bassins");
 		return $this->vue->send();
 	}
 	function write()
 	{
+		$db = $this->dataclass->db;
 		try {
 			$this->id = $this->dataWrite($_REQUEST);
 			$_REQUEST[$this->keyName] = $this->id;
+			/**
+			 * Creation of fish, if csv file is furnished
+			 */
+			$fileError = $_FILES["poissons"]["error"];
+
+			if ($fileError != 4) {
+				if ($fileError != 0) {
+					throw new PpciException(_("Le fichier contenant la liste des poissons n'a pas été correctement chargé vers le serveur"));
+				}
+				$createFish = new CreateFishFromBatch;
+				$createFish->initFile($_FILES["poissons"]["tmp_name"], $_POST["separator"], $_POST["utf8_encode"]);
+				$db->transBegin();
+				$ddevenir = $this->dataclass->read($this->id);
+				$nb = $createFish->createFish($ddevenir, $_POST["bassin_destination"]);
+				$this->message->set(sprintf(_("%1s poissons créés. Poisson_id de %2s à %3s"), $nb, $createFish->poissonIdMin, $createFish->poissonIdMax));
+				$this->log->setLog($_SESSION["login"],"devenirWrite","$nb fishes created between ". $createFish->poissonIdMin ." and ". $createFish->poissonIdMax);
+				$db->transCommit();
+			}
 			return true;
 		} catch (PpciException $e) {
+			if ($db->transEnabled) {
+				$db->transRollback();
+			}
+			$this->message->set($e->getMessage(), true);
+			$this->message->setSyslog(($e->getMessage()));
 			return false;
 		}
 	}

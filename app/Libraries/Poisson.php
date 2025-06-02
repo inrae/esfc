@@ -11,6 +11,7 @@ use App\Models\Echographie;
 use App\Models\Evenement;
 use App\Models\GenderSelection;
 use App\Models\Genetique;
+use App\Models\Lot;
 use App\Models\Morphologie;
 use App\Models\Mortalite;
 use App\Models\Parente;
@@ -211,7 +212,7 @@ class Poisson extends PpciLibrary
 	function change()
 	{
 		$this->vue = service('Smarty');
-		$this->dataRead($this->id, "poisson/poissonChange.tpl");
+		$data = $this->dataRead($this->id, "poisson/poissonChange.tpl");
 		$sexe = new Sexe;
 		$this->vue->set($sexe->getListe(1), "sexe");
 		$poissonStatut = new PoissonStatut;
@@ -239,6 +240,13 @@ class Poisson extends PpciLibrary
 		 */
 		$pittag = new Pittag;
 		$this->vue->set($pittag->getListByPoisson($this->id, 1), "dataPittag");
+		/**
+		 * Get the list of lots for the cohort
+		 */
+		if (!empty($data["cohorte"])) {
+			$lot = new Lot;
+			$this->vue->set($lot->getLotByAnnee($data["cohorte"]),"lots");
+		}
 		return $this->vue->send();
 	}
 	function write()

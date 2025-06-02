@@ -132,6 +132,7 @@
             <th>{t}Statut{/t}</th>
             <th>{t}Cohorte{/t}</th>
             <th>{t}Date de capture /naissance{/t}</th>
+            <th>{t}Lot d'origine{/t}</th>
             <th>{t}Date de mortalité{/t}</th>
             <th>{t}Bassin{/t}</th>
             <th>{t}Masse{/t}</th>
@@ -194,6 +195,7 @@
                 {/if}
             </td>
             <td class="center">{$data[lst].capture_date}{$data[lst].date_naissance}</td>
+            <td>{$data[lst].lot_nom}</td>
             <td class="center">{$data[lst].mortalite_date}</td>
             <td>
                 {if $data[lst].bassin_id > 0}

@@ -182,7 +182,7 @@ class App extends BaseConfig
      *
      * @var string
      */
-    public string $version = "v25.0.0";
+    public string $version = "v25.1.0";
     /**
      * versionDate - don't change here, but in function setParameters() below
      *
@@ -194,7 +194,7 @@ class App extends BaseConfig
      *
      * @var string
      */
-    public string $dbversion = "25.0";
+    public string $dbversion = "25.1";
     /**
      * Location of the database schema
      *

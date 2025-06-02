@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-03-18 15:20+0100\n"
+"POT-Creation-Date: 2025-06-02 14:44+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -10,7 +10,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.5\n"
+"X-Generator: Poedit 3.6\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 #. (itstool) path: menu/item@label
@@ -527,270 +527,283 @@ msgid "Liste des stades des gonades"
 msgstr "List of gonad stages"
 
 #. (itstool) path: item/item@label
-#: ../../Config/menu.xml:78
+#: ../../Config/menu.xml:75
+#: ../../../app/Views/templates/parametre/devenirTypeList.tpl:1
+#, fuzzy
+msgid "Types de devenir des lots"
+msgstr "Batch destiny"
+
+#. (itstool) path: item/item@tooltip
+#: ../../Config/menu.xml:75
+#, fuzzy
+msgid "Liste des types de devenir des lots"
+msgstr "List of pittag types"
+
+#. (itstool) path: item/item@label
+#: ../../Config/menu.xml:79
 msgid "Types d'anomalies"
 msgstr "Anomaly types"
 
 #. (itstool) path: item/item@tooltip
-#: ../../Config/menu.xml:78
+#: ../../Config/menu.xml:79
 msgid "Liste des types d'anomalies détectés dans la base de données"
 msgstr "List of types of anomaly detected in the database"
 
 #. (itstool) path: item/item@label
-#: ../../Config/menu.xml:79
+#: ../../Config/menu.xml:80
 msgid "Types de fichiers"
 msgstr "File types"
 
 #. (itstool) path: item/item@tooltip
-#: ../../Config/menu.xml:79
+#: ../../Config/menu.xml:80
 msgid "Liste des types de fichiers importables"
 msgstr "List of importable file types"
 
 #. (itstool) path: item/item@label
 #. (itstool) path: item/item@tooltip
-#: ../../Config/menu.xml:81
+#: ../../Config/menu.xml:82
 msgid "Schéma de la base de données"
 msgstr "Database structure"
 
 #. (itstool) path: item/item@label
-#: ../../Config/menu.xml:82
+#: ../../Config/menu.xml:83
 msgid "Structure de la base de données (HTML)"
 msgstr "Database structure (HTML)"
 
 #. (itstool) path: item/item@tooltip
-#: ../../Config/menu.xml:82
+#: ../../Config/menu.xml:83
 msgid "Liste des tables et des colonnes"
 msgstr "List of tables and columns"
 
 #. (itstool) path: menu/item@label
-#: ../../Config/menu.xml:87
+#: ../../Config/menu.xml:88
 msgid "Administration"
 msgstr "Administration"
 
 #. (itstool) path: menu/item@tooltip
-#: ../../Config/menu.xml:87
+#: ../../Config/menu.xml:88
 msgid "Administration de l'application"
 msgstr "Application administration"
 
 #. (itstool) path: item/item@label
-#: ../../Config/menu.xml:88
+#: ../../Config/menu.xml:89
 msgid "Liste des comptes locaux"
 msgstr "Local accounts list"
 
 #. (itstool) path: item/item@tooltip
-#: ../../Config/menu.xml:88
+#: ../../Config/menu.xml:89
 msgid "Liste des logins - identification via la base de données"
 msgstr "List of logins - identification via the database"
 
 #. (itstool) path: item/item@label
-#: ../../Config/menu.xml:89
+#: ../../Config/menu.xml:90
 msgid "ACL - droits"
 msgstr "ACL - rights"
 
 #. (itstool) path: item/item@tooltip
-#: ../../Config/menu.xml:89
+#: ../../Config/menu.xml:90
 msgid "applications et droits gérés"
 msgstr "applications and rights managed"
 
 #. (itstool) path: item/item@label
-#: ../../Config/menu.xml:90
+#: ../../Config/menu.xml:91
 msgid "ACL - logins"
 msgstr "ACL - logins"
 
 #. (itstool) path: item/item@tooltip
-#: ../../Config/menu.xml:90
+#: ../../Config/menu.xml:91
 msgid "Logins déclarés dans le module de gestion des droits"
 msgstr "Logins declared in the rights management module"
 
 #. (itstool) path: item/item@label
-#: ../../Config/menu.xml:91
+#: ../../Config/menu.xml:92
 msgid "ACL - groupes de logins"
 msgstr "ACL - login groups"
 
 #. (itstool) path: item/item@tooltip
-#: ../../Config/menu.xml:91
+#: ../../Config/menu.xml:92
 msgid "Groupes de logins et logins rattachés aux groupes"
 msgstr "Groups of logins and logins attached to groups"
 
 #. (itstool) path: item/item@label
-#: ../../Config/menu.xml:92
+#: ../../Config/menu.xml:93
 msgid "Paramètres de l'application"
 msgstr "Application Settings"
 
 #. (itstool) path: item/item@tooltip
-#: ../../Config/menu.xml:92
+#: ../../Config/menu.xml:93
 msgid "Liste des paramètres pérennes de l'application"
 msgstr "List of long-term parameters of the application"
 
 #. (itstool) path: item/item@label
-#: ../../Config/menu.xml:94
+#: ../../Config/menu.xml:95
 #: ../../../vendor/equinton/ppci/src/Views/templates/ppci/phpinfo.tpl:1
 msgid "PHP info"
 msgstr "PHP info"
 
 #. (itstool) path: item/item@tooltip
-#: ../../Config/menu.xml:94
+#: ../../Config/menu.xml:95
 msgid "configuration générale du serveur PHP"
 msgstr "general configuration of the PHP server"
 
 #. (itstool) path: item/item@label
-#: ../../Config/menu.xml:95
+#: ../../Config/menu.xml:96
 msgid "Logs"
 msgstr "Logs"
 
 #. (itstool) path: item/item@tooltip
-#: ../../Config/menu.xml:95
+#: ../../Config/menu.xml:96
 msgid "Consultation des logs enregistrées"
 msgstr "Consultation of recorded logs"
 
 #. (itstool) path: item/item@label
-#: ../../Config/menu.xml:96
+#: ../../Config/menu.xml:97
 msgid "Variables SERVER"
 msgstr "SERVER variables"
 
 #. (itstool) path: item/item@tooltip
-#: ../../Config/menu.xml:96
+#: ../../Config/menu.xml:97
 msgid "Affichage des variables fournies par le serveur"
 msgstr "Display of variables supplied by the server"
 
 #. (itstool) path: item/item@label
-#: ../../Config/menu.xml:97
+#: ../../Config/menu.xml:98
 msgid "Variables SESSION"
 msgstr "SESSION variables"
 
 #. (itstool) path: item/item@tooltip
-#: ../../Config/menu.xml:97
+#: ../../Config/menu.xml:98
 msgid "Affichage des variables de session"
 msgstr "Display of the session variables"
 
 #. (itstool) path: item/item@label
-#: ../../Config/menu.xml:99
+#: ../../Config/menu.xml:100
 msgid "Backup"
 msgstr "Backup"
 
 #. (itstool) path: item/item@tooltip
-#: ../../Config/menu.xml:99
+#: ../../Config/menu.xml:100
 #: ../../../vendor/equinton/ppci/src/Views/templates/ppci/backup.tpl:1
 msgid "Sauvegarde de la base de données"
 msgstr "Backup of the database"
 
 #. (itstool) path: menu/item@label
-#: ../../Config/menu.xml:101
+#: ../../Config/menu.xml:102
 #: ../../../vendor/equinton/ppci/src/Views/templates/ppci/header.tpl:21
-#: ../../../vendor/equinton/ppci/src/Views/templates/ppci/header.tpl:41
 #: ../../../vendor/equinton/ppci/src/Views/templates/ppci/header.tpl:42
+#: ../../../vendor/equinton/ppci/src/Views/templates/ppci/header.tpl:43
 msgid "Connexion"
 msgstr "Sign in"
 
 #. (itstool) path: menu/item@tooltip
-#: ../../Config/menu.xml:101
+#: ../../Config/menu.xml:102
 msgid "S'identifier dans l'application"
 msgstr "Sign in to the app"
 
 #. (itstool) path: menu/item@label
-#: ../../Config/menu.xml:102
-#: ../../../vendor/equinton/ppci/src/Views/templates/ppci/header.tpl:37
+#: ../../Config/menu.xml:103
 #: ../../../vendor/equinton/ppci/src/Views/templates/ppci/header.tpl:38
+#: ../../../vendor/equinton/ppci/src/Views/templates/ppci/header.tpl:39
 msgid "Déconnexion"
 msgstr "Sign out"
 
 #. (itstool) path: menu/item@tooltip
-#: ../../Config/menu.xml:102
+#: ../../Config/menu.xml:103
 msgid "Déconnexion de l'application"
 msgstr "Sign out of the app"
 
 #. (itstool) path: item/item@label
-#: ../../Config/menu.xml:103
+#: ../../Config/menu.xml:104
 #: ../../../vendor/equinton/ppci/src/Views/templates/ppci/header.tpl:32
 msgid "Activer la double authentification"
 msgstr "Enable dual authentication"
 
 #. (itstool) path: item/item@tooltip
-#: ../../Config/menu.xml:103
+#: ../../Config/menu.xml:104
 #: ../../../vendor/equinton/ppci/src/Views/templates/ppci/header.tpl:32
 msgid "Activer la double authentification pour votre compte"
 msgstr "Enabling dual authentication for your account"
 
 #. (itstool) path: item/item@label
-#: ../../Config/menu.xml:104
+#: ../../Config/menu.xml:105
 msgid "Nouvelle version ?"
 msgstr "New release?"
 
 #. (itstool) path: item/item@tooltip
-#: ../../Config/menu.xml:104
+#: ../../Config/menu.xml:105
 msgid "Rechercher s'il existe une nouvelle version disponible de l'application"
 msgstr "Find out if there is a new version of the application available"
 
 #. (itstool) path: item/item@label
-#: ../../Config/menu.xml:105
+#: ../../Config/menu.xml:106
 msgid "Dernières connexions"
 msgstr "Last connections"
 
 #. (itstool) path: item/item@tooltip
-#: ../../Config/menu.xml:105
+#: ../../Config/menu.xml:106
 msgid "Liste des dernières connexions réalisées"
 msgstr "List of last connections"
 
 #. (itstool) path: item/item@label
-#: ../../Config/menu.xml:106
+#: ../../Config/menu.xml:107
 #: ../../../vendor/equinton/ppci/src/Views/templates/ppci/ident/loginChangePassword.tpl:86
-#: ../../../vendor/equinton/ppci/src/Views/templates/ppci/header.tpl:33
 #: ../../../vendor/equinton/ppci/src/Views/templates/ppci/header.tpl:34
+#: ../../../vendor/equinton/ppci/src/Views/templates/ppci/header.tpl:35
 msgid "Modifier le mot de passe"
 msgstr "Change your password"
 
 #. (itstool) path: item/item@tooltip
-#: ../../Config/menu.xml:106
+#: ../../Config/menu.xml:107
 msgid "Modifiez votre mot de passe (identification locale uniquement)"
 msgstr "Change your password (local identification only)"
 
 #. (itstool) path: menu/item@label
-#: ../../Config/menu.xml:108
+#: ../../Config/menu.xml:109
 msgid "?"
 msgstr "?"
 
 #. (itstool) path: menu/item@tooltip
-#: ../../Config/menu.xml:108
+#: ../../Config/menu.xml:109
 msgid "Aide"
 msgstr "Help"
 
 #. (itstool) path: item/item@label
-#: ../../Config/menu.xml:109
+#: ../../Config/menu.xml:110
 msgid "A propos"
 msgstr "About"
 
 #. (itstool) path: item/item@tooltip
-#: ../../Config/menu.xml:109
+#: ../../Config/menu.xml:110
 msgid "A propos de ESFC"
 msgstr "About ESFC"
 
 #. (itstool) path: item/item@label
-#: ../../Config/menu.xml:110
+#: ../../Config/menu.xml:111
 msgid "Nouveautés"
 msgstr "What's new?"
 
 #. (itstool) path: item/item@tooltip
-#: ../../Config/menu.xml:110
+#: ../../Config/menu.xml:111
 msgid "Quoi de neuf dans l'application ?"
 msgstr "What's new in the app?"
 
 #. (itstool) path: item/item@label
-#: ../../Config/menu.xml:111
+#: ../../Config/menu.xml:112
 msgid "Français"
 msgstr "French"
 
 #. (itstool) path: item/item@tooltip
-#: ../../Config/menu.xml:111
+#: ../../Config/menu.xml:112
 msgid "Libellés en français"
 msgstr "Labels in French"
 
 #. (itstool) path: item/item@label
-#: ../../Config/menu.xml:112
+#: ../../Config/menu.xml:113
 msgid "English"
 msgstr "English"
 
 #. (itstool) path: item/item@tooltip
-#: ../../Config/menu.xml:112
+#: ../../Config/menu.xml:113
 msgid "Labels in English"
 msgstr "Labels in English"
 
@@ -870,8 +883,8 @@ msgstr "Nitrate ion N-NO3"
 msgid "Inconnu"
 msgstr "Unknown"
 
-#: ../../../app/Libraries/Evenement.php:385
-#: ../../../app/Libraries/Poisson.php:297
+#: ../../../app/Libraries/Evenement.php:401
+#: ../../../app/Libraries/Poisson.php:305
 #, php-format
 msgid "Aucun poisson ne correspond au pittag %s"
 msgstr "No fish matches pittag %s"
@@ -958,6 +971,18 @@ msgstr "Not all the visotubes requested could be created"
 msgid "%s visotubes créés"
 msgstr "%s visotubes created"
 
+#: ../../../app/Libraries/Devenir.php:101
+#, fuzzy
+msgid ""
+"Le fichier contenant la liste des poissons n'a pas été correctement chargé "
+"vers le serveur"
+msgstr "The file containing the database schema was not found"
+
+#: ../../../app/Libraries/Devenir.php:108
+#, php-format
+msgid "%1s poissons créés. Poisson_id de %2s à %3s"
+msgstr "%1s created fish. Poisson_id from %2s to %3s"
+
 #: ../../../app/Libraries/Bassin.php:208
 #, php-format
 msgid "%s poissons transférés"
@@ -1027,6 +1052,17 @@ msgstr "The requested document does not exist"
 msgid "Impossible de lire la photo %s : "
 msgstr "unable to read the photo %s: "
 
+#: ../../../app/Models/CreateFishFromBatch.php:52
+#: ../../../app/Models/MorphologieImport.php:44
+#, php-format
+msgid "Le fichier %s n'a pas été trouvé ou n'est pas lisible"
+msgstr "File %s not found or not readable"
+
+#: ../../../app/Models/CreateFishFromBatch.php:89
+#, fuzzy, php-format
+msgid "Ligne %s : le pittag n'a pas été renseigné"
+msgstr "The pittag has not been filled in"
+
 #: ../../../app/Models/Sonde.php:67
 #, php-format
 msgid "Le fichier %s n'a pas été téléchargé correctement"
@@ -1052,48 +1088,43 @@ msgstr "The analyzed value %s is not described in the settings file"
 msgid "Erreur lors de l'écriture dans la table analyse_eau : %s"
 msgstr "An error occurred when recording in the table analyse_eau: %s"
 
-#: ../../../app/Models/MorphologieImport.php:46
-#, php-format
-msgid "Le fichier %s n'a pas été trouvé ou n'est pas lisible"
-msgstr "File %s not found or not readable"
-
-#: ../../../app/Models/MorphologieImport.php:182
+#: ../../../app/Models/MorphologieImport.php:180
 #, php-format
 msgid "Ligne %s : une erreur est survenue lors de l'enregistrement"
 msgstr "Line %s: an error occurred during the recording"
 
-#: ../../../app/Models/MorphologieImport.php:229
+#: ../../../app/Models/MorphologieImport.php:227
 #, php-format
 msgid "Le pittag %s ne correspond à aucun poisson"
 msgstr "The pittag %s does not correspond to any fish"
 
-#: ../../../app/Models/MorphologieImport.php:234
+#: ../../../app/Models/MorphologieImport.php:232
 msgid "Le pittag n'a pas été renseigné"
 msgstr "The pittag has not been filled in"
 
-#: ../../../app/Models/MorphologieImport.php:240
+#: ../../../app/Models/MorphologieImport.php:238
 msgid "La date de mesure n'a pas été renseignée"
 msgstr "The date of measure has not been filled in"
 
-#: ../../../app/Models/MorphologieImport.php:250
+#: ../../../app/Models/MorphologieImport.php:248
 #, php-format
 msgid "La colonne %1s contient une valeur non numérique (%2s)"
 msgstr "Column %1s contains a non-numeric value (%2s)"
 
-#: ../../../app/Models/MorphologieImport.php:258
+#: ../../../app/Models/MorphologieImport.php:256
 msgid "Aucune mesure n'a été renseignée"
 msgstr "No measure has been entered"
 
-#: ../../../app/Models/Morphologie.php:180
+#: ../../../app/Models/Morphologie.php:186
 #: ../../../app/Views/templates/poisson/poissonCampagneList.tpl:7
 msgid "masse"
 msgstr "weight"
 
-#: ../../../app/Models/Morphologie.php:181
+#: ../../../app/Models/Morphologie.php:187
 msgid "longueur fourche"
 msgstr "fork length"
 
-#: ../../../app/Models/Morphologie.php:182
+#: ../../../app/Models/Morphologie.php:188
 msgid "longueur totale"
 msgstr "Total length"
 
@@ -1227,12 +1258,12 @@ msgstr "Problem when deleting"
 msgid "Impossible de récupérer la dernière version publiée de l'application"
 msgstr "Unable to retrieve the latest published version of the application"
 
-#: ../../../vendor/equinton/ppci/src/Libraries/LastRelease.php:53
+#: ../../../vendor/equinton/ppci/src/Libraries/LastRelease.php:58
 #, php-format
 msgid "La nouvelle version %1s du %2s a été publiée !"
 msgstr "The release %1s of %2s is published!"
 
-#: ../../../vendor/equinton/ppci/src/Libraries/Totp.php:52
+#: ../../../vendor/equinton/ppci/src/Libraries/Totp.php:55
 msgid ""
 "Les informations fournies sont insuffisantes pour valider la création de la "
 "double identification"
@@ -1240,21 +1271,27 @@ msgstr ""
 "The information provided is insufficient to validate the creation of double "
 "identification"
 
-#: ../../../vendor/equinton/ppci/src/Libraries/Totp.php:62
+#: ../../../vendor/equinton/ppci/src/Libraries/Totp.php:65
 msgid "La double authentification est maintenant activée."
 msgstr "The dual authentication is activate now."
 
-#: ../../../vendor/equinton/ppci/src/Libraries/Totp.php:71
+#: ../../../vendor/equinton/ppci/src/Libraries/Totp.php:74
 msgid "Le code fourni n'a pu être vérifié"
 msgstr "The code provided could not be verified"
 
-#: ../../../vendor/equinton/ppci/src/Libraries/Totp.php:103
+#: ../../../vendor/equinton/ppci/src/Libraries/Totp.php:106
 msgid "Vous êtes maintenant connecté"
 msgstr "You are now logged in"
 
-#: ../../../vendor/equinton/ppci/src/Libraries/Totp.php:129
+#: ../../../vendor/equinton/ppci/src/Libraries/Totp.php:132
+#: ../../../vendor/equinton/ppci/src/Libraries/Totp.php:161
 msgid "Le code TOTP rentré n'a pas été reconnu"
 msgstr "The TOTP code entered was not recognised"
+
+#: ../../../vendor/equinton/ppci/src/Libraries/Totp.php:151
+#, fuzzy
+msgid "L'identification TOTP n'a pas été activée"
+msgstr "Token identification was unsuccessful"
 
 #: ../../../vendor/equinton/ppci/src/Libraries/Markdown.php:16
 #, php-format
@@ -1582,21 +1619,21 @@ msgid ""
 "raison"
 msgstr "Deleting the group failed. Check the logs to find out the reason"
 
-#: ../../../vendor/equinton/ppci/src/Models/Gacltotp.php:89
+#: ../../../vendor/equinton/ppci/src/Models/Gacltotp.php:91
 msgid "Une erreur est survenue pendant le chiffrement de la clé secrète"
 msgstr "An error occurred during the encryption of the secret key"
 
-#: ../../../vendor/equinton/ppci/src/Models/Gacltotp.php:104
+#: ../../../vendor/equinton/ppci/src/Models/Gacltotp.php:106
 msgid "Une erreur est survenue pendant le déchiffrement de la clé secrète"
 msgstr "An error occurred during the decryption of the secret key"
 
-#: ../../../vendor/equinton/ppci/src/Models/Gacltotp.php:150
-#: ../../../vendor/equinton/ppci/src/Models/Gacltotp.php:155
+#: ../../../vendor/equinton/ppci/src/Models/Gacltotp.php:152
+#: ../../../vendor/equinton/ppci/src/Models/Gacltotp.php:157
 msgid "Une erreur est survenue pendant le chiffrement"
 msgstr "An error occurred during the encryption"
 
-#: ../../../vendor/equinton/ppci/src/Models/Gacltotp.php:173
-#: ../../../vendor/equinton/ppci/src/Models/Gacltotp.php:178
+#: ../../../vendor/equinton/ppci/src/Models/Gacltotp.php:175
+#: ../../../vendor/equinton/ppci/src/Models/Gacltotp.php:180
 msgid "Une erreur est survenue pendant le déchiffrement"
 msgstr "An error occurred during the decryption"
 
@@ -1610,13 +1647,10 @@ msgstr "%s is not a recognized field that can be used during import"
 msgid "Fichier %s non trouvé ou non lisible"
 msgstr "File %s not found or not readable"
 
-#: ../../../vendor/equinton/ppci/src/Models/Request.php:57
-msgid ""
-"La requête ne peut pas contenir d'ordres de modification de la base de "
-"données ni porter sur des tables contenant des informations confidentielles"
-msgstr ""
-"The request must not contain any database modification commands or relate to "
-"tables containing confidential information"
+#: ../../../vendor/equinton/ppci/src/Models/Request.php:108
+#, php-format
+msgid "La requête ne peut pas contenir le terme %s"
+msgstr "The request must not contains the term %s"
 
 #: ../../../vendor/equinton/ppci/src/Models/PpciModel.php:144
 #, php-format
@@ -1714,7 +1748,8 @@ msgstr "Quality"
 
 #: ../../../app/Views/templates/repro/spermeMesureList.tpl:12
 #: ../../../app/Views/templates/repro/spermeCongelationListAll.tpl:145
-msgid "Concentration (milliard/mL)"
+#, fuzzy
+msgid "Concentration (millions/mL)"
 msgstr "Concentration (billion/mL)"
 
 #: ../../../app/Views/templates/repro/spermeMesureList.tpl:13
@@ -1751,7 +1786,7 @@ msgstr "Number of spangles used"
 #: ../../../app/Views/templates/repro/poissonSequenceChange.tpl:114
 #: ../../../app/Views/templates/repro/echographieList.tpl:9
 #: ../../../app/Views/templates/repro/ventilationList.tpl:7
-#: ../../../app/Views/templates/poisson/poissonDetail.tpl:49
+#: ../../../app/Views/templates/poisson/poissonDetail.tpl:55
 #: ../../../app/Views/templates/poisson/anesthesieList.tpl:9
 #: ../../../app/Views/templates/poisson/morphologieList.tpl:15
 #: ../../../app/Views/templates/poisson/dosageSanguinList.tpl:9
@@ -1940,7 +1975,7 @@ msgstr "Used measure technic:"
 #: ../../../app/Views/templates/repro/injectionChange.tpl:52
 #: ../../../app/Views/templates/repro/croisementChange.tpl:90
 #: ../../../app/Views/templates/repro/lotChange.tpl:94
-#: ../../../app/Views/templates/repro/devenirChange.tpl:42
+#: ../../../app/Views/templates/repro/devenirChange.tpl:43
 #: ../../../app/Views/templates/repro/echographieChange.tpl:45
 #: ../../../app/Views/templates/repro/echographieChange.tpl:62
 #: ../../../app/Views/templates/repro/spermeMesureChangeCorps.tpl:20
@@ -2022,7 +2057,7 @@ msgstr "Generic comment:"
 #: ../../../app/Views/templates/repro/lotMesureChange.tpl:63
 #: ../../../app/Views/templates/repro/psEvenementChange.tpl:49
 #: ../../../app/Views/templates/repro/lotChange.tpl:108
-#: ../../../app/Views/templates/repro/devenirChange.tpl:112
+#: ../../../app/Views/templates/repro/devenirChange.tpl:159
 #: ../../../app/Views/templates/repro/spermeUtiliseChange.tpl:88
 #: ../../../app/Views/templates/repro/dosageSanguinChange.tpl:76
 #: ../../../app/Views/templates/repro/echographieChange.tpl:117
@@ -2054,11 +2089,12 @@ msgstr "Generic comment:"
 #: ../../../app/Views/templates/parametre/circuitEvenementTypeChange.tpl:20
 #: ../../../app/Views/templates/parametre/spermeCaracteristiqueChange.tpl:21
 #: ../../../app/Views/templates/parametre/sortieLieuChange.tpl:69
+#: ../../../app/Views/templates/parametre/devenirTypeChange.tpl:35
 #: ../../../app/Views/templates/parametre/alimentTypeChange.tpl:19
 #: ../../../app/Views/templates/parametre/pittagTypeChange.tpl:21
 #: ../../../app/Views/templates/poisson/pittagChange.tpl:68
 #: ../../../app/Views/templates/poisson/parentPoissonChange.tpl:66
-#: ../../../app/Views/templates/poisson/poissonChange.tpl:209
+#: ../../../app/Views/templates/poisson/poissonChange.tpl:224
 #: ../../../app/Views/templates/poisson/evenementChange.tpl:154
 #: ../../../app/Views/templates/poisson/ventilationChange.tpl:55
 #: ../../../app/Views/templates/anomalie/anomalieChange.tpl:126
@@ -2078,10 +2114,11 @@ msgstr "Generic comment:"
 #: ../../../vendor/equinton/ppci/src/Views/templates/ppci/ident/loginChangePassword.tpl:133
 #: ../../../vendor/equinton/ppci/src/Views/templates/ppci/ident/totp.tpl:36
 #: ../../../vendor/equinton/ppci/src/Views/templates/ppci/ident/loginsaisie.tpl:220
+#: ../../../vendor/equinton/ppci/src/Views/templates/ppci/ident/totpShowCode.tpl:20
 #: ../../../vendor/equinton/ppci/src/Views/templates/ppci/dbparamListChange.tpl:34
 #: ../../../vendor/equinton/ppci/src/Views/templates/ppci/droits/acoChange.tpl:16
 #: ../../../vendor/equinton/ppci/src/Views/templates/ppci/droits/groupChange.tpl:12
-#: ../../../vendor/equinton/ppci/src/Views/templates/ppci/droits/otpCreate.tpl:28
+#: ../../../vendor/equinton/ppci/src/Views/templates/ppci/droits/otpCreate.tpl:62
 #: ../../../vendor/equinton/ppci/src/Views/templates/ppci/droits/appliChange.tpl:25
 #: ../../../vendor/equinton/ppci/src/Views/templates/ppci/droits/loginChange.tpl:45
 msgid "Valider"
@@ -2103,7 +2140,7 @@ msgstr "Save and return"
 #: ../../../app/Views/templates/repro/lotMesureChange.tpl:65
 #: ../../../app/Views/templates/repro/psEvenementChange.tpl:51
 #: ../../../app/Views/templates/repro/lotChange.tpl:110
-#: ../../../app/Views/templates/repro/devenirChange.tpl:114
+#: ../../../app/Views/templates/repro/devenirChange.tpl:161
 #: ../../../app/Views/templates/repro/spermeUtiliseChange.tpl:90
 #: ../../../app/Views/templates/repro/dosageSanguinChange.tpl:78
 #: ../../../app/Views/templates/repro/echographieChange.tpl:119
@@ -2135,11 +2172,12 @@ msgstr "Save and return"
 #: ../../../app/Views/templates/parametre/circuitEvenementTypeChange.tpl:22
 #: ../../../app/Views/templates/parametre/spermeCaracteristiqueChange.tpl:23
 #: ../../../app/Views/templates/parametre/sortieLieuChange.tpl:71
+#: ../../../app/Views/templates/parametre/devenirTypeChange.tpl:37
 #: ../../../app/Views/templates/parametre/alimentTypeChange.tpl:21
 #: ../../../app/Views/templates/parametre/pittagTypeChange.tpl:23
 #: ../../../app/Views/templates/poisson/pittagChange.tpl:70
 #: ../../../app/Views/templates/poisson/parentPoissonChange.tpl:68
-#: ../../../app/Views/templates/poisson/poissonChange.tpl:211
+#: ../../../app/Views/templates/poisson/poissonChange.tpl:226
 #: ../../../app/Views/templates/poisson/evenementChange.tpl:156
 #: ../../../app/Views/templates/poisson/ventilationChange.tpl:57
 #: ../../../app/Views/templates/anomalie/anomalieChange.tpl:128
@@ -2158,7 +2196,7 @@ msgstr "Save and return"
 #: ../../../vendor/equinton/ppci/src/Views/templates/ppci/droits/groupChange.tpl:14
 #: ../../../vendor/equinton/ppci/src/Views/templates/ppci/droits/appliChange.tpl:27
 #: ../../../vendor/equinton/ppci/src/Views/templates/ppci/droits/loginChange.tpl:47
-#: ../../../vendor/equinton/ppci/src/Views/templates/ppci/request/requestChange.tpl:94
+#: ../../../vendor/equinton/ppci/src/Views/templates/ppci/request/requestChange.tpl:99
 msgid "Supprimer"
 msgstr "Delete..."
 
@@ -2179,7 +2217,7 @@ msgstr "Associated documents"
 #: ../../../app/Views/templates/repro/croisementChange.tpl:134
 #: ../../../app/Views/templates/repro/lotMesureChange.tpl:72
 #: ../../../app/Views/templates/repro/lotChange.tpl:117
-#: ../../../app/Views/templates/repro/devenirChange.tpl:121
+#: ../../../app/Views/templates/repro/devenirChange.tpl:189
 #: ../../../app/Views/templates/repro/spermeUtiliseChange.tpl:97
 #: ../../../app/Views/templates/repro/dosageSanguinChange.tpl:85
 #: ../../../app/Views/templates/repro/echographieChange.tpl:126
@@ -2211,11 +2249,12 @@ msgstr "Associated documents"
 #: ../../../app/Views/templates/parametre/circuitEvenementTypeChange.tpl:30
 #: ../../../app/Views/templates/parametre/spermeCaracteristiqueChange.tpl:30
 #: ../../../app/Views/templates/parametre/sortieLieuChange.tpl:79
+#: ../../../app/Views/templates/parametre/devenirTypeChange.tpl:45
 #: ../../../app/Views/templates/parametre/alimentTypeChange.tpl:31
 #: ../../../app/Views/templates/parametre/pittagTypeChange.tpl:31
 #: ../../../app/Views/templates/poisson/pittagChange.tpl:78
 #: ../../../app/Views/templates/poisson/parentPoissonChange.tpl:75
-#: ../../../app/Views/templates/poisson/poissonChange.tpl:219
+#: ../../../app/Views/templates/poisson/poissonChange.tpl:234
 #: ../../../app/Views/templates/poisson/evenementChange.tpl:864
 #: ../../../app/Views/templates/poisson/ventilationChange.tpl:65
 #: ../../../app/Views/templates/poisson/morphologieImport.tpl:207
@@ -2268,7 +2307,7 @@ msgstr "Sequence"
 
 #: ../../../app/Views/templates/repro/lotList.tpl:38
 #: ../../../app/Views/templates/repro/sublotList.tpl:5
-#: ../../../app/Views/templates/poisson/poissonList.tpl:136
+#: ../../../app/Views/templates/poisson/poissonList.tpl:137
 #: ../../../app/Views/templates/bassin/bassinPoissonList.tpl:5
 #: ../../../app/Views/templates/bassin/circuitEauDisplay.tpl:76
 #: ../../../app/Views/templates/aliment/repartitionResteChange.tpl:79
@@ -2513,7 +2552,7 @@ msgstr "Operator:"
 #: ../../../app/Views/templates/repro/spermeChangeCorps.tpl:74
 #: ../../../app/Views/templates/repro/psEvenementChange.tpl:42
 #: ../../../app/Views/templates/poisson/pittagChange.tpl:59
-#: ../../../app/Views/templates/poisson/poissonChange.tpl:173
+#: ../../../app/Views/templates/poisson/poissonChange.tpl:188
 #: ../../../app/Views/templates/poisson/evenementChange.tpl:299
 #: ../../../app/Views/templates/poisson/evenementChange.tpl:393
 #: ../../../app/Views/templates/poisson/evenementChange.tpl:588
@@ -2867,7 +2906,7 @@ msgid "Nbre de jours"
 msgstr "Number of days"
 
 #: ../../../app/Views/templates/repro/lotMesureList.tpl:11
-#: ../../../app/Views/templates/poisson/poissonDetail.tpl:100
+#: ../../../app/Views/templates/poisson/poissonDetail.tpl:106
 #: ../../../app/Views/templates/poisson/evenementChange.tpl:824
 msgid "Mortalité"
 msgstr "Mortality"
@@ -3202,6 +3241,7 @@ msgstr "Lots resulting from cross-breeding"
 #: ../../../app/Views/templates/parametre/circuitEvenementTypeChange.tpl:3
 #: ../../../app/Views/templates/parametre/spermeCaracteristiqueChange.tpl:3
 #: ../../../app/Views/templates/parametre/sortieLieuChange.tpl:3
+#: ../../../app/Views/templates/parametre/devenirTypeChange.tpl:3
 #: ../../../app/Views/templates/parametre/alimentTypeChange.tpl:3
 #: ../../../app/Views/templates/parametre/pittagTypeChange.tpl:3
 #: ../../../app/Views/templates/bassin/bassinDisplay.tpl:25
@@ -3210,7 +3250,7 @@ msgstr "Lots resulting from cross-breeding"
 #: ../../../app/Views/templates/aliment/categorieChange.tpl:3
 #: ../../../app/Views/templates/aliment/repartTemplateChange.tpl:8
 #: ../../../app/Views/templates/aliment/alimentChange.tpl:3
-#: ../../../vendor/equinton/ppci/src/Views/templates/ppci/request/requestChange.tpl:39
+#: ../../../vendor/equinton/ppci/src/Views/templates/ppci/request/requestChange.tpl:43
 msgid "Retour à la liste"
 msgstr "Back to the list"
 
@@ -3375,7 +3415,7 @@ msgid "Mesures pour le lot"
 msgstr "Batch measures"
 
 #: ../../../app/Views/templates/repro/lotMesureChange.tpl:19
-#: ../../../app/Views/templates/repro/devenirChange.tpl:29
+#: ../../../app/Views/templates/repro/devenirChange.tpl:30
 #: ../../../app/Views/templates/poisson/evenementChange.tpl:136
 #: ../../../app/Views/templates/bassin/bassinPoissonPresent.tpl:119
 #: ../../../app/Views/templates/bassin/circuitEvenementChange.tpl:26
@@ -3564,25 +3604,123 @@ msgstr "Back to the list of the releases or entries in the stock"
 msgid "Saisie de la destination d'une reproduction"
 msgstr "Enter the destination of a reproduction"
 
-#: ../../../app/Views/templates/repro/devenirChange.tpl:38
+#: ../../../app/Views/templates/repro/devenirChange.tpl:39
 msgid "Destination parente :"
 msgstr "Parental destination:"
 
-#: ../../../app/Views/templates/repro/devenirChange.tpl:57
+#: ../../../app/Views/templates/repro/devenirChange.tpl:58
 msgid "Nature:"
 msgstr "Nature:"
 
-#: ../../../app/Views/templates/repro/devenirChange.tpl:72
+#: ../../../app/Views/templates/repro/devenirChange.tpl:73
 msgid "Stade biologique :"
 msgstr "Biological stage:"
 
-#: ../../../app/Views/templates/repro/devenirChange.tpl:87
+#: ../../../app/Views/templates/repro/devenirChange.tpl:88
 msgid "Lieu de lâcher :"
 msgstr "Release location:"
 
-#: ../../../app/Views/templates/repro/devenirChange.tpl:103
+#: ../../../app/Views/templates/repro/devenirChange.tpl:105
 msgid "Nombre de poissons concernés :"
 msgstr "Number of related fish:"
+
+#: ../../../app/Views/templates/repro/devenirChange.tpl:113
+#, fuzzy
+msgid "Création des poissons à partir d'une liste CSV"
+msgstr "Measurement import from a CSV file"
+
+#: ../../../app/Views/templates/repro/devenirChange.tpl:116
+msgid "Fichier CSV contenant les poissons à créer :"
+msgstr "CSV file wich contains the fish to be created:"
+
+#: ../../../app/Views/templates/repro/devenirChange.tpl:123
+#: ../../../app/Views/templates/poisson/morphologieImport.tpl:159
+msgid "Séparateur utilisé :"
+msgstr "Used separator:"
+
+#: ../../../app/Views/templates/repro/devenirChange.tpl:126
+#: ../../../app/Views/templates/poisson/morphologieImport.tpl:162
+msgid "Virgule"
+msgstr "Comma"
+
+#: ../../../app/Views/templates/repro/devenirChange.tpl:127
+#: ../../../app/Views/templates/poisson/morphologieImport.tpl:163
+msgid "Point-virgule"
+msgstr "Semi-comma"
+
+#: ../../../app/Views/templates/repro/devenirChange.tpl:128
+#: ../../../app/Views/templates/poisson/morphologieImport.tpl:164
+msgid "Tabulation"
+msgstr "Tabulation"
+
+#: ../../../app/Views/templates/repro/devenirChange.tpl:133
+#: ../../../app/Views/templates/poisson/morphologieImport.tpl:177
+msgid "Encodage du fichier :"
+msgstr "File encoding:"
+
+#: ../../../app/Views/templates/repro/devenirChange.tpl:143
+#, fuzzy
+msgid "Bassin de destination (le cas échéant) :"
+msgstr "Destination basin:"
+
+#: ../../../app/Views/templates/repro/devenirChange.tpl:171
+msgid "Contenu du fichier contenant les poissons à créer :"
+msgstr "Contents of the file containing the fish to be created:"
+
+#: ../../../app/Views/templates/repro/devenirChange.tpl:173
+msgid ""
+"pittag : pittag principal du poisson, utilisé pour l'identifier (obligatoire)"
+msgstr "pittag: main pittag of the fish, used to identifier it (mandatory)"
+
+#: ../../../app/Views/templates/repro/devenirChange.tpl:174
+msgid ""
+"pittag_type_id : identifiant du type de pittag (consultez la table de "
+"paramètres correspondante)"
+msgstr ""
+"pittag_type_id: identifier of the type of pittag (consult the related "
+"parameter table)"
+
+#: ../../../app/Views/templates/repro/devenirChange.tpl:176
+msgid "tag : second pittag posé (acoustique par exemple)"
+msgstr "tag: second pittag fitted (acoustic for example)"
+
+#: ../../../app/Views/templates/repro/devenirChange.tpl:177
+msgid "tag_type_id : identifiant du type du second pittag posé"
+msgstr "tag_type_id: identifier of the second pittag fitted"
+
+#: ../../../app/Views/templates/repro/devenirChange.tpl:178
+#, fuzzy
+msgid "longueur_totale : longueur totale du poisson, en cm"
+msgstr "Total measured length, in cm"
+
+#: ../../../app/Views/templates/repro/devenirChange.tpl:179
+msgid "longueur_fourche : longueur à la fourche du poisson, en cm"
+msgstr "longueur_fourche: length to the fork of the fish, in cm"
+
+#: ../../../app/Views/templates/repro/devenirChange.tpl:180
+#, fuzzy
+msgid "masse : poids du poisson, en grammes"
+msgstr "Mass (weight) of fish in the basin (in grams) :"
+
+#: ../../../app/Views/templates/repro/devenirChange.tpl:181
+#, fuzzy
+msgid "commentaire : texte libre"
+msgstr "Comment: "
+
+#: ../../../app/Views/templates/repro/devenirChange.tpl:183
+msgid ""
+"Le fichier ne doit être fourni qu'une seule fois, sinon vous créerez des "
+"doublons !"
+msgstr ""
+"The file must only be supplied once, otherwise you'll create duplicates!"
+
+#: ../../../app/Views/templates/repro/devenirChange.tpl:185
+msgid ""
+"Si le fichier est fourni, le programme va créer les poissons et les "
+"événements correspondants (morphologie, sortie, transfert, etc.)"
+msgstr ""
+"If the file is supplied, the application will create the fish and the "
+"corresponding events (morphology, exit, transfer, etc.)"
 
 #: ../../../app/Views/templates/repro/croisementListAll.tpl:41
 msgid "Croisement"
@@ -3645,6 +3783,9 @@ msgid "Qualité génétique du croisement"
 msgstr "Genetic quality of the crossbreeding"
 
 #: ../../../app/Views/templates/repro/spermeUtiliseList.tpl:3
+#: ../../../app/Views/templates/parametre/pittagTypeList.tpl:4
+#: ../../../app/Views/templates/parametre/devenirTypeList.tpl:4
+#: ../../../app/Views/templates/parametre/bassinTypeList.tpl:4
 #: ../../../app/Views/templates/bassin/circuitEauList.tpl:9
 msgid "Nouveau..."
 msgstr "New..."
@@ -3927,12 +4068,18 @@ msgstr "Name of the implantation position:"
 msgid "Types de pittag"
 msgstr "Pittag types"
 
-#: ../../../app/Views/templates/parametre/pittagTypeList.tpl:11
+#: ../../../app/Views/templates/parametre/pittagTypeList.tpl:12
+#, fuzzy
+msgid "id"
+msgstr "Help"
+
+#: ../../../app/Views/templates/parametre/pittagTypeList.tpl:13
 #: ../../../app/Views/templates/parametre/pathologieTypeList.tpl:11
 #: ../../../app/Views/templates/parametre/bassinZoneList.tpl:11
 #: ../../../app/Views/templates/parametre/genderMethodeList.tpl:11
 #: ../../../app/Views/templates/parametre/bassinUsageList.tpl:11
 #: ../../../app/Views/templates/parametre/cohorteTypeList.tpl:11
+#: ../../../app/Views/templates/parametre/devenirTypeList.tpl:12
 #: ../../../app/Views/templates/parametre/anomalieDbTypeList.tpl:14
 #: ../../../app/Views/templates/parametre/mortaliteTypeList.tpl:11
 #: ../../../app/Views/templates/parametre/circuitEvenementTypeList.tpl:11
@@ -3975,6 +4122,7 @@ msgid "Liste des requêtes"
 msgstr "List of requests"
 
 #: ../../../app/Views/templates/parametre/requeteList.tpl:14
+#: ../../../app/Views/templates/parametre/devenirTypeList.tpl:11
 #: ../../../app/Views/templates/poisson/poissonList.tpl:127
 #: ../../../vendor/equinton/ppci/src/Views/templates/ppci/request/requestList.tpl:9
 msgid "Id"
@@ -3998,7 +4146,7 @@ msgstr "Creating date"
 
 #: ../../../app/Views/templates/parametre/requeteList.tpl:17
 #, fuzzy
-msgid "Date dernière<br>exécution"
+msgid "Date dernière exécution"
 msgstr "Date of last execution"
 
 #: ../../../app/Views/templates/parametre/requeteList.tpl:18
@@ -4077,6 +4225,11 @@ msgstr "Feeding category"
 #: ../../../app/Views/templates/parametre/cohorteTypeList.tpl:1
 msgid "Méthodes de détermination de la cohorte"
 msgstr "Cohort determination methods"
+
+#: ../../../app/Views/templates/parametre/devenirTypeList.tpl:13
+#, fuzzy
+msgid "Type d'événement rattaché"
+msgstr "Event type:"
 
 #: ../../../app/Views/templates/parametre/anomalieDbTypeList.tpl:1
 msgid "Types d'anomalie_dbs"
@@ -4439,6 +4592,21 @@ msgstr "Fish status:"
 msgid "Lieu actuellement utilisé ?"
 msgstr "Place currently used?"
 
+#: ../../../app/Views/templates/parametre/devenirTypeChange.tpl:1
+#, fuzzy
+msgid "Modification d'un type de devenir d'un lot de reproduction"
+msgstr "Edit of a database anomaly type"
+
+#: ../../../app/Views/templates/parametre/devenirTypeChange.tpl:12
+#, fuzzy
+msgid "Type de devenir :"
+msgstr "Determination type:"
+
+#: ../../../app/Views/templates/parametre/devenirTypeChange.tpl:21
+#, fuzzy
+msgid "Type d'événement rattaché :"
+msgstr "Event type:"
+
 #: ../../../app/Views/templates/parametre/alimentTypeChange.tpl:1
 msgid "Modification d'un type d'aliment"
 msgstr "Edit a food type"
@@ -4488,27 +4656,32 @@ msgstr "caught on"
 msgid "né le"
 msgstr "born on"
 
-#: ../../../app/Views/templates/poisson/poissonDetail.tpl:54
+#: ../../../app/Views/templates/poisson/poissonDetail.tpl:49
+#, fuzzy
+msgid "lot de reproduction :"
+msgstr "breeding status:"
+
+#: ../../../app/Views/templates/poisson/poissonDetail.tpl:60
 msgid "Cumul de température sur l'année écoulée :"
 msgstr "Cumulative temperature over the past year:"
 
-#: ../../../app/Views/templates/poisson/poissonDetail.tpl:60
+#: ../../../app/Views/templates/poisson/poissonDetail.tpl:66
 msgid "Liste des parents"
 msgstr "List of parents"
 
-#: ../../../app/Views/templates/poisson/poissonDetail.tpl:65
+#: ../../../app/Views/templates/poisson/poissonDetail.tpl:71
 msgid "Nouveau parent..."
 msgstr "New parent"
 
-#: ../../../app/Views/templates/poisson/poissonDetail.tpl:76
+#: ../../../app/Views/templates/poisson/poissonDetail.tpl:82
 msgid "Liste des (pit)tags attribués"
 msgstr "List of attributed pittags"
 
-#: ../../../app/Views/templates/poisson/poissonDetail.tpl:81
+#: ../../../app/Views/templates/poisson/poissonDetail.tpl:87
 msgid "Nouveau pittag ou étiquette..."
 msgstr "New pittag or label"
 
-#: ../../../app/Views/templates/poisson/poissonDetail.tpl:91
+#: ../../../app/Views/templates/poisson/poissonDetail.tpl:97
 #: ../../../app/Views/templates/poisson/evenementChange.tpl:782
 msgid "Sortie du stock"
 msgstr "Out of stock"
@@ -4659,11 +4832,16 @@ msgstr "Bycatch date:"
 msgid "Date de naissance :"
 msgstr "Birth date:"
 
-#: ../../../app/Views/templates/poisson/poissonChange.tpl:181
+#: ../../../app/Views/templates/poisson/poissonChange.tpl:172
+#, fuzzy
+msgid "Lot d'origine :"
+msgstr "Origin crossbreeding:"
+
+#: ../../../app/Views/templates/poisson/poissonChange.tpl:196
 msgid "Marquage VIE au stade juvénile - lot"
 msgstr "VIE marking at juvenile stage - batch"
 
-#: ../../../app/Views/templates/poisson/poissonChange.tpl:183
+#: ../../../app/Views/templates/poisson/poissonChange.tpl:198
 msgid ""
 "La sélection du modèle de marquage VIE entraîne une mise à jour automatique "
 "de la date de naissance, de la cohorte et des parents à partir des données "
@@ -4672,11 +4850,11 @@ msgstr ""
 "Selecting the VIE tagging model automatically updates the date of birth, "
 "cohort and parents from the reproduction data"
 
-#: ../../../app/Views/templates/poisson/poissonChange.tpl:187
+#: ../../../app/Views/templates/poisson/poissonChange.tpl:202
 msgid "Modèle de marque :"
 msgstr "Mark model:"
 
-#: ../../../app/Views/templates/poisson/poissonChange.tpl:193
+#: ../../../app/Views/templates/poisson/poissonChange.tpl:208
 msgid "Sélectionnez pour générer les parents..."
 msgstr "Select to generate parents..."
 
@@ -5030,23 +5208,28 @@ msgid "Date de capture /naissance"
 msgstr "Bycatch date/birthday"
 
 #: ../../../app/Views/templates/poisson/poissonList.tpl:135
+#, fuzzy
+msgid "Lot d'origine"
+msgstr "Basin of origin"
+
+#: ../../../app/Views/templates/poisson/poissonList.tpl:136
 msgid "Date de mortalité"
 msgstr "Death date"
 
-#: ../../../app/Views/templates/poisson/poissonList.tpl:137
+#: ../../../app/Views/templates/poisson/poissonList.tpl:138
 #: ../../../app/Views/templates/bassin/bassinPoissonPresent.tpl:43
 msgid "Masse"
 msgstr "Mass"
 
-#: ../../../app/Views/templates/poisson/poissonList.tpl:138
+#: ../../../app/Views/templates/poisson/poissonList.tpl:139
 msgid "Long fourche"
 msgstr "Fork length"
 
-#: ../../../app/Views/templates/poisson/poissonList.tpl:139
+#: ../../../app/Views/templates/poisson/poissonList.tpl:140
 msgid "Long totale"
 msgstr "Total length"
 
-#: ../../../app/Views/templates/poisson/poissonList.tpl:144
+#: ../../../app/Views/templates/poisson/poissonList.tpl:145
 msgid "Température cumulée (bassin)"
 msgstr "Cumulative temperature (basin)"
 
@@ -5199,29 +5382,9 @@ msgstr "Detected anomalies"
 msgid "Nom du fichier à importer (CSV) :"
 msgstr "Name of CSV file to import:"
 
-#: ../../../app/Views/templates/poisson/morphologieImport.tpl:159
-msgid "Séparateur utilisé :"
-msgstr "Used separator:"
-
-#: ../../../app/Views/templates/poisson/morphologieImport.tpl:162
-msgid "Virgule"
-msgstr "Comma"
-
-#: ../../../app/Views/templates/poisson/morphologieImport.tpl:163
-msgid "Point-virgule"
-msgstr "Semi-comma"
-
-#: ../../../app/Views/templates/poisson/morphologieImport.tpl:164
-msgid "Tabulation"
-msgstr "Tabulation"
-
 #: ../../../app/Views/templates/poisson/morphologieImport.tpl:170
 msgid "Numéro de la ligne contenant l'entête :"
 msgstr "Number of the line containing the header:"
-
-#: ../../../app/Views/templates/poisson/morphologieImport.tpl:177
-msgid "Encodage du fichier :"
-msgstr "File encoding:"
 
 #: ../../../app/Views/templates/poisson/morphologieImport.tpl:187
 msgid "Apparier les colonnes"
@@ -6394,7 +6557,7 @@ msgid "Confirmez-vous cette opération ?"
 msgstr "Do you confirm this operation?"
 
 #: ../../../vendor/equinton/ppci/src/Views/templates/ppci/dbstructure.tpl:1
-#: ../../../vendor/equinton/ppci/src/Views/templates/ppci/request/requestChange.tpl:44
+#: ../../../vendor/equinton/ppci/src/Views/templates/ppci/request/requestChange.tpl:48
 msgid "Structure de la base de données"
 msgstr "Database structure"
 
@@ -6538,7 +6701,8 @@ msgstr ""
 "up in your smartphone"
 
 #: ../../../vendor/equinton/ppci/src/Views/templates/ppci/ident/totp.tpl:15
-#: ../../../vendor/equinton/ppci/src/Views/templates/ppci/droits/otpCreate.tpl:22
+#: ../../../vendor/equinton/ppci/src/Views/templates/ppci/ident/totpShowCode.tpl:14
+#: ../../../vendor/equinton/ppci/src/Views/templates/ppci/droits/otpCreate.tpl:56
 msgid "Code généré par le logiciel TOTP :"
 msgstr "TOTP software generated code:"
 
@@ -6699,6 +6863,35 @@ msgstr "Account blocked"
 msgid "Adresses mails :"
 msgstr "Email addresses:"
 
+#: ../../../vendor/equinton/ppci/src/Views/templates/ppci/ident/totpShowCode.tpl:1
+#, fuzzy
+msgid "Affichage de la clé TOTP"
+msgstr "Display by category"
+
+#: ../../../vendor/equinton/ppci/src/Views/templates/ppci/ident/totpShowCode.tpl:6
+msgid ""
+"Ce module vous permet de visualiser les paramètres de votre clé TOTP, pour "
+"pouvoir configurer un autre appareil le cas échéant"
+msgstr ""
+"This module allows you to view the parameters of your TOTP key, so that you "
+"can configure another device if necessary"
+
+#: ../../../vendor/equinton/ppci/src/Views/templates/ppci/ident/totpShowCode.tpl:31
+#: ../../../vendor/equinton/ppci/src/Views/templates/ppci/droits/otpCreate.tpl:40
+msgid "Fournisseur"
+msgstr "Provider"
+
+#: ../../../vendor/equinton/ppci/src/Views/templates/ppci/ident/totpShowCode.tpl:35
+#: ../../../vendor/equinton/ppci/src/Views/templates/ppci/droits/otpCreate.tpl:44
+#, fuzzy
+msgid "Compte"
+msgstr "Account blocked"
+
+#: ../../../vendor/equinton/ppci/src/Views/templates/ppci/ident/totpShowCode.tpl:39
+#: ../../../vendor/equinton/ppci/src/Views/templates/ppci/droits/otpCreate.tpl:48
+msgid "Jeton"
+msgstr "token"
+
 #: ../../../vendor/equinton/ppci/src/Views/templates/ppci/ident/identMailInput.tpl:2
 msgid "lancement de la procédure de récupération"
 msgstr "start the recovery procedure"
@@ -6834,7 +7027,15 @@ msgid ""
 msgstr ""
 "You are receiving this message because you are the application administrator."
 
-#: ../../../vendor/equinton/ppci/src/Views/templates/ppci/header.tpl:35
+#: ../../../vendor/equinton/ppci/src/Views/templates/ppci/header.tpl:33
+msgid "Afficher le code TOTP pour configurer un autre appareil"
+msgstr "Display the TOTP code to configure another device"
+
+#: ../../../vendor/equinton/ppci/src/Views/templates/ppci/header.tpl:33
+msgid "Afficher le code TOTP"
+msgstr "Display the TOTP code"
+
+#: ../../../vendor/equinton/ppci/src/Views/templates/ppci/header.tpl:36
 msgid "Mot de passe"
 msgstr "Password"
 
@@ -6920,33 +7121,52 @@ msgstr "Group of attachment"
 msgid "Logins rattachés"
 msgstr "Logins attached"
 
-#: ../../../vendor/equinton/ppci/src/Views/templates/ppci/droits/otpCreate.tpl:1
+#: ../../../vendor/equinton/ppci/src/Views/templates/ppci/droits/otpCreate.tpl:8
 msgid "Activation de la double authentification"
 msgstr "Enabling dual authentication"
 
-#: ../../../vendor/equinton/ppci/src/Views/templates/ppci/droits/otpCreate.tpl:5
+#: ../../../vendor/equinton/ppci/src/Views/templates/ppci/droits/otpCreate.tpl:12
 msgid ""
 "La double identification limite les risques d'usurpation de votre compte."
 msgstr ""
 "The double identification limits the risks of usurpation of your account."
 
-#: ../../../vendor/equinton/ppci/src/Views/templates/ppci/droits/otpCreate.tpl:7
+#: ../../../vendor/equinton/ppci/src/Views/templates/ppci/droits/otpCreate.tpl:14
+#, fuzzy
 msgid ""
 "Pour l'activer, vous devrez installer dans votre smartphone une application "
-"compatible avec l'identificationTOTP, par exemple FreeOTP, Google "
+"compatible avec l'identificationTOTP, par exemple FreeOTP+, Google "
 "Authenticator, etc."
 msgstr ""
 "To activate it, you will need to install in your smartphone an application "
 "that is compatible with the identification TOTP, e.g. FreeOTP, Google "
 "Authenticator, etc."
 
-#: ../../../vendor/equinton/ppci/src/Views/templates/ppci/droits/otpCreate.tpl:9
+#: ../../../vendor/equinton/ppci/src/Views/templates/ppci/droits/otpCreate.tpl:16
+msgid ""
+"Si vous devez travailler dans une pièce à accès restreint (laboratoire "
+"protégé), vous pouvez également utiliser un logiciel qui s'installe dans "
+"votre ordinateur, comme Ente Auth pour Windows ou Authenticator pour Linux. "
+"Ces logiciels vous permettent d'échanger les clés d'un ordinateur à un "
+"autre, pensez simplement à chiffrer les informations quand vous les exportez."
+msgstr ""
+"If you need to work in a room with restricted access (protected laboratory), "
+"you can also use software that installs on your computer, such as Ente Auth "
+"for Windows or Authenticator for Linux. This software allows you to exchange "
+"keys from one computer to another, just remember to encrypt the information "
+"when you export it."
+
+#: ../../../vendor/equinton/ppci/src/Views/templates/ppci/droits/otpCreate.tpl:18
 msgid ""
 "Une fois l'application installée, scannez le QRCODE, puis tapez le code "
 "généré par l'application pour valider votre double identification."
 msgstr ""
 "Once the application has been installed, scan the QRCODE, then enter the "
 "code generated by the application to validate your dual identification."
+
+#: ../../../vendor/equinton/ppci/src/Views/templates/ppci/droits/otpCreate.tpl:33
+msgid "Afficher le contenu du QRCODE pour une saisie manuelle"
+msgstr "Display the content of the QRCODE to a manual entry"
 
 #: ../../../vendor/equinton/ppci/src/Views/templates/ppci/droits/appliChange.tpl:1
 msgid "Modification d'une application (module de gestion des droits)"
@@ -7048,43 +7268,47 @@ msgstr "Duplicate the request"
 msgid "Confirmez la suppression de la requête"
 msgstr "Do you confirm the deletion of the request?"
 
-#: ../../../vendor/equinton/ppci/src/Views/templates/ppci/request/requestChange.tpl:51
+#: ../../../vendor/equinton/ppci/src/Views/templates/ppci/request/requestChange.tpl:55
 msgid "Description de la requête"
 msgstr "Description of the request"
 
-#: ../../../vendor/equinton/ppci/src/Views/templates/ppci/request/requestChange.tpl:58
+#: ../../../vendor/equinton/ppci/src/Views/templates/ppci/request/requestChange.tpl:62
 msgid "Code SQL :"
 msgstr "SQL code:"
 
-#: ../../../vendor/equinton/ppci/src/Views/templates/ppci/request/requestChange.tpl:64
+#: ../../../vendor/equinton/ppci/src/Views/templates/ppci/request/requestChange.tpl:68
 msgid "Champs dates de la requête (séparés par une virgule) :"
 msgstr "Date fields of the request (separated by a comma):"
 
-#: ../../../vendor/equinton/ppci/src/Views/templates/ppci/request/requestChange.tpl:70
+#: ../../../vendor/equinton/ppci/src/Views/templates/ppci/request/requestChange.tpl:74
 msgid "date de création :"
 msgstr "Date of creation:"
 
-#: ../../../vendor/equinton/ppci/src/Views/templates/ppci/request/requestChange.tpl:76
+#: ../../../vendor/equinton/ppci/src/Views/templates/ppci/request/requestChange.tpl:80
 msgid "par :"
 msgstr "by:"
 
-#: ../../../vendor/equinton/ppci/src/Views/templates/ppci/request/requestChange.tpl:82
+#: ../../../vendor/equinton/ppci/src/Views/templates/ppci/request/requestChange.tpl:86
 msgid "Date de dernière exécution :"
 msgstr "Date of last execution:"
 
-#: ../../../vendor/equinton/ppci/src/Views/templates/ppci/request/requestChange.tpl:90
+#: ../../../vendor/equinton/ppci/src/Views/templates/ppci/request/requestChange.tpl:94
 msgid "Enregistrer"
 msgstr "Save"
 
-#: ../../../vendor/equinton/ppci/src/Views/templates/ppci/request/requestChange.tpl:92
+#: ../../../vendor/equinton/ppci/src/Views/templates/ppci/request/requestChange.tpl:96
 msgid "Enregistrer et exécuter"
 msgstr "Save and run"
 
-#: ../../../vendor/equinton/ppci/src/Views/templates/ppci/request/requestChange.tpl:93
+#: ../../../vendor/equinton/ppci/src/Views/templates/ppci/request/requestChange.tpl:97
 msgid "Exécuter"
 msgstr "Run"
 
-#: ../../../vendor/equinton/ppci/src/Views/templates/ppci/request/requestChange.tpl:126
+#: ../../../vendor/equinton/ppci/src/Views/templates/ppci/request/requestChange.tpl:98
+msgid "Exécuter avec export CSV direct"
+msgstr "Execute with direct CSV export"
+
+#: ../../../vendor/equinton/ppci/src/Views/templates/ppci/request/requestChange.tpl:131
 msgid "Aucun résultat n'a été retourné par la requête"
 msgstr "No results were returned by the query"
 
@@ -7150,6 +7374,18 @@ msgstr "Variable name"
 #: ../../../vendor/equinton/ppci/src/Views/templates/ppci/utils/system.tpl:9
 msgid "Contenu"
 msgstr "Content"
+
+#~ msgid ""
+#~ "La requête ne peut pas contenir d'ordres de modification de la base de "
+#~ "données ni porter sur des tables contenant des informations "
+#~ "confidentielles"
+#~ msgstr ""
+#~ "The request must not contain any database modification commands or relate "
+#~ "to tables containing confidential information"
+
+#, fuzzy
+#~ msgid "Date dernière<br>exécution"
+#~ msgstr "Date of last execution"
 
 #, fuzzy
 #~ msgid "Structure de la base de données des droits (HTML)"

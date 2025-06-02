@@ -72,6 +72,7 @@
 			<item module="spermeConservateurList" label="Conservateurs de spermes" tooltip="Produits utilisés pour conserver le sperme" droits="consult"/>
 			<item module="stadeOeufList" label="Stades des œufs" tooltip="Liste des stades des œufs" droits="consult"/>
 			<item module="stadeGonadeList" label="Stades des gonades" tooltip="Liste des stades des gonades" droits="consult"/>
+			<item module="devenirTypeList" label="Types de devenir des lots" tooltip="Liste des types de devenir des lots" droits="consult"/>
 		</item>
 
 		<item divider="1" droits="consult"/>

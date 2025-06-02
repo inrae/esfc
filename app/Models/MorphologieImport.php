@@ -16,9 +16,7 @@ class MorphologieImport
     private $fields = array();
     public $minevent = 9999999;
     public $maxevent = 0;
-    public array $ObjetBDDParam;
     private $poisson, $evenement, $morphologie;
-    public $classpath = "modules/classes";
     public array $headerLine;
 
     function __construct() {}

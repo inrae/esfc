@@ -1,5 +1,10 @@
 Nouveautés
 ==========
+Version 25.1.0 du 2 juin 2025
+------------------------------
+Nouveautés :
+- ajout de la création des poissons individuels à partir des destinations des lots de reproduction
+
 Version 25.0.0 du 24 mars 2025
 ------------------------------
 - migration de l'application vers le framework CodeIgniter avec le module equinton/ppci

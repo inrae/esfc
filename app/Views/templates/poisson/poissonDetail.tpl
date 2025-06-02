@@ -44,6 +44,12 @@
             <dd>{$dataPoisson.site_name}</dd>
         </dl>
         {/if}
+        {if !empty($dataPoisson.lot_id)}
+        <dl class="dl-horizontal">
+            <dt>{t}lot de reproduction :{/t}</dt>
+            <dd>{$dataPoisson.lot_nom}</dd>
+        </dl>
+        {/if}
         {if !empty($dataPoisson.commentaire) }
         <dl class="dl-horizontal">
             <dt>{t}Commentaire{/t}</dt>
