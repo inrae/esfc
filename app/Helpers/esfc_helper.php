@@ -153,7 +153,7 @@ function apiCall($method, $url, $certificate_path = "", $data = array(), $modeDe
     if (!empty($certificate_path)) {
         curl_setopt($curl, CURLOPT_SSLCERT, $certificate_path);
     }
-    if ($modeDebug) {
+    if ($modeDebug || empty($certificate_path)) {
         curl_setopt($curl, CURLOPT_SSL_VERIFYSTATUS, false);
         curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
         curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 0);

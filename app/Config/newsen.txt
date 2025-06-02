@@ -2,6 +2,11 @@ News
 ==========
 Translated with Deepl Traduction
 
+Version 25.1.0 of 2 June 2025
+------------------------------
+New features:
+- creation of individual fish from breeding batch destinations added
+
 Version 25.0.0 of 24 March 2025
 ------------------------------
 - migration of the application to the CodeIgniter framework with the equinton/ppci module

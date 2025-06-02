@@ -182,8 +182,7 @@
         </ul>
         <u>{t}Le fichier ne doit être fourni qu'une seule fois, sinon vous créerez des doublons !{/t}</u>
         <br>
-        {t}Si le fichier est fourni, le programme va créer les poissons et les événements correspondants (morphologie,
-        sortie, transfert, etc.){/t}
+        {t}Si le fichier est fourni, le programme va créer les poissons et les événements correspondants (morphologie, sortie, transfert, etc.){/t}
     </div>
 </div>
 
