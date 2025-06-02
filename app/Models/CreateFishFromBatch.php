@@ -96,7 +96,8 @@ class CreateFishFromBatch
                 "commentaire" => $row["commentaire"],
                 "date_naissance" => $dlot["eclosion_date"],
                 "categorie_id" => 2,
-                "sexe_id" => 3
+                "sexe_id" => 3,
+                "lot_id" => $ddevenir["lot_id"]
             ];
             $poisson_id = $poisson->write($dpoisson);
             /**
