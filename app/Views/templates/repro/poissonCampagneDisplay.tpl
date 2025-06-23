@@ -189,7 +189,7 @@
 </script>
 <a href="{$poissonDetailParent}?sequence_id={$sequence_id}">
 	<img src="display/images/list.png" height="25">
-	{t}Retour à la liste des poissons{/t}
+	{t}Retour à la liste{/t}
 </a>
 <h2>{t}Détail du reproducteur{/t} {$dataPoisson.matricule} {$dataPoisson.prenom} {$dataPoisson.pittag_valeur} -
 	{$dataPoisson.sexe_libelle}

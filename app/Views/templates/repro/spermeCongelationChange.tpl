@@ -76,9 +76,9 @@
     });
 </script>
 
-<a href="{$poissonDetailParent}&sequence_id={$data.sequence_id}">
+<a href="{$poissonDetailParent}?sequence_id={$data.sequence_id}">
     <img src="display/images/display.png" height="25">
-    {t}Retour à la liste des poissons{/t}
+    {t}Retour à la liste{/t}
 </a>
 &nbsp;
 <a href="poissonCampagneDisplay?poisson_campagne_id={$dataPoisson.poisson_campagne_id}">

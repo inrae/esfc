@@ -1,5 +1,5 @@
 {if $poissonDetailParent > 0}
-<a href="{$poissonDetailParent}&sequence_id={$sequence_id}">
+<a href="{$poissonDetailParent}?sequence_id={$sequence_id}">
     <img src="display/images/display.png" height="25">
     {t}Retour à la liste des poissons{/t}
 </a>&nbsp;

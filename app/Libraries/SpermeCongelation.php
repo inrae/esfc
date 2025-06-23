@@ -52,7 +52,7 @@ class SpermeCongelation extends PpciLibrary
             $search["name"] = $year;
         }
         $url = $_SESSION["dbparams"]["CSAddress"] . "/" . $_SESSION["dbparams"]["CSApiConsultUrl"];
-        $this->vue->set($_SESSION["poissonDetailParent"], "poissonDetailParent");
+        $_SESSION["poissonDetailParent"] = "spermeCongelationList";
         try {
             /**
              * @var String
@@ -152,7 +152,7 @@ class SpermeCongelation extends PpciLibrary
             $this->message->set(_("La récupération des informations en provenance de Collec-Science a échoué. Si le problème persiste, contactez l'administrateur de l'application"), true);
             $this->message->set($e->getMessage(), true);
         }
-        $this->vue->set($_SESSION["poissonDetailParent"], "SpermeCongelationList");
+        $this->vue->set($_SESSION["poissonDetailParent"], "poissonDetailParent");
         return $this->vue->send();
     }
     function write()

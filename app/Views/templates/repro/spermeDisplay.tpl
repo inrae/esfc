@@ -1,4 +1,4 @@
-<a href="{$poissonDetailParent}&sperme_qualite_id={$sperme_qualite_id}">Retour à la liste des poissons</a>&nbsp;
+<a href="{$poissonDetailParent}?sperme_qualite_id={$sperme_qualite_id}">Retour à la liste des poissons</a>&nbsp;
 <a href="poissonCampagneDisplay?poisson_campagne_id={$data.poisson_campagne_id}">
 Retour au reproducteur
 </a>
