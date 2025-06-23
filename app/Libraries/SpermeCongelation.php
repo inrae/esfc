@@ -152,7 +152,7 @@ class SpermeCongelation extends PpciLibrary
             $this->message->set(_("La récupération des informations en provenance de Collec-Science a échoué. Si le problème persiste, contactez l'administrateur de l'application"), true);
             $this->message->set($e->getMessage(), true);
         }
-        $this->vue->set($_SESSION["poissonDetailParent"], "poissonDetailParent");
+        $this->vue->set($_SESSION["poissonDetailParent"], "SpermeCongelationList");
         return $this->vue->send();
     }
     function write()
