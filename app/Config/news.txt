@@ -1,5 +1,13 @@
 Nouveautés
 ==========
+Version 25.1.1 du 10 avril 2026
+-------------------------------
+Correction de bugs :
+- en accès à la saisie du sperme, un écran blanc était affiché si le poisson n'avait pas été rattaché à une séquence
+
+Nouveautés : 
+- ajout d'une fonction permettant de consulter les logs applicatives
+
 Version 25.1.0 du 2 juin 2025
 ------------------------------
 Nouveautés :

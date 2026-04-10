@@ -2,6 +2,14 @@ News
 ==========
 Translated with Deepl Traduction
 
+Version 25.1.1, 10 April 2026
+-------------------------------
+Bug fixes:
+- When accessing the sperm entry screen, a blank screen was displayed if the fish had not been linked to a sequence
+
+New features: 
+- Added a function to view application logs
+
 Version 25.1.0 of 2 June 2025
 ------------------------------
 New features:
