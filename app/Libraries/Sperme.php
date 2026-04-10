@@ -60,8 +60,8 @@ class Sperme extends PpciLibrary
 		$this->vue->set($poissonCampagne->lire($_REQUEST["poisson_campagne_id"]), "dataPoisson");
 		$sequences = $poissonCampagne->getListSequence($_REQUEST["poisson_campagne_id"], $_SESSION["annee"]);
 		if (empty($sequences)) {
-			return false;
 			$this->message->set(_("Le poisson n'est rattaché à aucune séquence, la saisie d'un prélèvement de sperme n'est pas possible"), true);
+			return false;
 		} else {
 			$this->vue->set($sequences, "sequences");
 			$data = $this->dataRead($this->id, "repro/spermeChange.tpl", $_REQUEST["poisson_campagne_id"]);
