@@ -19,7 +19,10 @@ class Sperme extends PpciController
     }
     function change()
     {
-        return $this->lib->change();
+        if ( ! $this->lib->change()) {
+            $poissonCampagne = new PoissonCampagne;
+            return $poissonCampagne->display();
+        }
     }
     function write()
     {
