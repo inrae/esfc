@@ -23,6 +23,11 @@ use Config\Encryption as EncryptionConfig;
  * This class determines the driver, cipher, and mode to use, and then
  * initializes the appropriate encryption handler.
  *
+ * @property-read string       $digest
+ * @property-read string       $driver
+ * @property-read list<string> $drivers
+ * @property-read string       $key
+ *
  * @see \CodeIgniter\Encryption\EncryptionTest
  */
 class Encryption
@@ -132,6 +137,10 @@ class Encryption
 
         $handlerName     = 'CodeIgniter\\Encryption\\Handlers\\' . $this->driver . 'Handler';
         $this->encrypter = new $handlerName($config);
+
+        if (($config->previousKeys ?? []) !== []) {
+            $this->encrypter = new KeyRotationDecorator($this->encrypter, $config->previousKeys);
+        }
 
         return $this->encrypter;
     }

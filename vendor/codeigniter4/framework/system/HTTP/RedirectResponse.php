@@ -93,8 +93,8 @@ class RedirectResponse extends Response
     {
         $session = service('session');
         $session->setFlashdata('_ci_old_input', [
-            'get'  => $_GET ?? [],
-            'post' => $_POST ?? [],
+            'get'  => service('superglobals')->getGetArray(),
+            'post' => service('superglobals')->getPostArray(),
         ]);
 
         $this->withErrors();

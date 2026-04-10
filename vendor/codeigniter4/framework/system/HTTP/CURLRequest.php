@@ -17,6 +17,8 @@ use CodeIgniter\Exceptions\InvalidArgumentException;
 use CodeIgniter\HTTP\Exceptions\HTTPException;
 use Config\App;
 use Config\CURLRequest as ConfigCURLRequest;
+use CurlShareHandle;
+use SensitiveParameter;
 
 /**
  * A lightweight HTTP client for sending synchronous HTTP requests via cURL.
@@ -102,6 +104,11 @@ class CURLRequest extends OutgoingRequest
     private readonly bool $shareOptions;
 
     /**
+     * The share connection instance.
+     */
+    protected ?CurlShareHandle $shareConnection = null;
+
+    /**
      * Takes an array of options to set the following possible class properties:
      *
      *  - baseURI
@@ -125,12 +132,24 @@ class CURLRequest extends OutgoingRequest
         $this->baseURI        = $uri->useRawQueryString();
         $this->defaultOptions = $options;
 
-        /** @var ConfigCURLRequest|null $configCURLRequest */
-        $configCURLRequest  = config(ConfigCURLRequest::class);
-        $this->shareOptions = $configCURLRequest->shareOptions ?? true;
+        $this->shareOptions = config(ConfigCURLRequest::class)->shareOptions ?? true;
 
         $this->config = $this->defaultConfig;
         $this->parseOptions($options);
+
+        // Share Connection
+        $optShareConnection = config(ConfigCURLRequest::class)->shareConnectionOptions ?? [
+            CURL_LOCK_DATA_CONNECT,
+            CURL_LOCK_DATA_DNS,
+        ];
+
+        if ($optShareConnection !== []) {
+            $this->shareConnection = curl_share_init();
+
+            foreach (array_unique($optShareConnection) as $opt) {
+                curl_share_setopt($this->shareConnection, CURLSHOPT_SHARE, $opt);
+            }
+        }
     }
 
     /**
@@ -242,13 +261,9 @@ class CURLRequest extends OutgoingRequest
      *
      * @return $this
      */
-    public function setAuth(string $username, string $password, string $type = 'basic')
+    public function setAuth(string $username, #[SensitiveParameter] string $password, string $type = 'basic')
     {
-        $this->config['auth'] = [
-            $username,
-            $password,
-            $type,
-        ];
+        $this->config['auth'] = [$username, $password, $type];
 
         return $this;
     }
@@ -366,8 +381,12 @@ class CURLRequest extends OutgoingRequest
 
         $curlOptions[CURLOPT_URL]            = $url;
         $curlOptions[CURLOPT_RETURNTRANSFER] = true;
-        $curlOptions[CURLOPT_HEADER]         = true;
-        $curlOptions[CURLOPT_FRESH_CONNECT]  = true;
+
+        if ($this->shareConnection instanceof CurlShareHandle) {
+            $curlOptions[CURLOPT_SHARE] = $this->shareConnection;
+        }
+
+        $curlOptions[CURLOPT_HEADER] = true;
         // Disable @file uploads in post data.
         $curlOptions[CURLOPT_SAFE_UPLOAD] = true;
 
@@ -385,18 +404,8 @@ class CURLRequest extends OutgoingRequest
         // Set the string we want to break our response from
         $breakString = "\r\n\r\n";
 
-        while (str_starts_with($output, 'HTTP/1.1 100 Continue')) {
-            $output = substr($output, strpos($output, $breakString) + 4);
-        }
-
-        if (preg_match('/HTTP\/\d\.\d 200 Connection established/i', $output)) {
-            $output = substr($output, strpos($output, $breakString) + 4);
-        }
-
-        // If request and response have Digest
-        if (isset($this->config['auth'][2]) && $this->config['auth'][2] === 'digest' && str_contains($output, 'WWW-Authenticate: Digest')) {
-            $output = substr($output, strpos($output, $breakString) + 4);
-        }
+        // Remove all intermediate responses
+        $output = $this->removeIntermediateResponses($output, $breakString);
 
         // Split out our headers and body
         $break = strpos($output, $breakString);
@@ -495,14 +504,14 @@ class CURLRequest extends OutgoingRequest
                     $this->response->setHeader($title, $value);
                 }
             } elseif (str_starts_with($header, 'HTTP')) {
-                preg_match('#^HTTP\/([12](?:\.[01])?) (\d+) (.+)#', $header, $matches);
+                preg_match('#^HTTP\/([12](?:\.[01])?) (\d+)(?: (.+))?#', $header, $matches);
 
                 if (isset($matches[1])) {
                     $this->response->setProtocolVersion($matches[1]);
                 }
 
                 if (isset($matches[2])) {
-                    $this->response->setStatusCode((int) $matches[2], $matches[3] ?? null);
+                    $this->response->setStatusCode((int) $matches[2], $matches[3] ?? '');
                 }
             }
         }
@@ -614,6 +623,16 @@ class CURLRequest extends OutgoingRequest
             }
         }
 
+        // DNS Cache Timeout
+        if (isset($config['dns_cache_timeout']) && is_numeric($config['dns_cache_timeout']) && $config['dns_cache_timeout'] >= -1) {
+            $curlOptions[CURLOPT_DNS_CACHE_TIMEOUT] = (int) $config['dns_cache_timeout'];
+        }
+
+        // Fresh Connect (default true)
+        $curlOptions[CURLOPT_FRESH_CONNECT] = isset($config['fresh_connect']) && is_bool($config['fresh_connect'])
+            ? $config['fresh_connect']
+            : true;
+
         // Timeout
         $curlOptions[CURLOPT_TIMEOUT_MS] = (float) $config['timeout'] * 1000;
 
@@ -694,6 +713,8 @@ class CURLRequest extends OutgoingRequest
      * Does the actual work of initializing cURL, setting the options,
      * and grabbing the output.
      *
+     * @param array<int, mixed> $curlOptions
+     *
      * @codeCoverageIgnore
      */
     protected function sendRequest(array $curlOptions = []): string
@@ -709,8 +730,74 @@ class CURLRequest extends OutgoingRequest
             throw HTTPException::forCurlError((string) curl_errno($ch), curl_error($ch));
         }
 
-        curl_close($ch);
+        return $output;
+    }
+
+    private function removeIntermediateResponses(string $output, string $breakString): string
+    {
+        while (true) {
+            // Check if we should remove the current response
+            if ($this->shouldRemoveCurrentResponse($output, $breakString)) {
+                $breakStringPos = strpos($output, $breakString);
+                if ($breakStringPos !== false) {
+                    $output = substr($output, $breakStringPos + 4);
+
+                    continue;
+                }
+            }
+
+            // No more intermediate responses to remove
+            break;
+        }
 
         return $output;
+    }
+
+    /**
+     * Check if the current response (at the beginning of output) should be removed.
+     */
+    private function shouldRemoveCurrentResponse(string $output, string $breakString): bool
+    {
+        // HTTP/x.x 1xx responses (Continue, Processing, etc.)
+        if (preg_match('/^HTTP\/\d+(?:\.\d+)?\s+1\d\d\s/', $output)) {
+            return true;
+        }
+
+        // HTTP/x.x 200 Connection established (proxy responses)
+        if (preg_match('/^HTTP\/\d+(?:\.\d+)?\s+200\s+Connection\s+established/i', $output)) {
+            return true;
+        }
+
+        // HTTP/x.x 3xx responses (redirects) - only if redirects are allowed
+        $allowRedirects = isset($this->config['allow_redirects']) && $this->config['allow_redirects'] !== false;
+        if ($allowRedirects && preg_match('/^HTTP\/\d+(?:\.\d+)?\s+3\d\d\s/', $output)) {
+            // Check if there's a Location header
+            $breakStringPos = strpos($output, $breakString);
+            if ($breakStringPos !== false) {
+                $headerSection = substr($output, 0, $breakStringPos);
+                $headers       = explode("\n", $headerSection);
+
+                foreach ($headers as $header) {
+                    if (str_starts_with(strtolower($header), 'location:')) {
+                        return true; // Found location header, this is a redirect to remove
+                    }
+                }
+            }
+        }
+
+        // Digest auth challenges - only remove if there's another response after
+        if (isset($this->config['auth'][2]) && $this->config['auth'][2] === 'digest') {
+            $breakStringPos = strpos($output, $breakString);
+            if ($breakStringPos !== false) {
+                $headerSection = substr($output, 0, $breakStringPos);
+                if (str_contains($headerSection, 'WWW-Authenticate: Digest')) {
+                    $nextBreakPos = strpos($output, $breakString, $breakStringPos + 4);
+
+                    return $nextBreakPos !== false; // Only remove if there's another response
+                }
+            }
+        }
+
+        return false;
     }
 }

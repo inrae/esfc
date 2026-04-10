@@ -16,6 +16,10 @@ namespace CodeIgniter\Database;
 use Closure;
 use CodeIgniter\Database\Exceptions\DatabaseException;
 use CodeIgniter\Events\Events;
+use ReflectionClass;
+use ReflectionNamedType;
+use ReflectionType;
+use ReflectionUnionType;
 use stdClass;
 use Stringable;
 use Throwable;
@@ -59,6 +63,13 @@ use Throwable;
  */
 abstract class BaseConnection implements ConnectionInterface
 {
+    /**
+     * Cached builtin type names per class/property.
+     *
+     * @var array<class-string, array<string, list<string>>>
+     */
+    private static array $propertyBuiltinTypesCache = [];
+
     /**
      * Data Source Name / Connect string
      *
@@ -206,16 +217,14 @@ abstract class BaseConnection implements ConnectionInterface
     /**
      * Connection ID
      *
-     * @var         false|object|resource
-     * @phpstan-var false|TConnection
+     * @var false|TConnection
      */
     public $connID = false;
 
     /**
      * Result ID
      *
-     * @var         false|object|resource
-     * @phpstan-var false|TResult
+     * @var false|TResult
      */
     public $resultID = false;
 
@@ -374,9 +383,14 @@ abstract class BaseConnection implements ConnectionInterface
             unset($params['dateFormat']);
         }
 
+        $typedPropertyTypes = $this->getBuiltinPropertyTypesMap(array_keys($params));
+
         foreach ($params as $key => $value) {
             if (property_exists($this, $key)) {
-                $this->{$key} = $value;
+                $this->{$key} = $this->castScalarValueForTypedProperty(
+                    $value,
+                    $typedPropertyTypes[$key] ?? [],
+                );
             }
         }
 
@@ -392,6 +406,126 @@ abstract class BaseConnection implements ConnectionInterface
             // (DBPrefix) even when the main database is down.
             $this->initialize();
         }
+    }
+
+    /**
+     * Some config values (especially env overrides without clear source type)
+     * can still reach us as strings. Coerce them for typed properties to keep
+     * strict typing compatible.
+     *
+     * @param list<string> $types
+     */
+    private function castScalarValueForTypedProperty(mixed $value, array $types): mixed
+    {
+        if (! is_string($value)) {
+            return $value;
+        }
+
+        if ($types === [] || in_array('string', $types, true) || in_array('mixed', $types, true)) {
+            return $value;
+        }
+
+        $trimmedValue = trim($value);
+
+        if (in_array('null', $types, true) && strtolower($trimmedValue) === 'null') {
+            return null;
+        }
+
+        if (in_array('int', $types, true) && preg_match('/^[+-]?\d+$/', $trimmedValue) === 1) {
+            return (int) $trimmedValue;
+        }
+
+        if (in_array('float', $types, true) && is_numeric($trimmedValue)) {
+            return (float) $trimmedValue;
+        }
+
+        if (in_array('bool', $types, true) || in_array('false', $types, true) || in_array('true', $types, true)) {
+            $boolValue = filter_var($trimmedValue, FILTER_VALIDATE_BOOLEAN, FILTER_NULL_ON_FAILURE);
+
+            if ($boolValue !== null) {
+                if (in_array('bool', $types, true)) {
+                    return $boolValue;
+                }
+
+                if ($boolValue === false && in_array('false', $types, true)) {
+                    return false;
+                }
+
+                if ($boolValue === true && in_array('true', $types, true)) {
+                    return true;
+                }
+            }
+        }
+
+        return $value;
+    }
+
+    /**
+     * @param list<string> $properties
+     *
+     * @return array<string, list<string>>
+     */
+    private function getBuiltinPropertyTypesMap(array $properties): array
+    {
+        $className = static::class;
+        $requested = array_fill_keys($properties, true);
+
+        if (! isset(self::$propertyBuiltinTypesCache[$className])) {
+            self::$propertyBuiltinTypesCache[$className] = [];
+        }
+
+        // Fill only the properties requested by this call that are not cached yet.
+        $missing = array_diff_key($requested, self::$propertyBuiltinTypesCache[$className]);
+
+        if ($missing !== []) {
+            $reflection = new ReflectionClass($className);
+
+            foreach ($reflection->getProperties() as $property) {
+                $propertyName = $property->getName();
+
+                if (! isset($missing[$propertyName])) {
+                    continue;
+                }
+
+                $type = $property->getType();
+
+                if (! $type instanceof ReflectionType) {
+                    self::$propertyBuiltinTypesCache[$className][$propertyName] = [];
+
+                    continue;
+                }
+
+                $namedTypes   = $type instanceof ReflectionUnionType ? $type->getTypes() : [$type];
+                $builtinTypes = [];
+
+                foreach ($namedTypes as $namedType) {
+                    if (! $namedType instanceof ReflectionNamedType || ! $namedType->isBuiltin()) {
+                        continue;
+                    }
+
+                    $builtinTypes[] = $namedType->getName();
+                }
+
+                if ($type->allowsNull() && ! in_array('null', $builtinTypes, true)) {
+                    $builtinTypes[] = 'null';
+                }
+
+                self::$propertyBuiltinTypesCache[$className][$propertyName] = $builtinTypes;
+            }
+
+            // Untyped or unresolved properties are cached as empty to avoid re-reflecting them.
+            foreach (array_keys($missing) as $propertyName) {
+                self::$propertyBuiltinTypesCache[$className][$propertyName] ??= [];
+            }
+        }
+
+        $typedProperties = [];
+
+        foreach ($properties as $property) {
+            $typedProperties[$property] = self::$propertyBuiltinTypesCache[$className][$property] ?? [];
+        }
+
+        return $typedProperties;
     }
 
     /**
@@ -435,10 +569,15 @@ abstract class BaseConnection implements ConnectionInterface
             if (! empty($this->failover) && is_array($this->failover)) {
                 // Go over all the failovers
                 foreach ($this->failover as $index => $failover) {
+                    $typedPropertyTypes = $this->getBuiltinPropertyTypesMap(array_keys($failover));
+
                     // Replace the current settings with those of the failover
                     foreach ($failover as $key => $val) {
                         if (property_exists($this, $key)) {
-                            $this->{$key} = $val;
+                            $this->{$key} = $this->castScalarValueForTypedProperty(
+                                $val,
+                                $typedPropertyTypes[$key] ?? [],
+                            );
                         }
                     }
 
@@ -489,6 +628,20 @@ abstract class BaseConnection implements ConnectionInterface
     }
 
     /**
+     * Keep or establish the connection if no queries have been sent for
+     * a length of time exceeding the server's idle timeout.
+     *
+     * @return void
+     */
+    public function reconnect()
+    {
+        if ($this->ping() === false) {
+            $this->close();
+            $this->initialize();
+        }
+    }
+
+    /**
      * Platform dependent way method for closing the connection.
      *
      * @return void
@@ -496,10 +649,35 @@ abstract class BaseConnection implements ConnectionInterface
     abstract protected function _close();
 
     /**
+     * Check if the connection is still alive.
+     */
+    public function ping(): bool
+    {
+        if ($this->connID === false) {
+            return false;
+        }
+
+        return $this->_ping();
+    }
+
+    /**
+     * Driver-specific ping implementation.
+     */
+    protected function _ping(): bool
+    {
+        try {
+            $result = $this->simpleQuery('SELECT 1');
+
+            return $result !== false;
+        } catch (DatabaseException) {
+            return false;
+        }
+    }
+
+    /**
      * Create a persistent database connection.
      *
-     * @return         false|object|resource
-     * @phpstan-return false|TConnection
+     * @return false|TConnection
      */
     public function persistentConnect()
     {
@@ -512,8 +690,7 @@ abstract class BaseConnection implements ConnectionInterface
      * get that connection. If you pass either alias in and only a single
      * connection is present, it must return the sole connection.
      *
-     * @return         false|object|resource
-     * @phpstan-return TConnection
+     * @return false|TConnection
      */
     public function getConnection(?string $alias = null)
     {
@@ -592,8 +769,7 @@ abstract class BaseConnection implements ConnectionInterface
     /**
      * Executes the query against the database.
      *
-     * @return         false|object|resource
-     * @phpstan-return false|TResult
+     * @return false|TResult
      */
     abstract protected function execute(string $sql);
 
@@ -607,8 +783,7 @@ abstract class BaseConnection implements ConnectionInterface
      *
      * @param array|string|null $binds
      *
-     * @return         BaseResult|bool|Query                       BaseResult when “read” type query, bool when “write” type query, Query when prepared query
-     * @phpstan-return BaseResult<TConnection, TResult>|bool|Query
+     * @return BaseResult<TConnection, TResult>|bool|Query
      *
      * @todo BC set $queryClass default as null in 4.1
      */
@@ -658,9 +833,7 @@ abstract class BaseConnection implements ConnectionInterface
             $query->setDuration($startTime, $startTime);
 
             // This will trigger a rollback if transactions are being used
-            if ($this->transDepth !== 0) {
-                $this->transStatus = false;
-            }
+            $this->handleTransStatus();
 
             if (
                 $this->DBDebug
@@ -726,8 +899,7 @@ abstract class BaseConnection implements ConnectionInterface
      * is performed, nor are transactions handled. Simply takes a raw
      * query string and returns the database-specific result id.
      *
-     * @return         false|object|resource
-     * @phpstan-return false|TResult
+     * @return false|TResult
      */
     public function simpleQuery(string $sql)
     {
@@ -912,6 +1084,18 @@ abstract class BaseConnection implements ConnectionInterface
     }
 
     /**
+     * Handle transaction status when a query fails
+     *
+     * @internal This method is for internal database component use only
+     */
+    public function handleTransStatus(): void
+    {
+        if ($this->transDepth !== 0) {
+            $this->transStatus = false;
+        }
+    }
+
+    /**
      * Begin Transaction
      */
     abstract protected function _transBegin(): bool;
@@ -1065,8 +1249,7 @@ abstract class BaseConnection implements ConnectionInterface
      * @param bool                       $protectIdentifiers Protect table or column names?
      * @param bool                       $fieldExists        Supplied $item contains a column name?
      *
-     * @return         array|string
-     * @phpstan-return ($item is array ? array : string)
+     * @return ($item is array ? array : string)
      */
     public function protectIdentifiers($item, bool $prefixSingle = false, ?bool $protectIdentifiers = null, bool $fieldExists = true)
     {
@@ -1270,8 +1453,7 @@ abstract class BaseConnection implements ConnectionInterface
      *
      * @param array|string $item
      *
-     * @return         array|string
-     * @phpstan-return ($item is array ? array : string)
+     * @return ($item is array ? array : string)
      */
     public function escapeIdentifiers($item)
     {
@@ -1355,8 +1537,7 @@ abstract class BaseConnection implements ConnectionInterface
      *
      * @param array|bool|float|int|object|string|null $str
      *
-     * @return         array|float|int|string
-     * @phpstan-return ($str is array ? array : float|int|string)
+     * @return ($str is array ? array : float|int|string)
      */
     public function escape($str)
     {
@@ -1468,7 +1649,7 @@ abstract class BaseConnection implements ConnectionInterface
     {
         $driver = $this->getDriverFunctionPrefix();
 
-        if (! str_contains($driver, $functionName)) {
+        if (! str_starts_with($functionName, $driver)) {
             $functionName = $driver . $functionName;
         }
 
@@ -1787,8 +1968,7 @@ abstract class BaseConnection implements ConnectionInterface
      *
      * Must return an array with keys 'code' and 'message':
      *
-     * @return         array<string, int|string|null>
-     * @phpstan-return array{code: int|string|null, message: string|null}
+     * @return array{code: int|string|null, message: string|null}
      */
     abstract public function error(): array;
 

@@ -150,11 +150,13 @@ class FileCollection
 
         $this->files = [];
 
-        if ($_FILES === []) {
+        $files = service('superglobals')->getFilesArray();
+
+        if ($files === []) {
             return;
         }
 
-        $files = $this->fixFilesArray($_FILES);
+        $files = $this->fixFilesArray($files);
 
         foreach ($files as $name => $file) {
             $this->files[$name] = $this->createFileObject($file);
@@ -253,7 +255,7 @@ class FileCollection
     {
         $currentIndex = array_shift($index);
 
-        if (isset($currentIndex) && is_array($index) && $index !== [] && array_key_exists($currentIndex, $value) && is_array($value[$currentIndex])) {
+        if (isset($currentIndex) && $index !== [] && array_key_exists($currentIndex, $value) && is_array($value[$currentIndex])) {
             return $this->getValueDotNotationSyntax($index, $value[$currentIndex]);
         }
 

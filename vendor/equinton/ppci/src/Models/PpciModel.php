@@ -136,7 +136,7 @@ class PpciModel extends Model
         /**
          * Verify mandatory fields
          */
-        if (!isset($row[$this->primaryKey])) {
+        if (!isset($row[$this->primaryKey]) or strlen($row[$this->primaryKey]) == 0) {
             $row[$this->primaryKey] = 0;
         }
         foreach ($this->mandatoryFields as $fieldName) {
@@ -610,7 +610,7 @@ class PpciModel extends Model
         $newdate = "";
         $date = date_create_from_format($this->dateFormatMask, $value);
         if ($date) {
-            $newdate = date_format($date, 'Y-m-d H:i:s');
+            $newdate = date_format($date, 'Y-m-d');
         }
         return $newdate;
     }
