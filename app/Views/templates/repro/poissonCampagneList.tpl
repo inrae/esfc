@@ -139,7 +139,7 @@
 
 <form id="clistform" method="post" action="poissonCampagneChangeStatut">
 	<div class="row">
-		<table class="table table-bordered table-hover datatable display" id="cpoissonList">
+		<table class="table table-bordered table-hover datatable-searching display" id="cpoissonList">
 			<thead>
 				<tr>
 					<th>{t}Données d'élevage{/t}</th>
