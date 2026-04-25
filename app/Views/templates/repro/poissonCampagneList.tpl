@@ -128,7 +128,7 @@
 <div class="row">
 	<div class="col-md-3">
 		{if $rights.reproGestion == 1}
-		<a id="campagneinit" href="poissonCampagneInit&annee={$dataSearch.annee}">
+		<a id="campagneinit" href="poissonCampagneInit?annee={$dataSearch.annee}">
 			{t}Ajouter tous les adultes vivants à la campagne...{/t}
 		</a>
 		{/if}

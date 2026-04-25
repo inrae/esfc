@@ -82,7 +82,11 @@ class PoissonCampagne extends PpciModel
 		}
 		$masse_actuelle = $this->morphologie->getMasseBeforeRepro($poisson_id, $annee);
 		$result["masse_actuelle"] = $masse_actuelle["masse"];
-		$masse_anterieure = $this->morphologie->getMasseBeforeDate($poisson_id, $masse_actuelle["morphologie_date"]);
+		if (!empty($masse_actuelle)) {
+			$masse_anterieure = $this->morphologie->getMasseBeforeDate($poisson_id, $masse_actuelle["morphologie_date"]);
+		} else {
+			$masse_anterieure = $this->morphologie->getMasseBeforeDate($poisson_id, date($_SESSION["date"]["maskdate"]));
+		}
 		$result["masse_anterieure"] = $masse_anterieure["masse"];
 		if (is_array($masse_actuelle) && is_array($masse_anterieure)) {
 			if ($masse_actuelle["masse"] > 0 && $masse_anterieure["masse"] > 0) {
@@ -183,8 +187,9 @@ class PoissonCampagne extends PpciModel
 					and annee = :annee:";
 		return $this->lireParam($sql, ["poisson_id" => $poisson_id, "annee" => $annee]);
 	}
-	function lireFromPoissonAnnee(int $poisson_id, int $annee) {
-		return $this->readFromPoissonAnnee($poisson_id,$annee);
+	function lireFromPoissonAnnee(int $poisson_id, int $annee)
+	{
+		return $this->readFromPoissonAnnee($poisson_id, $annee);
 	}
 
 	/**

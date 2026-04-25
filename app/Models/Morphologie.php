@@ -133,7 +133,7 @@ class Morphologie extends PpciModel
 					limit 1";
         return $this->lireParamAsPrepared($sql, array(
             "poisson_id" => $poisson_id,
-            "date" => $date
+            "date" => $this->formatDateLocaleToDB($date)
         ));
     }
 
