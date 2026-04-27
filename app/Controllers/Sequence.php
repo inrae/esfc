@@ -18,7 +18,11 @@ class Sequence extends PpciController
     }
     function display()
     {
-        return $this->lib->display();
+        if (strlen($_REQUEST["sequence_id"]) > 0) {
+            return $this->lib->display();
+        } else {
+            return $this->list();
+        }
     }
     function change()
     {
