@@ -18,7 +18,11 @@ class CircuitEau extends PpciController
     }
     function display()
     {
-        return $this->lib->display();
+        if (isset($_REQUEST["circuit_eau_id"])) {
+            return $this->lib->display();
+        } else {
+            return $this->list();
+        }
     }
     function change()
     {
