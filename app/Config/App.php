@@ -182,13 +182,13 @@ class App extends BaseConfig
      *
      * @var string
      */
-    public string $version = "v25.1.1";
+    public string $version = "v25.1.2";
     /**
      * versionDate - don't change here, but in function setParameters() below
      *
      * @var string
      */
-    public string $versionDate = "25/04/2026";
+    public string $versionDate = "27/04/2026";
     /**
      * Number of the database version
      *

@@ -1,5 +1,12 @@
 Nouveautés
 ==========
+Version 25.1.2 du 27 avril 2026
+-------------------------------
+Correction de bugs :
+- dans certains cas, l'accès au détail des séquences de reproduction générait une erreur
+- dans certains cas, l'accès au détail d'un circuit d'eau générait une erreur
+- la recherche d'un poisson avec un pittag trop long n'aboutissait pas et générait une erreur
+
 Version 25.1.1 du 10 avril 2026
 -------------------------------
 Correction de bugs :

@@ -2,6 +2,13 @@ News
 ==========
 Translated with Deepl Traduction
 
+Version 25.1.2, 27 April 2026
+-------------------------------
+Bug fixes:
+- in some cases, accessing the details of breeding sequences caused an error
+- in some cases, accessing the details of a water circuit caused an error
+- searching for a fish with a pitag that was too long failed and caused an error
+
 Version 25.1.1, 10 April 2026
 -------------------------------
 Bug fixes:
