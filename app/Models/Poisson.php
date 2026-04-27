@@ -130,7 +130,7 @@ class Poisson extends PpciModel
 						or upper(prenom) like :texte:
 						or upper(pittag_valeur) like :texte:";
             $param["texte"] = $ftexte;
-            if (is_numeric($dataSearch["texte"])) {
+            if (is_numeric($dataSearch["texte"]) && strlen($dataSearch["texte"]) < 10) {
                 $where .= " or poisson_id = :poisson_id:";
                 $param["poisson_id"] = $dataSearch["texte"];
             }
